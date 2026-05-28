@@ -47,7 +47,7 @@ const socialIconsHtml = `<div class="footer-social-icons">${socialLinks
 const config: Config = {
   title: 'GHI Electronics',
   tagline: 'Embedded systems for makers and engineers',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.png',
 
   future: {
     v4: true,
@@ -111,8 +111,8 @@ const config: Config = {
           label: 'Services',
           position: 'left',
           items: [
-            {label: 'Engineering', href: 'https://www.ghielectronics.com/engineering/'},
-            {label: 'Manufacturing', href: 'https://www.ghielectronics.com/manufacturing/'},
+            {label: 'Engineering', to: '/engineering/'},
+            {label: 'Manufacturing', to: '/manufacturing/'},
           ],
         },
         {
@@ -121,14 +121,14 @@ const config: Config = {
           items: [
             {label: 'SITCore', href: 'https://www.ghielectronics.com/sitcore/'},
             {label: 'Endpoint', href: 'https://www.ghielectronics.com/endpoint/'},
-            {label: 'DUELink', href: 'https://www.ghielectronics.com/duelink/'},
-            {label: 'Longevity', href: 'https://www.ghielectronics.com/longevity/'},
-            {label: 'Distributors', href: 'https://www.ghielectronics.com/distributors/'},
+            {label: 'DUELink', to: '/duelink/'},
+            {label: 'Longevity', to: '/longevity/'},
+            {label: 'Distributors', to: '/distributors/'},
           ],
         },
         {
           label: 'Support',
-          href: 'https://www.ghielectronics.com/support/',
+          to: '/support/',
           position: 'left',
         },
         {
@@ -136,9 +136,9 @@ const config: Config = {
           position: 'left',
           items: [
             {label: 'Press', href: 'https://www.ghielectronics.com/press/'},
-            {label: 'About Us', href: 'https://www.ghielectronics.com/company/'},
-            {label: 'Social Responsibility', href: 'https://www.ghielectronics.com/social-responsibility/'},
-            {label: 'Contact Us', href: 'https://www.ghielectronics.com/contact/'},
+            {label: 'About Us', to: '/company/'},
+            {label: 'Social Responsibility', to: '/social-responsibility/'},
+            {label: 'Contact Us', to: '/contact/'},
           ],
         },
       ],
@@ -151,17 +151,17 @@ const config: Config = {
           items: [
             {label: 'SITCore', href: 'https://www.ghielectronics.com/sitcore/'},
             {label: 'Endpoint', href: 'https://www.ghielectronics.com/endpoint/'},
-            {label: 'DUELink', href: 'https://www.ghielectronics.com/duelink/'},
-            {label: 'Longevity', href: 'https://www.ghielectronics.com/longevity/'},
+            {label: 'DUELink', to: '/duelink/'},
+            {label: 'Longevity', to: '/longevity/'},
           ],
         },
         {
           title: 'Company',
           items: [
-            {label: 'About Us', href: 'https://www.ghielectronics.com/company/'},
+            {label: 'About Us', to: '/company/'},
             {label: 'Press', href: 'https://www.ghielectronics.com/press/'},
-            {label: 'Contact Us', href: 'https://www.ghielectronics.com/contact/'},
-            {label: 'Support', href: 'https://www.ghielectronics.com/support/'},
+            {label: 'Contact Us', to: '/contact/'},
+            {label: 'Support', to: '/support/'},
           ],
         },
         {
