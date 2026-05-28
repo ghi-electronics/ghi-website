@@ -171,7 +171,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} GHI Electronics, LLC. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} GHI Electronics, LLC.`,
     },
     prism: {
       theme: prismThemes.github,
