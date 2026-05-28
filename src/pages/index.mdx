@@ -1,0 +1,126 @@
+---
+title: GHI Electronics — Hardware, Software, Manufacturing
+description: A US-based one-stop shop for designing, building, and manufacturing embedded electronics — from concept to volume production.
+hide_table_of_contents: true
+---
+
+export const industries = [
+  {img: 'industry-kiosks.jpg', name: 'Self-Service Kiosks'},
+  {img: 'industry-handheld.jpg', name: 'Handheld Devices'},
+  {img: 'industry-fleet.jpg', name: 'Fleet Diagnostics'},
+  {img: 'industry-machine.jpg', name: 'Machine Monitoring'},
+  {img: 'industry-warehouse.jpg', name: 'Plant & Warehouse'},
+  {img: 'industry-parking.jpg', name: 'Parking & Traffic'},
+];
+
+<div className="home-hero">
+
+# Hardware → Software → Manufacturing
+
+US-based, end-to-end embedded electronics — concept, code, and circuit boards, all under one roof in Madison Heights, Michigan.
+
+<a href="/contact/" className="btn-primary">Start the conversation →</a>
+
+</div>
+
+<div className="pillar-grid">
+
+<a href="/engineering/" className="pillar-card">
+  <div className="pillar-card__image"><img src="/img/home-engineering.jpg" alt="Engineering" /></div>
+  <div className="pillar-card__body">
+    <div className="pillar-card__title">Engineering</div>
+    <div className="pillar-card__text">We engineer your electronics and develop the firmware required to transform your concept into a production-ready device.</div>
+  </div>
+</a>
+
+<a href="/manufacturing/" className="pillar-card">
+  <div className="pillar-card__image"><img src="/img/home-manufacturing.jpg" alt="Manufacturing" /></div>
+  <div className="pillar-card__body">
+    <div className="pillar-card__title">Manufacturing</div>
+    <div className="pillar-card__text">From prototype to volume production, we manufacture embedded electronics on modern production lines.</div>
+  </div>
+</a>
+
+<a href="https://www.ghielectronics.com/sitcore/" className="pillar-card">
+  <div className="pillar-card__image"><img src="/img/home-soms.jpg" alt="SITCore platform" /></div>
+  <div className="pillar-card__body">
+    <div className="pillar-card__title">SITCore Platform</div>
+    <div className="pillar-card__text">15+ years of production-ready embedded .NET and C# — built for fast development and easy maintenance.</div>
+  </div>
+</a>
+
+</div>
+
+## Built for the products that ship
+
+<p className="lead-text">From self-service kiosks to fleet diagnostics, GHI hardware lives inside the products real businesses rely on every day.</p>
+
+<div className="industries-marquee">
+  <div className="industries-track">
+    {[...industries, ...industries].map((it, i) => {
+      const clone = i >= industries.length;
+      return (
+        <div
+          className="industry-card"
+          key={`${clone ? 'clone' : 'orig'}-${i}`}
+          aria-hidden={clone || undefined}
+        >
+          <img src={`/img/${it.img}`} alt={clone ? '' : it.name} />
+          <div className="industry-card__name">{it.name}</div>
+        </div>
+      );
+    })}
+  </div>
+</div>
+
+<hr className="section-divider" />
+
+<div className="section-tinted">
+
+<div className="section-tinted__intro">
+  <span className="eyebrow">Featured</span>
+  <h2>Meet DUELink.</h2>
+  <p>Our newest ecosystem — smart electronic building blocks that speak plain text. Add sensors, displays, and motors to any board you already have, in any language you already know.</p>
+</div>
+
+<div className="split">
+
+![DUELink modules](/img/duelink-intro.webp)
+
+<div className="split__text">
+
+### No drivers. No datasheets. Just plain text.
+
+DUELink modules are self-contained mini-computers with a scripting engine — usable standalone, daisylinkable in a chain, and programmable from Python, JavaScript, .NET, MicroPython, or the Arduino IDE.
+
+<a href="/duelink/" className="btn-primary">Explore DUELink →</a>
+
+</div>
+</div>
+
+</div>
+
+<div className="split">
+
+![Decades of supported product platforms](/img/longevity-timeline.jpg)
+
+<div className="split__text">
+
+## Built for long-term availability.
+
+We design and manufacture our platforms in-house to support commercial and industrial products throughout their full lifecycle — stable supply, drop-in replacements, and responsible end-of-life when it does come.
+
+<a href="/longevity/" className="btn-primary">Read about longevity →</a>
+
+</div>
+</div>
+
+<div className="cta">
+
+## We'll bring your idea to life.
+
+Tell us what you're building. We'll help you shape a path from concept to shipment — and beyond.
+
+<a href="/contact/" className="btn-primary cta__button">Start the conversation →</a>
+
+</div>

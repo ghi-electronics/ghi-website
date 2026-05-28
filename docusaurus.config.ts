@@ -137,7 +137,6 @@ const config: Config = {
           items: [
             {label: 'Press', href: 'https://www.ghielectronics.com/press/'},
             {label: 'About Us', to: '/company/'},
-            {label: 'Social Responsibility', to: '/social-responsibility/'},
             {label: 'Contact Us', to: '/contact/'},
           ],
         },
