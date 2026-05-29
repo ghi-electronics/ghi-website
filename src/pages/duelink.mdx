@@ -4,19 +4,15 @@ description: Smart modules that speak plain text — add sensors, displays, and 
 hide_table_of_contents: true
 ---
 
-<div className="page-hero">
+<div className="section-tinted">
 
-![DUELink modules](/img/duelink-intro.webp)
-
-<div className="page-hero__text">
-
-# Smart modules that speak plain text.
-
-Add sensors, displays, and motors to any board you already have. No soldering, no drivers, no datasheets.
-
-<a href="https://duelink.com/docs/what-is" className="btn-primary">What is DUELink? →</a>
-
+<div className="section-tinted__intro">
+  <span className="eyebrow">DUELink</span>
+  <h2>Smart modules that speak plain text.</h2>
+  <p>Add sensors, displays, and motors to any board you already have. No soldering, no drivers, no datasheets.</p>
+  <a href="https://duelink.com/docs/what-is" className="btn-primary">What is DUELink? →</a>
 </div>
+
 </div>
 
 <div className="stats">
@@ -30,101 +26,67 @@ Add sensors, displays, and motors to any board you already have. No soldering, n
   </div>
 </div>
 
-<div className="mission">
-  <span className="mission__label">The DUELink idea</span>
-  <p className="mission__quote">"Plain text. Surprising power. The same simple commands that blink an LED also read files on a USB stick and push video to a 50&quot; HDMI screen."</p>
-</div>
+## Featured modules
 
-## Feature modules
-
-<div className="split">
-
-![USB Host module](/img/duelink-usbhost.webp)
-
-<div className="split__text">
-
-### Access USB memory
-
-Mount a USB stick, open a file, write bytes. The FAT16/FAT32 file system is built right into the module — no driver hunt, no filesystem library to integrate.
-
-</div>
-</div>
-
-<div className="split">
-
-<div className="split__text">
-
-### Output to HDMI
-
-The same tiny JST connector that drives an OLED can drive a 50" HDMI screen. Any host that can send text now has a high-definition display.
-
-</div>
-
-![HDMI module](/img/duelink-hdmi.webp)
-
+<div className="showcase-pair">
+  <div className="showcase-card">
+    <div className="showcase-card__image">
+      <img src="/img/duelink-usbhost.webp" alt="USB Host module" />
+    </div>
+    <div className="showcase-card__body">
+      <span className="showcase-card__eyebrow">Storage</span>
+      <h3>Access USB memory</h3>
+      <p>Mount a USB stick, open a file, write bytes. The FAT16/FAT32 file system is built right into the module — no driver hunt, no filesystem library to integrate.</p>
+    </div>
+  </div>
+  <div className="showcase-card">
+    <div className="showcase-card__image">
+      <img src="/img/duelink-hdmi.webp" alt="HDMI module" />
+    </div>
+    <div className="showcase-card__body">
+      <span className="showcase-card__eyebrow">Display</span>
+      <h3>Output to HDMI</h3>
+      <p>The same tiny JST connector that drives an OLED can drive a 50" HDMI screen. Any host that can send text now has a high-definition display.</p>
+    </div>
+  </div>
 </div>
 
 <hr className="section-divider" />
 
-<div className="section-tinted">
+## Code on the module itself
 
-<div className="section-tinted__intro">
-  <span className="eyebrow">Education</span>
-  <h2>Block coding for students.</h2>
-  <p>CincoBit and other STEM coding boards teach physical computing with MicroBlocks — block coding that runs right on the board, with a complete curriculum included.</p>
-</div>
-
-<div className="split">
-
-![CincoBit STEM coding board](/img/duelink-cincobit.webp)
-
-<div className="split__text">
-
-### Hands-on learning, batteries included.
-
-Drag-and-drop programming, a curriculum mapped to classrooms, and hardware kids can hold. The same protocol scales from a first LED to a wired robot.
-
-</div>
-</div>
-
-</div>
-
-## 100s of *duino options
-
-<div className="split">
-
-<div className="split__text">
-
-Every DUELink module can be programmed in the Arduino IDE — making the whole catalog a family of *duino boards in every shape, with every feature. For full toolchain control, bare-metal C++ works too with STM32CubeIDE, Keil, or any other ARM toolchain.
-
-</div>
-
-![On-module programming options](/img/duelink-duino-options.webp)
-
+<div className="showcase-pair">
+  <div className="showcase-card">
+    <div className="showcase-card__image">
+      <img src="/img/duelink-cincobit.webp" alt="CincoBit STEM coding board" />
+    </div>
+    <div className="showcase-card__body">
+      <span className="showcase-card__eyebrow">Education</span>
+      <h3>Block coding for students</h3>
+      <p>CincoBit and other STEM coding boards teach physical computing with MicroBlocks — drag-and-drop block coding running right on the board, with a complete curriculum included. The same protocol scales from a first LED to a wired robot.</p>
+    </div>
+  </div>
+  <div className="showcase-card">
+    <div className="showcase-card__image">
+      <img src="/img/duelink-duino-options.webp" alt="Arduino IDE programming options" />
+    </div>
+    <div className="showcase-card__body">
+      <span className="showcase-card__eyebrow">Standalone</span>
+      <h3>100s of *duino options</h3>
+      <p>Every DUELink module can be programmed in the Arduino IDE — the whole catalog becomes a family of *duino boards in every shape, with every feature. For full toolchain control, bare-metal C++ works too with STM32CubeIDE, Keil, or any other ARM toolchain.</p>
+    </div>
+  </div>
 </div>
 
 <hr className="section-divider" />
 
-<div className="section-tinted">
+## One protocol. Many modules.
 
-<div className="section-tinted__intro">
-  <span className="eyebrow">Catalog</span>
-  <h2>Sensors, displays, motors, kits, and more.</h2>
-  <p>Mix and match across categories — every module speaks the same plain-text protocol, so the code you wrote for one works the same for the next.</p>
-</div>
+Sensors, displays, motors, communications, kits — the catalog keeps growing, and every module speaks the same plain-text protocol. Code written for one works the same on the next.
 
-<div className="split">
+<div className="centered-image">
 
-![DUELink Essentials Kit](/img/duelink-essentials-kit.webp)
-
-<div className="split__text">
-
-### Not sure where to start?
-
-The **Essentials Kit** is a hand-picked starter set — enough modules to learn the platform and build a real project on day one.
-
-</div>
-</div>
+![The DUELink module family](/img/duelink-modules.webp)
 
 </div>
 

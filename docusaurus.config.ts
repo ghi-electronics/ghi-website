@@ -159,8 +159,13 @@ const config: Config = {
           items: [
             {label: 'Press', href: 'https://www.ghielectronics.com/press/'},
             {label: 'About Us', to: '/company/'},
-            {label: 'Contact Us', to: '/contact/'},
           ],
+        },
+        {
+          label: 'Contact',
+          to: '/contact/',
+          position: 'right',
+          className: 'navbar__cta',
         },
       ],
     },
