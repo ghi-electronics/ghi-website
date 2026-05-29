@@ -141,11 +141,10 @@ const config: Config = {
           label: 'Products',
           position: 'left',
           items: [
-            {label: 'SITCore', href: 'https://www.ghielectronics.com/sitcore/'},
+            {label: 'SITCore', to: '/sitcore/'},
             {label: 'Endpoint', href: 'https://www.ghielectronics.com/endpoint/'},
             {label: 'DUELink', to: '/duelink/'},
             {label: 'Longevity', to: '/longevity/'},
-            {label: 'Distributors', to: '/distributors/'},
           ],
         },
         {
@@ -159,6 +158,7 @@ const config: Config = {
           items: [
             {label: 'Press', href: 'https://www.ghielectronics.com/press/'},
             {label: 'About Us', to: '/company/'},
+            {label: 'Distributors', to: '/distributors/'},
           ],
         },
         {
@@ -175,7 +175,7 @@ const config: Config = {
         {
           title: 'Products',
           items: [
-            {label: 'SITCore', href: 'https://www.ghielectronics.com/sitcore/'},
+            {label: 'SITCore', to: '/sitcore/'},
             {label: 'Endpoint', href: 'https://www.ghielectronics.com/endpoint/'},
             {label: 'DUELink', to: '/duelink/'},
             {label: 'Longevity', to: '/longevity/'},

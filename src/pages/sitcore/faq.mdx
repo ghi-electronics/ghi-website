@@ -1,0 +1,165 @@
+---
+title: SITCore FAQ
+description: Common questions about SITCore, TinyCLR OS, .NET on embedded silicon, and getting started with the platform.
+hide_table_of_contents: true
+---
+
+import SitcoreNav from '@site/src/components/SitcoreNav';
+
+<SitcoreNav />
+
+<div className="section-tinted">
+
+<div className="section-tinted__intro">
+  <span className="eyebrow">FAQ</span>
+  <h2>Common questions about SITCore.</h2>
+  <p>Click any question to read the answer. If your question isn't here, send us a note — every message gets a real reply from an engineer.</p>
+  <a href="/contact/" className="btn-primary">Ask a question →</a>
+</div>
+
+</div>
+
+<div className="faq-list">
+
+<details open>
+<summary>What is SITCore?</summary>
+
+SITCore is a family of chipsets and modules that allows companies to build IoT and embedded devices using .NET and C#. Coding and debugging is done through Microsoft Visual Studio. The .NET runtime environment is called Common Language Runtime (CLR). SITCore runs a "tiny" version of that runtime, suitable for tiny devices. This tiny version of the CLR is called **TinyCLR**.
+
+</details>
+
+<details>
+<summary>Can you port TinyCLR OS to my hardware?</summary>
+
+Yes, this is an option. However, unless you are building millions of devices, using one of the off-the-shelf SITCore offerings is more economical and has lower risk.
+
+</details>
+
+<details>
+<summary>How would SITCore help with my IoT design?</summary>
+
+Safe and secure IoT really shines on SITCore devices. You will have a great deal of resources while running on low-cost, low-power hardware. TinyCLR OS includes sockets for network connection, TLS commercial-grade security, and high-level services like HTTP and MQTT.
+
+</details>
+
+<details>
+<summary>Can we use Linux or a Mac for development?</summary>
+
+In theory, any .NET compiler can be used. However, we are focused on using one of the best and most common development environments — Microsoft's Visual Studio. Using a Windows machine is required.
+
+</details>
+
+<details>
+<summary>What about options for education?</summary>
+
+Students should learn something they will eventually use professionally. Learning C# while using hardware is more engaging and gives the user instant gratification of their work. The [SITCore Experimenter Kit](/sitcore/experimenter-kit/) is ideal for new learners, and it's also perfect for C# professional developers who are still hardware novices.
+
+</details>
+
+<details>
+<summary>I am still not sure — why use SITCore?</summary>
+
+SITCore is like everything else: a tool to help achieve goals. Not every tool is good for every job, but SITCore covers a wide range and hits a sweet spot between a very low-level, difficult-to-develop system and a large, bulky operating system.
+
+SITCore will reduce development time with its modern features, running on a simple and economical low-power system. We believe SITCore's TinyCLR OS is the most well-rounded tiny operating system that can run on small microcontrollers.
+
+</details>
+
+<details>
+<summary>I am a manager — why should we use SITCore on our products?</summary>
+
+With SITCore, any C# PC/mobile developer can jump in and start coding for hardware. This increases productivity and decreases the need for specialized developers. SITCore is also proven technology used by many commercial companies in multiple industries. The USA-based support comes directly from the engineers behind SITCore and its TinyCLR OS.
+
+</details>
+
+<details>
+<summary>I am a PC/mobile developer. How do I start with hardware?</summary>
+
+Chances are you already use Microsoft Visual Studio. This means you already know how to program, and the learning curve to program SITCore devices will be small. If you know C#, you already know how to code any SITCore device. The [SITCore Experimenter Kit](/sitcore/experimenter-kit/) is the ideal place to get started.
+
+</details>
+
+<details>
+<summary>I use C++ — why use TinyCLR OS instead?</summary>
+
+C and C++ are the "go to" languages for microcontrollers. In fact, SITCore's TinyCLR OS is built using C and C++. Coding in C/C++ is very powerful — but the problem is that the code is non-portable between systems, there is no run-time error checking, and the tools for compiling and debugging on a commercial level are very costly. C# uses similar C syntax and TinyCLR OS includes many libraries, simplifying the developer's tasks.
+
+</details>
+
+<details>
+<summary>I have board XYZ — why use SITCore instead?</summary>
+
+There are typically two options for embedded systems:
+
+1. An easy maker-level option — probably the easiest way to blink an LED, but the challenges start when the code grows large and debugging becomes necessary.
+2. Commercial tools that cost thousands of dollars and require specialized skillsets.
+
+Thankfully, there is now SITCore as a third option, running TinyCLR OS. The intuitive, high-level .NET C# is easier to learn, and code completion in Visual Studio makes programming and debugging a breeze. Instead of spending hours looking through documentation, you'll spend hours creating and innovating.
+
+</details>
+
+<details>
+<summary>Is TinyCLR OS real-time?</summary>
+
+TinyCLR OS is not designed to be a real-time operating system. It promotes the idea of using threads and events to handle tasks. However, since the system is only running your application, there is a level of timing that can be achieved with proper planning.
+
+</details>
+
+<details>
+<summary>Is the managed code compiled? Is it slow?</summary>
+
+The managed C# code is compiled to CIL (Common Intermediate Language). On larger systems, the compiled CIL instructions are then compiled to machine code. TinyCLR OS interprets the CIL instructions on the hardware.
+
+It is important to remember that while the interpreted code runs slower, the majority of TinyCLR OS is not interpreted. For example, when executing a line to write a string to a file, a few CIL instructions will be executed to pass that string to a native file write function — the remainder of the code is all native. Typically **10% of the application is interpreted and 90% is native.**
+
+</details>
+
+<details>
+<summary>What do you mean by managed code?</summary>
+
+A modern programming language such as C# is *managed*, meaning there is a system in the back-end to help manage resources. Objects are automatically created when needed and then disposed once no longer in use. The managed system also checks for proper boundaries when using arrays. Memory leaks and attempted access of out-of-boundary arrays are typically not a concern in a managed system.
+
+</details>
+
+<details>
+<summary>I use C# on a PC. How do I get started with IoT, devices, and robotics?</summary>
+
+You're already halfway there since you know Visual Studio and C#. The [SITCore Experimenter Kit](/sitcore/experimenter-kit/) is the ideal starting point.
+
+</details>
+
+<details>
+<summary>What are the supported languages?</summary>
+
+Theoretically, any .NET language that is compiled to CIL can run on TinyCLR OS. Today we only support C#. Most language features are supported — the [limitations docs page](https://docs.ghielectronics.com/software/tinyclr/limitations.html) has more details.
+
+</details>
+
+</div>
+
+<hr className="section-divider" />
+
+## Still have questions?
+
+<div className="pillar-grid">
+  <a href="/contact/" className="pillar-card">
+    <div className="pillar-card__body">
+      <div className="pillar-card__title">Talk to an engineer</div>
+      <div className="pillar-card__text">Direct support from the team that built SITCore.</div>
+    </div>
+  </a>
+  <a href="https://forums.ghielectronics.com/" className="pillar-card" target="_blank" rel="noopener noreferrer">
+    <div className="pillar-card__body">
+      <div className="pillar-card__title">Community forum</div>
+      <div className="pillar-card__text">Searchable history of questions and answers from developers building on SITCore.</div>
+    </div>
+  </a>
+  <a href="/sitcore/experimenter-kit/" className="pillar-card">
+    <div className="pillar-card__body">
+      <div className="pillar-card__title">Experimenter Kit</div>
+      <div className="pillar-card__text">The hands-on path from "I know C#" to "I just shipped embedded code."</div>
+    </div>
+  </a>
+</div>
+
+<SitcoreNav />

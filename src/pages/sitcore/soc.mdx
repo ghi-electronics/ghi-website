@@ -1,0 +1,122 @@
+---
+title: SITCore SoC — System on Chip
+description: Secure chipsets for full design control. Integrate the SITCore platform directly into your custom PCB.
+hide_table_of_contents: true
+---
+
+import SitcoreNav from '@site/src/components/SitcoreNav';
+
+<SitcoreNav />
+
+<div className="section-tinted">
+
+<div className="section-tinted__intro">
+  <span className="eyebrow">SITCore</span>
+  <h2>System on Chip.</h2>
+  <p>SITCore SoCs integrate the core processing capability directly into your custom PCB design while maintaining full compatibility with the SITCore ecosystem. For engineering teams who want maximum control over the hardware.</p>
+  <a href="https://docs.ghielectronics.com/hardware/sitcore/soc.html" className="btn-primary" target="_blank" rel="noopener noreferrer">SoC docs →</a>
+</div>
+
+</div>
+
+<div className="stats">
+  <div className="stat">
+    <span className="stat__value">.NET + C#</span>
+    <span className="stat__label">In Visual Studio</span>
+  </div>
+  <div className="stat">
+    <span className="stat__value">Cortex</span>
+    <span className="stat__label">ARM core processors</span>
+  </div>
+  <div className="stat">
+    <span className="stat__value">Secure</span>
+    <span className="stat__label">Internal memories</span>
+  </div>
+  <div className="stat">
+    <span className="stat__value">−40 to +85°C</span>
+    <span className="stat__label">Industrial temp range</span>
+  </div>
+</div>
+
+## When SoCs make sense
+
+The chip-level option is the right choice when:
+
+- You need maximum control over your hardware design
+- You want to minimize cost and board size
+- Your engineering team is comfortable designing the full embedded hardware
+
+All SITCore SoCs integrate the processor, memory, peripherals, and security features required to build a complete embedded system. They run TinyCLR OS with .NET and C# while remaining compatible with traditional embedded workflows.
+
+## The lineup
+
+<div className="pillar-grid">
+  <div className="pillar-card">
+    <div className="pillar-card__image"><img src="/img/sitcore-soc-sc13.jpg" alt="SITCore SC13048Q" /></div>
+    <div className="pillar-card__body">
+      <div className="pillar-card__title">SC13048Q</div>
+      <div className="pillar-card__text">80 MHz, 220 K flash, 128 K RAM. 48-pin QFN, 7×7 mm. The compact option.</div>
+    </div>
+  </div>
+  <div className="pillar-card">
+    <div className="pillar-card__image"><img src="/img/sitcore-soc-sc20100.jpg" alt="SITCore SC20100S/B" /></div>
+    <div className="pillar-card__body">
+      <div className="pillar-card__title">SC20100S / SC20100B</div>
+      <div className="pillar-card__text">480 MHz, 640 K flash, 512 K RAM. LQFP100 or TFBGA. Mid-range with networking.</div>
+    </div>
+  </div>
+  <div className="pillar-card">
+    <div className="pillar-card__image"><img src="/img/sitcore-soc-sc20260.jpg" alt="SITCore SC20260B" /></div>
+    <div className="pillar-card__body">
+      <div className="pillar-card__title">SC20260B</div>
+      <div className="pillar-card__text">480 MHz with up to 32 MB external RAM. 265-TFBGA. Full graphics, camera, HDMI-capable.</div>
+    </div>
+  </div>
+</div>
+
+## Specifications
+
+<div className="spec-table">
+
+| | **SC13048Q** | **SC20100S/B** | **SC20260B** |
+|---|---|---|---|
+| Speed | 80 MHz | 480 MHz | 480 MHz |
+| Core CPU | 32-bit single-precision | 32-bit double-precision | 32-bit double-precision |
+| User flash | 220 K + 8 MB ext (opt) | 640 K + 8 MB ext (opt) | 640 K + 8 MB ext (opt) |
+| User RAM | 128 K | 512 K | 512 K + 32 MB ext (opt) |
+| USB host | — | 1 | 1 |
+| USB client | 1 | 1 | 1 |
+| GPIO | 37 | 74 | 161 |
+| SPI | 2 | 3 | 3 |
+| I²C | 2 | 2 | 3 |
+| UART | 4 (2 w/ handshake) | 8 (4 w/ handshake) | 8 (4 w/ handshake) |
+| CAN | 1 | 2 | 2 |
+| PWM | 10 | 16 | 28 |
+| ADC | 10 | 12 | 21 |
+| DAC | 1 | 2 | 2 |
+| SD | — | 1 | 1 |
+| Quad SPI external flash | 1 | 1 | 1 |
+| Graphics | BasicGraphics | Via SPI | 16BPP TFT / HDMI |
+| Networking | — | Cellular, WiFi, Ethernet | Cellular, WiFi, Ethernet |
+| Camera | — | — | 1 |
+| Operating temperature | −40 to +85°C | −40 to +85°C | −40 to +85°C |
+| Package | 48-pin QFN, 7×7 mm | S: LQFP100, 14×14 mm · B: 100-TFBGA, 8×8 mm | 265-TFBGA, 14×14 mm |
+
+</div>
+
+*Since many pins share peripherals, not all peripherals are available simultaneously. HDMI requires additional circuitry.*
+
+## Ordering
+
+| Description | Part number | MSRP | Status |
+|---|---|---|---|
+| SITCore SC13048Q SoC | SC-13048Q-A | $15.95 @100 | Active |
+| SITCore SC20100B SoC | SC-20100B-A | [Special order](/contact/) | Active |
+| SITCore SC20100S SoC | SC-20100S-A | $25.95 @100 | Active |
+| SITCore SC20260B SoC | SC-20260B-A | [Special order](/contact/) | Active |
+
+<div className="buy-callout">
+  <strong>Where to buy →</strong> Available through our <a href="/distributors/">global distributors</a>.
+</div>
+
+<SitcoreNav />
