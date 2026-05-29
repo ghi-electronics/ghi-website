@@ -25,6 +25,18 @@
   --ghi-subtle: #666666;
   --ghi-primary-rgb: 9, 119, 170;
   --ghi-accent-rgb: 255, 170, 85;
+
+  /* Typography: Play (Google Fonts) for titles, headings, and the navbar brand.
+   * Body keeps the default Infima system-font stack for readability. */
+  --ifm-heading-font-family: 'Play', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --ifm-heading-font-weight: 700;
+}
+
+.navbar__title,
+.navbar__brand,
+.hero__title,
+.eyebrow {
+  font-family: var(--ifm-heading-font-family);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
