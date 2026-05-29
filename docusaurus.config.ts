@@ -80,7 +80,7 @@ const config: Config = {
   ],
 
   stylesheets: [
-    'https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap',
+    'https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Play:wght@400;700&display=swap',
   ],
 
   i18n: {

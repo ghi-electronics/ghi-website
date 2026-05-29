@@ -26,8 +26,10 @@
   --ghi-primary-rgb: 9, 119, 170;
   --ghi-accent-rgb: 255, 170, 85;
 
-  /* Typography: Play (Google Fonts) for titles, headings, and the navbar brand.
-   * Body keeps the default Infima system-font stack for readability. */
+  /* Typography:
+   *   Headings / brand: Play (geometric, Google Fonts)
+   *   Body:             Open Sans (humanist, Google Fonts) — Kalinga-adjacent feel for the web. */
+  --ifm-font-family-base: 'Open Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --ifm-heading-font-family: 'Play', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --ifm-heading-font-weight: 700;
 }
@@ -35,7 +37,15 @@
 .navbar__title,
 .navbar__brand,
 .hero__title,
-.eyebrow {
+.eyebrow,
+.pillar-card__title,
+.contact-card__title,
+.feature-card__title,
+.partner-card__name,
+.industry-card__name,
+.stat__value,
+.timeline-year,
+.section-tinted__intro h2 {
   font-family: var(--ifm-heading-font-family);
 }
 
@@ -161,12 +171,38 @@
 }
 
 .mission {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   margin: 3rem 0;
   padding: 2.5rem 2rem;
   text-align: center;
   border-radius: 14px;
-  background: linear-gradient(135deg, rgba(var(--ghi-primary-rgb), 0.07), rgba(var(--ghi-accent-rgb), 0.07));
   border: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.mission::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(var(--ghi-primary-rgb), 0.16), transparent 70%),
+    radial-gradient(ellipse 40% 50% at 90% 100%, rgba(var(--ghi-accent-rgb), 0.16), transparent 70%),
+    radial-gradient(ellipse 45% 50% at 10% 90%, rgba(var(--ghi-primary-rgb), 0.07), transparent 70%);
+}
+
+.mission::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(to right, rgba(102, 102, 102, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(102, 102, 102, 0.07) 1px, transparent 1px);
+  background-size: 36px 36px;
+  -webkit-mask-image: radial-gradient(ellipse 75% 70% at 50% 50%, #000 25%, transparent 90%);
+  mask-image: radial-gradient(ellipse 75% 70% at 50% 50%, #000 25%, transparent 90%);
 }
 
 .mission__label {
@@ -198,6 +234,7 @@
 
 .split img {
   width: 100%;
+  height: auto;
   border-radius: 12px;
   display: block;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
@@ -292,8 +329,8 @@
 
 .pillar-card:hover {
   transform: translateY(-4px);
-  border-color: var(--ifm-color-primary);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.09);
+  border-color: var(--ghi-accent);
+  box-shadow: 0 12px 28px rgba(var(--ghi-accent-rgb), 0.18);
 }
 
 .pillar-card__image {
@@ -440,8 +477,8 @@
 
 .partner-card:hover {
   transform: translateY(-3px);
-  border-color: var(--ifm-color-primary);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+  border-color: var(--ghi-accent);
+  box-shadow: 0 8px 20px rgba(var(--ghi-accent-rgb), 0.18);
 }
 
 .partner-card__logo {
@@ -487,8 +524,8 @@
 
 .feature-card:hover {
   transform: translateY(-3px);
-  border-color: var(--ifm-color-primary);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+  border-color: var(--ghi-accent);
+  box-shadow: 0 8px 20px rgba(var(--ghi-accent-rgb), 0.18);
 }
 
 .feature-card__icon {
@@ -526,6 +563,17 @@
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+.centered-image {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.centered-image img {
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
 }
 
 .timeline {
@@ -591,11 +639,37 @@
 }
 
 .section-tinted {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   margin: 3rem 0 4rem;
   padding: 3rem 2.5rem;
   border-radius: 16px;
-  background: linear-gradient(135deg, rgba(var(--ghi-primary-rgb), 0.04), rgba(var(--ghi-accent-rgb), 0.05));
   border: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.section-tinted::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(var(--ghi-primary-rgb), 0.16), transparent 70%),
+    radial-gradient(ellipse 40% 50% at 90% 100%, rgba(var(--ghi-accent-rgb), 0.16), transparent 70%),
+    radial-gradient(ellipse 45% 50% at 10% 90%, rgba(var(--ghi-primary-rgb), 0.07), transparent 70%);
+}
+
+.section-tinted::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(to right, rgba(102, 102, 102, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(102, 102, 102, 0.07) 1px, transparent 1px);
+  background-size: 36px 36px;
+  -webkit-mask-image: radial-gradient(ellipse 75% 70% at 50% 50%, #000 25%, transparent 90%);
+  mask-image: radial-gradient(ellipse 75% 70% at 50% 50%, #000 25%, transparent 90%);
 }
 
 .section-tinted__intro {
@@ -754,8 +828,8 @@
 
 .contact-card:hover {
   transform: translateY(-3px);
-  border-color: var(--ifm-color-primary);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+  border-color: var(--ghi-accent);
+  box-shadow: 0 8px 20px rgba(var(--ghi-accent-rgb), 0.18);
 }
 
 .contact-card__title {
