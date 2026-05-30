@@ -1,19 +1,27 @@
-facebook:
-  label: Facebook
-  permalink: /facebook
-  description: Facebook tag description
+tinyclr:
+  label: TinyCLR OS
+  permalink: /tinyclr
 
-hello:
-  label: Hello
-  permalink: /hello
-  description: Hello tag description
+duelink:
+  label: DUELink
+  permalink: /duelink
 
-docusaurus:
-  label: Docusaurus
-  permalink: /docusaurus
-  description: Docusaurus tag description
+endpoint:
+  label: Endpoint
+  permalink: /endpoint
 
-hola:
-  label: Hola
-  permalink: /hola
-  description: Hola tag description
+release:
+  label: Release
+  permalink: /release
+
+beta:
+  label: Beta
+  permalink: /beta
+
+announcement:
+  label: Announcement
+  permalink: /announcement
+
+hardware:
+  label: Hardware
+  permalink: /hardware

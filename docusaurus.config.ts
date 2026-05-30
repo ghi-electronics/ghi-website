@@ -98,15 +98,17 @@ const config: Config = {
             'https://github.com/ghi-electronics/ghi-website/tree/main/',
         },
         blog: {
-          showReadingTime: true,
+          routeBasePath: 'press',
+          blogTitle: 'Press',
+          blogDescription: 'News and announcements from GHI Electronics',
+          showReadingTime: false,
+          blogSidebarTitle: 'Recent posts',
+          blogSidebarCount: 10,
           feedOptions: {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          editUrl:
-            'https://github.com/ghi-electronics/ghi-website/tree/main/',
           onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
         },
         theme: {
@@ -121,6 +123,11 @@ const config: Config = {
     colorMode: {
       respectPrefersColorScheme: true,
     },
+    blog: {
+      sidebar: {
+        groupByYear: false,
+      },
+    },
     navbar: {
       title: '',
       logo: {
@@ -130,21 +137,21 @@ const config: Config = {
       },
       items: [
         {
+          label: 'Products',
+          position: 'left',
+          items: [
+            {label: 'SITCore', to: '/sitcore/'},
+            {label: 'Endpoint', to: '/endpoint/'},
+            {label: 'DUELink', to: '/duelink/'},
+            {label: 'Longevity', to: '/longevity/'},
+          ],
+        },
+        {
           label: 'Services',
           position: 'left',
           items: [
             {label: 'Engineering', to: '/engineering/'},
             {label: 'Manufacturing', to: '/manufacturing/'},
-          ],
-        },
-        {
-          label: 'Products',
-          position: 'left',
-          items: [
-            {label: 'SITCore', to: '/sitcore/'},
-            {label: 'Endpoint', href: 'https://www.ghielectronics.com/endpoint/'},
-            {label: 'DUELink', to: '/duelink/'},
-            {label: 'Longevity', to: '/longevity/'},
           ],
         },
         {
@@ -156,7 +163,7 @@ const config: Config = {
           label: 'Company',
           position: 'left',
           items: [
-            {label: 'Press', href: 'https://www.ghielectronics.com/press/'},
+            {label: 'Press', to: '/press/'},
             {label: 'About Us', to: '/company/'},
             {label: 'Distributors', to: '/distributors/'},
           ],
@@ -176,7 +183,7 @@ const config: Config = {
           title: 'Products',
           items: [
             {label: 'SITCore', to: '/sitcore/'},
-            {label: 'Endpoint', href: 'https://www.ghielectronics.com/endpoint/'},
+            {label: 'Endpoint', to: '/endpoint/'},
             {label: 'DUELink', to: '/duelink/'},
             {label: 'Longevity', to: '/longevity/'},
           ],
@@ -185,7 +192,7 @@ const config: Config = {
           title: 'Company',
           items: [
             {label: 'About Us', to: '/company/'},
-            {label: 'Press', href: 'https://www.ghielectronics.com/press/'},
+            {label: 'Press', to: '/press/'},
             {label: 'Contact Us', to: '/contact/'},
             {label: 'Support', to: '/support/'},
           ],

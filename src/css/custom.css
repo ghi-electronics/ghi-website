@@ -540,7 +540,22 @@
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.pillar-card:hover {
+div.pillar-card {
+  cursor: default;
+}
+
+div.pillar-card:hover {
+  transform: none;
+  border-color: var(--ifm-color-emphasis-200);
+  box-shadow: none;
+}
+
+a.pillar-card {
+  border-color: rgba(var(--ghi-primary-rgb), 0.28);
+  box-shadow: 0 2px 8px rgba(var(--ghi-primary-rgb), 0.08);
+}
+
+a.pillar-card:hover {
   transform: translateY(-4px);
   border-color: var(--ghi-accent);
   box-shadow: 0 12px 28px rgba(var(--ghi-accent-rgb), 0.18);
@@ -560,7 +575,7 @@
   transition: transform 0.4s ease;
 }
 
-.pillar-card:hover .pillar-card__image img {
+a.pillar-card:hover .pillar-card__image img {
   transform: scale(1.04);
 }
 
@@ -807,20 +822,91 @@
   transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
 }
 
-a.feature-card .feature-card__title::after {
-  content: ' →';
-  display: inline-block;
-  transition: transform 0.2s ease;
+/* Non-linked cards: flat, inert — clearly not clickable */
+div.feature-card {
+  cursor: default;
 }
 
-a.feature-card:hover .feature-card__title::after {
-  transform: translateX(4px);
+div.feature-card:hover {
+  transform: none;
+  border-color: var(--ifm-color-emphasis-200);
+  box-shadow: none;
 }
 
-.feature-card:hover {
+/* Linked cards: button-like resting state so touch users see clickability */
+a.feature-card {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0;
+  overflow: hidden;
+  border-color: rgba(var(--ghi-primary-rgb), 0.28);
+  box-shadow: 0 2px 8px rgba(var(--ghi-primary-rgb), 0.08);
+}
+
+a.feature-card:hover {
   transform: translateY(-3px);
   border-color: var(--ghi-accent);
   box-shadow: 0 8px 20px rgba(var(--ghi-accent-rgb), 0.18);
+}
+
+a.feature-card .feature-card__body {
+  flex: 1;
+  padding-bottom: 1.25rem;
+}
+
+a.feature-card::after {
+  content: 'Learn more →';
+  align-self: stretch;
+  margin: 0 -1.75rem;
+  padding: 0.65rem 1.75rem;
+  background: rgba(var(--ghi-primary-rgb), 0.07);
+  border-top: 1px solid rgba(var(--ghi-primary-rgb), 0.15);
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+  font-size: 0.88rem;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+a.feature-card[data-cta]::after {
+  content: attr(data-cta);
+}
+
+a.feature-card:hover::after {
+  background: var(--ifm-color-primary);
+  color: #fff;
+  border-top-color: var(--ifm-color-primary);
+}
+
+/* Pillar-cards: same footer strip treatment */
+.pillar-card__title::after {
+  display: none;
+}
+
+.pillar-card .pillar-card__body {
+  flex: 1;
+  padding-bottom: 0;
+}
+
+a.pillar-card::after {
+  content: 'Learn more →';
+  display: block;
+  padding: 0.65rem 1.5rem;
+  background: rgba(var(--ghi-primary-rgb), 0.07);
+  border-top: 1px solid rgba(var(--ghi-primary-rgb), 0.15);
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+  font-size: 0.88rem;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+a.pillar-card[data-cta]::after {
+  content: attr(data-cta);
+}
+
+a.pillar-card:hover::after {
+  background: var(--ifm-color-primary);
+  color: #fff;
+  border-top-color: var(--ifm-color-primary);
 }
 
 .feature-card__icon {
