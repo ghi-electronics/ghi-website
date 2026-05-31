@@ -14,7 +14,6 @@ import SitcoreNav from '@site/src/components/SitcoreNav';
   <span className="eyebrow">SITCore</span>
   <h2>System on Chip.</h2>
   <p>SITCore SoCs integrate the core processing capability directly into your custom PCB design while maintaining full compatibility with the SITCore ecosystem. For engineering teams who want maximum control over the hardware.</p>
-  <a href="https://docs.ghielectronics.com/hardware/sitcore/soc.html" className="btn-primary" target="_blank" rel="noopener noreferrer">SoC docs →</a>
 </div>
 
 </div>
@@ -38,13 +37,28 @@ import SitcoreNav from '@site/src/components/SitcoreNav';
   </div>
 </div>
 
-## When SoCs make sense
+## When to choose System on Chips
 
-The chip-level option is the right choice when:
-
-- You need maximum control over your hardware design
-- You want to minimize cost and board size
-- Your engineering team is comfortable designing the full embedded hardware
+<div className="decision-callout">
+  <div className="decision-callout__yes">
+    <h3>Pick an SoC when</h3>
+    <ul>
+      <li>You need maximum control over your hardware design</li>
+      <li>You want to minimize cost and board size at volume</li>
+      <li>Your engineering team is comfortable with chip-level design</li>
+      <li>Component-level optimization matters for your product</li>
+    </ul>
+  </div>
+  <div className="decision-callout__no">
+    <h3>Consider something else if</h3>
+    <ul>
+      <li>You're learning the platform — <a href="/sitcore/experimenter-kit/">Experimenter Kit</a></li>
+      <li>You're evaluating for a commercial project — <a href="/sitcore/dev/">Development Board</a></li>
+      <li>You're prototyping — <a href="/sitcore/sbc/">Single Board Computer</a></li>
+      <li>You want faster integration — <a href="/sitcore/som/">System on Module</a></li>
+    </ul>
+  </div>
+</div>
 
 All SITCore SoCs integrate the processor, memory, peripherals, and security features required to build a complete embedded system. They run TinyCLR OS with .NET and C# while remaining compatible with traditional embedded workflows.
 
@@ -117,6 +131,10 @@ All SITCore SoCs integrate the processor, memory, peripherals, and security feat
 
 <div className="buy-callout">
   <strong>Where to buy →</strong> Available through our <a href="/distributors/">global distributors</a>.
+</div>
+
+<div className="docs-link">
+  Need the full technical reference? <a href="https://docs.ghielectronics.com/hardware/sitcore/soc.html" target="_blank" rel="noopener noreferrer">Read the SoC docs →</a>
 </div>
 
 <SitcoreNav />

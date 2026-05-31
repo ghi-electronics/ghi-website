@@ -13,28 +13,44 @@ import SitcoreNav from '@site/src/components/SitcoreNav';
 <div className="section-tinted__intro">
   <span className="eyebrow">SITCore</span>
   <h2>Secure embedded systems, built with .NET and C#.</h2>
-  <p>SITCore is a secure embedded computing platform for building IoT and hardware products in C# and .NET. Hardware, firmware, and a managed runtime — designed together for commercial embedded applications, powered by TinyCLR OS, with full Visual Studio integration.</p>
-  <a href="https://www.ghielectronics.com/experiment/" className="btn-primary">Get the Experimenter Kit →</a>
+  <p>SITCore is a secure embedded computing platform for building IoT and hardware products in C# and .NET. Hardware, firmware, and a managed runtime — designed together.</p>
+  <ul className="hero-bullets">
+    <li>C# in Visual Studio</li>
+    <li>Secure &amp; production-ready</li>
+    <li>Built to last 10+ years</li>
+  </ul>
 </div>
+
+<div className="centered-image">
+
+![The SITCore product line — chipsets, modules, single-board computers, and dev boards](/img/sitcore-line.jpg)
 
 </div>
 
-<div className="stats">
-  <div className="stat">
-    <span className="stat__value">Visual Studio</span>
-    <span className="stat__label">Familiar IDE, real debugging</span>
+</div>
+
+## Why SITCore?
+
+<div className="feature-grid feature-grid--four">
+  <div className="feature-card">
+    <div className="feature-card__icon">💻</div>
+    <div className="feature-card__title">You already know how</div>
+    <div className="feature-card__body"><strong>C#, .NET, and Visual Studio.</strong> The language and toolchain your team already uses — no new IDE, no new build system, no JTAG.</div>
   </div>
-  <div className="stat">
-    <span className="stat__value">TinyCLR OS</span>
-    <span className="stat__label">Managed .NET runtime</span>
+  <div className="feature-card">
+    <div className="feature-card__icon">🛡️</div>
+    <div className="feature-card__title">Built for products that ship</div>
+    <div className="feature-card__body"><strong>Commercial-grade security and reliability.</strong> TLS 1.2, secure boot, IP protection, encrypted updates, industrial temperature range — production, not prototyping.</div>
   </div>
-  <div className="stat">
-    <span className="stat__value">Michigan, USA</span>
-    <span className="stat__label">Designed and manufactured</span>
+  <div className="feature-card">
+    <div className="feature-card__icon">📅</div>
+    <div className="feature-card__title">Built to last a decade</div>
+    <div className="feature-card__body"><strong>10+ year availability.</strong> Drop-in successors when platforms evolve. In-house chip design and Michigan manufacturing — supply chain stays under our roof.</div>
   </div>
-  <div className="stat">
-    <span className="stat__value">20+ years</span>
-    <span className="stat__label">Of embedded experience</span>
+  <div className="feature-card">
+    <div className="feature-card__icon">🤝</div>
+    <div className="feature-card__title">Engineering at your side</div>
+    <div className="feature-card__body"><strong>The team that built the platform is here to help.</strong> Free hardware and firmware design reviews for products built on SITCore.</div>
   </div>
 </div>
 
@@ -48,33 +64,20 @@ import SitcoreNav from '@site/src/components/SitcoreNav';
   ></iframe>
 </div>
 
-## A complete family
+## Pick your starting point
 
-Pick the tier that fits your design — from bare chipsets you build around to dev boards you plug in and start coding.
+### Just evaluating?
+
+Two ways in — one playful, one focused.
 
 <div className="pillar-grid">
 
-<a href="/sitcore/soc/" className="pillar-card">
-  <div className="pillar-card__image"><img src="/img/sitcore-soc.jpg" alt="SITCore System on Chip" /></div>
+<a href="/sitcore/experimenter-kit/" className="pillar-card">
+  <div className="pillar-card__image"><img src="/img/experimenter-kit-hero.jpg" alt="SITCore Experimenter Kit" /></div>
   <div className="pillar-card__body">
-    <div className="pillar-card__title">System on Chip</div>
-    <div className="pillar-card__text">Secure chipsets for full design control. Build around the silicon yourself.</div>
-  </div>
-</a>
-
-<a href="/sitcore/som/" className="pillar-card">
-  <div className="pillar-card__image"><img src="/img/sitcore-som.jpg" alt="SITCore System on Module" /></div>
-  <div className="pillar-card__body">
-    <div className="pillar-card__title">System on Module</div>
-    <div className="pillar-card__text">SoMs for fast, secure integration into your own carrier board.</div>
-  </div>
-</a>
-
-<a href="/sitcore/sbc/" className="pillar-card">
-  <div className="pillar-card__image"><img src="/img/sitcore-sbc.jpg" alt="SITCore Single Board Computer" /></div>
-  <div className="pillar-card__body">
-    <div className="pillar-card__title">Single Board Computer</div>
-    <div className="pillar-card__text">Fast-and-easy rapid prototyping — open the box, write C#, ship.</div>
+    <div className="pillar-card__title">Experimenter Kit</div>
+    <div className="pillar-card__text"><strong>Learning the platform, hands-on.</strong> Guided experiments through sensors, displays, and a robot — built for educators and engineers picking up TinyCLR. Comes with a companion eBook.</div>
+    <div className="pillar-card__meta">1 kit · $120.00</div>
   </div>
 </a>
 
@@ -82,15 +85,79 @@ Pick the tier that fits your design — from bare chipsets you build around to d
   <div className="pillar-card__image"><img src="/img/sitcore-dev.jpg" alt="SITCore Development Board" /></div>
   <div className="pillar-card__body">
     <div className="pillar-card__title">Development Board</div>
-    <div className="pillar-card__text">Everything needed to evaluate SITCore — chipset, peripherals, debug headers.</div>
+    <div className="pillar-card__text"><strong>Evaluating SITCore for a real project.</strong> Full peripherals, debug headers, click connectors — the serious evaluation platform.</div>
+    <div className="pillar-card__meta">3 boards · $59.95 – $199.95</div>
   </div>
 </a>
 
 </div>
 
-<hr className="section-divider" />
+### Building a product?
 
-## Powered by TinyCLR OS
+Three production tiers depending on where your design sits.
+
+<div className="pillar-grid">
+
+<a href="/sitcore/sbc/" className="pillar-card">
+  <div className="pillar-card__image"><img src="/img/sitcore-sbc.jpg" alt="SITCore Single Board Computer" /></div>
+  <div className="pillar-card__body">
+    <div className="pillar-card__title">Single Board Computer</div>
+    <div className="pillar-card__text"><strong>Building a working prototype.</strong> Ready-to-code boards in maker-friendly form factors — USB cable, Visual Studio, you're running.</div>
+    <div className="pillar-card__meta">7 boards · $14.95 – $124.95</div>
+  </div>
+</a>
+
+<a href="/sitcore/som/" className="pillar-card">
+  <div className="pillar-card__image"><img src="/img/sitcore-som.jpg" alt="SITCore System on Module" /></div>
+  <div className="pillar-card__body">
+    <div className="pillar-card__title">System on Module</div>
+    <div className="pillar-card__text"><strong>Productizing at scale.</strong> Drop a SITCore module onto your custom carrier board and ship.</div>
+    <div className="pillar-card__meta">4 modules · $45.95 – $77.95 @100</div>
+  </div>
+</a>
+
+<a href="/sitcore/soc/" className="pillar-card">
+  <div className="pillar-card__image"><img src="/img/sitcore-soc.jpg" alt="SITCore System on Chip" /></div>
+  <div className="pillar-card__body">
+    <div className="pillar-card__title">System on Chip</div>
+    <div className="pillar-card__text"><strong>Designing your own board.</strong> Chip-level integration with the SITCore platform — build the whole board around our chipsets.</div>
+    <div className="pillar-card__meta">4 chipsets · from $15.95 @100</div>
+  </div>
+</a>
+
+</div>
+
+## Code to ship — under one roof
+
+Whatever depth of help you need. Buy SITCore off the shelf and ship — or bring in our engineers and our manufacturing line as far as it makes sense for your project.
+
+<div className="journey-grid">
+  <div className="journey-step">
+    <span className="journey-step__num">1</span>
+    <div className="journey-step__title">Start with SITCore</div>
+    <div className="journey-step__body">Buy modules off the shelf. Code in C# in Visual Studio. Most teams ship from here alone — that's the platform working as designed.</div>
+  </div>
+  <div className="journey-step">
+    <span className="journey-step__num">2</span>
+    <div className="journey-step__title">Lean on our engineers</div>
+    <div className="journey-step__body">Bring-up help, circuit review, firmware modules, test rigs — pick the piece you need. <strong>Free hardware and firmware design review on SITCore-based products.</strong>
+    <a href="/engineering/">See engineering →</a></div>
+  </div>
+  <div className="journey-step">
+    <span className="journey-step__num">3</span>
+    <div className="journey-step__title">Build with us</div>
+    <div className="journey-step__body">When you're ready for volume, the same Michigan facility that builds SITCore can build yours. Same line, same QC standards.
+    <a href="/manufacturing/">See manufacturing →</a></div>
+  </div>
+</div>
+
+<div className="section-tinted">
+
+<div className="section-tinted__intro">
+  <span className="eyebrow">Powered by</span>
+  <h2>TinyCLR OS.</h2>
+  <p>The SITCore family runs <strong>TinyCLR OS</strong> — a royalty-free embedded operating system with an integrated Common Language Runtime that executes compiled C# code on every SITCore module. Full Visual Studio integration, generics, real debugging, and a security stack built in.</p>
+</div>
 
 <div className="centered-image">
 
@@ -98,46 +165,31 @@ Pick the tier that fits your design — from bare chipsets you build around to d
 
 </div>
 
-The SITCore family runs **TinyCLR OS** — a royalty-free embedded operating system with an integrated Common Language Runtime that executes compiled C# code on every SITCore module. Full Visual Studio integration, generics, real debugging, and a security stack built in.
-
-<a href="/sitcore/tinyclr/" className="btn-primary">Read about TinyCLR →</a>
-
-<hr className="section-divider" />
-
-## Cloud-ready out of the box
-
-Commercial-grade TLS with first-class support for the major cloud platforms — no extra integration work required.
-
-<div className="cloud-grid">
-  <a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/azure.html" className="cloud-card" target="_blank" rel="noopener noreferrer">
-    <img src="/img/cloud-azure.png" alt="Microsoft Azure" />
-    <span>Azure tutorial →</span>
-  </a>
-  <a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/aws.html" className="cloud-card" target="_blank" rel="noopener noreferrer">
-    <img src="/img/cloud-aws.png" alt="Amazon Web Services" />
-    <span>AWS tutorial →</span>
-  </a>
-  <a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/google-cloud.html" className="cloud-card" target="_blank" rel="noopener noreferrer">
-    <img src="/img/cloud-google.png" alt="Google Cloud" />
-    <span>Google Cloud tutorial →</span>
-  </a>
+<div className="tinyclr-highlights">
+  <span>Visual Studio</span>
+  <span>Step debugging</span>
+  <span>NuGet libraries</span>
+  <span>Multithreading</span>
+  <span>Garbage collection</span>
+  <span>TLS 1.2</span>
+  <span>Secure boot</span>
+  <span>IP protection</span>
+  <span>Encrypted updates</span>
+  <span>MQTT</span>
+  <span>HTTP / HTTPS</span>
+  <span>WiFi · Ethernet · Cellular</span>
+  <span>Azure · AWS · Google Cloud</span>
+  <span>SQLite</span>
+  <span>File system · SD/MMC</span>
+  <span>GPIO · SPI · I²C · UART · USB · CAN</span>
+  <span>Displays · Touch · Camera · Audio</span>
+  <span>… and more</span>
 </div>
 
-<hr className="section-divider" />
-
-<div className="split">
-
-![SITCore Experimenter Kit](/img/experimenter-kit.png)
-
-<div className="split__text">
-
-## Get started with the Experimenter Kit
-
-.NET developers can quickly transition into embedded development using SITCore and Visual Studio. The Experimenter Kit and its companion **C# for IoT and Robotics** eBook provide a structured path from "I know C#" to "I just shipped an embedded product."
-
-<a href="https://www.ghielectronics.com/experiment/" className="btn-primary">Get the Experimenter Kit →</a>
-
+<div style={{textAlign: 'center', marginTop: '1.5rem'}}>
+  <a href="/sitcore/tinyclr/" className="btn-primary">Read about TinyCLR →</a>
 </div>
+
 </div>
 
 <SitcoreNav />

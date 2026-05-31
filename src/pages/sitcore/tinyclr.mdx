@@ -8,13 +8,17 @@ import SitcoreNav from '@site/src/components/SitcoreNav';
 
 <SitcoreNav />
 
+<div className="perk-callout">
+  <strong>TinyCLR v3 is in beta.</strong>
+  <span>Generics, modern .NET features, free for every SITCore customer. Help us shape the release on the <a href="https://forums.ghielectronics.com/" target="_blank" rel="noopener noreferrer">community forum</a>.</span>
+</div>
+
 <div className="section-tinted">
 
 <div className="section-tinted__intro">
   <span className="eyebrow">TinyCLR OS</span>
   <h2>The .NET runtime for embedded.</h2>
-  <p>A royalty-free embedded operating system with an integrated Common Language Runtime that executes compiled C# Intermediate Language code on SITCore silicon. Inspired by .NET Core libraries — designed for products that ship.</p>
-  <a href="https://docs.ghielectronics.com/software/tinyclr/intro.html" className="btn-primary" target="_blank" rel="noopener noreferrer">TinyCLR docs →</a>
+  <p>A royalty-free embedded operating system with an integrated Common Language Runtime that executes compiled C# code on every SITCore module. Inspired by .NET Core libraries — designed for products that ship.</p>
 </div>
 
 </div>
@@ -25,9 +29,53 @@ import SitcoreNav from '@site/src/components/SitcoreNav';
 
 </div>
 
-<div className="perk-callout">
-  <strong>TinyCLR v3 is in beta.</strong>
-  <span>Generics, modern .NET features, free for every SITCore customer. Help us shape the release on the <a href="https://forums.ghielectronics.com/" target="_blank" rel="noopener noreferrer">community forum</a>.</span>
+<div className="code-showcase">
+
+<div className="code-showcase__code">
+
+```csharp
+using GHIElectronics.TinyCLR.Devices.Gpio;
+using GHIElectronics.TinyCLR.Pins;
+using System.Threading;
+
+var led = GpioController.GetDefault()
+    .OpenPin(SC20100.GpioPin.PE11);
+led.SetDriveMode(GpioPinDriveMode.Output);
+
+while (true) {
+    led.Write(GpioPinValue.High);
+    Thread.Sleep(500);
+    led.Write(GpioPinValue.Low);
+    Thread.Sleep(500);
+}
+```
+
+</div>
+
+<div className="code-showcase__caption">
+
+### Real C# on real embedded hardware.
+
+- **Code** in Visual Studio
+- **Debug** with breakpoints, step-through, and locals
+- **NuGet** the libraries you need
+- **Deploy** over a USB cable
+- **Throw** exceptions you can actually catch
+
+The same workflow you use for your day job — running on a chip you can hold between two fingers.
+
+</div>
+
+</div>
+
+<div className="video-embed">
+  <iframe
+    src="https://www.youtube.com/embed/OUiHNyjXjWc"
+    title="TinyCLR OS — .NET on embedded hardware"
+    loading="lazy"
+    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowFullScreen
+  ></iframe>
 </div>
 
 ## What TinyCLR gives your team
@@ -55,45 +103,197 @@ import SitcoreNav from '@site/src/components/SitcoreNav';
   </div>
 </div>
 
-<div className="centered-image">
+## How TinyCLR compares
 
-![TinyCLR OS feature banner](/img/tinyclr-features.jpg)
+Trade-offs at a glance — no single approach is right for every project, but here's where TinyCLR fits.
 
+<div className="compare-table">
+
+| | **TinyCLR on SITCore** | Bare-metal C / RTOS | Embedded Linux |
+|---|---|---|---|
+| Primary language | **C#** | C / C++ | Any |
+| IDE | **Visual Studio** | Toolchain-specific | Various |
+| Step debugging | **✓** out of the box | Requires JTAG + setup | Possible |
+| Memory management | **Garbage collected** | Manual | Mixed |
+| Security stack (TLS, secure boot, IP protection) | **Built in** | Roll your own | Add packages |
+| Cloud SDKs (Azure, AWS, Google) | **Native** | Roll your own | Add SDKs |
+| Target hardware | Microcontroller | Microcontroller | Application processor |
+| Real-time guarantees | Not an RTOS | RTOS | Hybrid |
+| Typical time to first blink | **Minutes** | Hours | Hours+ |
+
+</div>
+
+## Cloud-ready out of the box
+
+Commercial-grade TLS with first-class support for the major cloud platforms — no extra integration work required.
+
+<div className="cloud-grid">
+  <a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/azure.html" className="cloud-card" target="_blank" rel="noopener noreferrer">
+    <img src="/img/cloud-azure.png" alt="Microsoft Azure" />
+    <span>Azure tutorial →</span>
+  </a>
+  <a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/aws.html" className="cloud-card" target="_blank" rel="noopener noreferrer">
+    <img src="/img/cloud-aws.png" alt="Amazon Web Services" />
+    <span>AWS tutorial →</span>
+  </a>
+  <a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/google-cloud.html" className="cloud-card" target="_blank" rel="noopener noreferrer">
+    <img src="/img/cloud-google.png" alt="Google Cloud" />
+    <span>Google Cloud tutorial →</span>
+  </a>
 </div>
 
 ## What's in the runtime
 
-<div className="feature-grid">
-  <a href="https://www.ghielectronics.com/features/core-features/" className="feature-card" target="_blank" rel="noopener noreferrer">
-    <div className="feature-card__icon">🧰</div>
-    <div className="feature-card__title">Core features</div>
-    <div className="feature-card__body">Debugging, memory management, NuGet libraries, multithreading, reflection, collections, serialization, regex, mass-production tools.</div>
-  </a>
-  <a href="https://www.ghielectronics.com/features/world-class-security/" className="feature-card" target="_blank" rel="noopener noreferrer">
-    <div className="feature-card__icon">🛡️</div>
-    <div className="feature-card__title">World-class security</div>
-    <div className="feature-card__body">IP protection, encrypted in-field updates, secure storage, secure boot, TLS 1.2, cryptography, hashing.</div>
-  </a>
-  <a href="https://www.ghielectronics.com/features/cloud-networking/" className="feature-card" target="_blank" rel="noopener noreferrer">
-    <div className="feature-card__icon">☁️</div>
-    <div className="feature-card__title">Cloud &amp; networking</div>
-    <div className="feature-card__body">HTTP/HTTPS, MQTT, PPP, TLS. WiFi, Ethernet, cellular. Native support for Azure, AWS, Google Cloud, IFTTT, Adafruit IO.</div>
-  </a>
-  <a href="https://www.ghielectronics.com/features/hardware-control/" className="feature-card" target="_blank" rel="noopener noreferrer">
-    <div className="feature-card__icon">🔌</div>
-    <div className="feature-card__title">Hardware control</div>
-    <div className="feature-card__body">GPIO, PWM, analog in/out, signal control. SPI, I²C, UART, USB, CAN, 1-Wire — the full embedded peripheral stack.</div>
-  </a>
-  <a href="https://www.ghielectronics.com/features/multimedia-ready/" className="feature-card" target="_blank" rel="noopener noreferrer">
-    <div className="feature-card__icon">🎨</div>
-    <div className="feature-card__title">Multimedia ready</div>
-    <div className="feature-card__body">Display options, touchscreen support, UI framework, native graphics, image decoders, fonts, camera interface, MJPEG video, audio playback.</div>
-  </a>
-  <a href="https://www.ghielectronics.com/features/additional-features/" className="feature-card" target="_blank" rel="noopener noreferrer">
-    <div className="feature-card__icon">📦</div>
-    <div className="feature-card__title">And more</div>
-    <div className="feature-card__body">SQLite, file system, SD/MMC, Modbus, USB-PC comms, power management, watchdog, RTC, timers.</div>
-  </a>
+A real .NET runtime on embedded hardware — not a toy subset. Click any feature to jump to its docs.
+
+<div className="features-grid">
+
+  <div className="features-category">
+    <h3>Core features</h3>
+    <div className="features-subgroup">
+      <span className="features-subgroup__label">Productivity</span>
+      <ul>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/debugging.html" target="_blank" rel="noopener noreferrer">Debugging</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/memory.html" target="_blank" rel="noopener noreferrer">Memory management</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/unmanaged-heap.html" target="_blank" rel="noopener noreferrer">Unmanaged heap</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/nuget.html" target="_blank" rel="noopener noreferrer">NuGet libraries</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tinyclr-config.html" target="_blank" rel="noopener noreferrer">Mass-production tools</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/device-info.html" target="_blank" rel="noopener noreferrer">Device info</a></li>
+      </ul>
+    </div>
+    <div className="features-subgroup">
+      <span className="features-subgroup__label">Modern OS</span>
+      <ul>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/multithreading.html" target="_blank" rel="noopener noreferrer">Multithreading</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/reflection.html" target="_blank" rel="noopener noreferrer">Reflection</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/collections.html" target="_blank" rel="noopener noreferrer">Collections</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/serialization.html" target="_blank" rel="noopener noreferrer">Serialization</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/encoding-decoding.html" target="_blank" rel="noopener noreferrer">Encoding/decoding</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/application-domain.html" target="_blank" rel="noopener noreferrer">Application domain</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/marshal.html" target="_blank" rel="noopener noreferrer">Marshal</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/regex.html" target="_blank" rel="noopener noreferrer">Regex</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/stream.html" target="_blank" rel="noopener noreferrer">Stream</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div className="features-category">
+    <h3>World-class security</h3>
+    <div className="features-subgroup">
+      <span className="features-subgroup__label">Application security</span>
+      <ul>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/ip-protection.html" target="_blank" rel="noopener noreferrer">IP protection</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/in-field-update.html" target="_blank" rel="noopener noreferrer">Encrypted in-field updates</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/secure-storage.html" target="_blank" rel="noopener noreferrer">Secure storage</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/secure-boot.html" target="_blank" rel="noopener noreferrer">Secure boot</a></li>
+      </ul>
+    </div>
+    <div className="features-subgroup">
+      <span className="features-subgroup__label">Data security</span>
+      <ul>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/tls.html" target="_blank" rel="noopener noreferrer">TLS 1.2</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/cryptography.html" target="_blank" rel="noopener noreferrer">Cryptography</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/hashing.html" target="_blank" rel="noopener noreferrer">Hashing</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div className="features-category">
+    <h3>Cloud &amp; networking</h3>
+    <div className="features-subgroup">
+      <span className="features-subgroup__label">Networking</span>
+      <ul>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/networking-core.html" target="_blank" rel="noopener noreferrer">Networking core</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/http-https.html" target="_blank" rel="noopener noreferrer">HTTP / HTTPS</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/mqtt.html" target="_blank" rel="noopener noreferrer">MQTT</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/ppp.html" target="_blank" rel="noopener noreferrer">PPP</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/tls.html" target="_blank" rel="noopener noreferrer">TLS 1.2</a></li>
+      </ul>
+    </div>
+    <div className="features-subgroup">
+      <span className="features-subgroup__label">Interfaces</span>
+      <ul>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/wifi.html" target="_blank" rel="noopener noreferrer">WiFi</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/ethernet.html" target="_blank" rel="noopener noreferrer">Ethernet</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/cellular.html" target="_blank" rel="noopener noreferrer">Cellular</a></li>
+      </ul>
+    </div>
+    <div className="features-subgroup">
+      <span className="features-subgroup__label">Cloud support</span>
+      <ul>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/azure.html" target="_blank" rel="noopener noreferrer">Azure</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/aws.html" target="_blank" rel="noopener noreferrer">AWS</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/google-cloud.html" target="_blank" rel="noopener noreferrer">Google Cloud</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/ifttt.html" target="_blank" rel="noopener noreferrer">IFTTT</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/adafruit-io.html" target="_blank" rel="noopener noreferrer">Adafruit IO</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div className="features-category">
+    <h3>Hardware control</h3>
+    <div className="features-subgroup">
+      <span className="features-subgroup__label">Pin-level control</span>
+      <ul>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/gpio.html" target="_blank" rel="noopener noreferrer">GPIO</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/pwm.html" target="_blank" rel="noopener noreferrer">PWM</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/analog-in.html" target="_blank" rel="noopener noreferrer">Analog in</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/analog-out.html" target="_blank" rel="noopener noreferrer">Analog out</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/signal-control.html" target="_blank" rel="noopener noreferrer">Signal control</a></li>
+      </ul>
+    </div>
+    <div className="features-subgroup">
+      <span className="features-subgroup__label">Data buses</span>
+      <ul>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/spi.html" target="_blank" rel="noopener noreferrer">SPI</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/i2c.html" target="_blank" rel="noopener noreferrer">I²C</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/uart.html" target="_blank" rel="noopener noreferrer">UART</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/usb.html" target="_blank" rel="noopener noreferrer">USB</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/can.html" target="_blank" rel="noopener noreferrer">CAN</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/1-wire.html" target="_blank" rel="noopener noreferrer">1-Wire</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div className="features-category">
+    <h3>Multimedia ready</h3>
+    <div className="features-subgroup">
+      <ul>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/displays.html" target="_blank" rel="noopener noreferrer">Display options</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/touch-screen.html" target="_blank" rel="noopener noreferrer">Touchscreen</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/user-interface.html" target="_blank" rel="noopener noreferrer">UI framework</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/graphics.html" target="_blank" rel="noopener noreferrer">Native graphics</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/image-decoders.html" target="_blank" rel="noopener noreferrer">Image decoders</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/font-support.html" target="_blank" rel="noopener noreferrer">Font support</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/camera.html" target="_blank" rel="noopener noreferrer">Camera</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/mjpeg-video.html" target="_blank" rel="noopener noreferrer">MJPEG video</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/audio-playback.html" target="_blank" rel="noopener noreferrer">Audio playback</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div className="features-category">
+    <h3>And more</h3>
+    <div className="features-subgroup">
+      <ul>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/usb-pc-comm.html" target="_blank" rel="noopener noreferrer">USB-PC communication</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/sqlite-database.html" target="_blank" rel="noopener noreferrer">SQLite database</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/file-system.html" target="_blank" rel="noopener noreferrer">File system</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/sd-cards.html" target="_blank" rel="noopener noreferrer">SD / MMC cards</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/modbus.html" target="_blank" rel="noopener noreferrer">Modbus</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/power-management.html" target="_blank" rel="noopener noreferrer">Power management</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/watchdog-timer.html" target="_blank" rel="noopener noreferrer">Watchdog timer</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/real-time-clock.html" target="_blank" rel="noopener noreferrer">Real-time clock</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/timers.html" target="_blank" rel="noopener noreferrer">Timers</a></li>
+        <li><a href="https://docs.ghielectronics.com/software/tinyclr/tutorials/resources.html" target="_blank" rel="noopener noreferrer">Resources</a></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<div className="docs-link">
+  Ready for technical detail? <a href="https://docs.ghielectronics.com/software/tinyclr/intro.html" target="_blank" rel="noopener noreferrer">Read the TinyCLR docs →</a>
 </div>
 
 <SitcoreNav />
