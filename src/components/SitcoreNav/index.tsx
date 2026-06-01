@@ -8,8 +8,7 @@ const NAV_ITEMS = [
   {label: 'SoM', path: '/sitcore/som/'},
   {label: 'SBC', path: '/sitcore/sbc/'},
   {label: 'Dev', path: '/sitcore/dev/'},
-  {label: 'Experimenter Kit', path: '/sitcore/experimenter-kit/'},
-  {label: 'FAQ', path: '/sitcore/faq/'},
+  {label: 'Experiment', path: '/sitcore/experimenter-kit/'},
 ];
 
 function normalize(p: string): string {

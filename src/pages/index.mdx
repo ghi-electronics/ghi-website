@@ -4,13 +4,12 @@ description: Build embedded products in C#. SITCore modules and TinyCLR OS, desi
 hide_table_of_contents: true
 ---
 
-export const industries = [
-  {img: 'industry-kiosks.jpg', name: 'Self-Service Kiosks'},
-  {img: 'industry-handheld.jpg', name: 'Handheld Devices'},
-  {img: 'industry-fleet.jpg', name: 'Fleet Diagnostics'},
-  {img: 'industry-machine.jpg', name: 'Machine Monitoring'},
-  {img: 'industry-warehouse.jpg', name: 'Plant & Warehouse'},
-  {img: 'industry-parking.jpg', name: 'Parking & Traffic'},
+export const hardware = [
+  {img: 'fez-flea-finger.png', name: 'FEZ Flea'},
+  {img: 'fez-duino.png', name: 'FEZ Duino'},
+  {img: 'fez-portal.png', name: 'FEZ Portal'},
+  {img: 'scm20260d.png', name: 'SCM20260D'},
+  {img: 'scm20260n.png', name: 'SCM20260N'},
 ];
 
 <a href="https://forums.ghielectronics.com/" className="top-announce" target="_blank" rel="noopener noreferrer">
@@ -21,35 +20,74 @@ export const industries = [
 
 <div className="home-hero">
 
-# Build embedded products in C#.
+# Build embedded products in C#
 
-SITCore + TinyCLR — embedded systems built with .NET and C#, backed by engineering and manufacturing in Michigan.
+Embedded .NET, designed and made in the USA — powered by TinyCLR OS running on a family of SITCore hardware options.
+
+</div>
+
+<div className="section-tinted">
+
+<div className="section-tinted__intro">
+  <span className="eyebrow">The Platform</span>
+  <h2>TinyCLR — secure embedded .NET</h2>
+  <p>Runs on the SITCore family — chipsets, modules, single-board computers, and dev boards. Write C# in Visual Studio with real step debugging, deploy over USB.</p>
+</div>
+
+<div className="tinyclr-highlights">
+  <span>Visual Studio</span>
+  <span>Step debugging</span>
+  <span>Garbage collection</span>
+  <span>NuGet libraries</span>
+  <span>Multithreading</span>
+  <span>TLS 1.2</span>
+  <span>Secure boot</span>
+  <span>IP protection</span>
+  <span>Encrypted updates</span>
+  <span>Azure · AWS · Google Cloud</span>
+  <span>Displays · Touch · Camera</span>
+  <span>GPIO · SPI · I²C · UART · USB · CAN</span>
+</div>
+
+<div className="hardware-marquee">
+  <div className="hardware-track">
+    {[...hardware, ...hardware].map((it, i) => {
+      const clone = i >= hardware.length;
+      return (
+        <div
+          className="hardware-card"
+          key={`${clone ? 'clone' : 'orig'}-${i}`}
+          aria-hidden={clone || undefined}
+        >
+          <img src={`/img/${it.img}`} alt={clone ? '' : it.name} />
+          <div className="hardware-card__name">{it.name}</div>
+        </div>
+      );
+    })}
+  </div>
+</div>
+
+<div style={{textAlign: 'center', marginTop: '1.5rem'}}>
+  <a href="/tinyclr/" className="btn-primary">Explore TinyCLR →</a>
+</div>
 
 </div>
 
 <div className="split">
 
-<div className="image-rotator">
-  <img src="/img/fez-flea-finger.png" alt="FEZ Flea single-board computer" />
-  <img src="/img/fez-duino.png" alt="FEZ Duino single-board computer" />
-  <img src="/img/fez-portal.png" alt="FEZ Portal single-board computer" />
-  <img src="/img/scm20260d.png" alt="SC20260D system-on-module" />
-  <img src="/img/scm20260n.png" alt="SC20260N system-on-module" />
+<div>
+  <img src="/img/fez-flea-finger.png" alt="FEZ Flea single-board computer held between two fingers" />
 </div>
 
 <div className="split__text">
 
-## SITCore + TinyCLR
+<span className="eyebrow">Just curious?</span>
 
-Hardware, runtime, and the integration in between — designed together so your C# code runs on production-ready embedded boards from day one.
+## Try .NET on hardware for $14.95
 
-<ul className="hero-bullets hero-bullets--left">
-  <li>C# in Visual Studio</li>
-  <li>Hardware + runtime, one team</li>
-  <li>Built to last 10+ years</li>
-</ul>
+The FEZ Flea is the smallest of our SITCore single-board computers and the cheapest way to try TinyCLR. USB-pluggable, Visual Studio + C#, blink an LED in ten minutes.
 
-<a href="/tinyclr/" className="btn-primary">Explore TinyCLR →</a>
+<a href="/sitcore/sbc/" className="btn-primary">See the FEZ Flea →</a>
 
 </div>
 </div>
@@ -76,34 +114,12 @@ Hardware, runtime, and the integration in between — designed together so your 
 
 </div>
 
-## Built for the products that ship
-
-<p className="lead-text">From self-service kiosks to fleet diagnostics, GHI Electronics hardware lives inside the products real businesses rely on every day.</p>
-
-<div className="industries-marquee">
-  <div className="industries-track">
-    {[...industries, ...industries].map((it, i) => {
-      const clone = i >= industries.length;
-      return (
-        <div
-          className="industry-card"
-          key={`${clone ? 'clone' : 'orig'}-${i}`}
-          aria-hidden={clone || undefined}
-        >
-          <img src={`/img/${it.img}`} alt={clone ? '' : it.name} />
-          <div className="industry-card__name">{it.name}</div>
-        </div>
-      );
-    })}
-  </div>
-</div>
-
 ## Why GHI Electronics
 
 <div className="feature-grid feature-grid--four">
   <a href="/company/" className="feature-card" data-cta="About GHI Electronics →">
     <div className="feature-card__icon">🇺🇸</div>
-    <div className="feature-card__title">Made in Michigan</div>
+    <div className="feature-card__title">Made in the USA</div>
     <div className="feature-card__body">Designed, built, and supported under one roof. The same engineers who design the platform answer the forum.</div>
   </a>
   <a href="/longevity/" className="feature-card" data-cta="Longevity commitment →">
@@ -127,7 +143,7 @@ Hardware, runtime, and the integration in between — designed together so your 
 
 <div className="section-tinted__intro">
   <span className="eyebrow">Also from GHI Electronics</span>
-  <h2>DUELink — smart electronic building blocks.</h2>
+  <h2>DUELink — smart electronic building blocks</h2>
   <p>Self-contained mini-computers that speak plain text. Tether or daisylink them from any board, in any language — for makers, educators, and rapid prototyping.</p>
 </div>
 
@@ -143,46 +159,9 @@ Hardware, runtime, and the integration in between — designed together so your 
 
 </div>
 
-<div className="section-tinted">
-
-<div className="section-tinted__intro">
-  <span className="eyebrow">The Runtime</span>
-  <h2>TinyCLR OS — .NET for your embedded product.</h2>
-  <p>GHI Electronics' royalty-free embedded runtime brings real C# and Visual Studio to your hardware — breakpoints, watch windows, IntelliSense, and the full .NET ecosystem. Ship embedded products without leaving managed code.</p>
-</div>
-
-<div className="feature-grid feature-grid--four">
-  <div className="feature-card">
-    <div className="feature-card__icon">🔍</div>
-    <div className="feature-card__title">Real debugging</div>
-    <div className="feature-card__body">Step through embedded firmware in Visual Studio. Breakpoints, locals, call stack — on the device.</div>
-  </div>
-  <div className="feature-card">
-    <div className="feature-card__icon">⚡</div>
-    <div className="feature-card__title">Managed runtime</div>
-    <div className="feature-card__body">No malloc, no free, no segfaults. Garbage-collected C# on real embedded hardware — your .NET team ships embedded products.</div>
-  </div>
-  <div className="feature-card">
-    <div className="feature-card__icon">🔒</div>
-    <div className="feature-card__title">Built-in security</div>
-    <div className="feature-card__body">Secure boot, TLS 1.2, AES, RSA, encrypted in-field updates — no third-party security stack needed.</div>
-  </div>
-  <div className="feature-card">
-    <div className="feature-card__icon">📦</div>
-    <div className="feature-card__title">NuGet ecosystem</div>
-    <div className="feature-card__body">Drivers for displays, touch, networking, cloud, and more — installed through the Visual Studio NuGet manager.</div>
-  </div>
-</div>
-
-<div style={{textAlign: 'center', marginTop: '1.5rem'}}>
-  <a href="/tinyclr/" className="btn-primary">Explore TinyCLR →</a>
-</div>
-
-</div>
-
 <div className="cta">
 
-## Let's talk about your product.
+## Let's talk about your product
 
 Whatever you're building — module-based or custom, .NET or otherwise — we'll help you get from concept to shipment.
 

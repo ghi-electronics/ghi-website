@@ -267,6 +267,7 @@
 
 .sitcore-nav__inner {
   display: flex;
+  justify-content: center;
   gap: 0.25rem;
   overflow-x: auto;
   scrollbar-width: thin;
@@ -835,7 +836,7 @@ a.pillar-card:hover {
 .pillar-card__image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
   transition: transform 0.4s ease;
 }
@@ -1449,6 +1450,66 @@ a.pillar-card:hover::after {
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+.hardware-marquee {
+  overflow: hidden;
+  margin: 1.5rem 0 0.5rem;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%);
+}
+
+.hardware-track {
+  display: flex;
+  width: max-content;
+  animation: hardware-scroll 35s linear infinite;
+}
+
+.hardware-card {
+  flex: 0 0 240px;
+  margin-right: 1rem;
+  background: #fff;
+  border: 1px solid #e2e6ea;
+  border-radius: 12px;
+  padding: 1rem 0.75rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hardware-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: contain;
+  display: block;
+}
+
+.hardware-card__name {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #333;
+  letter-spacing: 0.02em;
+}
+
+@keyframes hardware-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (max-width: 768px) {
+  .hardware-card {
+    flex: 0 0 180px;
+  }
+  .hardware-card img {
+    height: 120px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hardware-track {
+    animation: none;
+  }
 }
 
 .image-rotator {

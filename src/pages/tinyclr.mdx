@@ -1,8 +1,10 @@
 ---
 title: TinyCLR — .NET for embedded products
-description: TinyCLR is GHI Electronics' royalty-free .NET runtime for embedded products. Real C# in Visual Studio, real step debugging, built-in security, and a full library ecosystem — running on the SITCore family of secure embedded hardware made in Michigan.
+description: TinyCLR is GHI Electronics' royalty-free .NET runtime for embedded products. Real C# in Visual Studio, real step debugging, built-in security, and a full library ecosystem — running on the SITCore family of secure embedded hardware made in the USA.
 hide_table_of_contents: true
 ---
+
+import SitcoreNav from '@site/src/components/SitcoreNav';
 
 export const industries = [
   {img: 'industry-kiosks.jpg', name: 'Self-Service Kiosks'},
@@ -12,6 +14,8 @@ export const industries = [
   {img: 'industry-warehouse.jpg', name: 'Plant & Warehouse'},
   {img: 'industry-parking.jpg', name: 'Parking & Traffic'},
 ];
+
+<SitcoreNav />
 
 <a href="https://forums.ghielectronics.com/" className="top-announce" target="_blank" rel="noopener noreferrer">
   <span className="top-announce__badge">NEW</span>
@@ -23,18 +27,20 @@ export const industries = [
 
 <div className="section-tinted__intro">
   <span className="eyebrow">TinyCLR</span>
-  <h2>.NET for embedded products.</h2>
-  <p>TinyCLR is a royalty-free embedded operating system with a Common Language Runtime — write C# in Visual Studio, debug with real breakpoints, and deploy to the <strong>SITCore</strong> family of secure embedded hardware. Designed for products that ship.</p>
+  <h2>.NET for embedded products</h2>
+  <p>A royalty-free embedded operating system with a Common Language Runtime. Write C# in Visual Studio, debug with real breakpoints, deploy from a single click.</p>
   <ul className="hero-bullets">
     <li>C# in Visual Studio</li>
     <li>Real step debugging</li>
-    <li>Built to last 10+ years</li>
+    <li>Supplied for 10+ years</li>
   </ul>
 </div>
 
+<p style={{textAlign: 'center', fontSize: '1.05rem', color: 'var(--ifm-color-emphasis-700)', margin: '2rem auto 0.75rem', maxWidth: '720px'}}>Runs on the <strong>SITCore</strong> family of secure embedded hardware — chipsets, modules, single-board computers, and dev boards.</p>
+
 <div className="centered-image">
 
-![TinyCLR runs on the SITCore product line — chipsets, modules, single-board computers, and dev boards](/img/sitcore-line.png)
+![The SITCore family — chipsets, modules, single-board computers, and dev boards](/img/sitcore-line.png)
 
 </div>
 
@@ -56,12 +62,12 @@ export const industries = [
   <div className="feature-card">
     <div className="feature-card__icon">🔒</div>
     <div className="feature-card__title">Production-ready security</div>
-    <div className="feature-card__body"><strong>Secure boot. IP protection. TLS 1.2. Encrypted in-field updates.</strong> Built in, not bolted on — your product is shippable from day one.</div>
+    <div className="feature-card__body"><strong>Secure boot. IP protection. TLS 1.2. Encrypted in-field updates.</strong> Built in, not bolted on.</div>
   </div>
   <div className="feature-card">
     <div className="feature-card__icon">⚡</div>
     <div className="feature-card__title">A real runtime, not a toy</div>
-    <div className="feature-card__body"><strong>Garbage collection. Multithreading. NuGet libraries.</strong> The .NET you know — running on embedded hardware that fits between your fingers.</div>
+    <div className="feature-card__body"><strong>Garbage collection. Multithreading. NuGet libraries.</strong> The .NET you know, on real embedded hardware.</div>
   </div>
 </div>
 
@@ -90,7 +96,7 @@ while (true) {
 
 <div className="code-showcase__caption">
 
-### Real C# on real embedded hardware.
+### Real C# on real embedded hardware
 
 - **Code** in Visual Studio
 - **Debug** with breakpoints, step-through, and locals
@@ -106,8 +112,8 @@ The same workflow you use for your day job — running on a chip you can hold be
 
 <div className="video-embed">
   <iframe
-    src="https://www.youtube.com/embed/OUiHNyjXjWc"
-    title="TinyCLR — .NET on embedded hardware"
+    src="https://www.youtube.com/embed/6i-szlIFtPw"
+    title="TinyCLR — Secure embedded .NET"
     loading="lazy"
     allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
     allowFullScreen
@@ -116,7 +122,7 @@ The same workflow you use for your day job — running on a chip you can hold be
 
 ## How TinyCLR compares
 
-Trade-offs at a glance — no single approach is right for every project, but here's where TinyCLR fits.
+Trade-offs at a glance — here's where TinyCLR fits.
 
 <div className="compare-table">
 
@@ -136,11 +142,20 @@ Trade-offs at a glance — no single approach is right for every project, but he
 
 ## Choose your hardware
 
-<p className="lead-text">TinyCLR runs on the <strong>SITCore</strong> family — chipsets, system-on-modules, single-board computers, and dev boards. The runtime, debugging, and developer experience stay the same across all of them. Pick the form factor that fits your product.</p>
+<p className="lead-text">Same C# code, same runtime, same debugging — across every form factor in the SITCore family. Pick what fits your product.</p>
 
 ### Just evaluating?
 
 <div className="pillar-grid">
+
+<a href="/sitcore/sbc/" className="pillar-card">
+  <div className="pillar-card__image"><img src="/img/fez-flea-finger.png" alt="FEZ Flea single-board computer held between two fingers" /></div>
+  <div className="pillar-card__body">
+    <div className="pillar-card__title">FEZ Flea</div>
+    <div className="pillar-card__text"><strong>Just curious?</strong> The smallest SITCore SBC, USB-pluggable, blink an LED in ten minutes. The cheapest way to try TinyCLR.</div>
+    <div className="pillar-card__meta">1 board · $14.95</div>
+  </div>
+</a>
 
 <a href="/sitcore/experimenter-kit/" className="pillar-card">
   <div className="pillar-card__image"><img src="/img/experimenter-kit-hero.jpg" alt="SITCore Experimenter Kit" /></div>
@@ -195,15 +210,19 @@ Trade-offs at a glance — no single approach is right for every project, but he
 
 </div>
 
-## Code to ship — under one roof
+<div className="section-tinted">
 
-Whatever depth of help you need. Buy SITCore off the shelf and ship — or bring in our engineers and our manufacturing line as far as it makes sense for your project.
+<div className="section-tinted__intro">
+  <span className="eyebrow">Under one roof</span>
+  <h2>From your C# code to a shipped product</h2>
+  <p>Whatever depth of help you need. Buy SITCore off the shelf and ship — or bring in our engineers and our manufacturing line as far as it makes sense for your project.</p>
+</div>
 
 <div className="journey-grid">
   <div className="journey-step">
     <span className="journey-step__num">1</span>
     <div className="journey-step__title">Start with TinyCLR</div>
-    <div className="journey-step__body">Buy SITCore modules off the shelf. Code in C# in Visual Studio. Most teams ship from here alone — that's the platform working as designed.</div>
+    <div className="journey-step__body">Buy SITCore modules off the shelf. Code in C# in Visual Studio. Most teams ship from here alone.</div>
   </div>
   <div className="journey-step">
     <span className="journey-step__num">2</span>
@@ -219,9 +238,11 @@ Whatever depth of help you need. Buy SITCore off the shelf and ship — or bring
   </div>
 </div>
 
+</div>
+
 ## What's in the runtime
 
-A real .NET runtime on embedded hardware — not a toy subset. Click any feature to jump to its docs.
+Everything you'd expect from .NET. Click any feature to jump to its docs.
 
 <div className="features-grid">
 
@@ -369,25 +390,6 @@ A real .NET runtime on embedded hardware — not a toy subset. Click any feature
 
 </div>
 
-## Cloud-ready out of the box
-
-Commercial-grade TLS with first-class support for the major cloud platforms — no extra integration work required.
-
-<div className="cloud-grid">
-  <a href="/docs/tinyclr/feature/azure" className="cloud-card">
-    <img src="/img/cloud-azure.png" alt="Microsoft Azure" />
-    <span>Azure guide →</span>
-  </a>
-  <a href="/docs/tinyclr/feature/aws" className="cloud-card">
-    <img src="/img/cloud-aws.png" alt="Amazon Web Services" />
-    <span>AWS guide →</span>
-  </a>
-  <a href="/docs/tinyclr/feature/google-cloud" className="cloud-card">
-    <img src="/img/cloud-google.png" alt="Google Cloud" />
-    <span>Google Cloud guide →</span>
-  </a>
-</div>
-
 ## Built for the products that ship
 
 <p className="lead-text">From self-service kiosks to fleet diagnostics, TinyCLR lives inside the products real businesses rely on every day.</p>
@@ -410,16 +412,17 @@ Commercial-grade TLS with first-class support for the major cloud platforms — 
   </div>
 </div>
 
-<div className="docs-link">
-  Ready for the technical reference? <a href="/docs/tinyclr/">Read the TinyCLR docs →</a>
-</div>
-
 <div className="cta">
 
-## Let's talk about your product.
+## Ready to build?
 
-Whatever you're building — module-based or custom — we'll help you get from concept to shipment with TinyCLR.
+Two ways forward — head to the docs to start building, or talk to us about your project.
 
-<a href="/contact/" className="btn-primary cta__button">Talk to us →</a>
+<div className="cta__buttons">
+  <a href="/docs/tinyclr/" className="btn-primary cta__button">Read the docs →</a>
+  <a href="/contact/" className="btn-secondary cta__button">Talk to us</a>
+</div>
 
 </div>
+
+<SitcoreNav />
