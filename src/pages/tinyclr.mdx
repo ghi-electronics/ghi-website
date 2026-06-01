@@ -1,0 +1,425 @@
+---
+title: TinyCLR — .NET for embedded products
+description: TinyCLR is GHI Electronics' royalty-free .NET runtime for embedded products. Real C# in Visual Studio, real step debugging, built-in security, and a full library ecosystem — running on the SITCore family of secure embedded hardware made in Michigan.
+hide_table_of_contents: true
+---
+
+export const industries = [
+  {img: 'industry-kiosks.jpg', name: 'Self-Service Kiosks'},
+  {img: 'industry-handheld.jpg', name: 'Handheld Devices'},
+  {img: 'industry-fleet.jpg', name: 'Fleet Diagnostics'},
+  {img: 'industry-machine.jpg', name: 'Machine Monitoring'},
+  {img: 'industry-warehouse.jpg', name: 'Plant & Warehouse'},
+  {img: 'industry-parking.jpg', name: 'Parking & Traffic'},
+];
+
+<a href="https://forums.ghielectronics.com/" className="top-announce" target="_blank" rel="noopener noreferrer">
+  <span className="top-announce__badge">NEW</span>
+  <span>TinyCLR v3 is in beta — generics and modern .NET features, free for every SITCore customer.</span>
+  <span className="top-announce__arrow">→</span>
+</a>
+
+<div className="section-tinted">
+
+<div className="section-tinted__intro">
+  <span className="eyebrow">TinyCLR</span>
+  <h2>.NET for embedded products.</h2>
+  <p>TinyCLR is a royalty-free embedded operating system with a Common Language Runtime — write C# in Visual Studio, debug with real breakpoints, and deploy to the <strong>SITCore</strong> family of secure embedded hardware. Designed for products that ship.</p>
+  <ul className="hero-bullets">
+    <li>C# in Visual Studio</li>
+    <li>Real step debugging</li>
+    <li>Built to last 10+ years</li>
+  </ul>
+</div>
+
+<div className="centered-image">
+
+![TinyCLR runs on the SITCore product line — chipsets, modules, single-board computers, and dev boards](/img/sitcore-line.png)
+
+</div>
+
+</div>
+
+## Why TinyCLR?
+
+<div className="feature-grid feature-grid--four">
+  <div className="feature-card">
+    <div className="feature-card__icon">💻</div>
+    <div className="feature-card__title">You already know how</div>
+    <div className="feature-card__body"><strong>C#, .NET, and Visual Studio.</strong> The language and toolchain your team already uses — no new IDE, no new build system, no JTAG.</div>
+  </div>
+  <div className="feature-card">
+    <div className="feature-card__icon">🔍</div>
+    <div className="feature-card__title">Real step debugging</div>
+    <div className="feature-card__body"><strong>Breakpoints, locals, call stack.</strong> Full Visual Studio debugging on the device, over a USB cable — exceptions you can actually catch.</div>
+  </div>
+  <div className="feature-card">
+    <div className="feature-card__icon">🔒</div>
+    <div className="feature-card__title">Production-ready security</div>
+    <div className="feature-card__body"><strong>Secure boot. IP protection. TLS 1.2. Encrypted in-field updates.</strong> Built in, not bolted on — your product is shippable from day one.</div>
+  </div>
+  <div className="feature-card">
+    <div className="feature-card__icon">⚡</div>
+    <div className="feature-card__title">A real runtime, not a toy</div>
+    <div className="feature-card__body"><strong>Garbage collection. Multithreading. NuGet libraries.</strong> The .NET you know — running on embedded hardware that fits between your fingers.</div>
+  </div>
+</div>
+
+<div className="code-showcase">
+
+<div className="code-showcase__code">
+
+```csharp
+using GHIElectronics.TinyCLR.Devices.Gpio;
+using GHIElectronics.TinyCLR.Pins;
+using System.Threading;
+
+var led = GpioController.GetDefault()
+    .OpenPin(SC20100.GpioPin.PE11);
+led.SetDriveMode(GpioPinDriveMode.Output);
+
+while (true) {
+    led.Write(GpioPinValue.High);
+    Thread.Sleep(500);
+    led.Write(GpioPinValue.Low);
+    Thread.Sleep(500);
+}
+```
+
+</div>
+
+<div className="code-showcase__caption">
+
+### Real C# on real embedded hardware.
+
+- **Code** in Visual Studio
+- **Debug** with breakpoints, step-through, and locals
+- **NuGet** the libraries you need
+- **Deploy** over a USB cable
+- **Throw** exceptions you can actually catch
+
+The same workflow you use for your day job — running on a chip you can hold between two fingers.
+
+</div>
+
+</div>
+
+<div className="video-embed">
+  <iframe
+    src="https://www.youtube.com/embed/OUiHNyjXjWc"
+    title="TinyCLR — .NET on embedded hardware"
+    loading="lazy"
+    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowFullScreen
+  ></iframe>
+</div>
+
+## How TinyCLR compares
+
+Trade-offs at a glance — no single approach is right for every project, but here's where TinyCLR fits.
+
+<div className="compare-table">
+
+| | **TinyCLR on SITCore** | Bare-metal C / RTOS | Embedded Linux |
+|---|---|---|---|
+| Primary language | **C#** | C / C++ | Any |
+| IDE | **Visual Studio** | Toolchain-specific | Various |
+| Step debugging | **✓** out of the box | Requires JTAG + setup | Possible |
+| Memory management | **Garbage collected** | Manual | Mixed |
+| Security stack (TLS, secure boot, IP protection) | **Built in** | Roll your own | Add packages |
+| Cloud SDKs (Azure, AWS, Google) | **Native** | Roll your own | Add SDKs |
+| Target hardware | Microcontroller | Microcontroller | Application processor |
+| Real-time guarantees | Not an RTOS | RTOS | Hybrid |
+| Typical time to first blink | **Minutes** | Hours | Hours+ |
+
+</div>
+
+## Choose your hardware
+
+<p className="lead-text">TinyCLR runs on the <strong>SITCore</strong> family — chipsets, system-on-modules, single-board computers, and dev boards. The runtime, debugging, and developer experience stay the same across all of them. Pick the form factor that fits your product.</p>
+
+### Just evaluating?
+
+<div className="pillar-grid">
+
+<a href="/sitcore/experimenter-kit/" className="pillar-card">
+  <div className="pillar-card__image"><img src="/img/experimenter-kit-hero.jpg" alt="SITCore Experimenter Kit" /></div>
+  <div className="pillar-card__body">
+    <div className="pillar-card__title">Experimenter Kit</div>
+    <div className="pillar-card__text"><strong>Learning TinyCLR, hands-on.</strong> Guided experiments through sensors, displays, and a robot — built for educators and engineers picking up TinyCLR. Comes with a companion eBook.</div>
+    <div className="pillar-card__meta">1 kit · $120.00</div>
+  </div>
+</a>
+
+<a href="/sitcore/dev/" className="pillar-card">
+  <div className="pillar-card__image"><img src="/img/sitcore-dev.jpg" alt="SITCore Development Board" /></div>
+  <div className="pillar-card__body">
+    <div className="pillar-card__title">Development Board</div>
+    <div className="pillar-card__text"><strong>Evaluating TinyCLR for a real project.</strong> Full peripherals, debug headers, click connectors — the serious evaluation platform.</div>
+    <div className="pillar-card__meta">3 boards · $59.95 – $199.95</div>
+  </div>
+</a>
+
+</div>
+
+### Building a product?
+
+<div className="pillar-grid">
+
+<a href="/sitcore/sbc/" className="pillar-card">
+  <div className="pillar-card__image"><img src="/img/sitcore-sbc.jpg" alt="SITCore Single Board Computer" /></div>
+  <div className="pillar-card__body">
+    <div className="pillar-card__title">Single Board Computer</div>
+    <div className="pillar-card__text"><strong>Building a working prototype.</strong> Ready-to-code boards in maker-friendly form factors — USB cable, Visual Studio, you're running.</div>
+    <div className="pillar-card__meta">7 boards · $14.95 – $124.95</div>
+  </div>
+</a>
+
+<a href="/sitcore/som/" className="pillar-card">
+  <div className="pillar-card__image"><img src="/img/sitcore-som.jpg" alt="SITCore System on Module" /></div>
+  <div className="pillar-card__body">
+    <div className="pillar-card__title">System on Module</div>
+    <div className="pillar-card__text"><strong>Productizing at scale.</strong> Drop a SITCore module onto your custom carrier board and ship.</div>
+    <div className="pillar-card__meta">4 modules · $45.95 – $77.95 @100</div>
+  </div>
+</a>
+
+<a href="/sitcore/soc/" className="pillar-card">
+  <div className="pillar-card__image"><img src="/img/sitcore-soc.jpg" alt="SITCore System on Chip" /></div>
+  <div className="pillar-card__body">
+    <div className="pillar-card__title">System on Chip</div>
+    <div className="pillar-card__text"><strong>Designing your own board.</strong> Drop a SITCore chipset onto your own PCB — smallest footprint, lowest unit cost.</div>
+    <div className="pillar-card__meta">4 chipsets · from $15.95 @100</div>
+  </div>
+</a>
+
+</div>
+
+## Code to ship — under one roof
+
+Whatever depth of help you need. Buy SITCore off the shelf and ship — or bring in our engineers and our manufacturing line as far as it makes sense for your project.
+
+<div className="journey-grid">
+  <div className="journey-step">
+    <span className="journey-step__num">1</span>
+    <div className="journey-step__title">Start with TinyCLR</div>
+    <div className="journey-step__body">Buy SITCore modules off the shelf. Code in C# in Visual Studio. Most teams ship from here alone — that's the platform working as designed.</div>
+  </div>
+  <div className="journey-step">
+    <span className="journey-step__num">2</span>
+    <div className="journey-step__title">Lean on our engineers</div>
+    <div className="journey-step__body">Bring-up help, circuit review, firmware modules, test rigs — pick the piece you need. <strong>Free hardware and firmware design review on SITCore-based products.</strong>
+    <a href="/engineering/">See engineering →</a></div>
+  </div>
+  <div className="journey-step">
+    <span className="journey-step__num">3</span>
+    <div className="journey-step__title">Build with us</div>
+    <div className="journey-step__body">When you're ready for volume, the same Michigan facility that builds SITCore can build yours. Same line, same QC standards.
+    <a href="/manufacturing/">See manufacturing →</a></div>
+  </div>
+</div>
+
+## What's in the runtime
+
+A real .NET runtime on embedded hardware — not a toy subset. Click any feature to jump to its docs.
+
+<div className="features-grid">
+
+  <div className="features-category">
+    <h3>Core features</h3>
+    <div className="features-subgroup">
+      <span className="features-subgroup__label">Productivity</span>
+      <ul>
+        <li><a href="/docs/tinyclr/feature/debugging">Debugging</a></li>
+        <li><a href="/docs/tinyclr/feature/memory">Memory management</a></li>
+        <li><a href="/docs/tinyclr/feature/unmanaged-heap">Unmanaged heap</a></li>
+        <li><a href="/docs/tinyclr/feature/nuget">NuGet libraries</a></li>
+        <li><a href="/docs/tinyclr/tinyclr-config">Mass-production tools</a></li>
+        <li><a href="/docs/tinyclr/feature/device-info">Device info</a></li>
+      </ul>
+    </div>
+    <div className="features-subgroup">
+      <span className="features-subgroup__label">Modern OS</span>
+      <ul>
+        <li><a href="/docs/tinyclr/feature/multithreading">Multithreading</a></li>
+        <li><a href="/docs/tinyclr/feature/reflection">Reflection</a></li>
+        <li><a href="/docs/tinyclr/feature/collections">Collections</a></li>
+        <li><a href="/docs/tinyclr/feature/serialization">Serialization</a></li>
+        <li><a href="/docs/tinyclr/feature/encoding-decoding">Encoding/decoding</a></li>
+        <li><a href="/docs/tinyclr/feature/application-domain">Application domain</a></li>
+        <li><a href="/docs/tinyclr/feature/marshal">Marshal</a></li>
+        <li><a href="/docs/tinyclr/feature/regex">Regex</a></li>
+        <li><a href="/docs/tinyclr/feature/stream">Stream</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div className="features-category">
+    <h3>World-class security</h3>
+    <div className="features-subgroup">
+      <span className="features-subgroup__label">Application security</span>
+      <ul>
+        <li><a href="/docs/tinyclr/feature/ip-protection">IP protection</a></li>
+        <li><a href="/docs/tinyclr/feature/in-field-update">Encrypted in-field updates</a></li>
+        <li><a href="/docs/tinyclr/feature/secure-storage">Secure storage</a></li>
+        <li><a href="/docs/tinyclr/feature/secure-boot">Secure boot</a></li>
+      </ul>
+    </div>
+    <div className="features-subgroup">
+      <span className="features-subgroup__label">Data security</span>
+      <ul>
+        <li><a href="/docs/tinyclr/feature/tls">TLS 1.2</a></li>
+        <li><a href="/docs/tinyclr/feature/cryptography">Cryptography</a></li>
+        <li><a href="/docs/tinyclr/feature/hashing">Hashing</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div className="features-category">
+    <h3>Cloud &amp; networking</h3>
+    <div className="features-subgroup">
+      <span className="features-subgroup__label">Networking</span>
+      <ul>
+        <li><a href="/docs/tinyclr/feature/networking-core">Networking core</a></li>
+        <li><a href="/docs/tinyclr/feature/http-https">HTTP / HTTPS</a></li>
+        <li><a href="/docs/tinyclr/feature/mqtt">MQTT</a></li>
+        <li><a href="/docs/tinyclr/feature/ppp">PPP</a></li>
+        <li><a href="/docs/tinyclr/feature/tls">TLS 1.2</a></li>
+      </ul>
+    </div>
+    <div className="features-subgroup">
+      <span className="features-subgroup__label">Interfaces</span>
+      <ul>
+        <li><a href="/docs/tinyclr/feature/wifi">WiFi</a></li>
+        <li><a href="/docs/tinyclr/feature/ethernet">Ethernet</a></li>
+        <li><a href="/docs/tinyclr/feature/cellular">Cellular</a></li>
+      </ul>
+    </div>
+    <div className="features-subgroup">
+      <span className="features-subgroup__label">Cloud support</span>
+      <ul>
+        <li><a href="/docs/tinyclr/feature/azure">Azure</a></li>
+        <li><a href="/docs/tinyclr/feature/aws">AWS</a></li>
+        <li><a href="/docs/tinyclr/feature/google-cloud">Google Cloud</a></li>
+        <li><a href="/docs/tinyclr/feature/ifttt">IFTTT</a></li>
+        <li><a href="/docs/tinyclr/feature/adafruit-io">Adafruit IO</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div className="features-category">
+    <h3>Hardware control</h3>
+    <div className="features-subgroup">
+      <span className="features-subgroup__label">Pin-level control</span>
+      <ul>
+        <li><a href="/docs/tinyclr/feature/gpio">GPIO</a></li>
+        <li><a href="/docs/tinyclr/feature/pwm">PWM</a></li>
+        <li><a href="/docs/tinyclr/feature/analog-in">Analog in</a></li>
+        <li><a href="/docs/tinyclr/feature/analog-out">Analog out</a></li>
+        <li><a href="/docs/tinyclr/feature/signal-control">Signal control</a></li>
+      </ul>
+    </div>
+    <div className="features-subgroup">
+      <span className="features-subgroup__label">Data buses</span>
+      <ul>
+        <li><a href="/docs/tinyclr/feature/spi">SPI</a></li>
+        <li><a href="/docs/tinyclr/feature/i2c">I²C</a></li>
+        <li><a href="/docs/tinyclr/feature/uart">UART</a></li>
+        <li><a href="/docs/tinyclr/feature/usb">USB</a></li>
+        <li><a href="/docs/tinyclr/feature/can">CAN</a></li>
+        <li><a href="/docs/tinyclr/feature/1-wire">1-Wire</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div className="features-category">
+    <h3>Multimedia ready</h3>
+    <div className="features-subgroup">
+      <ul>
+        <li><a href="/docs/tinyclr/feature/displays">Display options</a></li>
+        <li><a href="/docs/tinyclr/feature/touch-screen">Touchscreen</a></li>
+        <li><a href="/docs/tinyclr/feature/user-interface">UI framework</a></li>
+        <li><a href="/docs/tinyclr/feature/graphics">Native graphics</a></li>
+        <li><a href="/docs/tinyclr/feature/image-decoders">Image decoders</a></li>
+        <li><a href="/docs/tinyclr/feature/font-support">Font support</a></li>
+        <li><a href="/docs/tinyclr/feature/camera">Camera</a></li>
+        <li><a href="/docs/tinyclr/feature/mjpeg-video">MJPEG video</a></li>
+        <li><a href="/docs/tinyclr/feature/audio-playback">Audio playback</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div className="features-category">
+    <h3>And more</h3>
+    <div className="features-subgroup">
+      <ul>
+        <li><a href="/docs/tinyclr/feature/usb-pc-comm">USB-PC communication</a></li>
+        <li><a href="/docs/tinyclr/feature/sqlite-database">SQLite database</a></li>
+        <li><a href="/docs/tinyclr/feature/file-system">File system</a></li>
+        <li><a href="/docs/tinyclr/feature/sd-cards">SD / MMC cards</a></li>
+        <li><a href="/docs/tinyclr/feature/modbus">Modbus</a></li>
+        <li><a href="/docs/tinyclr/feature/power-management">Power management</a></li>
+        <li><a href="/docs/tinyclr/feature/watchdog-timer">Watchdog timer</a></li>
+        <li><a href="/docs/tinyclr/feature/real-time-clock">Real-time clock</a></li>
+        <li><a href="/docs/tinyclr/feature/timers">Timers</a></li>
+        <li><a href="/docs/tinyclr/feature/resources">Resources</a></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+## Cloud-ready out of the box
+
+Commercial-grade TLS with first-class support for the major cloud platforms — no extra integration work required.
+
+<div className="cloud-grid">
+  <a href="/docs/tinyclr/feature/azure" className="cloud-card">
+    <img src="/img/cloud-azure.png" alt="Microsoft Azure" />
+    <span>Azure guide →</span>
+  </a>
+  <a href="/docs/tinyclr/feature/aws" className="cloud-card">
+    <img src="/img/cloud-aws.png" alt="Amazon Web Services" />
+    <span>AWS guide →</span>
+  </a>
+  <a href="/docs/tinyclr/feature/google-cloud" className="cloud-card">
+    <img src="/img/cloud-google.png" alt="Google Cloud" />
+    <span>Google Cloud guide →</span>
+  </a>
+</div>
+
+## Built for the products that ship
+
+<p className="lead-text">From self-service kiosks to fleet diagnostics, TinyCLR lives inside the products real businesses rely on every day.</p>
+
+<div className="industries-marquee">
+  <div className="industries-track">
+    {[...industries, ...industries].map((it, i) => {
+      const clone = i >= industries.length;
+      return (
+        <div
+          className="industry-card"
+          key={`${clone ? 'clone' : 'orig'}-${i}`}
+          aria-hidden={clone || undefined}
+        >
+          <img src={`/img/${it.img}`} alt={clone ? '' : it.name} />
+          <div className="industry-card__name">{it.name}</div>
+        </div>
+      );
+    })}
+  </div>
+</div>
+
+<div className="docs-link">
+  Ready for the technical reference? <a href="/docs/tinyclr/">Read the TinyCLR docs →</a>
+</div>
+
+<div className="cta">
+
+## Let's talk about your product.
+
+Whatever you're building — module-based or custom — we'll help you get from concept to shipment with TinyCLR.
+
+<a href="/contact/" className="btn-primary cta__button">Talk to us →</a>
+
+</div>

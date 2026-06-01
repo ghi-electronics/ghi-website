@@ -3,12 +3,11 @@ import {useLocation} from '@docusaurus/router';
 import clsx from 'clsx';
 
 const NAV_ITEMS = [
-  {label: 'Overview', path: '/sitcore/'},
+  {label: 'TinyCLR', path: '/tinyclr/'},
   {label: 'SoC', path: '/sitcore/soc/'},
   {label: 'SoM', path: '/sitcore/som/'},
   {label: 'SBC', path: '/sitcore/sbc/'},
   {label: 'Dev', path: '/sitcore/dev/'},
-  {label: 'TinyCLR', path: '/sitcore/tinyclr/'},
   {label: 'Experimenter Kit', path: '/sitcore/experimenter-kit/'},
   {label: 'FAQ', path: '/sitcore/faq/'},
 ];

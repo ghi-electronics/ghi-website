@@ -88,15 +88,35 @@ const config: Config = {
     locales: ['en'],
   },
 
+  plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'tinyclr',
+        path: 'docs/tinyclr',
+        routeBasePath: 'docs/tinyclr',
+        sidebarPath: './sidebars-tinyclr.ts',
+        editUrl: 'https://github.com/ghi-electronics/ghi-website/tree/main/',
+        numberPrefixParser: false,
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'endpoint',
+        path: 'docs/endpoint',
+        routeBasePath: 'docs/endpoint',
+        sidebarPath: './sidebars-endpoint.ts',
+        editUrl: 'https://github.com/ghi-electronics/ghi-website/tree/main/',
+      },
+    ],
+  ],
+
   presets: [
     [
       'classic',
       {
-        docs: {
-          sidebarPath: './sidebars.ts',
-          editUrl:
-            'https://github.com/ghi-electronics/ghi-website/tree/main/',
-        },
+        docs: false,
         blog: {
           routeBasePath: 'press',
           blogTitle: 'Press',
@@ -123,6 +143,11 @@ const config: Config = {
     colorMode: {
       respectPrefersColorScheme: true,
     },
+    docs: {
+      sidebar: {
+        hideable: true,
+      },
+    },
     blog: {
       sidebar: {
         groupByYear: false,
@@ -140,7 +165,7 @@ const config: Config = {
           label: 'Products',
           position: 'left',
           items: [
-            {label: 'SITCore', to: '/sitcore/'},
+            {label: 'TinyCLR', to: '/tinyclr/'},
             {label: 'Endpoint', to: '/endpoint/'},
             {label: 'DUELink', to: '/duelink/'},
             {label: 'Longevity', to: '/longevity/'},
@@ -152,6 +177,14 @@ const config: Config = {
           items: [
             {label: 'Engineering', to: '/engineering/'},
             {label: 'Manufacturing', to: '/manufacturing/'},
+          ],
+        },
+        {
+          label: 'Docs',
+          position: 'left',
+          items: [
+            {label: 'TinyCLR', to: '/docs/tinyclr/'},
+            {label: 'Endpoint', to: '/docs/endpoint/'},
           ],
         },
         {
@@ -182,7 +215,7 @@ const config: Config = {
         {
           title: 'Products',
           items: [
-            {label: 'SITCore', to: '/sitcore/'},
+            {label: 'TinyCLR', to: '/tinyclr/'},
             {label: 'Endpoint', to: '/endpoint/'},
             {label: 'DUELink', to: '/duelink/'},
             {label: 'Longevity', to: '/longevity/'},
