@@ -580,6 +580,54 @@
   font-weight: 600;
 }
 
+/* policies page — anchor nav + warning callout */
+.policies-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 3rem;
+  padding: 1.1rem 1.25rem;
+  background: var(--ifm-color-emphasis-100);
+  border-radius: 12px;
+}
+
+.policies-nav a {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.95rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ifm-color-primary);
+  background: #fff;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.policies-nav a:hover {
+  background: var(--ifm-color-primary);
+  color: #fff;
+  border-color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+.prop65-warning {
+  margin: 1.25rem 0 0;
+  padding: 1.25rem 1.4rem;
+  background: rgba(255, 170, 85, 0.12);
+  border-left: 4px solid var(--ghi-accent, #ffaa55);
+  border-radius: 8px;
+}
+
+.prop65-warning p {
+  margin-bottom: 0.75rem;
+}
+
+.prop65-warning p:last-child {
+  margin-bottom: 0;
+}
+
 .buy-callout {
   margin: 1.5rem 0 0;
   padding: 1rem 1.4rem;

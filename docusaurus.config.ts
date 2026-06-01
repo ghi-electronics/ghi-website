@@ -195,6 +195,7 @@ const config: Config = {
             {label: 'Press', to: '/press/'},
             {label: 'Contact Us', to: '/contact/'},
             {label: 'Support', to: '/support/'},
+            {label: 'Policies', to: '/policies/'},
           ],
         },
         {
