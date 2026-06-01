@@ -1019,6 +1019,10 @@ a.pillar-card:hover .pillar-card__image img {
   margin: 1.5rem 0 0;
 }
 
+.hero-bullets--left {
+  justify-content: flex-start;
+}
+
 .hero-bullets li {
   display: inline-flex;
   align-items: center;

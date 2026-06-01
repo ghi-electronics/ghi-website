@@ -6,7 +6,21 @@ hide_table_of_contents: true
 
 import SitcoreNav from '@site/src/components/SitcoreNav';
 
+export const industries = [
+  {img: 'industry-kiosks.jpg', name: 'Self-Service Kiosks'},
+  {img: 'industry-handheld.jpg', name: 'Handheld Devices'},
+  {img: 'industry-fleet.jpg', name: 'Fleet Diagnostics'},
+  {img: 'industry-machine.jpg', name: 'Machine Monitoring'},
+  {img: 'industry-warehouse.jpg', name: 'Plant & Warehouse'},
+  {img: 'industry-parking.jpg', name: 'Parking & Traffic'},
+];
+
 <SitcoreNav />
+
+<div className="perk-callout">
+  <strong>TinyCLR v3 is in beta.</strong>
+  <span>Generics and modern .NET features — free for every SITCore customer. <a href="/sitcore/tinyclr/">Read about TinyCLR →</a></span>
+</div>
 
 <div className="section-tinted">
 
@@ -151,6 +165,28 @@ Whatever depth of help you need. Buy SITCore off the shelf and ship — or bring
   </div>
 </div>
 
+## Built for the products that ship
+
+<p className="lead-text">From self-service kiosks to fleet diagnostics, SITCore lives inside the products real businesses rely on every day.</p>
+
+<div className="industries-marquee">
+  <div className="industries-track">
+    {[...industries, ...industries].map((it, i) => {
+      const clone = i >= industries.length;
+      return (
+        <div
+          className="industry-card"
+          key={`${clone ? 'clone' : 'orig'}-${i}`}
+          aria-hidden={clone || undefined}
+        >
+          <img src={`/img/${it.img}`} alt={clone ? '' : it.name} />
+          <div className="industry-card__name">{it.name}</div>
+        </div>
+      );
+    })}
+  </div>
+</div>
+
 <div className="section-tinted">
 
 <div className="section-tinted__intro">
@@ -190,6 +226,10 @@ Whatever depth of help you need. Buy SITCore off the shelf and ship — or bring
   <a href="/sitcore/tinyclr/" className="btn-primary">Read about TinyCLR →</a>
 </div>
 
+</div>
+
+<div className="docs-link">
+  Ready for the technical reference? <a href="https://docs.ghielectronics.com/hardware/sitcore.html" target="_blank" rel="noopener noreferrer">Read the SITCore docs →</a>
 </div>
 
 <SitcoreNav />
