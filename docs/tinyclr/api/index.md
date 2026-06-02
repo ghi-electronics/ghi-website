@@ -6,7 +6,7 @@ slug: /tinyclr/api
 
 # TinyCLR API Reference
 
-Auto-generated from the TinyCLR library source.
+Auto-generated from the [TinyCLR-Libraries](https://github.com/ghi-electronics/TinyCLR-Libraries) source.
 
 Covering **1022** types across **47** NuGet packages.
 
