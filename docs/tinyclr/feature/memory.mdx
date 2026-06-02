@@ -2,6 +2,10 @@
 title: Memory Management
 ---
 
+:::info[Docs under migration]
+These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
+:::
+
 ## RAM Memory
 This memory type loses its contents when the system is turned off. The system uses this memory at runtime to quickly store and retrieve data. TinyCLR OS is a managed operating system -- objects in RAM are automatically tracked and freed as needed. The Garbage Collector (GC) runs when the system is low on available RAM, where it will look for unused objects and free the memory they occupy. You may also invoke the GC at any time using `System.GC.Collect()`.
 

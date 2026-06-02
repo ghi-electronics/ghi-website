@@ -2,6 +2,10 @@
 title: Real Time Clock
 ---
 
+:::info[Docs under migration]
+These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
+:::
+
 The Real Time Clock (RTC) is a circuit that runs off a small battery or a super capacitor connected to VBAT. It needs its own crystal and keeps running even when the main system and its clocks are powered off.
 
 In the event the RTC battery was drained or the RTC was never initialized, the RTC will not have a correct value. Use the `rtc.IsValid` method to determine if the time was set correctly.

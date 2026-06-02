@@ -2,6 +2,10 @@
 title: UART
 ---
 
+:::info[Docs under migration]
+These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
+:::
+
 Serial data ports, called UARTs, transfer data between devices using two pins: TXD (transmit data) and RXD (receive data). UART stands for Universal Asynchronous Receiver Transmitter. Asynchronous means there is no clock signal to synchronize the two devices. The devices agree on a data rate, called the baud rate, and send a start bit the beginning of each transmitted character to keep the devices synchronized.
 
 Some of the UARTs also have additional pins (RTS and CTS) to control data flow. These pins are only activated when `Handshaking = UartHandshake.RequestToSend`.

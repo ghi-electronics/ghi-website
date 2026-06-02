@@ -2,6 +2,10 @@
 title: In-Field Update
 ---
 
+:::info[Docs under migration]
+These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
+:::
+
 TinyCLR OS allows for secure, encrypted, In-Field Update (IFU). Simply, the IFU feature buffers the new 'to-be-updated' application (and/or firmware) into RAM or FLASH. Once the entire application (or firmware) is buffered, the IFU will do a full security check before it updates the system. Having enough flash or RAM (typically external) is needed to buffer up the application and the firmware.
 
 The IFU service is started with `var updater = new InFieldUpdate(QuadSpiController)` when using external flash, or simply with `var updater = new InFieldUpdate()` when using RAM. It is important to note that the firmware application is buffered temporarily externally in its encrypted format, keeping security intact. All decrypted data is handled internally inside the chip, away from intruders!
