@@ -6,10 +6,10 @@ hide_table_of_contents: true
 
 export const hardware = [
   {img: 'fez-flea-finger.png', name: 'FEZ Flea'},
-  {img: 'fez-duino.png', name: 'FEZ Duino'},
-  {img: 'fez-portal.png', name: 'FEZ Portal'},
   {img: 'scm20260d.png', name: 'SCM20260D'},
+  {img: 'fez-duino.png', name: 'FEZ Duino'},
   {img: 'scm20260n.png', name: 'SCM20260N'},
+  {img: 'fez-portal.png', name: 'FEZ Portal'},
 ];
 
 <a href="https://forums.ghielectronics.com/" className="top-announce" target="_blank" rel="noopener noreferrer">
@@ -22,17 +22,7 @@ export const hardware = [
 
 # Build embedded products in C#
 
-Embedded .NET, designed and made in the USA — powered by TinyCLR OS running on a family of SITCore hardware options.
-
-</div>
-
-<div className="section-tinted">
-
-<div className="section-tinted__intro">
-  <span className="eyebrow">The Platform</span>
-  <h2>TinyCLR — secure embedded .NET</h2>
-  <p>Runs on the SITCore family — chipsets, modules, single-board computers, and dev boards. Write C# in Visual Studio with real step debugging, deploy over USB.</p>
-</div>
+Embedded .NET, designed and made in the USA — powered by **TinyCLR OS** running on the **SITCore** family of chipsets, modules, single-board computers, and dev boards.
 
 <div className="tinyclr-highlights">
   <span>Visual Studio</span>
@@ -67,9 +57,7 @@ Embedded .NET, designed and made in the USA — powered by TinyCLR OS running on
   </div>
 </div>
 
-<div style={{textAlign: 'center', marginTop: '1.5rem'}}>
-  <a href="/tinyclr/" className="btn-primary">Explore TinyCLR →</a>
-</div>
+<a href="/tinyclr/" className="btn-primary">Explore TinyCLR →</a>
 
 </div>
 
@@ -96,15 +84,15 @@ The FEZ Flea is the smallest of our SITCore single-board computers and the cheap
 
 <div className="pillar-grid">
 
-<a href="/engineering/" className="pillar-card" data-cta="Engineering services →">
-  <div className="pillar-card__image"><img src="/img/layout.png" alt="Engineering services" /></div>
+<a href="/engineering/" className="pillar-card pillar-card--cover" data-cta="Engineering services →">
+  <div className="pillar-card__image"><img src="/img/engineering.png" alt="Engineering services" /></div>
   <div className="pillar-card__body">
     <div className="pillar-card__title">Engineering</div>
     <div className="pillar-card__text">Hardware, firmware, and the integration in between. .NET is our deepest stack — but we work in any embedded language.</div>
   </div>
 </a>
 
-<a href="/manufacturing/" className="pillar-card" data-cta="Manufacturing services →">
+<a href="/manufacturing/" className="pillar-card pillar-card--cover" data-cta="Manufacturing services →">
   <div className="pillar-card__image"><img src="/img/mfg.jpg" alt="Manufacturing services" /></div>
   <div className="pillar-card__body">
     <div className="pillar-card__title">Manufacturing</div>
@@ -118,7 +106,18 @@ The FEZ Flea is the smallest of our SITCore single-board computers and the cheap
 
 <div className="feature-grid feature-grid--four">
   <a href="/company/" className="feature-card" data-cta="About GHI Electronics →">
-    <div className="feature-card__icon">🇺🇸</div>
+    <div className="feature-card__icon">
+      <svg viewBox="0 0 19 10" xmlns="http://www.w3.org/2000/svg" style={{width: '2.2em', height: 'auto', display: 'block', borderRadius: '2px'}} aria-label="USA flag">
+        <rect width="19" height="10" fill="#b22234"/>
+        <rect y="0.769" width="19" height="0.769" fill="#fff"/>
+        <rect y="2.308" width="19" height="0.769" fill="#fff"/>
+        <rect y="3.846" width="19" height="0.769" fill="#fff"/>
+        <rect y="5.385" width="19" height="0.769" fill="#fff"/>
+        <rect y="6.923" width="19" height="0.769" fill="#fff"/>
+        <rect y="8.462" width="19" height="0.769" fill="#fff"/>
+        <rect width="7.6" height="5.385" fill="#3c3b6e"/>
+      </svg>
+    </div>
     <div className="feature-card__title">Made in the USA</div>
     <div className="feature-card__body">Designed, built, and supported under one roof. The same engineers who design the platform answer the forum.</div>
   </a>

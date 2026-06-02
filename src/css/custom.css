@@ -841,6 +841,10 @@ a.pillar-card:hover {
   transition: transform 0.4s ease;
 }
 
+.pillar-card--cover .pillar-card__image img {
+  object-fit: cover;
+}
+
 a.pillar-card:hover .pillar-card__image img {
   transform: scale(1.04);
 }
