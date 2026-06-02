@@ -1,0 +1,60 @@
+---
+title: Fleet Diagnostics — PACLink at PACCAR
+description: How PACCAR's PACLink wireless diagnostic tool uses SITCore to bring J1939 fleet diagnostics into a technician's hand — no laptop required.
+hide_table_of_contents: true
+---
+
+<div className="section-tinted">
+
+<div className="section-tinted__intro">
+  <span className="eyebrow">Case Study · Fleet Diagnostics</span>
+  <h2>Pocket-sized diagnostics for the dealership lot</h2>
+  <p>PACCAR needed a way for dealership technicians to read truck diagnostics without rolling out a computer-based scan tool every time — especially in bad weather. The result was PACLink: a wireless diagnostic tool that streams J1939 data straight to a phone.</p>
+</div>
+
+<div className="plate-image">
+
+![PACCAR truck fleet](/img/case-studies/fleet-diagnostics-trucks.jpg)
+
+</div>
+
+</div>
+
+## The challenge
+
+Heavy- and medium-duty truck dealerships often need to diagnose vehicles in the lot rather than at a workbench. Setting up a Windows-based scan tool, running an extension cord, and hoping the laptop survives the snow gets old fast. PACCAR wanted something a technician could pull from a tool pouch, plug in, and read on a phone.
+
+## The solution
+
+PACLink plugs into a truck's J1939 diagnostic port — the 9-pin standard on essentially every commercial truck built in 2004 and later — wakes the electronics, and streams the live diagnostic feed wirelessly to a paired Android or iOS device. The technician walks the lot with a phone, the truck stays parked, and the dealership skips the laptop dance.
+
+## Why SITCore
+
+SITCore system-on-modules drop straight onto a custom PCB: CPU, memory, networking, and the TinyCLR runtime in one validated package. For PACLink, that meant engineering effort focused on the diagnostic protocol and the mobile app — not on bringing up a microcontroller from scratch.
+
+The tradeoff that mattered: rugged enough for the cab and the dealership lot, cheap enough to issue to every technician.
+
+## About PACCAR
+
+<img src="/img/case-studies/fleet-diagnostics-paccar.gif" alt="PACCAR logo" style={{maxWidth: '280px', display: 'block', margin: '1.5rem 0'}} />
+
+PACCAR is a global technology leader in the design, manufacture, and customer support of light-, medium-, and heavy-duty trucks marketed under the Peterbilt, Kenworth, and DAF nameplates — one of the world's largest truck manufacturers.
+
+<div className="centered-image">
+
+![PACLink wireless diagnostic tool](/img/case-studies/fleet-diagnostics-paclink.jpg)
+
+</div>
+
+<div className="cta">
+
+## Building something similar?
+
+Two ways forward — read about the SITCore family, or talk to us about your project.
+
+<div className="cta__buttons">
+  <a href="/tinyclr/" className="btn-primary cta__button">See SITCore →</a>
+  <a href="/contact/" className="btn-secondary cta__button">Talk to us</a>
+</div>
+
+</div>

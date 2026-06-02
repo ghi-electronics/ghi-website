@@ -194,6 +194,7 @@ const config: Config = {
           items: [
             {label: 'Press', to: '/press/'},
             {label: 'About Us', to: '/company/'},
+            {label: 'Case Studies', to: '/case-studies/'},
             {label: 'Distributors', to: '/distributors/'},
           ],
         },
