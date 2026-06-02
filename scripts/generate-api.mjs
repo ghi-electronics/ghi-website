@@ -728,7 +728,8 @@ async function main() {
   // top-level api index — list NuGet packages
   const nsCount = new Set(model.types.map(t => t.ns)).size;
   const idx2 = ['---', 'title: API Reference', 'sidebar_label: Overview', 'slug: /tinyclr/api', '---', '',
-    '# TinyCLR API Reference', '', 'Auto-generated from the TinyCLR library source.', '',
+    '# TinyCLR API Reference', '',
+    'Auto-generated from the [TinyCLR-Libraries](https://github.com/ghi-electronics/TinyCLR-Libraries) source.', '',
     `Covering **${model.types.length}** types across **${assemblies.length}** NuGet packages.`, '', '## Packages', '',
     '| NuGet package | Types |', '|---|---|'];
   for (const asm of assemblies)
