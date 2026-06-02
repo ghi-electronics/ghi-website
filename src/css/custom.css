@@ -111,6 +111,21 @@
   fill: #fff;
 }
 
+.footer-newsletter-link {
+  display: inline-block;
+  margin-top: 1rem;
+  color: #fff !important;
+  text-decoration: none !important;
+  font-weight: 600;
+  font-size: 0.9rem;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+.footer-newsletter-link:hover {
+  opacity: 1;
+}
+
 /* ---- Shared marketing-page primitives ---- */
 
 .btn-primary {

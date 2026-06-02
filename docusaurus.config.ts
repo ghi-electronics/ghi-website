@@ -42,7 +42,7 @@ const socialIconsHtml = `<div class="footer-social-icons">${socialLinks
     (s) =>
       `<a href="${s.href}" target="_blank" rel="noopener noreferrer" aria-label="${s.name}"><svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="${s.path}"/></svg></a>`,
   )
-  .join('')}</div>`;
+  .join('')}</div><a class="footer-newsletter-link" href="/newsletter/">Subscribe to newsletter →</a>`;
 
 const config: Config = {
   title: 'GHI Electronics',
@@ -195,6 +195,7 @@ const config: Config = {
             {label: 'Press', to: '/press/'},
             {label: 'About Us', to: '/company/'},
             {label: 'Case Studies', to: '/case-studies/'},
+            {label: 'Social Responsibility', to: '/social-responsibility/'},
             {label: 'Distributors', to: '/distributors/'},
           ],
         },
@@ -225,6 +226,7 @@ const config: Config = {
             {label: 'Press', to: '/press/'},
             {label: 'Contact Us', to: '/contact/'},
             {label: 'Developers', to: '/developers/'},
+            {label: 'Newsletter', to: '/newsletter/'},
             {label: 'Policies', to: '/policies/'},
           ],
         },
