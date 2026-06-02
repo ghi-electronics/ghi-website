@@ -183,8 +183,15 @@ const sidebars: SidebarsConfig = {
         'tinyclr-config',
       ],
     },
-    'downloads',
-    'release-notes',
+    {
+      type: 'category',
+      label: 'Downloads',
+      link: {type: 'doc', id: 'downloads'},
+      collapsed: true,
+      items: [
+        'release-notes',
+      ],
+    },
     'resources',
     'limitations',
   ],
