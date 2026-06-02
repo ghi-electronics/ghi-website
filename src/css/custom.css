@@ -312,18 +312,29 @@
   padding: 2rem;
   border-radius: 14px;
   border: 1px solid var(--ifm-color-emphasis-200);
+  background: rgba(var(--ghi-primary-rgb), 0.10);
   background: linear-gradient(135deg, rgba(var(--ghi-primary-rgb), 0.05), rgba(var(--ghi-accent-rgb), 0.04));
 }
 
 .code-showcase__code {
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  background: #fff;
 }
 
-.code-showcase__code pre {
+.code-showcase__code pre,
+.code-showcase__code [class*='codeBlockContainer'],
+.code-showcase__code [class*='codeBlockContent'] {
   margin: 0;
   font-size: 0.88rem;
+  background: #fff !important;
+}
+
+[data-theme='dark'] .code-showcase__code,
+[data-theme='dark'] .code-showcase__code pre,
+[data-theme='dark'] .code-showcase__code [class*='codeBlockContainer'],
+[data-theme='dark'] .code-showcase__code [class*='codeBlockContent'] {
+  background: #1a1a1a !important;
 }
 
 .code-showcase__caption h3 {
@@ -642,6 +653,10 @@
   color: var(--ifm-color-primary);
   font-size: 1.05rem;
   margin-right: 0.4rem;
+}
+
+.buy-callout p {
+  margin: 0;
 }
 
 .buy-callout a {
@@ -1394,7 +1409,7 @@ a.feature-card:hover::after {
 
 .pillar-card .pillar-card__body {
   flex: 1;
-  padding-bottom: 0;
+  padding-bottom: 1.25rem;
 }
 
 a.pillar-card::after {
@@ -1600,6 +1615,27 @@ a.pillar-card:hover::after {
   max-width: 100%;
   height: auto;
   display: inline-block;
+}
+
+.plate-image {
+  max-width: 720px;
+  margin: 2.5rem auto 0;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+}
+
+.plate-image p {
+  display: contents;
+}
+
+.plate-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+  margin: 0;
 }
 
 .showcase-pair {

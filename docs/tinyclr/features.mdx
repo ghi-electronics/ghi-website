@@ -1,0 +1,137 @@
+---
+slug: /features
+sidebar_position: 1
+title: Features
+---
+
+:::info[Docs under migration]
+These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
+:::
+
+# Features
+
+TinyCLR is a real .NET runtime on embedded hardware. The pages below cover every capability the runtime provides — pin-level I/O, communication buses, networking, cloud integration, storage, displays, security, and the modern .NET features you'd expect (multithreading, reflection, collections, and more).
+
+Click any feature to jump to its reference page.
+
+## Hardware I/O
+
+The basics every embedded project starts with — direct pin control, analog input and output, PWM, and timing-critical signal generation.
+
+- [GPIO](feature/gpio.mdx) — digital input and output on any pin
+- [PWM](feature/pwm.mdx) — pulse-width modulation for motors, LEDs, and audio
+- [Analog In](feature/analog-in.mdx) — read voltages from sensors and analog sources
+- [Analog Out](feature/analog-out.mdx) — produce analog voltages via DAC
+- [Signal Control](feature/signal-control.mdx) — generate precise digital pulse trains
+
+## Communication Buses
+
+Talk to peripheral chips, sensors, displays, and external systems.
+
+- [SPI](feature/spi.mdx) — high-speed serial peripheral interface
+- [I²C](feature/i2c.mdx) — two-wire interface for sensors and small peripherals
+- [UART](feature/uart.mdx) — serial communication with external hardware
+- [USB](feature/usb.mdx) — overview of USB support on TinyCLR
+- [USB Host](feature/usb-host.mdx) — host USB devices like keyboards, mice, and storage
+- [USB Client](feature/usb-client.mdx) — act as a USB device
+- [USB PC Comm](feature/usb-pc-comm.mdx) — serial-style communication with a connected PC
+- [CAN](feature/can.mdx) — controller area network for automotive and industrial use
+- [Modbus](feature/modbus.mdx) — industrial RS-485 / Modbus RTU and TCP
+- [1-Wire](feature/1-wire.mdx) — Dallas/Maxim 1-Wire bus for sensors
+
+## Networking
+
+Build connected products — wired, wireless, and cellular — with first-class TCP/IP, HTTP, and MQTT support.
+
+- [Networking Core](feature/networking-core.mdx) — sockets and TCP/IP fundamentals
+- [WiFi](feature/wifi.mdx) — WiFi connectivity on supported boards
+- [Ethernet](feature/ethernet.mdx) — wired Ethernet
+- [Cellular](feature/cellular.mdx) — cellular modem integration
+- [PPP](feature/ppp.mdx) — point-to-point protocol over serial links
+- [HTTP/HTTPS](feature/http-https.mdx) — client requests with TLS
+- [MQTT](feature/mqtt.mdx) — pub/sub messaging for IoT
+- [EtherNet/IP](feature/ethernet-ip.mdx) — industrial EtherNet/IP protocol
+
+## Cloud
+
+Native support for the major cloud platforms — no bridging code or external SDKs required.
+
+- [Azure](feature/azure.mdx) — Microsoft Azure IoT Hub
+- [AWS](feature/aws.mdx) — Amazon Web Services IoT
+- [Google Cloud](feature/google-cloud.mdx) — Google Cloud IoT
+- [IFTTT](feature/ifttt.mdx) — IFTTT webhook integration
+- [Adafruit IO](feature/adafruit-io.mdx) — Adafruit IO dashboards and data
+
+## Storage
+
+Persist data — small or large — on internal flash, SD cards, or in a real SQL database.
+
+- [File System](feature/file-system.mdx) — read and write files
+- [SD/MMC Cards](feature/sd-cards.mdx) — external SD card support
+- [SQLite](feature/sqlite-database.mdx) — embedded SQL database
+- [Resources](feature/resources.mdx) — embed binary assets into your application
+
+## Display & Multimedia
+
+Drive screens, capture images, play audio, and build rich user interfaces.
+
+- [Displays](feature/displays.mdx) — supported display drivers and configurations
+- [Touch Screen](feature/touch-screen.mdx) — resistive and capacitive touch input
+- [User Interface](feature/user-interface.mdx) — TinyCLR's UI framework
+- [Graphics](feature/graphics.mdx) — drawing primitives and bitmap operations
+- [Font Support](feature/font-support.mdx) — bitmap and TrueType fonts
+- [Image Decoders](feature/image-decoders.mdx) — JPEG, GIF, and BMP decoding
+- [Camera](feature/camera.mdx) — capture from supported camera modules
+- [MJPEG Video](feature/mjpeg-video.mdx) — record and play MJPEG video
+- [Audio Playback](feature/audio-playback.mdx) — play WAV audio
+- [VNC](feature/vnc.mdx) — remote framebuffer access
+
+## Security
+
+Production-grade security stack — secure boot, encrypted updates, TLS, and IP protection — built in, not bolted on.
+
+- [TLS](feature/tls.mdx) — TLS 1.2 overview
+- [TLS Client](feature/tls-client.mdx) — outbound TLS connections
+- [TLS Server](feature/tls-server.mdx) — accept inbound TLS connections
+- [Cryptography](feature/cryptography.mdx) — AES, RSA, and hardware-accelerated crypto
+- [Hashing](feature/hashing.mdx) — SHA family and MD5
+- [Password](feature/password.mdx) — secure password handling
+- [Secure Boot](feature/secure-boot.mdx) — hardware-enforced trusted boot
+- [Secure Storage](feature/secure-storage.mdx) — encrypted local storage
+- [IP Protection](feature/ip-protection.mdx) — protect your firmware from extraction
+- [In-Field Update](feature/in-field-update.mdx) — encrypted OTA firmware updates
+
+## System Services
+
+Power management, time-keeping, and system-level utilities.
+
+- [Power Management](feature/power-management.mdx) — sleep modes and wake sources
+- [Watchdog Timer](feature/watchdog-timer.mdx) — hardware watchdog for reliability
+- [Real-Time Clock](feature/real-time-clock.mdx) — battery-backed RTC
+- [Timers](feature/timers.mdx) — software and hardware timer APIs
+- [Specialized](feature/specialized.mdx) — board-specific and uncommon features
+
+## Runtime Essentials
+
+Productivity-grade tooling — debugging, memory management, NuGet packaging, and device introspection.
+
+- [Debugging](feature/debugging.mdx) — Visual Studio breakpoint debugging
+- [Memory Management](feature/memory.mdx) — garbage collection and memory pressure
+- [External Memory](feature/external-memory.mdx) — using external RAM
+- [Unmanaged Heap](feature/unmanaged-heap.mdx) — allocate outside the GC heap
+- [NuGet Libraries](feature/nuget.mdx) — TinyCLR's NuGet ecosystem
+- [Device Info](feature/device-info.mdx) — read hardware ID, firmware version, and more
+
+## Modern .NET
+
+The .NET features you expect — multithreading, reflection, collections, and more — running on embedded hardware.
+
+- [Multithreading](feature/multithreading.mdx) — threads, locks, and synchronization primitives
+- [Reflection](feature/reflection.mdx) — runtime type inspection
+- [Collections](feature/collections.mdx) — lists, dictionaries, and sets
+- [Serialization](feature/serialization.mdx) — binary and JSON serialization
+- [Encoding/Decoding](feature/encoding-decoding.mdx) — UTF-8, Base64, and hex
+- [Application Domain](feature/application-domain.mdx) — application isolation
+- [Marshal](feature/marshal.mdx) — pointer and memory marshaling
+- [RegEx](feature/regex.mdx) — regular expressions
+- [Stream](feature/stream.mdx) — Stream class and derivatives

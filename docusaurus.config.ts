@@ -134,6 +134,10 @@ const config: Config = {
         theme: {
           customCss: './src/css/custom.css',
         },
+        gtag: {
+          trackingID: 'G-C6ETSS107S',
+          anonymizeIP: true,
+        },
       } satisfies Preset.Options,
     ],
   ],
@@ -180,16 +184,8 @@ const config: Config = {
           ],
         },
         {
-          label: 'Docs',
-          position: 'left',
-          items: [
-            {label: 'TinyCLR', to: '/docs/tinyclr/'},
-            {label: 'Endpoint', to: '/docs/endpoint/'},
-          ],
-        },
-        {
-          label: 'Support',
-          to: '/support/',
+          label: 'Developers',
+          to: '/developers/',
           position: 'left',
         },
         {
@@ -227,7 +223,7 @@ const config: Config = {
             {label: 'About Us', to: '/company/'},
             {label: 'Press', to: '/press/'},
             {label: 'Contact Us', to: '/contact/'},
-            {label: 'Support', to: '/support/'},
+            {label: 'Developers', to: '/developers/'},
             {label: 'Policies', to: '/policies/'},
           ],
         },
