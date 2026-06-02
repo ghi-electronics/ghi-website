@@ -22,7 +22,7 @@ The possibilities are almost endless. Here we will take you step by step through
 
 Signing up for IFTTT is easy and they offer a free limited account, but it only allows up to 3 applets. Their paid service offers unlimited applet creation, queries, conditional logic and multiple actions -- just go to [IFTTT.com](https://ifttt.com) and click on the `Sign up` button in the upper right hand corner of the screen. You can sign up using your Google or Facebook account, or use an e-mail address and password to sign in. IFTTT will usually offer to set up a sample connection right after you sign up -- just hit the "X" in the upper right corner to skip this step. Click on the `Get more` button under the message `Start connecting your world` to get started.
 
-![IFTTT Start Connecting](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/ifttt-start-connecting.png)
+![IFTTT Start Connecting](/img/docs/ifttt-start-connecting.png)
 
 ### Create the IFTTT Applets
 
@@ -32,27 +32,27 @@ Two IFTTT applets will be needed for this project. An Email Applet will be send 
 
 After signing up click on `Create` button in the top menu. 
 
-![IFTTT Create Your Own](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/ifttt-create-your-own.png)
+![IFTTT Create Your Own](/img/docs/ifttt-create-your-own.png)
 
 You will then be presented with a screen that may seem to provide no option forward. Click on `If This Add` to get to the next step.
 
-![IFTTT If This Then That](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/ifttt-if-this.png)
+![IFTTT If This Then That](/img/docs/ifttt-if-this.png)
 
 Search for `webhooks` and click on that option.
 
-![IFTTT Choose Webhooks SMS](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/ifttt-choose-webhooks.png)
+![IFTTT Choose Webhooks SMS](/img/docs/ifttt-choose-webhooks.png)
 
 On the next screen click on the `Connect` button, then click on the `Receive a web request` box on the following screen.
 
-![IFTTT Receive a web request](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/ifttt-receive-web-request.png)
+![IFTTT Receive a web request](/img/docs/ifttt-receive-web-request.png)
 
 You will be prompted for an event name. Enter `button_press` and press the `Create trigger` button.
 
-![IFTTT Create trigger](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/ifttt-create-trigger.png)
+![IFTTT Create trigger](/img/docs/ifttt-create-trigger.png)
 
 Now click on `+That`. This will take us to the next step of choosing an action service -- in this case we will send an email.
 
-![IFTTT Then That](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/ifttt-then-that.png)
+![IFTTT Then That](/img/docs/ifttt-then-that.png)
 
 
 
@@ -60,21 +60,21 @@ Now click on `+That`. This will take us to the next step of choosing an action s
 
 You should now be on the `Choose action service` screen. Search for `email` and then click on the `email` icon.
 
-![IFTTT Choose action service](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/ifttt-choose-action-service.png)
+![IFTTT Choose action service](/img/docs/ifttt-choose-action-service.png)
 
 Click on the `Connect` button on the next screen. You will be prompted for an email address to send notifications to. Type in the email address you would like to use and press the `Send PIN` button. Once you receive the email with your PIN, enter the PIN and hit the `Connect` button.
 
 Now click on the `Send me an email` box.
 
-![IFTTT Send me an email](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/ifttt-send-me-an-email.png)
+![IFTTT Send me an email](/img/docs/ifttt-send-me-an-email.png)
 
 You should now be on the `Complete action fields` screen. Click on the `Create action` button without making any changes. This will tell IFTTT to use the default method of constructing the subject line and body of the notification email.
 
-![IFTTT Complete action fields](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/ifttt-complete-action.png)
+![IFTTT Complete action fields](/img/docs/ifttt-complete-action.png)
 
 This will then take you back to the main If Then page. Click on continue
 
-![IFTTT Continue](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/ifttt-continue.png)
+![IFTTT Continue](/img/docs/ifttt-continue.png)
 
 Finally we're at the `Review and finish` screen. Click on the `Finish` button.
 
@@ -82,11 +82,11 @@ Finally we're at the `Review and finish` screen. Click on the `Finish` button.
 
 Now we just have to get the key that is sent from the SITCore to trigger the event. You should now be at a screen with the text "If Maker Event "button_press", then Send me an email at. . . Click on the Webhooks icon as shown below:
 
-![IFTTT Click Webhooks icon](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/ifttt-click-webhooks-icon.png)
+![IFTTT Click Webhooks icon](/img/docs/ifttt-click-webhooks-icon.png)
 
 Then click on the `Documentation` button near the upper right of the next screen. This will bring up a page with your unique key. Including this key in an HTTP GET or POST request to the IFTTT website will trigger your event.
 
-![IFTTT Webhooks Key](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/ifttt-webhooks-key.png)
+![IFTTT Webhooks Key](/img/docs/ifttt-webhooks-key.png)
 
 To test the IFTTT event, you can enter the following line into the address bar of your web brower (replace Your_Key_Here with your key) : https://maker.ifttt.com/trigger/button_press/with/key/Your_Key_Here
 
@@ -103,7 +103,7 @@ For this demo we programmed the FEZ to act as a temperature alarm, but the same 
 
 For our temperature sensor we used an NPN transistor (2N2222A) and an 8.2K resistor as they were sitting conveniently on my desk. They were wired as shown below. Power for the temperature sensor is controlled by GPIO pin A1. 3V3 could have been used, but by using a GPIO pin the sensor can be turned off between readings to reduce the effects of self heating.
 
-![Temperature sensor circuit](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/sensor-circuit.png)
+![Temperature sensor circuit](/img/docs/sensor-circuit.png)
 
 The transistor is wired with its base and collector connected together so it is acting as a diode. When a constant current passes through this diode the voltage drop is a linear function with a temperature coefficient of about two millivolts per degree celsius. While a series resistor does not provide a true constant current source, it will be plenty accurate for this demo.
 

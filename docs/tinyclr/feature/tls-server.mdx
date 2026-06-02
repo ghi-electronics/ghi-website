@@ -81,30 +81,30 @@ important to include CN content from step before!
 
 1. Double click on `ca.crt` and click `Install Certificate..`
 
-![Importing Root Certificate Step 1](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/tls-server1.png)
+![Importing Root Certificate Step 1](/img/docs/tls-server1.png)
 
 2. Make sure `Current User` is selected.
 
-![Importing Root Certificate Step 2](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/tls-server2.png)
+![Importing Root Certificate Step 2](/img/docs/tls-server2.png)
 
 3. Select `Place all certificates in the following store`. Click `Browse...` and select `Trusted Root Certification Authorities`
 
-![Importing Root Certificate Step 3](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/tls-server3.png)
+![Importing Root Certificate Step 3](/img/docs/tls-server3.png)
 
 From this moment your PC will trust all Certificates signed from your CA
 
-![Importing Root Certificate Step 4](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/tls-server4.png)
+![Importing Root Certificate Step 4](/img/docs/tls-server4.png)
 
 
 ### Removing a root certificate from a PC
 
 1. Either run certmgr.msc or search for cert in Windows 10 Settings and select "Manage user certificates" to open Cert Manager for Current User, not for Local Computer
 
-![Removing a Root Certificate Step 1](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/tls-server5.png)
+![Removing a Root Certificate Step 1](/img/docs/tls-server5.png)
 
 2. Select "Trusted Root Certification Authorities" and "Certificates", on the right side find your certificate based on the values from `ca.cnf`
 
-![Removing a Root Certificate Step 2](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/tls-server6.png)
+![Removing a Root Certificate Step 2](/img/docs/tls-server6.png)
 
 This sample of code uses `X509Certificate`. Place the certificate inside the projects `Resources`
 

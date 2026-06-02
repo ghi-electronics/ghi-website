@@ -66,11 +66,11 @@ We need a few things to complete the code sample that we'll get from AWS. We nee
 
 Once you've created your account, we need to find the service to set up our device. On the AWS Management  Console, search for the service 'IoT Core' and select it. 
 
-![AWS Management Console](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/aws-select-iot.jpg)
+![AWS Management Console](/img/docs/aws-select-iot.jpg)
 
 Before we add our device, we need to create a Policy that the device will use. From the side menu under the 'Secure' tab click 'Polices' click on the button to create a new policy. Name your policy and then click on advanced mode. Paste the code found below in the code window. Then click the 'Create' button. We'll attach the policy to the device later. 
 
-![AWS Create Policy](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/aws-create-policy.jpg)
+![AWS Create Policy](/img/docs/aws-create-policy.jpg)
 
 Paste this code in the above window.
 
@@ -97,40 +97,40 @@ Paste this code in the above window.
 Now we need to create our IoT device within AWS.
 Click on the 'Manage' Dropdown and select 'Things', then click on 'Register a thing'
 
-![AWS Manage Things](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/aws-manage-things.jpg)
+![AWS Manage Things](/img/docs/aws-manage-things.jpg)
 
 Next, we click on 'Create a single thing'
 
-![AWS Create Single Thing](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/aws-create-single.jpg)
+![AWS Create Single Thing](/img/docs/aws-create-single.jpg)
 
 Now we'll create a Name for our IoT device and add it to the 'Things' registry. This will be the deviceId we will use in the code sample. There are other options available that can be added, but in this tutorial, we only need to create a 'Name' and click 'NEXT'
 
-![AWS Create DeviceID](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/aws-name-device.jpg)
+![AWS Create DeviceID](/img/docs/aws-name-device.jpg)
 
 The next page is where we'll create the CA Certificates, we need to add to our projects resources. In this case we can use the 'One-Click certificate creation'. Click on 'Create certificate'
 
-![AWS Create Certificates](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/aws-create-certificates.jpg)
+![AWS Create Certificates](/img/docs/aws-create-certificates.jpg)
 
 Next we need to download the CA Certificates we need. We need 'A certificates for this thing' and 'the private key', we don't need to download the public key for this project. You'll also need an AWS root certificate, you can follow the link to download RSA 2048 bit key: Amazon Root CA 1. Next we need to click on the 'Activate' button to activate the certificates we created, then click 'Attach a policy'
 
-![AWS Download Certs](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/aws-download-cert.jpg)
+![AWS Download Certs](/img/docs/aws-download-cert.jpg)
 
 Check the box for the 'Policy' we created earlier, and then click the 'Register Thing' button.
 
-![AWS Add Policy](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/aws-add-policy.jpg)
+![AWS Add Policy](/img/docs/aws-add-policy.jpg)
 
 
 Add the 3 Certificates we downloaded to Resources in our project and SAVE your project.
 
-![AWS Certs Resources](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/aws-cert.jpg)
+![AWS Certs Resources](/img/docs/aws-cert.jpg)
 
 Inside the 'Things' registry list click on the device you just created.
 
-![AWS Select Device](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/aws-select-device.jpg)
+![AWS Select Device](/img/docs/aws-select-device.jpg)
 
 Once you're on your devices dashboard, click on the 'Interact' tab. This will give you the iotEndPoint we'll need for our code. Copy the code...
 
-![AWS Copy Endpoint](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/aws-copy-endpoint.jpg)
+![AWS Copy Endpoint](/img/docs/aws-copy-endpoint.jpg)
 
 ...and paste it into the code as shown below. Also add the name of your device to the variable deviceId.
 
@@ -148,11 +148,11 @@ var privateKeyData = Resources.GetBytes(Resources.BinaryResources._3a59c69926_pr
 ```
 You can now deploy your program in Visual Studio, to connect your device to AWS. Clicking on the 'Activity' Tab on our device dashboard will show the active connection. 
 
-![AWS Device Activity](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/aws-device-activity.jpg)
+![AWS Device Activity](/img/docs/aws-device-activity.jpg)
 
 We view the messages being sent from our IoT device to AWS by clicking on the 'Shadows' Tab, then click 'Classic Shadows'. The message in the window is sent from our device...
 
-![AWS Device Activity](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/aws-message-recieved.jpg)
+![AWS Device Activity](/img/docs/aws-message-recieved.jpg)
 
 We can edit the message being sent from the device in Visual Studio by changing the message in this line of our code.
 

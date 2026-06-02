@@ -655,6 +655,10 @@
   margin-right: 0.4rem;
 }
 
+.buy-callout p {
+  margin: 0;
+}
+
 .buy-callout a {
   font-weight: 600;
 }

@@ -2,7 +2,7 @@
 title: Signal Control
 ---
 
-![HC-SR04 ultrasonic sensor](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/signal-control.jpg)
+![HC-SR04 ultrasonic sensor](/img/docs/signal-control.jpg)
 
 ## DigitalSignal
 
@@ -29,7 +29,7 @@ Generate(uint[]data, uint offset, uint count)
 
 There is a limitation to the `data` being used: The `data` array length is limited to 64K elements. Also, adding individual elements together in the array can also not exceed 0xFFFFFFFF in total.
  
-![Default Timing](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/write1.jpg)
+![Default Timing](/img/docs/write1.jpg)
   
 ```csharp
 Generate(uint[]data, uint offset, uint count, unit multiplier)
@@ -42,11 +42,11 @@ On SC13xxx, allowable multiplier values range from 25 to 800,000 (800us). There 
 
 The signal generator always start with a signal at low level. It then toggles the signal every x time. The time is fetched from the array given, one by one. Note that by sending an even count of pulses, teh signal will terminate with a high-level as shown below.
 
-![Signal Example](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/write2.jpg)
+![Signal Example](/img/docs/write2.jpg)
 
 Starting a second write will cause the signal to first go low, which may not be desired, as it causes an extra pulse on the next `Generate`. This pulse has a variable with. Making sure that the data `Length` is always an odd number will assure that the signal will terminate at a low-level.
 
-![Signal Example](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/write3.jpg) 
+![Signal Example](/img/docs/write3.jpg) 
 
 
 :::tip
@@ -185,7 +185,7 @@ The PulseFeedback class can be used in three different modes. These modes are us
 
 ### Echo Duration
 
-![Echo duration timing](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/echo-duration.gif)
+![Echo duration timing](/img/docs/echo-duration.gif)
 
 Echo Duration sends a trigger pulse of a given state over the provided pin. It then waits for an echo on the other specified pin and measures the length of that echo pulse. The trigger and echo pins cannot be the same pin.
 
@@ -193,7 +193,7 @@ The following code will read the distance in centimeters from an HC-SR04 ultraso
 
 To test this code, I plugged the sensor directly into the SCM20260D Dev board and ran a couple short wires for power. It was convenient having 5V on the header. I was surprised how well this inexpensive sensor worked.
 
-![HC-SR04 on dev board](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/ultrasonic-on-header.jpg)
+![HC-SR04 on dev board](/img/docs/ultrasonic-on-header.jpg)
 
 :::note
 The HC-SR04 ultrasonic distance sensor requires a 5 volt power supply. While the module accepts 3.3 volt logic on the Trig and Echo pins, it will not work with a 3.3 volt supply for power.
@@ -228,7 +228,7 @@ while (true) {
 
 ### Duration Until Echo
 
-![Duration until echo timing](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/duration-until-echo.gif)
+![Duration until echo timing](/img/docs/duration-until-echo.gif)
 
 Duration Until Echo is very similar to Echo Duration, although instead of sending a pulse and measuring the length of the resulting echo, it measures how long it takes until that echo is received. Pulse and echo cannot use the same pins.
 
@@ -268,7 +268,7 @@ while (true) {
 
 ### Drain Duration
 
-![Drain duration timing](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/drain-duration.gif)
+![Drain duration timing](/img/docs/drain-duration.gif)
 
 In this DrainDuration mode is used to implement capacitive touch. When calling Trigger, the pulse line will be held in the specified state for the specified time and then set to an input. It then measures the time for the pin to change its state.
 
@@ -276,7 +276,7 @@ Only the pulse line is used in this mode. Echo pin is ignored.
 
 The image below shows a sample circuit. Note that this mode can only be used with a single pin.
 
-![Capacitive touch schematic](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/capacitive-touch-schematic.gif)
+![Capacitive touch schematic](/img/docs/capacitive-touch-schematic.gif)
 
 The following example illustrates the reading of a capacitive touch sensor. It sends a pulse of 10us to charge a capacitor and then measures the length of time it takes the capacitor to discharge on the same pin. It prints out the total discharge duration in milliseconds. It repeats every second.
 

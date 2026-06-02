@@ -52,7 +52,7 @@ namespace TestAppDomain {
 
 In the `TestAppDomain` properties window (right click on `TestAppDomain` in Solution Explorer and select `Properties`), click on `TinyCLR OS` in the left panel and check the `Generate native stubs for internal methods` and `Generate bare native stubs` boxes. This tells Visual Studio to create the Portable Executable (PE) file that will be copied to the USB flash drive and then executed by the main program.
 
-![Native stubs check boxes](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/native-stubs-check-boxes.png)
+![Native stubs check boxes](/img/docs/native-stubs-check-boxes.png)
 
 Now build the project. Inside of the project's directory navigate to the `TestAppDomain/bin/Debug/pe` directory and copy the file `TestAppDomain.pe` to a USB flash drive. Now insert the flash drive into your SITCore board and deploy the program. The main program will load and run `TestAppDomain.pe` from the USB flash drive. If everything worked, you should see the following in your output window:
 

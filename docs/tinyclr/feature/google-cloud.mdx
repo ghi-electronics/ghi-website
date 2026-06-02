@@ -121,39 +121,39 @@ a client certificate and private key are also provided when you register your ac
 
 Let's create a new project. Click on 'Create Project' on the Manage resources dashboard.
 
-![GCloud Create Project](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/gcloud-create-project.jpg)
+![GCloud Create Project](/img/docs/gcloud-create-project.jpg)
 
 Next we'll need to create a meaningful name, for this project will call it SITCoreIoT. 
 
-![GCloud Name Project](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/gcloud-name-project.jpg)
+![GCloud Name Project](/img/docs/gcloud-name-project.jpg)
 
 In the search box type 'IoT Core' and then select it. 
 
-![GCloud Search IoT Core](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/gcloud-search-iotcore.jpg)
+![GCloud Search IoT Core](/img/docs/gcloud-search-iotcore.jpg)
 
 Next, we need to 'ENABLE' the Google Cloud IoT API. 
 
-![GCloud Enable API](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/gcloud-enable-cloud.jpg)
+![GCloud Enable API](/img/docs/gcloud-enable-cloud.jpg)
 
 Next we'll need to create a Registry for our project. Click on 'CREATE REGISTRY'
 
-![GCloud Create Registry](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/gcloud-create-registry.jpg)
+![GCloud Create Registry](/img/docs/gcloud-create-registry.jpg)
 
 We need to create a 'Registry ID', select a cloud 'Region', and a create a 'Topic'. Finally, we need to click on the 'SHOW ADVANCED OPTIONS' Tab to finish the creation
 
-![GCloud Name Registry](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/gcloud-registry-id.jpg)
+![GCloud Name Registry](/img/docs/gcloud-registry-id.jpg)
 
 For this exercise we only need MQTT, and we've selected 'Debug' under Cloud Logging. This isn't necessary but will allow us to see device activity in the log and may be useful for more complex programs. Finally click the 'CREATE' button. 
 
-![GCloud Set Protocols](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/gcloud-set-protocol.jpg)
+![GCloud Set Protocols](/img/docs/gcloud-set-protocol.jpg)
 
 Once created we're taken to the Registry details dashboard. We need to create our device by clicking on 'Devices' from the left menu. 
 
-![GCloud Create Device](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/gcloud-create-device.jpg)
+![GCloud Create Device](/img/docs/gcloud-create-device.jpg)
 
 From the Device dashboard, click on 'CREATE A DEVICE' 
 
-![GCloud Create Device](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/gcloud-device-create.jpg)
+![GCloud Create Device](/img/docs/gcloud-device-create.jpg)
 
 Before we continue, we'll need to generate both a Private and Public key that we can attach to our Device. This can be done with a program like OpenSSL (secure), or we can use a third-party site to generate one for us for testing (unsecure). For this exercise, we'll use a third-party site like:
 
@@ -161,35 +161,35 @@ Before we continue, we'll need to generate both a Private and Public key that we
 
 We need to select a Key Length of 2048, and then click 'Generate key pair'. Next, we need to copy the Public Key to the clipboard and use it in a moment. Keep the window open, we'll need to use the Private key later. 
 
-![GCloud RSA Key](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/gcloud-generate-keys.jpg)
+![GCloud RSA Key](/img/docs/gcloud-generate-keys.jpg)
 
 Now let's go back to the 'Create a device' dashboard in Google. We need to create a name for our Device, this will be the 'Device ID'. Before we click 'CREATE' we need to click on the 'COMMUNICATION, CLOUD LOGGING, AUTENTICATION drop down. 
 
-![GCloud Create Device ID](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/gcloud-set-deviceID.jpg)
+![GCloud Create Device ID](/img/docs/gcloud-set-deviceID.jpg)
 
 Here we'll paste the Public key we generated earlier. Make sure the Public key format is set to RS256. Then click on 'CREATE' button. 
 
-![GCloud Paste Public Key](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/gcloud-paste-key.jpg)
+![GCloud Paste Public Key](/img/docs/gcloud-paste-key.jpg)
 
 Next we'll create a Gateway. From inside the Device details dashboard select 'Gateways' from the menu on the left.
 
-![GCloud Select Gateway](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/gcloud-select-gateway.jpg)
+![GCloud Select Gateway](/img/docs/gcloud-select-gateway.jpg)
 
 Click on the 'CREATE A GATEWAY'
 
-![GCloud Create Gateway](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/gcloud-create-gateway.jpg)
+![GCloud Create Gateway](/img/docs/gcloud-create-gateway.jpg)
 
 Next will name our Gateway, this will be the 'Gateway ID' that we will add to our code. Before we click 'CREATE', click on the 'COMMUNICATION, CLOUD LOGGING, AUTHENTICATION tab. 
 
-![GCloud Name Gateway](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/gcloud-name-gateway.jpg)
+![GCloud Name Gateway](/img/docs/gcloud-name-gateway.jpg)
 
 We have to add the same Public key we pasted earlier here too. Make sure that the key format is also set to RS256. Then click on 'CREATE' button.
 
-![GCloud Gateway RSA](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/gcloud-gateway-RSA.jpg)
+![GCloud Gateway RSA](/img/docs/gcloud-gateway-RSA.jpg)
 
 Finally, lets bind our Device to the Gateway. Click on 'BOUND DEVICES' tab and then click on the 'BIND DEVICES' button. Select our Device from the list and click 'BIND' 
 
-![GCloud Bind Device](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/gcloud-bind-device.jpg)
+![GCloud Bind Device](/img/docs/gcloud-bind-device.jpg)
 
 We have the data we need now let's plug in all the IDs we created into our code
 
@@ -214,7 +214,7 @@ For an easy way to generate a JWT visit https://jwt.io/. However, if you are con
 By using https://jwt.io/, your private key is shared with a third-party. This should be used only for testing purpose."
 :::
 
-![How to download generate JWT](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/generate_jwt.png)
+![How to download generate JWT](/img/docs/generate_jwt.png)
 
 We must change the 'PAYLOAD DATA' to match the image above. There are two fields `iat` (issue at), and `exp` (expire), they contain time in Unix Timestamp format. 
 
@@ -240,32 +240,32 @@ The google cloud connection accepts a maximum expire time of 24 hours, meaning t
 
 To receive a message from Google Cloud click on the 'SEND COMMAND' under the Gateway dashboard.
 
-![GCloud Message in VS](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/gcloud-send-command.jpg)
+![GCloud Message in VS](/img/docs/gcloud-send-command.jpg)
 
 Enter your message and click 'SEND'
 
-![GCloud Create Message](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/gcloud-create-message.jpg)
+![GCloud Create Message](/img/docs/gcloud-create-message.jpg)
 
 The device will receive your message and display it in the Output window of Visual Studio. 
 
-![GCloud Message in VS](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/gcloud-message-vs.jpg)
+![GCloud Message in VS](/img/docs/gcloud-message-vs.jpg)
 
 To view the messages being sent from the device to the cloud we need to add a subscription to 'MyTopic'. To do this we need to go to the Registry dashboard and click on the topic we created called 'MyTopic' 
 
-![GCloud Send Message to Cloud](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/gcloud-select-topic.jpg)
+![GCloud Send Message to Cloud](/img/docs/gcloud-select-topic.jpg)
 
 Once on the 'Pub/Sub' dashboard, select 'Subscriptions' from the side menu.
 
-![GCloud Select Subscriptions](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/gcloud-select-subscription.jpg)
+![GCloud Select Subscriptions](/img/docs/gcloud-select-subscription.jpg)
 
 Next, click on 'CREATE SUBSCRIPTION'
 
-![GCloud Create Subscription](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/gcloud-create-subscription.jpg)
+![GCloud Create Subscription](/img/docs/gcloud-create-subscription.jpg)
 
 Create a name for in the 'Subscription ID' box and select topic we created earlier. There may be additional setting on this dashboard you can use, but for this tutorial we only need to set these two items. Click the 'CREATE' button at the bottom. 
 
-![GCloud Name Subscription](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/gcloud-name-subscription.jpg)
+![GCloud Name Subscription](/img/docs/gcloud-name-subscription.jpg)
 
 Deploy the program to your device. Once connected, inside the 'Subscription details' dashboard, click on 'VIEW MESSAGES', inside the 'Messages' Pop-up click on the 'PULL' button. This will display the latest messages being sent from the device. The tutorial program sends a new message every 5 seconds and then increments the count by one. We can also continue to send messages to the device from the 'Gateway' dashboard as we did earlier. 
 
- ![GCloud View Messages](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/gcloud-view-messages.jpg)
+ ![GCloud View Messages](/img/docs/gcloud-view-messages.jpg)

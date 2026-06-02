@@ -114,23 +114,23 @@ Some modern browsers, like Chrome and Edge, include a way to give access to the 
 For CDC (Serial Web USB), needs to load `SerialWebUSBApp` into the device and visit https://ghi-electronics.github.io/TinyCLR-WebUSB/serialwebusb.html
 :::
 
-![WebUSB Connect](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/webusb-connect.jpg)
+![WebUSB Connect](/img/docs/webusb-connect.jpg)
 
 User will see `TinyCLR WebUsb` device as an option to `Connect`
 
-![WebUSB Select](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/webusb-select.jpg)
+![WebUSB Select](/img/docs/webusb-select.jpg)
 
 On successful connection the input drop downs are enabled. 
 
-![WebUSB Select](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/webusb-pin-select.jpg)
+![WebUSB Select](/img/docs/webusb-pin-select.jpg)
 
 After selecting `Update State` the device sends back a message indicating the outcome. 
 
-![WebUSB Success](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/webusb-success.jpg)
+![WebUSB Success](/img/docs/webusb-success.jpg)
 
 In this case the `PB0` is set `HIGH` and the LED turns on.
 
-![WebUSB LED](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/webusb-dev.jpg)
+![WebUSB LED](/img/docs/webusb-dev.jpg)
 
 The secret sauce is in using the correct endpoints, which are fixed in both CDC and WinUSB drivers. This line can be used to initiate the class `let webusb = new WebUSB(2, 1);` which is found inside `webusb.js` file
 

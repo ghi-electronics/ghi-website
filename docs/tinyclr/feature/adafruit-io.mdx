@@ -8,66 +8,66 @@ We'll need create a few things for our code. We'll need an Adafruit Certificate,
 
 First download the required Adafruit Root Certificate and add to resources. The [TLS Client](tls-client.mdx) shows how to download the root certificate.
 
-![Adafruit IO Add Certificate](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/adaIO-add-cert.jpg)
+![Adafruit IO Add Certificate](/img/docs/adaIO-add-cert.jpg)
 
 ```csharp
 var caCertSource = Resources.GetBytes(Resources.BinaryResources.DigiCertGlobalRootG2);
 ```
 Next, we'll create a 'Dashboard', from the Dashboards page. Click on 'Create a New Dashboard' found inside the 'Actions' dropdown. 
 
-![Adafruit create Dashboard](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/adaIO-create-dashboard.jpg)
+![Adafruit create Dashboard](/img/docs/adaIO-create-dashboard.jpg)
 
 Create a meaningful name for our Dashboard. This will be the 'dashboardID' inside our code sample. 
 
-![Adafruit name Dashboard](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/adaIO-name-dashboard.jpg)
+![Adafruit name Dashboard](/img/docs/adaIO-name-dashboard.jpg)
 
 Click on our newly created 'Dashboard'
 
-![Adafruit select Dashboard](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/adaIO-select-dashboard.jpg)
+![Adafruit select Dashboard](/img/docs/adaIO-select-dashboard.jpg)
 
 This opens the Dashboard canvas for our project. This is where we will add blocks to control our IoT device. Click on '+' to create a new block. 
 
-![Adafruit create Block](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/adaIO-create-block.jpg)
+![Adafruit create Block](/img/docs/adaIO-create-block.jpg)
 
 Let's add our first block to the canvas. There are many kinds of blocks you can add, for this we'll first add a 'Toggle' block. Click on the 'Toggle' block. 
 
-![Adafruit select Toggle](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/adaIO-select-toggle.jpg)
+![Adafruit select Toggle](/img/docs/adaIO-select-toggle.jpg)
 
 We need to create a 'feed' name to attach to our newly created block. Enter a name for the feed and click 'Create'. In our example we'll call this block's feed 'ToggleSwitch'
 
-![Adafruit name feed](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/adaIO-name-feed.jpg)
+![Adafruit name feed](/img/docs/adaIO-name-feed.jpg)
 
 Check the box of the newly created feed and click 'Next Step'
 
-![Adafruit name feed](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/adaIO-next-step.jpg)
+![Adafruit name feed](/img/docs/adaIO-next-step.jpg)
 
 Here we can set the Text we want to use that appears on the button and the value the button will send when used. Let's change the Button value to 1 for on and 0 for off. Then click 'Create block'
 
-![Adafruit block settings](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/adaIO-block-settings.jpg)
+![Adafruit block settings](/img/docs/adaIO-block-settings.jpg)
 
 The new Toogle we created now appears in the Dashboard canvas, the blocks can be placed anywhere we like on the Dashboard. But let's add another block first. 
 
-![Adafruit create another Blcok](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/adaIO-add-newblock.jpg)
+![Adafruit create another Blcok](/img/docs/adaIO-add-newblock.jpg)
 
 Let's add a 'Gauge' block to our canvas next. 
 
-![Adafruit create another Blcok](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/adaIO-add-gauge.jpg)
+![Adafruit create another Blcok](/img/docs/adaIO-add-gauge.jpg)
 
 Like we did the ToggleSwitch feed, we need to create a feed for the Gauge. We'll just call the feed 'Gauge', click on the 'Create', select the 'Gauge' and click 'Next step'
 
-![Adafruit name gauge feed](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/adaIO-name-gaugefeed.jpg)
+![Adafruit name gauge feed](/img/docs/adaIO-name-gaugefeed.jpg)
 
 There are several setting we can adjust but for this tutorial we'll just us the default and click on 'Create block'
 
-![Adafruit name gauge feed](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/adaIO-create-gaugeblock.jpg)
+![Adafruit name gauge feed](/img/docs/adaIO-create-gaugeblock.jpg)
 
 We can see that the gauge has been added to our Dashboard Canvas. The final element we need for our code is an 'Adafruit IO Key'. Click on it located in the top menu. 
 
-![Adafruit select key](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/adaIO-select-key.jpg)
+![Adafruit select key](/img/docs/adaIO-select-key.jpg)
 
 Copy the generated key...
 
-![Adafruit generate key](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/adaIO-generate-key.jpg)
+![Adafruit generate key](/img/docs/adaIO-generate-key.jpg)
 
 ...and paste in our code as shown in the example below. 
 
@@ -84,9 +84,9 @@ var feed = "your username/feeds/ToggleSwitch";
 ```
 Deploy your program to your SITCore IoT device, once launched the gauge on our Dashboard will start at 50 and increment by 5 every 2 seconds. Clicking on the 'Toggle Switch' will send the value to our device, which can be seen in Visual Studio's output window. 
 
-![Adafruit running dashboard](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/adaIO-complete-dashboard.jpg)
+![Adafruit running dashboard](/img/docs/adaIO-complete-dashboard.jpg)
 
-![Adafruit running dashboard](https://docs.ghielectronics.com/software/tinyclr/tutorials/images/adaIO-message-vs.jpg)
+![Adafruit running dashboard](/img/docs/adaIO-message-vs.jpg)
 
 ---
 
