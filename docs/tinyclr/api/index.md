@@ -8,7 +8,7 @@ slug: /tinyclr/api
 
 Auto-generated from the [TinyCLR-Libraries](https://github.com/ghi-electronics/TinyCLR-Libraries) source.
 
-Covering **1022** types across **47** NuGet packages.
+Covering **1022** types across **49** NuGet packages.
 
 ## Packages
 
@@ -29,13 +29,13 @@ Covering **1022** types across **47** NuGet packages.
 | [GHIElectronics.TinyCLR.Devices.Modbus](./GHIElectronics.TinyCLR.Devices.Modbus/index.md) | 15 |
 | [GHIElectronics.TinyCLR.Devices.Network](./GHIElectronics.TinyCLR.Devices.Network/index.md) | 26 |
 | [GHIElectronics.TinyCLR.Devices.Onewire](./GHIElectronics.TinyCLR.Devices.Onewire/index.md) | 1 |
-| [GHIElectronics.TinyCLR.Devices.Pwm](./GHIElectronics.TinyCLR.Devices.Pwm/index.md) | 7 |
+| [GHIElectronics.TinyCLR.Devices.Pwm](./GHIElectronics.TinyCLR.Devices.Pwm/index.md) | 5 |
 | [GHIElectronics.TinyCLR.Devices.Rtc](./GHIElectronics.TinyCLR.Devices.Rtc/index.md) | 5 |
 | [GHIElectronics.TinyCLR.Devices.SecureStorage](./GHIElectronics.TinyCLR.Devices.SecureStorage/index.md) | 2 |
 | [GHIElectronics.TinyCLR.Devices.Signals](./GHIElectronics.TinyCLR.Devices.Signals/index.md) | 8 |
 | [GHIElectronics.TinyCLR.Devices.Spi](./GHIElectronics.TinyCLR.Devices.Spi/index.md) | 9 |
 | [GHIElectronics.TinyCLR.Devices.Storage](./GHIElectronics.TinyCLR.Devices.Storage/index.md) | 4 |
-| [GHIElectronics.TinyCLR.Devices.Uart](./GHIElectronics.TinyCLR.Devices.Uart/index.md) | 28 |
+| [GHIElectronics.TinyCLR.Devices.Uart](./GHIElectronics.TinyCLR.Devices.Uart/index.md) | 15 |
 | [GHIElectronics.TinyCLR.Devices.Usb](./GHIElectronics.TinyCLR.Devices.Usb/index.md) | 8 |
 | [GHIElectronics.TinyCLR.Devices.UsbClient](./GHIElectronics.TinyCLR.Devices.UsbClient/index.md) | 28 |
 | [GHIElectronics.TinyCLR.Devices.UsbHost](./GHIElectronics.TinyCLR.Devices.UsbHost/index.md) | 36 |
@@ -56,7 +56,9 @@ Covering **1022** types across **47** NuGet packages.
 | [GHIElectronics.TinyCLR.RuntimeLoadableProcedures](./GHIElectronics.TinyCLR.RuntimeLoadableProcedures/index.md) | 5 |
 | [GHIElectronics.TinyCLR.System.Device.Gpio](./GHIElectronics.TinyCLR.System.Device.Gpio/index.md) | 10 |
 | [GHIElectronics.TinyCLR.System.Device.I2c](./GHIElectronics.TinyCLR.System.Device.I2c/index.md) | 3 |
+| [GHIElectronics.TinyCLR.System.Device.Pwm](./GHIElectronics.TinyCLR.System.Device.Pwm/index.md) | 2 |
 | [GHIElectronics.TinyCLR.System.Device.Spi](./GHIElectronics.TinyCLR.System.Device.Spi/index.md) | 4 |
+| [GHIElectronics.TinyCLR.System.IO.Ports](./GHIElectronics.TinyCLR.System.IO.Ports/index.md) | 13 |
 | [GHIElectronics.TinyCLR.System.Security.Cryptography](./GHIElectronics.TinyCLR.System.Security.Cryptography/index.md) | 18 |
 | [GHIElectronics.TinyCLR.System.Xml](./GHIElectronics.TinyCLR.System.Xml/index.md) | 14 |
 | [GHIElectronics.TinyCLR.UI](./GHIElectronics.TinyCLR.UI/index.md) | 165 |

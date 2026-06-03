@@ -718,8 +718,13 @@ async function main() {
     const types = byAsm.get(asm).sort((a, b) => a.name.localeCompare(b.name));
     const fileOf = assignFilenames(types);
     // _category_.json: label only — the folder's index.md becomes the category landing page.
+    // The sidebar label strips the "GHIElectronics.TinyCLR." prefix so the API tree
+    // stays readable (e.g. "System.Security.Cryptography" instead of the full id).
+    // The folder name and the page content (index.md title + heading) keep the FULL
+    // package name so users still see the real NuGet id and aren't misled.
+    const sidebarLabel = asm.replace(/^GHIElectronics\.TinyCLR\./, '');
     await fs.writeFile(path.join(asmDir, '_category_.json'),
-      JSON.stringify({ label: asm }, null, 2));
+      JSON.stringify({ label: sidebarLabel }, null, 2));
     await fs.writeFile(path.join(asmDir, 'index.md'), renderAssemblyIndex(asm, types, fileOf));
     for (const t of types)
       await fs.writeFile(path.join(asmDir, fileOf.get(t) + '.md'), renderType(t));
