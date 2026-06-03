@@ -41,6 +41,16 @@ import SitcoreNav from '@site/src/components/SitcoreNav';
   </div>
 </div>
 
+<div className="video-embed">
+  <iframe
+    src="https://www.youtube.com/embed/0KtH6_i0wfA"
+    title="SITCore SBC — Single Board Computers"
+    loading="lazy"
+    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowFullScreen
+  ></iframe>
+</div>
+
 ## When to choose Single Board Computers
 
 <div className="decision-callout">
@@ -127,6 +137,31 @@ The SBC category is designed for compatibility with the most-used maker boards o
   </div>
 </div>
 
+## Compare boards
+
+<div className="spec-table">
+
+| | **FEZ Portal** | **FEZ Bit** | **FEZ Stick** | **FEZ Feather** | **FEZ Duino** | **FEZ Flea** | **FEZ Pico** |
+|---|---|---|---|---|---|---|---|
+| Form factor | None | BBC micro:bit | None | Adafruit Feather | Arduino Uno | Seeeduino Xiao | Raspberry Pi Pico |
+| Core | SCM20260 | SC20100 | SC20100 | SC20100 | SC20100 | SC13048 | SC13048 |
+| Display | 4.3″ touch 480×272 | 1.8″ 160×128 | — | — | — | — | — |
+| MikroBUS | 1 | 0 | 2 | 0 | 0 | 0 | 0 |
+| WiFi | ✓ | ✓ | — | ✓ | ✓ | — | — |
+| Micro SD | ✓ | ✓ | — | — | ✓ | — | — |
+| User LED | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Buzzer | ✓ | ✓ | — | — | — | — | — |
+| Accelerometer | — | ✓ | — | — | — | — | — |
+| User buttons | ✓ | ✓ | ✓ | ✓ | ✓ | — | — |
+| USB client | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| USB host connector | ✓ | — | ✓ | — | ✓ | — | — |
+| External flash | ✓ | — | — | — | ✓ | — | ✓ |
+| RTC | ✓ | ✓ | ✓ | ✓ | ✓ | — | ✓ |
+| LiPo charger | — | — | — | ✓ | — | — | — |
+| Power barrel | — | — | — | — | ✓ | — | — |
+
+</div>
+
 ## Ordering
 
 | Part number | Description | MSRP |
@@ -146,7 +181,7 @@ The SBC category is designed for compatibility with the most-used maker boards o
 
 <div className="perk-callout">
   <strong>Bringing a SITCore SBC into a product?</strong>
-  <span>Free hardware and firmware design review for SITCore-based products. Engineering help on bring-up, integration, or migrating to your own board. <a href="/engineering/">See our engineering services →</a></span>
+  <span>Free design review and engineering help on bring-up or migrating to your own board. <a href="/engineering/">See our engineering services →</a></span>
 </div>
 
 <div className="cta">

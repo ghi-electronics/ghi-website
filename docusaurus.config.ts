@@ -194,7 +194,7 @@ const config: Config = {
           items: [
             {label: 'Press', to: '/press/'},
             {label: 'About Us', to: '/company/'},
-            {label: 'Case Studies', to: '/case-studies/'},
+            {label: 'Showcase', to: '/showcase/'},
             {label: 'Social Responsibility', to: '/social-responsibility/'},
             {label: 'Distributors', to: '/distributors/'},
           ],
@@ -216,7 +216,7 @@ const config: Config = {
             {label: 'TinyCLR', to: '/tinyclr/'},
             {label: 'Endpoint', to: '/endpoint/'},
             {label: 'DUELink', to: '/duelink/'},
-            {label: 'Case Studies', to: '/case-studies/'},
+            {label: 'Showcase', to: '/showcase/'},
             {label: 'Longevity', to: '/longevity/'},
           ],
         },
