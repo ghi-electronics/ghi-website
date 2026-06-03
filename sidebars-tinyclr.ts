@@ -178,9 +178,9 @@ const sidebars: SidebarsConfig = {
       link: {type: 'doc', id: 'configuration'},
       collapsed: true,
       items: [
+        'tinyclr-config',
         'special-pins',
         'bootloader',
-        'tinyclr-config',
       ],
     },
     {

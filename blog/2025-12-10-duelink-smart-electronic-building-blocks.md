@@ -12,7 +12,6 @@ DUELink is ready for your innovations. One year after the original teaser, GHI E
 
 DUELink is compatible with Raspberry Pi, Arduino, ESP32, micro:bit, and any other board you already have. It supports Python, JavaScript, .NET, MicroPython, and more. The key idea is simple: DUELink is not designed to replace what you have — it is designed to work with what you already use today.
 
-![DUELink intro](/img/press/duelink-intro.webp)
 
 Every module speaks the same plain-text protocol over USB, SPI, I2C, or UART. Code written for one module works the same on the next. The catalog covers sensors, displays, motors, storage, communications, and education kits — and it keeps growing.
 

@@ -12,6 +12,4 @@ The complete DUELink ecosystem is available to order immediately through our off
 
 DUELink smart modules speak plain text — add sensors, displays, motors, and communications to any board you already have, in any language, without soldering or writing drivers.
 
-![DUELink module family at DigiKey](/img/press/duelink-modules-digikey.jpg)
-
 Full specifications, documentation, and project tutorials are available at [duelink.com](https://duelink.com).
