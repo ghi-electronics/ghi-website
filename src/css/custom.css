@@ -83,6 +83,13 @@
   transform: translateY(-1px);
 }
 
+.dropdown__divider {
+  height: 1px;
+  margin: 0.35rem 0.5rem;
+  background: var(--ifm-color-emphasis-200);
+  pointer-events: none;
+}
+
 .footer-social-icons {
   display: flex;
   gap: 0.75rem;

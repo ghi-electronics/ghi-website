@@ -172,7 +172,9 @@ const config: Config = {
             {label: 'TinyCLR', to: '/tinyclr/'},
             {label: 'Endpoint', to: '/endpoint/'},
             {label: 'DUELink', to: '/duelink/'},
+            {type: 'html', value: '<div class="dropdown__divider"></div>'},
             {label: 'Longevity', to: '/longevity/'},
+            {label: 'Showcase', to: '/showcase/'},
           ],
         },
         {
@@ -193,10 +195,9 @@ const config: Config = {
           position: 'left',
           items: [
             {label: 'Press', to: '/press/'},
-            {label: 'About Us', to: '/company/'},
-            {label: 'Showcase', to: '/showcase/'},
-            {label: 'Social Responsibility', to: '/social-responsibility/'},
             {label: 'Distributors', to: '/distributors/'},
+            {label: 'Social Responsibility', to: '/social-responsibility/'},
+            {label: 'About Us', to: '/company/'},
           ],
         },
         {
