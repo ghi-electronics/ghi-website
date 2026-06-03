@@ -30,3 +30,83 @@ public const int PB9
 ```
 
 PWM pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### PB9
+
+```csharp
+public const int PB9
+```
+
+PWM pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### PB9
+
+```csharp
+public const int PB9
+```
+
+PWM pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### PB9
+
+```csharp
+public const int PB9
+```
+
+PWM pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### PB9
+
+```csharp
+public const int PB9
+```
+
+PWM pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### PB9
+
+```csharp
+public const int PB9
+```
+
+PWM pin.

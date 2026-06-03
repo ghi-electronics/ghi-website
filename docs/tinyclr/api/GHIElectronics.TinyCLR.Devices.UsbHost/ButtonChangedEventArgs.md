@@ -30,3 +30,19 @@ public ButtonState State { get; set; }
 ```
 
 The new state of the button.
+
+### Which
+
+```csharp
+public Buttons Which { get; set; }
+```
+
+Which button changed its state.
+
+### State
+
+```csharp
+public ButtonState State { get; set; }
+```
+
+The new state of the button.

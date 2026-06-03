@@ -30,3 +30,35 @@ public const int PB7
 ```
 
 PWM pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### PB7
+
+```csharp
+public const int PB7
+```
+
+PWM pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### PB7
+
+```csharp
+public const int PB7
+```
+
+PWM pin.

@@ -30,3 +30,131 @@ public const int PB8
 ```
 
 PWM pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### PB8
+
+```csharp
+public const int PB8
+```
+
+PWM pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### PB8
+
+```csharp
+public const int PB8
+```
+
+PWM pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### PB8
+
+```csharp
+public const int PB8
+```
+
+PWM pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### PB8
+
+```csharp
+public const int PB8
+```
+
+PWM pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### PB8
+
+```csharp
+public const int PB8
+```
+
+PWM pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### PB8
+
+```csharp
+public const int PB8
+```
+
+PWM pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### PB8
+
+```csharp
+public const int PB8
+```
+
+PWM pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### PB8
+
+```csharp
+public const int PB8
+```
+
+PWM pin.

@@ -30,3 +30,27 @@ public const int PH9
 ```
 
 PWM pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### PH6
+
+```csharp
+public const int PH6
+```
+
+PWM pin.
+
+### PH9
+
+```csharp
+public const int PH9
+```
+
+PWM pin.

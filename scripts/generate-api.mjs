@@ -422,6 +422,50 @@ function makeType(ns, name, kind, mods, attrs, doc) {
   return { ns, name, kind, mods, attrs, doc, bases: [], properties: [], methods: [], events: [], fields: [], params: null, signature: '' };
 }
 
+/**
+ * Fold `partial` type declarations into a single type. A `partial class Foo` split
+ * across N source files parses as N separate type objects (same ns+name+kind), which
+ * otherwise renders as N near-identical sidebar entries — only the fragment that
+ * happens to carry the `<summary>` and base list looks "real". Merge keeps the first
+ * fragment as the canonical object and folds in every other fragment's members and
+ * bases, adopting a `<summary>` from whichever fragment has one. Keyed by
+ * assembly+ns+kind+name so genuinely distinct same-named types stay separate.
+ */
+function mergePartialTypes(model) {
+  const groups = new Map();   // key -> fragments[]; insertion order preserved
+  for (const t of model.types) {
+    const key = `${t.assembly || ''}|${t.ns}|${t.kind}|${t.name}`;
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(t);
+  }
+  const merged = [];
+  for (const frags of groups.values()) {
+    if (frags.length === 1) { merged.push(frags[0]); continue; }
+    // Canonical = the principal declaration. The base/interface list and the real
+    // class <summary> almost always sit on it (the other fragments are member-only
+    // splits, sometimes with a comment that actually describes a nested type).
+    const canonical =
+      frags.find(f => f.bases && f.bases.length) ||
+      frags.find(f => f.doc && f.doc.summary) ||
+      frags[0];
+    for (const f of frags) {
+      if (f === canonical) continue;
+      canonical.properties.push(...f.properties);
+      canonical.methods.push(...f.methods);
+      canonical.events.push(...f.events);
+      canonical.fields.push(...f.fields);
+      for (const b of f.bases) if (!canonical.bases.includes(b)) canonical.bases.push(b);
+    }
+    if (!canonical.doc || !canonical.doc.summary) {
+      const withDoc = frags.find(f => f.doc && f.doc.summary);
+      if (withDoc) canonical.doc = withDoc.doc;
+    }
+    canonical.signature = reconstructTypeSig(canonical.mods, canonical.kind, canonical.name, canonical.bases);
+    merged.push(canonical);
+  }
+  model.types = merged;
+}
+
 function reconstructTypeSig(mods, kind, name, bases) {
   const m = mods.filter(x => x !== 'partial').join(' ');
   let s = `${m} ${kind} ${name}`.trim();
@@ -697,6 +741,7 @@ async function main() {
       catch (err) { console.warn(`[api] parse warning in ${path.relative(libsRoot, f)}: ${err.message}`); }
     }
   }
+  mergePartialTypes(model);
   resolveInheritdoc(model);
 
   // clean + write

@@ -8,7 +8,7 @@ slug: /tinyclr/api
 
 Auto-generated from the [TinyCLR-Libraries](https://github.com/ghi-electronics/TinyCLR-Libraries) source.
 
-Covering **1022** types across **49** NuGet packages.
+Covering **765** types across **49** NuGet packages.
 
 ## Packages
 
@@ -38,20 +38,20 @@ Covering **1022** types across **49** NuGet packages.
 | [GHIElectronics.TinyCLR.Devices.Uart](./GHIElectronics.TinyCLR.Devices.Uart/index.md) | 15 |
 | [GHIElectronics.TinyCLR.Devices.Usb](./GHIElectronics.TinyCLR.Devices.Usb/index.md) | 8 |
 | [GHIElectronics.TinyCLR.Devices.UsbClient](./GHIElectronics.TinyCLR.Devices.UsbClient/index.md) | 28 |
-| [GHIElectronics.TinyCLR.Devices.UsbHost](./GHIElectronics.TinyCLR.Devices.UsbHost/index.md) | 36 |
+| [GHIElectronics.TinyCLR.Devices.UsbHost](./GHIElectronics.TinyCLR.Devices.UsbHost/index.md) | 33 |
 | [GHIElectronics.TinyCLR.Devices.Watchdog](./GHIElectronics.TinyCLR.Devices.Watchdog/index.md) | 3 |
 | [GHIElectronics.TinyCLR.Drawing](./GHIElectronics.TinyCLR.Drawing/index.md) | 26 |
-| [GHIElectronics.TinyCLR.EthernetIP.Adapter](./GHIElectronics.TinyCLR.EthernetIP.Adapter/index.md) | 26 |
+| [GHIElectronics.TinyCLR.EthernetIP.Adapter](./GHIElectronics.TinyCLR.EthernetIP.Adapter/index.md) | 20 |
 | [GHIElectronics.TinyCLR.EthernetIP.Scanner](./GHIElectronics.TinyCLR.EthernetIP.Scanner/index.md) | 30 |
 | [GHIElectronics.TinyCLR.IO](./GHIElectronics.TinyCLR.IO/index.md) | 23 |
-| [GHIElectronics.TinyCLR.IO.TinyFileSystem](./GHIElectronics.TinyCLR.IO.TinyFileSystem/index.md) | 16 |
+| [GHIElectronics.TinyCLR.IO.TinyFileSystem](./GHIElectronics.TinyCLR.IO.TinyFileSystem/index.md) | 7 |
 | [GHIElectronics.TinyCLR.Linq](./GHIElectronics.TinyCLR.Linq/index.md) | 3 |
 | [GHIElectronics.TinyCLR.Native](./GHIElectronics.TinyCLR.Native/index.md) | 19 |
 | [GHIElectronics.TinyCLR.Networking](./GHIElectronics.TinyCLR.Networking/index.md) | 32 |
 | [GHIElectronics.TinyCLR.Networking.Ftp](./GHIElectronics.TinyCLR.Networking.Ftp/index.md) | 21 |
 | [GHIElectronics.TinyCLR.Networking.Http](./GHIElectronics.TinyCLR.Networking.Http/index.md) | 25 |
 | [GHIElectronics.TinyCLR.Networking.Mqtt](./GHIElectronics.TinyCLR.Networking.Mqtt/index.md) | 12 |
-| [GHIElectronics.TinyCLR.Pins](./GHIElectronics.TinyCLR.Pins/index.md) | 282 |
+| [GHIElectronics.TinyCLR.Pins](./GHIElectronics.TinyCLR.Pins/index.md) | 43 |
 | [GHIElectronics.TinyCLR.RegularExpressions](./GHIElectronics.TinyCLR.RegularExpressions/index.md) | 12 |
 | [GHIElectronics.TinyCLR.RuntimeLoadableProcedures](./GHIElectronics.TinyCLR.RuntimeLoadableProcedures/index.md) | 5 |
 | [GHIElectronics.TinyCLR.System.Device.Gpio](./GHIElectronics.TinyCLR.System.Device.Gpio/index.md) | 10 |

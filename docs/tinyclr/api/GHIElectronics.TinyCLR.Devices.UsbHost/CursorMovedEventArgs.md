@@ -38,3 +38,19 @@ public Position Delta { get; set; }
 ```
 
 The change from the last position.
+
+### NewPosition
+
+```csharp
+public Position NewPosition { get; set; }
+```
+
+The new state of the button.
+
+### Delta
+
+```csharp
+public Position Delta { get; set; }
+```
+
+The change from the last position.

@@ -30,3 +30,163 @@ public const int P2
 ```
 
 PWM pin.
+
+### PA0
+
+```csharp
+public const int PA0
+```
+
+Capture pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### PA0
+
+```csharp
+public const int PA0
+```
+
+PWM pin.
+
+### PA0
+
+```csharp
+public const int PA0
+```
+
+Capture pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### PA0
+
+```csharp
+public const int PA0
+```
+
+PWM pin.
+
+### PA0
+
+```csharp
+public const int PA0
+```
+
+Capture pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### PA0
+
+```csharp
+public const int PA0
+```
+
+PWM pin.
+
+### PH12
+
+```csharp
+public const int PH12
+```
+
+PWM pin.
+
+### PA0
+
+```csharp
+public const int PA0
+```
+
+Capture pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### PA0
+
+```csharp
+public const int PA0
+```
+
+PWM pin.
+
+### PA0
+
+```csharp
+public const int PA0
+```
+
+Capture pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### PA0
+
+```csharp
+public const int PA0
+```
+
+PWM pin.
+
+### PH11
+
+```csharp
+public const int PH11
+```
+
+PWM pin.
+
+### PH12
+
+```csharp
+public const int PH12
+```
+
+PWM pin.
+
+### PI0
+
+```csharp
+public const int PI0
+```
+
+PWM pin.
+
+### PA0
+
+```csharp
+public const int PA0
+```
+
+Capture pin.

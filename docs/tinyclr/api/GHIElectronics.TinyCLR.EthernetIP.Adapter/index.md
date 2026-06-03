@@ -5,19 +5,13 @@ sidebar_label: Overview
 
 # GHIElectronics.TinyCLR.EthernetIP.Adapter
 
-NuGet package containing **26** types.
+NuGet package containing **20** types.
 
 ## Classes
 
 | Class | Summary |
 |---|---|
 | [AdapterController](./AdapterController.md) | Runs the device as an EtherNet/IP Adapter (the server side of EIP — what a PLC scanner connects to). Wraps the native OpENer stack with a managed-C# API. |
-| [AdapterController](./AdapterController_2.md) |  |
-| [AdapterController](./AdapterController_3.md) |  |
-| [AdapterController](./AdapterController_4.md) |  |
-| [AdapterController](./AdapterController_5.md) |  |
-| [AdapterController](./AdapterController_6.md) |  |
-| [AdapterController](./AdapterController_7.md) |  |
 | [AssemblyObject](./AssemblyObject.md) |  |
 | [CipAttribute](./CipAttribute.md) |  |
 | [CIPClass](./CIPClass.md) |  |

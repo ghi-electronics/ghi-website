@@ -22,3 +22,107 @@ public const string Can1
 ```
 
 CAN bus on PD1 (TX) and PD0 (RX).
+
+### Can1
+
+```csharp
+public const string Can1
+```
+
+CAN bus on PD1 (TX) and PD0 (RX).
+
+### Can1
+
+```csharp
+public const string Can1
+```
+
+CAN bus on PB6 (TX) and PB12 (RX).
+
+### Can1
+
+```csharp
+public const string Can1
+```
+
+CAN bus on PH13 (TX) and PH14 (RX).
+
+### Can2
+
+```csharp
+public const string Can2
+```
+
+CAN bus on PB13 (TX) and PB12 (RX).
+
+### Can2
+
+```csharp
+public const string Can2
+```
+
+CAN bus on PB13 (TX) and PB12 (RX).
+
+### Can1
+
+```csharp
+public const string Can1
+```
+
+CAN bus on PD1 (TX) and PD0 (RX).
+
+### Can1
+
+```csharp
+public const string Can1
+```
+
+CAN bus on PD1 (TX) and PD0 (RX).
+
+### Can2
+
+```csharp
+public const string Can2
+```
+
+CAN bus on PB13 (TX) and PB12 (RX).
+
+### Can1
+
+```csharp
+public const string Can1
+```
+
+CAN bus on PH13 (TX) and PH14 (RX).
+
+### Can2
+
+```csharp
+public const string Can2
+```
+
+CAN bus on PB13 (TX) and PB12 (RX).
+
+### Can1
+
+```csharp
+public const string Can1
+```
+
+CAN bus.
+
+### Can2
+
+```csharp
+public const string Can2
+```
+
+CAN bus.
+
+### Can1
+
+```csharp
+public const string Can1
+```
+
+CAN bus.
