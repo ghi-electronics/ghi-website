@@ -1,0 +1,79 @@
+---
+title: Industrial IoT — 4i Platform
+description: How 4i Platform uses SITCore and TinyCLR to bring real-time data collection, production line tracking, and warehouse management to manufacturing plants.
+hide_table_of_contents: true
+---
+
+<div className="section-tinted">
+
+<div className="section-tinted__intro">
+  <span className="eyebrow">Showcase · Industrial IoT</span>
+  <h2>Real-time data from the plant floor</h2>
+  <p>4i Platform builds industrial IoT and automation solutions that pull data straight off manufacturing machines — turning production lines, ladles, and warehouse stock into structured, queryable signals plants can act on.</p>
+</div>
+
+<div className="plate-image">
+
+![4iDASH industrial data collector](/img/showcase/industrial-iot-hero.png)
+
+</div>
+
+</div>
+
+## The challenge
+
+Smart manufacturing depends on getting reliable production data out of equipment that wasn't designed to give it up. Older machines speak their own protocols (or none at all); newer ones speak too many. 4i Platform needed a hardware base its engineers could deploy across diverse plant environments — metals, automotive, general manufacturing — without rebuilding firmware for every site.
+
+## The solution
+
+**4iDASH** collects data directly from production line machines and feeds it to 4i Platform's analytics layer. The same hardware lineage powers two adjacent products:
+
+- **PLT (Production Line Tracking)** — continuously tracks position and status of heavy equipment like steel ladles inside metals plants.
+- **WMS (Warehouse Management System)** — RFID-driven inventory and asset tracking, in real time from the warehouse floor.
+
+All three are deployed across customer plants worldwide, generating the production data that drives Smart Manufacturing decisions.
+
+## Why TinyCLR
+
+SITCore modules give 4i Platform a single validated hardware base — CPU, memory, networking, and the TinyCLR runtime — that drops onto custom carrier boards designed for each product family. Application code is C#, debugged in Visual Studio, and the same firmware modules carry across 4iDASH, PLT, and WMS hardware.
+
+The tradeoff that mattered: predictable supply for products that live inside customer plants for years, with the runtime and toolchain stable enough that engineering effort stays focused on the protocols and analytics — not on bringing up a microcontroller.
+
+## About 4i Platform
+
+<img src="/img/showcase/industrial-iot-4i-logo.png" alt="4i Platform logo" style={{maxWidth: '220px', display: 'block', margin: '1.5rem 0'}} />
+
+4i Platform is a leader in industrial IoT and automation solutions for manufacturing environments — guiding companies toward Smart Manufacturing through real production data. *"With our solutions, companies will be able to make efficient decisions based on real data."*
+
+<div className="pillar-grid" style={{marginTop: '2rem'}}>
+
+<div className="pillar-card">
+  <div className="pillar-card__image"><img src="/img/showcase/industrial-iot-plt.jpg" alt="Production Line Tracking" /></div>
+  <div className="pillar-card__body">
+    <div className="pillar-card__title">PLT</div>
+    <div className="pillar-card__text">Production Line Tracking — real-time position and status of heavy equipment in metals plants.</div>
+  </div>
+</div>
+
+<div className="pillar-card">
+  <div className="pillar-card__image"><img src="/img/showcase/industrial-iot-wms.jpg" alt="Warehouse Management System" /></div>
+  <div className="pillar-card__body">
+    <div className="pillar-card__title">WMS</div>
+    <div className="pillar-card__text">RFID-driven warehouse management — inventory and asset tracking from the plant floor.</div>
+  </div>
+</div>
+
+</div>
+
+<div className="cta">
+
+## Building something similar?
+
+Two ways forward — read about the TinyCLR platform, or talk to us about your project.
+
+<div className="cta__buttons">
+  <a href="/tinyclr/" className="btn-primary cta__button">See TinyCLR →</a>
+  <a href="/contact/" className="btn-secondary cta__button">Talk to us</a>
+</div>
+
+</div>
