@@ -30,3 +30,163 @@ public const int PE6
 ```
 
 PWM pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### PA2
+
+```csharp
+public const int PA2
+```
+
+PWM pin.
+
+### PA3
+
+```csharp
+public const int PA3
+```
+
+PWM pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### PA2
+
+```csharp
+public const int PA2
+```
+
+PWM pin.
+
+### PA3
+
+```csharp
+public const int PA3
+```
+
+PWM pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### PE5
+
+```csharp
+public const int PE5
+```
+
+PWM pin.
+
+### PE6
+
+```csharp
+public const int PE6
+```
+
+PWM pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### PE5
+
+```csharp
+public const int PE5
+```
+
+PWM pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### PA2
+
+```csharp
+public const int PA2
+```
+
+PWM pin.
+
+### PA3
+
+```csharp
+public const int PA3
+```
+
+PWM pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### PE5
+
+```csharp
+public const int PE5
+```
+
+PWM pin.
+
+### PE6
+
+```csharp
+public const int PE6
+```
+
+PWM pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### PE5
+
+```csharp
+public const int PE5
+```
+
+PWM pin.
+
+### PE6
+
+```csharp
+public const int PE6
+```
+
+PWM pin.
