@@ -4,7 +4,7 @@ tags: [announcement, hardware]
 image: /img/press/4i-dash.png
 ---
 
-![4iDASH production data system](/img/press/4i-dash.png)
+![4iDASH production data system](/img/press/4i-dash.jpg)
 
 4iPlatform builds industrial IoT and automation solutions on GHI Electronics hardware. Their systems collect production data directly from machinery on the plant floor, turning raw machine data into reliable operational information.
 
