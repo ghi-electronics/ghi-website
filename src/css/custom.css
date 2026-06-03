@@ -405,6 +405,8 @@
 }
 
 .compare-table {
+  width: fit-content;
+  max-width: 100%;
   margin: 1.5rem 0 3rem;
   border-radius: 12px;
   overflow-x: auto;
@@ -413,7 +415,6 @@
 
 .compare-table table {
   margin: 0;
-  width: 100%;
   border-collapse: collapse;
   min-width: 680px;
   font-size: 0.92rem;
@@ -1714,6 +1715,8 @@ a.pillar-card:hover::after {
 }
 
 .spec-table {
+  width: fit-content;
+  max-width: 100%;
   overflow-x: auto;
   margin: 1.5rem 0 2rem;
   border-radius: 10px;
