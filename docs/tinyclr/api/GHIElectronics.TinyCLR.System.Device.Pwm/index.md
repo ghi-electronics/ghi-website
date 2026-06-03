@@ -9,12 +9,12 @@ NuGet package containing **2** types.
 
 ## Classes
 
-| Class | Summary |
-|---|---|
-| [PwmChannel](./PwmChannel.md) |  |
+| Class | Namespace | Summary |
+|---|---|---|
+| [PwmChannel](./PwmChannel.md) | `System.Device.Pwm` |  |
 
 ## Enums
 
-| Enum | Summary |
-|---|---|
-| [PwmPulsePolarity](./PwmPulsePolarity.md) |  |
+| Enum | Namespace | Summary |
+|---|---|---|
+| [PwmPulsePolarity](./PwmPulsePolarity.md) | `System.Device.Pwm` |  |

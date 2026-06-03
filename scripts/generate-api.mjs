@@ -646,7 +646,8 @@ const KIND_SECTIONS = [
 ];
 function renderAssemblyIndex(assembly, types, fileOf) {
   const namespaces = [...new Set(types.map(t => t.ns))].sort();
-  const showNs = namespaces.length > 1;
+  const showNs = true;                         // always show the Namespace column (uniform table shape)
+  const multiNs = namespaces.length > 1;       // but only call out the namespace list when there's more than one
   const L = [];
   L.push('---');
   L.push(`title: ${yaml(assembly)}`);
@@ -656,7 +657,7 @@ function renderAssemblyIndex(assembly, types, fileOf) {
   L.push(`# ${assembly}`);
   L.push('');
   L.push(`NuGet package containing **${types.length}** type${types.length === 1 ? '' : 's'}` +
-    (showNs ? ` across **${namespaces.length}** namespaces (\`${namespaces.join('`, `')}\`).` : '.'));
+    (multiNs ? ` across **${namespaces.length}** namespaces (\`${namespaces.join('`, `')}\`).` : '.'));
   L.push('');
   for (const [kind, heading] of KIND_SECTIONS) {
     const group = types.filter(t => t.kind === kind).sort((a, b) => a.name.localeCompare(b.name));
