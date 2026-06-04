@@ -13,6 +13,7 @@ const sidebars: SidebarsConfig = {
         'som',
         'sbc',
         'dev',
+        'experimenter-kit',
       ],
     },
     {
