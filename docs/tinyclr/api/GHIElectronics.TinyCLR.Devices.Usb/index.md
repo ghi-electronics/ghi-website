@@ -9,23 +9,23 @@ NuGet package containing **8** types.
 
 ## Classes
 
-| Class | Summary |
-|---|---|
-| [OperationTimedOutException](./OperationTimedOutException.md) | The exception thrown when an operation times out. |
+| Class | Namespace | Summary |
+|---|---|---|
+| [OperationTimedOutException](./OperationTimedOutException.md) | `GHIElectronics.TinyCLR.Devices.Usb` | The exception thrown when an operation times out. |
 
 ## Structs
 
-| Struct | Summary |
-|---|---|
-| [Position](./Position.md) | Represents the a generic position. |
+| Struct | Namespace | Summary |
+|---|---|---|
+| [Position](./Position.md) | `GHIElectronics.TinyCLR.Devices.Usb` | Represents the a generic position. |
 
 ## Enums
 
-| Enum | Summary |
-|---|---|
-| [Buttons](./Buttons.md) | Lists available mouse buttons. |
-| [ButtonState](./ButtonState.md) | The possible button states. |
-| [Cursor](./Cursor.md) | The possible cursors. |
-| [HatSwitchDirection](./HatSwitchDirection.md) | Joystick hat switch directions. |
-| [Key](./Key.md) | The keys on the keyboard. |
-| [KeyState](./KeyState.md) | The possible key states. |
+| Enum | Namespace | Summary |
+|---|---|---|
+| [Buttons](./Buttons.md) | `GHIElectronics.TinyCLR.Devices.Usb` | Lists available mouse buttons. |
+| [ButtonState](./ButtonState.md) | `GHIElectronics.TinyCLR.Devices.Usb` | The possible button states. |
+| [Cursor](./Cursor.md) | `GHIElectronics.TinyCLR.Devices.Usb` | The possible cursors. |
+| [HatSwitchDirection](./HatSwitchDirection.md) | `GHIElectronics.TinyCLR.Devices.Usb` | Joystick hat switch directions. |
+| [Key](./Key.md) | `GHIElectronics.TinyCLR.Devices.Usb` | The keys on the keyboard. |
+| [KeyState](./KeyState.md) | `GHIElectronics.TinyCLR.Devices.Usb` | The possible key states. |

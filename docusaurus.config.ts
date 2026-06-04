@@ -53,7 +53,7 @@ const config: Config = {
     v4: true,
   },
 
-  url: 'https://new.ghielectronics.com',
+  url: 'https://www.ghielectronics.com',
   baseUrl: '/',
 
   organizationName: 'ghi-electronics',

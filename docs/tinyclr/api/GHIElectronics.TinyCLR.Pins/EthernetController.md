@@ -22,3 +22,11 @@ public const string EthernetEmac
 ```
 
 Enc28j60 id.
+
+### EthernetEmac
+
+```csharp
+public const string EthernetEmac
+```
+
+Enc28j60 id.

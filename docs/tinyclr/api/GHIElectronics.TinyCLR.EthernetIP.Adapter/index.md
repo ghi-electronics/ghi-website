@@ -5,45 +5,39 @@ sidebar_label: Overview
 
 # GHIElectronics.TinyCLR.EthernetIP.Adapter
 
-NuGet package containing **26** types.
+NuGet package containing **20** types.
 
 ## Classes
 
-| Class | Summary |
-|---|---|
-| [AdapterController](./AdapterController.md) | Runs the device as an EtherNet/IP Adapter (the server side of EIP — what a PLC scanner connects to). Wraps the native OpENer stack with a managed-C# API. |
-| [AdapterController](./AdapterController_2.md) |  |
-| [AdapterController](./AdapterController_3.md) |  |
-| [AdapterController](./AdapterController_4.md) |  |
-| [AdapterController](./AdapterController_5.md) |  |
-| [AdapterController](./AdapterController_6.md) |  |
-| [AdapterController](./AdapterController_7.md) |  |
-| [AssemblyObject](./AssemblyObject.md) |  |
-| [CipAttribute](./CipAttribute.md) |  |
-| [CIPClass](./CIPClass.md) |  |
-| [CipInstance](./CipInstance.md) |  |
+| Class | Namespace | Summary |
+|---|---|---|
+| [AdapterController](./AdapterController.md) | `GHIElectronics.TinyCLR.EthernetIP.Adapter` | Runs the device as an EtherNet/IP Adapter (the server side of EIP — what a PLC scanner connects to). Wraps the native OpENer stack with a managed-C# API. |
+| [AssemblyObject](./AssemblyObject.md) | `GHIElectronics.TinyCLR.EthernetIP.Adapter` |  |
+| [CipAttribute](./CipAttribute.md) | `GHIElectronics.TinyCLR.EthernetIP.Adapter` |  |
+| [CIPClass](./CIPClass.md) | `GHIElectronics.TinyCLR.EthernetIP.Adapter` |  |
+| [CipInstance](./CipInstance.md) | `GHIElectronics.TinyCLR.EthernetIP.Adapter` |  |
 
 ## Enums
 
-| Enum | Summary |
-|---|---|
-| [CipAttributeDecodeFromMessage](./CipAttributeDecodeFromMessage.md) |  |
-| [CipAttributeEncodeInMessage](./CipAttributeEncodeInMessage.md) |  |
-| [CIPAttributeFlag](./CIPAttributeFlag.md) |  |
-| [CIPDataType](./CIPDataType.md) |  |
-| [CIPServiceCode](./CIPServiceCode.md) |  |
-| [ClassId](./ClassId.md) |  |
-| [EncapsulationCommand](./EncapsulationCommand.md) |  |
+| Enum | Namespace | Summary |
+|---|---|---|
+| [CipAttributeDecodeFromMessage](./CipAttributeDecodeFromMessage.md) | `GHIElectronics.TinyCLR.EthernetIP.Adapter` |  |
+| [CipAttributeEncodeInMessage](./CipAttributeEncodeInMessage.md) | `GHIElectronics.TinyCLR.EthernetIP.Adapter` |  |
+| [CIPAttributeFlag](./CIPAttributeFlag.md) | `GHIElectronics.TinyCLR.EthernetIP.Adapter` |  |
+| [CIPDataType](./CIPDataType.md) | `GHIElectronics.TinyCLR.EthernetIP.Adapter` |  |
+| [CIPServiceCode](./CIPServiceCode.md) | `GHIElectronics.TinyCLR.EthernetIP.Adapter` |  |
+| [ClassId](./ClassId.md) | `GHIElectronics.TinyCLR.EthernetIP.Adapter` |  |
+| [EncapsulationCommand](./EncapsulationCommand.md) | `GHIElectronics.TinyCLR.EthernetIP.Adapter` |  |
 
 ## Delegates
 
-| Delegate | Summary |
-|---|---|
-| [AfterAssemblyDataReceivedHandler](./AfterAssemblyDataReceivedHandler.md) |  |
-| [BeforeAssemblyDataSendHandler](./BeforeAssemblyDataSendHandler.md) |  |
-| [ForwardCloseHandler](./ForwardCloseHandler.md) |  |
-| [ForwardOpenHandler](./ForwardOpenHandler.md) |  |
-| [NotifyClassHandler](./NotifyClassHandler.md) |  |
-| [ReceivedExplicitTcpDataHandler](./ReceivedExplicitTcpDataHandler.md) |  |
-| [ReceivedExplicitUdpDataHandler](./ReceivedExplicitUdpDataHandler.md) |  |
-| [RegisterSessionHandler](./RegisterSessionHandler.md) |  |
+| Delegate | Namespace | Summary |
+|---|---|---|
+| [AfterAssemblyDataReceivedHandler](./AfterAssemblyDataReceivedHandler.md) | `GHIElectronics.TinyCLR.EthernetIP.Adapter` |  |
+| [BeforeAssemblyDataSendHandler](./BeforeAssemblyDataSendHandler.md) | `GHIElectronics.TinyCLR.EthernetIP.Adapter` |  |
+| [ForwardCloseHandler](./ForwardCloseHandler.md) | `GHIElectronics.TinyCLR.EthernetIP.Adapter` |  |
+| [ForwardOpenHandler](./ForwardOpenHandler.md) | `GHIElectronics.TinyCLR.EthernetIP.Adapter` |  |
+| [NotifyClassHandler](./NotifyClassHandler.md) | `GHIElectronics.TinyCLR.EthernetIP.Adapter` |  |
+| [ReceivedExplicitTcpDataHandler](./ReceivedExplicitTcpDataHandler.md) | `GHIElectronics.TinyCLR.EthernetIP.Adapter` |  |
+| [ReceivedExplicitUdpDataHandler](./ReceivedExplicitUdpDataHandler.md) | `GHIElectronics.TinyCLR.EthernetIP.Adapter` |  |
+| [RegisterSessionHandler](./RegisterSessionHandler.md) | `GHIElectronics.TinyCLR.EthernetIP.Adapter` |  |

@@ -30,3 +30,83 @@ public const int P15
 ```
 
 PWM pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### PA7
+
+```csharp
+public const int PA7
+```
+
+PWM pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### PA7
+
+```csharp
+public const int PA7
+```
+
+PWM pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### PF9
+
+```csharp
+public const int PF9
+```
+
+PWM pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### PA7
+
+```csharp
+public const int PA7
+```
+
+PWM pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### PF9
+
+```csharp
+public const int PF9
+```
+
+PWM pin.

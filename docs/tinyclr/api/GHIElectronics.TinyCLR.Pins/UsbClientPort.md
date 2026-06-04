@@ -22,3 +22,11 @@ public const string UsbOtg
 ```
 
 USB client port.
+
+### UsbOtg
+
+```csharp
+public const string UsbOtg
+```
+
+USB client port.
