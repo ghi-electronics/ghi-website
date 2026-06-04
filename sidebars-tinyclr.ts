@@ -14,6 +14,7 @@ const sidebars: SidebarsConfig = {
         'sbc',
         'dev',
         'experimenter-kit',
+        'special-pins',
       ],
     },
     {
@@ -175,12 +176,10 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Configuration',
-      link: {type: 'doc', id: 'configuration'},
+      label: 'Tools',
       collapsed: true,
       items: [
         'tinyclr-config',
-        'special-pins',
         'bootloader',
       ],
     },

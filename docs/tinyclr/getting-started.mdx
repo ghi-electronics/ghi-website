@@ -4,43 +4,71 @@ sidebar_position: 1
 title: Getting Started
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
-:::
-
 # Getting Started with TinyCLR
 
-Set up the TinyCLR programming environment, install the firmware on a SITCore device, and deploy your first "hello world" — a blinking LED. About 15 minutes start to finish.
+Set up the TinyCLR programming environment, install the firmware on a SITCore device, and deploy your first program — a blinking LED. About 15 minutes start to finish.
+
+## What is TinyCLR?
+
+TinyCLR is a .NET runtime for embedded products from GHI Electronics. You write C# in Visual Studio, deploy and debug over USB, and the same code runs across every [SITCore hardware](hardware.mdx) form factor — chipsets, modules, single-board computers, and dev boards. No JTAG, no external programmer, no separate toolchain.
+
+Out of the box: modern C# (generics, async/await, top-level statements), step debugging in Visual Studio, full peripheral coverage (GPIO, SPI, I²C, UART, networking, displays, file system), security (TLS, secure boot, IP protection, encrypted firmware updates), and cloud SDKs for Azure, AWS, and Google Cloud. Browse the full [features list](features.mdx) for the deep dive.
+
+TinyCLR is royalty-free for SITCore customers.
 
 ## What you'll need
 
-- A **SITCore board** — SoC, SoM, SBC, or Dev Board
-- A Windows PC with **Visual Studio 2022** (the free Community Edition works)
+- A **SITCore board** — [chipset](soc.mdx), [module](som.mdx), [SBC](sbc.mdx), or [Dev Board](dev.mdx). For a fun, structured way to learn, the [Experimenter Kit](experimenter-kit.mdx) bundles a FEZ Bit with sensors, a robot, and a companion eBook.
+- A Windows PC with **Visual Studio 2026** (the free Community Edition works)
 - A USB cable
 
 No JTAG probe, no external programmer, no separate toolchain.
 
 ## Pick your hardware
 
-TinyCLR runs on the SITCore product line. If you haven't picked a board yet, see [SITCore Hardware](hardware.mdx) for the family overview. The **FEZ Flea** is the cheapest entry at $14.95 — plug it into USB and you're running.
-
-## Install firmware on your board
-
-Before TinyCLR can run your code, your SITCore device needs the TinyCLR firmware. The firmware includes the Common Language Runtime that converts compiled C# IL into machine instructions, manages execution on the device, and lets Visual Studio deploy and debug over USB.
-
-Use the [TinyCLR Config](tinyclr-config.mdx) tool to flash the latest firmware on your device.
+TinyCLR runs on the SITCore family — chipsets, modules, single-board computers, and development boards. If you haven't picked one yet, see [SITCore Hardware](hardware.mdx) for the family overview. The **FEZ Flea** is the cheapest entry at $14.95 — plug it into USB and you're running.
 
 ## Set up your development machine
 
-1. **Install Visual Studio 2022.** Any edition works, including the free [Community Edition](https://www.visualstudio.com/downloads/). During install, check the **.NET desktop development** workload.
+1. **Install Visual Studio 2026.** Any edition works, including the free [Community Edition](https://www.visualstudio.com/downloads/). During install, check the **.NET desktop development** workload.
 
 2. **Install the TinyCLR Project System extension.** In Visual Studio, go to `Extensions` → `Manage Extensions`. Select `Online` in the left panel, search for `tinyclr`, and install **TinyCLR OS Project System**. Restart Visual Studio to finish installation.
 
-   ![Installing the TinyCLR extension in Visual Studio](https://docs.ghielectronics.com/software/tinyclr/images/install-tinyclr-extension.gif)
+   ![Installing the TinyCLR extension in Visual Studio](/img/docs/install-tinyclr-extension.gif)
 
    :::note
    Pre-release versions of the Project System aren't published to the Visual Studio Marketplace. Download them directly from the [Downloads](downloads.mdx) page.
    :::
+
+## How a SITCore board starts up
+
+A SITCore device runs three firmware components in order:
+
+1. **GHI Electronics Bootloader** — initializes the chip and hands off to TinyCLR. Hardcoded into the device — can't be changed and never needs to be updated.
+2. **TinyCLR firmware** — executes your managed code.
+3. **Your managed application** — the C# program you write.
+
+The **LDR pin** controls which component runs. Holding LDR low at startup stops the device at the bootloader — that's how you load or update firmware. With LDR high (the default), the device boots into TinyCLR and runs your application.
+
+Two other pins matter at startup:
+
+- **APP** — stops the managed application from running.
+- **MOD** — selects USB or UART for communication with your PC (USB by default).
+
+After startup, all three pins return to default GPIO state and are available as normal GPIO (or peripheral pins) in your application. See [Special Pins](special-pins.mdx) for the full reference, including which pins to expose on custom PCB designs.
+
+## Install or update firmware
+
+Before TinyCLR can run your code, your SITCore device needs the TinyCLR firmware loaded. The firmware includes the Common Language Runtime — it converts compiled C# IL into machine instructions, manages execution on the device, and lets Visual Studio deploy and debug over USB.
+
+The firmware update procedure is the same for every SITCore product:
+
+1. **Activate the bootloader** — hold the LDR signal low while resetting the board. (Each board's pinout shows the LDR pin location.)
+2. **Open the [TinyCLR Config](tinyclr-config.mdx) tool.**
+3. **Connect to the device** — select the correct COM port and click **Connect**. If the device doesn't appear, it isn't in loader mode — recheck the LDR pin and reset.
+4. **Download the firmware** from the [Downloads](downloads.mdx) page. Select the file in TinyCLR Config and click **Update Firmware**.
+
+For manual firmware updates without TinyCLR Config, see the [GHI Electronics Bootloader](bootloader.mdx) page.
 
 ## Start a new project
 
@@ -97,7 +125,7 @@ Let's blink an LED on a SITCore board.
 
 ## Top-level statements
 
-C# 9 top-level statements work too, and most examples in these docs use them — less boilerplate to read. To start a top-level-statement project, follow the steps above but pick the **TinyCLR Application C#9** template instead of the standard C# template.
+C# 9 top-level statements work too, and most examples in these docs use them — less boilerplate to read.
 
 Same NuGet packages, same logic, no namespace or class wrapper:
 
@@ -124,6 +152,6 @@ while (true) {
 
 You've shipped your first TinyCLR program. From here:
 
-- **Browse [features](features.mdx)** — debugging, security, networking, displays, file system, multithreading, and a lot more
-- **Find your board's pinout and specs** in the [SITCore Hardware](hardware.mdx) section
-- **Set up firmware updates and device options** with [TinyCLR Config](tinyclr-config.mdx)
+- **Browse [features](features.mdx)** — debugging, security, networking, displays, file system, multithreading, and a lot more.
+- **Find your board's pinout and specs** in the [SITCore Hardware](hardware.mdx) section.
+- **Set up firmware updates and device options** with [TinyCLR Config](tinyclr-config.mdx).

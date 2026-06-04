@@ -2,144 +2,147 @@
 title: System on Module
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
-:::
-
 ![SITCore SoMs](/img/docs/module-options-size.png)
 
-**TinyCLR on a pre-validated module.** SITCore SoMs ship ready to run TinyCLR — no bring-up, no firmware porting, no surprises. Drop in a 200-pin SO-DIMM or a surface-mount module and you have a complete embedded computing block to integrate into your product.
+**TinyCLR on a pre-validated module.** SITCore SoMs take an [SC20-series SoC](soc.mdx) and pre-package it with external SDRAM, flash, networking, and supporting components — drop the module onto your carrier board and skip the chip-level bring-up.
 
 ## Overview
-The SITCore SoMs provide a low cost way to add .NET computing power to any embedded product. They are available in a 200 pin SO-DIMM format or as surface mount modules. The SITCore SoMs let you design IoT products that are secure, easily integrated with the cloud, and can be easily managed and updated from the cloud for deployments of one to a million or more. The surface mount versions are great for harsh or high vibration environments.
+
+A SITCore SoM is a SITCore SoC plus everything around it that you would otherwise have to design, source, and debug yourself: external SDRAM, QSPI flash, oscillators, decoupling, and (on most modules) an Ethernet PHY. The result is a complete embedded computing block — pin-compatible with itself across the family, validated to run TinyCLR out of the box.
+
+Two physical formats are available:
+
+- **Surface-mount modules** — solder directly to your board. Good for harsh or high-vibration environments.
+- **200-pin SO-DIMM** — socketed (SCM20260D), swappable, ideal for prototyping or field-serviceable products.
+
+All SoMs are built on the **SC20xxx SoC family** — Cortex-M7 at 480 MHz, full peripheral set, on-chip TinyCLR firmware. See [System on Chip](soc.mdx) for the underlying chipset details.
 
 ### Features
-* Low power modes including three independently controllable power domains
-* RTC
-* Watchdog
-* Threading
-* TCP/IP with SSL
-  * Full .NET socket interface
-  * Ethernet
-  * PPP
-* Graphics
-  * Images
-  * Fonts
-  * Controls
-* File System
-  * Full .NET file interface
-  * SD cards
-  * USB drives
-* Signal controls
-  * Generation
-  * Capture
-  * Pulse measurement
+
+- Low-power modes with three independently controllable power domains
+- RTC
+- Watchdog
+- Threading
+- TCP/IP with SSL
+  - Full .NET socket interface
+  - Ethernet
+  - PPP
+- Graphics
+  - Images
+  - Fonts
+  - Controls
+- File System
+  - Full .NET file interface
+  - SD cards
+  - USB drives
+- Signal controls
+  - Generation
+  - Capture
+  - Pulse measurement
 
 ---
 
-## Specifications
+## Module comparison
 
-| Spec                   | All SITCore SoMs          |
-|------------------------|---------------------------|
-| **Processor Type**     | ARM Cortex-M7 32 Bit      |
-| **Speed**              | 480 MHz                   |
-| **Internal RAM**       | 1 MByte                   |
-| **Internal Flash**     | 2 MByte                   |
-| **Instruction Cache**  | 16 KByte                  |
-| **Data Cache**         | 16 KByte                  |
-| **Temperature Range**  | -40C to +85C              |
+| Spec               | SCM20100E      | SCM20260N      | SCM20260E      | SCM20260D      |
+|--------------------|----------------|----------------|----------------|----------------|
+| **Speed**          | 480 MHz        | 480 MHz        | 480 MHz        | 480 MHz        |
+| **Internal RAM**   | 1 MByte        | 1 MByte        | 1 MByte        | 1 MByte        |
+| **Internal flash** | 2 MByte        | 2 MByte        | 2 MByte        | 2 MByte        |
+| **External SDRAM** | None           | 32 MByte       | 32 MByte       | 32 MByte       |
+| **External flash** | None           | 16 MByte       | 16 MByte       | 16 MByte       |
+| **Temperature**    | −40°C to +85°C | −40°C to +85°C | −40°C to +85°C | −40°C to +85°C |
+| **GPIO**           | 43             | 79             | 85             | 108            |
+| **SPI**            | 2              | 3              | 3              | 3              |
+| **I²C**            | 1              | 1              | 3              | 3              |
+| **UART**           | 4 (2 w/ H.S.)  | 7 (4 w/ H.S.)  | 8 (4 w/ H.S.)  | 8 (4 w/ H.S.)  |
+| **CAN**            | 1              | 2              | 2              | 2              |
+| **PWM**            | 12             | 22             | 23             | 28             |
+| **ADC**            | 6              | 16             | 15             | 20             |
+| **DAC**            | 2              | 2              | 1              | 2              |
+| **SD/SDIO/MMC**    | 1              | 1              | 1              | 1              |
+| **USB host**       | 1              | 1              | 1              | 1              |
+| **USB client**     | 1              | 1              | 1              | 1              |
+| **Ethernet**       | 1              | 0              | 1              | 1              |
+| **LCD TFT**        | 0              | 1              | 1              | 1              |
+| **Camera**         | 0              | 1              | 1              | 1              |
 
-*Note: Resources are shared between your application and the operating system.*
-
----
-
-## Peripherals
-
-| Peripheral                 | SCM20100E     | SCM20260N     | SCM20260E     | SCM20260D     |
-|----------------------------|---------------|---------------|---------------|---------------|
-| **External SDRAM**         | None          | 32 MByte      | 32 MByte      | 32 MByte      |
-| **External Flash**         | None          | 16 MByte      | 16 MByte      | 16 MByte      |
-| **GPIO**                   | 43            | 79            | 85            | 108           |
-| **SPI**                    | 2             | 3             | 3             | 3             |
-| **I2C**                    | 1             | 1             | 3             | 3             |
-| **UART**                   | 4 (2 w/ H.S.) | 7 (4 w/ H.S.) | 8 (4 w/ H.S.) | 8 (4 w/ H.S.) |
-| **CAN**                    | 1             | 2             | 2             | 2             |
-| **PWM**                    | 12            | 22            | 23            | 28            |
-| **ADC**                    | 6             | 16            | 15            | 20            |
-| **DAC**                    | 2             | 2             | 1             | 2             |
-| **SD/SDIP/MMC**            | 1             | 1             | 1             | 1             |
-| **USB Host**               | 1             | 1             | 1             | 1             |
-| **USB Client**             | 1             | 1             | 1             | 1             |
-| **Ethernet**               | 1             | 0             | 1             | 1             |
-| **LCD TFT**                | 0             | 1             | 1             | 1             |
-| **Camera**                 | 0             | 1             | 1             | 1             |
-
-*Note: As many pins share peripherals, not all peripherals will be available.*
+:::note
+Many pins share peripherals — not all peripherals will be available simultaneously. Resources are shared between your application and the operating system.
+:::
 
 ---
 
-## Power Consumption
+## Power consumption
 
-### SCM20260D/E
+### SCM20260D / SCM20260E
 
-|                 | 480MHz          |   240MHz        |   w/ Ethernet   |             
-|----------------------------|-----------------|-----------------|-----------------|
-| **Running**                | 205mA           | 110mA           | +90mA           |
-| **Idle**                   | 170mA           | 97mA            | +90mA           | 
-| **Sleep**                  | 6.5mA           | 6.5mA           | +18mA           | 
-| **Shutdown**               | 40uA            | 40uA            | +18mA           | 
+|              | 480 MHz | 240 MHz | w/ Ethernet |
+|--------------|---------|---------|-------------|
+| **Running**  | 205 mA  | 110 mA  | +90 mA      |
+| **Idle**     | 170 mA  | 97 mA   | +90 mA      |
+| **Sleep**    | 6.5 mA  | 6.5 mA  | +18 mA      |
+| **Shutdown** | 40 µA   | 40 µA   | +18 mA      |
 
 ### SCM20260N
 
-|                   | 480MHz          |   240MHz        |        
-|----------------------------|-----------------|-----------------|
-| **Running**                | 205mA           | 110mA           |
-| **Idle**                   | 170mA           | 97mA            |
-| **Sleep**                  | 6.5mA           | 6.5mA           |
-| **Shutdown**               | 1.4mA           | 1.4mA           |
+|              | 480 MHz | 240 MHz |
+|--------------|---------|---------|
+| **Running**  | 205 mA  | 110 mA  |
+| **Idle**     | 170 mA  | 97 mA   |
+| **Sleep**    | 6.5 mA  | 6.5 mA  |
+| **Shutdown** | 1.4 mA  | 1.4 mA  |
 
 ### SCM20100E
 
-|                   | 480MHz          |   240MHz        |   w/ Ethernet   |             
-|----------------------------|-----------------|-----------------|-----------------|
-| **Running**                | 205mA           | 110mA           | +90mA           |
-| **Idle**                   | 170mA           | 97mA            | +90mA           | 
-| **Sleep**                  | 6.5mA           | 6.5mA           | +18mA           | 
-| **Shutdown**               | 40uA            | 40uA            | +18mA           | 
+|              | 480 MHz | 240 MHz | w/ Ethernet |
+|--------------|---------|---------|-------------|
+| **Running**  | 205 mA  | 110 mA  | +90 mA      |
+| **Idle**     | 170 mA  | 97 mA   | +90 mA      |
+| **Sleep**    | 6.5 mA  | 6.5 mA  | +18 mA      |
+| **Shutdown** | 40 µA   | 40 µA   | +18 mA      |
 
-See the [Power Management](http://docs.ghielectronics.com/software/tinyclr/tutorials/power-management.html) tutorial
-
----
-
-## Using Interrupts (IRQs)
-
-The microcontrollers we use in our SITCore line of products do not support concurrent interrupts with the same pin number, even if the pins are on different ports (the port is denoted by the second letter of the GPIO pin name -- PA1 is pin 1 on port A). Therefore, interrupts are available on only 16 pins at any given time. For example, pins PA1 and PB1 cannot be used as interrupt pins at the same time, but PA1 and PB2 can. PA1 and PA2 can also be used with interrupts simultaneously.
+See the [Power Management](/docs/tinyclr/feature/power-management) feature page for details.
 
 ---
 
-## Module Pinouts
+## Interrupts (IRQs)
 
-### SCM20100E Pinout
-[![SCm20100E Pinout](/img/docs/scm20100e-pinout.gif)](pathname:///pdf/scm20100e-pinout.pdf)
+The microcontrollers used in the SITCore line do not support concurrent interrupts on the same pin number, even across different ports. (The port is denoted by the second letter of the GPIO pin name — PA1 is pin 1 on port A.)
 
-### SCM20260N Pinout
-[![SCm20260N Pinout](/img/docs/scm20260n-pinout.gif)](pathname:///pdf/scm20260n-pinout.pdf)
+In practice: interrupts are available on **up to 16 distinct pin numbers at a time**. PA1 and PB1 cannot both be interrupt pins simultaneously; PA1 and PB2 can. PA1 and PA2 can also be used with interrupts at the same time.
 
-### SCM20260E Pinout
-[![SCm20260E Pinout](/img/docs/scm20260e-pinout.gif)](pathname:///pdf/scm20260e-pinout.pdf)
+---
 
-### SCM20260D Pinout
-[![SCm20260D Pinout](/img/docs/scm20260d-pinout.gif)](pathname:///pdf/scm20260d-pinout.pdf)
+## Pinouts
+
+### SCM20100E
+
+[![SCM20100E Pinout](/img/docs/scm20100e-pinout.gif)](pathname:///pdf/scm20100e-pinout.pdf)
+
+### SCM20260N
+
+[![SCM20260N Pinout](/img/docs/scm20260n-pinout.gif)](pathname:///pdf/scm20260n-pinout.pdf)
+
+### SCM20260E
+
+[![SCM20260E Pinout](/img/docs/scm20260e-pinout.gif)](pathname:///pdf/scm20260e-pinout.pdf)
+
+### SCM20260D
+
+[![SCM20260D Pinout](/img/docs/scm20260d-pinout.gif)](pathname:///pdf/scm20260d-pinout.pdf)
 
 ---
 
 ## Schematics
+
 - [SCM20100E Schematic](pathname:///pdf/scm20100e-rev-b-schematic.pdf)
 - [SCM20260N Schematic](pathname:///pdf/scm20260n-rev-c-schematic.pdf)
 - [SCM20260E Schematic](pathname:///pdf/scm20260e-rev-b-schematic.pdf)
 - [SCM20260D Schematic](pathname:///pdf/scm20260d-rev-c-schematic.pdf)
 
 ## 3D STEP files
+
 - [SCM20100E STEP File](http://files.ghielectronics.com/downloads/3D/SITCore/SoM/SCM20100E%20Rev%20B.step)
 - [SCM20260N STEP File](http://files.ghielectronics.com/downloads/3D/SITCore/SoM/SCM20260N%20Rev%20C.step)
 - [SCM20260E STEP File](http://files.ghielectronics.com/downloads/3D/SITCore/SoM/SCM20260E%20Rev%20B.step)
@@ -147,67 +150,90 @@ The microcontrollers we use in our SITCore line of products do not support concu
 
 ---
 
-## Getting Started
-As the SITCore modules are based on the SITCore chipset, please refer to the [SITCore SoC page](soc.mdx) for information on device startup, loading TinyCLR OS firmware, and writing and deploying your application.
+## Getting started
 
-## Design Considerations
+SITCore SoMs run TinyCLR with the same firmware and tooling as the underlying SoCs.
+
+1. Mount the module on your carrier board or a [SITCore Dev Board](dev.mdx).
+2. Connect to your PC via USB.
+3. Install Visual Studio (Community Edition works) and the TinyCLR tooling.
+4. Load the firmware (if needed) and deploy your first application.
+
+See [Getting Started](/docs/tinyclr/) for the full walkthrough.
+
+---
+
+## Design considerations
 
 ### Footprints
 
-We recommend no traces or vias under the module. Dimensions are in inches.
+No traces or vias under the module. Dimensions are in inches.
 
-#### SCM20100E Recommended Footprint
+#### SCM20100E
+
 ![SCM20100E Footprint](/img/docs/scm20100e-footprint.jpg)
 
-#### SCM20260N Recommended Footprint
+#### SCM20260N
+
 ![SCM20260N Footprint](/img/docs/g120-footprint.jpg)
 
-#### SCM20260E Recommended Footprint
+#### SCM20260E
+
 ![SCM20260E Footprint](/img/docs/scm20260e-footprint.jpg)
 
-### SCM20260D SO-DIMM Socket
-![200 pin DDR2 SO-DIMM socket](/img/docs/200-pin-ddr2-so-dimm.jpg)
+### SCM20260D SO-DIMM socket
 
-The SCM20260D uses the same 200 pin SO-DIMM socket that was originally made for DDR2 memory modules. You can make a custom SO-DIMM SITCore circuit board by adding the appropriate SO-DIMM socket to your circuit board.
+![200-pin DDR2 SO-DIMM socket](/img/docs/200-pin-ddr2-so-dimm.jpg)
 
-:::tip
-Make sure to expose the required pins in your design. Specific pins are needed for device programming, updates, recovery, and WiFi firmware updates. See the [**Special Pins**](/docs/tinyclr/special-pins) page and the device specifications for details.
-:::
+SO-DIMM stands for Small Outline Dual Inline Memory Module. There are two different 200-pin SO-DIMM sockets — one for DDR memory and one for DDR2 memory. They are identical except for a slightly offset orientation notch, and the two are **not interchangeable**. There is also a 204-pin SO-DIMM socket for DDR3 memory with the notch positioned closer to the center.
 
-SO-DIMM stands for Small Outline Dual Inline Memory Module. There are two different 200 pin SO-DIMM sockets, those made for DDR memory and those made for DDR2 memory. They are identical except for the orientation notch which is in a slightly different position. These sockets are not interchangeable. There is also a 204 pin SO-DIMM socket for DDR3 memory with the notch positioned closer to the center of the module.
+SITCore SO-DIMM modules are only compatible with DDR2-type 200-pin SO-DIMM sockets. Connector reference (TE Connectivity): [EMBOSS ASSY DDR2 SODIMM SOCKET 200P 5.2H](http://www.te.com/usa-en/product-1565917-4.html).
 
-:::note
-Our UCMs are only compatible with DDR2 type 200 pin SO-DIMM sockets.
-:::
+### Required pins
 
-Here is a link to the manufacturer's web page for the connector we use on our boards: [EMBOSS ASSY DDR2 SODIMM SOCKET 200P 5.2H](http://www.te.com/usa-en/product-1565917-4.html)
+Expose the following pins in every design to enable device programming, updates, and recovery:
 
-### Required Pins
-Exposing the following pins is required in every design to enable device programming, updates, and recovery:
-* RESET
-* LDR
-* APP
-* MOD (if required to select a debug interface)
-* Desired debug interface(s)
+- RESET
+- LDR
+- APP
+- MOD (if required to select a debug interface)
+- Desired debug interface(s)
 
-For information on these and other important pins, please refer to the [Special Pins](/docs/tinyclr/special-pins) page.
+For more on these and other important pins, see [Special Pins](/docs/tinyclr/special-pins).
 
-### Power Supply
-A clean power source, suitable for digital circuitry, is needed to power SITCore SoMs. Voltages should be regulated to within 10% or better of the specified voltage. Additionally, a large capacitor, typically 47 uF, should be placed near the SoM if the power supply is more than few inches away.
+### Power supply
 
-### Analog Considerations
-Where these pins are provided, using a separate filtered supply for `Analog 3.3V` and `Analog VREF+` may help to improve ADC accuracy by reducing analog supply noise. For the same reason, you may want to provide a separate and clean analog ground for the `Analog GND` and `Analog VREF-`, if these pads are provided on the SoM you are using.
+A clean digital power source is required. Voltages should be regulated within 10% of the specified voltage. Place a larger 47 µF capacitor near the SoM if the power supply is more than a few inches away.
 
-### Oven Reflow Profile
+### Analog considerations
 
-SITCore SoMs are not sealed for moisture. Baking modules before reflow is recommended and required in a humid environment. The process of reflow can damage the SoM if the temperature is too high or exposure is too long.
+Where these pins are provided, using a separate filtered supply for `Analog 3.3V` and `Analog VREF+` improves ADC accuracy by reducing analog supply noise. For the same reason, provide a separate clean analog ground for `Analog GND` and `Analog VREF-` when those pads are available on the SoM.
 
-The lead-free reflow profiles used by GHI Electronics are shown below. The profiles are based on AIM SAC 305 solder (3% silver, 0.5% copper). The thermal mass of the assembled board and the sensitivity of the components on it affect the total dwell time. Differences in the two profiles are where they reach their respective peak temperatures as well as the time above liquids (TAL). The shorter profile applies to smaller assemblies, whereas the longer profile applies to larger assemblies such as back-planes or high-density boards. The process window is described by the shaded area. These profiles are only starting-points and general guidance. The particulars of the oven and the assembly will determine the final process.
+### Oven reflow profile
+
+SITCore SoMs are not sealed for moisture. **Bake modules before reflow** — required in humid environments. Reflow can damage the SoM if temperature is too high or exposure too long.
+
+GHI Electronics uses lead-free reflow profiles based on AIM SAC 305 solder (3% silver, 0.5% copper). The thermal mass of the assembled board and the sensitivity of its components affect total dwell time. The two profiles below differ in peak temperature and time above liquids (TAL): the shorter applies to smaller assemblies; the longer applies to larger ones (back-planes, high-density boards). The shaded area shows the process window. These are starting points — your oven and assembly determine the final process.
 
 [![Reflow Chart](/img/docs/reflow-profile.gif)](pathname:///pdf/ws483-sac305-solder-paste-datasheet.pdf)
 
 ---
 
-## SITCore Dev Boards
+## Ordering
 
-We offer SITCore development boards to get you started as quickly and easily as possible. These boards allow you to start programming in minutes, and are suitable for both prototypes and production. Click [here](dev.mdx) for details.
+| Part number | Description | MSRP |
+|---|---|---|
+| SCM-20260D-C | SITCore SCM20260D SoM | $77.95 @100 |
+| SCM-20260E-B | SITCore SCM20260E SoM | $68.95 @100 |
+| SCM-20260N-C | SITCore SCM20260N SoM | $61.95 @100 |
+| SCM-20100E-B | SITCore SCM20100E SoM | $45.95 @100 |
+
+All SITCore modules are available through our [global distributors](/distributors/).
+
+---
+
+## See also
+
+- **[System on Chip](soc.mdx)** — the SC20-series chipsets that these SoMs are built on. The SoC page covers startup, firmware loading, and lower-level design considerations that also apply to SoM-based designs.
+- **[Development Board](dev.mdx)** — ready-to-go evaluation hardware that uses these modules. Useful for bringing up TinyCLR before committing to a custom carrier design.
+- **[Single Board Computer](sbc.mdx)** — fully assembled boards. The FEZ Portal SBC is built on the SCM20260 SoM.
