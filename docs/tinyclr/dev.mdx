@@ -2,155 +2,151 @@
 title: Development Board
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
+![SITCore Development Boards](/img/docs/sitcore-dev-boards.png)
+
+**Evaluate TinyCLR with everything plugged in.** SITCore Dev Boards are complete evaluation platforms — display, peripherals, click connectors, debug headers, all wired up. The fastest path from "I want to try TinyCLR" to "I'm writing production-realistic firmware on something stable."
+
+## Overview
+
+Dev Boards are built for teams evaluating TinyCLR for a commercial product. Each board pairs a SITCore chipset or module with the surrounding hardware you'd otherwise have to build yourself — display, debug headers, peripheral connectors — so you can focus on the software from minute one.
+
+Three boards span the lineup:
+
+- **[SCM20260D Dev](#scm20260d-dev-board)** — built around the SCM20260D [SoM](som.mdx). Cortex-M7 at 480 MHz, 4.3″ capacitive touch display, Ethernet, camera connector. The full-featured eval platform.
+- **[SC20100S Dev](#sc20100s-dev-board)** — built around the SC20100S [SoC](soc.mdx). Cortex-M7 at 480 MHz, 1.8″ display, dual mikroBUS, SD card slot.
+- **[SC13048Q Dev](#sc13048q-dev-board)** — built around the SC13048Q [SoC](soc.mdx). Cortex-M4 at 80 MHz, 1.8″ display, single mikroBUS. The compact, low-power option.
+
+## Board comparison
+
+| Spec                    | SCM20260D Dev                          | SC20100S Dev      | SC13048Q Dev      |
+|-------------------------|----------------------------------------|-------------------|-------------------|
+| **Chipset / module**    | SCM20260D SoM                          | SC20100S SoC      | SC13048Q SoC      |
+| **Speed**               | 480 MHz                                | 480 MHz           | 80 MHz            |
+| **Display**             | 4.3″ 480×272 cap. touch (7″ optional)  | 1.8″ 160×128      | 1.8″ 160×128      |
+| **mikroBUS slots**      | 2                                      | 2                 | 1                 |
+| **USB client**          | ✓                                      | ✓                 | ✓                 |
+| **USB host**            | ✓                                      | ✓                 | —                 |
+| **SD card slot**        | ✓                                      | ✓                 | —                 |
+| **Camera connector**    | ✓                                      | —                 | —                 |
+| **Ethernet connector**  | ✓                                      | —                 | —                 |
+| **CAN transceiver**     | ✓                                      | ✓                 | ✓                 |
+| **Buzzer**              | ✓                                      | ✓                 | ✓                 |
+| **Supercap RTC backup** | ✓                                      | ✓                 | ✓                 |
+| **Barrel power jack**   | ✓                                      | ✓                 | ✓                 |
+| **HDMI option**         | ✓ (via adaptor)                        | —                 | —                 |
+
+---
+
+## Getting started
+
+Dev Boards ship ready to run TinyCLR — plug in and code.
+
+1. Connect the board's USB client port to your PC with a USB-C cable.
+2. Install Visual Studio (Community Edition works) and the TinyCLR tooling.
+3. Update the board's firmware if needed.
+4. Deploy your first application from Visual Studio.
+
+For the **SCM20260D Dev**, install the SCM20260D SoM into the SO-DIMM socket and plug in the display ribbon cable before powering up.
+
+See [Getting Started](/docs/tinyclr/) for the full walkthrough.
+
+---
+
+## Powering the boards
+
+All three Dev Boards can be powered through either the USB client connector or the barrel jack.
+
+:::tip
+**Always use the barrel jack when a display is connected.** USB does not provide sufficient current for the display backlight — especially with the 4.3″ and 7″ panels on the SCM20260D Dev.
 :::
-
-![Development Options](/img/docs/sitcore-dev-boards.png)
-
-**Evaluate TinyCLR with everything plugged in.** SITCore dev boards are complete evaluation platforms — display, peripherals, click connectors, debug headers, all wired up. The fastest path from "I want to try TinyCLR" to "I'm writing production-realistic firmware on something stable."
-
-We offer three development boards making it possible to start programming applications within minutes without designing or building new hardware. These boards are not only suitable for prototypes, but for short production runs as well.
-
-## SITCore SC13048Q Dev Board
-
-![Development Options](/img/docs/sc13048q.png)
-
-The SC13048Q Dev Board includes an SC13048Q soldered to the board and a built in 1.8 inch color serial display. It has a 10 pin socket header for connecting peripherals. Peripheral connectors include mikroBus connector, external power, CAN, USB host and client and RTC backup supercap.  It also has a buzzer, LEDs, a reset button, and user programmable boot buttons.
-
-To start development using the SC13048Q Dev Board, just connect the board's USB Client port to a host computer using a USB-C cable. Go to the [Getting Started](/docs/tinyclr/) page in the TinyCLR section of the documentation page for further instructions.
-
-The board can be powered through either the USB client connectors or the barrel jack. Always use the barrel jack for power when using the display. USB does not provide sufficient power needed for displays.
-
-[SC13048Q Dev Board Schematic](pathname:///pdf/sc13048q-dev-rev-b-schematic.pdf)
-
-[SC13048Q Dev Board 3D STEP File](http://files.ghielectronics.com/downloads/3D/SITCore/Dev/SC13048Q%20Dev%20Rev%20C.step)
 
 :::note
-All boards with a barrel power jack accept a 5.5 x 2.1 mm power plug. The pin is positive, the sleeve is negative.
+Barrel jacks accept a 5.5 × 2.1 mm power plug — pin positive, sleeve negative. Boards accept a wide voltage range but use linear regulators that run hotter with higher input voltages. **Recommended input: 6–12 V.** For high-current projects, use a lower voltage to keep the regulator cooler.
 :::
 
-:::note
-SC13048 Dev board uses linear voltage regulators that run hotter with higher input voltages. Generally we recommend an input voltage of 6 to 12 volts, but if your project draws a lot of current, use a lower voltage to keep the regulator cooler.
-:::
+---
 
-## SITCore SC20100S Dev Board
+## SCM20260D Dev Board
 
-![Development Options](/img/docs/sc20100s.png)
+![SCM20260D Dev Board](/img/docs/scm20260d.png)
 
-The SC20100S Dev Board includes an SC20100S soldered to the board and a built in 1.8 inch color serial display. It has a 40 pin socket headers for connecting peripherals. Peripheral connectors include two mikroBus connectors, external power, CAN, USB host and client, RTC supercap and an SD card slot.  It also has a buzzer, LEDs, a reset button, and user programmable boot buttons.
+The SCM20260D Dev Board is built around the **SCM20260D** [SoM](som.mdx) — Cortex-M7 at 480 MHz, 32 MB external SDRAM, 16 MB external flash, on-board Ethernet PHY. The board pairs the module with a 4.3″ capacitive touch display, two 40-pin peripheral header rows, two mikroBUS slots, Ethernet, CAN, USB host and client, an SD card slot, a parallel camera interface (DCMI), supercap RTC backup, a buzzer, user LEDs, a reset button, and user-programmable boot buttons.
 
-To start development using the SC20100S Dev Board, just connect the board's USB Client port to a host computer using a USB-C cable. Go to the [Getting Started](/docs/tinyclr/) page in the TinyCLR section of the documentation page for further instructions.
+Install the module into the SO-DIMM socket, plug in the display (if used), and connect USB to start coding.
 
-The board can be powered through either the USB client connectors or the barrel jack. Always use the barrel jack for power when using displays, especially the larger ones. USB does not provide sufficient power needed for displays.
+[SCM20260D Dev Board Schematic](pathname:///pdf/scm20260d-dev-rev-c-schematic.pdf) · [SCM20260D Dev Board 3D STEP File](http://files.ghielectronics.com/downloads/3D/SITCore/Dev/SCM20260D%20Dev%20Rev%20C.step)
 
-[SC20100S Dev Board Schematic](pathname:///pdf/sc20100s-dev-rev-c-schematic.pdf)
+### Display options
 
-[SC20100S Dev Board 3D STEP File](http://files.ghielectronics.com/downloads/3D/SITCore/Dev/SC20100S%20Dev%20Rev%20C.step)
+The SCM20260D Dev exposes a header with all parallel display signals plus I²C and GPIO for capacitive touch. Two display options ship from GHI Electronics, plus an HDMI adaptor.
 
-:::note
-All boards with a barrel power jack accept a 5.5 x 2.1 mm power plug. The pin is positive, the sleeve is negative.
-:::
-
-## SITCore SCM20260D Dev Board
-
-![Development Options](/img/docs/scm20260d.png)
-
-The SCM20260D Dev Board is the fastest and easiest way to start developing with the SCM20260D. This board includes an SCM20260D DIMM module and a 4.3 inch capacitive touch display. It provides standard connectors for input/output, and two 40 pin socket headers for connecting peripherals and a display. Peripheral connectors include two mikroBus connectors, external power, Ethernet, CAN, USB host and client, RTC supercap, DCMI interface and an SD card slot.  It also has a buzzer, LEDs, a reset button, and user programmable boot buttons.
-
-To start development using the SCM20260D Dev Board, just install the module on the board, plug in the display (if needed), and connect the board's USB Client port to a host computer using a USB-C cable. Go to the [Getting Started](/docs/tinyclr/) page in the TinyCLR section of the documentation page for further instructions.
-
-The board can be powered through either the USB client connectors or the barrel jack. Always use the barrel jack for power when using displays, especially the larger ones. USB does not provide sufficient power needed for displays.
-
-[SCM20260D Dev Board Schematic](pathname:///pdf/scm20260d-dev-rev-c-schematic.pdf)
-
-[SCM20260D Dev Board 3D STEP File](http://files.ghielectronics.com/downloads/3D/SITCore/Dev/SCM20260D%20Dev%20Rev%20C.step)
-
-:::note
-All boards with a barrel power jack accept a 5.5 x 2.1 mm power plug. The pin is positive, the sleeve is negative.
-:::
-
-### SC20260 Dev Display Options
-
-One of the headers on the SCM20260 Dev board includes all necessary parallel display signals. It also includes I2C and a couple of GPIOs allowing for support of capacitive touch panels. Out-of-the-box, the SCM20260 Dev board includes a 4.3" display with capacitive touch. A 7" display is also available. 
-
-#### UD435 Display Adaptor
+#### UD435 — 4.3″ capacitive touch
 
 ![UD435](/img/docs/ud435.png)
 
-This display is included with the SCM20260D Dev board.
+Ships included with the SCM20260D Dev Board. 4.3″ 480×272 TFT with capacitive touch — uses I²C1 for touch and PJ14 for the touch interrupt. Backlight is controllable through PA15.
 
-* Display Module: [ER-TFT043-3](https://www.buydisplay.com/)
-* Touch Panel: [ER-TPC043-2](https://www.buydisplay.com/)
+- Display module: [ER-TFT043-3](https://www.buydisplay.com/)
+- Touch panel: [ER-TPC043-2](https://www.buydisplay.com/)
+- [4.3″ Display Module Schematic](pathname:///pdf/ud435-rev-b-schematic.pdf)
 
-[4.3" Display Module Schematic](pathname:///pdf/ud435-rev-b-schematic.pdf)
+See the [TinyCLR Samples repo](https://github.com/ghi-electronics/TinyCLR-Samples) for usage examples, and the [Graphics](/docs/tinyclr/feature/graphics) and [Display](/docs/tinyclr/feature/displays) feature pages for deeper documentation.
 
-This display module has a 4.3" 480x272 TFT display with a capacitive touch screen. It plugs directly into the SCM20260D Dev Board and uses I2C1 for capacitive touch and PJ14 for the touch interrupt. The backlight is controllable through PA15.
+**Display configuration values:**
 
-The [TinyCLR Samples repo](https://github.com/ghi-electronics/TinyCLR-Samples) has usage examples. You can learn more in the [Graphics](/docs/tinyclr/feature/graphics) and [Display](/docs/tinyclr/feature/displays) sections of the TinyCLR tutorials.
+| Property                    | Value                              |
+|-----------------------------|------------------------------------|
+| Width                       | 480                                |
+| Height                      | 272                                |
+| DataFormat                  | RGB56                              |
+| Pixel Clock Rate            | `8_000_000 <= x <= 24_000_000` Hz  |
+| Pixel Polarity              | low                                |
+| DataEnable Is Fixed         | false                              |
+| DataEnable Polarity         | low                                |
+| Horizontal Back Porch       | 46                                 |
+| Horizontal Front Porch      | 16                                 |
+| Horizontal Sync Polarity    | low                                |
+| Horizontal Sync Pulse Width | 1                                  |
+| Vertical Back Porch         | 23                                 |
+| Vertical Front Porch        | 7                                  |
+| Vertical Sync Polarity      | low                                |
+| Vertical Sync Pulse Width   | 1                                  |
 
-See below for the display configuration values:
-
-Property | Value
----------|---------
-Width | 480
-Height | 272
-DataFormat | RGB56
-Pixel Clock Rate | `8_000_000 <= x <= 24_000_000` //MHz
-Pixel Polarity | low
-DataEnable Is Fixed | false
-DataEnable Polarity | low
-Horizontal Back Porch | 46
-Horizontal Front Porch | 16
-Horizontal Sync Polarity | low
-Horizontal Sync Pulse Width | 1
-Vertical Back Porch | 23
-Vertical Front Porch | 7
-Vertical Sync Polarity | low
-Vertical Sync Pulse Width | 1
-
-#### UD700 Display Adaptor
+#### UD700 — 7″ capacitive touch
 
 ![UD700](/img/docs/ud700.png)
 
-This display is a special order option. [Contact Us](https://www.ghielectronics.com/contact/).
+Special order option — [contact us](https://www.ghielectronics.com/contact/) to order. 7″ 800×480 TFT with capacitive touch — same touch and backlight pins as UD435.
 
-* Display Module: [ER-TFT070A2-4](https://www.buydisplay.com/)
-* Touch Panel: [ER-TPC07-4](https://www.buydisplay.com/)
+- Display module: [ER-TFT070A2-4](https://www.buydisplay.com/)
+- Touch panel: [ER-TPC07-4](https://www.buydisplay.com/)
+- [7″ Display Module Schematic](pathname:///pdf/ud435-rev-b-schematic.pdf)
 
-[7" Display Module Schematic](pathname:///pdf/ud435-rev-b-schematic.pdf)
+**Display configuration values:**
 
-This display module has a 7" 800x480 TFT display with a capacitive touch screen. It plugs directly into the SCM20260D Dev Board and uses I2C1 for capacitive touch and PJ14 for the touch interrupt. The backlight is controllable through PA15.
+| Property                    | Value                              |
+|-----------------------------|------------------------------------|
+| Width                       | 800                                |
+| Height                      | 480                                |
+| DataFormat                  | RGB565                             |
+| Pixel Clock Rate            | `8_000_000 <= x <= 24_000_000` Hz  |
+| Pixel Polarity              | false                              |
+| DataEnable Is Fixed         | false                              |
+| DataEnable Polarity         | low                                |
+| Horizontal Back Porch       | 46                                 |
+| Horizontal Front Porch      | 16                                 |
+| Horizontal Sync Polarity    | false                              |
+| Horizontal Sync Pulse Width | 1                                  |
+| Vertical Back Porch         | 23                                 |
+| Vertical Front Porch        | 7                                  |
+| Vertical Sync Polarity      | false                              |
+| Vertical Sync Pulse Width   | 1                                  |
 
-The [TinyCLR Samples repo](https://github.com/ghi-electronics/TinyCLR-Samples) has usage examples. You can learn more in the [Graphics](/docs/tinyclr/feature/graphics) and [Display](/docs/tinyclr/feature/displays) sections of the TinyCLR tutorials.
+#### HDMI adaptor
 
-See below for the display configuration values:
+![HDMI Adaptor](/img/docs/sitcore-hdmi.png)
 
-Property | Value
----------|---------
-Width | 800
-Height | 480
-DataFormat | RGB565
-Pixel Clock Rate | `8_000_000 <= x <= 24_000_000` //MHz
-Pixel Polarity | false
-DataEnable Is Fixed | false
-DataEnable Polarity | low
-Horizontal Back Porch | 46
-Horizontal Front Porch | 16
-Horizontal Sync Polarity | false
-Horizontal Sync Pulse Width | 1
-Vertical Back Porch | 23
-Vertical Front Porch | 7
-Vertical Sync Polarity | false
-Vertical Sync Pulse Width | 1
-
-#### HDMI Adaptor
-
-![hdmi](/img/docs/sitcore-hdmi.png)
-
-This optional HDMI adaptor can be used instead of the display to provide an HDMI option. The board utilizes TI's TFP410 HDMI transmitter chip. 
-
-A NuGet driver library is provided as well. The driver automatically sets all the configuration internally.
+Optional adaptor that replaces the display with an HDMI output. Built around TI's TFP410 HDMI transmitter. A NuGet driver library handles the configuration internally:
 
 ```csharp
 var hdmi = new TFP410Controller(i2cController, Resolution.HD720p, DisplayOrientation.Degrees0, resetPin);
@@ -159,34 +155,75 @@ displayController.SetConfiguration(hdmi.Configuration);
 
 [SITCore HDMI Adaptor Schematic](pathname:///pdf/scd-hdmi-a-schematic.pdf)
 
-### SC20260 Dev Camera Options
+### Camera options
 
-The SC20260 SoC and its related SoMs include a parallel Digital Camera Interface. The Dev Board exposes the camera signals on a dedicated header. While any compatible display can be connected, the pinout matches the popular OV9655 breakout board, available from many sources around the web and shown below:
+The SC20260 chip and the SCM20260 modules include a parallel Digital Camera Interface (DCMI). The SCM20260D Dev exposes the camera signals on a dedicated header. The pinout matches the popular **OV9655** breakout board, available from multiple sources.
 
 ![OV9655 Breakout](/img/docs/ov9655-breakout.png)
 
-It is important to note that some of these breakout boards ship with voltage regulators that don't seem to work properly, while others work well. Please understand that these are just our observations -- we cannot guarantee the functionality or quality of any third party products.
+:::warning
+Some OV9655 breakout boards ship with voltage regulators that don't work reliably. We've seen the boards labeled "**3DB8N**" and "**3Cb2b**" work well, while boards labeled "**2EB2S**" and "**3AB2I**" do not. These are our observations only — we can't guarantee the functionality of any third-party product.
+:::
 
-Here are images of OV9655 modules where one works and the other doesn't.
+Working module (regulators labeled "3DB8N" and "3Cb2b"):
 
-The good modules have regulators labeled "3DB8N" and "3Cb2b:"
+![Working camera](/img/docs/good-camera.jpg)
 
-![Good camera](/img/docs/good-camera.jpg).
+Non-working module (regulators labeled "2EB2S" and "3AB2I"):
 
-The bad modules have voltage regulators labeled "2EB2S" and "3AB2I:"
+![Non-working camera](/img/docs/bad-camera.jpg)
 
-![Bad camera](/img/docs/bad-camera.jpg)
+### Demo program
 
-### Demo Program
-
-The SITCore SCM20260D Dev Board ships with a demonstration program that can be found on our [TinyCLR-Samples](https://github.com/ghi-electronics/TinyCLR-Samples) GitHub repository.
-
----
-
-## USB-C Functionality
-
-All SITCore single board computers use a USB-C connector for application deployment and debugging. While USB-C has many advantages, we've also noticed some flaws. Every USB-A to USB-C cable tested worked as expected. Testing USB-C to USB-C cables gave interesting and unexpected results. Most USB-C hubs also do not work when using USB-C to USB-C cables. If you are having problems deploying or debugging, try connecting the board directly to your computer with a USB-A to USB-C cable.
+The SCM20260D Dev Board ships with a demonstration program. Find it in the [TinyCLR-Samples repo](https://github.com/ghi-electronics/TinyCLR-Samples).
 
 ---
 
-You can visit our main website at [**www.ghielectronics.com**](http://www.ghielectronics.com) and our community forums at [**forums.ghielectronics.com**](https://forums.ghielectronics.com/).
+## SC20100S Dev Board
+
+![SC20100S Dev Board](/img/docs/sc20100s.png)
+
+The SC20100S Dev Board is built around the **SC20100S** [SoC](soc.mdx) — Cortex-M7 at 480 MHz. The board includes a 1.8″ color SPI display, two 40-pin peripheral header rows, two mikroBUS slots, a CAN transceiver, USB host and client, supercap RTC backup, an SD card slot, a buzzer, user LEDs, a reset button, and user-programmable boot buttons.
+
+[SC20100S Dev Board Schematic](pathname:///pdf/sc20100s-dev-rev-c-schematic.pdf) · [SC20100S Dev Board 3D STEP File](http://files.ghielectronics.com/downloads/3D/SITCore/Dev/SC20100S%20Dev%20Rev%20C.step)
+
+---
+
+## SC13048Q Dev Board
+
+![SC13048Q Dev Board](/img/docs/sc13048q.png)
+
+The SC13048Q Dev Board is built around the **SC13048Q** [SoC](soc.mdx) — Cortex-M4 at 80 MHz. The board includes a 1.8″ color SPI display, a 10-pin peripheral header row, one mikroBUS slot, a CAN transceiver, USB client, supercap RTC backup, a buzzer, user LEDs, a reset button, and user-programmable boot buttons.
+
+[SC13048Q Dev Board Schematic](pathname:///pdf/sc13048q-dev-rev-b-schematic.pdf) · [SC13048Q Dev Board 3D STEP File](http://files.ghielectronics.com/downloads/3D/SITCore/Dev/SC13048Q%20Dev%20Rev%20C.step)
+
+---
+
+## USB-C connector
+
+All SITCore Dev Boards use USB-C for application deployment and debugging. Every USB-A to USB-C cable we've tested works as expected. USB-C to USB-C cables can give inconsistent results, and most USB-C hubs do not work when using USB-C to USB-C cables.
+
+If you have trouble deploying or debugging, connect the board directly to your computer with a USB-A to USB-C cable.
+
+---
+
+## Ordering
+
+| Part number | Description | MSRP |
+|---|---|---|
+| SCD-20260D-C | SCM20260D Dev Board | $199.95 |
+| SCD-20100S-C | SC20100S Dev Board | $99.95 |
+| SCD-13048Q-B | SC13048Q Dev Board | $59.95 |
+| SCD-HDMI-A | SITCore HDMI Adapter | Special order — [contact us](/contact/) |
+| UCD-D70-A | 7″ Capacitive Touch Display | Special order — [contact us](/contact/) |
+
+All SITCore Dev Boards are available through our [global distributors](/distributors/).
+
+---
+
+## See also
+
+- **[System on Chip](soc.mdx)** — the SC13048Q and SC20100S chipsets that the smaller Dev Boards are built on. Covers startup, firmware loading, and lower-level design reference.
+- **[System on Module](som.mdx)** — the SCM20260D module that powers the flagship Dev Board.
+- **[Single Board Computer](sbc.mdx)** — already-assembled boards in maker form factors. Better than a Dev Board when prototyping in a maker ecosystem (Arduino, Pico, Feather, micro:bit).
+- **[Experimenter Kit](experimenter-kit.mdx)** — structured learning kit built around the FEZ Bit, paired with a companion eBook. Built for teaching .NET on embedded.

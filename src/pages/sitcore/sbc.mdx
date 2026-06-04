@@ -71,7 +71,19 @@ import YouTubeFacade from '@site/src/components/YouTubeFacade';
 
 The SBC category is designed for compatibility with the most-used maker boards on the market. That compatibility lets you prototype with thousands of available accessories — without giving up commercial-grade hardware.
 
-## The SC20xxx lineup
+<div className="section-tinted">
+
+<div className="section-tinted__intro">
+  <span className="eyebrow">Start here</span>
+  <h2>FEZ Flea — $14.95</h2>
+  <p>The smallest, cheapest SITCore SBC and the fastest way to find out what TinyCLR feels like. USB cable, Visual Studio, blinking LED in ten minutes — for under fifteen dollars.</p>
+</div>
+
+<YouTubeFacade id="bBgXFdlzD2E" title="FEZ Flea — start TinyCLR for $14.95" />
+
+</div>
+
+## The SBC lineup
 
 <div className="pillar-grid">
   <div className="pillar-card">
@@ -89,10 +101,10 @@ The SBC category is designed for compatibility with the most-used maker boards o
     </div>
   </div>
   <div className="pillar-card">
-    <div className="pillar-card__image"><img src="/img/sitcore-fez-stick.jpg" alt="FEZ Stick" /></div>
+    <div className="pillar-card__image"><img src="/img/sitcore-fez-duino.jpg" alt="FEZ Duino" /></div>
     <div className="pillar-card__body">
-      <div className="pillar-card__title">FEZ Stick</div>
-      <div className="pillar-card__text">SC20100 core, dual MikroBUS. The expandable compute stick.</div>
+      <div className="pillar-card__title">FEZ Duino</div>
+      <div className="pillar-card__text">SC20100 core, WiFi, micro SD, power barrel. Arduino form factor.</div>
     </div>
   </div>
   <div className="pillar-card">
@@ -103,22 +115,10 @@ The SBC category is designed for compatibility with the most-used maker boards o
     </div>
   </div>
   <div className="pillar-card">
-    <div className="pillar-card__image"><img src="/img/sitcore-fez-duino.jpg" alt="FEZ Duino" /></div>
+    <div className="pillar-card__image"><img src="/img/sitcore-fez-stick.jpg" alt="FEZ Stick" /></div>
     <div className="pillar-card__body">
-      <div className="pillar-card__title">FEZ Duino</div>
-      <div className="pillar-card__text">SC20100 core, WiFi, micro SD, power barrel. Arduino form factor.</div>
-    </div>
-  </div>
-</div>
-
-## The SC13xxx compact lineup
-
-<div className="pillar-grid">
-  <div className="pillar-card">
-    <div className="pillar-card__image"><img src="/img/sitcore-fez-flea.jpg" alt="FEZ Flea" /></div>
-    <div className="pillar-card__body">
-      <div className="pillar-card__title">FEZ Flea</div>
-      <div className="pillar-card__text">SC13048 core. Seeeduino Xiao compatible.</div>
+      <div className="pillar-card__title">FEZ Stick</div>
+      <div className="pillar-card__text">SC20100 core, dual MikroBUS. The expandable compute stick.</div>
     </div>
   </div>
   <div className="pillar-card">
@@ -128,30 +128,37 @@ The SBC category is designed for compatibility with the most-used maker boards o
       <div className="pillar-card__text">SC13048 core. Raspberry Pi Pico compatible. External flash, RTC.</div>
     </div>
   </div>
+  <div className="pillar-card">
+    <div className="pillar-card__image"><img src="/img/sitcore-fez-flea.jpg" alt="FEZ Flea" /></div>
+    <div className="pillar-card__body">
+      <div className="pillar-card__title">FEZ Flea</div>
+      <div className="pillar-card__text">SC13048 core. Seeeduino Xiao compatible. The $14.95 entry point.</div>
+    </div>
+  </div>
 </div>
 
 ## Compare boards
 
 <div className="spec-table">
 
-| | **FEZ Portal** | **FEZ Bit** | **FEZ Stick** | **FEZ Feather** | **FEZ Duino** | **FEZ Flea** | **FEZ Pico** |
+| | **FEZ Portal** | **FEZ Bit** | **FEZ Duino** | **FEZ Feather** | **FEZ Stick** | **FEZ Pico** | **FEZ Flea** |
 |---|---|---|---|---|---|---|---|
-| Form factor | None | BBC micro:bit | None | Adafruit Feather | Arduino Uno | Seeeduino Xiao | Raspberry Pi Pico |
+| Form factor | None | BBC micro:bit | Arduino Uno | Adafruit Feather | None | Raspberry Pi Pico | Seeeduino Xiao |
 | Core | SCM20260 | SC20100 | SC20100 | SC20100 | SC20100 | SC13048 | SC13048 |
 | Display | 4.3″ touch 480×272 | 1.8″ 160×128 | — | — | — | — | — |
-| MikroBUS | 1 | 0 | 2 | 0 | 0 | 0 | 0 |
-| WiFi | ✓ | ✓ | — | ✓ | ✓ | — | — |
-| Micro SD | ✓ | ✓ | — | — | ✓ | — | — |
+| MikroBUS | 1 | 0 | 0 | 0 | 2 | 0 | 0 |
+| WiFi | ✓ | ✓ | ✓ | ✓ | — | — | — |
+| Micro SD | ✓ | ✓ | ✓ | — | — | — | — |
 | User LED | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | Buzzer | ✓ | ✓ | — | — | — | — | — |
 | Accelerometer | — | ✓ | — | — | — | — | — |
 | User buttons | ✓ | ✓ | ✓ | ✓ | ✓ | — | — |
 | USB client | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | USB host connector | ✓ | — | ✓ | — | ✓ | — | — |
-| External flash | ✓ | — | — | — | ✓ | — | ✓ |
-| RTC | ✓ | ✓ | ✓ | ✓ | ✓ | — | ✓ |
+| External flash | ✓ | — | ✓ | — | — | ✓ | — |
+| RTC | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | — |
 | LiPo charger | — | — | — | ✓ | — | — | — |
-| Power barrel | — | — | — | — | ✓ | — | — |
+| Power barrel | — | — | ✓ | — | — | — | — |
 
 </div>
 
@@ -161,11 +168,11 @@ The SBC category is designed for compatibility with the most-used maker boards o
 |---|---|---|
 | SCC-FPRTL-C | FEZ Portal SBC | $124.95 |
 | SCC-FBIT-B | FEZ Bit SBC | $49.95 |
-| SCC-FSTK-B | FEZ Stick SBC | $24.95 |
-| SCC-FTHR-B | FEZ Feather SBC | $39.95 |
 | SCC-FDNO-B | FEZ Duino SBC | $49.95 |
-| SCC-FFLEA-B | FEZ Flea SBC | $14.95 |
+| SCC-FTHR-B | FEZ Feather SBC | $39.95 |
+| SCC-FSTK-B | FEZ Stick SBC | $24.95 |
 | SCC-FPICO-D | FEZ Pico SBC | $19.95 |
+| SCC-FFLEA-B | FEZ Flea SBC | $14.95 |
 
 <div className="buy-callout">
   <strong>Where to buy →</strong><br />

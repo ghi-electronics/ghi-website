@@ -2,313 +2,313 @@
 title: System on Chip
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
-:::
-
 ![SITCore SC20100S](/img/docs/system-on-chip.png)
 
-**TinyCLR on a chipset.** Drop a SITCore SoC onto your own PCB and you get the full TinyCLR runtime, real Visual Studio step-debugging, and the complete .NET feature set — at the smallest footprint and lowest unit cost.
+**TinyCLR on a bare chipset.** Drop a SITCore SoC onto your own PCB and you get the full TinyCLR runtime, Visual Studio step-debugging over USB, and the complete .NET feature set — at the smallest footprint and lowest unit cost.
 
 ## Overview
 
-The SITCore SoCs provide a low cost way to add .NET computing power to any embedded product. Available as either a 48 pin QFN, a 100 pin LQFP or a 265 ball BGA, the SITCore SoCs let you design IoT products that are secure, easily integrated with the cloud, and can be easily manage and updated from the cloud for deployments of one to a million or more.
+SITCore SoCs are the lowest-cost path to add .NET computing power to a custom embedded product. The lineup spans two families:
 
-### SC20xxx Features
+- **SC13xxx** — Cortex-M4 at 80 MHz, 48-pin QFN. The compact, low-power option.
+- **SC20xxx** — Cortex-M7 at 480 MHz, 100-pin LQFP or 265-ball BGA. Full peripheral set, on-chip Ethernet, hardware graphics.
 
-* Low power modes including three independently controllable power domains
-* RTC
-* Watchdog
-* Threading
-* TCP/IP with SSL
-  * Full .NET socket interface
-  * Ethernet
-  * PPP
-* Graphics
-  * Images
-  * Fonts
-  * Controls
-* File System
-  * Full .NET file interface
-  * SD cards
-  * USB drives
-* Native extensions
-  * Runtime Loadable Procedures
-  * Device register access
-* Signal controls
-  * Generation
-  * Capture
-  * Pulse measurement
+All SoCs run the same TinyCLR firmware — your C# application code is portable across the family.
 
-### SC13xxx Features
+## SC20xxx features
 
-All core OS features, like threading and memory management, are fully supported. Security is still an important part of the offer, with secure assemblies and secure storage. A subset of the crypto libraries is also included. All pin level features are supported, like PWM, ADC and the Signal Generators. SPI, UART, CAN, and I2C are also supported. Full USB Client support, with WebUSB and WinUSB.
+- Low-power modes with three independently controllable power domains
+- RTC
+- Watchdog
+- Threading
+- TCP/IP with SSL
+  - Full .NET socket interface
+  - Ethernet
+  - PPP
+- Graphics
+  - Images
+  - Fonts
+  - Controls
+- File System
+  - Full .NET file interface
+  - SD cards
+  - USB drives
+- Native extensions
+  - Runtime Loadable Procedures
+  - Device register access
+- Signal controls
+  - Generation
+  - Capture
+  - Pulse measurement
 
-There are some missing features that are not typically needed on micro-sized devices, but you still have options.
+## SC13xxx features
 
-* Graphics: No native support but BasicGraphics library provides an alternative. In fact, the development board includes a color TFT SPI display.
+The SC13xxx covers the core TinyCLR feature set: threading, memory management, security (secure assemblies, secure storage, a subset of crypto libraries), and all pin-level peripherals — PWM, ADC, signal generators, SPI, UART, CAN, I²C. USB Client is supported with WebUSB and WinUSB.
 
-* File System: No native file system support but ManagedFileSystem library is a full FAT implementation that supports file/directory access on SD cards over SPI bus.
+Some features common to the larger SC20xxx are not native on SC13xxx, but library alternatives are available:
 
-* Networking: SC20 is still the proper way to access networks securely. However, Wiznet W5500 Ethernet chipset and ESP32 WiFi module can be used as an alternative.
+- **Graphics** — no native support, but the [BasicGraphics](/docs/tinyclr/feature/graphics) library provides an alternative. The SC13048Q development board includes a color TFT SPI display.
+- **File system** — no native support, but the [ManagedFileSystem](/docs/tinyclr/feature/file-system) library is a full FAT implementation that supports file and directory access on SD cards over SPI.
+- **Networking** — SC20xxx remains the proper way to access networks securely. As an alternative, the Wiznet W5500 Ethernet chipset and ESP32 WiFi module can be used with SC13xxx.
 
 ---
 
 ## Specifications
 
-| Spec                   |SC13048Q                      |SC20100S/B                     | SC20260B                      |
-|------------------------|------------------------------|-------------------------------|-------------------------------|
-| **Core**               | ARM Cortex-M4 32 bit         | ARM Cortex-M7 32 bit          | ARM Cortex-M7 32 bit          |
-| **Speed**              | 80 MHz                       | 480 MHz                       | 480 MHz                       |
-| **Math Co-processor**  | Single-precision             | Double-precision              | Double-precision              |
-| **Internal RAM**       | 160K                         | 1 MByte                       | 1 MByte                       |
-| **User RAM**           | 128K                         | 512K                          | 512K + 32MB optional external |
-| **Internal Flash**     | 512K                         | 2 MByte                       | 2 MByte                       |
-| **User Flash**         | 220K + 8MB optional external | 640K + 8MB optional external  | 640K + 8MB optional external  |
-| **Instruction Cache**  | None                         | 16 KByte                      | 16 KByte                      |
-| **Data Cache**         | None                         | 16 KByte                      | 16 KByte                      |
-| **Package**            | 48-QFN 7 x 7 mm              | S/ LQFP100 14 x 14 mm         | 265-TFBGA 14 x 14 mm          |
-|                        |                              | B/ 100-TFBGA 8 x 8 mm 
-| **Temperature Range**  |-40C to +85C                  | -40C to +85C                  | -40C to +85C                  |
+| Spec                   | SC13048Q                      | SC20100S/B                    | SC20260B                       |
+|------------------------|-------------------------------|-------------------------------|--------------------------------|
+| **Core**               | ARM Cortex-M4 32-bit          | ARM Cortex-M7 32-bit          | ARM Cortex-M7 32-bit           |
+| **Speed**              | 80 MHz                        | 480 MHz                       | 480 MHz                        |
+| **Math co-processor**  | Single-precision              | Double-precision              | Double-precision               |
+| **Internal RAM**       | 160K                          | 1 MByte                       | 1 MByte                        |
+| **User RAM**           | 128K                          | 512K                          | 512K + 32 MB optional external |
+| **Internal flash**     | 512K                          | 2 MByte                       | 2 MByte                        |
+| **User flash**         | 220K + 8 MB optional external | 640K + 8 MB optional external | 640K + 8 MB optional external  |
+| **Instruction cache**  | None                          | 16 KByte                      | 16 KByte                       |
+| **Data cache**         | None                          | 16 KByte                      | 16 KByte                       |
+| **Package**            | 48-QFN 7×7 mm                 | S: LQFP100 14×14 mm           | 265-TFBGA 14×14 mm             |
+|                        |                               | B: 100-TFBGA 8×8 mm           |                                |
+| **Temperature range**  | −40°C to +85°C                | −40°C to +85°C                | −40°C to +85°C                 |
 
 :::note
-Resources are shared between your application and the operating system.*
+Resources are shared between your application and the operating system.
 :::
 
 ---
 
 ## Peripherals
 
-| Peripheral                 | SC13048Q                  | SC20100S/B               | SC20260B              |
-|----------------------------|---------------------------|--------------------------|-----------------------|
-| **GPIO**                   | 37                        | 74                       | 163                   |
-| **SPI**                    | 2                         | 3                        | 3                     |
-| **I2C**                    | 2                         | 2                        | 3                     |
-| **UART**                   | 4 (2 with handshaking)    | 8 (4 with handshaking)   | 8 (4 with handshaking)|
-| **CAN**                    | 1                         | 2                        | 2                     |
-| **PWM**                    | 10                        | 16                       | 29                    |
-| **ADC**                    | 10                        | 12                       | 21                    |
-| **DAC**                    | 1                         | 2                        | 2                     |
-| **SD/SDIP/MMC**            | 0                         | 1                        | 1                     |
-| **Quad SPI**               | 1                         | 1                        | 1                     |
-| **USB Host**               | 0                         | 1                        | 1                     |
-| **USB Client**             | 1                         | 1                        | 1                     |
-| **Ethernet**               | 0                         | 1                        | 1                     |
-| **LCD TFT**                | 0                         | 0                        | 1                     |
-| **Graphics**               | BasicGraphics via SPI     | Full Graphics via SPI    | 16BPP TFT             |
-| **Camera**                 | 0                         | 0                        | 1                     |
+| Peripheral         | SC13048Q                  | SC20100S/B               | SC20260B               |
+|--------------------|---------------------------|--------------------------|------------------------|
+| **GPIO**           | 37                        | 74                       | 163                    |
+| **SPI**            | 2                         | 3                        | 3                      |
+| **I²C**            | 2                         | 2                        | 3                      |
+| **UART**           | 4 (2 with handshaking)    | 8 (4 with handshaking)   | 8 (4 with handshaking) |
+| **CAN**            | 1                         | 2                        | 2                      |
+| **PWM**            | 10                        | 16                       | 29                     |
+| **ADC**            | 10                        | 12                       | 21                     |
+| **DAC**            | 1                         | 2                        | 2                      |
+| **SD/SDIO/MMC**    | 0                         | 1                        | 1                      |
+| **Quad SPI**       | 1                         | 1                        | 1                      |
+| **USB host**       | 0                         | 1                        | 1                      |
+| **USB client**     | 1                         | 1                        | 1                      |
+| **Ethernet**       | 0                         | 1                        | 1                      |
+| **LCD TFT**        | 0                         | 0                        | 1                      |
+| **Graphics**       | BasicGraphics via SPI     | Full Graphics via SPI    | 16BPP TFT              |
+| **Camera**         | 0                         | 0                        | 1                      |
 
 :::note
-As many pins share peripherals, not all peripherals will be available.*
+Many pins share peripherals — not all peripherals will be available simultaneously.
 :::
 
 ---
 
-## SC20xxx Power Consumption
+## Power consumption
 
-|                            | 480MHz          | 240MHz          |          
-|----------------------------|-----------------|-----------------|
-| **Running**                | 205mA           | 110mA           |
-| **Idle**                   | 170mA           | 97mA            |
-| **Sleep**                  | 6.5mA           | 6.5mA           |
-| **Shutdown**               | 40uA            | 40uA            |
+### SC20xxx
 
-## SC13xxx Power Consumption
+|              | 480 MHz | 240 MHz |
+|--------------|---------|---------|
+| **Running**  | 205 mA  | 110 mA  |
+| **Idle**     | 170 mA  | 97 mA   |
+| **Sleep**    | 6.5 mA  | 6.5 mA  |
+| **Shutdown** | 40 µA   | 40 µA   |
 
-|                            | 80MHz           | 40MHz           |          
-|----------------------------|-----------------|-----------------|
-| **Running**                | 12.6mA          | 7.5mA           |
-| **Idle**                   | 6.2mA           | 4.2mA           |
-| **Sleep**                  | 1.4mA           | 1.4mA           |
-| **Shutdown**               | 23uA            | 23uA            |
+### SC13xxx
 
-See the [Power Management](http://docs.ghielectronics.com/software/tinyclr/tutorials/power-management.html) tutorial
+|              | 80 MHz  | 40 MHz  |
+|--------------|---------|---------|
+| **Running**  | 12.6 mA | 7.5 mA  |
+| **Idle**     | 6.2 mA  | 4.2 mA  |
+| **Sleep**    | 1.4 mA  | 1.4 mA  |
+| **Shutdown** | 23 µA   | 23 µA   |
 
-## Operational Voltage Levels
+See the [Power Management](/docs/tinyclr/feature/power-management) feature page for details.
 
-|                            | Voltage Range   |     
-|----------------------------|-----------------|
-| SC13xxx                    | 1.71V ~ 3.6V    | 
-| SC20xxx                    | 1.62V ~ 3.6V    | 
+## Operational voltage
+
+|         | Voltage range |
+|---------|---------------|
+| SC13xxx | 1.71V – 3.6V  |
+| SC20xxx | 1.62V – 3.6V  |
 
 :::note
-Keep in mind that modules (SOM) may have other components that needs higher voltage, like QSPI and SDRAM. Those need to be accounted for.
+SITCore modules (SoMs) may include other components — QSPI flash, SDRAM — that require higher voltages. Account for those when designing the supply.
 :::
 
 ---
 
-## Using Interrupts (IRQs)
+## Interrupts (IRQs)
 
-The microcontrollers we use in our SITCore line of products do not support concurrent interrupts with the same pin number, even if the pins are on different ports (the port is denoted by the second letter of the GPIO pin name -- PA1 is pin 1 on port A). Therefore, interrupts are available on only 16 pins at any given time. For example, pins PA1 and PB1 cannot be used as interrupt pins at the same time, but PA1 and PB2 can. PA1 and PA2 can also be used with interrupts simultaneously.
+The microcontrollers used in the SITCore line do not support concurrent interrupts on the same pin number, even across different ports. (The port is denoted by the second letter of the GPIO pin name — PA1 is pin 1 on port A.)
+
+In practice: interrupts are available on **up to 16 distinct pin numbers at a time**. PA1 and PB1 cannot both be interrupt pins simultaneously; PA1 and PB2 can. PA1 and PA2 can also be used with interrupts at the same time.
 
 ---
 
 ## Pinouts
 
-GPIO pins are rated is 20mA per pin, 140mA total on all pins, and 5 volt tolerant.
+GPIO pins are rated for 20 mA per pin, 140 mA total across all pins, and are 5V-tolerant.
 
-### SC13048Q Pinout
+### SC13048Q
 
 [![SC13048Q Pinout](/img/docs/sc13048q-pinout.gif)](pathname:///pdf/sc13048q-pinout.pdf)
 
-### SC20100S/B Pinout
+### SC20100S/B
 
 [![SC20100S Pinout](/img/docs/sc20100s-b-pinout.gif)](pathname:///pdf/sc20100s-b-pinout.pdf)
 
-### SC20260B Pinout
+### SC20260B
 
 [![SC20260B Pinout](/img/docs/sc20260b-pinout.gif)](pathname:///pdf/sc20260b-pinout.pdf)
 
 ---
 
-## Device Startup
+## Getting started
 
-The SITCore is held in reset while the RESET pin is low. Releasing RESET will begin the system startup process.
+The SITCore SoC runs TinyCLR — same C# code, same Visual Studio workflow as every SITCore product.
 
-There are three different components of the device firmware:
-1. GHI Electronics Bootloader: initializes the system, updates TinyCLR when needed, and executes TinyCLR.
-2. TinyCLR: used to load, debug, and execute the managed application.
-3. Managed application: the program developed by you or your software developer.
+1. Wire the SoC into your custom PCB — see [Design considerations](#design-considerations) below for required pins, footprints, and power supply notes.
+2. Install Visual Studio (Community Edition works) and the TinyCLR tooling.
+3. Load the firmware on the SoC.
+4. Deploy your first application from Visual Studio.
 
-Which components get executed on startup is controlled by manipulating the LDR pin. It is pulled high on startup during normal program execution. When low, the device waits in the GHI Electronics Bootloader. Otherwise, the managed application is executed. The APP pin is used to stop the managed application from running.
-
-Additionally, the communications interface between the host PC and the SITCore is selected on startup through the MOD pin, which is pulled high on startup. The USB interface is selected when MOD is high and UART1 is selected when MOD is low.
-
-The above discussed functions of the LDR, APP, and MOD pins are only available during startup. After startup, the pins return to the default GPIO state and are available as a GPIO (or peripheral pin) in your application. Check out the [Special Pins](/docs/tinyclr/special-pins) page for more information.
+See [Getting Started](/docs/tinyclr/) for the full walkthrough — Visual Studio setup, firmware loading via the bootloader, and first deployment.
 
 ---
 
-## TinyCLR OS
-
-TinyCLR OS provides a way to program the SITCore in C# from the Microsoft Visual Studio integrated development environment.  To get started you must first install the firmware on the SITCore (instructions below) and then go to the TinyCLR [Getting Started](/docs/tinyclr/) page for instructions.
-
-### Loading the Firmware
-
-1. Activate the bootloader, hold the LDR signal low while resetting the board.
-2. Open [TinyCLR Config](/docs/tinyclr/tinyclr-config) tool.
-3. Select the correct COM port and 'Connect' to the device. If you are not seeing it then the device is not in the loader mode.
-4. Download the [firmware](/docs/tinyclr/downloads). Select the downloaded firmware in TinyCLR Config and click 'Update Firmware'. 
-
-You can also update the firmware manually. Download the [firmware](/docs/tinyclr/downloads) and learn how to use the [GHI Electronics Bootloader](/docs/tinyclr/bootloader) manually
-
-### Start Coding
-
-Now that you have installed the bootloader and firmware on the SITCore, you can setup your host computer and start programming.  Go to the TinyCLR [Getting Started](/docs/tinyclr/) page for instructions.
-
----
-
-## Design Considerations
+## Design considerations
 
 ### Footprints
 
-#### This is the recommended footprint for the SC13048Q:
+#### SC13048Q
+
 ![SC13048Q Footprint](/img/docs/sc13048q-footprint.gif)
 
-#### This is the recommended footprint for the SC20100S:
+#### SC20100S
+
 ![SC20100S Footprint](/img/docs/sc20100s-footprint.gif)
 
-#### This is the recommended footprint for the SC20100B:
+#### SC20100B
+
 ![SC20100B Footprint](/img/docs/sc20100b-footprint.gif)
 ![SC20100B Design Rules](/img/docs/sc20100b-design-rules.gif)
 
-#### This is the recommended footprint and PCB design rules for the SC20260B:
+#### SC20260B
+
 ![SC20260B Footprint](/img/docs/sc20260b-footprint.gif)
 ![SC20260B Design Rules](/img/docs/sc20260b-design-rules.gif)
 
-### Required Pins
+### Required pins
 
-Exposing the following pins is required in every design to enable device programming, updates, and recovery:
-* RESET
-* LDR
-* APP
-* MOD (required to select a the debug interface)
-* Desired debug interface(s) (see below)
+Expose the following pins in every design to enable device programming, updates, and recovery:
 
-For information on these and other important pins, please refer to the [Special Pins](/docs/tinyclr/special-pins) page.
+- RESET
+- LDR
+- APP
+- MOD (selects the debug interface)
+- Desired debug interface(s) — see below
 
-### Debug Interface
+For more on these and other important pins, see [Special Pins](/docs/tinyclr/special-pins).
 
-All SITCore products provide two debug and deployment interfaces: USB and serial. Whether USB or serial debugging is selected is determined by the state of the MOD pin during startup and reset. If the MOD pin is held high during startup, the USB debug interface will be selected. If the MOD pin is held low during startup, the serial debug interface will be selected.
+### Debug interface
 
-When in serial mode, all SITCore products use UART1 except SC20260B chipset/boards use UART5.
+All SITCore products provide two debug and deployment interfaces: USB and serial. The MOD pin selects which is active at startup — MOD high selects USB; MOD low selects serial.
 
-### Power Supply
+In serial mode, all SITCore products use UART1 except the SC20260B (chipset or board), which uses UART5.
 
-A clean power source, suitable for digital circuitry, is needed to power SITCore SoCs. Voltages should be regulated to within 10% or better of the specified voltage. Decoupling capacitors of 0.1 uF are needed near every power pin. Additionally, a large capacitor, typically 47 uF, should be placed near the SoC if the power supply is more than few inches away.
+### Power supply
 
-### Analog Considerations
+A clean digital power source is required. Voltages should be regulated within 10% of the specified voltage. Place 0.1 µF decoupling capacitors near every power pin. Add a larger 47 µF capacitor near the SoC if the power supply is more than a few inches away.
 
-It is a good idea to provide a separate filtered supply line for the `Vdda`, and `Vref+` pins. Additionally, on the 260 pin devices, you may want to provide a separate filtered ground connection for the `Vssa` and `Vref-` pins. While this is not needed for ADC operation, it does help to ensure more accurate ADC readings by reducing analog supply noise.
+### Analog considerations
+
+Provide a separate filtered supply line for the `Vdda` and `Vref+` pins. On the 260-pin devices, also provide a separate filtered ground connection for the `Vssa` and `Vref-` pins. This is not required for ADC operation, but it reduces analog supply noise and improves ADC accuracy.
 
 ### Crystals
 
-There is a lot to consider when selecting a crystal -- especially the RTC crystal. Please consult [AN2867](https://www.st.com/resource/en/application_note/cd00221665-oscillator-design-guide-for-stm8afals-stm32-mcus-and-mpus-stmicroelectronics.pdf) from STMicroelectronics.
+There's a lot to consider when selecting a crystal — especially the RTC crystal. Consult [AN2867](https://www.st.com/resource/en/application_note/cd00221665-oscillator-design-guide-for-stm8afals-stm32-mcus-and-mpus-stmicroelectronics.pdf) from STMicroelectronics for details.
 
-### Main Crystal
+#### Main crystal
 
-Most 8 MHz quartz crystals and ceramic resonators from various manufacturer will work with SITCore SoCs. The table below will tell you what to look for based on the crystal's maximum equivalent series resistance (ESR), shunt capacitance (C0), and load capacitance (CL). Keeping the total capacitance of C0 + CL well below the recommended maximum will provide more of a safety margin for stable and reliable oscillator operation.
+Most 8 MHz quartz crystals and ceramic resonators will work with SITCore SoCs. The table below shows what to look for based on the crystal's maximum equivalent series resistance (ESR), shunt capacitance (C0), and load capacitance (CL). Keep the total of C0 + CL well below the recommended maximum for stable oscillator operation.
 
-The SITCore SC13048 SoC main clock can also operate using an internal oscillators, with no need for any crystals, even when using USB. If an application requires better accuracy, like when running CAN for example, an external oscillator can be added.
+The SC13048 SoC main clock can also operate on an internal oscillator with no external crystal — even when using USB. If the application requires better accuracy (for example, when running CAN), an external oscillator can be added.
 
-|                        |                                         |
-|------------------------|-----------------------------------------|
-| Max crystal ESR (ohms) | Recommended max total of C0 and CL (pF) |
-| 40                     | 49                                      |
-| 50                     | 44                                      |
-| 60                     | 40                                      |
-| 70                     | 37                                      |
-| 80                     | 35                                      |
-| 100                    | 31                                      |
-| 200                    | 22                                      |
-| 300                    | 18                                      |
+| Max crystal ESR (Ω) | Recommended max total of C0 + CL (pF) |
+|---|---|
+| 40  | 49 |
+| 50  | 44 |
+| 60  | 40 |
+| 70  | 37 |
+| 80  | 35 |
+| 100 | 31 |
+| 200 | 22 |
+| 300 | 18 |
 
-### RTC Crystal
+#### RTC crystal
 
-It can be difficult to select the right RTC crystals, that is due to the RTC oscillator running on an extremely low power. The table below should help. For reliable operation, the total capacitance of C0 (crystal shunt capacitance) and CL (crystal load capacitance) must be less than the recommended max total of C0 and CL.
+Selecting the right RTC crystal is tricky because the RTC oscillator runs at extremely low power. For reliable operation, total C0 + CL must be less than the recommended maximum.
 
- The SITCore SC13048 SoC built in RTC can also operate using an internal oscillator when a 32.768Khz crystals is not present, however adding an external crystal gives better RTC accuracy.
+The SC13048 SoC built-in RTC can also operate on an internal oscillator when no 32.768 kHz crystal is present. An external crystal gives better RTC accuracy.
 
-|                           |                                         |
-|---------------------------|-----------------------------------------|
-| Max crystal ESR (kilohms) | Recommended max total of C0 and CL (pF) |
-| 30                        | 9.9                                     |
-| 40                        | 8.5                                     |
-| 50                        | 7.6                                     |
-| 60                        | 7.0                                     |
-| 70                        | 6.5                                     |
-| 80                        | 6.0                                     |
-| 90                        | 5.7                                     |
-| 100                       | 5.4                                     |
+| Max crystal ESR (kΩ) | Recommended max total of C0 + CL (pF) |
+|---|---|
+| 30  | 9.9 |
+| 40  | 8.5 |
+| 50  | 7.6 |
+| 60  | 7.0 |
+| 70  | 6.5 |
+| 80  | 6.0 |
+| 90  | 5.7 |
+| 100 | 5.4 |
 
-When laying out your board, it is best to keep the crystal as close as possible to the SoC. The oscillator circuit should also be surrounded by a grounded guard ring or ground plane on the same layer to reduce noise.
+When laying out the board, keep the crystal as close to the SoC as possible. Surround the oscillator circuit with a grounded guard ring or ground plane on the same layer to reduce noise.
 
-### RTC Power
+### RTC power
 
-The VBAT pin is optionally used to power up the RTC when the system main power is turned off. Also, SITCore chipsets and modules include a built in charging circuit internally, that can be enabled to charge an external supercap. See the [RTC tutorial](/docs/tinyclr/feature/real-time-clock) for further details. 
+The VBAT pin can optionally power the RTC when the system's main power is off. SITCore chipsets and modules include a built-in charging circuit that can be enabled to charge an external supercap. See the [Real-Time Clock feature page](/docs/tinyclr/feature/real-time-clock) for details.
 
-### QuadSPI External Flash
+### QuadSPI external flash
 
-SITCore supports 16 MByte external QuadSPI flash chips. The options are in the table below.
+SITCore supports 16 MByte external QuadSPI flash chips. Tested options:
 
-|    Manufacture      |  Part Number |
+| Manufacturer        | Part number  |
 |---------------------|--------------|
 | Winbond Electronics | W25Q128JVSIM |
 | Winbond Electronics | W25Q128JVSIQ |
 
 ### Reset
 
-SITCore processors have a permanent internal pull up resistor that is connected to the RESET (NRST) pin. No external pull up resistor is needed.
+SITCore processors have a permanent internal pull-up resistor on the RESET (NRST) pin. No external pull-up is required.
 
-### Oven Reflow Profile
+### Oven reflow profile
 
-SITCore SoCs are not sealed for moisture. **Baking SoCs before reflow is recommended and required in a humid environment**. The process of reflow can damage the SoC if the temperature is too high or exposure is too long.
+SITCore SoCs are not sealed for moisture. **Bake SoCs before reflow** — required in humid environments. Reflow can damage the SoC if temperature is too high or exposure too long.
 
-The lead-free reflow profiles used by GHI Electronics are shown below. The profiles are based on AIM SAC 305 solder (3% silver, 0.5% copper). The thermal mass of the assembled board and the sensitivity of the components on it affect the total dwell time. Differences in the two profiles are where they reach their respective peak temperatures as well as the time above liquids (TAL). The shorter profile applies to smaller assemblies, whereas the longer profile applies to larger assemblies such as back-planes or high-density boards. The process window is described by the shaded area. These profiles are only starting-points and general guidance. The particulars of the oven and the assembly will determine the final process.
+GHI Electronics uses lead-free reflow profiles based on AIM SAC 305 solder (3% silver, 0.5% copper). The thermal mass of the assembled board and the sensitivity of its components affect total dwell time. The two profiles below differ in peak temperature and time above liquids (TAL): the shorter applies to smaller assemblies; the longer applies to larger ones (back-planes, high-density boards). The shaded area shows the process window. These are starting points — your oven and assembly determine the final process.
 
 [![Reflow Chart](/img/docs/reflow-profile.gif)](pathname:///pdf/ws483-sac305-solder-paste-datasheet.pdf)
 
 ---
 
-## SITCore Dev Boards
+## Ordering
 
-The SITCore development boards are ready to get any project started as quickly and easily as possible. Click [here](dev.mdx) for details.
+| Part number | Description | MSRP |
+|---|---|---|
+| SC-13048Q-A | SITCore SC13048Q SoC | $15.95 @100 |
+| SC-20100S-A | SITCore SC20100S SoC | $25.95 @100 |
+| SC-20100B-A | SITCore SC20100B SoC | Special order — [contact us](/contact/) |
+| SC-20260B-A | SITCore SC20260B SoC | Special order — [contact us](/contact/) |
+
+All SITCore chipsets are available through our [global distributors](/distributors/).
+
+---
+
+## See also
+
+If you don't need a fully custom PCB, these SITCore products are built around the same chipsets and run the same TinyCLR firmware:
+
+- **[System on Module](som.mdx)** — pre-validated modules with memory, networking, and chipset in one package. Drop onto your own carrier board.
+- **[Single Board Computer](sbc.mdx)** — maker-friendly form factors (Arduino, Pico, Feather, micro:bit). Plug in USB and code.
+- **[Development Board](dev.mdx)** — ready-to-go evaluation hardware with display, peripherals, and debug headers.
