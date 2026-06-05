@@ -1,7 +1,6 @@
 ---
 title: API Reference
 sidebar_label: Overview
-slug: /tinyclr/api
 ---
 
 # TinyCLR API Reference
