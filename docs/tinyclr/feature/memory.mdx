@@ -7,7 +7,7 @@ These docs are under active migration and updates. The original docs will remain
 :::
 
 ## RAM Memory
-This memory type loses its contents when the system is turned off. The system uses this memory at runtime to quickly store and retrieve data. TinyCLR OS is a managed operating system -- objects in RAM are automatically tracked and freed as needed. The Garbage Collector (GC) runs when the system is low on available RAM, where it will look for unused objects and free the memory they occupy. You may also invoke the GC at any time using `System.GC.Collect()`.
+This memory type loses its contents when the system is turned off. The system uses this memory at runtime to quickly store and retrieve data. TinyCLR is a managed operating system -- objects in RAM are automatically tracked and freed as needed. The Garbage Collector (GC) runs when the system is low on available RAM, where it will look for unused objects and free the memory they occupy. You may also invoke the GC at any time using `System.GC.Collect()`.
 
 RAM is the main workspace for your application -- running out of memory will cause your application to fail. It is important to understand the memory needs of your application and to plan accordingly. When creating a buffer for a UART for example, use a reasonable size buffer that's large enough to handle your communication needs without being so large as to waste memory.
 
@@ -20,7 +20,7 @@ var usedRam = GHIElectronics.TinyCLR.Native.Memory.ManagedMemory.UsedBytes;
 ```
 
 ### Allocating Memory
-The TinyCLR OS Garbage Collector allocates and frees objects automatically on the heap. When the memory gets fragmented, the system will compact the heap. This is desired behavior, but this also creates a problem when sharing resource between TinyCLR OS and native drivers. In a more advanced application, a user may have a buffer that gets written from an interrupt routine. Assuming this is implemented in native code, we would need a buffer that always sits at a fixed address. Using `var buffer = new byte[12]` will not work as the garbage collector may move the buffer to compact the heap.
+The TinyCLR Garbage Collector allocates and frees objects automatically on the heap. When the memory gets fragmented, the system will compact the heap. This is desired behavior, but this also creates a problem when sharing resource between TinyCLR and native drivers. In a more advanced application, a user may have a buffer that gets written from an interrupt routine. Assuming this is implemented in native code, we would need a buffer that always sits at a fixed address. Using `var buffer = new byte[12]` will not work as the garbage collector may move the buffer to compact the heap.
 
 A fixed location buffer can be allocated using `GHIElectronics.TinyCLR.Native.Memory.ManagedMemory.Allocate()`. Keep in mind that this is not managed memory anymore, and you are responsible for freeing this memory using `GHIElectronics.TinyCLR.Native.Memory.ManagedMemory.Free()`.
 
@@ -50,7 +50,7 @@ for (int i=0; i<10000; i++) {
 ```
 
 ### Disposing of Objects
-As TinyCLR OS is a managed system that monitors and frees resources, memory leaks are less of a concern than they are for unmanaged systems. However, there is still chance that issues can arise, especially in embedded systems where objects can be a combination of memory and other hardware. Take a GPIO pin for example. What happens when we no longer have a reference to a GPIO pin? Will the GC free the object? Will the pin change in state when the GC frees the pin? And finally, why would a pin (or any physical object) be left for the GC to decide how it should be freed? The answer is that we need to understand and track these resources manually.
+As TinyCLR is a managed system that monitors and frees resources, memory leaks are less of a concern than they are for unmanaged systems. However, there is still chance that issues can arise, especially in embedded systems where objects can be a combination of memory and other hardware. Take a GPIO pin for example. What happens when we no longer have a reference to a GPIO pin? Will the GC free the object? Will the pin change in state when the GC frees the pin? And finally, why would a pin (or any physical object) be left for the GC to decide how it should be freed? The answer is that we need to understand and track these resources manually.
 
 This example code will declare and initialize a GPIO pin in a function, causing the main program to lose control of the pin. The `BadExample` method uses the LED's GPIO pin, but it doesn't free it.
 
@@ -122,7 +122,7 @@ class Program {
 
 ### Garbage Collection
 
-TinyCLR OS automatically disposes of objects that are no longer needed. Garbage collection eliminates the need to manage memory manually and reduces or eliminates some types of bugs.
+TinyCLR automatically disposes of objects that are no longer needed. Garbage collection eliminates the need to manage memory manually and reduces or eliminates some types of bugs.
 
 The act of garbage collection can temporarily reduce the responsiveness of your system, so it may be beneficial to actively manage garbage collection to improve real time response. Garbage collection will usually only run when there is a failed memory allocation, so by properly structuring your program you should be able to eliminate garbage collection or greatly reduce it. String operations are particularly troublesome in the creation of garbage as strings are immutable.
 
@@ -157,7 +157,7 @@ Flash memory does not lose its contents on power loss. There are special require
 Flash is not typically written to at runtime. The system will function even with no free available FLASH.
 
 ### Resources
-TinyCLR OS allows resources, like fonts and images, to be merged into the project as a resource and then deployed to the device's Flash. Those resources can then be fetched into RAM and used at runtime. The [Resource](resources.mdx) tutorial has more details.
+TinyCLR allows resources, like fonts and images, to be merged into the project as a resource and then deployed to the device's Flash. Those resources can then be fetched into RAM and used at runtime. The [Resource](resources.mdx) tutorial has more details.
 
 ### Direct Access
 Writing to Flash (persistent storage) is supported securely through [secure storage.](secure-storage.mdx)

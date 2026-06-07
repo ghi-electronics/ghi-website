@@ -6,12 +6,12 @@ title: Cryptography
 These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
 :::
 
-TinyCLR OS supports multiple algorithms.  
+TinyCLR supports multiple algorithms.  
 
 ## XTEA
 XTEA encryption is a symmetrical encryption method that always uses a 128 bit key. Keys of any other size will throw an exception. XTEA encryption also requires the data to you are encrypting to be a multiple of eight bytes in length.
 
-XTEA encryption is not only dependent upon the supplied key, but also the "number of rounds" or iterations the encryption algorithm uses to encode and decode information. TinyCLR OS always uses 32 rounds. So, for example, if you are using a PC to decode data that was encoded using TinyCLR OS, make sure that both the correct key and number of rounds (32) are used on the PC side.
+XTEA encryption is not only dependent upon the supplied key, but also the "number of rounds" or iterations the encryption algorithm uses to encode and decode information. TinyCLR always uses 32 rounds. So, for example, if you are using a PC to decode data that was encoded using TinyCLR, make sure that both the correct key and number of rounds (32) are used on the PC side.
 
 :::tip
 Needed NuGets: GHIElectronics.TinyCLR.Core and GHIElectronics.TinyCLR.Cryptography

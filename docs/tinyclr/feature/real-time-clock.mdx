@@ -120,7 +120,7 @@ public static DateTime GetNetworkTime(int CorrectLocalTime = 0) {
 
     socket.Connect(ipEndPoint);
 
-    System.Threading.Thread.Sleep(1); //Added to support TinyCLR OS.
+    System.Threading.Thread.Sleep(1); //Added to support TinyCLR.
 
     socket.Send(ntpData);
     socket.Receive(ntpData);

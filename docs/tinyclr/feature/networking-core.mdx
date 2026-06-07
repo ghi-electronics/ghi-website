@@ -6,7 +6,7 @@ title: Networking Core
 These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
 :::
 
-Networking support in TinyCLR OS is a subset of Microsoft's .NET Framework networking stack. More details will be added to this tutorial in the future. You might want to look at the [Microsoft Sockets Class]( https://docs.microsoft.com/en-us/dotnet/api/system.net.sockets.socket?view=netframework-4.8) documentation to get started -- it should very closely resemble the TinyCLR sockets class.
+Networking support in TinyCLR is a subset of Microsoft's .NET Framework networking stack. More details will be added to this tutorial in the future. You might want to look at the [Microsoft Sockets Class]( https://docs.microsoft.com/en-us/dotnet/api/system.net.sockets.socket?view=netframework-4.8) documentation to get started -- it should very closely resemble the TinyCLR sockets class.
 
 ## MAC Addresses
 Before using SITCore's built in PHY and ENC28 Ethernet networking, you have to set a MAC address or an exception will be raised. While you may not need a unique MAC address for internal testing, you will need to set a valid and unique MAC address before shipping your product. If you do not have access to an appropriate MAC address, you can either use an online MAC address generator, which is not ideal, or you can use a MAC address from an old computer or network card that is no longer used.
@@ -23,7 +23,7 @@ TLS is natively supported. See the [TLS page](tls.mdx) for details.
 ---
 
 ## .NET Sockets
-TinyCLR OS's support of sockets is very similar to .NET socket support. Most .NET socket code should run with little modification. Socket support is provided as part of the TinyCLR OS core. Tiny CLR sockets work similar to .NET sockets -- most .NET examples are applicable to TinyCLR.
+TinyCLR's support of sockets is very similar to .NET socket support. Most .NET socket code should run with little modification. Socket support is provided as part of the TinyCLR core. Tiny CLR sockets work similar to .NET sockets -- most .NET examples are applicable to TinyCLR.
 
 ---
 
@@ -72,7 +72,7 @@ while (true) {
 ---
 
 ## IP Assignment
-TinyCLR OS supports both static and dynamic IP addressing. With either method, an event is fired providing the local IP settings.
+TinyCLR supports both static and dynamic IP addressing. With either method, an event is fired providing the local IP settings.
 
 ```csharp
 networkController.NetworkAddressChanged += NetworkController_NetworkAddressChanged;

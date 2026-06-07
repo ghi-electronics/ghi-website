@@ -157,13 +157,13 @@ When the `+++` sequence is received, the modem will switch from data mode to com
 ## Switching to Data Mode
 When the modem is in command mode, sending the `ATO` command will switch the modem to Data Mode. Wait for the "CONNECT 150000000" response after sending the `ATO` command to make sure the modem is in data mode. All data sent will now be treated as PPP frames.
 
-The following example switches from Data mode to Command Mode, sends a few AT commands, then switches back to Data mode. TinyCLR OS provides two functions, Suspend() and Resume() that are needed for this example. This code uses SC20260.UartPort.Uart8 for PPP configuration.
+The following example switches from Data mode to Command Mode, sends a few AT commands, then switches back to Data mode. TinyCLR provides two functions, Suspend() and Resume() that are needed for this example. This code uses SC20260.UartPort.Uart8 for PPP configuration.
 
 ```csharp
 //PPP is connected
 //....
 
-networkController.Suspend(); { //Suspend PPP, release UART Port from TinyCLR OS.
+networkController.Suspend(); { //Suspend PPP, release UART Port from TinyCLR.
 
     //Open UART.
     var serial = GHIElectronics.TinyCLR.Devices.Uart.UartController.FromName
@@ -209,6 +209,6 @@ When sending "+++", do not send "\r" or "\n" at the end. While most AT commands 
 
 ## Security Clarification
 
-Most users of embedded systems that connect to mobile networks assume they are secure, but often they are not. Typically, a serial connection with AT commands is used to communicate with the modem. While the data over the air is secure, all data transmitted over the serial connection is raw unencrypted data that can be easily scoped. This is not the case with TinyCLR OS.
+Most users of embedded systems that connect to mobile networks assume they are secure, but often they are not. Typically, a serial connection with AT commands is used to communicate with the modem. While the data over the air is secure, all data transmitted over the serial connection is raw unencrypted data that can be easily scoped. This is not the case with TinyCLR.
 
-With TinyCLR OS, serial data between the device and the modem is encrypted. All data handling is done internally inside the core processor, which is extremely difficult to hack into.
+With TinyCLR, serial data between the device and the modem is encrypted. All data handling is done internally inside the core processor, which is extremely difficult to hack into.

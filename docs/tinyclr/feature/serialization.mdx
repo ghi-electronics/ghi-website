@@ -59,7 +59,7 @@ public class MySerializableClass {
 ```
 
 :::note
-Serialization in TinyCLR OS is not compatible with full .NET. That means you cannot deserialize an object with .NET on a PC from a byte stream that was created with TinyCLR OS and vice versa. There is a solution which allows Serialization in TinyCLR OS and the .NET Framework to be compatible. For details, look at the BinarySerializationDesktopSample here: **https://github.com/Apress/exp-.net-micro-framework/tree/master/source/Chapter09/BinarySerializationDesktopSample**
+Serialization in TinyCLR is not compatible with full .NET. That means you cannot deserialize an object with .NET on a PC from a byte stream that was created with TinyCLR and vice versa. There is a solution which allows Serialization in TinyCLR and the .NET Framework to be compatible. For details, look at the BinarySerializationDesktopSample here: **https://github.com/Apress/exp-.net-micro-framework/tree/master/source/Chapter09/BinarySerializationDesktopSample**
 :::
 
 :::warning
@@ -70,7 +70,7 @@ GHI Electronics does not own or have rights to the code in this repository: http
 
 ## JSON
 
-TinyCLR OS includes a built in JSON library.
+TinyCLR includes a built in JSON library.
 
 :::tip
 Needed NuGets: GHIElectronics.TinyCLR.Core, GHIElectronics.TinyCLR.Data.Json.
@@ -96,7 +96,7 @@ Debug.WriteLine("Array test succeeded");
 ---
 
 ## XML
-TinyCLR OS supports both the writing and reading of XML (eXtensible Markup Language) files through its XmlReader and XmlWriter classes. Full documentation of XML is beyond the scope of this document, but for more information Microsoft's [.NET XML documentation](https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmldocument?view=netcore-3.1) is a good place to start. Please note that the TinyCLR implementation of XML is not fully .NET compatible, for example the asynchronous API is not supported.
+TinyCLR supports both the writing and reading of XML (eXtensible Markup Language) files through its XmlReader and XmlWriter classes. Full documentation of XML is beyond the scope of this document, but for more information Microsoft's [.NET XML documentation](https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmldocument?view=netcore-3.1) is a good place to start. Please note that the TinyCLR implementation of XML is not fully .NET compatible, for example the asynchronous API is not supported.
 
 
 :::note

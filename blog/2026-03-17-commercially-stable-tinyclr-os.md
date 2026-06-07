@@ -1,12 +1,12 @@
 ---
-title: Commercially-Stable TinyCLR OS
+title: Commercially-Stable TinyCLR
 tags: [tinyclr, release]
 image: /img/press/tinyclr-os.jpg
 ---
 
-![TinyCLR OS](/img/press/tinyclr-os.jpg)
+![TinyCLR](/img/press/tinyclr-os.jpg)
 
-TinyCLR OS has been running .NET on thousands of products in industries around the world. With a clean year since the previous release and minimal issues filed, we are publishing a commercially-stable refresh — version 2.4.0.1000.
+TinyCLR has been running .NET on thousands of products in industries around the world. With a clean year since the previous release and minimal issues filed, we are publishing a commercially-stable refresh — version 2.4.0.1000.
 
 {/* truncate */}
 
