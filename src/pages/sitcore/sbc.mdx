@@ -7,6 +7,16 @@ hide_table_of_contents: true
 import SitcoreNav from '@site/src/components/SitcoreNav';
 import YouTubeFacade from '@site/src/components/YouTubeFacade';
 
+export const shorts = [
+  {id: '6KqRLaQ3akY', label: 'LED Matrix'},
+  {id: '_m5HlBE-k0U', label: 'OLED Display'},
+  {id: '3kUTtwKDeJU', label: 'Motor Control'},
+  {id: 'PtcKQTitV1M', label: 'Analog Control'},
+  {id: 'ZO_33kknteA', label: 'Servo Motor'},
+  {id: 'PHp3RrMxb74', label: 'Distance Sensor'},
+  {id: 'E_oobZdpNL4', label: 'Smart LEDs'},
+];
+
 <SitcoreNav />
 
 <div className="section-tinted">
@@ -67,20 +77,31 @@ import YouTubeFacade from '@site/src/components/YouTubeFacade';
   </div>
 </div>
 
-## Maker-friendly form factors
-
-The SBC category is designed for compatibility with the most-used maker boards on the market. That compatibility lets you prototype with thousands of available accessories — without giving up commercial-grade hardware.
-
 <div className="section-tinted">
 
 <div className="section-tinted__intro">
-  <span className="eyebrow">Start here</span>
+  <span className="eyebrow">Quick try</span>
   <h2>FEZ Flea — $14.95</h2>
   <p>The smallest, cheapest SITCore SBC and the fastest way to find out what TinyCLR feels like. USB cable, Visual Studio, blinking LED in ten minutes — for under fifteen dollars.</p>
 </div>
 
 <YouTubeFacade id="bBgXFdlzD2E" title="FEZ Flea — start TinyCLR for $14.95" />
 
+</div>
+
+## Easy first steps
+
+<p className="lead-text">Quick maker basics — sensors, lights, motors. These are starter demos to show how easy it is to begin, not a showcase of what TinyCLR can do. For the full feature set, see the <a href="/tinyclr/">TinyCLR platform page</a>.</p>
+
+<div className="shorts-marquee">
+  <div className="shorts-track">
+    {[...shorts, ...shorts].map((s, i) => (
+      <div className="shorts-item" key={i}>
+        <YouTubeFacade id={s.id} title={s.label} short />
+        <div className="shorts-item__label">{s.label}</div>
+      </div>
+    ))}
+  </div>
 </div>
 
 ## The SBC lineup
