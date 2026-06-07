@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from 'react';
+import {createPortal} from 'react-dom';
 
 interface Props {
   id: string;
   title: string;
+  short?: boolean;
 }
 
-export default function YouTubeFacade({id, title}: Props): React.ReactElement {
+export default function YouTubeFacade({id, title, short}: Props): React.ReactElement {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -26,7 +28,7 @@ export default function YouTubeFacade({id, title}: Props): React.ReactElement {
     <>
       <button
         type="button"
-        className="video-thumb"
+        className={short ? 'video-thumb video-thumb--short' : 'video-thumb'}
         onClick={() => setOpen(true)}
         aria-label={`Play video: ${title}`}
       >
@@ -46,7 +48,7 @@ export default function YouTubeFacade({id, title}: Props): React.ReactElement {
         </span>
       </button>
 
-      {open && (
+      {open && typeof document !== 'undefined' && createPortal(
         <div
           className="video-modal"
           role="dialog"
@@ -63,7 +65,7 @@ export default function YouTubeFacade({id, title}: Props): React.ReactElement {
             ×
           </button>
           <div
-            className="video-modal__content"
+            className={short ? 'video-modal__content video-modal__content--short' : 'video-modal__content'}
             onClick={(e) => e.stopPropagation()}
           >
             <iframe
@@ -73,7 +75,8 @@ export default function YouTubeFacade({id, title}: Props): React.ReactElement {
               allowFullScreen
             />
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );

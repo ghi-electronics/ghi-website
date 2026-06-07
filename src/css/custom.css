@@ -1558,6 +1558,62 @@ a.pillar-card:hover::after {
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
 }
 
+.video-thumb--short {
+  aspect-ratio: 9 / 16;
+  max-width: 280px;
+}
+
+.shorts-marquee {
+  overflow: hidden;
+  margin: 1.5rem 0 3rem;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%);
+}
+
+.shorts-track {
+  display: flex;
+  width: max-content;
+  gap: 1rem;
+  animation: shorts-scroll 60s linear infinite;
+}
+
+.shorts-marquee:hover .shorts-track,
+.shorts-marquee:focus-within .shorts-track {
+  animation-play-state: paused;
+}
+
+.shorts-marquee .shorts-item {
+  flex: 0 0 180px;
+  display: flex;
+  flex-direction: column;
+}
+
+.shorts-marquee .shorts-item .video-thumb {
+  max-width: 100%;
+  margin: 0;
+}
+
+.shorts-item__label {
+  margin-top: 0.55rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--ifm-color-emphasis-700);
+  text-align: center;
+  line-height: 1.25;
+  padding: 0 0.15rem;
+}
+
+@keyframes shorts-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shorts-track {
+    animation: none;
+  }
+}
+
 .video-modal {
   position: fixed;
   inset: 0;
@@ -1592,6 +1648,11 @@ a.pillar-card:hover::after {
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+.video-modal__content--short {
+  max-width: 400px;
+  aspect-ratio: 9 / 16;
 }
 
 .video-modal__close {
