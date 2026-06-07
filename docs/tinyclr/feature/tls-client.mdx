@@ -54,14 +54,14 @@ catch {
 ```
 
 ## Entropy
-TinyCLR OS uses the internal True Random Number (TRNG) generator to seed the entropy needed. Users can optionally provide their own.
+TinyCLR uses the internal True Random Number (TRNG) generator to seed the entropy needed. Users can optionally provide their own.
 
 ```csharp
 networkInterfaceSetting.TlsEntropy = new byte[] { 0, 1, 2, 3 };
 ```
 
 ## Root Certificate
-A root certificate is needed to access secure websites. TinyCLR OS accepts certificates in both text and binary formats. The following instructions show how to download certificates using Google as an example:
+A root certificate is needed to access secure websites. TinyCLR accepts certificates in both text and binary formats. The following instructions show how to download certificates using Google as an example:
 
 First click on the `lock` icon inside the URL window. 
 

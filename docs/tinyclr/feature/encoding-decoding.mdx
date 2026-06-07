@@ -6,7 +6,7 @@ title: Encoding & Decoding
 These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
 :::
 
-TinyCLR OS provides many internal fast methods to handle many encoding and decoding tasks.
+TinyCLR provides many internal fast methods to handle many encoding and decoding tasks.
 
 ## Strings and Arrays
 
@@ -131,7 +131,7 @@ SwapEndianness(byte[] data, int groupSize, int index, int size);
 
 ### ToString() Supported Conversions
 
-As TinyCLR OS is a subset of the full desktop .NET development system, not all desktop .NET features are supported. The following `ToString()` arguments are supported:
+As TinyCLR is a subset of the full desktop .NET development system, not all desktop .NET features are supported. The following `ToString()` arguments are supported:
 
 ```csharp
 Debug.WriteLine(123.ToString("N4")); //Outputs 123.0000

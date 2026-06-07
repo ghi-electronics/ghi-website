@@ -74,7 +74,7 @@ kb.Release(Key.LeftShift);// release shift
 
 ### USB Joystick
 
-Devices running TinyCLR OS can simulate a Joystick. 
+Devices running TinyCLR can simulate a Joystick. 
 
 ```csharp
 var usbclientController = UsbClientController.GetDefault();
@@ -110,7 +110,7 @@ void UsbClientDeviceStateChanged(RawDevice sender, DeviceState state) {
 
 ### USB Mass Storage
 
-Devices running TinyCLR OS can act as a Mass Storage Device, giving a connected PC access to files. For example, a datalogger can save parameters to an internal SD card but, when USB cable is connected, the datalogger can stop logging data and give the USB bus access to the SD card. This allows a PC to then read the files as if it is reading any USB storage device.
+Devices running TinyCLR can act as a Mass Storage Device, giving a connected PC access to files. For example, a datalogger can save parameters to an internal SD card but, when USB cable is connected, the datalogger can stop logging data and give the USB bus access to the SD card. This allows a PC to then read the files as if it is reading any USB storage device.
 
 #### SD card
 

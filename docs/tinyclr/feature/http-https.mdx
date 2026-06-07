@@ -56,7 +56,7 @@ catch {
 
 ## HTTP Server
 
-TinyCLR OS provides an HttpListener class which can be used to make an HTTP Server. This code needs an active network connection on the same local network as your client application to work properly.
+TinyCLR provides an HttpListener class which can be used to make an HTTP Server. This code needs an active network connection on the same local network as your client application to work properly.
 
 :::tip
 Needed NuGets: GHIElectronics.TinyCLR.Core, GHIElectronics.TinyCLR.Devices.Network and GHIElectronics.TinyCLR.Networking.Http.
@@ -83,7 +83,7 @@ while (true) {
     HttpListenerResponse response = context.Response;
 
     //Construct a response.                
-    var responseString = string.Format("<HTML><BODY> I am TinyCLR OS Server. " +
+    var responseString = string.Format("<HTML><BODY> I am TinyCLR Server. " +
         "Client request count: {0}</BODY></HTML>", ++clientRequestCount);                
         
     byte[] buffer = System.Text.Encoding.UTF8.GetBytes(responseString);

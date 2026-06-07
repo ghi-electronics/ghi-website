@@ -142,7 +142,7 @@ byte[] macAddress = Winc15x0Interface.GetMacAddress();
 //Get the version of the installed WiFi firmware:
 string fwVersion = Winc15x0Interface.GetFirmwareVersion();
 
-//Print a list of WiFi firmware versions that have been tested with TinyCLR OS.
+//Print a list of WiFi firmware versions that have been tested with TinyCLR.
 //   Note: Untested WiFi firmware versions may also work.
 for (int i = 0; i < Winc15x0Interface.FirmwareSupports.Length; i++) {
     System.Diagnostics.Debug.WriteLine("Supported firmware version #" +
