@@ -43,7 +43,6 @@ const sidebars: SidebarsConfig = {
             'feature/spi',
             'feature/i2c',
             'feature/uart',
-            'feature/usb',
             'feature/usb-host',
             'feature/usb-client',
             'feature/usb-pc-comm',
