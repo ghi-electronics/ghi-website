@@ -80,18 +80,22 @@ Chipsets, modules, and single-board computers.</p>
 <div className="code-showcase__code">
 
 ```csharp
-using GHIElectronics.TinyCLR.Devices.Gpio;
-using GHIElectronics.TinyCLR.Pins;
+using System.Device.Gpio;
 using System.Threading;
+using GHIElectronics.TinyCLR.Pins;
 
-var led = GpioController.GetDefault()
-    .OpenPin(SC20100.GpioPin.PE11);
-led.SetDriveMode(GpioPinDriveMode.Output);
+// Activate (open) the LED pin
+using GpioController controller = new GpioController();
+controller.OpenPin(FEZFlea.GpioPin.Led, PinMode.Output);
 
-while (true) {
-    led.Write(GpioPinValue.High);
+while (true)
+{
+    // Turn the LED ON
+    controller.Write(FEZFlea.GpioPin.Led, PinValue.High);
     Thread.Sleep(500);
-    led.Write(GpioPinValue.Low);
+
+    // Turn the LED OFF
+    controller.Write(FEZFlea.GpioPin.Led, PinValue.Low);
     Thread.Sleep(500);
 }
 ```
