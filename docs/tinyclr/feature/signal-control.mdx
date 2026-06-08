@@ -2,174 +2,173 @@
 title: Signal Control
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
-:::
-
 ![HC-SR04 ultrasonic sensor](/img/docs/signal-control.jpg)
+
+Signal Control covers a family of APIs for working with digital pins at the timing level — generating precise waveforms, measuring pulse widths, and reading sensors that communicate by timing edges (ultrasonic rangefinders, capacitive touch surfaces, IR receivers).
+
+NuGet packages: **`GHIElectronics.TinyCLR.Devices.Signals`** for the API, and **`GHIElectronics.TinyCLR.Pins`** for pin name constants.
 
 ## DigitalSignal
 
-The DigitalSignal is used to handle digital signals! Unlike the other features on this page, DigitalSignal is accurate because it is hardware-backed and runs in a non-blocking manner.
-
-Being hardware backed, this feature only runs on specific pins. Those pins can be found under the pins library, under `SC20260.Timer.DigitalSignal.Controller?.xxx.
+`DigitalSignal` is the **hardware-backed** signal API — accurate, non-blocking, no CPU overhead. Because it's hardware-backed, it only runs on specific Timer-capable pins, found under `SC20260.Timer.DigitalSignal.Controller?.xxx`.
 
 :::tip
-Timers are also used with other features, such as PWM. Once a `Timer` is reserved for DigitalSignal, it is no longer available for other features.
+Timers are also used with other features like PWM. Once a Timer is reserved for `DigitalSignal`, it's no longer available to other features that need the same Timer.
 :::
 
-There are two uses for DigitalSignal, reading a signal (capture) and sending a signal (generate). The capture feature also support capturing a stream of durations (signal analyzer) or a pulse counter.
+Two roles: **generating** an outgoing signal, or **capturing** an incoming one. Capture supports both a raw stream of edge durations (signal analyzer) and a pulse counter (`ReadPulse`).
 
 ### Generate
 
-Using the `Generate` function allows the user to create a very accurate signal generator.  
+`Generate` creates a precise output signal driven entirely by hardware. Each value in the `data` array is the length of one pulse (high or low) in ticks. By default one tick is 100 ns.
 
 ```csharp
-Generate(uint[]data, uint offset, uint count)
+Generate(uint[] data, uint offset, uint count)
 ```
 
-`data` is the length of each pulse in ticks. By default, each tick is 100ns. 
+Limits on `data`:
 
+- Max **64K elements** per array.
+- The **sum** of all element values must not exceed `0xFFFFFFFF` ticks.
 
-There is a limitation to the `data` being used: The `data` array length is limited to 64K elements. Also, adding individual elements together in the array can also not exceed 0xFFFFFFFF in total.
- 
-![Default Timing](/img/docs/write1.jpg)
-  
+![Default timing](/img/docs/write1.jpg)
+
 ```csharp
-Generate(uint[]data, uint offset, uint count, unit multiplier)
+Generate(uint[] data, uint offset, uint count, uint multiplier)
 ```
-Depends on the devices, allowable multiplier values range are different:
 
-On SC20xxx, allowable multiplier values range from 25 to 250,000 (250us). There are also 2 rules to the allowed values: 1,000,000,000 % multiplier must result in zero and  240,000,000 (240MHz) % (1,000,000,000 / multiplier) must also be zero. There is no different between full speed and half speed because clock source is 240MHz always.
+The `multiplier` scales each tick to a custom time unit. The allowed range depends on the chip family.
 
-On SC13xxx, allowable multiplier values range from 25 to 800,000 (800us). There are also 2 rules to the allowed values: 1,000,000,000 % multiplier must result in zero and  80,000,000 (80MHz) % (1,000,000,000 / multiplier) must also be zero. When device run at half speed, the clock source is 40MHz, and max ranges is 25 to 1,600,000 (1.6ms);
+**SC20xxx** — multiplier from 25 to 250,000 (250 µs). The multiplier must satisfy two divisibility rules:
 
-The signal generator always start with a signal at low level. It then toggles the signal every x time. The time is fetched from the array given, one by one. Note that by sending an even count of pulses, teh signal will terminate with a high-level as shown below.
+- 1,000,000,000 must be evenly divisible by the multiplier.
+- 240,000,000 must be evenly divisible by (1,000,000,000 ÷ multiplier).
 
-![Signal Example](/img/docs/write2.jpg)
+The clock source is always 240 MHz, so full and half speed behave identically.
 
-Starting a second write will cause the signal to first go low, which may not be desired, as it causes an extra pulse on the next `Generate`. This pulse has a variable with. Making sure that the data `Length` is always an odd number will assure that the signal will terminate at a low-level.
+**SC13xxx (full speed)** — multiplier from 25 to 800,000 (800 µs). Same two rules, but the clock source is 80 MHz:
 
-![Signal Example](/img/docs/write3.jpg) 
+- 1,000,000,000 must be evenly divisible by the multiplier.
+- 80,000,000 must be evenly divisible by (1,000,000,000 ÷ multiplier).
 
+**SC13xxx (half speed)** — the clock drops to 40 MHz and the multiplier range extends to 25 to 1,600,000 (1.6 ms).
+
+The generator starts at low, then toggles every time a value from the array elapses. Sending an **even** number of pulses leaves the signal high at the end:
+
+![Even-count signal](/img/docs/write2.jpg)
+
+The next `Generate` call always starts by driving low — which inserts an extra pulse with variable width if the previous signal ended high. To leave the line resting low at the end (avoiding that extra pulse), make sure the data length is an **odd** number:
+
+![Odd-count signal](/img/docs/write3.jpg)
 
 :::tip
-Software-generated `SignalGenerator` below gives more flexibility but runs in system blocking mode. While `SignalGenerator` is all Hardware-driven making it very accurate, non-blocking and it does not use processor time.
+The software-based `SignalGenerator` (below) is more flexible but blocking. `DigitalSignal.Generate` is fully hardware-driven — precise, non-blocking, and uses no processor time.
 :::
 
-Calling `Generate` will return immediately (non-blocking) allowing the system to do other tasks while the signal is being generated in the background. When the signal is generated completely, an event is fired. To aid in signal handling, the event provides the final resting level of the signal.
+`Generate` returns immediately — the system is free to do other work while the signal plays out in the background. When generation completes, an event fires with the final resting level of the signal:
 
 ```csharp
-OnGenerateFinished => OnGenerateFinished;
-
-dsig.OnGenerateFinished += (a, b) => {
-    if (b == GpioPinValue.High)
+dsig.OnGenerateFinished += (sender, endValue) => {
+    if (endValue == GpioPinValue.High)
         Debug.WriteLine("Write done, end state high");
     else
         Debug.WriteLine("Write done, end state low");
-   };
+};
 ```
 
 ### Capture
-The Capture feature returns an array of timestamps of individual durations. The returned values are in nanoseconds.
+
+`Capture` returns an array of edge timestamps. Values are in nanoseconds.
 
 :::tip
-Digital Signal is limited to the timer max value, which comes to be about 17.89 seconds. The `waitForEdge` helps by only starting the timer when there is an active pulse.
+`DigitalSignal` is limited to the timer's max value — about 17.89 seconds. The `waitForEdge` flag avoids burning that budget on idle time by only starting the timer once an active pulse is detected.
 :::
 
 ```csharp
 var digitalSignalPin = GpioController.GetDefault().OpenPin(SC20260.Timer.DigitalSignal.Controller2.PB3);
 var digitalSignal = new DigitalSignal(digitalSignalPin);
 
-bool waitForEdge = false;// Start capturing as soon as Capture is called
+bool waitForEdge = false;   // Start capturing immediately when Capture is called.
 
-// Subscribe event when done capturing
 digitalSignal.OnCaptureFinished += Digital_OnCaptureFinished;
-                      
-// start capture 100 samples, timeout is 15seconds
+
+// Capture 100 samples, timeout 15 seconds.
 digitalSignal.Capture(100, GpioPinEdge.RisingEdge | GpioPinEdge.FallingEdge, waitForEdge, TimeSpan.FromSeconds(15));
 
-// Wait for finish capture
-// do other work
-Thread.Sleep(Timeout.Infinite); 
+// Do other work while capture runs.
+Thread.Sleep(Timeout.Infinite);
 
-// The event
 private static void Digital_OnCaptureFinished(DigitalSignal sender, uint[] buffer, uint count, GpioPinValue pinValue) {
     if (count == 0) {
-        Debug.WriteLine("no data was captured!");
+        Debug.WriteLine("No data was captured!");
         return;
     }
     for (int i = 0; i < count; i++) {
-        Debug.WriteLine("Sample [" + i +"]: "+ buffer[i]+" ns");
+        Debug.WriteLine("Sample [" + i + "]: " + buffer[i] + " ns");
     }
 }
 ```
+
 :::note
-The first captured pulse will likely have an inaccurate (shorter) value due to system prep-time.
+The first captured pulse may have a shorter-than-actual value due to system prep time.
 :::
 
 ### ReadPulse
 
-ReadPulse can be used to measure frequency and other analyses that require measuring time duration for specific pulse count.
+`ReadPulse` measures the total duration of a fixed number of pulses — useful for measuring frequency.
 
 ```csharp
 var digitalSignalPin = GpioController.GetDefault().OpenPin(SC20260.Timer.DigitalSignal.Controller2.PB3);
 var digitalSignal = new DigitalSignal(digitalSignalPin);
 
-bool waitForEdge = true;// wait for first pulse before starting the measurement
+bool waitForEdge = true;    // Wait for the first pulse before starting the timer.
 
-// Subscribe event when done reading
-digitalSignal.OnReadPulseFinished += Digital_OnReadPulseFinished;           
+digitalSignal.OnReadPulseFinished += Digital_OnReadPulseFinished;
 
-// Start reading 1000 pulses
+// Time 1000 rising-edge pulses.
 digitalSignal.ReadPulse(1000, GpioPinEdge.RisingEdge, waitForEdge);
 
-// do other work...
 Thread.Sleep(Timeout.Infinite);
 
-// the event
 void Digital_OnReadPulseFinished(DigitalSignal sender, TimeSpan duration, uint count, GpioPinValue pinValue) {
     var ticks = duration.Ticks;
     var microsecond = ((double)duration.Ticks) / 10;
     var millisecond = ((double)duration.Ticks) / 10000;
     var freq = (count / microsecond) * 1000000;
 
-    Debug.WriteLine("GpioPinValue = " + ((pinValue == GpioPinValue.High) ? "High" : "Low"));
+    Debug.WriteLine("GpioPinValue = " + (pinValue == GpioPinValue.High ? "High" : "Low"));
     Debug.WriteLine("PulseCount = " + count);
     Debug.WriteLine("Duration ticks = " + ticks);
     Debug.WriteLine("Duration microsecond = " + microsecond);
     Debug.WriteLine("Duration millisecond = " + millisecond);
-    Debug.WriteLine("freq = " + freq / 1000.0 + " KHz");
+    Debug.WriteLine("freq = " + freq / 1000.0 + " kHz");
 }
 ```
 
----
 ### Abort
 
-An event is fired when any `DigitalSignal` operation is completed. In some cases, it may be desired to terminate the operation early, using `Abort`. When aborted, an event is still triggered, which will contain whatever data/pulses was collected from the trigger to the time `Abort` was called.
+Any `DigitalSignal` operation can be terminated early with `Abort`. The completion event still fires, with whatever data was collected up to the abort point.
 
 ```csharp
 var digitalSignalPin = GpioController.GetDefault().OpenPin(SC20260.Timer.DigitalSignal.Controller2.PB3);
 var digitalSignal = new DigitalSignal(digitalSignalPin);
 
-var waitForEdge = false;
-
-digitalSignal.OnReadPulseFinished += Digital_OnReadPulseFinished
+digitalSignal.OnReadPulseFinished += Digital_OnReadPulseFinished;
 
 while (true) {
     if (digitalSignal.CanReadPulse) {
-        digitalSignal.ReadPulse(1000, GpioPinEdge.RisingEdge, waitForEdge);                  
-        Thread.Sleep(1000);                    
+        digitalSignal.ReadPulse(1000, GpioPinEdge.RisingEdge, waitForEdge: false);
+        Thread.Sleep(1000);
         digitalSignal.Abort();
         Debug.WriteLine("Aborted");
     }
 }
-      
+
 void Digital_OnReadPulseFinished(DigitalSignal sender, TimeSpan duration, uint count, GpioPinValue pinValue) {
     if (count > 0) {
         var microsecond = ((double)duration.Ticks) / 10;
         var freq = (count / microsecond) * 1000000;
-        Debug.WriteLine("freq = " + freq / 1000.0 + " KHz");
+        Debug.WriteLine("freq = " + freq / 1000.0 + " kHz");
     }
     else {
         Debug.WriteLine("No clock found.");
@@ -178,44 +177,38 @@ void Digital_OnReadPulseFinished(DigitalSignal sender, TimeSpan duration, uint c
 ```
 
 :::tip
-In the sample code above you can use PWM to provide the pulse needed to verify the code. Keep in mind that both PWM and `DigitalSignal` share resources, so a different Timer controller must be used.
+To test the code above, use PWM to generate a known pulse train. PWM and `DigitalSignal` share Timer resources — use different Timer controllers for the two.
 :::
 
 ---
 
 ## Pulse Feedback
 
-The PulseFeedback class can be used in three different modes. These modes are used to measure Echo Duration, Duration Until Echo, and Drain Duration.
+`PulseFeedback` measures pulse timings in three modes — built for sensor protocols that communicate by edge timing.
 
 ### Echo Duration
 
 ![Echo duration timing](/img/docs/echo-duration.gif)
 
-Echo Duration sends a trigger pulse of a given state over the provided pin. It then waits for an echo on the other specified pin and measures the length of that echo pulse. The trigger and echo pins cannot be the same pin.
+Sends a trigger pulse on one pin, then measures how long the *echo* on a separate pin stays in the specified state. The trigger and echo pins must be different.
 
-The following code will read the distance in centimeters from an HC-SR04 ultrasonic distance sensor. This sensor has a trigger pin that is pulsed high to start distance measurement. It has a separate echo pin that the sensor holds high until it receives an echo. Therefore, the time the echo pin is high represents the time it takes for the sound to hit the target and reflect back to the sensor.
-
-To test this code, I plugged the sensor directly into the SCM20260D Dev board and ran a couple short wires for power. It was convenient having 5V on the header. I was surprised how well this inexpensive sensor worked.
+The example reads distance from an **HC-SR04 ultrasonic sensor**. The sensor's trigger pin is pulsed high to start a measurement, then its echo pin is held high for as long as it takes a sound pulse to bounce off the target and return.
 
 ![HC-SR04 on dev board](/img/docs/ultrasonic-on-header.jpg)
 
 :::note
-The HC-SR04 ultrasonic distance sensor requires a 5 volt power supply. While the module accepts 3.3 volt logic on the Trig and Echo pins, it will not work with a 3.3 volt supply for power.
+The HC-SR04 requires a **5V power supply** — 3.3V logic on Trig and Echo is fine, but the module won't run from a 3.3V supply.
 :::
-
 
 ```csharp
 var gpio = GpioController.GetDefault();
 var distanceTriggerPin = gpio.OpenPin(SC20260.GpioPin.PA15);
-
 var distanceEchoPin = gpio.OpenPin(SC20260.GpioPin.PJ14);
 
-var pulseFeedback = new PulseFeedback(distanceTriggerPin,
-    distanceEchoPin,
-    PulseFeedbackMode.EchoDuration) {
+var pulseFeedback = new PulseFeedback(distanceTriggerPin, distanceEchoPin, PulseFeedbackMode.EchoDuration) {
     DisableInterrupts = false,
-    Timeout = System.TimeSpan.FromSeconds(1),
-    PulseLength = System.TimeSpan.FromTicks(100),
+    Timeout = TimeSpan.FromSeconds(1),
+    PulseLength = TimeSpan.FromTicks(100),
     EchoValue = GpioPinValue.High,
     PulseValue = GpioPinValue.High,
 };
@@ -234,30 +227,21 @@ while (true) {
 
 ![Duration until echo timing](/img/docs/duration-until-echo.gif)
 
-Duration Until Echo is very similar to Echo Duration, although instead of sending a pulse and measuring the length of the resulting echo, it measures how long it takes until that echo is received. Pulse and echo cannot use the same pins.
+Similar to Echo Duration, but it measures the **time between trigger and echo**, not the length of the echo itself. Pulse and echo pins must be different.
 
-The following code reads the distance in centimeters from a Polaroid 6500 Ranging Module. This module is similar to the HC-SR04 distance sensor, however the time it takes for the sensor to pulse the ECHO pin after your device pulses the INIT must be measured.
-
-
-:::tip
-Needed Nuget: GHIElectronics.TinyCLR.Devices.Signals`
-:::
+The example reads distance from a **Polaroid 6500 Ranging Module**, which signals readiness by pulsing its ECHO pin after the host pulses INIT.
 
 ```csharp
 var gpio = GpioController.GetDefault();
 var distanceTriggerPin = gpio.OpenPin(SC20260.GpioPin.PA15);
-
 var distanceEchoPin = gpio.OpenPin(SC20260.GpioPin.PJ14);
 
-var pulseFeedback = new PulseFeedback(distanceTriggerPin, 
-    distanceEchoPin, 
-    PulseFeedbackMode.DurationUntilEcho) {
-
+var pulseFeedback = new PulseFeedback(distanceTriggerPin, distanceEchoPin, PulseFeedbackMode.DurationUntilEcho) {
     DisableInterrupts = false,
-    Timeout = System.TimeSpan.FromSeconds(1),
-    PulseLength = System.TimeSpan.FromTicks(100),
-    EchoValue = GHIElectronics.TinyCLR.Devices.Gpio.GpioPinValue.High,
-    PulseValue = GHIElectronics.TinyCLR.Devices.Gpio.GpioPinValue.High,
+    Timeout = TimeSpan.FromSeconds(1),
+    PulseLength = TimeSpan.FromTicks(100),
+    EchoValue = GpioPinValue.High,
+    PulseValue = GpioPinValue.High,
 };
 
 while (true) {
@@ -274,27 +258,21 @@ while (true) {
 
 ![Drain duration timing](/img/docs/drain-duration.gif)
 
-In this DrainDuration mode is used to implement capacitive touch. When calling Trigger, the pulse line will be held in the specified state for the specified time and then set to an input. It then measures the time for the pin to change its state.
-
-Only the pulse line is used in this mode. Echo pin is ignored.
-
-The image below shows a sample circuit. Note that this mode can only be used with a single pin.
+Holds the pulse pin at a specified state for a specified time, then releases it to input and measures how long the pin takes to change state. Designed for **capacitive touch sensing**. Only the pulse line is used — the echo pin parameter is ignored.
 
 ![Capacitive touch schematic](/img/docs/capacitive-touch-schematic.gif)
 
-The following example illustrates the reading of a capacitive touch sensor. It sends a pulse of 10us to charge a capacitor and then measures the length of time it takes the capacitor to discharge on the same pin. It prints out the total discharge duration in milliseconds. It repeats every second.
+The example reads a capacitive touch sensor by charging a capacitor with a 10 µs pulse, then measuring the discharge time on the same pin.
 
 ```csharp
 var gpio = GpioController.GetDefault();
 var capacitiveSensePin = gpio.OpenPin(SC20260.GpioPin.PJ14);
 
-var pulseFeedback = new PulseFeedback(capacitiveSensePin, 
-    PulseFeedbackMode.DrainDuration) {
-
+var pulseFeedback = new PulseFeedback(capacitiveSensePin, PulseFeedbackMode.DrainDuration) {
     DisableInterrupts = false,
-    Timeout = System.TimeSpan.FromSeconds(1),
-    PulseLength = System.TimeSpan.FromMilliseconds(1),
-    PulseValue = GHIElectronics.TinyCLR.Devices.Gpio.GpioPinValue.High,
+    Timeout = TimeSpan.FromSeconds(1),
+    PulseLength = TimeSpan.FromMilliseconds(1),
+    PulseValue = GpioPinValue.High,
 };
 
 while (true) {
@@ -307,11 +285,11 @@ while (true) {
 
 ## Signal Capture
 
-The SignalCapture class monitors a pin and records any changes (high-low or low-high transitions) of the pin to an array. It is a digital waveform recorder. Each array element is the number of microseconds between each signal change.
+`SignalCapture` is a **software-based digital waveform recorder**. It monitors a pin and records every edge to an array — each element is the microseconds between consecutive transitions.
 
-When calling Read, it blocks other code from executing until it either fills the input buffer or it has captured the number of transitions specified by the count argument. If your signal is shorter than that, the call will never return. Make sure to request only what you plan to capture.
+`Read` **blocks** until it either fills the output buffer or captures the requested number of transitions. Request only what you actually expect to capture — if the signal stops earlier, the call never returns.
 
-The following sample code captures the signal generated by pressing LDR button on the SC20100S Dev board. It will attempt to capture 100 transitions, waiting no more than 10 seconds. It will also enable the pull-up resistor on the pin. It will return the initial state of the pin when it started capturing and how many transitions it captured. Note that the signal capture may record button bounces, resulting in a number of transitions in rapid succession.
+The example captures the signal from pressing the LDR button on the SC20100S Dev Board. It captures up to 100 transitions or waits up to 10 seconds, with the internal pull-up enabled. Button bounces will appear as bursts of closely-spaced transitions.
 
 ```csharp
 var gpio = GpioController.GetDefault();
@@ -329,17 +307,18 @@ while (true) {
     Thread.Sleep(100);
 }
 ```
+
 ---
 
 ## Signal Generator
 
-SignalGenerator is a digital waveform generator. SignalGenerator works by comparing an internal counter to an array of time values, one by one. When the value of the argument matches the counter, the output pin is changed. The time values are in microseconds.
+`SignalGenerator` is a **software-based digital waveform generator**. It compares an internal counter against an array of time values (in microseconds), and toggles the output pin each time the counter hits one of those values.
 
-SignalGenerator can also be used to generate PWM. Unlike the PWM class, SignalGenerator can be used to generate PWM on any available output pin. It does use processor time -- the higher the frequency the more processor time it uses.
+`SignalGenerator` can also produce PWM on any output pin — unlike the `PwmController` class, which is limited to specific Timer-backed pins. The trade-off: software PWM consumes CPU time, and more so at higher frequencies.
 
-At this time, SignalGenerator only operates in blocking mode. While SignalGenerator is running, it will not yield any processor time to other code.
+`SignalGenerator` operates in **blocking mode only** — while running, no processor time is yielded to other code.
 
-The following sample code will blink the user LED on the SC20100S Dev board four times (for one second each time) every five seconds.
+The example blinks the user LED on the SC20100S Dev Board four times (one second each) every five seconds.
 
 ```csharp
 var gpio = GpioController.GetDefault();
