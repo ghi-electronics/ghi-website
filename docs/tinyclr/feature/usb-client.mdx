@@ -2,25 +2,24 @@
 title: USB Client
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
-:::
+**USB Client** turns a SITCore device into a USB peripheral — something that plugs *into* a PC, like a mouse, keyboard, joystick, mass-storage drive, or a custom device class. (The opposite role, where SITCore acts as the USB host driving connected peripherals, lives on the [USB Host](usb-host.mdx) page.)
 
-By default, USB client support is used for deploying and debugging applications. However, deploying and debugging can be switched to a serial mode using MOD pin, freeing the USB Client port to serve other purposes.
+By default, the USB Client port is used by Visual Studio for application deployment and debugging. To free it for other purposes, switch the debug interface to serial using the **MOD** pin — see [Special Pins](/docs/tinyclr/special-pins). The debug interface can also be **fully disabled** as part of [IP Protection](ip-protection.mdx).
 
- The USB port can also be freed by completely disabling the USB debug interface, which is a feature of [ip protection](ip-protection.mdx).
+NuGet package: **`GHIElectronics.TinyCLR.Devices.UsbClient`** — contains both the API and the built-in device drivers (mouse, keyboard, joystick, mass storage).
 
-:::tip
-Feature found in the GHIElectronics.TinyCLR.Devices.UsbClient NuGet and namespace
-:::
+## USB Mouse
 
-### USB Mouse
+Acts as a USB mouse, with both **absolute** and **relative** cursor modes.
 
-In this mode, the hardware acts as a USB mouse. The driver supports absolute and relative modes. In relative mode, the `MoveCursor` method will move the cursor from current location, where ever it might be. Meaning, `MoveCursor(10,0)` followed by `MoveCursor(-10,0)` will move the cursor and immediately move it back where it started.
-
-In absolute mode, `MoveCursor` sets the cursor from (0,0), which is in the top left corner of the screen.
+- **Relative mode** — `MoveCursor(dx, dy)` moves the cursor by an offset from its current position. `MoveCursor(10, 0)` followed by `MoveCursor(-10, 0)` returns to the starting position.
+- **Absolute mode** — `MoveCursor(x, y)` sets the cursor to that coordinate from the top-left corner of the screen.
 
 ```csharp
+using GHIElectronics.TinyCLR.Devices.UsbClient;
+using System;
+using System.Threading;
+
 var usbclientController = UsbClientController.GetDefault();
 var absolutePosition = true;
 var mouse = new Mouse(usbclientController, absolutePosition);
@@ -28,17 +27,15 @@ var mouse = new Mouse(usbclientController, absolutePosition);
 mouse.DeviceStateChanged += UsbClientDeviceStateChanged;
 mouse.Enable();
 
-//...
-
 void UsbClientDeviceStateChanged(RawDevice sender, DeviceState state) {
-var i = 0.0;
+    var i = 0.0;
     if (state == DeviceState.Configured) {
         new Thread(() => {
             while (true) {
                 ((Mouse)sender).MoveCursor(
-                    Mouse.MaxRange /4 + (int)(Math.Cos(i) * Mouse.MaxRange / 10),
-                    Mouse.MaxRange /4 + (int)(Math.Sin(i) * Mouse.MaxRange / 10));
-                i+=0.03;
+                    Mouse.MaxRange / 4 + (int)(Math.Cos(i) * Mouse.MaxRange / 10),
+                    Mouse.MaxRange / 4 + (int)(Math.Sin(i) * Mouse.MaxRange / 10));
+                i += 0.03;
                 Thread.Sleep(50);
             }
         }).Start();
@@ -46,37 +43,49 @@ var i = 0.0;
 }
 ```
 
-### USB Keyboard
+## USB Keyboard
 
-A USB Keyboard is simulated in this mode. The keys used can be `Press`, `Release` or `Stroke` (which is same as a `Press` followed by `Release`).
+Acts as a USB keyboard. Each key supports `Press`, `Release`, and `Stroke` (a `Press` followed by a `Release`).
 
 ```csharp
+using GHIElectronics.TinyCLR.Devices.UsbClient;
+using System.Threading;
+
 var usbClientSetting = new UsbClientSetting() {
     ManufactureName = "Manufacture_Name",
     ProductName = "Product_Name",
     SerialNumber = "serialnumber",
 };
+
 var usbclientController = UsbClientController.GetDefault();
 var kb = new Keyboard(usbclientController, usbClientSetting);
-var key = new Key[] { Key.G, Key.H, Key.I, Key.Space, Key.E, Key.L, Key.E, Key.C, Key.T, Key.R, Key.O, Key.N, Key.I, Key.C, Key.S };
+
+var keys = new Key[] {
+    Key.G, Key.H, Key.I, Key.Space,
+    Key.E, Key.L, Key.E, Key.C, Key.T, Key.R, Key.O, Key.N, Key.I, Key.C, Key.S,
+};
+
 kb.Enable();
 
 while (kb.DeviceState != DeviceState.Configured)
-    Thread.Sleep(100);// wait or use events
+    Thread.Sleep(100);
 
-kb.Press(Key.LeftShift);// hold shift down
-for (var i = 0; i < key.Length; i++) {
-    kb.Stroke(key[i]);
-    Thread.Sleep(500);// type it twice a second
+kb.Press(Key.LeftShift);                // Hold shift to type uppercase.
+for (var i = 0; i < keys.Length; i++) {
+    kb.Stroke(keys[i]);
+    Thread.Sleep(500);                  // Type twice a second.
 }
-kb.Release(Key.LeftShift);// release shift
+kb.Release(Key.LeftShift);
 ```
 
-### USB Joystick
+## USB Joystick
 
-Devices running TinyCLR can simulate a Joystick. 
+Acts as a USB joystick — axes plus buttons.
 
 ```csharp
+using GHIElectronics.TinyCLR.Devices.UsbClient;
+using System.Threading;
+
 var usbclientController = UsbClientController.GetDefault();
 
 var usbClientSetting = new UsbClientSetting() {
@@ -91,12 +100,10 @@ joystick.Enable();
 
 Thread.Sleep(Timeout.Infinite);
 
-//...
-
 void UsbClientDeviceStateChanged(RawDevice sender, DeviceState state) {
     if (state == DeviceState.Configured) {
         new Thread(() => {
-            Joystick joystick = (Joystick)sender;
+            var joystick = (Joystick)sender;
             while (true) {
                 joystick.PressButton(0);
                 Thread.Sleep(500);
@@ -108,117 +115,128 @@ void UsbClientDeviceStateChanged(RawDevice sender, DeviceState state) {
 }
 ```
 
-### USB Mass Storage
+## USB Mass Storage
 
-Devices running TinyCLR can act as a Mass Storage Device, giving a connected PC access to files. For example, a datalogger can save parameters to an internal SD card but, when USB cable is connected, the datalogger can stop logging data and give the USB bus access to the SD card. This allows a PC to then read the files as if it is reading any USB storage device.
+Acts as a USB mass-storage device, exposing on-board storage to a connected PC as a removable drive. Common use case: a data logger writes parameters to an SD card during operation, then when the USB cable is connected it stops logging and hands the SD card over to the PC for download.
 
-#### SD card
+The storage backing the mass-storage volume can be an **SD card**, the **on-chip QSPI flash**, or a **USB thumb drive** connected to the SITCore's USB Host port.
+
+### SD card
 
 ```csharp
+using GHIElectronics.TinyCLR.Devices.Storage;
+using GHIElectronics.TinyCLR.Devices.UsbClient;
+using GHIElectronics.TinyCLR.Pins;
+using System.Diagnostics;
+
 var sd = StorageController.FromName(SC20100.StorageController.SdCard);
 
 var usbclientController = UsbClientController.GetDefault();
-
 var usbclient_masstorage = new MassStorage(usbclientController);
 
 var ready = false;
 usbclient_masstorage.DeviceStateChanged += (a, b) => {
-	Debug.WriteLine("state : " + b.ToString());
+    Debug.WriteLine("state : " + b.ToString());
 
-	if (b == DeviceState.Configured)
-	ready = true;
+    if (b == DeviceState.Configured)
+        ready = true;
 };
 
-usbclient_masstorage.AttachLogicalUnit(sd.Hdc);            
-
+usbclient_masstorage.AttachLogicalUnit(sd.Hdc);
 usbclient_masstorage.Enable();
 
 while (!ready) ;
 
-// Wait few seconds for PC set up new drive
+// Wait a few seconds for the PC to mount the new drive.
 ```
 
-#### QSPI
+### QSPI
 
-:::note
-When external flash is used for external deployment or any other purposes (Tiny FileSystem), do not enable QSPI for USB Mass Storage. 
-USB Mass Storage uses entire 16MB of QSPI. Once formatted, all data will be lost!
+:::warning
+USB Mass Storage on QSPI uses **the entire 16 MB** of QSPI flash. Once formatted by the PC, any data previously stored there is lost — including any **external deployment** binaries or **Tiny File System** data. Don't enable USB Mass Storage on QSPI if you're using QSPI for anything else.
 :::
 
 ```csharp
+using GHIElectronics.TinyCLR.Devices.Storage;
+using GHIElectronics.TinyCLR.Devices.UsbClient;
+using GHIElectronics.TinyCLR.Pins;
+using System.Diagnostics;
+
 var qspi = StorageController.FromName(SC20100.StorageController.QuadSpi);
 
 var usbclientController = UsbClientController.GetDefault();
-
 var usbclient_masstorage = new MassStorage(usbclientController);
 
 var ready = false;
 usbclient_masstorage.DeviceStateChanged += (a, b) => {
-	Debug.WriteLine("state : " + b.ToString());
+    Debug.WriteLine("state : " + b.ToString());
 
-	if (b == DeviceState.Configured)
-	ready = true;
+    if (b == DeviceState.Configured)
+        ready = true;
 };
 
-usbclient_masstorage.AttachLogicalUnit(qspi.Hdc);            
-
+usbclient_masstorage.AttachLogicalUnit(qspi.Hdc);
 usbclient_masstorage.Enable();
 
-while (!ready);
+while (!ready) ;
 
-// Wait few seconds for PC set up new drive
+// Wait a few seconds for the PC to mount the new drive.
 ```
 
-#### USB thumb drive
+### USB thumb drive
+
+A thumb drive connected to the SITCore's USB Host port can be exposed back through USB Client — effectively passing the thumb drive's storage through to the PC.
 
 ```csharp
+using GHIElectronics.TinyCLR.Devices.Storage;
+using GHIElectronics.TinyCLR.Devices.UsbClient;
+using GHIElectronics.TinyCLR.Devices.UsbHost;
+using GHIElectronics.TinyCLR.Pins;
+using System.Diagnostics;
+
 var usbHostController = UsbHostController.GetDefault();
-
-StorageController strogareController = null;
-
+StorageController storageController = null;
 var usbHostReady = false;
 
 usbHostController.OnConnectionChangedEvent += (a, b) => {
-	switch (b.DeviceStatus) {
-		case DeviceConnectionStatus.Connected:
-			switch (b.Type) {
-				case BaseDevice.DeviceType.MassStorage:
-					strogareController = StorageController.FromName(SC20260.StorageController.UsbHostMassStorage);
-					usbHostReady = true;
-					break;
-			}
-			break;
-	}
+    switch (b.DeviceStatus) {
+        case DeviceConnectionStatus.Connected:
+            switch (b.Type) {
+                case BaseDevice.DeviceType.MassStorage:
+                    storageController = StorageController.FromName(SC20260.StorageController.UsbHostMassStorage);
+                    usbHostReady = true;
+                    break;
+            }
+            break;
+    }
 };
 
 usbHostController.Enable();
-
-while (!usbHostReady);
+while (!usbHostReady) ;
 
 var usbclientController = UsbClientController.GetDefault();
-
 var usbclient_masstorage = new MassStorage(usbclientController);
 
 var ready = false;
-
 usbclient_masstorage.DeviceStateChanged += (a, b) => {
-	Debug.WriteLine("state : " + b.ToString());
+    Debug.WriteLine("state : " + b.ToString());
 
-	if (b == DeviceState.Configured)
-		ready = true;
+    if (b == DeviceState.Configured)
+        ready = true;
 };
 
-usbclient_masstorage.AttachLogicalUnit(strogareController.Hdc);            
-
+usbclient_masstorage.AttachLogicalUnit(storageController.Hdc);
 usbclient_masstorage.Enable();
 
-while (!ready);
+while (!ready) ;
 
-// Wait few seconds for PC set up new drive
+// Wait a few seconds for the PC to mount the new drive.
 ```
 
-### PC Data Transfer
-This feature is used to transfer data between the hardware and a PC. See [PC Data Comm](usb-pc-comm.mdx) for details.
+## PC data transfer
 
-### USB Raw
-For advanced users, virtually any type of USB device can be created using USB Raw. The USB mouse driver inside [GHIElectronics.TinyCLR.Devices.UsbClient](https://github.com/ghi-electronics/TinyCLR-Libraries) is a good example of how this can be achieved.   
+For serial-style two-way communication with a connected PC (the device shows up as a virtual COM port or a WinUSB endpoint), see [USB PC Comm](usb-pc-comm.mdx).
+
+## USB Raw
+
+For advanced cases — any USB device class not provided as a built-in driver — you can build a fully custom USB device with **USB Raw**. The built-in mouse driver inside [GHIElectronics.TinyCLR.Devices.UsbClient](https://github.com/ghi-electronics/TinyCLR-Libraries) is a good reference implementation.
