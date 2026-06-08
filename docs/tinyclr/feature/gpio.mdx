@@ -1,31 +1,64 @@
 ---
-title: Gpio
+title: GPIO
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
-:::
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-﻿# General Purpose Input Output (GPIO)
----
-Microcontrollers include pins that can be controlled through software. They can be logical inputs or outputs, hence the name "general purpose input/output".
+Microcontrollers expose pins that can be controlled from software as logical inputs or outputs — **General Purpose Input/Output**, or GPIO.
 
-:::tip
-GPIO is found in the GHIElectronics.TinyCLR.Devices.Gpio NuGet package and pin definitions are found in the  GHIElectronics.TinyCLR.Pins package.
-:::
+## Two APIs
 
-## Digital Outputs
-A digital output pin can be set to either high or low.  High means that there is approx. 3.3V on the output pin. When the pin is set to low, it's voltage will be very close to zero.
+TinyCLR offers two GPIO APIs that coexist on the same hardware. Pick whichever fits your project — switching between them is free, and you can mix both in the same application if needed.
+
+- **.NET IoT API** — Microsoft's standard `System.Device.Gpio` namespace. Use this for new code and for portability with desktop .NET IoT applications.
+- **TinyCLR API** — the original `GHIElectronics.TinyCLR.Devices.Gpio` namespace. Keeps v2 code working without changes.
+
+Both API namespaces are provided by a single NuGet package — install one and you have both:
+
+- **`GHIElectronics.TinyCLR.Devices.Gpio`** — contains both the `System.Device.Gpio` (.NET IoT) and `GHIElectronics.TinyCLR.Devices.Gpio` (TinyCLR) namespaces.
+- **`GHIElectronics.TinyCLR.Pins`** — pin name constants for SITCore boards. Shared across GPIO, SPI, I²C, UART, and other peripherals — not GPIO-specific.
+
+## Digital outputs
+
+A digital output pin can be set high (~3.3V) or low (~0V).
 
 :::warning
-Never connect two output pins together. If they are connected and one is high and the other is low, the entire processor can be damaged.
+Never connect two output pins together. If one is high and the other is low, the entire processor can be damaged.
 :::
 
 :::tip
-Digital pins on microcontrollers are weak. They can only be used to control small LEDs or drive transistors. Those transistors can, in turn, control devices with high power needs like a motor.
+Digital pins on microcontrollers are weak — typically enough to drive small LEDs or transistors, but not motors or other high-power loads. Use a transistor to switch high-power devices.
 :::
 
+<Tabs>
+<TabItem value="netiot" label=".NET IoT API" default>
+
 ```csharp
+using System.Device.Gpio;
+using System.Threading;
+using GHIElectronics.TinyCLR.Pins;
+
+using GpioController controller = new GpioController();
+controller.OpenPin(SC20260.GpioPin.PH6, PinMode.Output);
+
+while (true) {
+    controller.Write(SC20260.GpioPin.PH6, PinValue.High);
+    Thread.Sleep(100);
+
+    controller.Write(SC20260.GpioPin.PH6, PinValue.Low);
+    Thread.Sleep(100);
+}
+```
+
+</TabItem>
+<TabItem value="tinyclr" label="TinyCLR API">
+
+```csharp
+using GHIElectronics.TinyCLR.Devices.Gpio;
+using GHIElectronics.TinyCLR.Pins;
+using System.Threading;
+
 var led = GpioController.GetDefault().OpenPin(SC20260.GpioPin.PH6);
 led.SetDriveMode(GpioPinDriveMode.Output);
 
@@ -37,99 +70,171 @@ while (true) {
     Thread.Sleep(100);
 }
 ```
----
 
-## Digital Inputs
-Digital inputs sense the state of a pin based on its voltage. Minimum voltage on most pins is 0 volts; a negative voltage may damage the pin or the processor. Most processors run on 3.3V, the highest voltage a pin should see is 3.3V. However, some processors that are powered by 3.3V are 5V tolerant -- they can withstand up to 5V on their inputs. SITCore is 5V tolerant.
+</TabItem>
+</Tabs>
+
+## Digital inputs
+
+Digital inputs read the state of a pin based on its voltage. Most processors run on 3.3V — input pins should stay between 0V and 3.3V. Negative voltages may damage the pin or processor.
+
+Some 3.3V processors tolerate up to 5V on their inputs — SITCore is **5V-tolerant**.
 
 :::warning
-5V tolerant doesn't mean the processor can be powered by 5V, only that the input pins can tolerate 5V.
+5V-tolerant doesn't mean the processor can be powered by 5V — only that input pins can tolerate 5V signals.
 :::
 
-Unconnected input pins are called "floating." A resistor can be added to pull the pin high or low. Modern processors include internal pull-up and pull-down resistors that are controlled by software.
+Unconnected input pins are called "floating." A pull-up or pull-down resistor anchors the pin to a known state. Modern processors include software-controlled internal pull-up and pull-down resistors.
 
-The code sample below uses an internal pull-up resistor to set the button high. When the button is pressed the `GpioPinValue` goes low. 
+The code below uses an internal pull-up on a button pin. When the button is pressed, the pin reads Low.
+
+<Tabs>
+<TabItem value="netiot" label=".NET IoT API" default>
 
 ```csharp
+using System.Device.Gpio;
+using System.Threading;
+using GHIElectronics.TinyCLR.Pins;
+
+using GpioController controller = new GpioController();
+controller.OpenPin(SC20260.GpioPin.PD7, PinMode.InputPullUp);
+
+while (true) {
+    if (controller.Read(SC20260.GpioPin.PD7) == PinValue.Low) {
+        // Button is pressed.
+    }
+    Thread.Sleep(10);   // Always give the system time to think!
+}
+```
+
+</TabItem>
+<TabItem value="tinyclr" label="TinyCLR API">
+
+```csharp
+using GHIElectronics.TinyCLR.Devices.Gpio;
+using GHIElectronics.TinyCLR.Pins;
+using System.Threading;
+
 var gpio = GpioController.GetDefault();
 var button = gpio.OpenPin(SC20260.GpioPin.PD7);
 button.SetDriveMode(GpioPinDriveMode.InputPullUp);
 
 while (true) {
     if (button.Read() == GpioPinValue.Low) {
-        //Button is pressed.
-    } 
-
-    Thread.Sleep(10);   //Always give the system time to think!
+        // Button is pressed.
+    }
+    Thread.Sleep(10);   // Always give the system time to think!
 }
 ```
----
 
-## Digital Input Events
+</TabItem>
+</Tabs>
 
-Using events to check an input instead of polling the input (using a loop) is often preferred. The following code demonstrates a GPIO pin event (interrupt) on the SCM20260D Dev board.
+## Digital input events
 
-You will see a reference to a "falling edge" in the following code. A falling edge occurs when the state of a pin goes from high to low. A rising edge is just the opposite -- it occurs when a pin goes from low to high. 
+Polling an input in a loop is simple but inefficient. You can use events (interrupts) instead.
+
+The example below registers a callback that fires on both **falling edges** (high-to-low transitions, e.g. a button being pressed) and **rising edges** (low-to-high transitions, e.g. a button being released).
+
+<Tabs>
+<TabItem value="netiot" label=".NET IoT API" default>
 
 ```csharp
-var gpio = GpioController.GetDefault();
+using System.Device.Gpio;
+using System.Threading;
+using GHIElectronics.TinyCLR.Pins;
 
+using GpioController controller = new GpioController();
+controller.OpenPin(SC20260.GpioPin.PD7, PinMode.InputPullUp);
+
+controller.RegisterCallbackForPinValueChangedEvent(
+    SC20260.GpioPin.PD7,
+    PinEventTypes.Falling | PinEventTypes.Rising,
+    Button_ValueChanged
+);
+
+// Do other tasks here ...
+Thread.Sleep(Timeout.Infinite);
+
+void Button_ValueChanged(object sender, PinValueChangedEventArgs args) {
+    if (args.ChangeType == PinEventTypes.Falling) {
+        // Pin went low — button pressed
+    } else {
+        // Pin went high — button released
+    }
+}
+```
+
+</TabItem>
+<TabItem value="tinyclr" label="TinyCLR API">
+
+```csharp
+using GHIElectronics.TinyCLR.Devices.Gpio;
+using GHIElectronics.TinyCLR.Pins;
+using System.Threading;
+
+var gpio = GpioController.GetDefault();
 var button = gpio.OpenPin(SC20260.GpioPin.PD7);
 button.SetDriveMode(GpioPinDriveMode.InputPullUp);
 button.ValueChangedEdge = GpioPinEdge.FallingEdge | GpioPinEdge.RisingEdge;
 button.ValueChanged += Button_ValueChanged;
 
-//Do other tasks here ...
+// Do other tasks here ...
 Thread.Sleep(Timeout.Infinite);
 
 void Button_ValueChanged(GpioPin sender, GpioPinValueChangedEventArgs e) {
     if (e.Edge == GpioPinEdge.FallingEdge) {
-        // Pin went low
+        // Pin went low — button pressed
     } else {
-        // Pin went high
+        // Pin went high — button released
     }
 }
 ```
 
-When a mechanical button is pressed it generates multiple edges that are caused by the contact physically bouncing. The built in debounce feature filters out any edges coming in faster than a specific time, which is set to 20ms be default. The debounce value can be changed using software.
+</TabItem>
+</Tabs>
+
+### Debouncing
+
+When a mechanical button is pressed, contacts physically bounce — producing multiple edges in quick succession. The TinyCLR API has built-in debounce filtering: any edges faster than the configured timeout are ignored. Default is 20 ms; override with:
 
 ```csharp
-pin.DebounceTimeout = TimeSpan.FromMilliseconds(10);
+button.DebounceTimeout = TimeSpan.FromMilliseconds(10);
 ```
 
-## SITCore Interrupt limitation
+When using the .NET IoT API, implement debounce in your callback by tracking the last edge time and ignoring events that arrive too quickly.
 
-Digital input events rely on internal GPIO interrupts to work. On SITCore, these interrupts are only available on 16 pins at any given time, the pin number must be unique, over all of the available ports. For example: PA1 and PB1 cannot both be used as interrupts at the same time. However, PA1 and PB2, or even PA1 and PA2, can be used simultaneously.
+## Interrupt limitation
 
-Consider other internal system functions that need interrupts, such as WiFi. Those also reserve one of the 16 available interrupts.
+GPIO events use the chip's interrupt lines. SITCore supports **up to 16 simultaneous interrupts**, and the pin number must be unique across all ports. For example, PA1 and PB1 can't both be interrupt pins at the same time — but PA1 and PB2, or PA1 and PA2, can.
 
-## LowLevel Access
-**For advanced users only**
+Other internal system functions that use interrupts (WiFi, for example) reserve one of the 16 available slots.
+
+## Low-level access (advanced)
+
+This advanced API moves a peripheral signal from its default pin to an alternate pin using the chipset's alternate-function multiplexer.
 
 :::warning
-This advanced feature does not check what alternate functions are valid.
-This advanced feature does not reserve the destination pin.
+- Does not check whether the alternate function is valid.
+- Does not reserve the destination pin.
 :::
- 
-This example will move MOSI2 pin from PB2 to PC7, assuming AF6 (AF6 mean Alternate Function 6)
+
+This example moves the SPI2 MOSI signal from PB2 to PC7 using Alternate Function 6 (AF6):
 
 ```csharp
-// start by creating SPI2 to initialize the feature on PB2
-// now transfer...
-var settings = new Settings {​​​​​​​
+// Start by creating SPI2 to initialize the feature on PB2,
+// then transfer it to PC7.
+var settings = new Settings {
     mode = PortMode.AlternateFunction,
     speed = OutputSpeed.VeryHigh,
     driveDirection = PullDirection.None,
     alternate = AlternateFunction.AF6,
-    type  = OutputType.PushPull
-}​​​​​​​;
+    type = OutputType.PushPull
+};
 LowLevelController.TransferFeature(SC20100.GpioPin.PB2, SC20100.GpioPin.PC7, settings);
 
-// SC20100.GpioPin.PB2: Becomes default state (input)
-// SC20100.GpioPin.PC7: Becomes AF6
-
+// SC20100.GpioPin.PB2 → default state (input)
+// SC20100.GpioPin.PC7 → AF6 (SPI2 MOSI)
 ```
 
-This advanced feature needs to be called right before Enable() (or Open() if Uart, Start() if PWM etc... - depends on peripherals) for working properly. 
-
-
+Call this right before `Enable()` (or `Open()` for UART, `Start()` for PWM, etc. — depends on the peripheral) for it to work correctly.
