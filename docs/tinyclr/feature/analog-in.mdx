@@ -11,14 +11,7 @@ Microcontrollers running on 3.3V can typically read voltages between 0V and 3.3V
 
 Voltage changes smaller than one step are below the ADC's resolution and won't register.
 
-:::note
-Unlike GPIO, SPI, I²C, and PWM, ADC isn't part of the Microsoft .NET IoT standard device APIs. TinyCLR's ADC is the `GHIElectronics.TinyCLR.Devices.Adc` namespace, in the NuGet package of the same name.
-:::
-
-NuGet packages:
-
-- **`GHIElectronics.TinyCLR.Devices.Adc`** — the `GHIElectronics.TinyCLR.Devices.Adc` namespace.
-- **`GHIElectronics.TinyCLR.Pins`** — pin name constants for SITCore boards.
+NuGet packages: **`GHIElectronics.TinyCLR.Devices.Adc`** for the API, and **`GHIElectronics.TinyCLR.Pins`** for pin name constants.
 
 :::tip
 **Channel number ≠ pin number.** Use the pin constants from `GHIElectronics.TinyCLR.Pins` to map a physical pin (like `PA0`) to its ADC channel — for example, `SC20100.Adc.Controller1.PA0`.
