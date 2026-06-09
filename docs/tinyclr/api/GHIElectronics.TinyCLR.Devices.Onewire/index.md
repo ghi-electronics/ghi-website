@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.Devices.Onewire"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.Devices.Onewire
-
-NuGet package containing **1** type.
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Devices.Onewire NuGet</h1>
 
 ## Classes
 

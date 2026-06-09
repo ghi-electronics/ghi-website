@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.Devices.Adc"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.Devices.Adc
-
-NuGet package containing **5** types across **2** namespaces (`GHIElectronics.TinyCLR.Devices.Adc`, `GHIElectronics.TinyCLR.Devices.Adc.Provider`).
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Devices.Adc NuGet</h1>
 
 ## Classes
 

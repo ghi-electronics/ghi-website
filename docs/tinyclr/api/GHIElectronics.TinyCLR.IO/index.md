@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.IO"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.IO
-
-NuGet package containing **23** types across **2** namespaces (`GHIElectronics.TinyCLR.IO`, `System.IO`).
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.IO NuGet</h1>
 
 ## Classes
 

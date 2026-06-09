@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.Devices.UsbHost"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.Devices.UsbHost
-
-NuGet package containing **33** types across **3** namespaces (`GHIElectronics.TinyCLR.Devices.UsbHost`, `GHIElectronics.TinyCLR.Devices.UsbHost.Descriptors`, `GHIElectronics.TinyCLR.Devices.UsbHost.Provider`).
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Devices.UsbHost NuGet</h1>
 
 ## Classes
 

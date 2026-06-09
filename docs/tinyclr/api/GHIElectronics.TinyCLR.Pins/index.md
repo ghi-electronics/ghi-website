@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.Pins"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.Pins
-
-NuGet package containing **43** types.
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Pins NuGet</h1>
 
 ## Classes
 

@@ -23,6 +23,14 @@ public const string Id
 
 API id.
 
+### Chip
+
+```csharp
+public const int Chip
+```
+
+Chip index for System.Device.Pwm.
+
 ### PB7
 
 ```csharp
@@ -39,6 +47,14 @@ public const string Id
 
 API id.
 
+### Chip
+
+```csharp
+public const int Chip
+```
+
+Chip index for System.Device.Pwm.
+
 ### PB7
 
 ```csharp
@@ -54,6 +70,14 @@ public const string Id
 ```
 
 API id.
+
+### Chip
+
+```csharp
+public const int Chip
+```
+
+Chip index for System.Device.Pwm.
 
 ### PB7
 

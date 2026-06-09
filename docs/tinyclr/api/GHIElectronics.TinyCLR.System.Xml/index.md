@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.System.Xml"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.System.Xml
-
-NuGet package containing **14** types.
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.System.Xml NuGet</h1>
 
 ## Classes
 

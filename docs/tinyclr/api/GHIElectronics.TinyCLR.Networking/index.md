@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.Networking"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.Networking
-
-NuGet package containing **32** types across **6** namespaces (`GHIElectronics.TinyCLR.Networking`, `System.Net`, `System.Net.Security`, `System.Net.Sockets`, `System.Security.Authentication`, `System.Security.Cryptography.X509Certificates`).
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Networking NuGet</h1>
 
 ## Classes
 

@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.Linq"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.Linq
-
-NuGet package containing **3** types.
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Linq NuGet</h1>
 
 ## Classes
 

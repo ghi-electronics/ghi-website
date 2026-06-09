@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.Devices.Camera"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.Devices.Camera
-
-NuGet package containing **6** types across **2** namespaces (`GHIElectronics.TinyCLR.Devices.Camera`, `GHIElectronics.TinyCLR.Devices.Camera.Provider`).
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Devices.Camera NuGet</h1>
 
 ## Classes
 

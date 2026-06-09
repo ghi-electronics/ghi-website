@@ -18,4 +18,4 @@ public enum FilterType
 | Name | Value | Description |
 |---|---|---|
 | `Range` | `0` | Accept IDs in the inclusive range [id1, id2]. |
-| `Mask` | `1` | Accept IDs where (id &amp; mask) == (compare &amp; mask). |
+| `Mask` | `1` | Accept IDs where (id & mask) == (compare & mask). |

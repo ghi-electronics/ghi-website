@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.EthernetIP.Adapter"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.EthernetIP.Adapter
-
-NuGet package containing **20** types.
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.EthernetIP.Adapter NuGet</h1>
 
 ## Classes
 

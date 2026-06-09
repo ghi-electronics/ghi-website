@@ -228,7 +228,15 @@ function cleanInline(s) {
     .replace(/<\/?(para|remarks|summary|list|item|term|description|returns|value|example|note)[^>]*>/gi, ' ')
     .replace(/<\/?[a-zA-Z][^>]*>/g, '')   // drop any remaining doc-comment XML tags (itemref, p, b, i, ...)
     .replace(/\s+/g, ' ')
-    .trim();
+    .trim()
+    // Decode XML entities LAST — after every real tag has been handled/stripped,
+    // so a decoded "<T>" can't be mistaken for a tag and removed. Without this,
+    // entities inside code spans (e.g. <c>ISet&lt;T&gt;</c>) render literally as
+    // `ISet&lt;T&gt;` because markdown code spans don't decode entities. prose()
+    // re-escapes the non-code "<" for MDX afterwards, so plain text stays correct.
+    .replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&apos;/g, "'")
+    .replace(/&amp;/g, '&');
 }
 
 function shortCref(id) {
@@ -645,19 +653,20 @@ const KIND_SECTIONS = [
   ['enum', 'Enums'], ['delegate', 'Delegates'],
 ];
 function renderAssemblyIndex(assembly, types, fileOf) {
-  const namespaces = [...new Set(types.map(t => t.ns))].sort();
   const showNs = true;                         // always show the Namespace column (uniform table shape)
-  const multiNs = namespaces.length > 1;       // but only call out the namespace list when there's more than one
   const L = [];
   L.push('---');
   L.push(`title: ${yaml(assembly)}`);
+  // Suppress Docusaurus's auto-rendered (oversized) title H1; we emit our own
+  // MS-styled <h1> below. Without this both show up (duplicate heading).
+  L.push('hide_title: true');
   L.push(`sidebar_label: Overview`);
   L.push('---');
   L.push('');
-  L.push(`# ${assembly}`);
-  L.push('');
-  L.push(`NuGet package containing **${types.length}** type${types.length === 1 ? '' : 's'}` +
-    (multiNs ? ` across **${namespaces.length}** namespaces (\`${namespaces.join('`, `')}\`).` : '.'));
+  // Heading mirrors Microsoft's API style ("<name> Namespace") — here "<package> NuGet" —
+  // and uses a raw <h1> (className works because Docusaurus 3 parses .md as MDX) so custom.css
+  // can size it like the Microsoft docs page instead of Docusaurus's oversized default H1.
+  L.push(`<h1 className="api-package-heading">${assembly} NuGet</h1>`);
   L.push('');
   for (const [kind, heading] of KIND_SECTIONS) {
     const group = types.filter(t => t.kind === kind).sort((a, b) => a.name.localeCompare(b.name));
@@ -719,6 +728,24 @@ async function findCsFiles(dir) {
   return out;
 }
 
+// Package description for the API index table: the nuspec <description> for most
+// packages, falling back to [assembly: AssemblyDescription("...")] for the dual-mode
+// compat shims that ship inside a parent NuGet and have no nuspec of their own.
+// Both sources live in TinyCLR-Libraries (edit there, not here).
+async function readPackageDescription(libsRoot, asm) {
+  try {
+    const nuspec = await fs.readFile(path.join(libsRoot, asm, asm + '.nuspec'), 'utf8');
+    const m = nuspec.match(/<description>([\s\S]*?)<\/description>/i);
+    if (m && m[1].trim()) return m[1].trim();
+  } catch { /* no nuspec for this package */ }
+  try {
+    const info = await fs.readFile(path.join(libsRoot, asm, 'Properties', 'AssemblyInfo.cs'), 'utf8');
+    const m = info.match(/AssemblyDescription\("([^"]*)"\)/);
+    if (m && m[1].trim()) return m[1].trim();
+  } catch { /* no AssemblyInfo */ }
+  return '';
+}
+
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const libsRoot = args.libs ? path.resolve(args.libs) : path.resolve(WEBSITE_ROOT, '..', 'TinyCLR-Libraries');
@@ -778,13 +805,14 @@ async function main() {
 
   // top-level api index — list NuGet packages
   const nsCount = new Set(model.types.map(t => t.ns)).size;
+  const descOf = new Map();
+  for (const asm of assemblies) descOf.set(asm, await readPackageDescription(libsRoot, asm));
   const idx2 = ['---', 'title: API Reference', 'sidebar_label: Overview', 'slug: /tinyclr/api', '---', '',
     '# TinyCLR API Reference', '',
-    'Auto-generated from the [TinyCLR-Libraries](https://github.com/ghi-electronics/TinyCLR-Libraries) source.', '',
-    `Covering **${model.types.length}** types across **${assemblies.length}** NuGet packages.`, '', '## Packages', '',
-    '| NuGet package | Types |', '|---|---|'];
+    '## Packages', '',
+    '| NuGet package | Description |', '|---|---|'];
   for (const asm of assemblies)
-    idx2.push(`| [${asm}](./${encodeURIComponent(asm)}/index.md) | ${byAsm.get(asm).length} |`);
+    idx2.push(`| [${asm}](./${encodeURIComponent(asm)}/index.md) | ${proseCell(descOf.get(asm))} |`);
   await fs.writeFile(path.join(outRoot, 'index.md'), idx2.join('\n'));
 
   const total = model.types.length;

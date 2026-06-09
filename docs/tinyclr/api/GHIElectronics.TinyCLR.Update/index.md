@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.Update"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.Update
-
-NuGet package containing **3** types.
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Update NuGet</h1>
 
 ## Classes
 

@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.Drawing"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.Drawing
-
-NuGet package containing **26** types across **4** namespaces (`GHIElectronics.TinyCLR.Drawing`, `System.Drawing`, `System.Drawing.Drawing2D`, `System.Drawing.Imaging`).
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Drawing NuGet</h1>
 
 ## Classes
 

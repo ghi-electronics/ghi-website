@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.Networking.Mqtt"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.Networking.Mqtt
-
-NuGet package containing **12** types.
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Networking.Mqtt NuGet</h1>
 
 ## Classes
 

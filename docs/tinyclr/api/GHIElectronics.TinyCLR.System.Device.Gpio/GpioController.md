@@ -244,3 +244,35 @@ _No description available._
 |---|---|---|
 | `pinNumber` | `int` |  |
 | `callback` | `PinChangeEventHandler` |  |
+
+### WaitForEvent(int pinNumber, PinEventTypes eventTypes, TimeSpan timeout)
+
+```csharp
+public WaitForEventResult WaitForEvent(int pinNumber, PinEventTypes eventTypes, TimeSpan timeout)
+```
+
+Blocks until an edge of type `eventTypes` occurs on `pinNumber` or `timeout` elapses. The pin must already be open. Pass `Timeout.InfiniteTimeSpan` to wait indefinitely.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `pinNumber` | `int` |  |
+| `eventTypes` | `PinEventTypes` |  |
+| `timeout` | `TimeSpan` |  |
+
+**Returns** `WaitForEventResult`
+
+### WaitForEvent(int pinNumber, PinEventTypes eventTypes, CancellationToken cancellationToken)
+
+```csharp
+public WaitForEventResult WaitForEvent(int pinNumber, PinEventTypes eventTypes, CancellationToken cancellationToken)
+```
+
+Blocks until an edge of type `eventTypes` occurs on `pinNumber` or `cancellationToken` is cancelled. The pin must already be open. On cancellation the result has `WaitForEventResult.TimedOut` set to true.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `pinNumber` | `int` |  |
+| `eventTypes` | `PinEventTypes` |  |
+| `cancellationToken` | `CancellationToken` |  |
+
+**Returns** `WaitForEventResult`

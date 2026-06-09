@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.UI"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.UI
-
-NuGet package containing **165** types across **7** namespaces (`GHIElectronics.TinyCLR.UI`, `GHIElectronics.TinyCLR.UI.Controls`, `GHIElectronics.TinyCLR.UI.Input`, `GHIElectronics.TinyCLR.UI.Media`, `GHIElectronics.TinyCLR.UI.Media.Imaging`, `GHIElectronics.TinyCLR.UI.Shapes`, `GHIElectronics.TinyCLR.UI.Threading`).
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.UI NuGet</h1>
 
 ## Classes
 

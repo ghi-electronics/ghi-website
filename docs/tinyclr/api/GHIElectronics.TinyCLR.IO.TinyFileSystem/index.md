@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.IO.TinyFileSystem"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.IO.TinyFileSystem
-
-NuGet package containing **7** types.
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.IO.TinyFileSystem NuGet</h1>
 
 ## Classes
 

@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.EthernetIP.Scanner"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.EthernetIP.Scanner
-
-NuGet package containing **30** types across **2** namespaces (`GHIElectronics.TinyCLR.EthernetIP.Scanner`, `GHIElectronics.TinyCLR.EthernetIP.Scanner.ObjectLibrary`).
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.EthernetIP.Scanner NuGet</h1>
 
 ## Classes
 

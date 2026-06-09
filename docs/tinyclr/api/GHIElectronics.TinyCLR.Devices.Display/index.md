@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.Devices.Display"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.Devices.Display
-
-NuGet package containing **8** types across **2** namespaces (`GHIElectronics.TinyCLR.Devices.Display`, `GHIElectronics.TinyCLR.Devices.Display.Provider`).
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Devices.Display NuGet</h1>
 
 ## Classes
 

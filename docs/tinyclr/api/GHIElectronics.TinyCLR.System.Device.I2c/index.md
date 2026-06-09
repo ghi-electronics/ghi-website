@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.System.Device.I2c"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.System.Device.I2c
-
-NuGet package containing **3** types.
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.System.Device.I2c NuGet</h1>
 
 ## Classes
 

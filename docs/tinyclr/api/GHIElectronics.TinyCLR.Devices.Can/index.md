@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.Devices.Can"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.Devices.Can
-
-NuGet package containing **14** types across **2** namespaces (`GHIElectronics.TinyCLR.Devices.Can`, `GHIElectronics.TinyCLR.Devices.Can.Provider`).
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Devices.Can NuGet</h1>
 
 ## Classes
 

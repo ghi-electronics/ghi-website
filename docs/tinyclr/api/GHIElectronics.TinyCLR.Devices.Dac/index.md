@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.Devices.Dac"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.Devices.Dac
-
-NuGet package containing **4** types across **2** namespaces (`GHIElectronics.TinyCLR.Devices.Dac`, `GHIElectronics.TinyCLR.Devices.Dac.Provider`).
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Devices.Dac NuGet</h1>
 
 ## Classes
 

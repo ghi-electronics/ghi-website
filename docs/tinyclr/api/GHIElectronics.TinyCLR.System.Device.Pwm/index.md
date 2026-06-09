@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.System.Device.Pwm"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.System.Device.Pwm
-
-NuGet package containing **2** types.
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.System.Device.Pwm NuGet</h1>
 
 ## Classes
 

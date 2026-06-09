@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.RegularExpressions"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.RegularExpressions
-
-NuGet package containing **12** types.
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.RegularExpressions NuGet</h1>
 
 ## Classes
 

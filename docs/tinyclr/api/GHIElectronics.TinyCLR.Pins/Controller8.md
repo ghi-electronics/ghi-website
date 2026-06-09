@@ -23,6 +23,14 @@ public const string Id
 
 API id.
 
+### Chip
+
+```csharp
+public const int Chip
+```
+
+Chip index for System.Device.Pwm.
+
 ### PI2
 
 ```csharp
@@ -38,6 +46,14 @@ public const string Id
 ```
 
 API id.
+
+### Chip
+
+```csharp
+public const int Chip
+```
+
+Chip index for System.Device.Pwm.
 
 ### PI5
 

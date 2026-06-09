@@ -2219,3 +2219,16 @@ a.pillar-card:hover::after {
     height: 280px;
   }
 }
+
+/* TinyCLR API reference: package page heading ("<package> NuGet").
+   Sized/weighted like the Microsoft .NET API docs heading (clean sans, ~30px,
+   semibold) rather than Docusaurus's oversized display-font H1, so long package
+   names fit on one line. Emitted by scripts/generate-api.mjs as
+   <h1 className="api-package-heading">. */
+.api-package-heading {
+  font-family: var(--ifm-font-family-base);
+  font-size: 1.85rem;
+  font-weight: 600;
+  line-height: 1.25;
+  margin-bottom: 0.6rem;
+}

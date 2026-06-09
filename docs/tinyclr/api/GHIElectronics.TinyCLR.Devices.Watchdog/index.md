@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.Devices.Watchdog"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.Devices.Watchdog
-
-NuGet package containing **3** types across **2** namespaces (`GHIElectronics.TinyCLR.Devices.Watchdog`, `GHIElectronics.TinyCLR.Devices.Watchdog.Provider`).
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Devices.Watchdog NuGet</h1>
 
 ## Classes
 

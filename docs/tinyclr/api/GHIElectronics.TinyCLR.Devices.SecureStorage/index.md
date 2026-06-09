@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.Devices.SecureStorage"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.Devices.SecureStorage
-
-NuGet package containing **2** types.
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Devices.SecureStorage NuGet</h1>
 
 ## Classes
 

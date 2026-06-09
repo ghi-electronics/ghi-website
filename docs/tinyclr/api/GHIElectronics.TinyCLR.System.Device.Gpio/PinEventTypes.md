@@ -17,5 +17,6 @@ public enum PinEventTypes
 
 | Name | Value | Description |
 |---|---|---|
+| `None` | `0` | No edge — returned by `GpioController.WaitForEvent(int, PinEventTypes, TimeSpan)` when it times out or is cancelled. |
 | `Rising` | `1` | Rising edge (low → high). |
 | `Falling` | `2` | Falling edge (high → low). |

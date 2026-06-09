@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.Native"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.Native
-
-NuGet package containing **19** types.
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Native NuGet</h1>
 
 ## Classes
 

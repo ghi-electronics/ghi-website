@@ -7,7 +7,7 @@ sidebar_label: "ISet<T>"
 
 **Namespace:** `System.Collections.Generic` · **Assembly:** `GHIElectronics.TinyCLR.Collections`
 
-Generic set abstraction. Mirrors the .NET BCL `System.Collections.Generic.ISet&lt;T&gt;` shape so HashSet&lt;T&gt; and future set implementations interop cleanly with portable BCL-using code.
+Generic set abstraction. Mirrors the .NET BCL `System.Collections.Generic.ISet<T>` shape so HashSet&lt;T> and future set implementations interop cleanly with portable BCL-using code.
 
 ```csharp
 public interface ISet<T> : ICollection<T>

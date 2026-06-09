@@ -50,7 +50,7 @@ public enum Key : byte
 | `D4` |  | 4 or $. |
 | `D5` |  | 5 or %. |
 | `D6` |  | 6 or ^. |
-| `D7` |  | 7 or &amp;. |
+| `D7` |  | 7 or &. |
 | `D8` |  | 8 or *. |
 | `D9` |  | 9 or (. |
 | `D0` |  | 0 or ). |
@@ -69,7 +69,7 @@ public enum Key : byte
 | `Quotes` |  | ' or ". |
 | `GraveAccent` |  | ` or ~. |
 | `Comma` |  | , or &lt;. |
-| `Period` |  | . or &gt;. |
+| `Period` |  | . or >. |
 | `Divide` |  | / or ?. |
 | `CapsLock` |  | Caps Lock. |
 | `F1` |  | F1. |

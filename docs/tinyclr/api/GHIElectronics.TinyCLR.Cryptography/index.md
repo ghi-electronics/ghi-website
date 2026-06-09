@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.Cryptography"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.Cryptography
-
-NuGet package containing **2** types.
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Cryptography NuGet</h1>
 
 ## Classes
 

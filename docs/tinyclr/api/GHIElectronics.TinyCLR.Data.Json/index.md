@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.Data.Json"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.Data.Json
-
-NuGet package containing **14** types.
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Data.Json NuGet</h1>
 
 ## Classes
 

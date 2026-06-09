@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.Collections"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.Collections
-
-NuGet package containing **3** types.
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Collections NuGet</h1>
 
 ## Classes
 
@@ -23,4 +22,4 @@ NuGet package containing **3** types.
 
 | Interface | Namespace | Summary |
 |---|---|---|
-| [ISet&lt;T>](./ISet.md) | `System.Collections.Generic` | Generic set abstraction. Mirrors the .NET BCL `System.Collections.Generic.ISet&lt;T&gt;` shape so HashSet&lt;T&gt; and future set implementations interop cleanly with portable BCL-using code. |
+| [ISet&lt;T>](./ISet.md) | `System.Collections.Generic` | Generic set abstraction. Mirrors the .NET BCL `System.Collections.Generic.ISet<T>` shape so HashSet&lt;T> and future set implementations interop cleanly with portable BCL-using code. |

@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.Networking.Ftp"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.Networking.Ftp
-
-NuGet package containing **21** types across **3** namespaces (`GHIElectronics.TinyCLR.Networking`, `GHIElectronics.TinyCLR.Networking.Ftp`, `System.Net`).
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Networking.Ftp NuGet</h1>
 
 ## Classes
 

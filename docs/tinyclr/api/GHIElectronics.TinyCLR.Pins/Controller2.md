@@ -23,6 +23,14 @@ public const string Id
 
 API id.
 
+### Chip
+
+```csharp
+public const int Chip
+```
+
+Chip index for System.Device.Pwm.
+
 ### Backlight
 
 ```csharp
@@ -38,6 +46,14 @@ public const string Id
 ```
 
 API id.
+
+### Chip
+
+```csharp
+public const int Chip
+```
+
+Chip index for System.Device.Pwm.
 
 ### PA15
 
@@ -79,6 +95,14 @@ public const string Id
 
 API id.
 
+### Chip
+
+```csharp
+public const int Chip
+```
+
+Chip index for System.Device.Pwm.
+
 ### PA3
 
 ```csharp
@@ -94,6 +118,14 @@ public const string Id
 ```
 
 API id.
+
+### Chip
+
+```csharp
+public const int Chip
+```
+
+Chip index for System.Device.Pwm.
 
 ### PA5
 
@@ -127,6 +159,14 @@ public const string Id
 
 API id.
 
+### Chip
+
+```csharp
+public const int Chip
+```
+
+Chip index for System.Device.Pwm.
+
 ### PA5
 
 ```csharp
@@ -150,6 +190,14 @@ public const string Id
 ```
 
 API id.
+
+### Chip
+
+```csharp
+public const int Chip
+```
+
+Chip index for System.Device.Pwm.
 
 ### Backlight
 
@@ -191,6 +239,14 @@ public const string Id
 
 API id.
 
+### Chip
+
+```csharp
+public const int Chip
+```
+
+Chip index for System.Device.Pwm.
+
 ### PB3
 
 ```csharp
@@ -222,6 +278,14 @@ public const string Id
 ```
 
 API id.
+
+### Chip
+
+```csharp
+public const int Chip
+```
+
+Chip index for System.Device.Pwm.
 
 ### PA5
 
@@ -263,6 +327,14 @@ public const string Id
 
 API id.
 
+### Chip
+
+```csharp
+public const int Chip
+```
+
+Chip index for System.Device.Pwm.
+
 ### PA15
 
 ```csharp
@@ -302,6 +374,14 @@ public const string Id
 ```
 
 API id.
+
+### Chip
+
+```csharp
+public const int Chip
+```
+
+Chip index for System.Device.Pwm.
 
 ### PA15
 

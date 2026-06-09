@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.Networking.Http"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.Networking.Http
-
-NuGet package containing **25** types across **2** namespaces (`System`, `System.Net`).
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Networking.Http NuGet</h1>
 
 ## Classes
 

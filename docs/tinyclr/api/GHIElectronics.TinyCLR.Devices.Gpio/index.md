@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.Devices.Gpio"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.Devices.Gpio
-
-NuGet package containing **9** types across **2** namespaces (`GHIElectronics.TinyCLR.Devices.Gpio`, `GHIElectronics.TinyCLR.Devices.Gpio.Provider`).
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Devices.Gpio NuGet</h1>
 
 ## Classes
 

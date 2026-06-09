@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.Devices.Signals"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.Devices.Signals
-
-NuGet package containing **8** types.
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Devices.Signals NuGet</h1>
 
 ## Classes
 

@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.Devices.Storage"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.Devices.Storage
-
-NuGet package containing **4** types across **2** namespaces (`GHIElectronics.TinyCLR.Devices.Storage`, `GHIElectronics.TinyCLR.Devices.Storage.Provider`).
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Devices.Storage NuGet</h1>
 
 ## Classes
 

@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.Devices.Usb"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.Devices.Usb
-
-NuGet package containing **8** types.
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Devices.Usb NuGet</h1>
 
 ## Classes
 

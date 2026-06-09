@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.Devices.Modbus"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.Devices.Modbus
-
-NuGet package containing **15** types across **2** namespaces (`GHIElectronics.TinyCLR.Devices.Modbus`, `GHIElectronics.TinyCLR.Devices.Modbus.Interface`).
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Devices.Modbus NuGet</h1>
 
 ## Classes
 

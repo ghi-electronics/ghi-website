@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.RuntimeLoadableProcedures"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.RuntimeLoadableProcedures
-
-NuGet package containing **5** types.
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.RuntimeLoadableProcedures NuGet</h1>
 
 ## Classes
 

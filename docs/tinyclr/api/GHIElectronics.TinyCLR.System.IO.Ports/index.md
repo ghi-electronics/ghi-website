@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.System.IO.Ports"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.System.IO.Ports
-
-NuGet package containing **13** types.
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.System.IO.Ports NuGet</h1>
 
 ## Classes
 

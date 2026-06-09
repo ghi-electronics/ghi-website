@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.Devices.UsbClient"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.Devices.UsbClient
-
-NuGet package containing **28** types across **2** namespaces (`GHIElectronics.TinyCLR.Devices.UsbClient`, `GHIElectronics.TinyCLR.Devices.UsbClient.Provider`).
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Devices.UsbClient NuGet</h1>
 
 ## Classes
 

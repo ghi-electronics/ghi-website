@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.Devices.Rtc"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.Devices.Rtc
-
-NuGet package containing **5** types across **2** namespaces (`GHIElectronics.TinyCLR.Devices.Rtc`, `GHIElectronics.TinyCLR.Devices.Rtc.Provider`).
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Devices.Rtc NuGet</h1>
 
 ## Classes
 

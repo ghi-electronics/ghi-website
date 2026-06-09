@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.Devices.Uart"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.Devices.Uart
-
-NuGet package containing **15** types across **2** namespaces (`GHIElectronics.TinyCLR.Devices.Uart`, `GHIElectronics.TinyCLR.Devices.Uart.Provider`).
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Devices.Uart NuGet</h1>
 
 ## Classes
 

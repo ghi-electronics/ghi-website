@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.Data.SQLite"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.Data.SQLite
-
-NuGet package containing **6** types.
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Data.SQLite NuGet</h1>
 
 ## Classes
 

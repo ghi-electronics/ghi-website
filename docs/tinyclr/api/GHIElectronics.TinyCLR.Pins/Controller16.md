@@ -23,37 +23,13 @@ public const string Id
 
 API id.
 
-### PB8
+### Chip
 
 ```csharp
-public const int PB8
+public const int Chip
 ```
 
-PWM pin.
-
-### Id
-
-```csharp
-public const string Id
-```
-
-API id.
-
-### PB8
-
-```csharp
-public const int PB8
-```
-
-PWM pin.
-
-### Id
-
-```csharp
-public const string Id
-```
-
-API id.
+Chip index for System.Device.Pwm.
 
 ### PB8
 
@@ -71,37 +47,13 @@ public const string Id
 
 API id.
 
-### PB8
+### Chip
 
 ```csharp
-public const int PB8
+public const int Chip
 ```
 
-PWM pin.
-
-### Id
-
-```csharp
-public const string Id
-```
-
-API id.
-
-### PB8
-
-```csharp
-public const int PB8
-```
-
-PWM pin.
-
-### Id
-
-```csharp
-public const string Id
-```
-
-API id.
+Chip index for System.Device.Pwm.
 
 ### PB8
 
@@ -119,6 +71,14 @@ public const string Id
 
 API id.
 
+### Chip
+
+```csharp
+public const int Chip
+```
+
+Chip index for System.Device.Pwm.
+
 ### PB8
 
 ```csharp
@@ -135,6 +95,14 @@ public const string Id
 
 API id.
 
+### Chip
+
+```csharp
+public const int Chip
+```
+
+Chip index for System.Device.Pwm.
+
 ### PB8
 
 ```csharp
@@ -150,6 +118,110 @@ public const string Id
 ```
 
 API id.
+
+### Chip
+
+```csharp
+public const int Chip
+```
+
+Chip index for System.Device.Pwm.
+
+### PB8
+
+```csharp
+public const int PB8
+```
+
+PWM pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### Chip
+
+```csharp
+public const int Chip
+```
+
+Chip index for System.Device.Pwm.
+
+### PB8
+
+```csharp
+public const int PB8
+```
+
+PWM pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### Chip
+
+```csharp
+public const int Chip
+```
+
+Chip index for System.Device.Pwm.
+
+### PB8
+
+```csharp
+public const int PB8
+```
+
+PWM pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### Chip
+
+```csharp
+public const int Chip
+```
+
+Chip index for System.Device.Pwm.
+
+### PB8
+
+```csharp
+public const int PB8
+```
+
+PWM pin.
+
+### Id
+
+```csharp
+public const string Id
+```
+
+API id.
+
+### Chip
+
+```csharp
+public const int Chip
+```
+
+Chip index for System.Device.Pwm.
 
 ### PB8
 

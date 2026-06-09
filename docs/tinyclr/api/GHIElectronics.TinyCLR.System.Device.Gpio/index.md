@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.System.Device.Gpio"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.System.Device.Gpio
-
-NuGet package containing **10** types across **2** namespaces (`System.Device.Gpio`, `System.Device.Gpio.Drivers`).
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.System.Device.Gpio NuGet</h1>
 
 ## Classes
 
@@ -16,6 +15,12 @@ NuGet package containing **10** types across **2** namespaces (`System.Device.Gp
 | [LibGpiodDriver](./LibGpiodDriver.md) | `System.Device.Gpio.Drivers` | Alias of `TinyClrGpioDriver` for source-compatibility with Linux .NET IoT samples that reference `LibGpiodDriver`. |
 | [PinValueChangedEventArgs](./PinValueChangedEventArgs.md) | `System.Device.Gpio` | Arguments for the .NET IoT pin-change callback. |
 | [TinyClrGpioDriver](./TinyClrGpioDriver.md) | `System.Device.Gpio` | TinyCLR-backed implementation of `GpioDriver`. Routes `GpioController` calls to `GHIElectronics.TinyCLR.Devices.Gpio.GpioController`. |
+
+## Structs
+
+| Struct | Namespace | Summary |
+|---|---|---|
+| [WaitForEventResult](./WaitForEventResult.md) | `System.Device.Gpio` | Result of a `GpioController.WaitForEvent(int, PinEventTypes, TimeSpan)` call. Same shape as .NET IoT. |
 
 ## Enums
 

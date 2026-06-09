@@ -97,7 +97,7 @@ Starts the watchdog. From this point on, `Reset` must be called more often than 
 
 | Parameter | Type | Description |
 |---|---|---|
-| `timeout` | `uint` | Timeout in milliseconds (must be &gt; 0 and ≤ `GetMaxTimeout`). |
+| `timeout` | `uint` | Timeout in milliseconds (must be > 0 and ≤ `GetMaxTimeout`). |
 
 ### Disable()
 

@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.Devices.Network"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.Devices.Network
-
-NuGet package containing **26** types across **2** namespaces (`GHIElectronics.TinyCLR.Devices.Network`, `GHIElectronics.TinyCLR.Devices.Network.Provider`).
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Devices.Network NuGet</h1>
 
 ## Classes
 

@@ -1,11 +1,10 @@
 ---
 title: "GHIElectronics.TinyCLR.System.Device.Spi"
+hide_title: true
 sidebar_label: Overview
 ---
 
-# GHIElectronics.TinyCLR.System.Device.Spi
-
-NuGet package containing **4** types.
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.System.Device.Spi NuGet</h1>
 
 ## Classes
 
