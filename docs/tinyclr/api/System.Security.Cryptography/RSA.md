@@ -21,7 +21,7 @@ public abstract class RSA : AsymmetricAlgorithm
 public abstract RSAParameters ExportParameters(bool includePrivateParameters)
 ```
 
-_No description available._
+Exports the RSA key, optionally including the private parameters.
 
 **Returns** `RSAParameters`
 
@@ -31,7 +31,7 @@ _No description available._
 public abstract void ImportParameters(RSAParameters parameters)
 ```
 
-_No description available._
+Imports the given RSA key parameters.
 
 ### Encrypt(byte[] data, RSAEncryptionPadding padding)
 
@@ -39,7 +39,7 @@ _No description available._
 public virtual byte[] Encrypt(byte[] data, RSAEncryptionPadding padding)
 ```
 
-_No description available._
+Encrypts data with the public key using the given padding.
 
 **Returns** `byte[]`
 
@@ -49,7 +49,7 @@ _No description available._
 public virtual byte[] Decrypt(byte[] data, RSAEncryptionPadding padding)
 ```
 
-_No description available._
+Decrypts data with the private key using the given padding.
 
 **Returns** `byte[]`
 
@@ -59,7 +59,7 @@ _No description available._
 public virtual byte[] SignData(byte[] data, HashAlgorithmName hashAlgorithm, RSASignaturePadding padding)
 ```
 
-_No description available._
+Signs data with the private key.
 
 **Returns** `byte[]`
 
@@ -69,7 +69,7 @@ _No description available._
 public virtual byte[] SignHash(byte[] hash, HashAlgorithmName hashAlgorithm, RSASignaturePadding padding)
 ```
 
-_No description available._
+Signs a precomputed hash with the private key.
 
 **Returns** `byte[]`
 
@@ -79,7 +79,7 @@ _No description available._
 public virtual bool VerifyData(byte[] data, byte[] signature, HashAlgorithmName hashAlgorithm, RSASignaturePadding padding)
 ```
 
-_No description available._
+Verifies a data signature against the public key.
 
 **Returns** `bool`
 
@@ -89,6 +89,6 @@ _No description available._
 public virtual bool VerifyHash(byte[] hash, byte[] signature, HashAlgorithmName hashAlgorithm, RSASignaturePadding padding)
 ```
 
-_No description available._
+Verifies a hash signature against the public key.
 
 **Returns** `bool`

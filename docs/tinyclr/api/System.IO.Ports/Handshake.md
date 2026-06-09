@@ -7,7 +7,7 @@ sidebar_label: "Handshake"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.Uart`<br/>**Assembly:** `System.IO.Ports`<br/>**Namespace:** `System.IO.Ports`
 
-_No description available._
+Flow-control method.
 
 ```csharp
 public enum Handshake
@@ -17,7 +17,7 @@ public enum Handshake
 
 | Name | Value | Description |
 |---|---|---|
-| `None` | `0` |  |
-| `XOnXOff` | `1` |  |
-| `RequestToSend` | `2` |  |
-| `RequestToSendXOnXOff` | `3` |  |
+| `None` | `0` | No flow control. |
+| `XOnXOff` | `1` | Software (XON/XOFF) flow control. |
+| `RequestToSend` | `2` | Hardware (RTS/CTS) flow control. |
+| `RequestToSendXOnXOff` | `3` | Both hardware and software flow control. |

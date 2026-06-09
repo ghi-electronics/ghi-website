@@ -7,7 +7,7 @@ sidebar_label: "SerialDataReceivedEventHandler"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.Uart`<br/>**Assembly:** `System.IO.Ports`<br/>**Namespace:** `System.IO.Ports`
 
-_No description available._
+Handler for the `SerialPort.DataReceived` event.
 
 ```csharp
 public delegate void SerialDataReceivedEventHandler(object sender, SerialDataReceivedEventArgs e);

@@ -21,7 +21,7 @@ public sealed class SpiConnectionSettings
 public SpiConnectionSettings(int busId, int chipSelectLine)
 ```
 
-_No description available._
+Creates settings for a device on the given bus and chip-select line.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public int BusId { get; }
 ```
 
-_No description available._
+The bus this device is on (-1 for software SPI).
 
 ### ChipSelectLine
 
@@ -39,7 +39,7 @@ _No description available._
 public int ChipSelectLine { get; set; }
 ```
 
-_No description available._
+The chip-select line for this device.
 
 ### ClockFrequency
 
@@ -47,7 +47,7 @@ _No description available._
 public int ClockFrequency { get; set; }
 ```
 
-_No description available._
+The clock speed in Hz. Defaults to 500 kHz.
 
 ### DataBitLength
 
@@ -55,7 +55,7 @@ _No description available._
 public int DataBitLength { get; set; }
 ```
 
-_No description available._
+Bits per frame. Defaults to 8.
 
 ### DataFlow
 
@@ -63,7 +63,7 @@ _No description available._
 public DataFlow DataFlow { get; set; }
 ```
 
-_No description available._
+Bit order. Defaults to MSB first.
 
 ### Mode
 
@@ -71,4 +71,4 @@ _No description available._
 public SpiMode Mode { get; set; }
 ```
 
-_No description available._
+Clock polarity and phase. Defaults to mode 0.

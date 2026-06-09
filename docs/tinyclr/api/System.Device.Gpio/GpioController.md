@@ -21,7 +21,7 @@ public sealed class GpioController : IDisposable
 public GpioController() : this(PinNumberingScheme.Logical, new TinyClrGpioDriver())
 ```
 
-_No description available._
+Creates a controller over the default TinyCLR GPIO driver.
 
 ### GpioController(PinNumberingScheme numberingScheme)
 
@@ -29,7 +29,7 @@ _No description available._
 public GpioController(PinNumberingScheme numberingScheme) : this(numberingScheme, new TinyClrGpioDriver())
 ```
 
-_No description available._
+Creates a controller with the given numbering scheme.
 
 ### GpioController(PinNumberingScheme numberingScheme, GpioDriver driver)
 
@@ -37,7 +37,7 @@ _No description available._
 public GpioController(PinNumberingScheme numberingScheme, GpioDriver driver)
 ```
 
-_No description available._
+Creates a controller with the given numbering scheme and driver.
 
 ## Properties
 
@@ -47,7 +47,7 @@ _No description available._
 public GpioDriver Driver { get; }
 ```
 
-_No description available._
+The underlying driver.
 
 ### NumberingScheme
 
@@ -55,7 +55,7 @@ _No description available._
 public PinNumberingScheme NumberingScheme { get; }
 ```
 
-_No description available._
+How pin numbers are interpreted.
 
 ### PinCount
 
@@ -63,7 +63,7 @@ _No description available._
 public int PinCount { get; }
 ```
 
-_No description available._
+Number of pins on the controller.
 
 ## Methods
 
@@ -73,7 +73,7 @@ _No description available._
 public void Dispose()
 ```
 
-_No description available._
+Closes all open pins and releases the driver.
 
 ### OpenPin(int pinNumber)
 
@@ -81,7 +81,7 @@ _No description available._
 public void OpenPin(int pinNumber)
 ```
 
-_No description available._
+Opens the pin as an input.
 
 ### OpenPin(int pinNumber, PinMode mode)
 
@@ -89,7 +89,7 @@ _No description available._
 public void OpenPin(int pinNumber, PinMode mode)
 ```
 
-_No description available._
+Opens the pin in the given mode.
 
 ### OpenPin(int pinNumber, PinMode mode, PinValue initialValue)
 
@@ -97,7 +97,7 @@ _No description available._
 public void OpenPin(int pinNumber, PinMode mode, PinValue initialValue)
 ```
 
-_No description available._
+Opens the pin in the given mode and, for outputs, sets its initial level.
 
 ### IsPinOpen(int pinNumber)
 
@@ -105,7 +105,7 @@ _No description available._
 public bool IsPinOpen(int pinNumber)
 ```
 
-_No description available._
+Returns true if the pin is open.
 
 **Returns** `bool`
 
@@ -115,7 +115,7 @@ _No description available._
 public void ClosePin(int pinNumber)
 ```
 
-_No description available._
+Closes the pin.
 
 ### GetPinMode(int pinNumber)
 
@@ -123,7 +123,7 @@ _No description available._
 public PinMode GetPinMode(int pinNumber)
 ```
 
-_No description available._
+Gets the pin's drive mode.
 
 **Returns** `PinMode`
 
@@ -133,7 +133,7 @@ _No description available._
 public void SetPinMode(int pinNumber, PinMode mode)
 ```
 
-_No description available._
+Sets the pin's drive mode.
 
 ### IsPinModeSupported(int pinNumber, PinMode mode)
 
@@ -141,7 +141,7 @@ _No description available._
 public bool IsPinModeSupported(int pinNumber, PinMode mode)
 ```
 
-_No description available._
+Returns true if the pin supports the given mode.
 
 **Returns** `bool`
 
@@ -151,7 +151,7 @@ _No description available._
 public PinValue Read(int pinNumber)
 ```
 
-_No description available._
+Reads the pin level.
 
 **Returns** `PinValue`
 
@@ -161,7 +161,7 @@ _No description available._
 public void Write(int pinNumber, PinValue value)
 ```
 
-_No description available._
+Writes the pin level.
 
 ### RegisterCallbackForPinValueChangedEvent(int pinNumber, PinEventTypes eventTypes, PinChangeEventHandler callback)
 
@@ -169,7 +169,7 @@ _No description available._
 public void RegisterCallbackForPinValueChangedEvent(int pinNumber, PinEventTypes eventTypes, PinChangeEventHandler callback)
 ```
 
-_No description available._
+Registers a callback for edge changes on the pin.
 
 ### UnregisterCallbackForPinValueChangedEvent(int pinNumber, PinChangeEventHandler callback)
 
@@ -177,7 +177,7 @@ _No description available._
 public void UnregisterCallbackForPinValueChangedEvent(int pinNumber, PinChangeEventHandler callback)
 ```
 
-_No description available._
+Removes a previously registered callback.
 
 ### WaitForEvent(int pinNumber, PinEventTypes eventTypes, TimeSpan timeout)
 

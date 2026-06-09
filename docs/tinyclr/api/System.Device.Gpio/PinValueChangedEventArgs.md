@@ -21,7 +21,7 @@ public sealed class PinValueChangedEventArgs : EventArgs
 public PinValueChangedEventArgs(PinEventTypes changeType, int pinNumber)
 ```
 
-_No description available._
+Creates the event arguments.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public PinEventTypes ChangeType { get; }
 ```
 
-_No description available._
+The edge that occurred.
 
 ### PinNumber
 
@@ -39,4 +39,4 @@ _No description available._
 public int PinNumber { get; }
 ```
 
-_No description available._
+The pin that changed.

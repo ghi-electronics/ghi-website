@@ -7,7 +7,7 @@ sidebar_label: "SerialPort"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.Uart`<br/>**Assembly:** `System.IO.Ports`<br/>**Namespace:** `System.IO.Ports`
 
-_No description available._
+.NET-style serial port. Same surface as `System.IO.Ports.SerialPort`; internally routes through TinyCLR's `GHIElectronics.TinyCLR.Devices.Uart.UartController`.
 
 ```csharp
 public class SerialPort : IDisposable
@@ -21,7 +21,7 @@ public class SerialPort : IDisposable
 public SerialPort() : this( )
 ```
 
-_No description available._
+Creates a port using "COM1".
 
 ### SerialPort(string portName)
 
@@ -29,7 +29,7 @@ _No description available._
 public SerialPort(string portName)
 ```
 
-_No description available._
+Creates a port for the given port name.
 
 ### SerialPort(string portName, int baudRate)
 
@@ -37,7 +37,7 @@ _No description available._
 public SerialPort(string portName, int baudRate) : this(portName)
 ```
 
-_No description available._
+Creates a port with the given name and baud rate.
 
 ### SerialPort(string portName, int baudRate, Parity parity)
 
@@ -45,7 +45,7 @@ _No description available._
 public SerialPort(string portName, int baudRate, Parity parity) : this(portName, baudRate)
 ```
 
-_No description available._
+Creates a port with the given name, baud rate, and parity.
 
 ### SerialPort(string portName, int baudRate, Parity parity, int dataBits)
 
@@ -53,7 +53,7 @@ _No description available._
 public SerialPort(string portName, int baudRate, Parity parity, int dataBits) : this(portName, baudRate, parity)
 ```
 
-_No description available._
+Creates a port with the given name, baud rate, parity, and data bits.
 
 ### SerialPort(string portName, int baudRate, Parity parity, int dataBits, StopBits stopBits)
 
@@ -61,7 +61,7 @@ _No description available._
 public SerialPort(string portName, int baudRate, Parity parity, int dataBits, StopBits stopBits) : this(portName, baudRate, parity, dataBits)
 ```
 
-_No description available._
+Creates a port with the given name, baud rate, parity, data bits, and stop bits.
 
 ## Properties
 
@@ -71,7 +71,7 @@ _No description available._
 public string PortName { get; set; }
 ```
 
-_No description available._
+The port name, e.g. "COM1" or a TinyCLR UART API name.
 
 ### BaudRate
 
@@ -79,7 +79,7 @@ _No description available._
 public int BaudRate { get; set; }
 ```
 
-_No description available._
+The baud rate. Defaults to 9600.
 
 ### Parity
 
@@ -87,7 +87,7 @@ _No description available._
 public Parity Parity { get; set; }
 ```
 
-_No description available._
+The parity scheme. Defaults to none.
 
 ### DataBits
 
@@ -95,7 +95,7 @@ _No description available._
 public int DataBits { get; set; }
 ```
 
-_No description available._
+Bits per byte. Defaults to 8.
 
 ### StopBits
 
@@ -103,7 +103,7 @@ _No description available._
 public StopBits StopBits { get; set; }
 ```
 
-_No description available._
+Number of stop bits. Defaults to one.
 
 ### Handshake
 
@@ -111,7 +111,7 @@ _No description available._
 public Handshake Handshake { get; set; }
 ```
 
-_No description available._
+The flow-control method. Defaults to none.
 
 ### ReadTimeout
 
@@ -119,7 +119,7 @@ _No description available._
 public int ReadTimeout { get; set; }
 ```
 
-_No description available._
+Read timeout in milliseconds, or `InfiniteTimeout`.
 
 ### WriteTimeout
 
@@ -127,7 +127,7 @@ _No description available._
 public int WriteTimeout { get; set; }
 ```
 
-_No description available._
+Write timeout in milliseconds, or `InfiniteTimeout`.
 
 ### ReadBufferSize
 
@@ -135,7 +135,7 @@ _No description available._
 public int ReadBufferSize { get; set; }
 ```
 
-_No description available._
+Receive buffer size in bytes. Defaults to 256.
 
 ### WriteBufferSize
 
@@ -143,7 +143,7 @@ _No description available._
 public int WriteBufferSize { get; set; }
 ```
 
-_No description available._
+Transmit buffer size in bytes. Defaults to 256.
 
 ### ReceivedBytesThreshold
 
@@ -151,7 +151,7 @@ _No description available._
 public int ReceivedBytesThreshold { get; set; }
 ```
 
-_No description available._
+Bytes that must be buffered before the data-received event fires. Defaults to 1.
 
 ### NewLine
 
@@ -159,7 +159,7 @@ _No description available._
 public string NewLine { get; set; }
 ```
 
-_No description available._
+The line terminator used by `ReadLine` and `WriteLine`. Defaults to "\n".
 
 ### Encoding
 
@@ -167,7 +167,7 @@ _No description available._
 public Encoding Encoding { get; set; }
 ```
 
-_No description available._
+The text encoding used by the string read/write methods. Defaults to UTF-8.
 
 ### IsOpen
 
@@ -175,7 +175,7 @@ _No description available._
 public bool IsOpen { get; }
 ```
 
-_No description available._
+True if the port is open.
 
 ### BytesToRead
 
@@ -183,7 +183,7 @@ _No description available._
 public int BytesToRead { get; }
 ```
 
-_No description available._
+Number of bytes available to read.
 
 ### BytesToWrite
 
@@ -191,7 +191,7 @@ _No description available._
 public int BytesToWrite { get; }
 ```
 
-_No description available._
+Number of bytes waiting to be sent.
 
 ### CtsHolding
 
@@ -199,7 +199,7 @@ _No description available._
 public bool CtsHolding { get; }
 ```
 
-_No description available._
+State of the Clear-to-Send line.
 
 ### CDHolding
 
@@ -207,7 +207,7 @@ _No description available._
 public bool CDHolding { get; }
 ```
 
-_No description available._
+State of the Carrier-Detect line. Not supported.
 
 ### DsrHolding
 
@@ -215,7 +215,7 @@ _No description available._
 public bool DsrHolding { get; }
 ```
 
-_No description available._
+State of the Data-Set-Ready line. Not supported.
 
 ### BreakState
 
@@ -223,7 +223,7 @@ _No description available._
 public bool BreakState { get; set; }
 ```
 
-_No description available._
+Whether the port is in a break state. Not supported.
 
 ### DtrEnable
 
@@ -231,7 +231,7 @@ _No description available._
 public bool DtrEnable { get; set; }
 ```
 
-_No description available._
+Whether the Data-Terminal-Ready line is enabled. Not supported.
 
 ### RtsEnable
 
@@ -239,7 +239,7 @@ _No description available._
 public bool RtsEnable { get; set; }
 ```
 
-_No description available._
+Whether the Request-to-Send line is enabled.
 
 ## Methods
 
@@ -249,7 +249,7 @@ _No description available._
 public void Open()
 ```
 
-_No description available._
+Opens the port using the current settings.
 
 ### Close()
 
@@ -257,7 +257,7 @@ _No description available._
 public void Close()
 ```
 
-_No description available._
+Closes the port.
 
 ### Dispose()
 
@@ -265,7 +265,7 @@ _No description available._
 public void Dispose()
 ```
 
-_No description available._
+Closes the port and releases its resources.
 
 ### Read(byte[] buffer, int offset, int count)
 
@@ -273,7 +273,7 @@ _No description available._
 public int Read(byte[] buffer, int offset, int count)
 ```
 
-_No description available._
+Reads up to `count` bytes into the buffer. Returns the number of bytes read.
 
 **Returns** `int`
 
@@ -283,7 +283,7 @@ _No description available._
 public int ReadByte()
 ```
 
-_No description available._
+Reads a single byte. Throws on timeout.
 
 **Returns** `int`
 
@@ -293,7 +293,7 @@ _No description available._
 public int ReadChar()
 ```
 
-_No description available._
+Reads a single character. Throws on timeout.
 
 **Returns** `int`
 
@@ -303,7 +303,7 @@ _No description available._
 public int Read(char[] buffer, int offset, int count)
 ```
 
-_No description available._
+Reads characters into the buffer. Not supported.
 
 **Returns** `int`
 
@@ -313,7 +313,7 @@ _No description available._
 public string ReadExisting()
 ```
 
-_No description available._
+Reads all bytes currently available and returns them as a string.
 
 **Returns** `string`
 
@@ -323,7 +323,7 @@ _No description available._
 public string ReadLine()
 ```
 
-_No description available._
+Reads up to the `NewLine` terminator and returns the line.
 
 **Returns** `string`
 
@@ -333,7 +333,7 @@ _No description available._
 public string ReadTo(string value)
 ```
 
-_No description available._
+Reads up to the given delimiter and returns the text before it.
 
 **Returns** `string`
 
@@ -343,7 +343,7 @@ _No description available._
 public void Write(string text)
 ```
 
-_No description available._
+Writes a string using the current encoding.
 
 ### WriteLine(string text)
 
@@ -351,7 +351,7 @@ _No description available._
 public void WriteLine(string text)
 ```
 
-_No description available._
+Writes a string followed by the `NewLine` terminator.
 
 ### Write(byte[] buffer, int offset, int count)
 
@@ -359,7 +359,7 @@ _No description available._
 public void Write(byte[] buffer, int offset, int count)
 ```
 
-_No description available._
+Writes `count` bytes from the buffer.
 
 ### Write(char[] buffer, int offset, int count)
 
@@ -367,7 +367,7 @@ _No description available._
 public void Write(char[] buffer, int offset, int count)
 ```
 
-_No description available._
+Writes `count` characters from the buffer using the current encoding.
 
 ### DiscardInBuffer()
 
@@ -375,7 +375,7 @@ _No description available._
 public void DiscardInBuffer()
 ```
 
-_No description available._
+Discards the contents of the receive buffer.
 
 ### DiscardOutBuffer()
 
@@ -383,7 +383,7 @@ _No description available._
 public void DiscardOutBuffer()
 ```
 
-_No description available._
+Discards the contents of the transmit buffer.
 
 ### GetPortNames()
 
@@ -391,7 +391,7 @@ _No description available._
 public static string[] GetPortNames()
 ```
 
-_No description available._
+Returns the available port names. Not supported.
 
 **Returns** `string[]`
 
@@ -403,7 +403,7 @@ _No description available._
 public event SerialDataReceivedEventHandler DataReceived
 ```
 
-_No description available._
+Raised when data is received.
 
 ### ErrorReceived
 
@@ -411,7 +411,7 @@ _No description available._
 public event SerialErrorReceivedEventHandler ErrorReceived
 ```
 
-_No description available._
+Raised when a receive error occurs.
 
 ### PinChanged
 
@@ -419,7 +419,7 @@ _No description available._
 public event SerialPinChangedEventHandler PinChanged
 ```
 
-_No description available._
+Raised when a control pin changes.
 
 ## Fields
 
@@ -429,4 +429,4 @@ _No description available._
 public const int InfiniteTimeout
 ```
 
-_No description available._
+Value meaning "no timeout" for the timeout properties.

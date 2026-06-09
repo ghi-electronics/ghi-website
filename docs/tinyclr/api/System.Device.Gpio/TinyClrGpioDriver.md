@@ -21,7 +21,7 @@ public class TinyClrGpioDriver : GpioDriver
 public TinyClrGpioDriver() : this(GHIElectronics.TinyCLR.Devices.Gpio.GpioController.GetDefault(), 0)
 ```
 
-_No description available._
+Creates a driver over the default GPIO controller.
 
 ### TinyClrGpioDriver(int pinBase)
 
@@ -29,7 +29,7 @@ _No description available._
 public TinyClrGpioDriver(int pinBase) : this(GHIElectronics.TinyCLR.Devices.Gpio.GpioController.GetDefault(), pinBase)
 ```
 
-_No description available._
+Creates a driver over the default controller with a pin-number offset.
 
 ### TinyClrGpioDriver(GHIElectronics.TinyCLR.Devices.Gpio.GpioController tinyClrController, int pinBase)
 
@@ -37,7 +37,7 @@ _No description available._
 public TinyClrGpioDriver(GHIElectronics.TinyCLR.Devices.Gpio.GpioController tinyClrController, int pinBase = 0)
 ```
 
-_No description available._
+Creates a driver over the given controller with an optional pin-number offset.
 
 ## Properties
 
@@ -47,7 +47,7 @@ _No description available._
 public override int PinCount { get; }
 ```
 
-_No description available._
+Number of pins on the controller.
 
 ## Methods
 
@@ -57,7 +57,7 @@ _No description available._
 public override void Dispose()
 ```
 
-_No description available._
+Closes all open pins and releases the controller.
 
 ### OpenPin(int pinNumber)
 
@@ -65,7 +65,7 @@ _No description available._
 protected internal override void OpenPin(int pinNumber)
 ```
 
-_No description available._
+Opens the pin on the underlying controller.
 
 ### ClosePin(int pinNumber)
 
@@ -73,7 +73,7 @@ _No description available._
 protected internal override void ClosePin(int pinNumber)
 ```
 
-_No description available._
+Closes the pin on the underlying controller.
 
 ### IsPinModeSupported(int pinNumber, PinMode mode)
 
@@ -81,7 +81,7 @@ _No description available._
 protected internal override bool IsPinModeSupported(int pinNumber, PinMode mode)
 ```
 
-_No description available._
+Returns true if the pin supports the given mode.
 
 **Returns** `bool`
 
@@ -91,7 +91,7 @@ _No description available._
 protected internal override void SetPinMode(int pinNumber, PinMode mode)
 ```
 
-_No description available._
+Sets the pin's drive mode.
 
 ### GetPinMode(int pinNumber)
 
@@ -99,7 +99,7 @@ _No description available._
 protected internal override PinMode GetPinMode(int pinNumber)
 ```
 
-_No description available._
+Gets the pin's drive mode.
 
 **Returns** `PinMode`
 
@@ -109,7 +109,7 @@ _No description available._
 protected internal override PinValue Read(int pinNumber)
 ```
 
-_No description available._
+Reads the pin level.
 
 **Returns** `PinValue`
 
@@ -119,7 +119,7 @@ _No description available._
 protected internal override void Write(int pinNumber, PinValue value)
 ```
 
-_No description available._
+Writes the pin level.
 
 ### AddCallbackForPinValueChangedEvent(int pinNumber, PinEventTypes eventTypes, PinChangeEventHandler callback)
 
@@ -127,7 +127,7 @@ _No description available._
 protected internal override void AddCallbackForPinValueChangedEvent(int pinNumber, PinEventTypes eventTypes, PinChangeEventHandler callback)
 ```
 
-_No description available._
+Registers a callback for edge changes on the pin.
 
 ### RemoveCallbackForPinValueChangedEvent(int pinNumber, PinChangeEventHandler callback)
 
@@ -135,7 +135,7 @@ _No description available._
 protected internal override void RemoveCallbackForPinValueChangedEvent(int pinNumber, PinChangeEventHandler callback)
 ```
 
-_No description available._
+Removes a previously registered callback.
 
 ### MapPinNumber(int pinNumber)
 
@@ -143,6 +143,6 @@ _No description available._
 protected virtual int MapPinNumber(int pinNumber)
 ```
 
-_No description available._
+Maps a controller pin number to the underlying hardware pin, applying the pin-number offset.
 
 **Returns** `int`

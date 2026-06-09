@@ -21,7 +21,7 @@ public struct RSAParameters
 public byte[] D
 ```
 
-_No description available._
+The private exponent (private key).
 
 ### DP
 
@@ -29,7 +29,7 @@ _No description available._
 public byte[] DP
 ```
 
-_No description available._
+d mod (p-1).
 
 ### DQ
 
@@ -37,7 +37,7 @@ _No description available._
 public byte[] DQ
 ```
 
-_No description available._
+d mod (q-1).
 
 ### Exponent
 
@@ -45,7 +45,7 @@ _No description available._
 public byte[] Exponent
 ```
 
-_No description available._
+The public exponent.
 
 ### InverseQ
 
@@ -53,7 +53,7 @@ _No description available._
 public byte[] InverseQ
 ```
 
-_No description available._
+The CRT coefficient (q^-1 mod p).
 
 ### Modulus
 
@@ -61,7 +61,7 @@ _No description available._
 public byte[] Modulus
 ```
 
-_No description available._
+The modulus.
 
 ### P
 
@@ -69,7 +69,7 @@ _No description available._
 public byte[] P
 ```
 
-_No description available._
+The first prime factor.
 
 ### Q
 
@@ -77,4 +77,4 @@ _No description available._
 public byte[] Q
 ```
 
-_No description available._
+The second prime factor.

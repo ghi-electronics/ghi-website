@@ -21,7 +21,7 @@ public sealed class LibGpiodDriver : System.Device.Gpio.TinyClrGpioDriver
 public LibGpiodDriver(int chipNumber) : base(CalculatePinBase(chipNumber))
 ```
 
-_No description available._
+Creates a driver for the given GPIO chip number.
 
 ## Properties
 
@@ -31,4 +31,4 @@ _No description available._
 public int ChipNumber { get; }
 ```
 
-_No description available._
+The GPIO chip number this driver maps onto.

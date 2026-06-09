@@ -21,7 +21,7 @@ public abstract class AsymmetricAlgorithm : IDisposable
 public virtual int KeySize { get; set; }
 ```
 
-_No description available._
+The key size, in bits.
 
 ### KeyExchangeAlgorithm
 
@@ -29,7 +29,7 @@ _No description available._
 public virtual string KeyExchangeAlgorithm { get; }
 ```
 
-_No description available._
+Name of the key-exchange algorithm, or null.
 
 ### SignatureAlgorithm
 
@@ -37,7 +37,7 @@ _No description available._
 public virtual string SignatureAlgorithm { get; }
 ```
 
-_No description available._
+Name of the signature algorithm, or null.
 
 ## Methods
 
@@ -47,7 +47,7 @@ _No description available._
 public virtual void Dispose()
 ```
 
-_No description available._
+Releases the resources used by the algorithm.
 
 ### Clear()
 
@@ -55,4 +55,4 @@ _No description available._
 public void Clear()
 ```
 
-_No description available._
+Releases the resources used by the algorithm.

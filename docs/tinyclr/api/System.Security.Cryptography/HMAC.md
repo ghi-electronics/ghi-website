@@ -21,4 +21,4 @@ public abstract class HMAC : KeyedHashAlgorithm
 public string HashName { get; set; }
 ```
 
-_No description available._
+Name of the inner hash algorithm.

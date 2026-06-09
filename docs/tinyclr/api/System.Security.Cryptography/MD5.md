@@ -21,7 +21,7 @@ public sealed class MD5 : HashAlgorithm
 public override byte[] Hash { get; set; }
 ```
 
-_No description available._
+The hash value computed by the last operation.
 
 ## Methods
 
@@ -31,7 +31,7 @@ _No description available._
 public static MD5 Create()
 ```
 
-_No description available._
+Creates a new MD5 instance.
 
 **Returns** `MD5`
 
@@ -41,7 +41,7 @@ _No description available._
 public override byte[] ComputeHash(byte[] buffer)
 ```
 
-_No description available._
+Computes the hash of the given data.
 
 **Returns** `byte[]`
 
@@ -51,7 +51,7 @@ _No description available._
 public override byte[] ComputeHash(byte[] buffer, int offset, int count)
 ```
 
-_No description available._
+Computes the hash of a region of the data.
 
 **Returns** `byte[]`
 
@@ -61,7 +61,7 @@ _No description available._
 public override byte[] ComputeHash(Stream inputStream)
 ```
 
-_No description available._
+Computes the hash of a stream.
 
 **Returns** `byte[]`
 
@@ -71,7 +71,7 @@ _No description available._
 public override void Initialize()
 ```
 
-_No description available._
+Resets the algorithm to its initial state.
 
 ### Dispose()
 
@@ -79,4 +79,4 @@ _No description available._
 public override void Dispose()
 ```
 
-_No description available._
+Releases the resources used by the algorithm.

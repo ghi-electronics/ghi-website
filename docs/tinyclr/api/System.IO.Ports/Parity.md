@@ -7,7 +7,7 @@ sidebar_label: "Parity"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.Uart`<br/>**Assembly:** `System.IO.Ports`<br/>**Namespace:** `System.IO.Ports`
 
-_No description available._
+Parity-checking scheme.
 
 ```csharp
 public enum Parity
@@ -17,8 +17,8 @@ public enum Parity
 
 | Name | Value | Description |
 |---|---|---|
-| `None` | `0` |  |
-| `Odd` | `1` |  |
-| `Even` | `2` |  |
-| `Mark` | `3` |  |
-| `Space` | `4` |  |
+| `None` | `0` | No parity bit. |
+| `Odd` | `1` | Odd parity. |
+| `Even` | `2` | Even parity. |
+| `Mark` | `3` | Parity bit always 1. |
+| `Space` | `4` | Parity bit always 0. |

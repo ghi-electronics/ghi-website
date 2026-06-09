@@ -7,7 +7,7 @@ sidebar_label: "SerialErrorReceivedEventHandler"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.Uart`<br/>**Assembly:** `System.IO.Ports`<br/>**Namespace:** `System.IO.Ports`
 
-_No description available._
+Handler for the `SerialPort.ErrorReceived` event.
 
 ```csharp
 public delegate void SerialErrorReceivedEventHandler(object sender, SerialErrorReceivedEventArgs e);

@@ -7,7 +7,7 @@ sidebar_label: "SerialError"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.Uart`<br/>**Assembly:** `System.IO.Ports`<br/>**Namespace:** `System.IO.Ports`
 
-_No description available._
+Errors that can occur on the serial port.
 
 ```csharp
 public enum SerialError
@@ -17,8 +17,8 @@ public enum SerialError
 
 | Name | Value | Description |
 |---|---|---|
-| `TXFull` | `0x100` |  |
-| `RXOver` | `1` |  |
-| `Overrun` | `2` |  |
-| `RXParity` | `4` |  |
-| `Frame` | `8` |  |
+| `TXFull` | `0x100` | The transmit buffer is full. |
+| `RXOver` | `1` | The receive buffer overflowed. |
+| `Overrun` | `2` | A character was received before the previous one was read (hardware overrun). |
+| `RXParity` | `4` | A parity error was detected. |
+| `Frame` | `8` | A framing error was detected. |

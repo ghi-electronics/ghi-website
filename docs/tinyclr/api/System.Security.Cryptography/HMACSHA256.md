@@ -21,7 +21,7 @@ public sealed class HMACSHA256 : HMAC
 public HMACSHA256()
 ```
 
-_No description available._
+Creates an HMAC-SHA256 with a random key.
 
 ### HMACSHA256(byte[] key)
 
@@ -29,7 +29,7 @@ _No description available._
 public HMACSHA256(byte[] key)
 ```
 
-_No description available._
+Creates an HMAC-SHA256 with the given key.
 
 ## Properties
 
@@ -39,7 +39,7 @@ _No description available._
 public override byte[] Hash { get; set; }
 ```
 
-_No description available._
+The hash value computed by the last operation.
 
 ### Key
 
@@ -47,7 +47,7 @@ _No description available._
 public override byte[] Key { get; set; }
 ```
 
-_No description available._
+The secret key used by the algorithm.
 
 ## Methods
 
@@ -57,7 +57,7 @@ _No description available._
 public override byte[] ComputeHash(byte[] buffer)
 ```
 
-_No description available._
+Computes the hash of the given data.
 
 **Returns** `byte[]`
 
@@ -67,7 +67,7 @@ _No description available._
 public override byte[] ComputeHash(byte[] buffer, int offset, int count)
 ```
 
-_No description available._
+Computes the hash of a region of the data.
 
 **Returns** `byte[]`
 
@@ -77,7 +77,7 @@ _No description available._
 public override byte[] ComputeHash(Stream inputStream)
 ```
 
-_No description available._
+Computes the hash of a stream.
 
 **Returns** `byte[]`
 
@@ -87,7 +87,7 @@ _No description available._
 public override void Initialize()
 ```
 
-_No description available._
+Resets the algorithm to its initial state.
 
 ### Dispose()
 
@@ -95,4 +95,4 @@ _No description available._
 public override void Dispose()
 ```
 
-_No description available._
+Releases the resources used by the algorithm.

@@ -21,7 +21,7 @@ public sealed class RSACryptoServiceProvider : RSA
 public RSACryptoServiceProvider()
 ```
 
-_No description available._
+Creates an RSA provider with the default key size.
 
 ### RSACryptoServiceProvider(int dwKeySize)
 
@@ -29,7 +29,7 @@ _No description available._
 public RSACryptoServiceProvider(int dwKeySize)
 ```
 
-_No description available._
+Creates an RSA provider with the given key size, in bits.
 
 ## Properties
 
@@ -39,7 +39,7 @@ _No description available._
 public override int KeySize { get; set; }
 ```
 
-_No description available._
+The key size, in bits. Set it via the constructor.
 
 ### KeyExchangeAlgorithm
 
@@ -47,7 +47,7 @@ _No description available._
 public override string KeyExchangeAlgorithm { get; }
 ```
 
-_No description available._
+Name of the key-exchange algorithm.
 
 ## Methods
 
@@ -57,7 +57,7 @@ _No description available._
 public override RSAParameters ExportParameters(bool includePrivateParameters)
 ```
 
-_No description available._
+Exports the RSA key, optionally including the private parameters.
 
 **Returns** `RSAParameters`
 
@@ -67,7 +67,7 @@ _No description available._
 public override void ImportParameters(RSAParameters parameters)
 ```
 
-_No description available._
+Imports the given RSA key parameters.
 
 ### Encrypt(byte[] data, RSAEncryptionPadding padding)
 
@@ -75,7 +75,7 @@ _No description available._
 public override byte[] Encrypt(byte[] data, RSAEncryptionPadding padding)
 ```
 
-_No description available._
+Encrypts data with the public key. Only PKCS#1 padding is supported.
 
 **Returns** `byte[]`
 
@@ -85,7 +85,7 @@ _No description available._
 public override byte[] Decrypt(byte[] data, RSAEncryptionPadding padding)
 ```
 
-_No description available._
+Decrypts data with the private key. Only PKCS#1 padding is supported.
 
 **Returns** `byte[]`
 
@@ -95,7 +95,7 @@ _No description available._
 public override byte[] SignData(byte[] data, HashAlgorithmName hashAlgorithm, RSASignaturePadding padding)
 ```
 
-_No description available._
+Signs data with the private key. Only PKCS#1 padding is supported.
 
 **Returns** `byte[]`
 
@@ -105,7 +105,7 @@ _No description available._
 public override byte[] SignHash(byte[] hash, HashAlgorithmName hashAlgorithm, RSASignaturePadding padding)
 ```
 
-_No description available._
+Signs a precomputed hash with the private key. Only PKCS#1 padding is supported.
 
 **Returns** `byte[]`
 
@@ -115,7 +115,7 @@ _No description available._
 public override bool VerifyData(byte[] data, byte[] signature, HashAlgorithmName hashAlgorithm, RSASignaturePadding padding)
 ```
 
-_No description available._
+Verifies a data signature against the public key. Only PKCS#1 padding is supported.
 
 **Returns** `bool`
 
@@ -125,7 +125,7 @@ _No description available._
 public override bool VerifyHash(byte[] hash, byte[] signature, HashAlgorithmName hashAlgorithm, RSASignaturePadding padding)
 ```
 
-_No description available._
+Verifies a hash signature against the public key. Only PKCS#1 padding is supported.
 
 **Returns** `bool`
 
@@ -135,7 +135,7 @@ _No description available._
 public byte[] Encrypt(byte[] rgb, bool fOAEP)
 ```
 
-_No description available._
+Encrypts data with the public key (legacy overload). OAEP is not supported.
 
 **Returns** `byte[]`
 
@@ -145,7 +145,7 @@ _No description available._
 public byte[] Decrypt(byte[] rgb, bool fOAEP)
 ```
 
-_No description available._
+Decrypts data with the private key (legacy overload). OAEP is not supported.
 
 **Returns** `byte[]`
 
@@ -155,7 +155,7 @@ _No description available._
 public byte[] SignData(byte[] buffer, bool sha256 = false)
 ```
 
-_No description available._
+Signs data with the private key (legacy overload). Set `sha256` to use SHA-256 instead of SHA-1.
 
 **Returns** `byte[]`
 
@@ -165,7 +165,7 @@ _No description available._
 public bool VerifyData(byte[] buffer, byte[] signature, bool sha256 = false)
 ```
 
-_No description available._
+Verifies a data signature (legacy overload). Set `sha256` to use SHA-256 instead of SHA-1.
 
 **Returns** `bool`
 
@@ -175,4 +175,4 @@ _No description available._
 public override void Dispose()
 ```
 
-_No description available._
+Releases the resources used by the provider.

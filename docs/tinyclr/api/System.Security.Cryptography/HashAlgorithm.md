@@ -21,7 +21,7 @@ public abstract class HashAlgorithm : IDisposable
 public virtual int HashSize { get; set; }
 ```
 
-_No description available._
+Size of the computed hash, in bits.
 
 ### Hash
 
@@ -29,7 +29,7 @@ _No description available._
 public virtual byte[] Hash { get; set; }
 ```
 
-_No description available._
+The hash value computed by the last operation.
 
 ## Methods
 
@@ -39,7 +39,7 @@ _No description available._
 public abstract byte[] ComputeHash(byte[] buffer)
 ```
 
-_No description available._
+Computes the hash of the given data.
 
 **Returns** `byte[]`
 
@@ -49,7 +49,7 @@ _No description available._
 public abstract byte[] ComputeHash(byte[] buffer, int offset, int count)
 ```
 
-_No description available._
+Computes the hash of a region of the data.
 
 **Returns** `byte[]`
 
@@ -59,7 +59,7 @@ _No description available._
 public abstract byte[] ComputeHash(Stream inputStream)
 ```
 
-_No description available._
+Computes the hash of a stream.
 
 **Returns** `byte[]`
 
@@ -69,7 +69,7 @@ _No description available._
 public abstract void Initialize()
 ```
 
-_No description available._
+Resets the algorithm to its initial state.
 
 ### Clear()
 
@@ -77,7 +77,7 @@ _No description available._
 public void Clear()
 ```
 
-_No description available._
+Releases the resources used by the algorithm.
 
 ### Dispose()
 
@@ -85,4 +85,4 @@ _No description available._
 public virtual void Dispose()
 ```
 
-_No description available._
+Releases the resources used by the algorithm.

@@ -7,7 +7,7 @@ sidebar_label: "SerialData"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.Uart`<br/>**Assembly:** `System.IO.Ports`<br/>**Namespace:** `System.IO.Ports`
 
-_No description available._
+Type of data received on the serial port.
 
 ```csharp
 public enum SerialData
@@ -17,5 +17,5 @@ public enum SerialData
 
 | Name | Value | Description |
 |---|---|---|
-| `Chars` | `1` |  |
-| `Eof` | `2` |  |
+| `Chars` | `1` | Data other than the end-of-file character was received. |
+| `Eof` | `2` | The end-of-file character was received. |

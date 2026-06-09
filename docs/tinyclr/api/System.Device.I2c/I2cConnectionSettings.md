@@ -21,7 +21,7 @@ public sealed class I2cConnectionSettings
 public I2cConnectionSettings(int busId, int deviceAddress)
 ```
 
-_No description available._
+Creates settings for a device at the given address on the given bus.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public int BusId { get; }
 ```
 
-_No description available._
+The bus this device is on (-1 for software I²C).
 
 ### DeviceAddress
 
@@ -39,7 +39,7 @@ _No description available._
 public int DeviceAddress { get; set; }
 ```
 
-_No description available._
+The 7-bit device address.
 
 ### BusSpeed
 
@@ -47,4 +47,4 @@ _No description available._
 public I2cBusSpeed BusSpeed { get; set; }
 ```
 
-_No description available._
+The bus clock speed. Defaults to standard mode.

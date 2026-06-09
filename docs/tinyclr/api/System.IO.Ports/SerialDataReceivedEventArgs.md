@@ -7,7 +7,7 @@ sidebar_label: "SerialDataReceivedEventArgs"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.Uart`<br/>**Assembly:** `System.IO.Ports`<br/>**Namespace:** `System.IO.Ports`
 
-_No description available._
+Arguments for the data-received event.
 
 ```csharp
 public class SerialDataReceivedEventArgs : EventArgs
@@ -21,7 +21,7 @@ public class SerialDataReceivedEventArgs : EventArgs
 public SerialDataReceivedEventArgs(SerialData eventType)
 ```
 
-_No description available._
+Creates the event arguments.
 
 ## Properties
 
@@ -31,4 +31,4 @@ _No description available._
 public SerialData EventType { get; }
 ```
 
-_No description available._
+The kind of data that was received.

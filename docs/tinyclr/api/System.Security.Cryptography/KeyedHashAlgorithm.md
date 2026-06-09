@@ -21,4 +21,4 @@ public abstract class KeyedHashAlgorithm : HashAlgorithm
 public virtual byte[] Key { get; set; }
 ```
 
-_No description available._
+The secret key used by the algorithm.

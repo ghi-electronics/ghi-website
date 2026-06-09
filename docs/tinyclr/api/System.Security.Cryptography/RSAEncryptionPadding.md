@@ -21,7 +21,7 @@ public sealed class RSAEncryptionPadding
 public static RSAEncryptionPadding Pkcs1 { get; }
 ```
 
-_No description available._
+PKCS#1 v1.5 encryption padding.
 
 ### OaepSHA1
 
@@ -29,7 +29,7 @@ _No description available._
 public static RSAEncryptionPadding OaepSHA1 { get; }
 ```
 
-_No description available._
+OAEP padding using SHA-1.
 
 ### OaepSHA256
 
@@ -37,7 +37,7 @@ _No description available._
 public static RSAEncryptionPadding OaepSHA256 { get; }
 ```
 
-_No description available._
+OAEP padding using SHA-256.
 
 ### Mode
 
@@ -45,7 +45,7 @@ _No description available._
 public RSAEncryptionPaddingMode Mode { get; }
 ```
 
-_No description available._
+The padding mode.
 
 ### OaepHashAlgorithm
 
@@ -53,7 +53,7 @@ _No description available._
 public HashAlgorithmName OaepHashAlgorithm { get; }
 ```
 
-_No description available._
+The hash algorithm used for OAEP padding.
 
 ## Methods
 
@@ -63,7 +63,7 @@ _No description available._
 public static RSAEncryptionPadding CreateOaep(HashAlgorithmName hashAlgorithm)
 ```
 
-_No description available._
+Creates OAEP padding using the given hash algorithm.
 
 **Returns** `RSAEncryptionPadding`
 
@@ -73,7 +73,7 @@ _No description available._
 public bool Equals(RSAEncryptionPadding other)
 ```
 
-_No description available._
+Returns true if the two paddings are equal.
 
 **Returns** `bool`
 
@@ -83,7 +83,7 @@ _No description available._
 public override bool Equals(object obj)
 ```
 
-_No description available._
+Returns true if the object is an equal padding.
 
 **Returns** `bool`
 
@@ -93,7 +93,7 @@ _No description available._
 public override int GetHashCode()
 ```
 
-_No description available._
+Returns the hash code for this padding.
 
 **Returns** `int`
 
@@ -103,7 +103,7 @@ _No description available._
 public override string ToString()
 ```
 
-_No description available._
+Returns a text description of this padding.
 
 **Returns** `string`
 
@@ -113,7 +113,7 @@ _No description available._
 public static bool operator ==(RSAEncryptionPadding left, RSAEncryptionPadding right)
 ```
 
-_No description available._
+Returns true if the two paddings are equal.
 
 **Returns** `bool operator`
 
@@ -123,6 +123,6 @@ _No description available._
 public static bool operator !=(RSAEncryptionPadding left, RSAEncryptionPadding right)
 ```
 
-_No description available._
+Returns true if the two paddings differ.
 
 **Returns** `bool operator`

@@ -21,7 +21,7 @@ public abstract class GpioDriver : IDisposable
 public abstract int PinCount { get; }
 ```
 
-_No description available._
+Number of pins the driver exposes.
 
 ## Methods
 
@@ -31,7 +31,7 @@ _No description available._
 protected internal abstract void OpenPin(int pinNumber)
 ```
 
-_No description available._
+Opens the pin for use.
 
 ### ClosePin(int pinNumber)
 
@@ -39,7 +39,7 @@ _No description available._
 protected internal abstract void ClosePin(int pinNumber)
 ```
 
-_No description available._
+Closes the pin.
 
 ### IsPinModeSupported(int pinNumber, PinMode mode)
 
@@ -47,7 +47,7 @@ _No description available._
 protected internal abstract bool IsPinModeSupported(int pinNumber, PinMode mode)
 ```
 
-_No description available._
+Returns true if the pin supports the given mode.
 
 **Returns** `bool`
 
@@ -57,7 +57,7 @@ _No description available._
 protected internal abstract void SetPinMode(int pinNumber, PinMode mode)
 ```
 
-_No description available._
+Sets the pin's drive mode.
 
 ### GetPinMode(int pinNumber)
 
@@ -65,7 +65,7 @@ _No description available._
 protected internal abstract PinMode GetPinMode(int pinNumber)
 ```
 
-_No description available._
+Gets the pin's drive mode.
 
 **Returns** `PinMode`
 
@@ -75,7 +75,7 @@ _No description available._
 protected internal abstract PinValue Read(int pinNumber)
 ```
 
-_No description available._
+Reads the pin level.
 
 **Returns** `PinValue`
 
@@ -85,7 +85,7 @@ _No description available._
 protected internal abstract void Write(int pinNumber, PinValue value)
 ```
 
-_No description available._
+Writes the pin level.
 
 ### AddCallbackForPinValueChangedEvent(int pinNumber, PinEventTypes eventTypes, PinChangeEventHandler callback)
 
@@ -93,7 +93,7 @@ _No description available._
 protected internal abstract void AddCallbackForPinValueChangedEvent(int pinNumber, PinEventTypes eventTypes, PinChangeEventHandler callback)
 ```
 
-_No description available._
+Registers a callback for edge changes on the pin.
 
 ### RemoveCallbackForPinValueChangedEvent(int pinNumber, PinChangeEventHandler callback)
 
@@ -101,7 +101,7 @@ _No description available._
 protected internal abstract void RemoveCallbackForPinValueChangedEvent(int pinNumber, PinChangeEventHandler callback)
 ```
 
-_No description available._
+Removes a previously registered callback.
 
 ### Dispose()
 
@@ -109,4 +109,4 @@ _No description available._
 public abstract void Dispose()
 ```
 
-_No description available._
+Releases the driver and closes all pins.

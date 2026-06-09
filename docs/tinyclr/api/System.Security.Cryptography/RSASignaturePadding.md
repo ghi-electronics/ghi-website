@@ -21,7 +21,7 @@ public sealed class RSASignaturePadding
 public static RSASignaturePadding Pkcs1 { get; }
 ```
 
-_No description available._
+PKCS#1 v1.5 signature padding.
 
 ### Pss
 
@@ -29,7 +29,7 @@ _No description available._
 public static RSASignaturePadding Pss { get; }
 ```
 
-_No description available._
+PSS signature padding.
 
 ### Mode
 
@@ -37,7 +37,7 @@ _No description available._
 public RSASignaturePaddingMode Mode { get; }
 ```
 
-_No description available._
+The padding mode.
 
 ## Methods
 
@@ -47,7 +47,7 @@ _No description available._
 public bool Equals(RSASignaturePadding other)
 ```
 
-_No description available._
+Returns true if the two paddings are equal.
 
 **Returns** `bool`
 
@@ -57,7 +57,7 @@ _No description available._
 public override bool Equals(object obj)
 ```
 
-_No description available._
+Returns true if the object is an equal padding.
 
 **Returns** `bool`
 
@@ -67,7 +67,7 @@ _No description available._
 public override int GetHashCode()
 ```
 
-_No description available._
+Returns the hash code for this padding.
 
 **Returns** `int`
 
@@ -77,7 +77,7 @@ _No description available._
 public override string ToString()
 ```
 
-_No description available._
+Returns a text description of this padding.
 
 **Returns** `string`
 
@@ -87,7 +87,7 @@ _No description available._
 public static bool operator ==(RSASignaturePadding left, RSASignaturePadding right)
 ```
 
-_No description available._
+Returns true if the two paddings are equal.
 
 **Returns** `bool operator`
 
@@ -97,6 +97,6 @@ _No description available._
 public static bool operator !=(RSASignaturePadding left, RSASignaturePadding right)
 ```
 
-_No description available._
+Returns true if the two paddings differ.
 
 **Returns** `bool operator`

@@ -21,7 +21,7 @@ public struct HashAlgorithmName
 public HashAlgorithmName(string name)
 ```
 
-_No description available._
+Creates a name from the given algorithm string.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public string Name { get; }
 ```
 
-_No description available._
+The algorithm name.
 
 ### MD5
 
@@ -39,7 +39,7 @@ _No description available._
 public static HashAlgorithmName MD5 { get; }
 ```
 
-_No description available._
+The MD5 algorithm name.
 
 ### SHA1
 
@@ -47,7 +47,7 @@ _No description available._
 public static HashAlgorithmName SHA1 { get; }
 ```
 
-_No description available._
+The SHA-1 algorithm name.
 
 ### SHA256
 
@@ -55,7 +55,7 @@ _No description available._
 public static HashAlgorithmName SHA256 { get; }
 ```
 
-_No description available._
+The SHA-256 algorithm name.
 
 ### SHA384
 
@@ -63,7 +63,7 @@ _No description available._
 public static HashAlgorithmName SHA384 { get; }
 ```
 
-_No description available._
+The SHA-384 algorithm name.
 
 ### SHA512
 
@@ -71,7 +71,7 @@ _No description available._
 public static HashAlgorithmName SHA512 { get; }
 ```
 
-_No description available._
+The SHA-512 algorithm name.
 
 ## Methods
 
@@ -81,7 +81,7 @@ _No description available._
 public bool Equals(HashAlgorithmName other)
 ```
 
-_No description available._
+Returns true if the two names are equal.
 
 **Returns** `bool`
 
@@ -91,7 +91,7 @@ _No description available._
 public override bool Equals(object obj)
 ```
 
-_No description available._
+Returns true if the object is an equal name.
 
 **Returns** `bool`
 
@@ -101,7 +101,7 @@ _No description available._
 public override int GetHashCode()
 ```
 
-_No description available._
+Returns the hash code for this name.
 
 **Returns** `int`
 
@@ -111,7 +111,7 @@ _No description available._
 public override string ToString()
 ```
 
-_No description available._
+Returns the algorithm name.
 
 **Returns** `string`
 
@@ -121,7 +121,7 @@ _No description available._
 public static bool operator ==(HashAlgorithmName left, HashAlgorithmName right)
 ```
 
-_No description available._
+Returns true if the two names are equal.
 
 **Returns** `bool operator`
 
@@ -131,6 +131,6 @@ _No description available._
 public static bool operator !=(HashAlgorithmName left, HashAlgorithmName right)
 ```
 
-_No description available._
+Returns true if the two names differ.
 
 **Returns** `bool operator`

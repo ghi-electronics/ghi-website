@@ -7,7 +7,7 @@ sidebar_label: "PwmChannel"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.Pwm`<br/>**Assembly:** `System.Device.Pwm`<br/>**Namespace:** `System.Device.Pwm`
 
-_No description available._
+.NET-style PWM channel. Same surface as `System.Device.Pwm.PwmChannel`; internally routes through TinyCLR's PWM driver.
 
 ```csharp
 public class PwmChannel : IDisposable
@@ -21,7 +21,7 @@ public class PwmChannel : IDisposable
 protected PwmChannel(int chip, int channel) : this(chip, channel, 400, 0.5)
 ```
 
-_No description available._
+Opens a channel on the given chip at 400 Hz and 50% duty cycle.
 
 ### PwmChannel(int chip, int channel, int frequency, double dutyCyclePercentage)
 
@@ -29,7 +29,7 @@ _No description available._
 protected PwmChannel(int chip, int channel, int frequency, double dutyCyclePercentage)
 ```
 
-_No description available._
+Opens a channel on the given chip with the given frequency and duty cycle.
 
 ## Properties
 
@@ -39,7 +39,7 @@ _No description available._
 public int Channel { get; }
 ```
 
-_No description available._
+The channel number on the controller.
 
 ### Controller
 
@@ -47,7 +47,7 @@ _No description available._
 public int Controller { get; }
 ```
 
-_No description available._
+The controller (chip) index.
 
 ### Frequency
 
@@ -55,7 +55,7 @@ _No description available._
 public double Frequency { get; set; }
 ```
 
-_No description available._
+The output frequency in Hz. Setting it changes the whole controller's frequency.
 
 ### DutyCycle
 
@@ -63,7 +63,7 @@ _No description available._
 public double DutyCycle { get; set; }
 ```
 
-_No description available._
+The duty cycle from 0.0 to 1.0.
 
 ### Polarity
 
@@ -71,7 +71,7 @@ _No description available._
 public PwmPulsePolarity Polarity { get; set; }
 ```
 
-_No description available._
+The pulse polarity.
 
 ## Methods
 
@@ -81,7 +81,7 @@ _No description available._
 public static PwmChannel Create(int chip, int channel)
 ```
 
-_No description available._
+Opens a channel on the given chip at 400 Hz and 50% duty cycle.
 
 **Returns** `PwmChannel`
 
@@ -91,7 +91,7 @@ _No description available._
 public static PwmChannel Create(int chip, int channel, int frequency = 400, double dutyCyclePercentage = 0.5)
 ```
 
-_No description available._
+Opens a channel on the given chip with the given frequency and duty cycle.
 
 **Returns** `PwmChannel`
 
@@ -101,7 +101,7 @@ _No description available._
 public void Start()
 ```
 
-_No description available._
+Starts the PWM output.
 
 ### Stop()
 
@@ -109,7 +109,7 @@ _No description available._
 public void Stop()
 ```
 
-_No description available._
+Stops the PWM output.
 
 ### Dispose()
 
@@ -117,4 +117,4 @@ _No description available._
 public void Dispose()
 ```
 
-_No description available._
+Stops the output and releases the channel.

@@ -7,7 +7,7 @@ sidebar_label: "StopBits"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.Uart`<br/>**Assembly:** `System.IO.Ports`<br/>**Namespace:** `System.IO.Ports`
 
-_No description available._
+Number of stop bits per frame.
 
 ```csharp
 public enum StopBits
@@ -17,7 +17,7 @@ public enum StopBits
 
 | Name | Value | Description |
 |---|---|---|
-| `None` | `0` |  |
-| `One` | `1` |  |
-| `Two` | `2` |  |
-| `OnePointFive` | `3` |  |
+| `None` | `0` | No stop bits (not supported by most hardware). |
+| `One` | `1` | One stop bit. |
+| `Two` | `2` | Two stop bits. |
+| `OnePointFive` | `3` | One and a half stop bits. |

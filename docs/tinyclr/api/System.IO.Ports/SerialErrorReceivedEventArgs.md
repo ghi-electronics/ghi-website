@@ -7,7 +7,7 @@ sidebar_label: "SerialErrorReceivedEventArgs"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.Uart`<br/>**Assembly:** `System.IO.Ports`<br/>**Namespace:** `System.IO.Ports`
 
-_No description available._
+Arguments for the error-received event.
 
 ```csharp
 public class SerialErrorReceivedEventArgs : EventArgs
@@ -21,7 +21,7 @@ public class SerialErrorReceivedEventArgs : EventArgs
 public SerialErrorReceivedEventArgs(SerialError eventType)
 ```
 
-_No description available._
+Creates the event arguments.
 
 ## Properties
 
@@ -31,4 +31,4 @@ _No description available._
 public SerialError EventType { get; }
 ```
 
-_No description available._
+The error that occurred.

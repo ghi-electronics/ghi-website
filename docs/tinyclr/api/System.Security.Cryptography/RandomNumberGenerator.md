@@ -21,7 +21,7 @@ public abstract class RandomNumberGenerator : IDisposable
 public static RandomNumberGenerator Create()
 ```
 
-_No description available._
+Creates a new secure random number generator.
 
 **Returns** `RandomNumberGenerator`
 
@@ -31,7 +31,7 @@ _No description available._
 public static void Fill(byte[] data)
 ```
 
-_No description available._
+Fills the buffer with cryptographically strong random bytes.
 
 ### GetBytes(byte[] data)
 
@@ -39,7 +39,7 @@ _No description available._
 public abstract void GetBytes(byte[] data)
 ```
 
-_No description available._
+Fills the buffer with cryptographically strong random bytes.
 
 ### Dispose()
 
@@ -47,4 +47,4 @@ _No description available._
 public abstract void Dispose()
 ```
 
-_No description available._
+Releases the resources used by the generator.

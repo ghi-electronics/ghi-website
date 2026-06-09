@@ -21,7 +21,7 @@ public abstract class I2cDevice : IDisposable
 public abstract I2cConnectionSettings ConnectionSettings { get; }
 ```
 
-_No description available._
+The settings this device was created with.
 
 ## Methods
 
@@ -31,7 +31,7 @@ _No description available._
 public static I2cDevice Create(I2cConnectionSettings settings)
 ```
 
-_No description available._
+Opens an I²C device with the given settings.
 
 **Returns** `I2cDevice`
 
@@ -41,7 +41,7 @@ _No description available._
 public abstract void Read(byte[] buffer)
 ```
 
-_No description available._
+Reads bytes from the device into the buffer.
 
 ### Write(byte[] buffer)
 
@@ -49,7 +49,7 @@ _No description available._
 public abstract void Write(byte[] buffer)
 ```
 
-_No description available._
+Writes the buffer to the device.
 
 ### WriteRead(byte[] writeBuffer, byte[] readBuffer)
 
@@ -57,7 +57,7 @@ _No description available._
 public abstract void WriteRead(byte[] writeBuffer, byte[] readBuffer)
 ```
 
-_No description available._
+Writes, then reads back in a single transaction.
 
 ### Dispose()
 
@@ -65,4 +65,4 @@ _No description available._
 public abstract void Dispose()
 ```
 
-_No description available._
+Closes the device and releases the bus.

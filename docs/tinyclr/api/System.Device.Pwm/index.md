@@ -14,10 +14,10 @@ The standard, .NET-compatible `System.Device.Pwm` API for TinyCLR. It ships insi
 
 | Class | Namespace | Summary |
 |---|---|---|
-| [PwmChannel](./PwmChannel.md) | `System.Device.Pwm` |  |
+| [PwmChannel](./PwmChannel.md) | `System.Device.Pwm` | .NET-style PWM channel. Same surface as `System.Device.Pwm.PwmChannel`; internally routes through TinyCLR's PWM driver. |
 
 ## Enums
 
 | Enum | Namespace | Summary |
 |---|---|---|
-| [PwmPulsePolarity](./PwmPulsePolarity.md) | `System.Device.Pwm` |  |
+| [PwmPulsePolarity](./PwmPulsePolarity.md) | `System.Device.Pwm` | Polarity of the active part of a PWM pulse. |

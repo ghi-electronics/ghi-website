@@ -7,7 +7,7 @@ sidebar_label: "SerialPinChangedEventArgs"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.Uart`<br/>**Assembly:** `System.IO.Ports`<br/>**Namespace:** `System.IO.Ports`
 
-_No description available._
+Arguments for the pin-changed event.
 
 ```csharp
 public class SerialPinChangedEventArgs : EventArgs
@@ -21,7 +21,7 @@ public class SerialPinChangedEventArgs : EventArgs
 public SerialPinChangedEventArgs(SerialPin eventType)
 ```
 
-_No description available._
+Creates the event arguments.
 
 ## Properties
 
@@ -31,4 +31,4 @@ _No description available._
 public SerialPin EventType { get; }
 ```
 
-_No description available._
+The control pin that changed.

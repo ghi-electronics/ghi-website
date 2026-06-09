@@ -14,26 +14,26 @@ The standard, .NET-compatible `System.IO.Ports` API for TinyCLR. It ships inside
 
 | Class | Namespace | Summary |
 |---|---|---|
-| [SerialDataReceivedEventArgs](./SerialDataReceivedEventArgs.md) | `System.IO.Ports` |  |
-| [SerialErrorReceivedEventArgs](./SerialErrorReceivedEventArgs.md) | `System.IO.Ports` |  |
-| [SerialPinChangedEventArgs](./SerialPinChangedEventArgs.md) | `System.IO.Ports` |  |
-| [SerialPort](./SerialPort.md) | `System.IO.Ports` |  |
+| [SerialDataReceivedEventArgs](./SerialDataReceivedEventArgs.md) | `System.IO.Ports` | Arguments for the data-received event. |
+| [SerialErrorReceivedEventArgs](./SerialErrorReceivedEventArgs.md) | `System.IO.Ports` | Arguments for the error-received event. |
+| [SerialPinChangedEventArgs](./SerialPinChangedEventArgs.md) | `System.IO.Ports` | Arguments for the pin-changed event. |
+| [SerialPort](./SerialPort.md) | `System.IO.Ports` | .NET-style serial port. Same surface as `System.IO.Ports.SerialPort`; internally routes through TinyCLR's `GHIElectronics.TinyCLR.Devices.Uart.UartController`. |
 
 ## Enums
 
 | Enum | Namespace | Summary |
 |---|---|---|
-| [Handshake](./Handshake.md) | `System.IO.Ports` |  |
-| [Parity](./Parity.md) | `System.IO.Ports` |  |
-| [SerialData](./SerialData.md) | `System.IO.Ports` |  |
-| [SerialError](./SerialError.md) | `System.IO.Ports` |  |
-| [SerialPin](./SerialPin.md) | `System.IO.Ports` |  |
-| [StopBits](./StopBits.md) | `System.IO.Ports` |  |
+| [Handshake](./Handshake.md) | `System.IO.Ports` | Flow-control method. |
+| [Parity](./Parity.md) | `System.IO.Ports` | Parity-checking scheme. |
+| [SerialData](./SerialData.md) | `System.IO.Ports` | Type of data received on the serial port. |
+| [SerialError](./SerialError.md) | `System.IO.Ports` | Errors that can occur on the serial port. |
+| [SerialPin](./SerialPin.md) | `System.IO.Ports` | Serial control-pin changes that can raise the pin-changed event. |
+| [StopBits](./StopBits.md) | `System.IO.Ports` | Number of stop bits per frame. |
 
 ## Delegates
 
 | Delegate | Namespace | Summary |
 |---|---|---|
-| [SerialDataReceivedEventHandler](./SerialDataReceivedEventHandler.md) | `System.IO.Ports` |  |
-| [SerialErrorReceivedEventHandler](./SerialErrorReceivedEventHandler.md) | `System.IO.Ports` |  |
-| [SerialPinChangedEventHandler](./SerialPinChangedEventHandler.md) | `System.IO.Ports` |  |
+| [SerialDataReceivedEventHandler](./SerialDataReceivedEventHandler.md) | `System.IO.Ports` | Handler for the `SerialPort.DataReceived` event. |
+| [SerialErrorReceivedEventHandler](./SerialErrorReceivedEventHandler.md) | `System.IO.Ports` | Handler for the `SerialPort.ErrorReceived` event. |
+| [SerialPinChangedEventHandler](./SerialPinChangedEventHandler.md) | `System.IO.Ports` | Handler for the `SerialPort.PinChanged` event. |

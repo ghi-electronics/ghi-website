@@ -21,7 +21,7 @@ public abstract class SpiDevice : IDisposable
 public abstract SpiConnectionSettings ConnectionSettings { get; }
 ```
 
-_No description available._
+The settings this device was created with.
 
 ## Methods
 
@@ -31,7 +31,7 @@ _No description available._
 public static SpiDevice Create(SpiConnectionSettings settings)
 ```
 
-_No description available._
+Opens an SPI device with the given settings.
 
 **Returns** `SpiDevice`
 
@@ -41,7 +41,7 @@ _No description available._
 public abstract void Read(byte[] buffer)
 ```
 
-_No description available._
+Reads bytes from the device into the buffer.
 
 ### Write(byte[] buffer)
 
@@ -49,7 +49,7 @@ _No description available._
 public abstract void Write(byte[] buffer)
 ```
 
-_No description available._
+Writes the buffer to the device.
 
 ### TransferFullDuplex(byte[] writeBuffer, byte[] readBuffer)
 
@@ -57,7 +57,7 @@ _No description available._
 public abstract void TransferFullDuplex(byte[] writeBuffer, byte[] readBuffer)
 ```
 
-_No description available._
+Writes and reads at the same time (full duplex). Both buffers must be the same length.
 
 ### Dispose()
 
@@ -65,4 +65,4 @@ _No description available._
 public abstract void Dispose()
 ```
 
-_No description available._
+Closes the device and releases the bus.
