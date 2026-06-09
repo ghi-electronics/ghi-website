@@ -88,12 +88,13 @@ If the requested time falls between two supported values, the higher (slower) on
 SITCore chipsets include an internal temperature sensor on a dedicated ADC channel. Calibration values are stored in chip-specific memory regions and read with `Marshal.ReadInt32`.
 
 ```csharp
-using GHIElectronics.TinyCLR.Devices.Adc;
-using GHIElectronics.TinyCLR.Pins;
 using System;
+using System.Threading;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using System.Threading;
+using GHIElectronics.TinyCLR.Devices.Adc;
+using GHIElectronics.TinyCLR.Native;
+using GHIElectronics.TinyCLR.Pins;
 
 var sc20xxx = DeviceInformation.DeviceName.IndexOf("SC20") >= 0;
 
