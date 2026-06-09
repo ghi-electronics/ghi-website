@@ -1,0 +1,32 @@
+---
+title: "ChartPointModel Class"
+sidebar_label: "ChartPointModel"
+---
+
+# ChartPointModel Class
+
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
+
+_No description available._
+
+```csharp
+public class ChartPointModel
+```
+
+## Properties
+
+### Point
+
+```csharp
+public ChartPoint Point { get; set; }
+```
+
+_No description available._
+
+### Value
+
+```csharp
+public double Value { get; set; }
+```
+
+_No description available._

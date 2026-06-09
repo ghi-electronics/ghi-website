@@ -1,0 +1,36 @@
+---
+title: "RadioButtonManager Class"
+sidebar_label: "RadioButtonManager"
+---
+
+# RadioButtonManager Class
+
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
+
+_No description available._
+
+```csharp
+public static class RadioButtonManager
+```
+
+## Methods
+
+### GetValue(string groupName)
+
+```csharp
+public static string GetValue(string groupName)
+```
+
+_No description available._
+
+**Returns** `string`
+
+### GetCount(string groupName)
+
+```csharp
+public static int GetCount(string groupName)
+```
+
+_No description available._
+
+**Returns** `int`

@@ -1,0 +1,54 @@
+---
+title: "FileSystem Class"
+sidebar_label: "FileSystem"
+---
+
+# FileSystem Class
+
+**NuGet:** `GHIElectronics.TinyCLR.IO`<br/>**Assembly:** `GHIElectronics.TinyCLR.IO`<br/>**Namespace:** `GHIElectronics.TinyCLR.IO`
+
+Mounts and unmounts file systems on top of a `GHIElectronics.TinyCLR.Devices.Storage.StorageController`. Pass the controller's `Hdc` to `Mount(IntPtr)` to make its content accessible via `System.IO.File` / `System.IO.Directory`.
+
+```csharp
+public static class FileSystem
+```
+
+## Methods
+
+### Mount(IntPtr hdc)
+
+```csharp
+public static IDriveProvider Mount(IntPtr hdc)
+```
+
+_No description available._
+
+**Returns** `IDriveProvider`
+
+### Unmount(IntPtr hdc)
+
+```csharp
+public static bool Unmount(IntPtr hdc)
+```
+
+_No description available._
+
+**Returns** `bool`
+
+### Flush(IntPtr hdc)
+
+```csharp
+public static void Flush(IntPtr hdc)
+```
+
+_No description available._
+
+### Format(IntPtr hdc, string volume, uint parameter, byte forceSize)
+
+```csharp
+public static bool Format(IntPtr hdc, string volume = null, uint parameter = 0, byte forceSize = 0)
+```
+
+_No description available._
+
+**Returns** `bool`

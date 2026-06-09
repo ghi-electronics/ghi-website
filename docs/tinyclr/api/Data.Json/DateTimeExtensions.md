@@ -1,0 +1,66 @@
+---
+title: "DateTimeExtensions Class"
+sidebar_label: "DateTimeExtensions"
+---
+
+# DateTimeExtensions Class
+
+**NuGet:** `GHIElectronics.TinyCLR.Data.Json`<br/>**Assembly:** `GHIElectronics.TinyCLR.Data.Json`<br/>**Namespace:** `GHIElectronics.TinyCLR.Data.Json`
+
+_No description available._
+
+```csharp
+public static class DateTimeExtensions
+```
+
+## Methods
+
+### FromiCalendar(string iCalendar)
+
+```csharp
+public static DateTime FromiCalendar(string iCalendar)
+```
+
+_No description available._
+
+**Returns** `DateTime`
+
+### FromIso8601(string date)
+
+```csharp
+public static DateTime FromIso8601(string date)
+```
+
+_No description available._
+
+**Returns** `DateTime`
+
+### ToIso8601(DateTime dt)
+
+```csharp
+public static string ToIso8601(DateTime dt)
+```
+
+_No description available._
+
+**Returns** `string`
+
+### ToASPNetAjax(DateTime dt)
+
+```csharp
+public static string ToASPNetAjax(DateTime dt)
+```
+
+_No description available._
+
+**Returns** `string`
+
+### FromASPNetAjax(string ajax)
+
+```csharp
+public static DateTime FromASPNetAjax(string ajax)
+```
+
+_No description available._
+
+**Returns** `DateTime`

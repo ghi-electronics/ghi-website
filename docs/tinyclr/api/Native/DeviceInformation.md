@@ -1,0 +1,130 @@
+---
+title: "DeviceInformation Class"
+sidebar_label: "DeviceInformation"
+---
+
+# DeviceInformation Class
+
+**NuGet:** `GHIElectronics.TinyCLR.Native`<br/>**Assembly:** `GHIElectronics.TinyCLR.Native`<br/>**Namespace:** `GHIElectronics.TinyCLR.Native`
+
+Read-only metadata about the running device (name, manufacturer, firmware version) plus debug-interface and unique-ID controls.
+
+```csharp
+public static class DeviceInformation
+```
+
+## Properties
+
+### DeviceName
+
+```csharp
+public static string DeviceName { get; }
+```
+
+The device's friendly name (settable via `SetDeviceName`).
+
+### ManufacturerName
+
+```csharp
+public static string ManufacturerName { get; }
+```
+
+The manufacturer reported by the firmware.
+
+### Version
+
+```csharp
+public static ulong Version { get; }
+```
+
+Firmware version (packed major/minor/build).
+
+### DebugInterface
+
+```csharp
+public static DebugInterface DebugInterface { get; }
+```
+
+Active debugger transport.
+
+### DebugPort
+
+```csharp
+public static uint DebugPort { get; }
+```
+
+Hardware port the debugger is bound to (controller index).
+
+## Methods
+
+### SetDebugInterface(DebugInterface debugInterface)
+
+```csharp
+public static void SetDebugInterface(DebugInterface debugInterface)
+```
+
+Routes the debugger to a different transport without specifying a port.
+
+### SetDebugInterface(DebugInterface debugInterface, int debugPort)
+
+```csharp
+public static extern void SetDebugInterface(DebugInterface debugInterface, int debugPort)
+```
+
+Routes the debugger to a specific transport and port (e.g. UART2).
+
+### IsModePinDisabled()
+
+```csharp
+public static extern bool IsModePinDisabled()
+```
+
+True when the bootloader-mode pin has been disabled by firmware policy.
+
+**Returns** `bool`
+
+### AppPinDisable()
+
+```csharp
+public static extern void AppPinDisable()
+```
+
+Permanently disables the app-mode pin. Cannot be undone.
+
+### IsAppPinDisabled()
+
+```csharp
+public static extern bool IsAppPinDisabled()
+```
+
+True when the app-mode pin has been disabled by `AppPinDisable`.
+
+**Returns** `bool`
+
+### SetDeviceName(string name)
+
+```csharp
+public static extern void SetDeviceName(string name)
+```
+
+Writes a new value for `DeviceName`. Persisted in secure storage.
+
+### GetUniqueId()
+
+```csharp
+public static extern byte[] GetUniqueId()
+```
+
+Returns the chip's unique 96-bit identifier (12 bytes).
+
+**Returns** `byte[]`
+
+### GetCpuUsageStatistic()
+
+```csharp
+extern static public double GetCpuUsageStatistic()
+```
+
+Returns a 0.0..1.0 estimate of recent CPU load.
+
+**Returns** `double`
