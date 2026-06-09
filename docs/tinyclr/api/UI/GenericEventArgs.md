@@ -23,11 +23,6 @@ public GenericEventArgs(InputDevice inputDevice, GenericEvent genericEvent) : ba
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `inputDevice` | `InputDevice` |  |
-| `genericEvent` | `GenericEvent` |  |
-
 ## Fields
 
 ### InternalEvent

@@ -23,10 +23,6 @@ protected ImageSource(Graphics g)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `g` | `Graphics` |  |
-
 ## Properties
 
 ### Width

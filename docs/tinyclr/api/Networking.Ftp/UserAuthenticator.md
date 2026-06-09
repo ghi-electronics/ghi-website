@@ -12,10 +12,3 @@ _No description available._
 ```csharp
 public delegate void UserAuthenticator(object sender, UserAuthenticatorArgs e);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sender` | `object` |  |
-| `e` | `UserAuthenticatorArgs` |  |

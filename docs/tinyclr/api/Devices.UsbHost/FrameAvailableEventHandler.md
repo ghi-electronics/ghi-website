@@ -12,10 +12,3 @@ Delegate fired when a new frame is ready.
 ```csharp
 public delegate void FrameAvailableEventHandler(Webcam sender, EventArgs e);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sender` | `Webcam` |  |
-| `e` | `EventArgs` |  |

@@ -23,10 +23,4 @@ public static readonly RoutedEvent GenericStandardEvent = new RoutedEvent( , Rou
 
 A routed event indicating that an input report arrived. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `` | `` |  |
-| `RoutingStrategy.Tunnel` | `` |  |
-| `typeof(GenericEventArgs)` | `` |  |
-
 **Returns** `RoutedEvent GenericStandardEvent = new`

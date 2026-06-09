@@ -31,10 +31,6 @@ public JArray(JToken[] values)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `values` | `JToken[]` |  |
-
 ## Properties
 
 ### Length
@@ -71,12 +67,6 @@ public static JArray Serialize(Type type, object oSource, JsonSerializerSettings
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `type` | `Type` |  |
-| `oSource` | `object` |  |
-| `settings` | `JsonSerializerSettings` |  |
-
 **Returns** `JArray`
 
 ### ToString()
@@ -96,10 +86,6 @@ public override string ToString(JsonSerializationOptions options)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `options` | `JsonSerializationOptions` |  |
 
 **Returns** `string`
 
@@ -121,10 +107,6 @@ public override int GetBsonSize(string ename)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `ename` | `string` |  |
-
 **Returns** `int`
 
 ### ToBson(byte[] buffer, ref int offset)
@@ -134,11 +116,6 @@ public override void ToBson(byte[] buffer, ref int offset)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-| `offset` | `ref int` |  |
 
 ### GetBsonType()
 

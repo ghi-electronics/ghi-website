@@ -147,9 +147,4 @@ public extern int Read(int channel, TimeSpan samplingTime)
 
 Waits for the pin to reach `waitForState`, then captures inter-edge intervals. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `channel` | `int` |  |
-| `samplingTime` | `TimeSpan` |  |
-
 **Returns** `int` — Number of intervals captured.

@@ -41,10 +41,6 @@ public void Add(GridLength item)
 
 Appends a UIElement to the end of the UIElementCollection. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `item` | `GridLength` |  |
-
 ### Clear()
 
 ```csharp

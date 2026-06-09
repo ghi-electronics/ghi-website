@@ -33,10 +33,6 @@ public static SpiDevice Create(SpiConnectionSettings settings)
 
 Creates a WebRequest . _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `settings` | `SpiConnectionSettings` |  |
-
 **Returns** `SpiDevice`
 
 ### Read(byte[] buffer)
@@ -47,10 +43,6 @@ public abstract void Read(byte[] buffer)
 
 Read the data from internal buffer _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-
 ### Write(byte[] buffer)
 
 ```csharp
@@ -58,10 +50,6 @@ public abstract void Write(byte[] buffer)
 ```
 
 Write a fileinfo or directoryinfo to the socket _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
 
 ### TransferFullDuplex(byte[] writeBuffer, byte[] readBuffer)
 

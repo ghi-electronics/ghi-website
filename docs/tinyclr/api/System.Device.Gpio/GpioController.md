@@ -31,10 +31,6 @@ public GpioController(PinNumberingScheme numberingScheme) : this(numberingScheme
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `numberingScheme` | `PinNumberingScheme` |  |
-
 ### GpioController(PinNumberingScheme numberingScheme, GpioDriver driver)
 
 ```csharp
@@ -42,11 +38,6 @@ public GpioController(PinNumberingScheme numberingScheme, GpioDriver driver)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `numberingScheme` | `PinNumberingScheme` |  |
-| `driver` | `GpioDriver` |  |
 
 ## Properties
 
@@ -92,10 +83,6 @@ public void OpenPin(int pinNumber)
 
 Acquires exclusive access to the specified pin. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `pinNumber` | `int` |  |
-
 ### OpenPin(int pinNumber, PinMode mode)
 
 ```csharp
@@ -103,11 +90,6 @@ public void OpenPin(int pinNumber, PinMode mode)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `pinNumber` | `int` |  |
-| `mode` | `PinMode` |  |
 
 ### OpenPin(int pinNumber, PinMode mode, PinValue initialValue)
 
@@ -117,12 +99,6 @@ public void OpenPin(int pinNumber, PinMode mode, PinValue initialValue)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `pinNumber` | `int` |  |
-| `mode` | `PinMode` |  |
-| `initialValue` | `PinValue` |  |
-
 ### IsPinOpen(int pinNumber)
 
 ```csharp
@@ -130,10 +106,6 @@ public bool IsPinOpen(int pinNumber)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `pinNumber` | `int` |  |
 
 **Returns** `bool`
 
@@ -145,10 +117,6 @@ public void ClosePin(int pinNumber)
 
 Releases a previously opened pin. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `pinNumber` | `int` |  |
-
 ### GetPinMode(int pinNumber)
 
 ```csharp
@@ -156,10 +124,6 @@ public PinMode GetPinMode(int pinNumber)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `pinNumber` | `int` |  |
 
 **Returns** `PinMode`
 
@@ -171,11 +135,6 @@ public void SetPinMode(int pinNumber, PinMode mode)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `pinNumber` | `int` |  |
-| `mode` | `PinMode` |  |
-
 ### IsPinModeSupported(int pinNumber, PinMode mode)
 
 ```csharp
@@ -183,11 +142,6 @@ public bool IsPinModeSupported(int pinNumber, PinMode mode)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `pinNumber` | `int` |  |
-| `mode` | `PinMode` |  |
 
 **Returns** `bool`
 
@@ -199,10 +153,6 @@ public PinValue Read(int pinNumber)
 
 Read the data from internal buffer _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `pinNumber` | `int` |  |
-
 **Returns** `PinValue`
 
 ### Write(int pinNumber, PinValue value)
@@ -213,11 +163,6 @@ public void Write(int pinNumber, PinValue value)
 
 Writes one block at the given block index. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `pinNumber` | `int` |  |
-| `value` | `PinValue` |  |
-
 ### RegisterCallbackForPinValueChangedEvent(int pinNumber, PinEventTypes eventTypes, PinChangeEventHandler callback)
 
 ```csharp
@@ -225,12 +170,6 @@ public void RegisterCallbackForPinValueChangedEvent(int pinNumber, PinEventTypes
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `pinNumber` | `int` |  |
-| `eventTypes` | `PinEventTypes` |  |
-| `callback` | `PinChangeEventHandler` |  |
 
 ### UnregisterCallbackForPinValueChangedEvent(int pinNumber, PinChangeEventHandler callback)
 
@@ -240,11 +179,6 @@ public void UnregisterCallbackForPinValueChangedEvent(int pinNumber, PinChangeEv
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `pinNumber` | `int` |  |
-| `callback` | `PinChangeEventHandler` |  |
-
 ### WaitForEvent(int pinNumber, PinEventTypes eventTypes, TimeSpan timeout)
 
 ```csharp
@@ -252,12 +186,6 @@ public WaitForEventResult WaitForEvent(int pinNumber, PinEventTypes eventTypes, 
 ```
 
 Blocks until an edge of type `eventTypes` occurs on `pinNumber` or `timeout` elapses. The pin must already be open. Pass `Timeout.InfiniteTimeSpan` to wait indefinitely.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `pinNumber` | `int` |  |
-| `eventTypes` | `PinEventTypes` |  |
-| `timeout` | `TimeSpan` |  |
 
 **Returns** `WaitForEventResult`
 
@@ -268,11 +196,5 @@ public WaitForEventResult WaitForEvent(int pinNumber, PinEventTypes eventTypes, 
 ```
 
 Blocks until an edge of type `eventTypes` occurs on `pinNumber` or `cancellationToken` is cancelled. The pin must already be open. On cancellation the result has `WaitForEventResult.TimedOut` set to true.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `pinNumber` | `int` |  |
-| `eventTypes` | `PinEventTypes` |  |
-| `cancellationToken` | `CancellationToken` |  |
 
 **Returns** `WaitForEventResult`

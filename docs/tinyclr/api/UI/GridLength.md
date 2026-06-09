@@ -33,10 +33,6 @@ public static GridLength Pixel(int pixels)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `pixels` | `int` |  |
-
 **Returns** `GridLength`
 
 ### Star(int weight)
@@ -46,10 +42,6 @@ public static GridLength Star(int weight = 1)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `weight` | `int` |  |
 
 **Returns** `GridLength`
 

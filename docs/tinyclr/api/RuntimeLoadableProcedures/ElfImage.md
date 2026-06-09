@@ -78,10 +78,6 @@ public NativeFunction FindFunction(string name)
 
 Locates a function symbol and wraps it in a `NativeFunction`.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `name` | `string` |  |
-
 **Returns** `NativeFunction`
 
 ### InitializeBssRegion()
@@ -112,8 +108,3 @@ public void ZeroRegion(uint address, uint length)
 ```
 
 Zero-fills a span of `length` bytes starting at `address`.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `address` | `uint` |  |
-| `length` | `uint` |  |

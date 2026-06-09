@@ -23,13 +23,6 @@ public RectangleF(float x, float y, float width, float height)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `x` | `float` |  |
-| `y` | `float` |  |
-| `width` | `float` |  |
-| `height` | `float` |  |
-
 ## Properties
 
 ### X

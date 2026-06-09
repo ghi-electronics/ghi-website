@@ -39,10 +39,6 @@ void SetConfiguration(DisplayControllerSettings configuration)
 
 Applies a configuration.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `configuration` | `DisplayControllerSettings` |  |
-
 ### DrawBuffer(int targetX, int targetY, int sourceX, int sourceY, int width, int height, int originalWidth, byte[] data, int offset)
 
 ```csharp
@@ -50,18 +46,6 @@ void DrawBuffer(int targetX, int targetY, int sourceX, int sourceY, int width, i
 ```
 
 Blits a rectangle of pixel data to the panel.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `targetX` | `int` |  |
-| `targetY` | `int` |  |
-| `sourceX` | `int` |  |
-| `sourceY` | `int` |  |
-| `width` | `int` |  |
-| `height` | `int` |  |
-| `originalWidth` | `int` |  |
-| `data` | `byte[]` |  |
-| `offset` | `int` |  |
 
 ### DrawPixel(int x, int y, long color)
 
@@ -71,12 +55,6 @@ void DrawPixel(int x, int y, long color)
 
 Sets a single pixel.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `x` | `int` |  |
-| `y` | `int` |  |
-| `color` | `long` |  |
-
 ### DrawString(string value)
 
 ```csharp
@@ -84,7 +62,3 @@ void DrawString(string value)
 ```
 
 Renders text via the controller's built-in text mode.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `value` | `string` |  |

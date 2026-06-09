@@ -31,10 +31,6 @@ public TcpClient(AddressFamily family)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `family` | `AddressFamily` |  |
-
 ### TcpClient(IPEndPoint localEP)
 
 ```csharp
@@ -43,10 +39,6 @@ public TcpClient(IPEndPoint localEP)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `localEP` | `IPEndPoint` |  |
-
 ### TcpClient(string hostname, int port)
 
 ```csharp
@@ -54,11 +46,6 @@ public TcpClient(string hostname, int port) : this(AddressFamily.Unknown)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `hostname` | `string` |  |
-| `port` | `int` |  |
 
 ## Properties
 
@@ -136,11 +123,6 @@ public void Connect(string hostname, int port)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `hostname` | `string` |  |
-| `port` | `int` |  |
-
 ### Connect(IPAddress address, int port)
 
 ```csharp
@@ -148,11 +130,6 @@ public void Connect(IPAddress address, int port)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `address` | `IPAddress` |  |
-| `port` | `int` |  |
 
 ### Connect(IPEndPoint remoteEP)
 
@@ -162,10 +139,6 @@ public void Connect(IPEndPoint remoteEP)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `remoteEP` | `IPEndPoint` |  |
-
 ### Connect(IPAddress[] ipAddresses, int port)
 
 ```csharp
@@ -173,11 +146,6 @@ public void Connect(IPAddress[] ipAddresses, int port)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `ipAddresses` | `IPAddress[]` |  |
-| `port` | `int` |  |
 
 ### GetStream()
 

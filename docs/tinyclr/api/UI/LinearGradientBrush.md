@@ -23,11 +23,6 @@ public LinearGradientBrush(Color startColor, Color endColor) : this(startColor, 
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `startColor` | `Color` |  |
-| `endColor` | `Color` |  |
-
 ### LinearGradientBrush(Color startColor, Color endColor, int startX, int startY, int endX, int endY)
 
 ```csharp
@@ -35,15 +30,6 @@ public LinearGradientBrush(Color startColor, Color endColor, int startX, int sta
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `startColor` | `Color` |  |
-| `endColor` | `Color` |  |
-| `startX` | `int` |  |
-| `startY` | `int` |  |
-| `endX` | `int` |  |
-| `endY` | `int` |  |
 
 ## Fields
 

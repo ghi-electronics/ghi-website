@@ -31,10 +31,6 @@ public abstract void WriteStartDocument(bool standalone)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `standalone` | `bool` |  |
-
 ### WriteEndDocument()
 
 ```csharp
@@ -51,10 +47,6 @@ public abstract void WriteStartElement(string localName)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `localName` | `string` |  |
-
 ### WriteStartElement(string localName, string ns)
 
 ```csharp
@@ -63,11 +55,6 @@ public abstract void WriteStartElement(string localName, string ns)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `localName` | `string` |  |
-| `ns` | `string` |  |
-
 ### WriteStartElement(string prefix, string localName, string ns)
 
 ```csharp
@@ -75,12 +62,6 @@ public abstract void WriteStartElement(string prefix, string localName, string n
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `prefix` | `string` |  |
-| `localName` | `string` |  |
-| `ns` | `string` |  |
 
 ### WriteEndElement()
 
@@ -106,11 +87,6 @@ public abstract void WriteAttributeString(string localName, string value)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `localName` | `string` |  |
-| `value` | `string` |  |
-
 ### WriteAttributeString(string localName, string ns, string value)
 
 ```csharp
@@ -118,12 +94,6 @@ public abstract void WriteAttributeString(string localName, string ns, string va
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `localName` | `string` |  |
-| `ns` | `string` |  |
-| `value` | `string` |  |
 
 ### WriteAttributeString(string prefix, string localName, string ns, string value)
 
@@ -133,13 +103,6 @@ public abstract void WriteAttributeString(string prefix, string localName, strin
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `prefix` | `string` |  |
-| `localName` | `string` |  |
-| `ns` | `string` |  |
-| `value` | `string` |  |
-
 ### WriteString(string text)
 
 ```csharp
@@ -147,10 +110,6 @@ public abstract void WriteString(string text)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `text` | `string` |  |
 
 ### WriteRaw(string data)
 
@@ -160,10 +119,6 @@ public abstract void WriteRaw(string data)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `data` | `string` |  |
-
 ### WriteCData(string text)
 
 ```csharp
@@ -171,10 +126,6 @@ public abstract void WriteCData(string text)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `text` | `string` |  |
 
 ### WriteComment(string text)
 
@@ -184,10 +135,6 @@ public abstract void WriteComment(string text)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `text` | `string` |  |
-
 ### WriteProcessingInstruction(string name, string text)
 
 ```csharp
@@ -195,11 +142,6 @@ public abstract void WriteProcessingInstruction(string name, string text)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `name` | `string` |  |
-| `text` | `string` |  |
 
 ### Flush()
 
@@ -225,10 +167,6 @@ public abstract string LookupPrefix(string ns)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `ns` | `string` |  |
-
 **Returns** `string`
 
 ### WriteElementString(string localName, string value)
@@ -238,11 +176,6 @@ public void WriteElementString(string localName, string value)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `localName` | `string` |  |
-| `value` | `string` |  |
 
 ### Dispose()
 
@@ -259,9 +192,5 @@ public static XmlWriter Create(Stream output)
 ```
 
 Creates a WebRequest . _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `output` | `Stream` |  |
 
 **Returns** `XmlWriter`

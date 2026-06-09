@@ -23,10 +23,6 @@ public SerialPinChangedEventArgs(SerialPin eventType)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `eventType` | `SerialPin` |  |
-
 ## Properties
 
 ### EventType

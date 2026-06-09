@@ -23,12 +23,6 @@ public GenericDescriptor(byte RequestType, ushort Value, byte[] Payload) : base(
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `RequestType` | `byte` |  |
-| `Value` | `ushort` |  |
-| `Payload` | `byte[]` |  |
-
 ## Fields
 
 ### REQUEST_OUT

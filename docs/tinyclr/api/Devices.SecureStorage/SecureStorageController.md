@@ -93,8 +93,4 @@ public bool IsBlank(uint blockIndex)
 
 Returns true if the addressed block is in its erased (all-0xFF) state.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `blockIndex` | `uint` |  |
-
 **Returns** `bool`

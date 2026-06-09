@@ -23,10 +23,6 @@ public Gauge(int side) : base()
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `side` | `int` |  |
-
 ## Properties
 
 ### Font
@@ -186,7 +182,3 @@ public override void OnRender(DrawingContext dc)
 ```
 
 Renders the DataGrid onto it's parent container's graphics. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `dc` | `DrawingContext` |  |

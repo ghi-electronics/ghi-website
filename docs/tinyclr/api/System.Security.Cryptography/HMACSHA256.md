@@ -31,10 +31,6 @@ public HMACSHA256(byte[] key)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `key` | `byte[]` |  |
-
 ## Properties
 
 ### Hash
@@ -63,10 +59,6 @@ public override byte[] ComputeHash(byte[] buffer)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-
 **Returns** `byte[]`
 
 ### ComputeHash(byte[] buffer, int offset, int count)
@@ -77,12 +69,6 @@ public override byte[] ComputeHash(byte[] buffer, int offset, int count)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |
-
 **Returns** `byte[]`
 
 ### ComputeHash(Stream inputStream)
@@ -92,10 +78,6 @@ public override byte[] ComputeHash(Stream inputStream)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `inputStream` | `Stream` |  |
 
 **Returns** `byte[]`
 

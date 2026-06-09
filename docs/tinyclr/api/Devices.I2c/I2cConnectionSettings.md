@@ -23,10 +23,6 @@ public I2cConnectionSettings(int slaveAddress) : this(slaveAddress, I2cAddressFo
 
 Builds a 7-bit master-mode settings object at standard speed.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `slaveAddress` | `int` |  |
-
 ### I2cConnectionSettings(int slaveAddress, uint busSpeed)
 
 ```csharp
@@ -34,11 +30,6 @@ public I2cConnectionSettings(int slaveAddress, uint busSpeed) : this(slaveAddres
 ```
 
 Builds a 7-bit master-mode settings object at the given bus speed.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `slaveAddress` | `int` |  |
-| `busSpeed` | `uint` |  |
 
 ### I2cConnectionSettings(int slaveAddress, I2cAddressFormat addressFormat, uint busSpeed)
 
@@ -48,12 +39,6 @@ public I2cConnectionSettings(int slaveAddress, I2cAddressFormat addressFormat, u
 
 Builds a master-mode settings object with explicit address format.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `slaveAddress` | `int` |  |
-| `addressFormat` | `I2cAddressFormat` |  |
-| `busSpeed` | `uint` |  |
-
 ### I2cConnectionSettings(int slaveAddress, I2cMode mode)
 
 ```csharp
@@ -61,11 +46,6 @@ public I2cConnectionSettings(int slaveAddress, I2cMode mode) : this(slaveAddress
 ```
 
 Builds a 7-bit settings object with the given role (master/slave).
-
-| Parameter | Type | Description |
-|---|---|---|
-| `slaveAddress` | `int` |  |
-| `mode` | `I2cMode` |  |
 
 ### I2cConnectionSettings(int slaveAddress, I2cMode mode, I2cAddressFormat addressFormat, uint busSpeed)
 
@@ -75,13 +55,6 @@ public I2cConnectionSettings(int slaveAddress, I2cMode mode, I2cAddressFormat ad
 
 Builds a settings object with explicit role and address format.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `slaveAddress` | `int` |  |
-| `mode` | `I2cMode` |  |
-| `addressFormat` | `I2cAddressFormat` |  |
-| `busSpeed` | `uint` |  |
-
 ### I2cConnectionSettings(int slaveAddress, I2cMode mode, I2cAddressFormat addressFormat, uint busSpeed, bool enableClockStretching)
 
 ```csharp
@@ -89,14 +62,6 @@ public I2cConnectionSettings(int slaveAddress, I2cMode mode, I2cAddressFormat ad
 ```
 
 Builds a settings object with full control over every field.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `slaveAddress` | `int` |  |
-| `mode` | `I2cMode` |  |
-| `addressFormat` | `I2cAddressFormat` |  |
-| `busSpeed` | `uint` |  |
-| `enableClockStretching` | `bool` |  |
 
 ## Properties
 

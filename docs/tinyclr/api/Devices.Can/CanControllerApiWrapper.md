@@ -23,10 +23,6 @@ public CanControllerApiWrapper(NativeApi api)
 
 Wraps the given native API as a provider.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `api` | `NativeApi` |  |
-
 ## Properties
 
 ### Api
@@ -143,12 +139,6 @@ public extern int WriteMessages(CanMessage[] messages, int offset, int count)
 
 Queues a slice of messages for transmission. Returns count actually queued. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `messages` | `CanMessage[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |
-
 **Returns** `int`
 
 ### ReadMessages(CanMessage[] messages, int offset, int count)
@@ -158,12 +148,6 @@ public extern int ReadMessages(CanMessage[] messages, int offset, int count)
 ```
 
 Dequeues up to `count` received messages. Returns count actually read. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `messages` | `CanMessage[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |
 
 **Returns** `int`
 
@@ -175,10 +159,6 @@ public extern void SetNominalBitTiming(CanBitTiming bitTiming)
 
 Configures arbitration-phase bit timing. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `bitTiming` | `CanBitTiming` |  |
-
 ### SetDataBitTiming(CanBitTiming bitTiming)
 
 ```csharp
@@ -186,10 +166,6 @@ public extern void SetDataBitTiming(CanBitTiming bitTiming)
 ```
 
 Configures CAN-FD data-phase bit timing. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `bitTiming` | `CanBitTiming` |  |
 
 ### ClearWriteBuffer()
 
@@ -215,13 +191,6 @@ public extern void AddFilter(Filter.IdType idType, Filter.FilterType filterType,
 
 Installs an acceptance filter. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `idType` | `Filter.IdType` |  |
-| `filterType` | `Filter.FilterType` |  |
-| `id1` | `uint` |  |
-| `id2` | `uint` |  |
-
 ### RejectRemoteFrame(Filter.IdType idType)
 
 ```csharp
@@ -229,10 +198,6 @@ public extern void RejectRemoteFrame(Filter.IdType idType)
 ```
 
 Filters out RTR frames of the given ID width. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `idType` | `Filter.IdType` |  |
 
 ### ClearFilter()
 

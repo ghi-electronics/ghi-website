@@ -31,11 +31,6 @@ public JProperty(string name, JToken value)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `name` | `string` |  |
-| `value` | `JToken` |  |
-
 ## Properties
 
 ### Name
@@ -74,10 +69,6 @@ public override string ToString(JsonSerializationOptions options)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `options` | `JsonSerializationOptions` |  |
-
 **Returns** `string`
 
 ### GetBsonSize()
@@ -98,10 +89,6 @@ public override int GetBsonSize(string ename)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `ename` | `string` |  |
-
 **Returns** `int`
 
 ### ToBson(byte[] buffer, ref int offset)
@@ -111,11 +98,6 @@ public override void ToBson(byte[] buffer, ref int offset)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-| `offset` | `ref int` |  |
 
 ### GetBsonType()
 

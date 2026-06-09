@@ -23,10 +23,6 @@ public DirectoryInfo(string path)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
-
 ## Properties
 
 ### Name
@@ -71,10 +67,6 @@ public DirectoryInfo CreateSubdirectory(string path)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
-
 **Returns** `DirectoryInfo`
 
 ### Create()
@@ -113,10 +105,6 @@ public void MoveTo(string destDirName)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `destDirName` | `string` |  |
-
 ### Delete()
 
 ```csharp
@@ -132,10 +120,6 @@ public void Delete(bool recursive)
 ```
 
 Deletes a file from the device. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `recursive` | `bool` |  |
 
 ### ToString()
 

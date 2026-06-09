@@ -23,10 +23,6 @@ protected Descriptor(byte Index)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `Index` | `byte` |  |
-
 ## Fields
 
 ### index

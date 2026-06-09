@@ -31,10 +31,6 @@ public SocketException(SocketError errorCode) : this((int)errorCode)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `errorCode` | `SocketError` |  |
-
 ### SocketException(int errorCode)
 
 ```csharp
@@ -42,10 +38,6 @@ public SocketException(int errorCode)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `errorCode` | `int` |  |
 
 ## Properties
 

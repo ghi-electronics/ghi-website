@@ -158,10 +158,6 @@ protected override void Dispose(bool disposing)
 
 Disposes the webcam, stopping any active stream.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `disposing` | `bool` |  |
-
 ### CheckEvents(object sender)
 
 ```csharp
@@ -169,10 +165,6 @@ protected override void CheckEvents(object sender)
 ```
 
 Polled by BaseDevice's worker; raises FrameAvailable when a new frame lands.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sender` | `object` |  |
 
 ## Events
 

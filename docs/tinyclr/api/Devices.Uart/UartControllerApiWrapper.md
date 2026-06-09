@@ -23,10 +23,6 @@ public UartControllerApiWrapper(NativeApi api)
 
 Wraps the given native API as a provider.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `api` | `NativeApi` |  |
-
 ## Properties
 
 ### Api
@@ -119,20 +115,6 @@ public extern void SetActiveSettings(int baudRate, int dataBits, UartParity pari
 
 Applies a complete set of serial settings. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `baudRate` | `int` |  |
-| `dataBits` | `int` |  |
-| `parity` | `UartParity` |  |
-| `stopBits` | `UartStopBitCount` |  |
-| `handshaking` | `UartHandshake` |  |
-| `enableDePin` | `bool` |  |
-| `invertTxPolarity` | `bool` |  |
-| `invertRxPolarity` | `bool` |  |
-| `invertBinaryData` | `bool` |  |
-| `swapTxRxPin` | `bool` |  |
-| `invertDePolarity` | `bool` |  |
-
 ### Flush()
 
 ```csharp
@@ -164,13 +146,6 @@ public extern int Write(byte[] buffer, int offset, int length, TimeSpan breakDur
 ```
 
 Writes `length` bytes; optional trailing break of `breakDuration`. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-| `offset` | `int` |  |
-| `length` | `int` |  |
-| `breakDuration` | `TimeSpan` |  |
 
 **Returns** `int`
 

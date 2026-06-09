@@ -110,8 +110,3 @@ public extern void Write(int channel, int value)
 ```
 
 Writes one block at the given block index. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `channel` | `int` |  |
-| `value` | `int` |  |

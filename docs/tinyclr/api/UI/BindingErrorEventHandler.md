@@ -12,10 +12,3 @@ _No description available._
 ```csharp
 public delegate void BindingErrorEventHandler(object sender, BindingErrorEventArgs e);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sender` | `object` |  |
-| `e` | `BindingErrorEventArgs` |  |

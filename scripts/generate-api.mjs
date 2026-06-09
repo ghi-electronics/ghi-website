@@ -632,7 +632,10 @@ function renderMember(L, m) {
   L.push('```csharp', m.signature, '```', '');
   const summary = m.doc && m.doc.summary ? prose(m.doc.summary) : NODESC;
   L.push(summary + (m.doc && m.doc.inherited ? ' _(inherited)_' : ''), '');
-  if ((m.kind === 'method' || m.kind === 'ctor') && m.params && m.params.length) {
+  // Only show the parameter table when at least one parameter is actually documented —
+  // otherwise it just repeats the signature (name + type) with empty Description cells.
+  const hasParamDoc = m.params && m.doc && m.doc.params && m.params.some(p => m.doc.params[p.name]);
+  if ((m.kind === 'method' || m.kind === 'ctor') && m.params && m.params.length && hasParamDoc) {
     L.push('| Parameter | Type | Description |', '|---|---|---|');
     for (const p of m.params)
       L.push(`| ${codeCell(p.name)} | ${codeCell(p.type)} | ${m.doc && m.doc.params[p.name] ? proseCell(m.doc.params[p.name]) : ''} |`);
@@ -644,6 +647,9 @@ function renderMember(L, m) {
 }
 
 function renderParamList(L, params, doc) {
+  // Skip entirely when no parameter is documented — the signature already shows each
+  // parameter's name and type, so an all-empty Description column adds nothing.
+  if (!params || !params.length || !(doc && doc.params && params.some(p => doc.params[p.name]))) return;
   L.push('## Parameters', '');
   L.push('| Parameter | Type | Description |', '|---|---|---|');
   for (const p of params)

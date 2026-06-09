@@ -12,13 +12,3 @@ Hook invoked by `JsonConverter.DeserializeObject(string, Type, InstanceFactory)`
 ```csharp
 public delegate object InstanceFactory(string instancePath, JToken token, Type baseType, string fieldName, int length);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `instancePath` | `string` |  |
-| `token` | `JToken` |  |
-| `baseType` | `Type` |  |
-| `fieldName` | `string` |  |
-| `length` | `int` |  |

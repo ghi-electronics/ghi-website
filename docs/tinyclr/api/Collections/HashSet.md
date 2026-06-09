@@ -31,10 +31,6 @@ public HashSet(IEqualityComparer<T> comparer) : this(0, comparer)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `comparer` | `IEqualityComparer<T>` |  |
-
 ### HashSet(int capacity)
 
 ```csharp
@@ -42,10 +38,6 @@ public HashSet(int capacity) : this(capacity, null)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `capacity` | `int` |  |
 
 ### HashSet(int capacity, IEqualityComparer&lt;T> comparer)
 
@@ -55,11 +47,6 @@ public HashSet(int capacity, IEqualityComparer<T> comparer)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `capacity` | `int` |  |
-| `comparer` | `IEqualityComparer<T>` |  |
-
 ### HashSet(IEnumerable&lt;T> collection)
 
 ```csharp
@@ -68,10 +55,6 @@ public HashSet(IEnumerable<T> collection) : this(collection, null)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `collection` | `IEnumerable<T>` |  |
-
 ### HashSet(IEnumerable&lt;T> collection, IEqualityComparer&lt;T> comparer)
 
 ```csharp
@@ -79,11 +62,6 @@ public HashSet(IEnumerable<T> collection, IEqualityComparer<T> comparer) : this(
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `collection` | `IEnumerable<T>` |  |
-| `comparer` | `IEqualityComparer<T>` |  |
 
 ## Properties
 
@@ -113,10 +91,6 @@ public bool Add(T item)
 
 Appends a UIElement to the end of the UIElementCollection. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `item` | `T` |  |
-
 **Returns** `bool` — The UIElementCollection index at which the UIElement has been added.
 
 ### Clear()
@@ -135,10 +109,6 @@ public bool Contains(T item)
 
 Determines whether a element is in the UIElementCollection. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `item` | `T` |  |
-
 **Returns** `bool`
 
 ### Remove(T item)
@@ -148,10 +118,6 @@ public bool Remove(T item)
 ```
 
 Removes the specified element from the UIElementCollection. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `item` | `T` |  |
 
 **Returns** `bool`
 
@@ -163,10 +129,6 @@ public int RemoveWhere(Predicate<T> match)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `match` | `Predicate<T>` |  |
-
 **Returns** `int`
 
 ### TryGetValue(T equalValue, out T actualValue)
@@ -176,11 +138,6 @@ public bool TryGetValue(T equalValue, out T actualValue)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `equalValue` | `T` |  |
-| `actualValue` | `out T` |  |
 
 **Returns** `bool`
 
@@ -192,10 +149,6 @@ public void CopyTo(T[] array)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `array` | `T[]` |  |
-
 ### CopyTo(T[] array, int arrayIndex)
 
 ```csharp
@@ -203,11 +156,6 @@ public void CopyTo(T[] array, int arrayIndex)
 ```
 
 Strongly typed version of CopyTo Copies the collection into the Array. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `array` | `T[]` |  |
-| `arrayIndex` | `int` |  |
 
 ### CopyTo(T[] array, int arrayIndex, int count)
 
@@ -217,12 +165,6 @@ public void CopyTo(T[] array, int arrayIndex, int count)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `array` | `T[]` |  |
-| `arrayIndex` | `int` |  |
-| `count` | `int` |  |
-
 ### UnionWith(IEnumerable&lt;T> other)
 
 ```csharp
@@ -230,10 +172,6 @@ public void UnionWith(IEnumerable<T> other)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `other` | `IEnumerable<T>` |  |
 
 ### IntersectWith(IEnumerable&lt;T> other)
 
@@ -243,10 +181,6 @@ public void IntersectWith(IEnumerable<T> other)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `other` | `IEnumerable<T>` |  |
-
 ### ExceptWith(IEnumerable&lt;T> other)
 
 ```csharp
@@ -254,10 +188,6 @@ public void ExceptWith(IEnumerable<T> other)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `other` | `IEnumerable<T>` |  |
 
 ### SymmetricExceptWith(IEnumerable&lt;T> other)
 
@@ -267,10 +197,6 @@ public void SymmetricExceptWith(IEnumerable<T> other)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `other` | `IEnumerable<T>` |  |
-
 ### IsSubsetOf(IEnumerable&lt;T> other)
 
 ```csharp
@@ -278,10 +204,6 @@ public bool IsSubsetOf(IEnumerable<T> other)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `other` | `IEnumerable<T>` |  |
 
 **Returns** `bool`
 
@@ -293,10 +215,6 @@ public bool IsProperSubsetOf(IEnumerable<T> other)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `other` | `IEnumerable<T>` |  |
-
 **Returns** `bool`
 
 ### IsSupersetOf(IEnumerable&lt;T> other)
@@ -306,10 +224,6 @@ public bool IsSupersetOf(IEnumerable<T> other)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `other` | `IEnumerable<T>` |  |
 
 **Returns** `bool`
 
@@ -321,10 +235,6 @@ public bool IsProperSupersetOf(IEnumerable<T> other)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `other` | `IEnumerable<T>` |  |
-
 **Returns** `bool`
 
 ### Overlaps(IEnumerable&lt;T> other)
@@ -335,10 +245,6 @@ public bool Overlaps(IEnumerable<T> other)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `other` | `IEnumerable<T>` |  |
-
 **Returns** `bool`
 
 ### SetEquals(IEnumerable&lt;T> other)
@@ -348,10 +254,6 @@ public bool SetEquals(IEnumerable<T> other)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `other` | `IEnumerable<T>` |  |
 
 **Returns** `bool`
 

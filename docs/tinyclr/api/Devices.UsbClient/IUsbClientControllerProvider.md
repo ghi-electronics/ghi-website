@@ -49,10 +49,6 @@ int BytesToRead(int streamIndex)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `streamIndex` | `int` |  |
-
 **Returns** `int`
 
 ### BytesToWrite(int streamIndex)
@@ -62,10 +58,6 @@ int BytesToWrite(int streamIndex)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `streamIndex` | `int` |  |
 
 **Returns** `int`
 
@@ -93,10 +85,6 @@ void SetActiveSetting(UsbClientSetting setting)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `setting` | `UsbClientSetting` |  |
-
 ### SetDeviceDescriptor(Configuration.DeviceDescriptor[] deviceDescriptor)
 
 ```csharp
@@ -104,10 +92,6 @@ void SetDeviceDescriptor(Configuration.DeviceDescriptor[] deviceDescriptor)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `deviceDescriptor` | `Configuration.DeviceDescriptor[]` |  |
 
 ### SetConfigurationDescriptor(Configuration.ConfigurationDescriptor[] configurationDescriptor)
 
@@ -117,10 +101,6 @@ void SetConfigurationDescriptor(Configuration.ConfigurationDescriptor[] configur
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `configurationDescriptor` | `Configuration.ConfigurationDescriptor[]` |  |
-
 ### SetStringDescriptor(Configuration.StringDescriptor[] stringDescriptor, uint index)
 
 ```csharp
@@ -128,11 +108,6 @@ void SetStringDescriptor(Configuration.StringDescriptor[] stringDescriptor, uint
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `stringDescriptor` | `Configuration.StringDescriptor[]` |  |
-| `index` | `uint` |  |
 
 ### SetGenericDescriptor(Configuration.GenericDescriptor[] genericDescriptor)
 
@@ -142,10 +117,6 @@ void SetGenericDescriptor(Configuration.GenericDescriptor[] genericDescriptor)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `genericDescriptor` | `Configuration.GenericDescriptor[]` |  |
-
 ### Read(int streamIndex, byte[] data, int offset, int count)
 
 ```csharp
@@ -153,13 +124,6 @@ int Read(int streamIndex, byte[] data, int offset, int count)
 ```
 
 Captures a slice of inter-edge intervals after waiting for `waitForState`. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `streamIndex` | `int` |  |
-| `data` | `byte[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |
 
 **Returns** `int`
 
@@ -170,13 +134,6 @@ int Write(int streamIndex, byte[] data, int offset, int count)
 ```
 
 Writes `length` bytes; optional trailing break of `breakDuration`. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `streamIndex` | `int` |  |
-| `data` | `byte[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |
 
 **Returns** `int`
 
@@ -208,10 +165,6 @@ void ClearReadBuffer(int streamIndex)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `streamIndex` | `int` |  |
-
 ### ClearWriteBuffer(int streamIndex)
 
 ```csharp
@@ -220,10 +173,6 @@ void ClearWriteBuffer(int streamIndex)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `streamIndex` | `int` |  |
-
 ### Flush(int streamIndex)
 
 ```csharp
@@ -231,10 +180,6 @@ void Flush(int streamIndex)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `streamIndex` | `int` |  |
 
 ## Events
 

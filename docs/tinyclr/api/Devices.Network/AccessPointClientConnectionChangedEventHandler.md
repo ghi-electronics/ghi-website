@@ -12,11 +12,3 @@ Handler signature for `AccessPointClientConnectionChanged`.
 ```csharp
 public delegate void AccessPointClientConnectionChangedEventHandler(NetworkController sender, IPAddress clientAddress, string macAddress);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sender` | `NetworkController` |  |
-| `clientAddress` | `IPAddress` |  |
-| `macAddress` | `string` |  |

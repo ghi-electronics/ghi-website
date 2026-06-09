@@ -23,10 +23,6 @@ public FtpResponseStream(FtpListenerResponse responese)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `responese` | `FtpListenerResponse` |  |
-
 ### FtpResponseStream(FtpListenerResponse responese, Stream stream)
 
 ```csharp
@@ -34,11 +30,6 @@ public FtpResponseStream(FtpListenerResponse responese, Stream stream) : this(re
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `responese` | `FtpListenerResponse` |  |
-| `stream` | `Stream` |  |
 
 ## Properties
 
@@ -139,10 +130,6 @@ public override void SetLength(long value)
 
 Adjusts the length of the array. This can be used to trim the end of the array. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `value` | `long` |  |
-
 ### Write(byte[] buffer, int offset, int count)
 
 ```csharp
@@ -165,10 +152,6 @@ public void Write(string s)
 
 Write a string to the buffer
 
-| Parameter | Type | Description |
-|---|---|---|
-| `s` | `string` |  |
-
 ### Write(FileStream stream)
 
 ```csharp
@@ -176,10 +159,6 @@ public void Write(FileStream stream)
 ```
 
 Read data from the stream and write them to the socket
-
-| Parameter | Type | Description |
-|---|---|---|
-| `stream` | `FileStream` |  |
 
 ### ReadTo(FileStream stream)
 
@@ -189,10 +168,6 @@ public void ReadTo(FileStream stream)
 
 Read data the file stream provided in the paramenter
 
-| Parameter | Type | Description |
-|---|---|---|
-| `stream` | `FileStream` |  |
-
 ### Write(FileSystemInfo info)
 
 ```csharp
@@ -201,10 +176,6 @@ public void Write(FileSystemInfo info)
 
 Write a fileinfo or directoryinfo to the socket
 
-| Parameter | Type | Description |
-|---|---|---|
-| `info` | `FileSystemInfo` |  |
-
 ### Read(out string s)
 
 ```csharp
@@ -212,9 +183,5 @@ public int Read(out string s)
 ```
 
 Read the data from internal buffer
-
-| Parameter | Type | Description |
-|---|---|---|
-| `s` | `out string` |  |
 
 **Returns** `int`

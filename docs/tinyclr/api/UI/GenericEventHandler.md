@@ -12,10 +12,3 @@ _No description available._
 ```csharp
 public delegate void GenericEventHandler(object sender, GenericEventArgs e);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sender` | `object` |  |
-| `e` | `GenericEventArgs` |  |

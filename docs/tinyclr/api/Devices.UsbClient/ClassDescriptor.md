@@ -23,11 +23,6 @@ public ClassDescriptor(byte DescriptorType, byte[] Payload)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `DescriptorType` | `byte` |  |
-| `Payload` | `byte[]` |  |
-
 ## Fields
 
 ### bDescriptorType

@@ -96,10 +96,6 @@ public void SetActiveSettings(SpiConnectionSettings connectionSettings)
 
 Applies a complete set of serial settings (baud, framing, handshake, polarity). _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `connectionSettings` | `SpiConnectionSettings` |  |
-
 ### WriteRead(byte[] writeBuffer, int writeOffset, int writeLength, byte[] readBuffer, int readOffset, int readLength, bool deselectAfter)
 
 ```csharp
@@ -125,14 +121,3 @@ public void Write(byte[] writeBuffer, int xOffset, int yOffset, int width, int h
 ```
 
 Writes a rectangular framebuffer region with optional pixel replication. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `writeBuffer` | `byte[]` |  |
-| `xOffset` | `int` |  |
-| `yOffset` | `int` |  |
-| `width` | `int` |  |
-| `height` | `int` |  |
-| `originalWidth` | `int` |  |
-| `columnMultiplier` | `int` |  |
-| `rowMultiplier` | `int` |  |

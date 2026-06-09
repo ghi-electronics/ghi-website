@@ -141,10 +141,6 @@ public extern GpioPinValue Read(int pin)
 
 Read the data from internal buffer _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `pin` | `int` |  |
-
 **Returns** `GpioPinValue`
 
 ### Write(int pin, GpioPinValue value)
@@ -154,11 +150,6 @@ public extern void Write(int pin, GpioPinValue value)
 ```
 
 Writes one block at the given block index. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `pin` | `int` |  |
-| `value` | `GpioPinValue` |  |
 
 ### IsDriveModeSupported(int pin, GpioPinDriveMode mode)
 

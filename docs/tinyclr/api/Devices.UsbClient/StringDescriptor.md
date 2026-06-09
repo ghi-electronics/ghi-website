@@ -23,11 +23,6 @@ public StringDescriptor(byte index, string theString) : base(index)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `index` | `byte` |  |
-| `theString` | `string` |  |
-
 ## Properties
 
 ### bIndex

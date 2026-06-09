@@ -23,10 +23,6 @@ public UIElementCollection(UIElement owner)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `owner` | `UIElement` |  |
-
 ## Properties
 
 ### Count
@@ -79,11 +75,6 @@ public void CopyTo(Array array, int index)
 
 Copies the UIElement collection to the specified array starting at the specified index.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `array` | `Array` |  |
-| `index` | `int` |  |
-
 ### CopyTo(UIElement[] array, int index)
 
 ```csharp
@@ -92,11 +83,6 @@ public virtual void CopyTo(UIElement[] array, int index)
 
 Strongly typed version of CopyTo Copies the collection into the Array.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `array` | `UIElement[]` |  |
-| `index` | `int` |  |
-
 ### Add(UIElement element)
 
 ```csharp
@@ -104,10 +90,6 @@ public int Add(UIElement element)
 ```
 
 Appends a UIElement to the end of the UIElementCollection.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `element` | `UIElement` |  |
 
 **Returns** `int` — The UIElementCollection index at which the UIElement has been added.
 
@@ -118,10 +100,6 @@ public int IndexOf(UIElement element)
 ```
 
 Returns the zero-based index of the UIElement. If the UIElement is not in the UIElementCollection -1 is returned. If null is passed to the method, the index of the first entry with null is returned. If there is no null entry -1 is returned.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `element` | `UIElement` |  |
 
 **Returns** `int`
 
@@ -144,10 +122,6 @@ public bool Contains(UIElement element)
 ```
 
 Determines whether a element is in the UIElementCollection.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `element` | `UIElement` |  |
 
 **Returns** `bool`
 

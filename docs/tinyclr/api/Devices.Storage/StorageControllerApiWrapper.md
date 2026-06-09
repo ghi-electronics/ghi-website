@@ -23,10 +23,6 @@ public StorageControllerApiWrapper(NativeApi api)
 
 Wraps the given native API as a provider.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `api` | `NativeApi` |  |
-
 ## Properties
 
 ### Api
@@ -115,12 +111,6 @@ public extern int Erase(long sector, int count, TimeSpan timeout)
 
 Erases `count` sectors starting at `address`. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `sector` | `long` |  |
-| `count` | `int` |  |
-| `timeout` | `TimeSpan` |  |
-
 **Returns** `int`
 
 ### IsErased(long address, int count)
@@ -131,11 +121,6 @@ public extern bool IsErased(long address, int count)
 
 True when the addressed span is in its erased (all-0xFF) state. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `address` | `long` |  |
-| `count` | `int` |  |
-
 **Returns** `bool`
 
 ### EraseAll(TimeSpan timeout)
@@ -145,7 +130,3 @@ public extern void EraseAll(TimeSpan timeout)
 ```
 
 Erases every sector on the media. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `timeout` | `TimeSpan` |  |

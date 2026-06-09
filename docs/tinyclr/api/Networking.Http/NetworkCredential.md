@@ -31,11 +31,6 @@ public NetworkCredential(string userName, string password) : this(userName, pass
 
 Constructs credientials and initializes them by provided user name and pssword
 
-| Parameter | Type | Description |
-|---|---|---|
-| `userName` | `string` |  |
-| `password` | `string` |  |
-
 ### NetworkCredential(string userName, string password, AuthenticationType authenticationType)
 
 ```csharp

@@ -23,11 +23,6 @@ protected PwmChannel(int chip, int channel) : this(chip, channel, 400, 0.5)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `chip` | `int` |  |
-| `channel` | `int` |  |
-
 ### PwmChannel(int chip, int channel, int frequency, double dutyCyclePercentage)
 
 ```csharp
@@ -35,13 +30,6 @@ protected PwmChannel(int chip, int channel, int frequency, double dutyCyclePerce
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `chip` | `int` |  |
-| `channel` | `int` |  |
-| `frequency` | `int` |  |
-| `dutyCyclePercentage` | `double` |  |
 
 ## Properties
 
@@ -95,11 +83,6 @@ public static PwmChannel Create(int chip, int channel)
 
 Creates or overwrites a file. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `chip` | `int` |  |
-| `channel` | `int` |  |
-
 **Returns** `PwmChannel` — TinyFileStream that provides stream based access to the file.
 
 ### Create(int chip, int channel, int frequency, double dutyCyclePercentage)
@@ -109,13 +92,6 @@ public static PwmChannel Create(int chip, int channel, int frequency = 400, doub
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `chip` | `int` |  |
-| `channel` | `int` |  |
-| `frequency` | `int` |  |
-| `dutyCyclePercentage` | `double` |  |
 
 **Returns** `PwmChannel`
 

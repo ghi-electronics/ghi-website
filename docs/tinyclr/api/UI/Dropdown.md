@@ -67,10 +67,6 @@ protected override void OnButtonDown(ButtonEventArgs e)
 
 Hardware button support: `HardwareButton.Select` toggles the dropdown open/closed (parity with touch). `HardwareButton.Back` closes an open dropdown. Up/Down navigation comes free from `ListBox`.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `ButtonEventArgs` |  |
-
 ### OnRender(DrawingContext dc)
 
 ```csharp
@@ -78,10 +74,6 @@ public override void OnRender(DrawingContext dc)
 ```
 
 Renders the DataGrid onto it's parent container's graphics. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `dc` | `DrawingContext` |  |
 
 ### Dispose()
 

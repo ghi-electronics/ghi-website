@@ -12,10 +12,3 @@ Handler for `OnGenerateFinished`.
 ```csharp
 public delegate void PulseGenerateEventHandler(DigitalSignal sender, GpioPinValue endState);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sender` | `DigitalSignal` |  |
-| `endState` | `GpioPinValue` |  |

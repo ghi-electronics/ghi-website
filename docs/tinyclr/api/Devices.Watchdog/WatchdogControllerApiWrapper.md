@@ -23,10 +23,6 @@ public WatchdogControllerApiWrapper(NativeApi api)
 
 Wraps the given native API as a provider.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `api` | `NativeApi` |  |
-
 ## Properties
 
 ### Api
@@ -70,10 +66,6 @@ public extern void Enable(uint timeout)
 ```
 
 Starts the watchdog with the given timeout in milliseconds. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `timeout` | `uint` |  |
 
 ### Disable()
 

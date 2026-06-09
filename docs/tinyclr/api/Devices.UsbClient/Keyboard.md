@@ -23,10 +23,6 @@ public Keyboard(UsbClientController usbClientController) : this(usbClientControl
 
 Creates a new keyboard with default parameters.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `usbClientController` | `UsbClientController` |  |
-
 ### Keyboard(UsbClientController usbClientController, UsbClientSetting usbClientSetting)
 
 ```csharp

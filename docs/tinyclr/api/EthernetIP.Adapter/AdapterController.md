@@ -43,10 +43,6 @@ public void AddCipClass(CIPClass cipClass)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `cipClass` | `CIPClass` |  |
-
 ### AddAssemblyObject(AssemblyObject asmObject)
 
 ```csharp
@@ -82,13 +78,6 @@ public void ConfigureInputOnlyConnectionPoint(uint connectionNumber, uint output
 
 Register an Input Only connection point — scanner just reads the input assembly with no outputs (a "heartbeat" connection sized 0 for O→T).
 
-| Parameter | Type | Description |
-|---|---|---|
-| `connectionNumber` | `uint` |  |
-| `outputAssemblyId` | `uint` |  |
-| `inputAssemblyId` | `uint` |  |
-| `configurationAssemblyId` | `uint` |  |
-
 ### ConfigureListenOnlyConnectionPoint(uint connectionNumber, uint outputAssemblyId, uint inputAssemblyId, uint configurationAssemblyId)
 
 ```csharp
@@ -96,13 +85,6 @@ public void ConfigureListenOnlyConnectionPoint(uint connectionNumber, uint outpu
 ```
 
 Register a Listen Only connection point — a secondary scanner subscribes to the same multicast input data the Exclusive Owner is receiving, without owning the connection.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `connectionNumber` | `uint` |  |
-| `outputAssemblyId` | `uint` |  |
-| `inputAssemblyId` | `uint` |  |
-| `configurationAssemblyId` | `uint` |  |
 
 ### InsertService(CIPClass cipClass, CIPServiceCode serviceCode, CIPServiceCode handlerCode, string serviceName)
 
@@ -112,13 +94,6 @@ public void InsertService(CIPClass cipClass, CIPServiceCode serviceCode, CIPServ
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `cipClass` | `CIPClass` |  |
-| `serviceCode` | `CIPServiceCode` |  |
-| `handlerCode` | `CIPServiceCode` |  |
-| `serviceName` | `string` |  |
-
 ### InsertAttribute(CipInstance cipInstance, ushort attributeNumber, CIPDataType cipType, CipAttributeEncodeInMessage encodeFunctionCode, CipAttributeDecodeFromMessage decodeFunctionCode, byte[] data, CIPAttributeFlag cipFlags)
 
 ```csharp
@@ -127,16 +102,6 @@ public void InsertAttribute(CipInstance cipInstance, ushort attributeNumber, CIP
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `cipInstance` | `CipInstance` |  |
-| `attributeNumber` | `ushort` |  |
-| `cipType` | `CIPDataType` |  |
-| `encodeFunctionCode` | `CipAttributeEncodeInMessage` |  |
-| `decodeFunctionCode` | `CipAttributeDecodeFromMessage` |  |
-| `data` | `byte[]` |  |
-| `cipFlags` | `CIPAttributeFlag` |  |
-
 ### CreateAssemblyClass(int numberClassAttributes, uint highestClassAttributeNumber, int numberClassServices, int numberInstanceAttributes, uint highestInstanceAttributeNumber, int numberInstanceServices, uint numberInstances, string name, ushort revision)
 
 ```csharp
@@ -144,18 +109,6 @@ public CIPClass CreateAssemblyClass(int numberClassAttributes, uint highestClass
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `numberClassAttributes` | `int` |  |
-| `highestClassAttributeNumber` | `uint` |  |
-| `numberClassServices` | `int` |  |
-| `numberInstanceAttributes` | `int` |  |
-| `highestInstanceAttributeNumber` | `uint` |  |
-| `numberInstanceServices` | `int` |  |
-| `numberInstances` | `uint` |  |
-| `name` | `string` |  |
-| `revision` | `ushort` |  |
 
 **Returns** `CIPClass`
 
@@ -191,11 +144,6 @@ public void AddCipInstance(CIPClass cipClass, uint instanceId)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `cipClass` | `CIPClass` |  |
-| `instanceId` | `uint` |  |
-
 ### AddCipInstances(CIPClass cipClass, uint instanceId)
 
 ```csharp
@@ -203,11 +151,6 @@ public void AddCipInstances(CIPClass cipClass, uint instanceId)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `cipClass` | `CIPClass` |  |
-| `instanceId` | `uint` |  |
 
 ### AllocateAttributeMasks(CIPClass targetClass)
 
@@ -217,10 +160,6 @@ public void AllocateAttributeMasks(CIPClass targetClass)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `targetClass` | `CIPClass` |  |
-
 ### CalculateIndex(ushort attributeNumber)
 
 ```csharp
@@ -229,10 +168,6 @@ public void CalculateIndex(ushort attributeNumber)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `attributeNumber` | `ushort` |  |
-
 ### GetCipAttribute(CipInstance cipInstance, ushort attributeNumber)
 
 ```csharp
@@ -240,11 +175,6 @@ public CipAttribute GetCipAttribute(CipInstance cipInstance, ushort attributeNum
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `cipInstance` | `CipInstance` |  |
-| `attributeNumber` | `ushort` |  |
 
 **Returns** `CipAttribute`
 
@@ -256,10 +186,6 @@ public CIPClass GetCipClass(ushort classId)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `classId` | `ushort` |  |
-
 **Returns** `CIPClass`
 
 ### GetCipInstance(CIPClass cipClass, uint instanceNumber)
@@ -269,11 +195,6 @@ public CipInstance GetCipInstance(CIPClass cipClass, uint instanceNumber)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `cipClass` | `CIPClass` |  |
-| `instanceNumber` | `uint` |  |
 
 **Returns** `CipInstance`
 
@@ -285,10 +206,6 @@ public void EnableHeaderO2T(bool on)
 
 Toggle the 32-bit Run/Idle header on O→T (output) Class-1 data. Must be true when talking to Allen-Bradley ControlLogix/CompactLogix scanners — they always prepend a Run/Idle header. False for most other scanner brands (HMS Anybus, Codesys). Default: false. Symptom of wrong setting: the first 4 bytes of your output assembly oscillate between 0x00000000 and 0x00000001 every cycle instead of holding real scanner-written data.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `on` | `bool` |  |
-
 ### EnableHeaderT2O(bool on)
 
 ```csharp
@@ -296,10 +213,6 @@ public void EnableHeaderT2O(bool on)
 ```
 
 Toggle the 32-bit Run/Idle header on T→O (input) Class-1 data. Less commonly required than O2T; defaults to false. Enable if your scanner's configuration expects it.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `on` | `bool` |  |
 
 ## Events
 

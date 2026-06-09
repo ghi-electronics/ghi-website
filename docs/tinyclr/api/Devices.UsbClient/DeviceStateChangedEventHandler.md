@@ -12,10 +12,3 @@ _No description available._
 ```csharp
 public delegate void DeviceStateChangedEventHandler(RawDevice sender, DeviceState state);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sender` | `RawDevice` |  |
-| `state` | `DeviceState` |  |

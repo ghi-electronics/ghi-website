@@ -23,8 +23,4 @@ public static BitmapImage FromGraphics(Graphics g)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `g` | `Graphics` |  |
-
 **Returns** `BitmapImage`

@@ -23,10 +23,6 @@ public SerialErrorReceivedEventArgs(SerialError eventType)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `eventType` | `SerialError` |  |
-
 ## Properties
 
 ### EventType

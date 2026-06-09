@@ -12,9 +12,3 @@ _No description available._
 ```csharp
 public delegate void ConnectedEventHandler(object sender);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sender` | `object` |  |

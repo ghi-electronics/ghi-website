@@ -23,11 +23,6 @@ public static IEnumerable<TSource> Where<TSource>(this IEnumerable<TSource> sour
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `predicate` | `Func<TSource, bool>` |  |
-
 **Returns** `IEnumerable<TSource>`
 
 ### Where&lt;TSource>(this IEnumerable&lt;TSource> source, Func&lt;TSource, int, bool> predicate)
@@ -37,11 +32,6 @@ public static IEnumerable<TSource> Where<TSource>(this IEnumerable<TSource> sour
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `predicate` | `Func<TSource, int, bool>` |  |
 
 **Returns** `IEnumerable<TSource>`
 
@@ -53,10 +43,6 @@ public static IEnumerable<TResult> OfType<TResult>(this IEnumerable source)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable` |  |
-
 **Returns** `IEnumerable<TResult>`
 
 ### Cast&lt;TResult>(this IEnumerable source)
@@ -66,10 +52,6 @@ public static IEnumerable<TResult> Cast<TResult>(this IEnumerable source)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable` |  |
 
 **Returns** `IEnumerable<TResult>`
 
@@ -81,11 +63,6 @@ public static IEnumerable<TResult> Select<TSource, TResult>(this IEnumerable<TSo
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `selector` | `Func<TSource, TResult>` |  |
-
 **Returns** `IEnumerable<TResult> Select<TSource,`
 
 ### TResult>(this IEnumerable&lt;TSource> source, Func&lt;TSource, int, TResult> selector)
@@ -95,11 +72,6 @@ public static IEnumerable<TResult> Select<TSource, TResult>(this IEnumerable<TSo
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `selector` | `Func<TSource, int, TResult>` |  |
 
 **Returns** `IEnumerable<TResult> Select<TSource,`
 
@@ -111,11 +83,6 @@ public static IEnumerable<TResult> SelectMany<TSource, TResult>(this IEnumerable
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `selector` | `Func<TSource, IEnumerable<TResult>>` |  |
-
 **Returns** `IEnumerable<TResult> SelectMany<TSource,`
 
 ### Skip&lt;TSource>(this IEnumerable&lt;TSource> source, int count)
@@ -125,11 +92,6 @@ public static IEnumerable<TSource> Skip<TSource>(this IEnumerable<TSource> sourc
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `count` | `int` |  |
 
 **Returns** `IEnumerable<TSource>`
 
@@ -141,11 +103,6 @@ public static IEnumerable<TSource> Take<TSource>(this IEnumerable<TSource> sourc
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `count` | `int` |  |
-
 **Returns** `IEnumerable<TSource>`
 
 ### SkipWhile&lt;TSource>(this IEnumerable&lt;TSource> source, Func&lt;TSource, bool> predicate)
@@ -155,11 +112,6 @@ public static IEnumerable<TSource> SkipWhile<TSource>(this IEnumerable<TSource> 
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `predicate` | `Func<TSource, bool>` |  |
 
 **Returns** `IEnumerable<TSource>`
 
@@ -171,11 +123,6 @@ public static IEnumerable<TSource> TakeWhile<TSource>(this IEnumerable<TSource> 
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `predicate` | `Func<TSource, bool>` |  |
-
 **Returns** `IEnumerable<TSource>`
 
 ### Distinct&lt;TSource>(this IEnumerable&lt;TSource> source)
@@ -185,10 +132,6 @@ public static IEnumerable<TSource> Distinct<TSource>(this IEnumerable<TSource> s
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
 
 **Returns** `IEnumerable<TSource>`
 
@@ -200,11 +143,6 @@ public static IEnumerable<TSource> Distinct<TSource>(this IEnumerable<TSource> s
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `comparer` | `IEqualityComparer<TSource>` |  |
-
 **Returns** `IEnumerable<TSource>`
 
 ### Concat&lt;TSource>(this IEnumerable&lt;TSource> first, IEnumerable&lt;TSource> second)
@@ -214,11 +152,6 @@ public static IEnumerable<TSource> Concat<TSource>(this IEnumerable<TSource> fir
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `first` | `this IEnumerable<TSource>` |  |
-| `second` | `IEnumerable<TSource>` |  |
 
 **Returns** `IEnumerable<TSource>`
 
@@ -230,10 +163,6 @@ public static IEnumerable<TSource> Reverse<TSource>(this IEnumerable<TSource> so
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-
 **Returns** `IEnumerable<TSource>`
 
 ### SequenceEqual&lt;TSource>(this IEnumerable&lt;TSource> first, IEnumerable&lt;TSource> second)
@@ -243,11 +172,6 @@ public static bool SequenceEqual<TSource>(this IEnumerable<TSource> first, IEnum
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `first` | `this IEnumerable<TSource>` |  |
-| `second` | `IEnumerable<TSource>` |  |
 
 **Returns** `bool`
 
@@ -259,12 +183,6 @@ public static bool SequenceEqual<TSource>(this IEnumerable<TSource> first, IEnum
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `first` | `this IEnumerable<TSource>` |  |
-| `second` | `IEnumerable<TSource>` |  |
-| `comparer` | `IEqualityComparer<TSource>` |  |
-
 **Returns** `bool`
 
 ### Any&lt;TSource>(this IEnumerable&lt;TSource> source)
@@ -274,10 +192,6 @@ public static bool Any<TSource>(this IEnumerable<TSource> source)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
 
 **Returns** `bool`
 
@@ -289,11 +203,6 @@ public static bool Any<TSource>(this IEnumerable<TSource> source, Func<TSource, 
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `predicate` | `Func<TSource, bool>` |  |
-
 **Returns** `bool`
 
 ### All&lt;TSource>(this IEnumerable&lt;TSource> source, Func&lt;TSource, bool> predicate)
@@ -303,11 +212,6 @@ public static bool All<TSource>(this IEnumerable<TSource> source, Func<TSource, 
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `predicate` | `Func<TSource, bool>` |  |
 
 **Returns** `bool`
 
@@ -319,11 +223,6 @@ public static bool Contains<TSource>(this IEnumerable<TSource> source, TSource v
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `value` | `TSource` |  |
-
 **Returns** `bool`
 
 ### Contains&lt;TSource>(this IEnumerable&lt;TSource> source, TSource value, IEqualityComparer&lt;TSource> comparer)
@@ -333,12 +232,6 @@ public static bool Contains<TSource>(this IEnumerable<TSource> source, TSource v
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `value` | `TSource` |  |
-| `comparer` | `IEqualityComparer<TSource>` |  |
 
 **Returns** `bool`
 
@@ -350,10 +243,6 @@ public static TSource First<TSource>(this IEnumerable<TSource> source)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-
 **Returns** `TSource`
 
 ### First&lt;TSource>(this IEnumerable&lt;TSource> source, Func&lt;TSource, bool> predicate)
@@ -363,11 +252,6 @@ public static TSource First<TSource>(this IEnumerable<TSource> source, Func<TSou
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `predicate` | `Func<TSource, bool>` |  |
 
 **Returns** `TSource`
 
@@ -379,10 +263,6 @@ public static TSource FirstOrDefault<TSource>(this IEnumerable<TSource> source)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-
 **Returns** `TSource`
 
 ### FirstOrDefault&lt;TSource>(this IEnumerable&lt;TSource> source, Func&lt;TSource, bool> predicate)
@@ -392,11 +272,6 @@ public static TSource FirstOrDefault<TSource>(this IEnumerable<TSource> source, 
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `predicate` | `Func<TSource, bool>` |  |
 
 **Returns** `TSource`
 
@@ -408,10 +283,6 @@ public static TSource Last<TSource>(this IEnumerable<TSource> source)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-
 **Returns** `TSource`
 
 ### Last&lt;TSource>(this IEnumerable&lt;TSource> source, Func&lt;TSource, bool> predicate)
@@ -421,11 +292,6 @@ public static TSource Last<TSource>(this IEnumerable<TSource> source, Func<TSour
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `predicate` | `Func<TSource, bool>` |  |
 
 **Returns** `TSource`
 
@@ -437,10 +303,6 @@ public static TSource LastOrDefault<TSource>(this IEnumerable<TSource> source)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-
 **Returns** `TSource`
 
 ### LastOrDefault&lt;TSource>(this IEnumerable&lt;TSource> source, Func&lt;TSource, bool> predicate)
@@ -450,11 +312,6 @@ public static TSource LastOrDefault<TSource>(this IEnumerable<TSource> source, F
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `predicate` | `Func<TSource, bool>` |  |
 
 **Returns** `TSource`
 
@@ -466,10 +323,6 @@ public static TSource Single<TSource>(this IEnumerable<TSource> source)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-
 **Returns** `TSource`
 
 ### Single&lt;TSource>(this IEnumerable&lt;TSource> source, Func&lt;TSource, bool> predicate)
@@ -479,11 +332,6 @@ public static TSource Single<TSource>(this IEnumerable<TSource> source, Func<TSo
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `predicate` | `Func<TSource, bool>` |  |
 
 **Returns** `TSource`
 
@@ -495,10 +343,6 @@ public static TSource SingleOrDefault<TSource>(this IEnumerable<TSource> source)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-
 **Returns** `TSource`
 
 ### SingleOrDefault&lt;TSource>(this IEnumerable&lt;TSource> source, Func&lt;TSource, bool> predicate)
@@ -508,11 +352,6 @@ public static TSource SingleOrDefault<TSource>(this IEnumerable<TSource> source,
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `predicate` | `Func<TSource, bool>` |  |
 
 **Returns** `TSource`
 
@@ -524,11 +363,6 @@ public static TSource ElementAt<TSource>(this IEnumerable<TSource> source, int i
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `index` | `int` |  |
-
 **Returns** `TSource`
 
 ### ElementAtOrDefault&lt;TSource>(this IEnumerable&lt;TSource> source, int index)
@@ -538,11 +372,6 @@ public static TSource ElementAtOrDefault<TSource>(this IEnumerable<TSource> sour
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `index` | `int` |  |
 
 **Returns** `TSource`
 
@@ -554,10 +383,6 @@ public static int Count<TSource>(this IEnumerable<TSource> source)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-
 **Returns** `int`
 
 ### Count&lt;TSource>(this IEnumerable&lt;TSource> source, Func&lt;TSource, bool> predicate)
@@ -567,11 +392,6 @@ public static int Count<TSource>(this IEnumerable<TSource> source, Func<TSource,
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `predicate` | `Func<TSource, bool>` |  |
 
 **Returns** `int`
 
@@ -583,10 +403,6 @@ public static long LongCount<TSource>(this IEnumerable<TSource> source)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-
 **Returns** `long`
 
 ### Sum(this IEnumerable&lt;int> source)
@@ -596,10 +412,6 @@ public static int Sum(this IEnumerable<int> source)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<int>` |  |
 
 **Returns** `int`
 
@@ -611,11 +423,6 @@ public static int Sum<TSource>(this IEnumerable<TSource> source, Func<TSource, i
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `selector` | `Func<TSource, int>` |  |
-
 **Returns** `int`
 
 ### Sum(this IEnumerable&lt;long> source)
@@ -625,10 +432,6 @@ public static long Sum(this IEnumerable<long> source)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<long>` |  |
 
 **Returns** `long`
 
@@ -640,11 +443,6 @@ public static long Sum<TSource>(this IEnumerable<TSource> source, Func<TSource, 
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `selector` | `Func<TSource, long>` |  |
-
 **Returns** `long`
 
 ### Sum(this IEnumerable&lt;double> source)
@@ -654,10 +452,6 @@ public static double Sum(this IEnumerable<double> source)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<double>` |  |
 
 **Returns** `double`
 
@@ -669,11 +463,6 @@ public static double Sum<TSource>(this IEnumerable<TSource> source, Func<TSource
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `selector` | `Func<TSource, double>` |  |
-
 **Returns** `double`
 
 ### Sum(this IEnumerable&lt;float> source)
@@ -683,10 +472,6 @@ public static float Sum(this IEnumerable<float> source)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<float>` |  |
 
 **Returns** `float`
 
@@ -698,10 +483,6 @@ public static TSource Min<TSource>(this IEnumerable<TSource> source)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-
 **Returns** `TSource`
 
 ### TResult>(this IEnumerable&lt;TSource> source, Func&lt;TSource, TResult> selector)
@@ -711,11 +492,6 @@ public static TResult Min<TSource, TResult>(this IEnumerable<TSource> source, Fu
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `selector` | `Func<TSource, TResult>` |  |
 
 **Returns** `TResult Min<TSource,`
 
@@ -727,10 +503,6 @@ public static TSource Max<TSource>(this IEnumerable<TSource> source)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-
 **Returns** `TSource`
 
 ### TResult>(this IEnumerable&lt;TSource> source, Func&lt;TSource, TResult> selector)
@@ -740,11 +512,6 @@ public static TResult Max<TSource, TResult>(this IEnumerable<TSource> source, Fu
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `selector` | `Func<TSource, TResult>` |  |
 
 **Returns** `TResult Max<TSource,`
 
@@ -756,10 +523,6 @@ public static double Average(this IEnumerable<int> source)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<int>` |  |
-
 **Returns** `double`
 
 ### Average(this IEnumerable&lt;long> source)
@@ -769,10 +532,6 @@ public static double Average(this IEnumerable<long> source)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<long>` |  |
 
 **Returns** `double`
 
@@ -784,10 +543,6 @@ public static double Average(this IEnumerable<double> source)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<double>` |  |
-
 **Returns** `double`
 
 ### TAccumulate>(this IEnumerable&lt;TSource> source, TAccumulate seed, Func&lt;TAccumulate, TSource, TAccumulate> func)
@@ -797,12 +552,6 @@ public static TAccumulate Aggregate<TSource, TAccumulate>(this IEnumerable<TSour
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `seed` | `TAccumulate` |  |
-| `func` | `Func<TAccumulate, TSource, TAccumulate>` |  |
 
 **Returns** `TAccumulate Aggregate<TSource,`
 
@@ -814,11 +563,6 @@ public static TSource Aggregate<TSource>(this IEnumerable<TSource> source, Func<
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `func` | `Func<TSource, TSource, TSource>` |  |
-
 **Returns** `TSource`
 
 ### TKey>(this IEnumerable&lt;TSource> source, Func&lt;TSource, TKey> keySelector)
@@ -828,11 +572,6 @@ public static IOrderedEnumerable<TSource> OrderBy<TSource, TKey>(this IEnumerabl
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `keySelector` | `Func<TSource, TKey>` |  |
 
 **Returns** `IOrderedEnumerable<TSource> OrderBy<TSource,`
 
@@ -844,12 +583,6 @@ public static IOrderedEnumerable<TSource> OrderBy<TSource, TKey>(this IEnumerabl
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `keySelector` | `Func<TSource, TKey>` |  |
-| `comparer` | `IComparer<TKey>` |  |
-
 **Returns** `IOrderedEnumerable<TSource> OrderBy<TSource,`
 
 ### TKey>(this IEnumerable&lt;TSource> source, Func&lt;TSource, TKey> keySelector)
@@ -859,11 +592,6 @@ public static IOrderedEnumerable<TSource> OrderByDescending<TSource, TKey>(this 
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `keySelector` | `Func<TSource, TKey>` |  |
 
 **Returns** `IOrderedEnumerable<TSource> OrderByDescending<TSource,`
 
@@ -875,12 +603,6 @@ public static IOrderedEnumerable<TSource> OrderByDescending<TSource, TKey>(this 
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `keySelector` | `Func<TSource, TKey>` |  |
-| `comparer` | `IComparer<TKey>` |  |
-
 **Returns** `IOrderedEnumerable<TSource> OrderByDescending<TSource,`
 
 ### TKey>(this IOrderedEnumerable&lt;TSource> source, Func&lt;TSource, TKey> keySelector)
@@ -890,11 +612,6 @@ public static IOrderedEnumerable<TSource> ThenBy<TSource, TKey>(this IOrderedEnu
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IOrderedEnumerable<TSource>` |  |
-| `keySelector` | `Func<TSource, TKey>` |  |
 
 **Returns** `IOrderedEnumerable<TSource> ThenBy<TSource,`
 
@@ -906,12 +623,6 @@ public static IOrderedEnumerable<TSource> ThenBy<TSource, TKey>(this IOrderedEnu
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IOrderedEnumerable<TSource>` |  |
-| `keySelector` | `Func<TSource, TKey>` |  |
-| `comparer` | `IComparer<TKey>` |  |
-
 **Returns** `IOrderedEnumerable<TSource> ThenBy<TSource,`
 
 ### TKey>(this IOrderedEnumerable&lt;TSource> source, Func&lt;TSource, TKey> keySelector)
@@ -921,11 +632,6 @@ public static IOrderedEnumerable<TSource> ThenByDescending<TSource, TKey>(this I
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IOrderedEnumerable<TSource>` |  |
-| `keySelector` | `Func<TSource, TKey>` |  |
 
 **Returns** `IOrderedEnumerable<TSource> ThenByDescending<TSource,`
 
@@ -937,12 +643,6 @@ public static IOrderedEnumerable<TSource> ThenByDescending<TSource, TKey>(this I
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IOrderedEnumerable<TSource>` |  |
-| `keySelector` | `Func<TSource, TKey>` |  |
-| `comparer` | `IComparer<TKey>` |  |
-
 **Returns** `IOrderedEnumerable<TSource> ThenByDescending<TSource,`
 
 ### TKey>(this IEnumerable&lt;TSource> source, Func&lt;TSource, TKey> keySelector)
@@ -952,11 +652,6 @@ public static IEnumerable<IGrouping<TKey, TSource>> GroupBy<TSource, TKey>(this 
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `keySelector` | `Func<TSource, TKey>` |  |
 
 **Returns** `IEnumerable<IGrouping<TKey, TSource>> GroupBy<TSource,`
 
@@ -968,12 +663,6 @@ public static IEnumerable<IGrouping<TKey, TSource>> GroupBy<TSource, TKey>(this 
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `keySelector` | `Func<TSource, TKey>` |  |
-| `comparer` | `IEqualityComparer<TKey>` |  |
-
 **Returns** `IEnumerable<IGrouping<TKey, TSource>> GroupBy<TSource,`
 
 ### TElement>(this IEnumerable&lt;TSource> source, Func&lt;TSource, TKey> keySelector, Func&lt;TSource, TElement> elementSelector)
@@ -983,12 +672,6 @@ public static IEnumerable<IGrouping<TKey, TElement>> GroupBy<TSource, TKey, TEle
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `keySelector` | `Func<TSource, TKey>` |  |
-| `elementSelector` | `Func<TSource, TElement>` |  |
 
 **Returns** `IEnumerable<IGrouping<TKey, TElement>> GroupBy<TSource, TKey,`
 
@@ -1000,13 +683,6 @@ public static IEnumerable<IGrouping<TKey, TElement>> GroupBy<TSource, TKey, TEle
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `keySelector` | `Func<TSource, TKey>` |  |
-| `elementSelector` | `Func<TSource, TElement>` |  |
-| `comparer` | `IEqualityComparer<TKey>` |  |
-
 **Returns** `IEnumerable<IGrouping<TKey, TElement>> GroupBy<TSource, TKey,`
 
 ### ToArray&lt;TSource>(this IEnumerable&lt;TSource> source)
@@ -1016,10 +692,6 @@ public static TSource[] ToArray<TSource>(this IEnumerable<TSource> source)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
 
 **Returns** `TSource[]`
 
@@ -1031,10 +703,6 @@ public static List<TSource> ToList<TSource>(this IEnumerable<TSource> source)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-
 **Returns** `List<TSource>`
 
 ### TKey>(this IEnumerable&lt;TSource> source, Func&lt;TSource, TKey> keySelector)
@@ -1044,11 +712,6 @@ public static Dictionary<TKey, TSource> ToDictionary<TSource, TKey>(this IEnumer
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `keySelector` | `Func<TSource, TKey>` |  |
 
 **Returns** `Dictionary<TKey, TSource> ToDictionary<TSource,`
 
@@ -1060,12 +723,6 @@ public static Dictionary<TKey, TSource> ToDictionary<TSource, TKey>(this IEnumer
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `keySelector` | `Func<TSource, TKey>` |  |
-| `comparer` | `IEqualityComparer<TKey>` |  |
-
 **Returns** `Dictionary<TKey, TSource> ToDictionary<TSource,`
 
 ### TElement>(this IEnumerable&lt;TSource> source, Func&lt;TSource, TKey> keySelector, Func&lt;TSource, TElement> elementSelector)
@@ -1075,12 +732,6 @@ public static Dictionary<TKey, TElement> ToDictionary<TSource, TKey, TElement>( 
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `keySelector` | `Func<TSource, TKey>` |  |
-| `elementSelector` | `Func<TSource, TElement>` |  |
 
 **Returns** `Dictionary<TKey, TElement> ToDictionary<TSource, TKey,`
 
@@ -1092,13 +743,6 @@ public static Dictionary<TKey, TElement> ToDictionary<TSource, TKey, TElement>( 
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `this IEnumerable<TSource>` |  |
-| `keySelector` | `Func<TSource, TKey>` |  |
-| `elementSelector` | `Func<TSource, TElement>` |  |
-| `comparer` | `IEqualityComparer<TKey>` |  |
-
 **Returns** `Dictionary<TKey, TElement> ToDictionary<TSource, TKey,`
 
 ### Range(int start, int count)
@@ -1109,11 +753,6 @@ public static IEnumerable<int> Range(int start, int count)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `start` | `int` |  |
-| `count` | `int` |  |
-
 **Returns** `IEnumerable<int>`
 
 ### Repeat&lt;TResult>(TResult element, int count)
@@ -1123,11 +762,6 @@ public static IEnumerable<TResult> Repeat<TResult>(TResult element, int count)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `element` | `TResult` |  |
-| `count` | `int` |  |
 
 **Returns** `IEnumerable<TResult>`
 

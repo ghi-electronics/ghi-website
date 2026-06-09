@@ -91,10 +91,6 @@ public static NetworkController FromName(string name)
 
 Returns a network controller identified by its native API name.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `name` | `string` |  |
-
 **Returns** `NetworkController`
 
 ### FromProvider(INetworkControllerProvider provider)
@@ -104,10 +100,6 @@ public static NetworkController FromProvider(INetworkControllerProvider provider
 ```
 
 Creates a controller from a custom `INetworkControllerProvider`.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `provider` | `INetworkControllerProvider` |  |
 
 **Returns** `NetworkController`
 
@@ -197,10 +189,6 @@ public void SetInterfaceSettings(NetworkInterfaceSettings settings)
 
 Applies `NetworkInterfaceSettings` (IP address, DHCP, DNS).
 
-| Parameter | Type | Description |
-|---|---|---|
-| `settings` | `NetworkInterfaceSettings` |  |
-
 ### SetCommunicationInterfaceSettings(NetworkCommunicationInterfaceSettings settings)
 
 ```csharp
@@ -208,10 +196,6 @@ public void SetCommunicationInterfaceSettings(NetworkCommunicationInterfaceSetti
 ```
 
 Applies the underlying physical-bus settings (built-in MAC, SPI, or UART).
-
-| Parameter | Type | Description |
-|---|---|---|
-| `settings` | `NetworkCommunicationInterfaceSettings` |  |
 
 ### SetAsDefaultController()
 

@@ -89,11 +89,6 @@ IFileSystemEntryFinder Find(string path, string searchPattern)
 
 Locates a native API by name and type. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
-| `searchPattern` | `string` |  |
-
 **Returns** `IFileSystemEntryFinder`
 
 ### GetFileSystemEntry(string path)
@@ -103,10 +98,6 @@ FileSystemEntry GetFileSystemEntry(string path)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
 
 **Returns** `FileSystemEntry`
 
@@ -118,11 +109,6 @@ IFileStream OpenFile(string path, int bufferSize)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
-| `bufferSize` | `int` |  |
-
 **Returns** `IFileStream`
 
 ### Delete(string path)
@@ -133,10 +119,6 @@ void Delete(string path)
 
 Deletes a file from the device. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
-
 ### Move(string source, string destination)
 
 ```csharp
@@ -144,11 +126,6 @@ bool Move(string source, string destination)
 ```
 
 Moves a file from the source to the destination. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `string` |  |
-| `destination` | `string` |  |
 
 **Returns** `bool`
 
@@ -160,10 +137,6 @@ void CreateDirectory(string path)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
-
 ### GetAttributes(string path)
 
 ```csharp
@@ -171,10 +144,6 @@ FileAttributes GetAttributes(string path)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
 
 **Returns** `FileAttributes`
 
@@ -186,11 +155,6 @@ void SetAttributes(string path, FileAttributes attributes)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
-| `attributes` | `FileAttributes` |  |
-
 ### Initialize(string name)
 
 ```csharp
@@ -198,7 +162,3 @@ void Initialize(string name)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `name` | `string` |  |

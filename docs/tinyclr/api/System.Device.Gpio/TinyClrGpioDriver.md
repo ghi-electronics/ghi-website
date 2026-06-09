@@ -31,10 +31,6 @@ public TinyClrGpioDriver(int pinBase) : this(GHIElectronics.TinyCLR.Devices.Gpio
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `pinBase` | `int` |  |
-
 ### TinyClrGpioDriver(GHIElectronics.TinyCLR.Devices.Gpio.GpioController tinyClrController, int pinBase)
 
 ```csharp
@@ -42,11 +38,6 @@ public TinyClrGpioDriver(GHIElectronics.TinyCLR.Devices.Gpio.GpioController tiny
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `tinyClrController` | `GHIElectronics.TinyCLR.Devices.Gpio.GpioController` |  |
-| `pinBase` | `int` |  |
 
 ## Properties
 
@@ -76,10 +67,6 @@ protected internal override void OpenPin(int pinNumber)
 
 Acquires exclusive access to the specified pin. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `pinNumber` | `int` |  |
-
 ### ClosePin(int pinNumber)
 
 ```csharp
@@ -88,10 +75,6 @@ protected internal override void ClosePin(int pinNumber)
 
 Releases a previously opened pin. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `pinNumber` | `int` |  |
-
 ### IsPinModeSupported(int pinNumber, PinMode mode)
 
 ```csharp
@@ -99,11 +82,6 @@ protected internal override bool IsPinModeSupported(int pinNumber, PinMode mode)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `pinNumber` | `int` |  |
-| `mode` | `PinMode` |  |
 
 **Returns** `bool`
 
@@ -115,11 +93,6 @@ protected internal override void SetPinMode(int pinNumber, PinMode mode)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `pinNumber` | `int` |  |
-| `mode` | `PinMode` |  |
-
 ### GetPinMode(int pinNumber)
 
 ```csharp
@@ -127,10 +100,6 @@ protected internal override PinMode GetPinMode(int pinNumber)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `pinNumber` | `int` |  |
 
 **Returns** `PinMode`
 
@@ -142,10 +111,6 @@ protected internal override PinValue Read(int pinNumber)
 
 Read the data from internal buffer _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `pinNumber` | `int` |  |
-
 **Returns** `PinValue`
 
 ### Write(int pinNumber, PinValue value)
@@ -156,11 +121,6 @@ protected internal override void Write(int pinNumber, PinValue value)
 
 Writes one block at the given block index. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `pinNumber` | `int` |  |
-| `value` | `PinValue` |  |
-
 ### AddCallbackForPinValueChangedEvent(int pinNumber, PinEventTypes eventTypes, PinChangeEventHandler callback)
 
 ```csharp
@@ -168,12 +128,6 @@ protected internal override void AddCallbackForPinValueChangedEvent(int pinNumbe
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `pinNumber` | `int` |  |
-| `eventTypes` | `PinEventTypes` |  |
-| `callback` | `PinChangeEventHandler` |  |
 
 ### RemoveCallbackForPinValueChangedEvent(int pinNumber, PinChangeEventHandler callback)
 
@@ -183,11 +137,6 @@ protected internal override void RemoveCallbackForPinValueChangedEvent(int pinNu
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `pinNumber` | `int` |  |
-| `callback` | `PinChangeEventHandler` |  |
-
 ### MapPinNumber(int pinNumber)
 
 ```csharp
@@ -195,9 +144,5 @@ protected virtual int MapPinNumber(int pinNumber)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `pinNumber` | `int` |  |
 
 **Returns** `int`

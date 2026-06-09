@@ -23,11 +23,6 @@ public SelectionChangedEventArgs(int previousIndex, int newIndex)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `previousIndex` | `int` |  |
-| `newIndex` | `int` |  |
-
 ## Fields
 
 ### PreviousSelectedIndex

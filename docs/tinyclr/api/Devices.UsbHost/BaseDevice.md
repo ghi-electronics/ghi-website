@@ -23,12 +23,6 @@ protected BaseDevice(uint id, byte interfaceIndex, DeviceType type)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `id` | `uint` |  |
-| `interfaceIndex` | `byte` |  |
-| `type` | `DeviceType` |  |
-
 ## Properties
 
 ### Connected

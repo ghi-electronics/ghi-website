@@ -41,10 +41,6 @@ void Enable(uint timeout)
 
 Starts the watchdog with the given timeout in milliseconds.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `timeout` | `uint` |  |
-
 ### Disable()
 
 ```csharp

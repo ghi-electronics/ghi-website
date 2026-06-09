@@ -23,10 +23,6 @@ public FileInfo(string fileName)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `fileName` | `string` |  |
-
 ## Properties
 
 ### Name

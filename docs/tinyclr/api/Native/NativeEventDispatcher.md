@@ -47,10 +47,6 @@ public static NativeEventDispatcher GetDispatcher(string name)
 
 Returns the singleton dispatcher for a given event name, creating it on first request. All managed subscribers to the same name share one dispatcher.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `name` | `string` |  |
-
 **Returns** `NativeEventDispatcher`
 
 ## Events

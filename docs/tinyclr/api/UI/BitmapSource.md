@@ -22,7 +22,3 @@ protected BitmapSource(Graphics g) : base(g)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `g` | `Graphics` |  |

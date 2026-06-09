@@ -12,10 +12,3 @@ _No description available._
 ```csharp
 public delegate void SerialDataReceivedEventHandler(object sender, SerialDataReceivedEventArgs e);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sender` | `object` |  |
-| `e` | `SerialDataReceivedEventArgs` |  |

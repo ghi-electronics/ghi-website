@@ -23,13 +23,6 @@ public DeviceDescriptor(ushort Vendor, ushort Product, ushort bcdUsb, ushort bcd
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `Vendor` | `ushort` |  |
-| `Product` | `ushort` |  |
-| `bcdUsb` | `ushort` |  |
-| `bcdDevice` | `ushort` |  |
-
 ## Fields
 
 ### idVendor

@@ -31,10 +31,6 @@ public SerialPort(string portName)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `portName` | `string` |  |
-
 ### SerialPort(string portName, int baudRate)
 
 ```csharp
@@ -42,11 +38,6 @@ public SerialPort(string portName, int baudRate) : this(portName)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `portName` | `string` |  |
-| `baudRate` | `int` |  |
 
 ### SerialPort(string portName, int baudRate, Parity parity)
 
@@ -56,12 +47,6 @@ public SerialPort(string portName, int baudRate, Parity parity) : this(portName,
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `portName` | `string` |  |
-| `baudRate` | `int` |  |
-| `parity` | `Parity` |  |
-
 ### SerialPort(string portName, int baudRate, Parity parity, int dataBits)
 
 ```csharp
@@ -70,13 +55,6 @@ public SerialPort(string portName, int baudRate, Parity parity, int dataBits) : 
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `portName` | `string` |  |
-| `baudRate` | `int` |  |
-| `parity` | `Parity` |  |
-| `dataBits` | `int` |  |
-
 ### SerialPort(string portName, int baudRate, Parity parity, int dataBits, StopBits stopBits)
 
 ```csharp
@@ -84,14 +62,6 @@ public SerialPort(string portName, int baudRate, Parity parity, int dataBits, St
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `portName` | `string` |  |
-| `baudRate` | `int` |  |
-| `parity` | `Parity` |  |
-| `dataBits` | `int` |  |
-| `stopBits` | `StopBits` |  |
 
 ## Properties
 
@@ -377,10 +347,6 @@ public string ReadTo(string value)
 
 Read data the file stream provided in the paramenter _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `value` | `string` |  |
-
 **Returns** `string`
 
 ### Write(string text)
@@ -391,10 +357,6 @@ public void Write(string text)
 
 Write a fileinfo or directoryinfo to the socket _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `text` | `string` |  |
-
 ### WriteLine(string text)
 
 ```csharp
@@ -402,10 +364,6 @@ public void WriteLine(string text)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `text` | `string` |  |
 
 ### Write(byte[] buffer, int offset, int count)
 

@@ -23,10 +23,6 @@ public SslStream(Socket socket) : base(socket, false)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `socket` | `Socket` |  |
-
 ## Properties
 
 ### IsServer
@@ -63,10 +59,6 @@ public void AuthenticateAsClient(string targetHost)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `targetHost` | `string` |  |
-
 ### AuthenticateAsClient(string targetHost, X509Certificate caCertificate)
 
 ```csharp
@@ -74,11 +66,6 @@ public void AuthenticateAsClient(string targetHost, X509Certificate caCertificat
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `targetHost` | `string` |  |
-| `caCertificate` | `X509Certificate` |  |
 
 ### AuthenticateAsClient(string targetHost, X509Certificate caCertificate, X509Certificate clientCertificate)
 
@@ -88,12 +75,6 @@ public void AuthenticateAsClient(string targetHost, X509Certificate caCertificat
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `targetHost` | `string` |  |
-| `caCertificate` | `X509Certificate` |  |
-| `clientCertificate` | `X509Certificate` |  |
-
 ### AuthenticateAsClient(string targetHost, X509Certificate caCertificate, X509Certificate clientCertificate, SslProtocols sslProtocols)
 
 ```csharp
@@ -101,13 +82,6 @@ public void AuthenticateAsClient(string targetHost, X509Certificate caCertificat
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `targetHost` | `string` |  |
-| `caCertificate` | `X509Certificate` |  |
-| `clientCertificate` | `X509Certificate` |  |
-| `sslProtocols` | `SslProtocols` |  |
 
 ### AuthenticateAsClient(string targetHost, X509Certificate caCertificate, X509Certificate clientCertificate, SslProtocols sslProtocols, SslVerification sslVerification)
 
@@ -117,14 +91,6 @@ public void AuthenticateAsClient(string targetHost, X509Certificate caCertificat
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `targetHost` | `string` |  |
-| `caCertificate` | `X509Certificate` |  |
-| `clientCertificate` | `X509Certificate` |  |
-| `sslProtocols` | `SslProtocols` |  |
-| `sslVerification` | `SslVerification` |  |
-
 ### AuthenticateAsServer(X509Certificate caCertificate, SslProtocols sslProtocols)
 
 ```csharp
@@ -132,11 +98,6 @@ public void AuthenticateAsServer(X509Certificate caCertificate, SslProtocols ssl
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `caCertificate` | `X509Certificate` |  |
-| `sslProtocols` | `SslProtocols` |  |
 
 ### Dispose(bool disposing)
 

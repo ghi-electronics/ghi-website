@@ -12,10 +12,3 @@ Handler signature for `UartController.ClearToSendChanged`.
 ```csharp
 public delegate void ClearToSendChangedEventHandler(UartController sender, ClearToSendChangedEventArgs e);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sender` | `UartController` |  |
-| `e` | `ClearToSendChangedEventArgs` |  |

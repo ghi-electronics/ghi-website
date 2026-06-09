@@ -23,11 +23,6 @@ public IPEndPoint(long address, int port)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `address` | `long` |  |
-| `port` | `int` |  |
-
 ### IPEndPoint(IPAddress address, int port)
 
 ```csharp
@@ -35,11 +30,6 @@ public IPEndPoint(IPAddress address, int port)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `address` | `IPAddress` |  |
-| `port` | `int` |  |
 
 ## Properties
 
@@ -87,10 +77,6 @@ public override EndPoint Create(SocketAddress socketAddress)
 
 Creates a WebRequest . _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `socketAddress` | `SocketAddress` |  |
-
 **Returns** `EndPoint`
 
 ### ToString()
@@ -110,10 +96,6 @@ public override bool Equals(object obj)
 ```
 
 Is the given RoutedEventHandlerInfo equals the current _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `obj` | `object` |  |
 
 **Returns** `bool`
 
@@ -135,10 +117,6 @@ public static IPEndPoint Parse(string s)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `s` | `string` |  |
-
 **Returns** `IPEndPoint`
 
 ### TryParse(string s, out IPEndPoint result)
@@ -148,11 +126,6 @@ public static bool TryParse(string s, out IPEndPoint result)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `s` | `string` |  |
-| `result` | `out IPEndPoint` |  |
 
 **Returns** `bool`
 

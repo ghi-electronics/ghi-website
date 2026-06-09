@@ -33,8 +33,4 @@ public static Group Synchronized(Group inner)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `inner` | `Group` |  |
-
 **Returns** `Group`

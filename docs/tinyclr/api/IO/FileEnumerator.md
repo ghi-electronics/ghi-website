@@ -22,8 +22,3 @@ public FileEnumerator(string path, FileEnumFlags flags)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
-| `flags` | `FileEnumFlags` |  |

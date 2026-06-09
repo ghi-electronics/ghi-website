@@ -43,10 +43,6 @@ public virtual string Result(string replacement)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `replacement` | `string` |  |
-
 **Returns** `string`
 
 ### Synchronized(Match inner)
@@ -56,9 +52,5 @@ public static Match Synchronized(Match inner)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `inner` | `Match` |  |
 
 **Returns** `Match`

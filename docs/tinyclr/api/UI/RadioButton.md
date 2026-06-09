@@ -31,10 +31,6 @@ public RadioButton(string groupName) : base()
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `groupName` | `string` |  |
-
 ## Properties
 
 ### Name
@@ -127,10 +123,6 @@ public override void OnRender(DrawingContext dc)
 
 Renders the DataGrid onto it's parent container's graphics. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `dc` | `DrawingContext` |  |
-
 ### OnTouchUp(TouchEventArgs e)
 
 ```csharp
@@ -162,10 +154,6 @@ protected override void OnButtonUp(ButtonEventArgs e)
 ```
 
 An event reporting a button was released. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `ButtonEventArgs` |  |
 
 ### Toggle()
 

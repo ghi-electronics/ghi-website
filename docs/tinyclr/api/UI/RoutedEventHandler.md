@@ -12,10 +12,3 @@ RoutedEventHandler Definition
 ```csharp
 public delegate void RoutedEventHandler(object sender, RoutedEventArgs e);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sender` | `object` |  |
-| `e` | `RoutedEventArgs` |  |

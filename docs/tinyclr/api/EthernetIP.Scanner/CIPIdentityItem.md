@@ -33,11 +33,6 @@ public static CIPIdentityItem GetCIPIdentityItem(int startingbyte, byte[] receiv
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `startingbyte` | `int` |  |
-| `receivedData` | `byte[]` |  |
-
 **Returns** `CIPIdentityItem`
 
 ### GetIPAddress(uint address)
@@ -47,10 +42,6 @@ public static string GetIPAddress(uint address)
 ```
 
 Converts an IP-Address in UIint32 Format (Received by Device)
-
-| Parameter | Type | Description |
-|---|---|---|
-| `address` | `uint` |  |
 
 **Returns** `string`
 

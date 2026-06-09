@@ -23,11 +23,6 @@ public Ellipse(int xRadius, int yRadius)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `xRadius` | `int` |  |
-| `yRadius` | `int` |  |
-
 ## Methods
 
 ### OnRender(Media.DrawingContext dc)
@@ -37,7 +32,3 @@ public override void OnRender(Media.DrawingContext dc)
 ```
 
 Renders the DataGrid onto it's parent container's graphics. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `dc` | `Media.DrawingContext` |  |

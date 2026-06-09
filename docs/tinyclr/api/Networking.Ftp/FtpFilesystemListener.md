@@ -23,11 +23,6 @@ public FtpFilesystemListener(String virtualRoot, String filesystemRoot) : this(v
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `virtualRoot` | `String` |  |
-| `filesystemRoot` | `String` |  |
-
 ### FtpFilesystemListener(String virtualRoot, String filesystemRoot, bool uploadsAllowed)
 
 ```csharp
@@ -35,12 +30,6 @@ public FtpFilesystemListener(String virtualRoot, String filesystemRoot, bool upl
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `virtualRoot` | `String` |  |
-| `filesystemRoot` | `String` |  |
-| `uploadsAllowed` | `bool` |  |
 
 ## Properties
 

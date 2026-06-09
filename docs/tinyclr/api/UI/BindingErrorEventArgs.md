@@ -23,12 +23,6 @@ public BindingErrorEventArgs(BindingErrorDirection direction, string propertyNam
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `direction` | `BindingErrorDirection` |  |
-| `propertyName` | `string` |  |
-| `exception` | `Exception` |  |
-
 ## Properties
 
 ### Direction

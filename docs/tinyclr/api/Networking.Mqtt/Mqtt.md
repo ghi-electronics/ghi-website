@@ -23,10 +23,6 @@ public Mqtt(MqttClientSetting setting)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `setting` | `MqttClientSetting` |  |
-
 ## Properties
 
 ### IsConnected
@@ -71,10 +67,6 @@ public ConnectReturnCode Connect(MqttConnectionSetting setting)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `setting` | `MqttConnectionSetting` |  |
-
 **Returns** `ConnectReturnCode`
 
 ### Disconnect()
@@ -93,12 +85,6 @@ public void Subscribe(string[] topics, QoSLevel[] qosLevels, ushort packetId)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `topics` | `string[]` |  |
-| `qosLevels` | `QoSLevel[]` |  |
-| `packetId` | `ushort` |  |
-
 ### Unsubscribe(string[] topics, ushort packetId)
 
 ```csharp
@@ -107,11 +93,6 @@ public void Unsubscribe(string[] topics, ushort packetId)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `topics` | `string[]` |  |
-| `packetId` | `ushort` |  |
-
 ### Publish(string topic, byte[] data, QoSLevel qosLevel, bool retain, ushort packetId)
 
 ```csharp
@@ -119,14 +100,6 @@ public void Publish(string topic, byte[] data, QoSLevel qosLevel, bool retain, u
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `topic` | `string` |  |
-| `data` | `byte[]` |  |
-| `qosLevel` | `QoSLevel` |  |
-| `retain` | `bool` |  |
-| `packetId` | `ushort` |  |
 
 ## Events
 

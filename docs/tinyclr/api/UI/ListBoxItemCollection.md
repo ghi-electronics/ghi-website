@@ -23,11 +23,6 @@ public ListBoxItemCollection(ListBox listBox, UIElementCollection items)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `listBox` | `ListBox` |  |
-| `items` | `UIElementCollection` |  |
-
 ## Properties
 
 ### index]
@@ -72,10 +67,6 @@ public int Add(ListBoxItem item)
 
 Appends a UIElement to the end of the UIElementCollection. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `item` | `ListBoxItem` |  |
-
 **Returns** `int` — The UIElementCollection index at which the UIElement has been added.
 
 ### Add(UIElement element)
@@ -85,10 +76,6 @@ public int Add(UIElement element)
 ```
 
 Appends a UIElement to the end of the UIElementCollection. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `element` | `UIElement` |  |
 
 **Returns** `int` — The UIElementCollection index at which the UIElement has been added.
 
@@ -108,10 +95,6 @@ public bool Contains(ListBoxItem item)
 
 Determines whether a element is in the UIElementCollection. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `item` | `ListBoxItem` |  |
-
 **Returns** `bool`
 
 ### IndexOf(ListBoxItem item)
@@ -121,10 +104,6 @@ public int IndexOf(ListBoxItem item)
 ```
 
 Returns the zero-based index of the UIElement. If the UIElement is not in the UIElementCollection -1 is returned. If null is passed to the method, the index of the first entry with null is returned. If there is no null entry -1 is returned. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `item` | `ListBoxItem` |  |
 
 **Returns** `int`
 
@@ -148,10 +127,6 @@ public void Remove(ListBoxItem item)
 ```
 
 Removes the specified element from the UIElementCollection. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `item` | `ListBoxItem` |  |
 
 ### RemoveAt(int index)
 

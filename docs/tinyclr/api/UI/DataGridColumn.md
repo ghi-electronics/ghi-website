@@ -23,11 +23,6 @@ public DataGridColumn(string label, int width)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `label` | `string` |  |
-| `width` | `int` |  |
-
 ## Properties
 
 ### Label

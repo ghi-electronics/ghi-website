@@ -48,12 +48,6 @@ protected internal override void OnChildrenChanged(UIElement added, UIElement re
 
 OnChildrenChanged is called when the UIElementCollection of the UIElement is edited. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `added` | `UIElement` |  |
-| `removed` | `UIElement` |  |
-| `indexAffected` | `int` |  |
-
 ### RenderRecursive(DrawingContext dc)
 
 ```csharp
@@ -61,10 +55,6 @@ protected internal override void RenderRecursive(DrawingContext dc)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `dc` | `DrawingContext` |  |
 
 ## Events
 

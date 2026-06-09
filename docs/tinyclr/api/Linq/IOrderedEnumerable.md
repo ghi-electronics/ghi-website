@@ -23,10 +23,4 @@ IOrderedEnumerable<TElement> CreateOrderedEnumerable<TKey>( Func<TElement, TKey>
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `keySelector` | `Func<TElement, TKey>` |  |
-| `comparer` | `IComparer<TKey>` |  |
-| `descending` | `bool` |  |
-
 **Returns** `IOrderedEnumerable<TElement>`

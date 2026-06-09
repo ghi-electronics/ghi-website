@@ -43,8 +43,4 @@ public abstract EndPoint Create(SocketAddress socketAddress)
 
 Creates a WebRequest . _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `socketAddress` | `SocketAddress` |  |
-
 **Returns** `EndPoint`

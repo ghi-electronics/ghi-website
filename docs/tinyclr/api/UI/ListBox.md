@@ -99,10 +99,6 @@ public void ScrollIntoView(ListBoxItem item)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `item` | `ListBoxItem` |  |
-
 ### OnButtonDown(GHIElectronics.TinyCLR.UI.Input.ButtonEventArgs e)
 
 ```csharp
@@ -110,10 +106,6 @@ protected override void OnButtonDown(GHIElectronics.TinyCLR.UI.Input.ButtonEvent
 ```
 
 An event reporting a button was pressed. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `GHIElectronics.TinyCLR.UI.Input.ButtonEventArgs` |  |
 
 ## Events
 

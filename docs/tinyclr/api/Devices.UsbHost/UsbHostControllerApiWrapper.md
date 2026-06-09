@@ -23,10 +23,6 @@ public UsbHostControllerApiWrapper(NativeApi api)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `api` | `NativeApi` |  |
-
 ## Properties
 
 ### Api

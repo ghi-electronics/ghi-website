@@ -23,11 +23,6 @@ public Chart(int width, int height)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `width` | `int` |  |
-| `height` | `int` |  |
-
 ## Properties
 
 ### DivisionAxisX
@@ -151,10 +146,6 @@ public override void OnRender(DrawingContext dc)
 ```
 
 Renders the DataGrid onto it's parent container's graphics. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `dc` | `DrawingContext` |  |
 
 ### Dispose()
 

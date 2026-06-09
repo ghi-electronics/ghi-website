@@ -23,10 +23,6 @@ public SolidColorBrush(Color color)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `color` | `Color` |  |
-
 ## Fields
 
 ### Color

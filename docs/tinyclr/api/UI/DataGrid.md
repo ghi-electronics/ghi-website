@@ -251,10 +251,6 @@ public override void OnRender(DrawingContext dc)
 
 Renders the DataGrid onto it's parent container's graphics.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `dc` | `DrawingContext` |  |
-
 ### OnTouchDown(TouchEventArgs e)
 
 ```csharp
@@ -488,10 +484,6 @@ public void Sort(int columnIndex)
 ```
 
 Sorts the items on a specified column index.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `columnIndex` | `int` |  |
 
 ### Clear()
 

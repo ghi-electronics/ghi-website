@@ -23,10 +23,6 @@ public SizeF(SizeF size)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `size` | `SizeF` |  |
-
 ### SizeF(float width, float height)
 
 ```csharp
@@ -34,11 +30,6 @@ public SizeF(float width, float height)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `width` | `float` |  |
-| `height` | `float` |  |
 
 ## Properties
 

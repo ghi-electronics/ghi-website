@@ -91,10 +91,6 @@ public static UartController FromName(string name)
 
 Returns a UART controller identified by its native API name.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `name` | `string` |  |
-
 **Returns** `UartController`
 
 ### FromProvider(IUartControllerProvider provider)
@@ -104,10 +100,6 @@ public static UartController FromProvider(IUartControllerProvider provider)
 ```
 
 Creates a controller from a custom `IUartControllerProvider`.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `provider` | `IUartControllerProvider` |  |
 
 **Returns** `UartController`
 
@@ -163,10 +155,6 @@ public int Read(byte[] buffer)
 
 Reads up to `buffer`.Length bytes; returns the count actually read.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-
 **Returns** `int`
 
 ### Read(byte[] buffer, int offset, int length)
@@ -176,12 +164,6 @@ public int Read(byte[] buffer, int offset, int length)
 ```
 
 Reads up to `length` bytes into `buffer` at `offset`.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-| `offset` | `int` |  |
-| `length` | `int` |  |
 
 **Returns** `int` — Number of bytes actually read (may be less than requested).
 
@@ -193,10 +175,6 @@ public int Write(byte[] buffer)
 
 Writes `buffer`.Length bytes.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-
 **Returns** `int`
 
 ### Write(byte[] buffer, int offset, int length)
@@ -206,12 +184,6 @@ public int Write(byte[] buffer, int offset, int length)
 ```
 
 Writes `length` bytes from `buffer` at `offset`.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-| `offset` | `int` |  |
-| `length` | `int` |  |
 
 **Returns** `int`
 

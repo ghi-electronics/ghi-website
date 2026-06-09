@@ -23,11 +23,6 @@ public ApplicationUpdate(Stream stream, byte[] key)
 
 Creates an updater that reads the new application image from `stream` and verifies its signature against `key`.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `stream` | `Stream` |  |
-| `key` | `byte[]` |  |
-
 ## Properties
 
 ### ActivityPin

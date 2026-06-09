@@ -23,10 +23,6 @@ public HashAlgorithmName(string name)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `name` | `string` |  |
-
 ## Properties
 
 ### Name
@@ -87,10 +83,6 @@ public bool Equals(HashAlgorithmName other)
 
 Is the given RoutedEventHandlerInfo equals the current _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `other` | `HashAlgorithmName` |  |
-
 **Returns** `bool`
 
 ### Equals(object obj)
@@ -100,10 +92,6 @@ public override bool Equals(object obj)
 ```
 
 Is the given RoutedEventHandlerInfo equals the current _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `obj` | `object` |  |
 
 **Returns** `bool`
 
@@ -135,11 +123,6 @@ public static bool operator ==(HashAlgorithmName left, HashAlgorithmName right)
 
 Equals operator overload _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `left` | `HashAlgorithmName` |  |
-| `right` | `HashAlgorithmName` |  |
-
 **Returns** `bool operator`
 
 ### !=(HashAlgorithmName left, HashAlgorithmName right)
@@ -149,10 +132,5 @@ public static bool operator !=(HashAlgorithmName left, HashAlgorithmName right)
 ```
 
 NotEquals operator overload _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `left` | `HashAlgorithmName` |  |
-| `right` | `HashAlgorithmName` |  |
 
 **Returns** `bool operator`

@@ -137,10 +137,6 @@ public abstract string GetAttribute(string name)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `name` | `string` |  |
-
 **Returns** `string`
 
 ### GetAttribute(string name, string namespaceURI)
@@ -150,11 +146,6 @@ public abstract string GetAttribute(string name, string namespaceURI)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `name` | `string` |  |
-| `namespaceURI` | `string` |  |
 
 **Returns** `string`
 
@@ -166,10 +157,6 @@ public abstract string GetAttribute(int i)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `i` | `int` |  |
-
 **Returns** `string`
 
 ### MoveToAttribute(string name)
@@ -180,10 +167,6 @@ public abstract bool MoveToAttribute(string name)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `name` | `string` |  |
-
 **Returns** `bool`
 
 ### MoveToAttribute(string name, string ns)
@@ -193,11 +176,6 @@ public abstract bool MoveToAttribute(string name, string ns)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `name` | `string` |  |
-| `ns` | `string` |  |
 
 **Returns** `bool`
 
@@ -267,10 +245,6 @@ public abstract string LookupNamespace(string prefix)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `prefix` | `string` |  |
-
 **Returns** `string`
 
 ### ResolveEntity()
@@ -317,10 +291,6 @@ public virtual bool IsStartElement(string name)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `name` | `string` |  |
-
 **Returns** `bool`
 
 ### MoveToContent()
@@ -348,10 +318,6 @@ public virtual void ReadStartElement(string name)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `name` | `string` |  |
 
 ### ReadEndElement()
 
@@ -387,10 +353,6 @@ public static XmlReader Create(Stream input)
 
 Creates a WebRequest . _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `input` | `Stream` |  |
-
 **Returns** `XmlReader`
 
 ### Create(Stream input, XmlReaderSettings settings)
@@ -400,11 +362,6 @@ public static XmlReader Create(Stream input, XmlReaderSettings settings)
 ```
 
 Creates or overwrites a file. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `input` | `Stream` |  |
-| `settings` | `XmlReaderSettings` |  |
 
 **Returns** `XmlReader` — TinyFileStream that provides stream based access to the file.
 
@@ -416,12 +373,6 @@ public static XmlReader Create(Stream input, XmlReaderSettings settings, string 
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `input` | `Stream` |  |
-| `settings` | `XmlReaderSettings` |  |
-| `baseUri` | `string` |  |
-
 **Returns** `XmlReader`
 
 ### IsName(string str)
@@ -432,10 +383,6 @@ public static bool IsName(string str)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `str` | `string` |  |
-
 **Returns** `bool`
 
 ### IsNameToken(string str)
@@ -445,9 +392,5 @@ public static bool IsNameToken(string str)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `str` | `string` |  |
 
 **Returns** `bool`

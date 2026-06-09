@@ -23,10 +23,6 @@ public DriveInfo(string driveName)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `driveName` | `string` |  |
-
 ## Properties
 
 ### Name
@@ -121,10 +117,6 @@ public static IDriveProvider RegisterDriveProvider(IDriveProvider provider)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `provider` | `IDriveProvider` |  |
-
 **Returns** `IDriveProvider`
 
 ### DeregisterDriveProvider(IDriveProvider provider)
@@ -134,7 +126,3 @@ public static void DeregisterDriveProvider(IDriveProvider provider)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `provider` | `IDriveProvider` |  |

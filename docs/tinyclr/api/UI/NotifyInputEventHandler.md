@@ -12,10 +12,3 @@ Delegate type for handles of events that use `NotifyInputEventArgs`.
 ```csharp
 public delegate void NotifyInputEventHandler(object sender, NotifyInputEventArgs e);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sender` | `object` |  |
-| `e` | `NotifyInputEventArgs` |  |

@@ -89,10 +89,6 @@ public extern void SetTime(RtcDateTime value)
 
 Sets the system clock from a UTC `DateTime`. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `value` | `RtcDateTime` |  |
-
 ### WriteBackupMemory(byte[] sourceData, uint sourceOffset, uint destinationOffset, int count)
 
 ```csharp

@@ -43,10 +43,6 @@ public static UsbClientController FromName(string name)
 
 Returns a watchdog identified by its native API name. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `name` | `string` |  |
-
 **Returns** `UsbClientController`
 
 ### FromProvider(IUsbClientControllerProvider provider)
@@ -56,10 +52,6 @@ public static UsbClientController FromProvider(IUsbClientControllerProvider prov
 ```
 
 Creates a controller from a custom `IWatchdogControllerProvider`. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `provider` | `IUsbClientControllerProvider` |  |
 
 **Returns** `UsbClientController`
 

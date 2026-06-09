@@ -73,10 +73,6 @@ public static object GetDefaultFromCreator(NativeApiType apiType)
 
 Invokes a registered default-creator for the given API type, if any.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `apiType` | `NativeApiType` |  |
-
 **Returns** `object`
 
 ### Find(string name, NativeApiType type)
@@ -101,10 +97,6 @@ public static extern string GetDefaultName(NativeApiType type)
 ```
 
 Returns the name of the default API for a given type.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `type` | `NativeApiType` |  |
 
 **Returns** `string`
 

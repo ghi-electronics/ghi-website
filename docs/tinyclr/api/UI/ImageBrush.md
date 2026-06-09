@@ -23,10 +23,6 @@ public ImageBrush(ImageSource imagesource)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `imagesource` | `ImageSource` |  |
-
 ## Fields
 
 ### ImageSource

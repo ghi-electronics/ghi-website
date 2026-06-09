@@ -103,11 +103,6 @@ public void TransferSequential(byte[] writeBuffer, byte[] readBuffer)
 
 Writes all of `writeBuffer`, then reads all of `readBuffer` in a single CS-low transaction.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `writeBuffer` | `byte[]` |  |
-| `readBuffer` | `byte[]` |  |
-
 ### Read(byte[] buffer, int offset, int length)
 
 ```csharp
@@ -115,12 +110,6 @@ public void Read(byte[] buffer, int offset, int length)
 ```
 
 Reads `length` bytes into `buffer` starting at `offset`.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-| `offset` | `int` |  |
-| `length` | `int` |  |
 
 ### Write(byte[] buffer, int offset, int length)
 
@@ -130,12 +119,6 @@ public void Write(byte[] buffer, int offset, int length)
 
 Writes `length` bytes from `buffer` starting at `offset`.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-| `offset` | `int` |  |
-| `length` | `int` |  |
-
 ### TransferFullDuplex(byte[] writeBuffer, int writeOffset, int writeLength, byte[] readBuffer, int readOffset, int readLength)
 
 ```csharp
@@ -143,15 +126,6 @@ public void TransferFullDuplex(byte[] writeBuffer, int writeOffset, int writeLen
 ```
 
 Full-duplex transfer with explicit slice offsets and lengths.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `writeBuffer` | `byte[]` |  |
-| `writeOffset` | `int` |  |
-| `writeLength` | `int` |  |
-| `readBuffer` | `byte[]` |  |
-| `readOffset` | `int` |  |
-| `readLength` | `int` |  |
 
 ### TransferSequential(byte[] writeBuffer, int writeOffset, int writeLength, byte[] readBuffer, int readOffset, int readLength)
 
@@ -161,15 +135,6 @@ public void TransferSequential(byte[] writeBuffer, int writeOffset, int writeLen
 
 Sequential write-then-read with explicit slice offsets and lengths; chip select stays asserted between the two phases.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `writeBuffer` | `byte[]` |  |
-| `writeOffset` | `int` |  |
-| `writeLength` | `int` |  |
-| `readBuffer` | `byte[]` |  |
-| `readOffset` | `int` |  |
-| `readLength` | `int` |  |
-
 ### Write(byte[] buffer, int x, int y, int width, int height, int originalWidth, int columnMultiplier, int rowMultiplier)
 
 ```csharp
@@ -177,14 +142,3 @@ public void Write(byte[] buffer, int x, int y, int width, int height, int origin
 ```
 
 Writes a rectangular framebuffer region with optional pixel replication. `columnMultiplier` and `rowMultiplier` let the display driver scale up small framebuffers without a CPU-side resize.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-| `x` | `int` |  |
-| `y` | `int` |  |
-| `width` | `int` |  |
-| `height` | `int` |  |
-| `originalWidth` | `int` |  |
-| `columnMultiplier` | `int` |  |
-| `rowMultiplier` | `int` |  |

@@ -39,10 +39,6 @@ public static void Sleep(DateTime wakeupTime)
 
 Enters Sleep3 with an optional wake time. Pass `DateTime.MaxValue` for "pin only".
 
-| Parameter | Type | Description |
-|---|---|---|
-| `wakeupTime` | `DateTime` |  |
-
 ### Shutdown(int wakeupPins, DateTime wakeupTime)
 
 ```csharp
@@ -64,11 +60,6 @@ public static extern void SetSystemClock(SystemClock clock, bool persist)
 
 Switches the core-clock profile. `persist` stores the choice across resets.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `clock` | `SystemClock` |  |
-| `persist` | `bool` |  |
-
 ### GetSystemClock()
 
 ```csharp
@@ -86,10 +77,6 @@ public static extern void Reset(bool runCoreAfter)
 ```
 
 Soft-resets the device. When `runCoreAfter` is true, the app re-runs after reset; otherwise the device boots to bootloader.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `runCoreAfter` | `bool` |  |
 
 ### GetResetSource()
 

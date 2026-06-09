@@ -88,10 +88,6 @@ public extern int WriteByte(int sendbyte)
 
 Writes a single byte; the read value is discarded.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `sendbyte` | `int` |  |
-
 **Returns** `int`
 
 ### ReadByte()
@@ -146,11 +142,6 @@ public extern int FindNextDevice(bool performResetBeforeSearch, bool searchWithA
 ```
 
 Continues a ROM search started by `FindFirstDevice`.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `performResetBeforeSearch` | `bool` |  |
-| `searchWithAlarmCommand` | `bool` |  |
 
 **Returns** `int`
 

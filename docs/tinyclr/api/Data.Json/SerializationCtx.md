@@ -23,10 +23,6 @@ public SerializationCtx(JsonSerializationOptions options)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `options` | `JsonSerializationOptions` |  |
-
 ## Fields
 
 ### options

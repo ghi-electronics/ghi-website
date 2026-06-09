@@ -51,10 +51,6 @@ protected AutoResetEvent m_ContextQueueLock = new AutoResetEvent(false)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `false` | `` |  |
-
 **Returns** `AutoResetEvent m_ContextQueueLock = new`
 
 ### Start()

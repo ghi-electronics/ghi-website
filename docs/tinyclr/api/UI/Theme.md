@@ -97,10 +97,6 @@ public static readonly SolidColorBrush WindowBackgroundBrush = new SolidColorBru
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `Colors.White` | `` |  |
-
 **Returns** `SolidColorBrush WindowBackgroundBrush = new`
 
 ### SolidColorBrush( Colors.LightGray)
@@ -110,10 +106,6 @@ public static readonly SolidColorBrush ControlSurfaceBrush = new SolidColorBrush
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `Colors.LightGray` | `` |  |
 
 **Returns** `SolidColorBrush ControlSurfaceBrush = new`
 
@@ -125,10 +117,6 @@ public static readonly SolidColorBrush TextBoxFillBrush = new SolidColorBrush(Co
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `Colors.White` | `` |  |
-
 **Returns** `SolidColorBrush TextBoxFillBrush = new`
 
 ### SolidColorBrush( Colors.Black)
@@ -139,10 +127,6 @@ public static readonly SolidColorBrush TextPrimaryBrush = new SolidColorBrush(Co
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `Colors.Black` | `` |  |
-
 **Returns** `SolidColorBrush TextPrimaryBrush = new`
 
 ### SolidColorBrush( Colors.Teal)
@@ -152,10 +136,6 @@ public static readonly SolidColorBrush SelectionBrush = new SolidColorBrush(Colo
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `Colors.Teal` | `` |  |
 
 **Returns** `SolidColorBrush SelectionBrush = new`
 

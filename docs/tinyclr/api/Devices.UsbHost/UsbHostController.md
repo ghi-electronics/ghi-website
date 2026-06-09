@@ -43,10 +43,6 @@ public static UsbHostController FromName(string name)
 
 Returns a watchdog identified by its native API name. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `name` | `string` |  |
-
 **Returns** `UsbHostController`
 
 ### FromProvider(IUsbHostControllerProvider provider)
@@ -56,10 +52,6 @@ public static UsbHostController FromProvider(IUsbHostControllerProvider provider
 ```
 
 Creates a controller from a custom `IWatchdogControllerProvider`. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `provider` | `IUsbHostControllerProvider` |  |
 
 **Returns** `UsbHostController`
 

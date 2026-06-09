@@ -81,10 +81,6 @@ public void Read(byte[] buffer)
 
 Reads `buffer`.Length bytes from the slave.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-
 ### Write(byte[] buffer)
 
 ```csharp
@@ -92,10 +88,6 @@ public void Write(byte[] buffer)
 ```
 
 Writes `buffer`.Length bytes to the slave.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
 
 ### WriteRead(byte[] writeBuffer, byte[] readBuffer)
 
@@ -105,11 +97,6 @@ public void WriteRead(byte[] writeBuffer, byte[] readBuffer)
 
 Performs a register-style write-then-read transaction.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `writeBuffer` | `byte[]` |  |
-| `readBuffer` | `byte[]` |  |
-
 ### Read(byte[] buffer, int offset, int length)
 
 ```csharp
@@ -117,12 +104,6 @@ public void Read(byte[] buffer, int offset, int length)
 ```
 
 Reads `length` bytes into `buffer` starting at `offset`.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-| `offset` | `int` |  |
-| `length` | `int` |  |
 
 ### Write(byte[] buffer, int offset, int length)
 
@@ -132,12 +113,6 @@ public void Write(byte[] buffer, int offset, int length)
 
 Writes `length` bytes from `buffer` starting at `offset`.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-| `offset` | `int` |  |
-| `length` | `int` |  |
-
 ### WriteRead(byte[] writeBuffer, int writeOffset, int writeLength, byte[] readBuffer, int readOffset, int readLength)
 
 ```csharp
@@ -146,15 +121,6 @@ public void WriteRead(byte[] writeBuffer, int writeOffset, int writeLength, byte
 
 Performs a write-then-read transaction with explicit slice offsets and lengths. Throws when the slave NACKs or the transfer is otherwise incomplete (master mode only).
 
-| Parameter | Type | Description |
-|---|---|---|
-| `writeBuffer` | `byte[]` |  |
-| `writeOffset` | `int` |  |
-| `writeLength` | `int` |  |
-| `readBuffer` | `byte[]` |  |
-| `readOffset` | `int` |  |
-| `readLength` | `int` |  |
-
 ### ReadPartial(byte[] buffer)
 
 ```csharp
@@ -162,10 +128,6 @@ public I2cTransferResult ReadPartial(byte[] buffer)
 ```
 
 Like `Read(byte[])` but returns a status + count instead of throwing on a partial transfer.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
 
 **Returns** `I2cTransferResult`
 
@@ -177,10 +139,6 @@ public I2cTransferResult WritePartial(byte[] buffer)
 
 Like `Write(byte[])` but returns a status + count instead of throwing on a partial transfer.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-
 **Returns** `I2cTransferResult`
 
 ### WriteReadPartial(byte[] writeBuffer, byte[] readBuffer)
@@ -190,11 +148,6 @@ public I2cTransferResult WriteReadPartial(byte[] writeBuffer, byte[] readBuffer)
 ```
 
 Like `WriteRead(byte[],byte[])` but returns a status + counts.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `writeBuffer` | `byte[]` |  |
-| `readBuffer` | `byte[]` |  |
 
 **Returns** `I2cTransferResult`
 
@@ -206,12 +159,6 @@ public I2cTransferResult ReadPartial(byte[] buffer, int offset, int length)
 
 Partial read with explicit slice offsets and lengths.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-| `offset` | `int` |  |
-| `length` | `int` |  |
-
 **Returns** `I2cTransferResult`
 
 ### WritePartial(byte[] buffer, int offset, int length)
@@ -222,12 +169,6 @@ public I2cTransferResult WritePartial(byte[] buffer, int offset, int length)
 
 Partial write with explicit slice offsets and lengths.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-| `offset` | `int` |  |
-| `length` | `int` |  |
-
 **Returns** `I2cTransferResult`
 
 ### WriteReadPartial(byte[] writeBuffer, int writeOffset, int writeLength, byte[] readBuffer, int readOffset, int readLength)
@@ -237,15 +178,6 @@ public I2cTransferResult WriteReadPartial(byte[] writeBuffer, int writeOffset, i
 ```
 
 Partial write-then-read with explicit slice offsets and lengths.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `writeBuffer` | `byte[]` |  |
-| `writeOffset` | `int` |  |
-| `writeLength` | `int` |  |
-| `readBuffer` | `byte[]` |  |
-| `readOffset` | `int` |  |
-| `readLength` | `int` |  |
 
 **Returns** `I2cTransferResult` — A `I2cTransferResult` with the transfer status and byte counts.
 

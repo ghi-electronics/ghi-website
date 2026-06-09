@@ -38,14 +38,6 @@ public RawTouchInputReport(PresentationSource inputSource, DateTime timestamp, b
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `inputSource` | `PresentationSource` |  |
-| `timestamp` | `DateTime` |  |
-| `eventMessage` | `byte` |  |
-| `touches` | `TouchInput[]` |  |
-| `destTarget` | `UIElement` |  |
-
 ## Fields
 
 ### Target

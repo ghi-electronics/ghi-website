@@ -41,10 +41,6 @@ public UIElement Focus(UIElement obj)
 
 Focuses the button input on a particular element.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `obj` | `UIElement` |  |
-
 **Returns** `UIElement` — Element focused to
 
 ### IsButtonDown(HardwareButton button)
@@ -54,10 +50,6 @@ public bool IsButtonDown(HardwareButton button)
 ```
 
 Returns whether or not the specified button is down.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `button` | `HardwareButton` |  |
 
 **Returns** `bool`
 
@@ -69,10 +61,6 @@ public bool IsButtonUp(HardwareButton button)
 
 Returns whether or not the specified button is up.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `button` | `HardwareButton` |  |
-
 **Returns** `bool`
 
 ### IsButtonHeld(HardwareButton button)
@@ -83,10 +71,6 @@ public bool IsButtonHeld(HardwareButton button)
 
 Returns whether or not the specified button is held.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `button` | `HardwareButton` |  |
-
 **Returns** `bool`
 
 ### GetButtonState(HardwareButton button)
@@ -96,9 +80,5 @@ public ButtonState GetButtonState(HardwareButton button)
 ```
 
 Returns the state of the specified button.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `button` | `HardwareButton` |  |
 
 **Returns** `ButtonState`

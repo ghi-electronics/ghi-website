@@ -33,12 +33,6 @@ public static DialogResult Show(string message, string caption, MessageBoxButton
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `message` | `string` |  |
-| `caption` | `string` |  |
-| `buttons` | `MessageBoxButtons` |  |
-
 **Returns** `DialogResult`
 
 ### Show(string message, string caption, MessageBoxButtons buttons, Font font)
@@ -49,13 +43,6 @@ public static DialogResult Show(string message, string caption, MessageBoxButton
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `message` | `string` |  |
-| `caption` | `string` |  |
-| `buttons` | `MessageBoxButtons` |  |
-| `font` | `Font` |  |
-
 **Returns** `DialogResult`
 
 ### Show(UIElement owner, string message, string caption, MessageBoxButtons buttons, Font font)
@@ -65,13 +52,5 @@ public static DialogResult Show(UIElement owner, string message, string caption,
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `owner` | `UIElement` |  |
-| `message` | `string` |  |
-| `caption` | `string` |  |
-| `buttons` | `MessageBoxButtons` |  |
-| `font` | `Font` |  |
 
 **Returns** `DialogResult`

@@ -193,11 +193,6 @@ protected bool ParseSchemeSpecificPart(string sUri, int iStart)
 
 Parse Scheme-specific part of uri for host, port and absolute path Briefed syntax abstracted from .NET FX: Group 1 - http, https, ftp, file, gopher, nntp, telnet, ldap, net.tcp and net.pipe Must be rooted. The 1st segment is authority. Empty path should be replace as '/' Group 2 - file Reminder: Treat all '\' as '/' If it starts with only one '/', host should be empty Otherwise, all leading '/' should be ignored before searching for 1st segment. The 1st segment is host Group 3 - news and uuid Authority always be empty. Everything goes to path. Group 4 - mailto and all other shemes The 1st segment is authority iff it was not rooted. Group 5 - all other schemes The 1st segment is authority iff it was rooted. Empty path should be replace as '/'
 
-| Parameter | Type | Description |
-|---|---|---|
-| `sUri` | `string` |  |
-| `iStart` | `int` |  |
-
 **Returns** `bool`
 
 ### Split(string sUri, int iStart, out string sAuthority, out string sPath, bool bReplaceEmptyPath)
@@ -207,14 +202,6 @@ protected void Split(string sUri, int iStart, out string sAuthority, out string 
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sUri` | `string` |  |
-| `iStart` | `int` |  |
-| `sAuthority` | `out string` |  |
-| `sPath` | `out string` |  |
-| `bReplaceEmptyPath` | `bool` |  |
 
 ### IsIPv4(String host)
 
@@ -237,10 +224,6 @@ protected bool IsIPv6(string host)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `host` | `string` |  |
 
 **Returns** `bool`
 
@@ -286,10 +269,6 @@ public override bool Equals(object o)
 
 Is the given RoutedEventHandlerInfo equals the current _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `o` | `object` |  |
-
 **Returns** `bool`
 
 ### ==(Uri lhs, Uri rhs)
@@ -300,11 +279,6 @@ public static bool operator ==(Uri lhs, Uri rhs)
 
 Equals operator overload _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `lhs` | `Uri` |  |
-| `rhs` | `Uri` |  |
-
 **Returns** `bool operator`
 
 ### !=(Uri lhs, Uri rhs)
@@ -314,11 +288,6 @@ public static bool operator !=(Uri lhs, Uri rhs)
 ```
 
 NotEquals operator overload _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `lhs` | `Uri` |  |
-| `rhs` | `Uri` |  |
 
 **Returns** `bool operator`
 
@@ -371,10 +340,6 @@ public static UriHostNameType CheckHostName(string name)
 ```
 
 Determines whether the specified host name is a valid DNS name, an IPv4 address, an IPv6 address, or otherwise unknown. Matches .NET BCL shape.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `name` | `string` |  |
 
 **Returns** `UriHostNameType`
 

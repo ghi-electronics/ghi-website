@@ -23,10 +23,6 @@ public Joystick(UsbClientController usbClientController) : this(usbClientControl
 
 Creates a new joystick with default parameters.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `usbClientController` | `UsbClientController` |  |
-
 ### Joystick(UsbClientController usbClientController, UsbClientSetting usbClientSetting)
 
 ```csharp

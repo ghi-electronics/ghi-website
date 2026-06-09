@@ -31,10 +31,6 @@ public Text(string content) : this(null, content)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `content` | `string` |  |
-
 ### Text(System.Drawing.Font font, string content)
 
 ```csharp
@@ -42,11 +38,6 @@ public Text(System.Drawing.Font font, string content)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `font` | `System.Drawing.Font` |  |
-| `content` | `string` |  |
 
 ## Properties
 
@@ -130,10 +121,6 @@ public override void OnRender(DrawingContext dc)
 ```
 
 Renders the DataGrid onto it's parent container's graphics. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `dc` | `DrawingContext` |  |
 
 ## Fields
 

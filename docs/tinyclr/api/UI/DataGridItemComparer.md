@@ -33,9 +33,4 @@ public int Compare(object x, object y)
 
 Compare two DataGridRow objects.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `x` | `object` |  |
-| `y` | `object` |  |
-
 **Returns** `int`

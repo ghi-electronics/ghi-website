@@ -59,10 +59,6 @@ public static DisplayController FromName(string name)
 
 Returns a display controller identified by its native API name.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `name` | `string` |  |
-
 **Returns** `DisplayController`
 
 ### FromProvider(IDisplayControllerProvider provider)
@@ -72,10 +68,6 @@ public static DisplayController FromProvider(IDisplayControllerProvider provider
 ```
 
 Creates a controller from a custom `IDisplayControllerProvider`.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `provider` | `IDisplayControllerProvider` |  |
 
 **Returns** `DisplayController`
 
@@ -144,10 +136,6 @@ public void DrawString(string value)
 ```
 
 Renders a string via the controller's built-in text mode (where supported).
-
-| Parameter | Type | Description |
-|---|---|---|
-| `value` | `string` |  |
 
 ### SetConfiguration(DisplayControllerSettings configuration)
 

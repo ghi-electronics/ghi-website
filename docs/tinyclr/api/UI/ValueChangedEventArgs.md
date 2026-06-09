@@ -23,10 +23,6 @@ public ValueChangedEventArgs(double value)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `value` | `double` |  |
-
 ## Properties
 
 ### Value

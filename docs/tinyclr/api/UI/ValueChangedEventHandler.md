@@ -12,10 +12,3 @@ _No description available._
 ```csharp
 public delegate void ValueChangedEventHandler(object sender, ValueChangedEventArgs args);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sender` | `object` |  |
-| `args` | `ValueChangedEventArgs` |  |

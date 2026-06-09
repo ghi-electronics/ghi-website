@@ -23,10 +23,6 @@ public WinUsb(UsbClientController usbClientController) : this(usbClientControlle
 
 Creates a new WinUsb interface with default parameters.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `usbClientController` | `UsbClientController` |  |
-
 ### WinUsb(UsbClientController usbClientController, UsbClientSetting usbClientSetting)
 
 ```csharp

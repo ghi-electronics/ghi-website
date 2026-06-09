@@ -41,12 +41,6 @@ public static readonly RoutedEvent PreviewButtonDownEvent = new RoutedEvent( , R
 
 PreviewButtonDown
 
-| Parameter | Type | Description |
-|---|---|---|
-| `` | `` |  |
-| `RoutingStrategy.Tunnel` | `` |  |
-| `typeof(ButtonEventHandler)` | `` |  |
-
 **Returns** `RoutedEvent PreviewButtonDownEvent = new`
 
 ### RoutedEvent( ,  RoutingStrategy.Tunnel,  typeof(ButtonEventHandler))
@@ -56,12 +50,6 @@ public static readonly RoutedEvent PreviewButtonUpEvent = new RoutedEvent( , Rou
 ```
 
 PreviewButtonUp
-
-| Parameter | Type | Description |
-|---|---|---|
-| `` | `` |  |
-| `RoutingStrategy.Tunnel` | `` |  |
-| `typeof(ButtonEventHandler)` | `` |  |
 
 **Returns** `RoutedEvent PreviewButtonUpEvent = new`
 
@@ -73,12 +61,6 @@ public static readonly RoutedEvent ButtonDownEvent = new RoutedEvent( , RoutingS
 
 ButtonDown
 
-| Parameter | Type | Description |
-|---|---|---|
-| `` | `` |  |
-| `RoutingStrategy.Bubble` | `` |  |
-| `typeof(ButtonEventHandler)` | `` |  |
-
 **Returns** `RoutedEvent ButtonDownEvent = new`
 
 ### RoutedEvent( ,  RoutingStrategy.Bubble,  typeof(ButtonEventHandler))
@@ -88,12 +70,6 @@ public static readonly RoutedEvent ButtonUpEvent = new RoutedEvent( , RoutingStr
 ```
 
 ButtonUp
-
-| Parameter | Type | Description |
-|---|---|---|
-| `` | `` |  |
-| `RoutingStrategy.Bubble` | `` |  |
-| `typeof(ButtonEventHandler)` | `` |  |
 
 **Returns** `RoutedEvent ButtonUpEvent = new`
 
@@ -105,12 +81,6 @@ public static readonly RoutedEvent GotFocusEvent = new RoutedEvent( , RoutingStr
 
 GotFocus
 
-| Parameter | Type | Description |
-|---|---|---|
-| `` | `` |  |
-| `RoutingStrategy.Bubble` | `` |  |
-| `typeof(FocusChangedEventHandler)` | `` |  |
-
 **Returns** `RoutedEvent GotFocusEvent = new`
 
 ### RoutedEvent( ,  RoutingStrategy.Bubble,  typeof(FocusChangedEventHandler))
@@ -120,12 +90,6 @@ public static readonly RoutedEvent LostFocusEvent = new RoutedEvent( , RoutingSt
 ```
 
 LostFocus
-
-| Parameter | Type | Description |
-|---|---|---|
-| `` | `` |  |
-| `RoutingStrategy.Bubble` | `` |  |
-| `typeof(FocusChangedEventHandler)` | `` |  |
 
 **Returns** `RoutedEvent LostFocusEvent = new`
 
@@ -151,10 +115,6 @@ public static bool IsButtonDown(HardwareButton button)
 
 Returns whether or not the specified button is down.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `button` | `HardwareButton` |  |
-
 **Returns** `bool`
 
 ### IsButtonUp(HardwareButton button)
@@ -164,10 +124,6 @@ public static bool IsButtonUp(HardwareButton button)
 ```
 
 Returns whether or not the specified button is up.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `button` | `HardwareButton` |  |
 
 **Returns** `bool`
 
@@ -179,10 +135,6 @@ public static bool IsButtonHeld(HardwareButton button)
 
 Returns whether or not the specified button is held.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `button` | `HardwareButton` |  |
-
 **Returns** `bool`
 
 ### GetButtonState(HardwareButton button)
@@ -192,9 +144,5 @@ public static ButtonState GetButtonState(HardwareButton button)
 ```
 
 Returns the state of the specified button.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `button` | `HardwareButton` |  |
 
 **Returns** `ButtonState`

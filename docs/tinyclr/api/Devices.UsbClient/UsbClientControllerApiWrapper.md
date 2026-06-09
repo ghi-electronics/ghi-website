@@ -23,10 +23,6 @@ public UsbClientControllerApiWrapper(NativeApi api)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `api` | `NativeApi` |  |
-
 ## Properties
 
 ### Api
@@ -91,10 +87,6 @@ public int BytesToRead(int streamIndex)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `streamIndex` | `int` |  |
-
 **Returns** `int`
 
 ### BytesToWrite(int streamIndex)
@@ -104,10 +96,6 @@ public int BytesToWrite(int streamIndex)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `streamIndex` | `int` |  |
 
 **Returns** `int`
 
@@ -135,10 +123,6 @@ public extern void SetActiveSetting(UsbClientSetting setting)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `setting` | `UsbClientSetting` |  |
-
 ### Read(int streamIndex, byte[] data, int offset, int count)
 
 ```csharp
@@ -146,13 +130,6 @@ public extern int Read(int streamIndex, byte[] data, int offset, int count)
 ```
 
 Captures a slice of inter-edge intervals after waiting for `waitForState`. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `streamIndex` | `int` |  |
-| `data` | `byte[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |
 
 **Returns** `int`
 
@@ -164,13 +141,6 @@ public extern int Write(int streamIndex, byte[] data, int offset, int count)
 
 Writes `length` bytes; optional trailing break of `breakDuration`. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `streamIndex` | `int` |  |
-| `data` | `byte[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |
-
 **Returns** `int`
 
 ### Flush(int streamIndex)
@@ -181,10 +151,6 @@ public extern void Flush(int streamIndex)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `streamIndex` | `int` |  |
-
 ### ClearReadBuffer(int streamIndex)
 
 ```csharp
@@ -193,10 +159,6 @@ public extern void ClearReadBuffer(int streamIndex)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `streamIndex` | `int` |  |
-
 ### ClearWriteBuffer(int streamIndex)
 
 ```csharp
@@ -204,10 +166,6 @@ public extern void ClearWriteBuffer(int streamIndex)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `streamIndex` | `int` |  |
 
 ### GetControlPacketSize()
 
@@ -237,10 +195,6 @@ public extern void SetDeviceDescriptor(Configuration.DeviceDescriptor[] deviceDe
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `deviceDescriptor` | `Configuration.DeviceDescriptor[]` |  |
-
 ### SetConfigurationDescriptor(Configuration.ConfigurationDescriptor[] configurationDescriptor)
 
 ```csharp
@@ -248,10 +202,6 @@ public extern void SetConfigurationDescriptor(Configuration.ConfigurationDescrip
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `configurationDescriptor` | `Configuration.ConfigurationDescriptor[]` |  |
 
 ### SetStringDescriptor(Configuration.StringDescriptor[] stringDescriptor, uint index)
 
@@ -261,11 +211,6 @@ public extern void SetStringDescriptor(Configuration.StringDescriptor[] stringDe
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `stringDescriptor` | `Configuration.StringDescriptor[]` |  |
-| `index` | `uint` |  |
-
 ### SetGenericDescriptor(Configuration.GenericDescriptor[] genericDescriptor)
 
 ```csharp
@@ -273,10 +218,6 @@ public extern void SetGenericDescriptor(Configuration.GenericDescriptor[] generi
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `genericDescriptor` | `Configuration.GenericDescriptor[]` |  |
 
 ## Events
 

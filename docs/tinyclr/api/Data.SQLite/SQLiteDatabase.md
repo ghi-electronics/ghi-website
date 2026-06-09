@@ -23,10 +23,6 @@ public SQLiteDatabase(string file)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `file` | `string` |  |
-
 ## Methods
 
 ### Dispose()
@@ -45,10 +41,6 @@ public void ExecuteNonQuery(string query)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `query` | `string` |  |
-
 ### ExecuteQuery(string query)
 
 ```csharp
@@ -56,10 +48,6 @@ public ResultSet ExecuteQuery(string query)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `query` | `string` |  |
 
 **Returns** `ResultSet`
 

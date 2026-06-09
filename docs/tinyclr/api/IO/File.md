@@ -23,11 +23,6 @@ public static void Copy(string sourceFileName, string destFileName)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `sourceFileName` | `string` |  |
-| `destFileName` | `string` |  |
-
 ### Copy(string sourceFileName, string destFileName, bool overwrite)
 
 ```csharp
@@ -49,10 +44,6 @@ public static FileStream Create(string path)
 ```
 
 Creates a WebRequest . _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
 
 **Returns** `FileStream`
 
@@ -79,10 +70,6 @@ public static void Delete(string path)
 
 Deletes a file from the device. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
-
 ### Exists(string path)
 
 ```csharp
@@ -90,10 +77,6 @@ public static bool Exists(string path)
 ```
 
 Determines if the specified file exists. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
 
 **Returns** `bool` — true if the file exists otherwise false.
 
@@ -105,11 +88,6 @@ public static FileStream Open(string path, FileMode mode)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
-| `mode` | `FileMode` |  |
-
 **Returns** `FileStream`
 
 ### Open(string path, FileMode mode, FileAccess access)
@@ -119,12 +97,6 @@ public static FileStream Open(string path, FileMode mode, FileAccess access)
 ```
 
 Opens a TinyFileStream for the specified file. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
-| `mode` | `FileMode` |  |
-| `access` | `FileAccess` |  |
 
 **Returns** `FileStream` — A TinyFileStream which provides stream based access to the file.
 
@@ -136,13 +108,6 @@ public static FileStream Open(string path, FileMode mode, FileAccess access, Fil
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
-| `mode` | `FileMode` |  |
-| `access` | `FileAccess` |  |
-| `share` | `FileShare` |  |
-
 **Returns** `FileStream`
 
 ### GetAttributes(string path)
@@ -152,10 +117,6 @@ public static FileAttributes GetAttributes(string path)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
 
 **Returns** `FileAttributes`
 
@@ -167,11 +128,6 @@ public static void SetAttributes(string path, FileAttributes fileAttributes)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
-| `fileAttributes` | `FileAttributes` |  |
-
 ### OpenRead(string path)
 
 ```csharp
@@ -179,10 +135,6 @@ public static FileStream OpenRead(string path)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
 
 **Returns** `FileStream`
 
@@ -194,10 +146,6 @@ public static FileStream OpenWrite(string path)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
-
 **Returns** `FileStream`
 
 ### ReadAllBytes(string path)
@@ -208,10 +156,6 @@ public static byte[] ReadAllBytes(string path)
 
 Opens a file, reads the content into a byte array and then closes the file. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
-
 **Returns** `byte[]` — A byte array containing the data from the file.
 
 ### WriteAllBytes(string path, byte[] bytes)
@@ -221,11 +165,6 @@ public static void WriteAllBytes(string path, byte[] bytes)
 ```
 
 Creates a new file, writes the byte array to the file and then closes it. The file is overwritten if it already exists. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
-| `bytes` | `byte[]` |  |
 
 ### Move(string sourceFileName, string destFileName)
 

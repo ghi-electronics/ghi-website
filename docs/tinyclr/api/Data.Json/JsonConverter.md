@@ -33,11 +33,6 @@ public static JToken Serialize(object oSource, JsonSerializerSettings settings =
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `oSource` | `object` |  |
-| `settings` | `JsonSerializerSettings` |  |
-
 **Returns** `JToken`
 
 ### DeserializeObject(string sourceString, Type type, InstanceFactory factory)
@@ -47,12 +42,6 @@ public static object DeserializeObject(string sourceString, Type type, InstanceF
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sourceString` | `string` |  |
-| `type` | `Type` |  |
-| `factory` | `InstanceFactory` |  |
 
 **Returns** `object`
 
@@ -64,12 +53,6 @@ public static object DeserializeObject(Stream stream, Type type, InstanceFactory
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `stream` | `Stream` |  |
-| `type` | `Type` |  |
-| `factory` | `InstanceFactory` |  |
-
 **Returns** `object`
 
 ### DeserializeObject(StreamReader sr, Type type, InstanceFactory factory)
@@ -79,12 +62,6 @@ public static object DeserializeObject(StreamReader sr, Type type, InstanceFacto
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sr` | `StreamReader` |  |
-| `type` | `Type` |  |
-| `factory` | `InstanceFactory` |  |
 
 **Returns** `object`
 
@@ -96,10 +73,6 @@ public static JToken Deserialize(string sourceString)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `sourceString` | `string` |  |
-
 **Returns** `JToken`
 
 ### Deserialize(Stream sourceStream)
@@ -109,10 +82,6 @@ public static JToken Deserialize(Stream sourceStream)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sourceStream` | `Stream` |  |
 
 **Returns** `JToken`
 
@@ -124,10 +93,6 @@ public static JToken Deserialize(StreamReader sourceReader)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `sourceReader` | `StreamReader` |  |
-
 **Returns** `JToken`
 
 ### FromBson(byte[] buffer, InstanceFactory factory)
@@ -138,11 +103,6 @@ public static JToken FromBson(byte[] buffer, InstanceFactory factory = null)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-| `factory` | `InstanceFactory` |  |
-
 **Returns** `JToken`
 
 ### FromBson(byte[] buffer, Type resultType, InstanceFactory factory)
@@ -152,12 +112,6 @@ public static object FromBson(byte[] buffer, Type resultType, InstanceFactory fa
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-| `resultType` | `Type` |  |
-| `factory` | `InstanceFactory` |  |
 
 **Returns** `object`
 

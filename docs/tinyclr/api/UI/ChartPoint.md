@@ -31,11 +31,6 @@ public ChartPoint(int ax, int ay)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `ax` | `int` |  |
-| `ay` | `int` |  |
-
 ## Properties
 
 ### X

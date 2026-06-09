@@ -48,8 +48,3 @@ protected override void ArrangeOverride(int arrangeWidth, int arrangeHeight)
 ```
 
 ArrangeOverride allows for the customization of the positioning of children.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `arrangeWidth` | `int` |  |
-| `arrangeHeight` | `int` |  |

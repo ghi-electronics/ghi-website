@@ -163,10 +163,6 @@ public static Color FromArgb(int argb)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `argb` | `int` |  |
-
 **Returns** `Color`
 
 ### FromArgb(int red, int green, int blue)
@@ -176,12 +172,6 @@ public static Color FromArgb(int red, int green, int blue)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `red` | `int` |  |
-| `green` | `int` |  |
-| `blue` | `int` |  |
 
 **Returns** `Color`
 
@@ -193,13 +183,6 @@ public static Color FromArgb(int alpha, int red, int green, int blue)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `alpha` | `int` |  |
-| `red` | `int` |  |
-| `green` | `int` |  |
-| `blue` | `int` |  |
-
 **Returns** `Color`
 
 ### FromArgb(int alpha, Color baseColor)
@@ -209,11 +192,6 @@ public static Color FromArgb(int alpha, Color baseColor)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `alpha` | `int` |  |
-| `baseColor` | `Color` |  |
 
 **Returns** `Color`
 
@@ -275,11 +253,6 @@ public static bool operator ==(Color left, Color right)
 
 Equals operator overload _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `left` | `Color` |  |
-| `right` | `Color` |  |
-
 **Returns** `bool operator`
 
 ### !=(Color left, Color right)
@@ -289,11 +262,6 @@ public static bool operator !=(Color left, Color right)
 ```
 
 NotEquals operator overload _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `left` | `Color` |  |
-| `right` | `Color` |  |
 
 **Returns** `bool operator`
 
@@ -315,10 +283,6 @@ public override bool Equals(object obj)
 
 Is the given RoutedEventHandlerInfo equals the current _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `obj` | `object` |  |
-
 **Returns** `bool`
 
 ### Convert(byte[] inArray, byte[] outArray, ColorFormat colorFormat)
@@ -329,12 +293,6 @@ public static void Convert(byte[] inArray, byte[] outArray, ColorFormat colorFor
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `inArray` | `byte[]` |  |
-| `outArray` | `byte[]` |  |
-| `colorFormat` | `ColorFormat` |  |
-
 ### Convert(byte[] inArray, byte[] outArray, ColorFormat colorFormat, RgbFormat rgbFormat)
 
 ```csharp
@@ -342,13 +300,6 @@ public static void Convert(byte[] inArray, byte[] outArray, ColorFormat colorFor
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `inArray` | `byte[]` |  |
-| `outArray` | `byte[]` |  |
-| `colorFormat` | `ColorFormat` |  |
-| `rgbFormat` | `RgbFormat` |  |
 
 ### Convert(byte[] inArray, byte[] outArray, ColorFormat colorFormat, RgbFormat rgbFormat, byte alpha)
 
@@ -358,14 +309,6 @@ public static void Convert(byte[] inArray, byte[] outArray, ColorFormat colorFor
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `inArray` | `byte[]` |  |
-| `outArray` | `byte[]` |  |
-| `colorFormat` | `ColorFormat` |  |
-| `rgbFormat` | `RgbFormat` |  |
-| `alpha` | `byte` |  |
-
 ### Convert(byte[] inArray, byte[] outArray, ColorFormat colorFormat, RgbFormat rgbFormat, byte alpha, byte[] colorTable)
 
 ```csharp
@@ -373,15 +316,6 @@ public static void Convert(byte[] inArray, byte[] outArray, ColorFormat colorFor
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `inArray` | `byte[]` |  |
-| `outArray` | `byte[]` |  |
-| `colorFormat` | `ColorFormat` |  |
-| `rgbFormat` | `RgbFormat` |  |
-| `alpha` | `byte` |  |
-| `colorTable` | `byte[]` |  |
 
 ### ConvertTo1Bpp(byte[] inArray, byte[] outArray, uint width)
 
@@ -391,12 +325,6 @@ public static void ConvertTo1Bpp(byte[] inArray, byte[] outArray, uint width)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `inArray` | `byte[]` |  |
-| `outArray` | `byte[]` |  |
-| `width` | `uint` |  |
-
 ### ConvertTo1Bpp(byte[] inArray, byte[] outArray, uint width, BitFormat bitFormat)
 
 ```csharp
@@ -404,10 +332,3 @@ public static void ConvertTo1Bpp(byte[] inArray, byte[] outArray, uint width, Bi
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `inArray` | `byte[]` |  |
-| `outArray` | `byte[]` |  |
-| `width` | `uint` |  |
-| `bitFormat` | `BitFormat` |  |

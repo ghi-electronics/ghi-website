@@ -12,10 +12,3 @@ _No description available._
 ```csharp
 public delegate void SerialPinChangedEventHandler(object sender, SerialPinChangedEventArgs e);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sender` | `object` |  |
-| `e` | `SerialPinChangedEventArgs` |  |

@@ -23,12 +23,6 @@ int Create(AddressFamily addressFamily, SocketType socketType, ProtocolType prot
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `addressFamily` | `AddressFamily` |  |
-| `socketType` | `SocketType` |  |
-| `protocolType` | `ProtocolType` |  |
-
 **Returns** `int`
 
 ### Close(int socket)
@@ -39,10 +33,6 @@ void Close(int socket)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `socket` | `int` |  |
-
 ### Shutdown(int socket, SocketShutdown how)
 
 ```csharp
@@ -50,11 +40,6 @@ void Shutdown(int socket, SocketShutdown how)
 ```
 
 Powers off until either one of the selected wake-up pins asserts or the RTC alarm fires. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `socket` | `int` |  |
-| `how` | `SocketShutdown` |  |
 
 ### Bind(int socket, SocketAddress address)
 
@@ -64,11 +49,6 @@ void Bind(int socket, SocketAddress address)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `socket` | `int` |  |
-| `address` | `SocketAddress` |  |
-
 ### Listen(int socket, int backlog)
 
 ```csharp
@@ -77,11 +57,6 @@ void Listen(int socket, int backlog)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `socket` | `int` |  |
-| `backlog` | `int` |  |
-
 ### Accept(int socket)
 
 ```csharp
@@ -89,10 +64,6 @@ int Accept(int socket)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `socket` | `int` |  |
 
 **Returns** `int`
 
@@ -104,11 +75,6 @@ void Connect(int socket, SocketAddress address)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `socket` | `int` |  |
-| `address` | `SocketAddress` |  |
-
 ### Available(int socket)
 
 ```csharp
@@ -116,10 +82,6 @@ int Available(int socket)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `socket` | `int` |  |
 
 **Returns** `int`
 
@@ -131,12 +93,6 @@ bool Poll(int socket, int microSeconds, SelectMode mode)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `socket` | `int` |  |
-| `microSeconds` | `int` |  |
-| `mode` | `SelectMode` |  |
-
 **Returns** `bool`
 
 ### Send(int socket, byte[] buffer, int offset, int count, SocketFlags flags)
@@ -146,14 +102,6 @@ int Send(int socket, byte[] buffer, int offset, int count, SocketFlags flags)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `socket` | `int` |  |
-| `buffer` | `byte[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |
-| `flags` | `SocketFlags` |  |
 
 **Returns** `int`
 
@@ -165,14 +113,6 @@ int Receive(int socket, byte[] buffer, int offset, int count, SocketFlags flags)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `socket` | `int` |  |
-| `buffer` | `byte[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |
-| `flags` | `SocketFlags` |  |
-
 **Returns** `int`
 
 ### SendTo(int socket, byte[] buffer, int offset, int count, SocketFlags flags, SocketAddress address)
@@ -182,15 +122,6 @@ int SendTo(int socket, byte[] buffer, int offset, int count, SocketFlags flags, 
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `socket` | `int` |  |
-| `buffer` | `byte[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |
-| `flags` | `SocketFlags` |  |
-| `address` | `SocketAddress` |  |
 
 **Returns** `int`
 
@@ -202,15 +133,6 @@ int ReceiveFrom(int socket, byte[] buffer, int offset, int count, SocketFlags fl
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `socket` | `int` |  |
-| `buffer` | `byte[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |
-| `flags` | `SocketFlags` |  |
-| `address` | `ref SocketAddress` |  |
-
 **Returns** `int`
 
 ### GetRemoteAddress(int socket, out SocketAddress address)
@@ -221,11 +143,6 @@ void GetRemoteAddress(int socket, out SocketAddress address)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `socket` | `int` |  |
-| `address` | `out SocketAddress` |  |
-
 ### GetLocalAddress(int socket, out SocketAddress address)
 
 ```csharp
@@ -233,11 +150,6 @@ void GetLocalAddress(int socket, out SocketAddress address)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `socket` | `int` |  |
-| `address` | `out SocketAddress` |  |
 
 ### GetOption(int socket, SocketOptionLevel optionLevel, SocketOptionName optionName, byte[] optionValue)
 
@@ -247,13 +159,6 @@ void GetOption(int socket, SocketOptionLevel optionLevel, SocketOptionName optio
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `socket` | `int` |  |
-| `optionLevel` | `SocketOptionLevel` |  |
-| `optionName` | `SocketOptionName` |  |
-| `optionValue` | `byte[]` |  |
-
 ### SetOption(int socket, SocketOptionLevel optionLevel, SocketOptionName optionName, byte[] optionValue)
 
 ```csharp
@@ -262,13 +167,6 @@ void SetOption(int socket, SocketOptionLevel optionLevel, SocketOptionName optio
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `socket` | `int` |  |
-| `optionLevel` | `SocketOptionLevel` |  |
-| `optionName` | `SocketOptionName` |  |
-| `optionValue` | `byte[]` |  |
-
 ### AuthenticateAsClient(int socketHandle, string targetHost, X509Certificate caCertificate, X509Certificate clientCertificate, SslProtocols sslProtocols, SslVerification sslVerification)
 
 ```csharp
@@ -276,15 +174,6 @@ int AuthenticateAsClient(int socketHandle, string targetHost, X509Certificate ca
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `socketHandle` | `int` |  |
-| `targetHost` | `string` |  |
-| `caCertificate` | `X509Certificate` |  |
-| `clientCertificate` | `X509Certificate` |  |
-| `sslProtocols` | `SslProtocols` |  |
-| `sslVerification` | `SslVerification` |  |
 
 **Returns** `int`
 
@@ -296,12 +185,6 @@ int AuthenticateAsServer(int socketHandle, X509Certificate certificate, SslProto
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `socketHandle` | `int` |  |
-| `certificate` | `X509Certificate` |  |
-| `sslProtocols` | `SslProtocols` |  |
-
 **Returns** `int`
 
 ### SecureRead(int handle, byte[] buffer, int offset, int count)
@@ -311,13 +194,6 @@ int SecureRead(int handle, byte[] buffer, int offset, int count)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `handle` | `int` |  |
-| `buffer` | `byte[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |
 
 **Returns** `int`
 
@@ -329,13 +205,6 @@ int SecureWrite(int handle, byte[] buffer, int offset, int count)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `handle` | `int` |  |
-| `buffer` | `byte[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |
-
 **Returns** `int`
 
 ### GetHostByName(string name, out string canonicalName, out SocketAddress[] addresses)
@@ -345,9 +214,3 @@ void GetHostByName(string name, out string canonicalName, out SocketAddress[] ad
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `name` | `string` |  |
-| `canonicalName` | `out string` |  |
-| `addresses` | `out SocketAddress[]` |  |

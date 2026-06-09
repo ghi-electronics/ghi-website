@@ -12,10 +12,3 @@ _No description available._
 ```csharp
 public delegate void ScrollChangedEventHandler(object sender, ScrollChangedEventArgs args);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sender` | `object` |  |
-| `args` | `ScrollChangedEventArgs` |  |

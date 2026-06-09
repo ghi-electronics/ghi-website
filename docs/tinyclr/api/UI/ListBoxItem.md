@@ -41,10 +41,6 @@ protected internal virtual void OnIsSelectedChanged(bool isSelected)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `isSelected` | `bool` |  |
-
 ### OnTouchUp(TouchEventArgs e)
 
 ```csharp

@@ -40,7 +40,3 @@ public void SetTarget(UIElement target)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `target` | `UIElement` |  |

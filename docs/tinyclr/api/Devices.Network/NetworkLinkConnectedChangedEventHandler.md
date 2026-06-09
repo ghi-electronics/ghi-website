@@ -12,10 +12,3 @@ Handler signature for `NetworkController.NetworkLinkConnectedChanged`.
 ```csharp
 public delegate void NetworkLinkConnectedChangedEventHandler(NetworkController sender, NetworkLinkConnectedChangedEventArgs e);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sender` | `NetworkController` |  |
-| `e` | `NetworkLinkConnectedChangedEventArgs` |  |

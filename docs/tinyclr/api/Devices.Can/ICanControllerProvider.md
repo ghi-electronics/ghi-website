@@ -113,12 +113,6 @@ int WriteMessages(CanMessage[] messages, int offset, int count)
 
 Queues a slice of messages for transmission. Returns count actually queued.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `messages` | `CanMessage[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |
-
 **Returns** `int`
 
 ### ReadMessages(CanMessage[] messages, int offset, int count)
@@ -128,12 +122,6 @@ int ReadMessages(CanMessage[] messages, int offset, int count)
 ```
 
 Dequeues up to `count` received messages. Returns count actually read.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `messages` | `CanMessage[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |
 
 **Returns** `int`
 
@@ -145,10 +133,6 @@ void SetNominalBitTiming(CanBitTiming bitTiming)
 
 Configures arbitration-phase bit timing.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `bitTiming` | `CanBitTiming` |  |
-
 ### SetDataBitTiming(CanBitTiming bitTiming)
 
 ```csharp
@@ -156,10 +140,6 @@ void SetDataBitTiming(CanBitTiming bitTiming)
 ```
 
 Configures CAN-FD data-phase bit timing.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `bitTiming` | `CanBitTiming` |  |
 
 ### AddFilter(Filter.IdType idType, Filter.FilterType filterType, uint id1, uint id2)
 
@@ -169,13 +149,6 @@ void AddFilter(Filter.IdType idType, Filter.FilterType filterType, uint id1, uin
 
 Installs an acceptance filter.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `idType` | `Filter.IdType` |  |
-| `filterType` | `Filter.FilterType` |  |
-| `id1` | `uint` |  |
-| `id2` | `uint` |  |
-
 ### RejectRemoteFrame(Filter.IdType idType)
 
 ```csharp
@@ -183,10 +156,6 @@ void RejectRemoteFrame(Filter.IdType idType)
 ```
 
 Filters out RTR frames of the given ID width.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `idType` | `Filter.IdType` |  |
 
 ### ClearFilter()
 

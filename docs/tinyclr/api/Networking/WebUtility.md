@@ -23,10 +23,6 @@ public static string UrlEncode(string value)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `value` | `string` |  |
-
 **Returns** `string`
 
 ### UrlDecode(string encodedValue)
@@ -36,10 +32,6 @@ public static string UrlDecode(string encodedValue)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `encodedValue` | `string` |  |
 
 **Returns** `string`
 
@@ -51,10 +43,6 @@ public static string HtmlEncode(string value)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `value` | `string` |  |
-
 **Returns** `string`
 
 ### HtmlDecode(string value)
@@ -64,9 +52,5 @@ public static string HtmlDecode(string value)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `value` | `string` |  |
 
 **Returns** `string`

@@ -12,10 +12,3 @@ Handler signature for `I2cDevice.ErrorReceived`.
 ```csharp
 public delegate void ErrorReceivedEventHandler(I2cDevice sender, ErrorReceivedEventArgs e);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sender` | `I2cDevice` |  |
-| `e` | `ErrorReceivedEventArgs` |  |

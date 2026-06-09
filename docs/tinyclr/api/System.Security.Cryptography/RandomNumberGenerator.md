@@ -33,10 +33,6 @@ public static void Fill(byte[] data)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `data` | `byte[]` |  |
-
 ### GetBytes(byte[] data)
 
 ```csharp
@@ -44,10 +40,6 @@ public abstract void GetBytes(byte[] data)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `data` | `byte[]` |  |
 
 ### Dispose()
 

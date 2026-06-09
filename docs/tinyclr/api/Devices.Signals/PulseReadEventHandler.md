@@ -12,12 +12,3 @@ Handler for `OnReadPulseFinished`.
 ```csharp
 public delegate void PulseReadEventHandler(DigitalSignal sender, TimeSpan duration, uint count, GpioPinValue initialState);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sender` | `DigitalSignal` |  |
-| `duration` | `TimeSpan` |  |
-| `count` | `uint` |  |
-| `initialState` | `GpioPinValue` |  |

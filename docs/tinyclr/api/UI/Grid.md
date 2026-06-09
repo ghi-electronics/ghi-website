@@ -51,10 +51,6 @@ public static int GetRow(UIElement e)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `UIElement` |  |
-
 **Returns** `int`
 
 ### SetRow(UIElement e, int row)
@@ -65,11 +61,6 @@ public static void SetRow(UIElement e, int row)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `UIElement` |  |
-| `row` | `int` |  |
-
 ### GetColumn(UIElement e)
 
 ```csharp
@@ -77,10 +68,6 @@ public static int GetColumn(UIElement e)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `UIElement` |  |
 
 **Returns** `int`
 
@@ -91,11 +78,6 @@ public static void SetColumn(UIElement e, int column)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `UIElement` |  |
-| `column` | `int` |  |
 
 ### MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
 
@@ -119,8 +101,3 @@ protected override void ArrangeOverride(int arrangeWidth, int arrangeHeight)
 ```
 
 ArrangeOverride allows for the customization of the positioning of children. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `arrangeWidth` | `int` |  |
-| `arrangeHeight` | `int` |  |

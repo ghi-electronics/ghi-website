@@ -73,11 +73,6 @@ public void CopyTo(Array array, int arrayIndex)
 
 Strongly typed version of CopyTo Copies the collection into the Array. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `array` | `Array` |  |
-| `arrayIndex` | `int` |  |
-
 ### GetEnumerator()
 
 ```csharp

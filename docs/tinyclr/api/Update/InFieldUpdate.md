@@ -31,10 +31,6 @@ public InFieldUpdate(StorageController storageController)
 
 Creates a flash-cached updater backed by an external storage device. Use for images that don't fit in RAM.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `storageController` | `StorageController` |  |
-
 ## Properties
 
 ### ActivityPin
@@ -55,10 +51,6 @@ public void LoadApplicationKey(byte[] key)
 
 Loads the public key used to verify the application image.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `key` | `byte[]` |  |
-
 ### LoadApplicationChunk(byte[] data, int offset, int size)
 
 ```csharp
@@ -66,12 +58,6 @@ public int LoadApplicationChunk(byte[] data, int offset, int size)
 ```
 
 Appends a chunk of bytes to the buffered application image.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `data` | `byte[]` |  |
-| `offset` | `int` |  |
-| `size` | `int` |  |
 
 **Returns** `int` — Number of bytes accepted.
 
@@ -82,12 +68,6 @@ public int LoadFirmwareChunk(byte[] data, int offset, int size)
 ```
 
 Appends a chunk of bytes to the buffered firmware image.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `data` | `byte[]` |  |
-| `offset` | `int` |  |
-| `size` | `int` |  |
 
 **Returns** `int` — Number of bytes accepted.
 
@@ -142,9 +122,5 @@ public static string VersionConvertToString(uint version)
 ```
 
 Formats a packed 32-bit version (major.minor.build.revision) as a dotted string.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `version` | `uint` |  |
 
 **Returns** `string`

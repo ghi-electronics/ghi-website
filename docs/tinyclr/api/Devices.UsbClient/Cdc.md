@@ -23,10 +23,6 @@ public Cdc(UsbClientController usbClientController) : this(usbClientController, 
 
 Creates a new CDC interface with default parameters.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `usbClientController` | `UsbClientController` |  |
-
 ### Cdc(UsbClientController usbClientController, UsbClientSetting usbClientSetting)
 
 ```csharp

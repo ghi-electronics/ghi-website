@@ -12,9 +12,3 @@ _No description available._
 ```csharp
 public delegate string MatchEvaluator(Match match);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `match` | `Match` |  |

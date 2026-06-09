@@ -12,10 +12,3 @@ Represents the method that will handle the event raised when a Property is chang
 ```csharp
 public delegate void PropertyChangedEventHandler(object sender, PropertyChangedEventArgs e);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sender` | `object` |  |
-| `e` | `PropertyChangedEventArgs` |  |

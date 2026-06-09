@@ -33,10 +33,6 @@ public static int GetBottom(UIElement e)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `UIElement` |  |
-
 **Returns** `int`
 
 ### SetBottom(UIElement e, int bottom)
@@ -47,11 +43,6 @@ public static void SetBottom(UIElement e, int bottom)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `UIElement` |  |
-| `bottom` | `int` |  |
-
 ### GetLeft(UIElement e)
 
 ```csharp
@@ -59,10 +50,6 @@ public static int GetLeft(UIElement e)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `UIElement` |  |
 
 **Returns** `int`
 
@@ -74,11 +61,6 @@ public static void SetLeft(UIElement e, int left)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `UIElement` |  |
-| `left` | `int` |  |
-
 ### GetRight(UIElement e)
 
 ```csharp
@@ -86,10 +68,6 @@ public static int GetRight(UIElement e)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `UIElement` |  |
 
 **Returns** `int`
 
@@ -101,11 +79,6 @@ public static void SetRight(UIElement e, int right)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `UIElement` |  |
-| `right` | `int` |  |
-
 ### GetTop(UIElement e)
 
 ```csharp
@@ -113,10 +86,6 @@ public static int GetTop(UIElement e)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `UIElement` |  |
 
 **Returns** `int`
 
@@ -128,11 +97,6 @@ public static void SetTop(UIElement e, int top)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `UIElement` |  |
-| `top` | `int` |  |
-
 ### ArrangeOverride(int arrangeWidth, int arrangeHeight)
 
 ```csharp
@@ -140,11 +104,6 @@ protected override void ArrangeOverride(int arrangeWidth, int arrangeHeight)
 ```
 
 ArrangeOverride allows for the customization of the positioning of children. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `arrangeWidth` | `int` |  |
-| `arrangeHeight` | `int` |  |
 
 ### MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
 

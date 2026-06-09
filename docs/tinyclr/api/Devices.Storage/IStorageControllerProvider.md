@@ -49,14 +49,6 @@ int Read(long address, int count, byte[] buffer, int offset, TimeSpan timeout)
 
 Reads `count` bytes from `address` into `buffer`+`offset`.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `address` | `long` |  |
-| `count` | `int` |  |
-| `buffer` | `byte[]` |  |
-| `offset` | `int` |  |
-| `timeout` | `TimeSpan` |  |
-
 **Returns** `int`
 
 ### Write(long address, int count, byte[] buffer, int offset, TimeSpan timeout)
@@ -66,14 +58,6 @@ int Write(long address, int count, byte[] buffer, int offset, TimeSpan timeout)
 ```
 
 Writes `count` bytes from `buffer`+`offset` to `address`.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `address` | `long` |  |
-| `count` | `int` |  |
-| `buffer` | `byte[]` |  |
-| `offset` | `int` |  |
-| `timeout` | `TimeSpan` |  |
 
 **Returns** `int`
 
@@ -85,12 +69,6 @@ int Erase(long address, int count, TimeSpan timeout)
 
 Erases `count` sectors starting at `address`.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `address` | `long` |  |
-| `count` | `int` |  |
-| `timeout` | `TimeSpan` |  |
-
 **Returns** `int`
 
 ### IsErased(long address, int count)
@@ -101,11 +79,6 @@ bool IsErased(long address, int count)
 
 True when the addressed span is in its erased (all-0xFF) state.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `address` | `long` |  |
-| `count` | `int` |  |
-
 **Returns** `bool`
 
 ### EraseAll(TimeSpan timeout)
@@ -115,7 +88,3 @@ void EraseAll(TimeSpan timeout)
 ```
 
 Erases every sector on the media.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `timeout` | `TimeSpan` |  |

@@ -31,10 +31,6 @@ public Polygon(int[] pts)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `pts` | `int[]` |  |
-
 ## Properties
 
 ### Points
@@ -54,7 +50,3 @@ public override void OnRender(Media.DrawingContext dc)
 ```
 
 Renders the DataGrid onto it's parent container's graphics. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `dc` | `Media.DrawingContext` |  |

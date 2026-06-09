@@ -82,10 +82,6 @@ protected override void OnButtonDown(GHIElectronics.TinyCLR.UI.Input.ButtonEvent
 
 An event reporting a button was pressed. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `GHIElectronics.TinyCLR.UI.Input.ButtonEventArgs` |  |
-
 ### OnRender(Media.DrawingContext dc)
 
 ```csharp
@@ -93,10 +89,6 @@ public override void OnRender(Media.DrawingContext dc)
 ```
 
 Renders the DataGrid onto it's parent container's graphics. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `dc` | `Media.DrawingContext` |  |
 
 ## Fields
 

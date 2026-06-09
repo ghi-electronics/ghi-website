@@ -83,10 +83,6 @@ protected override void OnButtonDown(ButtonEventArgs e)
 
 An event reporting a button was pressed. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `ButtonEventArgs` |  |
-
 ### OnButtonUp(ButtonEventArgs e)
 
 ```csharp
@@ -95,10 +91,6 @@ protected override void OnButtonUp(ButtonEventArgs e)
 
 An event reporting a button was released. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `ButtonEventArgs` |  |
-
 ### OnRender(DrawingContext dc)
 
 ```csharp
@@ -106,10 +98,6 @@ public override void OnRender(DrawingContext dc)
 ```
 
 Renders the DataGrid onto it's parent container's graphics. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `dc` | `DrawingContext` |  |
 
 ### Dispose()
 

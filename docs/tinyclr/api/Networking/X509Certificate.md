@@ -23,10 +23,6 @@ public X509Certificate(byte[] certificate)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `certificate` | `byte[]` |  |
-
 ## Properties
 
 ### PrivateKey

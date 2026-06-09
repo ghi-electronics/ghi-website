@@ -23,11 +23,6 @@ public UserAuthenticatorArgs(string user, string pass)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `user` | `string` |  |
-| `pass` | `string` |  |
-
 ## Properties
 
 ### Result

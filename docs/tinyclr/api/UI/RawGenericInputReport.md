@@ -36,12 +36,6 @@ public RawGenericInputReport(PresentationSource inputSource, GenericEvent generi
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `inputSource` | `PresentationSource` |  |
-| `genericEvent` | `GenericEvent` |  |
-| `destTarget` | `UIElement` |  |
-
 ## Fields
 
 ### Target

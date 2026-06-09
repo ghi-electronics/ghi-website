@@ -12,10 +12,3 @@ Handler signature for `UartController.ErrorReceived`.
 ```csharp
 public delegate void ErrorReceivedEventHandler(UartController sender, ErrorReceivedEventArgs e);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sender` | `UartController` |  |
-| `e` | `ErrorReceivedEventArgs` |  |

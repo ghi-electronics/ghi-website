@@ -33,11 +33,6 @@ public static string ChangeExtension(string path, string extension)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
-| `extension` | `string` |  |
-
 **Returns** `string`
 
 ### GetDirectoryName(string path)
@@ -47,10 +42,6 @@ public static string GetDirectoryName(string path)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
 
 **Returns** `string`
 
@@ -72,10 +63,6 @@ public static string GetFullPath(string path)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
-
 **Returns** `string`
 
 ### GetExtension(string path)
@@ -85,10 +72,6 @@ public static string GetExtension(string path)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
 
 **Returns** `string`
 
@@ -100,10 +83,6 @@ public static string GetFileName(string path)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
-
 **Returns** `string`
 
 ### GetFileNameWithoutExtension(string path)
@@ -113,10 +92,6 @@ public static string GetFileNameWithoutExtension(string path)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
 
 **Returns** `string`
 
@@ -128,10 +103,6 @@ public static string GetPathRoot(string path)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
-
 **Returns** `string`
 
 ### HasExtension(string path)
@@ -141,10 +112,6 @@ public static bool HasExtension(string path)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
 
 **Returns** `bool`
 
@@ -156,10 +123,6 @@ public static bool IsPathRooted(string path)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
-
 **Returns** `bool`
 
 ### Combine(string path1, string path2)
@@ -169,11 +132,6 @@ public static string Combine(string path1, string path2)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `path1` | `string` |  |
-| `path2` | `string` |  |
 
 **Returns** `string`
 

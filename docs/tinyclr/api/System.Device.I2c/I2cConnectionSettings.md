@@ -23,11 +23,6 @@ public I2cConnectionSettings(int busId, int deviceAddress)
 
 Builds a 7-bit settings object with the given role (master/slave). _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `busId` | `int` |  |
-| `deviceAddress` | `int` |  |
-
 ## Properties
 
 ### BusId

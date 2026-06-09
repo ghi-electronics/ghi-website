@@ -23,10 +23,6 @@ public SignalGenerator(GpioPin pin)
 
 Opens a signal generator on the given pin (drives it as a push-pull output).
 
-| Parameter | Type | Description |
-|---|---|---|
-| `pin` | `GpioPin` |  |
-
 ## Properties
 
 ### DisableInterrupts
@@ -79,10 +75,6 @@ public void Write(GpioPinValue value)
 
 Sets the pin to a static level.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `value` | `GpioPinValue` |  |
-
 ### Write(TimeSpan[] buffer)
 
 ```csharp
@@ -102,9 +94,3 @@ public extern void Write(TimeSpan[] buffer, int offset, int count)
 ```
 
 Drives a slice of the timed transitions.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `TimeSpan[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |

@@ -12,13 +12,3 @@ _No description available._
 ```csharp
 public delegate void NotifyClassHandler(AdapterController adapter, uint classCode, ushort instanceNumber, ushort attributeNumber, IPAddress ipAddress);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `adapter` | `AdapterController` |  |
-| `classCode` | `uint` |  |
-| `instanceNumber` | `ushort` |  |
-| `attributeNumber` | `ushort` |  |
-| `ipAddress` | `IPAddress` |  |

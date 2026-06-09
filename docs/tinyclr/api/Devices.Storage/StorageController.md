@@ -59,10 +59,6 @@ public static StorageController FromName(string name)
 
 Returns a storage controller identified by its native API name.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `name` | `string` |  |
-
 **Returns** `StorageController`
 
 ### FromProvider(IStorageControllerProvider provider)
@@ -72,10 +68,6 @@ public static StorageController FromProvider(IStorageControllerProvider provider
 ```
 
 Creates a controller from a custom `IStorageControllerProvider`.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `provider` | `IStorageControllerProvider` |  |
 
 **Returns** `StorageController`
 

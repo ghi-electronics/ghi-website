@@ -23,11 +23,6 @@ public PinValueChangedEventArgs(PinEventTypes changeType, int pinNumber)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `changeType` | `PinEventTypes` |  |
-| `pinNumber` | `int` |  |
-
 ## Properties
 
 ### ChangeType

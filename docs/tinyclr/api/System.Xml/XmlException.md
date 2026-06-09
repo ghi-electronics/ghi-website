@@ -31,10 +31,6 @@ public XmlException(string message) : base(message)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `message` | `string` |  |
-
 ### XmlException(string message, Exception innerException)
 
 ```csharp
@@ -43,11 +39,6 @@ public XmlException(string message, Exception innerException) : base(message, in
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `message` | `string` |  |
-| `innerException` | `Exception` |  |
-
 ### XmlException(string message, Exception innerException, int lineNumber, int linePosition)
 
 ```csharp
@@ -55,13 +46,6 @@ public XmlException(string message, Exception innerException, int lineNumber, in
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `message` | `string` |  |
-| `innerException` | `Exception` |  |
-| `lineNumber` | `int` |  |
-| `linePosition` | `int` |  |
 
 ## Properties
 

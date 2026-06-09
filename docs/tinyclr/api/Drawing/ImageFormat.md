@@ -23,10 +23,6 @@ public ImageFormat(Guid guid)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `guid` | `Guid` |  |
-
 ## Properties
 
 ### Guid
@@ -126,10 +122,6 @@ public override bool Equals(object o)
 ```
 
 Is the given RoutedEventHandlerInfo equals the current _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `o` | `object` |  |
 
 **Returns** `bool`
 

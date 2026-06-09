@@ -23,11 +23,6 @@ public FTPCommand(string name, string content)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `name` | `string` |  |
-| `content` | `string` |  |
-
 ## Fields
 
 ### CommandName

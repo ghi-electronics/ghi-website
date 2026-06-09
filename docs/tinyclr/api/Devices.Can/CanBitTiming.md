@@ -31,13 +31,6 @@ public CanBitTiming(int propagationPhase1, int phase2, int baudratePrescaler, in
 
 Constructs a bit-timing object without multi-bit sampling.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `propagationPhase1` | `int` |  |
-| `phase2` | `int` |  |
-| `baudratePrescaler` | `int` |  |
-| `synchronizationJumpWidth` | `int` |  |
-
 ### CanBitTiming(int propagationPhase1, int phase2, int baudratePrescaler, int synchronizationJumpWidth, bool useMultiBitSampling)
 
 ```csharp
@@ -45,14 +38,6 @@ public CanBitTiming(int propagationPhase1, int phase2, int baudratePrescaler, in
 ```
 
 Constructs a fully specified bit-timing object.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `propagationPhase1` | `int` |  |
-| `phase2` | `int` |  |
-| `baudratePrescaler` | `int` |  |
-| `synchronizationJumpWidth` | `int` |  |
-| `useMultiBitSampling` | `bool` |  |
 
 ## Properties
 

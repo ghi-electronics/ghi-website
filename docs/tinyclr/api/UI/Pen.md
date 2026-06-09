@@ -23,10 +23,6 @@ public Pen(Color color) : this(color, 1)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `color` | `Color` |  |
-
 ### Pen(Color color, ushort thickness)
 
 ```csharp
@@ -34,11 +30,6 @@ public Pen(Color color, ushort thickness)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `color` | `Color` |  |
-| `thickness` | `ushort` |  |
 
 ## Fields
 

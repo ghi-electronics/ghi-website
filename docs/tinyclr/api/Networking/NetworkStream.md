@@ -23,10 +23,6 @@ public NetworkStream(Socket socket) : this(socket, false)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `socket` | `Socket` |  |
-
 ### NetworkStream(Socket socket, bool ownsSocket)
 
 ```csharp
@@ -34,11 +30,6 @@ public NetworkStream(Socket socket, bool ownsSocket)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `socket` | `Socket` |  |
-| `ownsSocket` | `bool` |  |
 
 ## Properties
 
@@ -124,10 +115,6 @@ public void Close(int timeout)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `timeout` | `int` |  |
-
 ### Dispose(bool disposing)
 
 ```csharp
@@ -186,10 +173,6 @@ public override void SetLength(long value)
 ```
 
 Adjusts the length of the array. This can be used to trim the end of the array. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `value` | `long` |  |
 
 ### Write(byte[] buffer, int offset, int count)
 

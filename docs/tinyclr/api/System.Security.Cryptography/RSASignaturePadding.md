@@ -49,10 +49,6 @@ public bool Equals(RSASignaturePadding other)
 
 Is the given RoutedEventHandlerInfo equals the current _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `other` | `RSASignaturePadding` |  |
-
 **Returns** `bool`
 
 ### Equals(object obj)
@@ -62,10 +58,6 @@ public override bool Equals(object obj)
 ```
 
 Is the given RoutedEventHandlerInfo equals the current _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `obj` | `object` |  |
 
 **Returns** `bool`
 
@@ -97,11 +89,6 @@ public static bool operator ==(RSASignaturePadding left, RSASignaturePadding rig
 
 Equals operator overload _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `left` | `RSASignaturePadding` |  |
-| `right` | `RSASignaturePadding` |  |
-
 **Returns** `bool operator`
 
 ### !=(RSASignaturePadding left, RSASignaturePadding right)
@@ -111,10 +98,5 @@ public static bool operator !=(RSASignaturePadding left, RSASignaturePadding rig
 ```
 
 NotEquals operator overload _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `left` | `RSASignaturePadding` |  |
-| `right` | `RSASignaturePadding` |  |
 
 **Returns** `bool operator`

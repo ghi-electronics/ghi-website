@@ -33,10 +33,6 @@ public static bool Capture(UIElement element)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `element` | `UIElement` |  |
-
 **Returns** `bool`
 
 ### Capture(UIElement element, CaptureMode mode)
@@ -46,10 +42,5 @@ public static bool Capture(UIElement element, CaptureMode mode)
 ```
 
 Captures one frame into the supplied buffer. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `element` | `UIElement` |  |
-| `mode` | `CaptureMode` |  |
 
 **Returns** `bool` — Number of bytes actually captured.

@@ -12,9 +12,3 @@ A convenient delegate to use for dispatcher operations.
 ```csharp
 public delegate object DispatcherOperationCallback(object arg);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `arg` | `object` |  |

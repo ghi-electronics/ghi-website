@@ -23,11 +23,6 @@ public RawStream(int streamIndex, RawDevice parent)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `streamIndex` | `int` |  |
-| `parent` | `RawDevice` |  |
-
 ## Properties
 
 ### NullEndpoint

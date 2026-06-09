@@ -23,11 +23,6 @@ public SocketAddress(AddressFamily family, int size)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `family` | `AddressFamily` |  |
-| `size` | `int` |  |
-
 ## Properties
 
 ### Family
@@ -63,10 +58,6 @@ public override bool Equals(object comparand)
 ```
 
 Is the given RoutedEventHandlerInfo equals the current _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `comparand` | `object` |  |
 
 **Returns** `bool`
 

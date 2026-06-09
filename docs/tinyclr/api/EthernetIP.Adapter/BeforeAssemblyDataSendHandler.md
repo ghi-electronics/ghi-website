@@ -12,10 +12,3 @@ _No description available._
 ```csharp
 public delegate void BeforeAssemblyDataSendHandler(AdapterController adapter, ushort instanceNumber);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `adapter` | `AdapterController` |  |
-| `instanceNumber` | `ushort` |  |

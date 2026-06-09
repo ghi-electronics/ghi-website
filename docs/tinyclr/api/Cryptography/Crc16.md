@@ -33,10 +33,6 @@ public ushort ComputeHash(byte[] data)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `data` | `byte[]` |  |
-
 **Returns** `ushort`
 
 ### ComputeHash(byte[] data, int offset, int count)
@@ -47,12 +43,6 @@ public ushort ComputeHash(byte[] data, int offset, int count)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `data` | `byte[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |
-
 **Returns** `ushort`
 
 ### ComputeHash(byte[] data, int offset, int count, ushort seed)
@@ -62,12 +52,5 @@ public ushort ComputeHash(byte[] data, int offset, int count, ushort seed)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `data` | `byte[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |
-| `seed` | `ushort` |  |
 
 **Returns** `ushort`

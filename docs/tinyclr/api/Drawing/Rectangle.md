@@ -23,13 +23,6 @@ public Rectangle(int x, int y, int width, int height)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `x` | `int` |  |
-| `y` | `int` |  |
-| `width` | `int` |  |
-| `height` | `int` |  |
-
 ## Properties
 
 ### X

@@ -33,10 +33,6 @@ public override bool Equals(object obj)
 
 Is the given object equivalent to the current one
 
-| Parameter | Type | Description |
-|---|---|---|
-| `obj` | `object` |  |
-
 **Returns** `bool`
 
 ### Equals(RoutedEventHandlerInfo handlerInfo)
@@ -46,10 +42,6 @@ public bool Equals(RoutedEventHandlerInfo handlerInfo)
 ```
 
 Is the given RoutedEventHandlerInfo equals the current
-
-| Parameter | Type | Description |
-|---|---|---|
-| `handlerInfo` | `RoutedEventHandlerInfo` |  |
 
 **Returns** `bool`
 
@@ -71,11 +63,6 @@ public static bool operator ==(RoutedEventHandlerInfo handlerInfo1, RoutedEventH
 
 Equals operator overload
 
-| Parameter | Type | Description |
-|---|---|---|
-| `handlerInfo1` | `RoutedEventHandlerInfo` |  |
-| `handlerInfo2` | `RoutedEventHandlerInfo` |  |
-
 **Returns** `bool operator`
 
 ### !=(RoutedEventHandlerInfo handlerInfo1, RoutedEventHandlerInfo handlerInfo2)
@@ -85,10 +72,5 @@ public static bool operator !=(RoutedEventHandlerInfo handlerInfo1, RoutedEventH
 ```
 
 NotEquals operator overload
-
-| Parameter | Type | Description |
-|---|---|---|
-| `handlerInfo1` | `RoutedEventHandlerInfo` |  |
-| `handlerInfo2` | `RoutedEventHandlerInfo` |  |
 
 **Returns** `bool operator`

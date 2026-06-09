@@ -31,10 +31,6 @@ public StackPanel(Orientation orientation)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `orientation` | `Orientation` |  |
-
 ## Properties
 
 ### Orientation
@@ -69,8 +65,3 @@ protected override void ArrangeOverride(int arrangeWidth, int arrangeHeight)
 ```
 
 ArrangeOverride allows for the customization of the positioning of children. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `arrangeWidth` | `int` |  |
-| `arrangeHeight` | `int` |  |

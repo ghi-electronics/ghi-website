@@ -40,7 +40,3 @@ public void AddFile(FileInfo info)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `info` | `FileInfo` |  |

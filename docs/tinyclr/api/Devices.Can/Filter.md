@@ -23,12 +23,6 @@ public void AddRangeFilter(IdType idType, uint startId, uint endId)
 
 Accepts IDs in the inclusive range [`startId`, `endId`].
 
-| Parameter | Type | Description |
-|---|---|---|
-| `idType` | `IdType` |  |
-| `startId` | `uint` |  |
-| `endId` | `uint` |  |
-
 ### AddMaskFilter(IdType idType, uint compare, uint mask)
 
 ```csharp
@@ -37,12 +31,6 @@ public void AddMaskFilter(IdType idType, uint compare, uint mask)
 
 Accepts IDs where the bits selected by `mask` equal those in `compare`.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `idType` | `IdType` |  |
-| `compare` | `uint` |  |
-| `mask` | `uint` |  |
-
 ### RejectRemoteFrame(IdType idType)
 
 ```csharp
@@ -50,10 +38,6 @@ public void RejectRemoteFrame(IdType idType)
 ```
 
 Filters out remote-transmission-request (RTR) frames of the given ID width.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `idType` | `IdType` |  |
 
 ### Clear()
 

@@ -23,12 +23,6 @@ public static readonly RoutedEvent TouchDownEvent = new RoutedEvent( , RoutingSt
 
 A routed event indicating that an input report arrived. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `` | `` |  |
-| `RoutingStrategy.Bubble` | `` |  |
-| `typeof(TouchEventArgs)` | `` |  |
-
 **Returns** `RoutedEvent TouchDownEvent = new`
 
 ### RoutedEvent( ,  RoutingStrategy.Bubble,  typeof(TouchEventArgs))
@@ -39,12 +33,6 @@ public static readonly RoutedEvent TouchMoveEvent = new RoutedEvent( , RoutingSt
 
 A routed event indicating that an input report arrived. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `` | `` |  |
-| `RoutingStrategy.Bubble` | `` |  |
-| `typeof(TouchEventArgs)` | `` |  |
-
 **Returns** `RoutedEvent TouchMoveEvent = new`
 
 ### RoutedEvent( ,  RoutingStrategy.Bubble,  typeof(TouchEventArgs))
@@ -54,11 +42,5 @@ public static readonly RoutedEvent TouchUpEvent = new RoutedEvent( , RoutingStra
 ```
 
 A routed event indicating that an input report arrived. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `` | `` |  |
-| `RoutingStrategy.Bubble` | `` |  |
-| `typeof(TouchEventArgs)` | `` |  |
 
 **Returns** `RoutedEvent TouchUpEvent = new`

@@ -23,12 +23,6 @@ protected BufferDrawTarget(int width, int height, int bpp)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `width` | `int` |  |
-| `height` | `int` |  |
-| `bpp` | `int` |  |
-
 ## Properties
 
 ### Width
@@ -67,10 +61,6 @@ public void Clear(Color color)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `color` | `Color` |  |
-
 ### Dispose()
 
 ```csharp
@@ -95,11 +85,6 @@ public abstract Color GetPixel(int x, int y)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `x` | `int` |  |
-| `y` | `int` |  |
-
 **Returns** `Color`
 
 ### SetPixel(int x, int y, Color color)
@@ -109,12 +94,6 @@ public abstract void SetPixel(int x, int y, Color color)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `x` | `int` |  |
-| `y` | `int` |  |
-| `color` | `Color` |  |
 
 ## Fields
 

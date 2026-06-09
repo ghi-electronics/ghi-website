@@ -61,9 +61,4 @@ public bool ReportInput(InputDevice device, InputReport inputReport)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `device` | `InputDevice` |  |
-| `inputReport` | `InputReport` |  |
-
 **Returns** `bool`

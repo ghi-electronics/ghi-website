@@ -89,20 +89,6 @@ void SetActiveSettings(int baudRate, int dataBits, UartParity parity, UartStopBi
 
 Applies a complete set of serial settings.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `baudRate` | `int` |  |
-| `dataBits` | `int` |  |
-| `parity` | `UartParity` |  |
-| `stopBits` | `UartStopBitCount` |  |
-| `handshaking` | `UartHandshake` |  |
-| `enableDePin` | `bool` |  |
-| `invertTxPolarity` | `bool` |  |
-| `invertRxPolarity` | `bool` |  |
-| `invertBinaryData` | `bool` |  |
-| `swapTxRxPin` | `bool` |  |
-| `invertDePolarity` | `bool` |  |
-
 ### Flush()
 
 ```csharp
@@ -119,12 +105,6 @@ int Read(byte[] buffer, int offset, int length)
 
 Reads up to `length` bytes; returns the count actually read.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-| `offset` | `int` |  |
-| `length` | `int` |  |
-
 **Returns** `int`
 
 ### Write(byte[] buffer, int offset, int length, TimeSpan breakDuration)
@@ -134,13 +114,6 @@ int Write(byte[] buffer, int offset, int length, TimeSpan breakDuration)
 ```
 
 Writes `length` bytes; optional trailing break of `breakDuration`.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-| `offset` | `int` |  |
-| `length` | `int` |  |
-| `breakDuration` | `TimeSpan` |  |
 
 **Returns** `int`
 

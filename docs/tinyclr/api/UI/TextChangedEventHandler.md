@@ -12,10 +12,3 @@ _No description available._
 ```csharp
 public delegate void TextChangedEventHandler(object sender, TextChangedEventArgs e);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sender` | `object` |  |
-| `e` | `TextChangedEventArgs` |  |

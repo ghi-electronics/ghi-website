@@ -23,10 +23,6 @@ public NetworkControllerApiWrapper(NativeApi api)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `api` | `NativeApi` |  |
-
 ## Properties
 
 ### Api
@@ -71,10 +67,6 @@ public extern void SetNetworkLinkConnectedChangedEventEnabled(bool enabled)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `enabled` | `bool` |  |
-
 ### SetNetworkAddressChangedEventEnabled(bool enabled)
 
 ```csharp
@@ -82,10 +74,6 @@ public extern void SetNetworkAddressChangedEventEnabled(bool enabled)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `enabled` | `bool` |  |
 
 ### Enable()
 
@@ -143,10 +131,6 @@ public void SetInterfaceSettings(NetworkInterfaceSettings settings)
 
 Applies `NetworkInterfaceSettings` (IP address, DHCP, DNS). _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `settings` | `NetworkInterfaceSettings` |  |
-
 ### SetCommunicationInterfaceSettings(NetworkCommunicationInterfaceSettings settings)
 
 ```csharp
@@ -154,10 +138,6 @@ public void SetCommunicationInterfaceSettings(NetworkCommunicationInterfaceSetti
 ```
 
 Applies the underlying physical-bus settings (built-in MAC, SPI, or UART). _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `settings` | `NetworkCommunicationInterfaceSettings` |  |
 
 ### GetLinkConnected()
 
@@ -197,12 +177,6 @@ public extern int Create(AddressFamily addressFamily, SocketType socketType, Pro
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `addressFamily` | `AddressFamily` |  |
-| `socketType` | `SocketType` |  |
-| `protocolType` | `ProtocolType` |  |
-
 **Returns** `int`
 
 ### Close(int socket)
@@ -213,10 +187,6 @@ public extern void Close(int socket)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `socket` | `int` |  |
-
 ### Bind(int socket, SocketAddress address)
 
 ```csharp
@@ -224,11 +194,6 @@ public extern void Bind(int socket, SocketAddress address)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `socket` | `int` |  |
-| `address` | `SocketAddress` |  |
 
 ### Listen(int socket, int backlog)
 
@@ -238,11 +203,6 @@ public extern void Listen(int socket, int backlog)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `socket` | `int` |  |
-| `backlog` | `int` |  |
-
 ### Accept(int socket)
 
 ```csharp
@@ -250,10 +210,6 @@ public extern int Accept(int socket)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `socket` | `int` |  |
 
 **Returns** `int`
 
@@ -265,11 +221,6 @@ public extern void Connect(int socket, SocketAddress address)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `socket` | `int` |  |
-| `address` | `SocketAddress` |  |
-
 ### Available(int socket)
 
 ```csharp
@@ -277,10 +228,6 @@ public extern int Available(int socket)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `socket` | `int` |  |
 
 **Returns** `int`
 
@@ -292,12 +239,6 @@ public extern bool Poll(int socket, int microSeconds, SelectMode mode)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `socket` | `int` |  |
-| `microSeconds` | `int` |  |
-| `mode` | `SelectMode` |  |
-
 **Returns** `bool`
 
 ### Send(int socket, byte[] buffer, int offset, int count, SocketFlags flags)
@@ -307,14 +248,6 @@ public extern int Send(int socket, byte[] buffer, int offset, int count, SocketF
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `socket` | `int` |  |
-| `buffer` | `byte[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |
-| `flags` | `SocketFlags` |  |
 
 **Returns** `int`
 
@@ -326,14 +259,6 @@ public extern int Receive(int socket, byte[] buffer, int offset, int count, Sock
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `socket` | `int` |  |
-| `buffer` | `byte[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |
-| `flags` | `SocketFlags` |  |
-
 **Returns** `int`
 
 ### SendTo(int socket, byte[] buffer, int offset, int count, SocketFlags flags, SocketAddress address)
@@ -343,15 +268,6 @@ public extern int SendTo(int socket, byte[] buffer, int offset, int count, Socke
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `socket` | `int` |  |
-| `buffer` | `byte[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |
-| `flags` | `SocketFlags` |  |
-| `address` | `SocketAddress` |  |
 
 **Returns** `int`
 
@@ -363,15 +279,6 @@ public extern int ReceiveFrom(int socket, byte[] buffer, int offset, int count, 
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `socket` | `int` |  |
-| `buffer` | `byte[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |
-| `flags` | `SocketFlags` |  |
-| `address` | `ref SocketAddress` |  |
-
 **Returns** `int`
 
 ### GetRemoteAddress(int socket, out SocketAddress address)
@@ -382,11 +289,6 @@ public extern void GetRemoteAddress(int socket, out SocketAddress address)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `socket` | `int` |  |
-| `address` | `out SocketAddress` |  |
-
 ### GetLocalAddress(int socket, out SocketAddress address)
 
 ```csharp
@@ -394,11 +296,6 @@ public extern void GetLocalAddress(int socket, out SocketAddress address)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `socket` | `int` |  |
-| `address` | `out SocketAddress` |  |
 
 ### GetOption(int socket, SocketOptionLevel optionLevel, SocketOptionName optionName, byte[] optionValue)
 
@@ -408,13 +305,6 @@ public extern void GetOption(int socket, SocketOptionLevel optionLevel, SocketOp
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `socket` | `int` |  |
-| `optionLevel` | `SocketOptionLevel` |  |
-| `optionName` | `SocketOptionName` |  |
-| `optionValue` | `byte[]` |  |
-
 ### SetOption(int socket, SocketOptionLevel optionLevel, SocketOptionName optionName, byte[] optionValue)
 
 ```csharp
@@ -423,13 +313,6 @@ public extern void SetOption(int socket, SocketOptionLevel optionLevel, SocketOp
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `socket` | `int` |  |
-| `optionLevel` | `SocketOptionLevel` |  |
-| `optionName` | `SocketOptionName` |  |
-| `optionValue` | `byte[]` |  |
-
 ### AuthenticateAsClient(int socketHandle, string targetHost, X509Certificate caCertificate, X509Certificate clientCertificate, SslProtocols sslProtocols, SslVerification sslVerification)
 
 ```csharp
@@ -437,15 +320,6 @@ public extern int AuthenticateAsClient(int socketHandle, string targetHost, X509
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `socketHandle` | `int` |  |
-| `targetHost` | `string` |  |
-| `caCertificate` | `X509Certificate` |  |
-| `clientCertificate` | `X509Certificate` |  |
-| `sslProtocols` | `SslProtocols` |  |
-| `sslVerification` | `SslVerification` |  |
 
 **Returns** `int`
 
@@ -457,12 +331,6 @@ public extern int AuthenticateAsServer(int socketHandle, X509Certificate certifi
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `socketHandle` | `int` |  |
-| `certificate` | `X509Certificate` |  |
-| `sslProtocols` | `SslProtocols` |  |
-
 **Returns** `int`
 
 ### SecureRead(int handle, byte[] buffer, int offset, int count)
@@ -472,13 +340,6 @@ public extern int SecureRead(int handle, byte[] buffer, int offset, int count)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `handle` | `int` |  |
-| `buffer` | `byte[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |
 
 **Returns** `int`
 
@@ -490,13 +351,6 @@ public extern int SecureWrite(int handle, byte[] buffer, int offset, int count)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `handle` | `int` |  |
-| `buffer` | `byte[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |
-
 **Returns** `int`
 
 ### GetHostByName(string name, out string canonicalName, out SocketAddress[] addresses)
@@ -507,12 +361,6 @@ public extern void GetHostByName(string name, out string canonicalName, out Sock
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `name` | `string` |  |
-| `canonicalName` | `out string` |  |
-| `addresses` | `out SocketAddress[]` |  |
-
 ### GetAccessPointClientLinkConnect(WiFiNetworkInterfaceSettings settings)
 
 ```csharp
@@ -520,10 +368,6 @@ public extern bool GetAccessPointClientLinkConnect(WiFiNetworkInterfaceSettings 
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `settings` | `WiFiNetworkInterfaceSettings` |  |
 
 **Returns** `bool`
 
@@ -534,11 +378,6 @@ public extern void Shutdown(int socket, SocketShutdown how)
 ```
 
 Powers off until either one of the selected wake-up pins asserts or the RTC alarm fires. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `socket` | `int` |  |
-| `how` | `SocketShutdown` |  |
 
 ## Events
 

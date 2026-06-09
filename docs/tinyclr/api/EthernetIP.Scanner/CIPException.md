@@ -31,10 +31,6 @@ public CIPException(string message) : base(message)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `message` | `string` |  |
-
 ### CIPException(string message, Exception inner)
 
 ```csharp
@@ -42,8 +38,3 @@ public CIPException(string message, Exception inner) : base(message, inner)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `message` | `string` |  |
-| `inner` | `Exception` |  |

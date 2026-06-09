@@ -49,12 +49,6 @@ public int Add(string text, System.Drawing.Font font, Color foreColor)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `text` | `string` |  |
-| `font` | `System.Drawing.Font` |  |
-| `foreColor` | `Color` |  |
-
 **Returns** `int`
 
 ### Add(TextRun textRun)
@@ -64,10 +58,6 @@ public int Add(TextRun textRun)
 ```
 
 Appends a UIElement to the end of the UIElementCollection. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `textRun` | `TextRun` |  |
 
 **Returns** `int` — The UIElementCollection index at which the UIElement has been added.
 
@@ -87,10 +77,6 @@ public bool Contains(TextRun run)
 
 Determines whether a element is in the UIElementCollection. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `run` | `TextRun` |  |
-
 **Returns** `bool`
 
 ### IndexOf(TextRun run)
@@ -100,10 +86,6 @@ public int IndexOf(TextRun run)
 ```
 
 Returns the zero-based index of the UIElement. If the UIElement is not in the UIElementCollection -1 is returned. If null is passed to the method, the index of the first entry with null is returned. If there is no null entry -1 is returned. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `run` | `TextRun` |  |
 
 **Returns** `int`
 
@@ -128,10 +110,6 @@ public void Remove(TextRun run)
 
 Removes the specified element from the UIElementCollection. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `run` | `TextRun` |  |
-
 ### RemoveAt(int index)
 
 ```csharp
@@ -151,8 +129,3 @@ public void CopyTo(Array array, int index)
 ```
 
 Strongly typed version of CopyTo Copies the collection into the Array. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `array` | `Array` |  |
-| `index` | `int` |  |

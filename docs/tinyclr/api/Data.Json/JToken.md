@@ -23,10 +23,6 @@ protected void EnterSerialization(JsonSerializationOptions options = null)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `options` | `JsonSerializationOptions` |  |
-
 ### ExitSerialization()
 
 ```csharp
@@ -42,10 +38,6 @@ protected string Indent(bool incrementAfter = false)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `incrementAfter` | `bool` |  |
 
 **Returns** `string`
 
@@ -95,10 +87,6 @@ public abstract int GetBsonSize(string ename)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `ename` | `string` |  |
-
 **Returns** `int`
 
 ### ToBson(byte[] buffer, ref int offset)
@@ -109,11 +97,6 @@ public abstract void ToBson(byte[] buffer, ref int offset)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-| `offset` | `ref int` |  |
-
 ### ToBson(string ename, byte[] buffer, ref int offset)
 
 ```csharp
@@ -121,12 +104,6 @@ public void ToBson(string ename, byte[] buffer, ref int offset)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `ename` | `string` |  |
-| `buffer` | `byte[]` |  |
-| `offset` | `ref int` |  |
 
 ### MarshallEName(string ename, byte[] buffer, ref int offset)
 
@@ -136,12 +113,6 @@ protected void MarshallEName(string ename, byte[] buffer, ref int offset)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `ename` | `string` |  |
-| `buffer` | `byte[]` |  |
-| `offset` | `ref int` |  |
-
 ### ToString(JsonSerializationOptions options)
 
 ```csharp
@@ -149,9 +120,5 @@ public abstract string ToString(JsonSerializationOptions options)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `options` | `JsonSerializationOptions` |  |
 
 **Returns** `string`

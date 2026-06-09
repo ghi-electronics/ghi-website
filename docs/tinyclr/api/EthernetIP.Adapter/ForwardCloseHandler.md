@@ -12,10 +12,3 @@ _No description available._
 ```csharp
 public delegate void ForwardCloseHandler(AdapterController adapter, IPAddress ipAddress);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `adapter` | `AdapterController` |  |
-| `ipAddress` | `IPAddress` |  |

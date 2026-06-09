@@ -12,10 +12,3 @@ The delegate to use for handlers that receive FocusChangedEventArgs.
 ```csharp
 public delegate void FocusChangedEventHandler(object sender, FocusChangedEventArgs e);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sender` | `object` |  |
-| `e` | `FocusChangedEventArgs` |  |

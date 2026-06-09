@@ -83,10 +83,6 @@ bool GetAccessPointClientLinkConnect(WiFiNetworkInterfaceSettings settings)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `settings` | `WiFiNetworkInterfaceSettings` |  |
-
 **Returns** `bool`
 
 ### GetIPProperties()
@@ -117,10 +113,6 @@ void SetInterfaceSettings(NetworkInterfaceSettings settings)
 
 Applies `NetworkInterfaceSettings` (IP address, DHCP, DNS). _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `settings` | `NetworkInterfaceSettings` |  |
-
 ### SetCommunicationInterfaceSettings(NetworkCommunicationInterfaceSettings settings)
 
 ```csharp
@@ -128,10 +120,6 @@ void SetCommunicationInterfaceSettings(NetworkCommunicationInterfaceSettings set
 ```
 
 Applies the underlying physical-bus settings (built-in MAC, SPI, or UART). _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `settings` | `NetworkCommunicationInterfaceSettings` |  |
 
 ## Events
 

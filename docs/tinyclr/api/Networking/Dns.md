@@ -33,10 +33,6 @@ public static IPAddress[] GetHostAddresses(string hostNameOrAddress)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `hostNameOrAddress` | `string` |  |
-
 **Returns** `IPAddress[]`
 
 ### GetHostEntry(string hostNameOrAddress)
@@ -46,9 +42,5 @@ public static IPHostEntry GetHostEntry(string hostNameOrAddress)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `hostNameOrAddress` | `string` |  |
 
 **Returns** `IPHostEntry`

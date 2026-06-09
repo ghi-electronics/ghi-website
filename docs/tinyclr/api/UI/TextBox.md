@@ -91,12 +91,6 @@ public void SetTextBinding(object source, string propertyName, bool twoWay = tru
 
 One-way or two-way bind `Text` to a CLR property on `source` using reflection. For change notifications implement `INotifyBindablePropertyChanged` on the source.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `source` | `object` |  |
-| `propertyName` | `string` |  |
-| `twoWay` | `bool` |  |
-
 ### ClearTextBinding()
 
 ```csharp
@@ -125,10 +119,6 @@ protected override void OnButtonDown(ButtonEventArgs e)
 
 Hardware button support: `HardwareButton.Select` opens the on-screen keyboard, mirroring tap-to-edit behavior.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `ButtonEventArgs` |  |
-
 ### MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
 
 ```csharp
@@ -152,11 +142,6 @@ protected override void ArrangeOverride(int arrangeWidth, int arrangeHeight)
 
 ArrangeOverride allows for the customization of the positioning of children. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `arrangeWidth` | `int` |  |
-| `arrangeHeight` | `int` |  |
-
 ### OnRender(DrawingContext dc)
 
 ```csharp
@@ -164,10 +149,6 @@ public override void OnRender(DrawingContext dc)
 ```
 
 Renders the DataGrid onto it's parent container's graphics. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `dc` | `DrawingContext` |  |
 
 ## Events
 

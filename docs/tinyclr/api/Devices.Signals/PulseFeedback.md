@@ -23,11 +23,6 @@ public PulseFeedback(GpioPin pin, PulseFeedbackMode mode) : this(pin, null, mode
 
 Single-pin (drain-duration) constructor.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `pin` | `GpioPin` |  |
-| `mode` | `PulseFeedbackMode` |  |
-
 ### PulseFeedback(GpioPin pulsePin, GpioPin echoPin, PulseFeedbackMode mode)
 
 ```csharp
@@ -35,12 +30,6 @@ public PulseFeedback(GpioPin pulsePin, GpioPin echoPin, PulseFeedbackMode mode)
 ```
 
 Two-pin (echo / duration-until-echo) constructor.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `pulsePin` | `GpioPin` |  |
-| `echoPin` | `GpioPin` |  |
-| `mode` | `PulseFeedbackMode` |  |
 
 ## Properties
 

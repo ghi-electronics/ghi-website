@@ -41,10 +41,6 @@ public bool Contains(string name)
 
 Determines whether a element is in the UIElementCollection. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `name` | `string` |  |
-
 **Returns** `bool`
 
 ### Add(string name, JToken value)
@@ -55,11 +51,6 @@ public void Add(string name, JToken value)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `name` | `string` |  |
-| `value` | `JToken` |  |
-
 ### Serialize(Type type, object oSource, JsonSerializerSettings settings)
 
 ```csharp
@@ -67,12 +58,6 @@ public static JObject Serialize(Type type, object oSource, JsonSerializerSetting
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `type` | `Type` |  |
-| `oSource` | `object` |  |
-| `settings` | `JsonSerializerSettings` |  |
 
 **Returns** `JObject`
 
@@ -94,10 +79,6 @@ public override string ToString(JsonSerializationOptions options)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `options` | `JsonSerializationOptions` |  |
-
 **Returns** `string`
 
 ### GetBsonSize()
@@ -118,10 +99,6 @@ public override int GetBsonSize(string ename)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `ename` | `string` |  |
-
 **Returns** `int`
 
 ### ToBson(byte[] buffer, ref int offset)
@@ -131,11 +108,6 @@ public override void ToBson(byte[] buffer, ref int offset)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-| `offset` | `ref int` |  |
 
 ### GetBsonType()
 

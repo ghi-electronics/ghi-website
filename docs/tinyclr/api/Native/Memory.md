@@ -57,10 +57,6 @@ public IntPtr Allocate(long length)
 
 Allocates `length` bytes; returns the pointer.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `length` | `long` |  |
-
 **Returns** `IntPtr`
 
 ### Allocate(IntPtr length)
@@ -70,10 +66,6 @@ public extern IntPtr Allocate(IntPtr length)
 ```
 
 Allocates the given number of bytes.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `length` | `IntPtr` |  |
 
 **Returns** `IntPtr`
 
@@ -85,10 +77,6 @@ public extern void Free(IntPtr ptr)
 
 Frees a pointer returned by `Allocate(long)`.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `ptr` | `IntPtr` |  |
-
 ### ToBytes(IntPtr ptr, long length)
 
 ```csharp
@@ -96,11 +84,6 @@ public byte[] ToBytes(IntPtr ptr, long length)
 ```
 
 Returns a byte[] aliased to a fixed-address region (no copy).
-
-| Parameter | Type | Description |
-|---|---|---|
-| `ptr` | `IntPtr` |  |
-| `length` | `long` |  |
 
 **Returns** `byte[]`
 
@@ -112,11 +95,6 @@ public extern byte[] ToBytes(IntPtr ptr, IntPtr length)
 
 Returns a byte[] aliased to a fixed-address region (no copy).
 
-| Parameter | Type | Description |
-|---|---|---|
-| `ptr` | `IntPtr` |  |
-| `length` | `IntPtr` |  |
-
 **Returns** `byte[]`
 
 ### GetStats(out IntPtr used, out IntPtr free)
@@ -126,11 +104,6 @@ public extern void GetStats(out IntPtr used, out IntPtr free)
 ```
 
 Reads current heap usage and free space.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `used` | `out IntPtr` |  |
-| `free` | `out IntPtr` |  |
 
 ### ExtendHeap()
 

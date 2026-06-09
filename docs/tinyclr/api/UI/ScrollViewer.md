@@ -106,11 +106,6 @@ protected override void ArrangeOverride(int arrangeWidth, int arrangeHeight)
 
 ArrangeOverride allows for the customization of the positioning of children. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `arrangeWidth` | `int` |  |
-| `arrangeHeight` | `int` |  |
-
 ### LineDown()
 
 ```csharp
@@ -182,10 +177,6 @@ protected override void OnButtonDown(GHIElectronics.TinyCLR.UI.Input.ButtonEvent
 ```
 
 An event reporting a button was pressed. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `GHIElectronics.TinyCLR.UI.Input.ButtonEventArgs` |  |
 
 ## Events
 

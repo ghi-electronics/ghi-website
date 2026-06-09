@@ -23,10 +23,6 @@ public LibGpiodDriver(int chipNumber) : base(CalculatePinBase(chipNumber))
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `chipNumber` | `int` |  |
-
 ## Properties
 
 ### ChipNumber

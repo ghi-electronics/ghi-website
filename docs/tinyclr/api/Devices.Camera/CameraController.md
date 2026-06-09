@@ -43,10 +43,6 @@ public static CameraController FromName(string name)
 
 Returns a camera controller identified by its native API name.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `name` | `string` |  |
-
 **Returns** `CameraController`
 
 ### FromProvider(ICameraControllerProvider provider)
@@ -56,10 +52,6 @@ public static CameraController FromProvider(ICameraControllerProvider provider)
 ```
 
 Creates a controller from a custom `ICameraControllerProvider`.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `provider` | `ICameraControllerProvider` |  |
 
 **Returns** `CameraController`
 
@@ -111,13 +103,6 @@ public int Capture(byte[] data, int offset, int count, int timeoutMillisecond)
 ```
 
 Captures one frame into a slice of the buffer.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `data` | `byte[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |
-| `timeoutMillisecond` | `int` |  |
 
 **Returns** `int`
 

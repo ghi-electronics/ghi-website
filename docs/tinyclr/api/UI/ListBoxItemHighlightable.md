@@ -23,15 +23,6 @@ public ListBoxItemHighlightable(string content, Font font, int margin, Media.Col
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `content` | `string` |  |
-| `font` | `Font` |  |
-| `margin` | `int` |  |
-| `backgroundSelectedColor` | `Media.Color` |  |
-| `foreColorSelectedColor` | `Media.Color` |  |
-| `foreColorUnselectColor` | `Media.Color` |  |
-
 ## Methods
 
 ### OnIsSelectedChanged(bool isSelected)
@@ -41,7 +32,3 @@ protected internal override void OnIsSelectedChanged(bool isSelected)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `isSelected` | `bool` |  |

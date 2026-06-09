@@ -216,13 +216,6 @@ public void SetInterfaceMap(byte interfaceIndex, byte data1, byte data2, byte da
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `interfaceIndex` | `byte` |  |
-| `data1` | `byte` |  |
-| `data2` | `byte` |  |
-| `data3` | `byte` |  |
-
 ### CreateStream(int index, RawDevice parent)
 
 ```csharp

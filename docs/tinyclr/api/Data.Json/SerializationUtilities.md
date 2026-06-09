@@ -23,12 +23,6 @@ public static void Marshall(byte[] buffer, ref int offset, object arg)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-| `offset` | `ref int` |  |
-| `arg` | `object` |  |
-
 ### Unmarshall(byte[] buffer, ref int offset, TypeCode tc)
 
 ```csharp
@@ -36,11 +30,5 @@ public static object Unmarshall(byte[] buffer, ref int offset, TypeCode tc)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-| `offset` | `ref int` |  |
-| `tc` | `TypeCode` |  |
 
 **Returns** `object`

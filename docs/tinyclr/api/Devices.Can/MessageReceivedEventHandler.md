@@ -12,10 +12,3 @@ Handler signature for `CanController.MessageReceived`.
 ```csharp
 public delegate void MessageReceivedEventHandler(CanController sender, MessageReceivedEventArgs e);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sender` | `CanController` |  |
-| `e` | `MessageReceivedEventArgs` |  |

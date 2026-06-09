@@ -23,10 +23,6 @@ public SignalCapture(GpioPin pin)
 
 Opens a capture session on the given pin.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `pin` | `GpioPin` |  |
-
 ## Properties
 
 ### DisableInterrupts
@@ -111,13 +107,6 @@ public extern int Read(out GpioPinValue initialState, TimeSpan[] buffer, int off
 
 Captures a slice of inter-edge intervals.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `initialState` | `out GpioPinValue` |  |
-| `buffer` | `TimeSpan[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |
-
 **Returns** `int`
 
 ### Read(GpioPinValue waitForState, TimeSpan[] buffer, int offset, int count)
@@ -127,12 +116,5 @@ public extern int Read(GpioPinValue waitForState, TimeSpan[] buffer, int offset,
 ```
 
 Captures a slice of inter-edge intervals after waiting for `waitForState`.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `waitForState` | `GpioPinValue` |  |
-| `buffer` | `TimeSpan[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |
 
 **Returns** `int`

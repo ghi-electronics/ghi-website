@@ -23,11 +23,6 @@ public InputReportArgs(object dev, object report)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `dev` | `object` |  |
-| `report` | `object` |  |
-
 ## Fields
 
 ### Device

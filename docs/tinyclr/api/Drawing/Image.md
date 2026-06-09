@@ -51,10 +51,6 @@ public static Image FromStream(Stream stream)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `stream` | `Stream` |  |
-
 **Returns** `Image`
 
 ### Save(Stream stream, ImageFormat format)
@@ -64,11 +60,6 @@ public void Save(Stream stream, ImageFormat format)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `stream` | `Stream` |  |
-| `format` | `ImageFormat` |  |
 
 ### Dispose(bool disposing)
 
@@ -98,12 +89,6 @@ public virtual void SetPixel(int x, int y, Color color)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `x` | `int` |  |
-| `y` | `int` |  |
-| `color` | `Color` |  |
-
 ### GetPixel(int x, int y)
 
 ```csharp
@@ -111,11 +96,6 @@ public virtual Color GetPixel(int x, int y)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `x` | `int` |  |
-| `y` | `int` |  |
 
 **Returns** `Color`
 
@@ -137,13 +117,6 @@ public byte[] GetBitmap(int x, int y, int width, int height)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `x` | `int` |  |
-| `y` | `int` |  |
-| `width` | `int` |  |
-| `height` | `int` |  |
-
 **Returns** `byte[]`
 
 ### MakeTransparent(Color color)
@@ -153,7 +126,3 @@ public void MakeTransparent(Color color)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `color` | `Color` |  |

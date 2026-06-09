@@ -12,10 +12,3 @@ _No description available._
 ```csharp
 public delegate void SelectionChangedEventHandler(object sender, SelectionChangedEventArgs args);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sender` | `object` |  |
-| `args` | `SelectionChangedEventArgs` |  |

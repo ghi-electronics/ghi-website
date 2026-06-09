@@ -23,13 +23,6 @@ public ScrollChangedEventArgs(int offsetX, int offsetY, int offsetChangeX, int o
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `offsetX` | `int` |  |
-| `offsetY` | `int` |  |
-| `offsetChangeX` | `int` |  |
-| `offsetChangeY` | `int` |  |
-
 ## Fields
 
 ### HorizontalChange

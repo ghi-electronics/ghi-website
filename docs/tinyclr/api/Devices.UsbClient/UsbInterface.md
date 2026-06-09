@@ -23,11 +23,6 @@ public UsbInterface(byte InterfaceNumber, Endpoint[] Endpoints)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `InterfaceNumber` | `byte` |  |
-| `Endpoints` | `Endpoint[]` |  |
-
 ## Fields
 
 ### bInterfaceNumber

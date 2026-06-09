@@ -59,10 +59,6 @@ public static WatchdogController FromName(string name)
 
 Returns a watchdog identified by its native API name.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `name` | `string` |  |
-
 **Returns** `WatchdogController`
 
 ### FromProvider(IWatchdogControllerProvider provider)
@@ -72,10 +68,6 @@ public static WatchdogController FromProvider(IWatchdogControllerProvider provid
 ```
 
 Creates a controller from a custom `IWatchdogControllerProvider`.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `provider` | `IWatchdogControllerProvider` |  |
 
 **Returns** `WatchdogController`
 

@@ -353,11 +353,6 @@ public void AddRange(long from, long to)
 
 Adds a byte range header for ranges that may exceed Int32.MaxValue.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `from` | `long` |  |
-| `to` | `long` |  |
-
 ### AddRange(long range)
 
 ```csharp
@@ -365,10 +360,6 @@ public void AddRange(long range)
 ```
 
 Adds a byte range header for a range that may exceed Int32.MaxValue.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `range` | `long` |  |
 
 ### AddRange(string rangeSpecifier, long from, long to)
 
@@ -378,12 +369,6 @@ public void AddRange(string rangeSpecifier, long from, long to)
 
 Adds a range header to a request for a specified range, with long endpoints.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `rangeSpecifier` | `string` |  |
-| `from` | `long` |  |
-| `to` | `long` |  |
-
 ### AddRange(string rangeSpecifier, long range)
 
 ```csharp
@@ -391,11 +376,6 @@ public void AddRange(string rangeSpecifier, long range)
 ```
 
 Adds a range header to a request from the beginning or end of the data, with a long range value.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `rangeSpecifier` | `string` |  |
-| `range` | `long` |  |
 
 ### GetResponse()
 

@@ -33,10 +33,6 @@ public static I2cDevice Create(I2cConnectionSettings settings)
 
 Creates a WebRequest . _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `settings` | `I2cConnectionSettings` |  |
-
 **Returns** `I2cDevice`
 
 ### Read(byte[] buffer)
@@ -47,10 +43,6 @@ public abstract void Read(byte[] buffer)
 
 Read the data from internal buffer _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-
 ### Write(byte[] buffer)
 
 ```csharp
@@ -59,10 +51,6 @@ public abstract void Write(byte[] buffer)
 
 Write a fileinfo or directoryinfo to the socket _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-
 ### WriteRead(byte[] writeBuffer, byte[] readBuffer)
 
 ```csharp
@@ -70,11 +58,6 @@ public abstract void WriteRead(byte[] writeBuffer, byte[] readBuffer)
 ```
 
 Performs a register-style write-then-read transaction. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `writeBuffer` | `byte[]` |  |
-| `readBuffer` | `byte[]` |  |
 
 ### Dispose()
 

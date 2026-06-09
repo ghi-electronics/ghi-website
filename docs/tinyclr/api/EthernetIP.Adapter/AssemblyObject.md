@@ -23,12 +23,6 @@ public AssemblyObject(int instanceId, byte[] data, ushort size)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `instanceId` | `int` |  |
-| `data` | `byte[]` |  |
-| `size` | `ushort` |  |
-
 ## Properties
 
 ### Impl

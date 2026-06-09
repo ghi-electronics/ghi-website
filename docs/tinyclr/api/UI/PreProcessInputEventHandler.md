@@ -12,10 +12,3 @@ Delegate type for handles of events that use `PreProcessInputEventArgs`.
 ```csharp
 public delegate void PreProcessInputEventHandler(object sender, PreProcessInputEventArgs e);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sender` | `object` |  |
-| `e` | `PreProcessInputEventArgs` |  |

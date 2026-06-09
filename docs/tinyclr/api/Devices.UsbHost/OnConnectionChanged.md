@@ -12,10 +12,3 @@ _No description available._
 ```csharp
 public delegate void OnConnectionChanged(UsbHostController sender, DeviceConnectionEventArgs e);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sender` | `UsbHostController` |  |
-| `e` | `DeviceConnectionEventArgs` |  |

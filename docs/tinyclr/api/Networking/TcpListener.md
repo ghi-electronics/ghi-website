@@ -23,10 +23,6 @@ public TcpListener(IPEndPoint localEP)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `localEP` | `IPEndPoint` |  |
-
 ### TcpListener(IPAddress localaddr, int port)
 
 ```csharp
@@ -34,11 +30,6 @@ public TcpListener(IPAddress localaddr, int port) : this(new IPEndPoint(localadd
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `localaddr` | `IPAddress` |  |
-| `port` | `int` |  |
 
 ## Properties
 
@@ -83,10 +74,6 @@ public void Start(int backlog)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `backlog` | `int` |  |
 
 ### Stop()
 
@@ -133,9 +120,5 @@ public static TcpListener Create(int port)
 ```
 
 Creates a WebRequest . _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `port` | `int` |  |
 
 **Returns** `TcpListener`

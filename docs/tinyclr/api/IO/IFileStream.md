@@ -57,13 +57,6 @@ int Read(byte[] buffer, int offset, int count, TimeSpan timeout)
 
 Captures a slice of inter-edge intervals after waiting for `waitForState`. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |
-| `timeout` | `TimeSpan` |  |
-
 **Returns** `int`
 
 ### Write(byte[] buffer, int offset, int count, TimeSpan timeout)
@@ -73,13 +66,6 @@ int Write(byte[] buffer, int offset, int count, TimeSpan timeout)
 ```
 
 Writes `length` bytes; optional trailing break of `breakDuration`. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |
-| `timeout` | `TimeSpan` |  |
 
 **Returns** `int`
 

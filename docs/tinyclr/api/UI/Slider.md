@@ -31,11 +31,6 @@ public Slider(int width, int height)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `width` | `int` |  |
-| `height` | `int` |  |
-
 ## Properties
 
 ### Alpha
@@ -128,10 +123,6 @@ public override void OnRender(DrawingContext dc)
 
 Renders the DataGrid onto it's parent container's graphics. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `dc` | `DrawingContext` |  |
-
 ### OnTouchDown(TouchEventArgs e)
 
 ```csharp
@@ -175,10 +166,6 @@ protected override void OnButtonDown(ButtonEventArgs e)
 ```
 
 Hardware button support: Left/Right step a horizontal slider, Up/Down step a vertical slider. Step size is one snap interval, or 1% of the range when SnapInterval is 0.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `ButtonEventArgs` |  |
 
 ### Dispose()
 

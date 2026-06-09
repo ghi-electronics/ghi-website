@@ -23,10 +23,6 @@ public NativeFunction(uint address)
 
 Constructs a `NativeFunction` pointing at the given address.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `address` | `uint` |  |
-
 ## Methods
 
 ### Dispose()

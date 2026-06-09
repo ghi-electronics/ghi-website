@@ -23,11 +23,6 @@ public MulticastOption(IPAddress group, IPAddress mcint)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `group` | `IPAddress` |  |
-| `mcint` | `IPAddress` |  |
-
 ### MulticastOption(IPAddress group)
 
 ```csharp
@@ -35,10 +30,6 @@ public MulticastOption(IPAddress group)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `group` | `IPAddress` |  |
 
 ## Properties
 

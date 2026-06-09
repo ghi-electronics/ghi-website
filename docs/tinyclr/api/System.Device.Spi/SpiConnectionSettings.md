@@ -23,11 +23,6 @@ public SpiConnectionSettings(int busId, int chipSelectLine)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `busId` | `int` |  |
-| `chipSelectLine` | `int` |  |
-
 ## Properties
 
 ### BusId

@@ -23,11 +23,6 @@ public static readonly Version Version10 = new Version(1, 0)
 
 Defines a `System.Version` instance for HTTP 1.0.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `1` | `` |  |
-| `0` | `` |  |
-
 **Returns** `Version Version10 = new`
 
 ### Version( 1,  1)
@@ -37,10 +32,5 @@ public static readonly Version Version11 = new Version(1, 1)
 ```
 
 Defines a `System.Version` instance for HTTP 1.1.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `1` | `` |  |
-| `1` | `` |  |
 
 **Returns** `Version Version11 = new`

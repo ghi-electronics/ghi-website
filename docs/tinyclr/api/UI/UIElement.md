@@ -155,10 +155,6 @@ protected virtual void OnGenericEvent(GenericEventArgs e)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `GenericEventArgs` |  |
-
 ### OnTouchDown(TouchEventArgs e)
 
 ```csharp
@@ -203,10 +199,6 @@ protected virtual void OnTouchGestureStarted(TouchGestureEventArgs e)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `TouchGestureEventArgs` |  |
-
 ### OnTouchGestureChanged(TouchGestureEventArgs e)
 
 ```csharp
@@ -214,10 +206,6 @@ protected virtual void OnTouchGestureChanged(TouchGestureEventArgs e)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `TouchGestureEventArgs` |  |
 
 ### OnTouchGestureEnded(TouchGestureEventArgs e)
 
@@ -227,10 +215,6 @@ protected virtual void OnTouchGestureEnded(TouchGestureEventArgs e)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `TouchGestureEventArgs` |  |
-
 ### OnPreviewButtonDown(ButtonEventArgs e)
 
 ```csharp
@@ -238,10 +222,6 @@ protected virtual void OnPreviewButtonDown(ButtonEventArgs e)
 ```
 
 An event reporting a button was pressed.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `ButtonEventArgs` |  |
 
 ### OnButtonDown(ButtonEventArgs e)
 
@@ -251,10 +231,6 @@ protected virtual void OnButtonDown(ButtonEventArgs e)
 
 An event reporting a button was pressed.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `ButtonEventArgs` |  |
-
 ### OnPreviewButtonUp(ButtonEventArgs e)
 
 ```csharp
@@ -262,10 +238,6 @@ protected virtual void OnPreviewButtonUp(ButtonEventArgs e)
 ```
 
 An event reporting a button was released.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `ButtonEventArgs` |  |
 
 ### OnButtonUp(ButtonEventArgs e)
 
@@ -275,10 +247,6 @@ protected virtual void OnButtonUp(ButtonEventArgs e)
 
 An event reporting a button was released.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `ButtonEventArgs` |  |
-
 ### OnGotFocus(FocusChangedEventArgs e)
 
 ```csharp
@@ -286,10 +254,6 @@ protected virtual void OnGotFocus(FocusChangedEventArgs e)
 ```
 
 An event announcing that the buttons are focused on this element.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `FocusChangedEventArgs` |  |
 
 ### OnLostFocus(FocusChangedEventArgs e)
 
@@ -299,10 +263,6 @@ protected virtual void OnLostFocus(FocusChangedEventArgs e)
 
 An event announcing that the buttons is no longer focused on this element
 
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `FocusChangedEventArgs` |  |
-
 ### GetDesiredSize(out int width, out int height)
 
 ```csharp
@@ -310,11 +270,6 @@ public void GetDesiredSize(out int width, out int height)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `width` | `out int` |  |
-| `height` | `out int` |  |
 
 ### GetMargin(out int left, out int top, out int right, out int bottom)
 
@@ -324,13 +279,6 @@ public void GetMargin(out int left, out int top, out int right, out int bottom)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `left` | `out int` |  |
-| `top` | `out int` |  |
-| `right` | `out int` |  |
-| `bottom` | `out int` |  |
-
 ### SetMargin(int length)
 
 ```csharp
@@ -338,10 +286,6 @@ public void SetMargin(int length)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `length` | `int` |  |
 
 ### SetMargin(int left, int top, int right, int bottom)
 
@@ -351,13 +295,6 @@ public void SetMargin(int left, int top, int right, int bottom)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `left` | `int` |  |
-| `top` | `int` |  |
-| `right` | `int` |  |
-| `bottom` | `int` |  |
-
 ### IsHeightSet(out int height)
 
 ```csharp
@@ -365,10 +302,6 @@ protected internal bool IsHeightSet(out int height)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `height` | `out int` |  |
 
 **Returns** `bool`
 
@@ -380,10 +313,6 @@ protected internal bool IsWidthSet(out int width)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `width` | `out int` |  |
-
 **Returns** `bool`
 
 ### GetLayoutOffset(out int x, out int y)
@@ -394,11 +323,6 @@ public void GetLayoutOffset(out int x, out int y)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `x` | `out int` |  |
-| `y` | `out int` |  |
-
 ### GetRenderSize(out int width, out int height)
 
 ```csharp
@@ -407,11 +331,6 @@ public void GetRenderSize(out int width, out int height)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `width` | `out int` |  |
-| `height` | `out int` |  |
-
 ### OnChildrenChanged(UIElement added, UIElement removed, int indexAffected)
 
 ```csharp
@@ -419,12 +338,6 @@ protected internal virtual void OnChildrenChanged( UIElement added, UIElement re
 ```
 
 OnChildrenChanged is called when the UIElementCollection of the UIElement is edited.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `added` | `UIElement` |  |
-| `removed` | `UIElement` |  |
-| `indexAffected` | `int` |  |
 
 ### Measure(int availableWidth, int availableHeight)
 
@@ -446,13 +359,6 @@ public void Arrange(int finalRectX, int finalRectY, int finalRectWidth, int fina
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `finalRectX` | `int` |  |
-| `finalRectY` | `int` |  |
-| `finalRectWidth` | `int` |  |
-| `finalRectHeight` | `int` |  |
 
 ### MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
 
@@ -498,11 +404,6 @@ public UIElement ChildElementFromPoint(int x, int y)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `x` | `int` |  |
-| `y` | `int` |  |
-
 **Returns** `UIElement`
 
 ### GetUnclippedSize(out int width, out int height)
@@ -513,11 +414,6 @@ public void GetUnclippedSize(out int width, out int height)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `width` | `out int` |  |
-| `height` | `out int` |  |
-
 ### ContainsPoint(int x, int y)
 
 ```csharp
@@ -525,11 +421,6 @@ public bool ContainsPoint(int x, int y)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `x` | `int` |  |
-| `y` | `int` |  |
 
 **Returns** `bool`
 
@@ -541,11 +432,6 @@ public UIElement GetPointerTarget(int x, int y)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `x` | `int` |  |
-| `y` | `int` |  |
-
 **Returns** `UIElement`
 
 ### PointToScreen(ref int x, ref int y)
@@ -556,11 +442,6 @@ public void PointToScreen(ref int x, ref int y)
 
 We are deviating little from their desktop counter parts, mostly for simplicity and perf.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `x` | `ref int` |  |
-| `y` | `ref int` |  |
-
 ### PointToClient(ref int x, ref int y)
 
 ```csharp
@@ -568,11 +449,6 @@ public void PointToClient(ref int x, ref int y)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `x` | `ref int` |  |
-| `y` | `ref int` |  |
 
 ### InvalidateMeasure()
 
@@ -598,10 +474,6 @@ protected virtual void OnChildDesiredSizeChanged(UIElement child)
 
 Notification that is called by Measure of a child when it ends up with different desired size for the child.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `child` | `UIElement` |  |
-
 ### OnRender(DrawingContext dc)
 
 ```csharp
@@ -609,10 +481,6 @@ public virtual void OnRender(DrawingContext dc)
 ```
 
 Renders the DataGrid onto it's parent container's graphics. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `dc` | `DrawingContext` |  |
 
 ### RenderRecursive(DrawingContext dc)
 
@@ -622,10 +490,6 @@ protected internal virtual void RenderRecursive(DrawingContext dc)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `dc` | `DrawingContext` |  |
-
 ### InvalidateRect(int x, int y, int w, int h)
 
 ```csharp
@@ -633,13 +497,6 @@ public void InvalidateRect(int x, int y, int w, int h)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `x` | `int` |  |
-| `y` | `int` |  |
-| `w` | `int` |  |
-| `h` | `int` |  |
 
 ### Invalidate()
 
@@ -656,11 +513,6 @@ public void AddToEventRoute(EventRoute route, RoutedEventArgs args)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `route` | `EventRoute` |  |
-| `args` | `RoutedEventArgs` |  |
 
 ### AddHandler(RoutedEvent routedEvent, RoutedEventHandler handler, bool handledEventsToo)
 
@@ -683,11 +535,6 @@ public static string PrintSize(int x, int y)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `x` | `int` |  |
-| `y` | `int` |  |
 
 **Returns** `string`
 

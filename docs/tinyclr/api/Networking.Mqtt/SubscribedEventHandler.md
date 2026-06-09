@@ -12,11 +12,3 @@ _No description available._
 ```csharp
 public delegate void SubscribedEventHandler(object sender, uint packetId, QoSLevel[] grantedQoSLevels);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sender` | `object` |  |
-| `packetId` | `uint` |  |
-| `grantedQoSLevels` | `QoSLevel[]` |  |

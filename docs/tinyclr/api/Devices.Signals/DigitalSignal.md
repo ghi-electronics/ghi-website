@@ -23,10 +23,6 @@ public DigitalSignal(GpioPin pin)
 
 Opens a digital-signal session on a supported pin (0, 1, or 19).
 
-| Parameter | Type | Description |
-|---|---|---|
-| `pin` | `GpioPin` |  |
-
 ## Properties
 
 ### CanReadPulse
@@ -71,10 +67,6 @@ protected virtual void Dispose(bool disposing)
 
 Dispose implementation.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `disposing` | `bool` |  |
-
 ### ReadPulse(uint pulseNum, GpioPinEdge edge, bool waitForEdge)
 
 ```csharp
@@ -97,12 +89,6 @@ public void Capture(uint bufferSize, GpioPinEdge edge, bool waitForEdge)
 
 Captures inter-edge intervals. See full-parameter overload for buffer-layout details.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `bufferSize` | `uint` |  |
-| `edge` | `GpioPinEdge` |  |
-| `waitForEdge` | `bool` |  |
-
 ### Capture(uint count, GpioPinEdge edge, bool waitForEdge, TimeSpan timeout)
 
 ```csharp
@@ -110,13 +96,6 @@ public void Capture(uint count, GpioPinEdge edge, bool waitForEdge, TimeSpan tim
 ```
 
 Capture timestamps of `count` edges on the pin.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `count` | `uint` |  |
-| `edge` | `GpioPinEdge` |  |
-| `waitForEdge` | `bool` |  |
-| `timeout` | `TimeSpan` |  |
 
 ### Generate(uint[] data, uint offset, uint count)
 
@@ -126,12 +105,6 @@ public void Generate(uint[] data, uint offset, uint count)
 
 Emits a pulse train described by `data` with default multiplier and starting high.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `data` | `uint[]` |  |
-| `offset` | `uint` |  |
-| `count` | `uint` |  |
-
 ### Generate(uint[] data, uint offset, uint count, uint multiplier)
 
 ```csharp
@@ -139,13 +112,6 @@ public void Generate(uint[] data, uint offset, uint count, uint multiplier)
 ```
 
 Emits a pulse train with explicit multiplier and starting high.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `data` | `uint[]` |  |
-| `offset` | `uint` |  |
-| `count` | `uint` |  |
-| `multiplier` | `uint` |  |
 
 ### Generate(uint[] data, uint offset, uint count, uint multiplier, GpioPinValue startingPolarity)
 

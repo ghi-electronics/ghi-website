@@ -23,11 +23,6 @@ public FileStream(string path, FileMode mode) : this(path, mode, (mode == FileMo
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
-| `mode` | `FileMode` |  |
-
 ### FileStream(string path, FileMode mode, FileAccess access)
 
 ```csharp
@@ -35,12 +30,6 @@ public FileStream(string path, FileMode mode, FileAccess access) : this(path, mo
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
-| `mode` | `FileMode` |  |
-| `access` | `FileAccess` |  |
 
 ### FileStream(string path, FileMode mode, FileAccess access, FileShare share)
 
@@ -50,13 +39,6 @@ public FileStream(string path, FileMode mode, FileAccess access, FileShare share
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
-| `mode` | `FileMode` |  |
-| `access` | `FileAccess` |  |
-| `share` | `FileShare` |  |
-
 ### FileStream(string path, FileMode mode, FileAccess access, FileShare share, int bufferSize)
 
 ```csharp
@@ -64,14 +46,6 @@ public FileStream(string path, FileMode mode, FileAccess access, FileShare share
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
-| `mode` | `FileMode` |  |
-| `access` | `FileAccess` |  |
-| `share` | `FileShare` |  |
-| `bufferSize` | `int` |  |
 
 ## Properties
 
@@ -160,10 +134,6 @@ public override void SetLength(long value)
 ```
 
 Adjusts the length of the array. This can be used to trim the end of the array. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `value` | `long` |  |
 
 ### Read(byte[] buffer, int offset, int count)
 

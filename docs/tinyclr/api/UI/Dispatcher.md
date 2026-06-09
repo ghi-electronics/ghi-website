@@ -57,10 +57,6 @@ public static Dispatcher FromThread(Thread thread)
 
 Returns the Dispatcher for the specified thread.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `thread` | `Thread` |  |
-
 **Returns** `Dispatcher`
 
 ### CheckAccess()

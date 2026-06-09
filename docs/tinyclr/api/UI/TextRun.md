@@ -23,12 +23,6 @@ public TextRun(string text, System.Drawing.Font font, Color foreColor)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `text` | `string` |  |
-| `font` | `System.Drawing.Font` |  |
-| `foreColor` | `Color` |  |
-
 ## Properties
 
 ### EndOfLine
@@ -48,11 +42,6 @@ public void GetSize(out int width, out int height)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `width` | `out int` |  |
-| `height` | `out int` |  |
 
 ## Fields
 

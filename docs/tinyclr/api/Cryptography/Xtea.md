@@ -23,10 +23,6 @@ public Xtea(uint[] key)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `key` | `uint[]` |  |
-
 ## Methods
 
 ### Encrypt(byte[] buffer, uint offset, uint count)
@@ -37,12 +33,6 @@ public byte[] Encrypt(byte[] buffer, uint offset, uint count)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-| `offset` | `uint` |  |
-| `count` | `uint` |  |
-
 **Returns** `byte[]`
 
 ### Decrypt(byte[] buffer, uint offset, uint count)
@@ -52,11 +42,5 @@ public byte[] Decrypt(byte[] buffer, uint offset, uint count)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-| `offset` | `uint` |  |
-| `count` | `uint` |  |
 
 **Returns** `byte[]`

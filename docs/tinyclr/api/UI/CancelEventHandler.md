@@ -12,10 +12,3 @@ _No description available._
 ```csharp
 public delegate void CancelEventHandler(object sender, CancelEventArgs e);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sender` | `object` |  |
-| `e` | `CancelEventArgs` |  |

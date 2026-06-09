@@ -65,10 +65,6 @@ public static void SetDebugInterface(DebugInterface debugInterface)
 
 Routes the debugger to a different transport without specifying a port.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `debugInterface` | `DebugInterface` |  |
-
 ### SetDebugInterface(DebugInterface debugInterface, int debugPort)
 
 ```csharp
@@ -76,11 +72,6 @@ public static extern void SetDebugInterface(DebugInterface debugInterface, int d
 ```
 
 Routes the debugger to a specific transport and port (e.g. UART2).
-
-| Parameter | Type | Description |
-|---|---|---|
-| `debugInterface` | `DebugInterface` |  |
-| `debugPort` | `int` |  |
 
 ### IsModePinDisabled()
 
@@ -117,10 +108,6 @@ public static extern void SetDeviceName(string name)
 ```
 
 Writes a new value for `DeviceName`. Persisted in secure storage.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `name` | `string` |  |
 
 ### GetUniqueId()
 

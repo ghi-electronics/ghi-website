@@ -31,20 +31,6 @@ public CIPClass(ClassId classCode, int numberClassAttributes, uint highestClassA
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `classCode` | `ClassId` |  |
-| `numberClassAttributes` | `int` |  |
-| `highestClassAttributeNumber` | `uint` |  |
-| `numberClassServices` | `int` |  |
-| `numberInstanceAttributes` | `int` |  |
-| `highestInstanceAttributeNumber` | `uint` |  |
-| `numberInstanceServices` | `int` |  |
-| `numberInstances` | `uint` |  |
-| `name` | `string` |  |
-| `revision` | `ushort` |  |
-| `defaultInitialize` | `bool` |  |
-
 ## Properties
 
 ### Impl

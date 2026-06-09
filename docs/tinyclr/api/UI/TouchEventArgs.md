@@ -23,12 +23,6 @@ public TouchEventArgs(InputDevice inputDevice, DateTime timestamp, TouchInput[] 
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `inputDevice` | `InputDevice` |  |
-| `timestamp` | `DateTime` |  |
-| `touches` | `TouchInput[]` |  |
-
 ## Methods
 
 ### GetPosition(UIElement relativeTo, int touchIndex, out int x, out int y)
@@ -38,13 +32,6 @@ public void GetPosition(UIElement relativeTo, int touchIndex, out int x, out int
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `relativeTo` | `UIElement` |  |
-| `touchIndex` | `int` |  |
-| `x` | `out int` |  |
-| `y` | `out int` |  |
 
 ## Fields
 

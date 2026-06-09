@@ -23,11 +23,6 @@ public Endpoint(byte EndpointAddress, byte Attributes)
 
 Constructs a new descriptor. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `EndpointAddress` | `byte` |  |
-| `Attributes` | `byte` |  |
-
 ## Fields
 
 ### ATTRIB_Read

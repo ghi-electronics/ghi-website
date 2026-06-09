@@ -12,10 +12,3 @@ Callback signature for .NET IoT pin-change notifications.
 ```csharp
 public delegate void PinChangeEventHandler(object sender, PinValueChangedEventArgs pinValueChangedEventArgs);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sender` | `object` |  |
-| `pinValueChangedEventArgs` | `PinValueChangedEventArgs` |  |

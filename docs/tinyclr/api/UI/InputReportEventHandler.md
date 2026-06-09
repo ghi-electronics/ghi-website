@@ -12,10 +12,3 @@ The delegate to use for handlers that receive InputReportEventArgs
 ```csharp
 public delegate void InputReportEventHandler(object sender, InputReportEventArgs e);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sender` | `object` |  |
-| `e` | `InputReportEventArgs` |  |

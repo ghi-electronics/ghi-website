@@ -69,17 +69,6 @@ void Write(byte[] writeBuffer, int xOffset, int yOffset, int width, int height, 
 
 Writes a rectangular framebuffer region with optional pixel replication.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `writeBuffer` | `byte[]` |  |
-| `xOffset` | `int` |  |
-| `yOffset` | `int` |  |
-| `width` | `int` |  |
-| `height` | `int` |  |
-| `originalWidth` | `int` |  |
-| `columnMultiplier` | `int` |  |
-| `rowMultiplier` | `int` |  |
-
 ### WriteRead(byte[] writeBuffer, int writeOffset, int writeLength, byte[] readBuffer, int readOffset, int readLength, bool deselectAfter)
 
 ```csharp

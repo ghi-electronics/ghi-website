@@ -123,10 +123,6 @@ public static CanController FromName(string name)
 
 Returns a CAN controller identified by its native API name.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `name` | `string` |  |
-
 **Returns** `CanController`
 
 ### FromProvider(ICanControllerProvider provider)
@@ -136,10 +132,6 @@ public static CanController FromProvider(ICanControllerProvider provider)
 ```
 
 Creates a controller from a custom `ICanControllerProvider`.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `provider` | `ICanControllerProvider` |  |
 
 **Returns** `CanController`
 
@@ -175,10 +167,6 @@ public bool WriteMessage(CanMessage message)
 
 Queues a single message for transmission. Returns true on success.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `message` | `CanMessage` |  |
-
 **Returns** `bool`
 
 ### WriteMessages(CanMessage[] messages, int offset, int count)
@@ -188,12 +176,6 @@ public int WriteMessages(CanMessage[] messages, int offset, int count)
 ```
 
 Queues a slice of `messages` for transmission.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `messages` | `CanMessage[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |
 
 **Returns** `int` — Number of messages successfully queued.
 
@@ -205,10 +187,6 @@ public bool ReadMessage(out CanMessage message)
 
 Dequeues a single received message. Returns true if one was available.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `message` | `out CanMessage` |  |
-
 **Returns** `bool`
 
 ### ReadMessages(CanMessage[] messages, int offset, int count)
@@ -218,12 +196,6 @@ public int ReadMessages(CanMessage[] messages, int offset, int count)
 ```
 
 Dequeues up to `count` received messages into `messages`.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `messages` | `CanMessage[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |
 
 **Returns** `int` — Number of messages actually read.
 
@@ -235,10 +207,6 @@ public void SetNominalBitTiming(CanBitTiming bitTiming)
 
 Configures the arbitration-phase bit timing (used for the whole frame in classic CAN).
 
-| Parameter | Type | Description |
-|---|---|---|
-| `bitTiming` | `CanBitTiming` |  |
-
 ### SetDataBitTiming(CanBitTiming bitTiming)
 
 ```csharp
@@ -246,10 +214,6 @@ public void SetDataBitTiming(CanBitTiming bitTiming)
 ```
 
 Configures the data-phase bit timing for CAN-FD frames with bit-rate switching.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `bitTiming` | `CanBitTiming` |  |
 
 ### ClearWriteBuffer()
 

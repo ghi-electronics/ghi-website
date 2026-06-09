@@ -23,11 +23,6 @@ public ConfigurationDescriptor(ushort MaxPower_mA, UsbInterface[] Interfaces) : 
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `MaxPower_mA` | `ushort` |  |
-| `Interfaces` | `UsbInterface[]` |  |
-
 ## Fields
 
 ### ATTRIB_Base

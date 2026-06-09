@@ -23,10 +23,6 @@ new bool Add(T item)
 
 Appends a UIElement to the end of the UIElementCollection. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `item` | `T` |  |
-
 **Returns** `bool` — The UIElementCollection index at which the UIElement has been added.
 
 ### UnionWith(IEnumerable&lt;T> other)
@@ -37,10 +33,6 @@ void UnionWith(IEnumerable<T> other)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `other` | `IEnumerable<T>` |  |
-
 ### IntersectWith(IEnumerable&lt;T> other)
 
 ```csharp
@@ -48,10 +40,6 @@ void IntersectWith(IEnumerable<T> other)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `other` | `IEnumerable<T>` |  |
 
 ### ExceptWith(IEnumerable&lt;T> other)
 
@@ -61,10 +49,6 @@ void ExceptWith(IEnumerable<T> other)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `other` | `IEnumerable<T>` |  |
-
 ### SymmetricExceptWith(IEnumerable&lt;T> other)
 
 ```csharp
@@ -73,10 +57,6 @@ void SymmetricExceptWith(IEnumerable<T> other)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `other` | `IEnumerable<T>` |  |
-
 ### IsSubsetOf(IEnumerable&lt;T> other)
 
 ```csharp
@@ -84,10 +64,6 @@ bool IsSubsetOf(IEnumerable<T> other)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `other` | `IEnumerable<T>` |  |
 
 **Returns** `bool`
 
@@ -99,10 +75,6 @@ bool IsSupersetOf(IEnumerable<T> other)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `other` | `IEnumerable<T>` |  |
-
 **Returns** `bool`
 
 ### IsProperSupersetOf(IEnumerable&lt;T> other)
@@ -112,10 +84,6 @@ bool IsProperSupersetOf(IEnumerable<T> other)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `other` | `IEnumerable<T>` |  |
 
 **Returns** `bool`
 
@@ -127,10 +95,6 @@ bool IsProperSubsetOf(IEnumerable<T> other)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `other` | `IEnumerable<T>` |  |
-
 **Returns** `bool`
 
 ### Overlaps(IEnumerable&lt;T> other)
@@ -141,10 +105,6 @@ bool Overlaps(IEnumerable<T> other)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `other` | `IEnumerable<T>` |  |
-
 **Returns** `bool`
 
 ### SetEquals(IEnumerable&lt;T> other)
@@ -154,9 +114,5 @@ bool SetEquals(IEnumerable<T> other)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `other` | `IEnumerable<T>` |  |
 
 **Returns** `bool`

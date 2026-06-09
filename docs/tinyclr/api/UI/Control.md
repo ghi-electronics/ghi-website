@@ -81,10 +81,6 @@ public override void OnRender(DrawingContext dc)
 
 Renders the DataGrid onto it's parent container's graphics. _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `dc` | `DrawingContext` |  |
-
 ### SolidColorBrush( Colors.Black)
 
 ```csharp
@@ -92,10 +88,6 @@ protected internal Media.Brush _foreground = new SolidColorBrush(Colors.Black)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `Colors.Black` | `` |  |
 
 **Returns** `Media.Brush _foreground = new`
 

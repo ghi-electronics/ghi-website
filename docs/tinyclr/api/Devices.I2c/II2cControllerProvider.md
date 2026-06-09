@@ -81,10 +81,6 @@ void SetActiveSettings(I2cConnectionSettings connectionSettings)
 
 Applies the given settings before the next transfer.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `connectionSettings` | `I2cConnectionSettings` |  |
-
 ### WriteRead(byte[] writeBuffer, int writeOffset, int writeLength, byte[] readBuffer, int readOffset, int readLength, out int written, out int read)
 
 ```csharp
@@ -92,17 +88,6 @@ I2cTransferStatus WriteRead(byte[] writeBuffer, int writeOffset, int writeLength
 ```
 
 Performs a write-then-read transaction.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `writeBuffer` | `byte[]` |  |
-| `writeOffset` | `int` |  |
-| `writeLength` | `int` |  |
-| `readBuffer` | `byte[]` |  |
-| `readOffset` | `int` |  |
-| `readLength` | `int` |  |
-| `written` | `out int` |  |
-| `read` | `out int` |  |
 
 **Returns** `I2cTransferStatus`
 

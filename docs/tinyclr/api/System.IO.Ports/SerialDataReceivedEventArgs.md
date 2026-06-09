@@ -23,10 +23,6 @@ public SerialDataReceivedEventArgs(SerialData eventType)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `eventType` | `SerialData` |  |
-
 ## Properties
 
 ### EventType

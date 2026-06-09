@@ -23,10 +23,6 @@ public static string GetValue(string groupName)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `groupName` | `string` |  |
-
 **Returns** `string`
 
 ### GetCount(string groupName)
@@ -36,9 +32,5 @@ public static int GetCount(string groupName)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `groupName` | `string` |  |
 
 **Returns** `int`

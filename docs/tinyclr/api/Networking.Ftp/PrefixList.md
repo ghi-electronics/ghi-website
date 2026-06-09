@@ -23,8 +23,4 @@ public override int Add(object value)
 
 Add a prefix to the list
 
-| Parameter | Type | Description |
-|---|---|---|
-| `value` | `object` |  |
-
 **Returns** `int`

@@ -31,10 +31,6 @@ public CanMessage(int arbitrationId) : this(arbitrationId, null, 0, 0)
 
 Constructs an empty message with the given arbitration ID.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `arbitrationId` | `int` |  |
-
 ### CanMessage(int arbitrationId, byte[] data)
 
 ```csharp
@@ -42,11 +38,6 @@ public CanMessage(int arbitrationId, byte[] data) : this(arbitrationId, data, 0,
 ```
 
 Constructs a message carrying `data` in full.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `arbitrationId` | `int` |  |
-| `data` | `byte[]` |  |
 
 ### CanMessage(int arbitrationId, byte[] data, int offset, int count)
 
@@ -56,13 +47,6 @@ public CanMessage(int arbitrationId, byte[] data, int offset, int count) : this(
 
 Constructs a message from a slice of `data`.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `arbitrationId` | `int` |  |
-| `data` | `byte[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |
-
 ### CanMessage(int arbitrationId, byte[] data, int offset, int count, bool isRemoteTransmissionRequesti, bool isExtendedId)
 
 ```csharp
@@ -70,15 +54,6 @@ public CanMessage(int arbitrationId, byte[] data, int offset, int count, bool is
 ```
 
 Constructs a message with explicit RTR and extended-ID flags.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `arbitrationId` | `int` |  |
-| `data` | `byte[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |
-| `isRemoteTransmissionRequesti` | `bool` |  |
-| `isExtendedId` | `bool` |  |
 
 ### CanMessage(int arbitrationId, byte[] data, int offset, int count, bool isRemoteTransmissionRequesti, bool isExtendedId, bool isFdCan)
 
@@ -88,16 +63,6 @@ public CanMessage(int arbitrationId, byte[] data, int offset, int count, bool is
 
 Constructs a possibly-CAN-FD message.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `arbitrationId` | `int` |  |
-| `data` | `byte[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |
-| `isRemoteTransmissionRequesti` | `bool` |  |
-| `isExtendedId` | `bool` |  |
-| `isFdCan` | `bool` |  |
-
 ### CanMessage(int arbitrationId, byte[] data, int offset, int count, bool isRemoteTransmissionRequesti, bool isExtendedId, bool isFdCan, bool isBitRateSwitch)
 
 ```csharp
@@ -105,17 +70,6 @@ public CanMessage(int arbitrationId, byte[] data, int offset, int count, bool is
 ```
 
 Constructs a fully specified message including bit-rate switch.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `arbitrationId` | `int` |  |
-| `data` | `byte[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |
-| `isRemoteTransmissionRequesti` | `bool` |  |
-| `isExtendedId` | `bool` |  |
-| `isFdCan` | `bool` |  |
-| `isBitRateSwitch` | `bool` |  |
 
 ## Properties
 

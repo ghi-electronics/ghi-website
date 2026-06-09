@@ -97,12 +97,6 @@ public virtual int ReadBlock(char[] buffer, int index, int count)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `char[]` |  |
-| `index` | `int` |  |
-| `count` | `int` |  |
-
 **Returns** `int`
 
 ### ReadToEnd()

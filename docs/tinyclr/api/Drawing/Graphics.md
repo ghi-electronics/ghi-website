@@ -49,11 +49,6 @@ public uint GetPixel(int x, int y)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `x` | `int` |  |
-| `y` | `int` |  |
-
 **Returns** `uint`
 
 ### SetPixel(int x, int y, Color color)
@@ -63,12 +58,6 @@ public void SetPixel(int x, int y, Color color)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `x` | `int` |  |
-| `y` | `int` |  |
-| `color` | `Color` |  |
 
 ### GetBitmap()
 
@@ -88,13 +77,6 @@ public byte[] GetBitmap(int x, int y, int width, int height)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `x` | `int` |  |
-| `y` | `int` |  |
-| `width` | `int` |  |
-| `height` | `int` |  |
-
 **Returns** `byte[]`
 
 ### Dispose()
@@ -113,11 +95,6 @@ public SizeF MeasureString(string text, Font font)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `text` | `string` |  |
-| `font` | `Font` |  |
-
 **Returns** `SizeF`
 
 ### MeasureString(string text, Font font, SizeF layoutArea, StringFormat stringFormat)
@@ -127,13 +104,6 @@ public SizeF MeasureString(string text, Font font, SizeF layoutArea, StringForma
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `text` | `string` |  |
-| `font` | `Font` |  |
-| `layoutArea` | `SizeF` |  |
-| `stringFormat` | `StringFormat` |  |
 
 **Returns** `SizeF`
 
@@ -153,10 +123,6 @@ public static Graphics FromHdc(IntPtr hdc)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `hdc` | `IntPtr` |  |
-
 **Returns** `Graphics`
 
 ### FromImage(Image image)
@@ -166,10 +132,6 @@ public static Graphics FromImage(Image image)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `image` | `Image` |  |
 
 **Returns** `Graphics`
 
@@ -189,14 +151,6 @@ public void DrawImage(Image image, int x, int y, Rectangle srcRect, GraphicsUnit
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `image` | `Image` |  |
-| `x` | `int` |  |
-| `y` | `int` |  |
-| `srcRect` | `Rectangle` |  |
-| `srcUnit` | `GraphicsUnit` |  |
-
 ### DrawImage(Image image, int x, int y, int width, int height)
 
 ```csharp
@@ -204,14 +158,6 @@ public void DrawImage(Image image, int x, int y, int width, int height)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `image` | `Image` |  |
-| `x` | `int` |  |
-| `y` | `int` |  |
-| `width` | `int` |  |
-| `height` | `int` |  |
 
 ### DrawImage(Image image, int x, int y)
 
@@ -221,12 +167,6 @@ public void DrawImage(Image image, int x, int y)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `image` | `Image` |  |
-| `x` | `int` |  |
-| `y` | `int` |  |
-
 ### DrawImage(Image image, Rectangle destRect, Rectangle srcRect, GraphicsUnit srcUnit)
 
 ```csharp
@@ -234,13 +174,6 @@ public void DrawImage(Image image, Rectangle destRect, Rectangle srcRect, Graphi
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `image` | `Image` |  |
-| `destRect` | `Rectangle` |  |
-| `srcRect` | `Rectangle` |  |
-| `srcUnit` | `GraphicsUnit` |  |
 
 ### DrawLine(Pen pen, int x1, int y1, int x2, int y2)
 
@@ -250,14 +183,6 @@ public void DrawLine(Pen pen, int x1, int y1, int x2, int y2)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `pen` | `Pen` |  |
-| `x1` | `int` |  |
-| `y1` | `int` |  |
-| `x2` | `int` |  |
-| `y2` | `int` |  |
-
 ### DrawString(string s, Font font, Brush brush, float x, float y)
 
 ```csharp
@@ -265,14 +190,6 @@ public void DrawString(string s, Font font, Brush brush, float x, float y)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `s` | `string` |  |
-| `font` | `Font` |  |
-| `brush` | `Brush` |  |
-| `x` | `float` |  |
-| `y` | `float` |  |
 
 ### DrawString(string s, Font font, Brush brush, RectangleF layoutRectangle)
 
@@ -282,13 +199,6 @@ public void DrawString(string s, Font font, Brush brush, RectangleF layoutRectan
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `s` | `string` |  |
-| `font` | `Font` |  |
-| `brush` | `Brush` |  |
-| `layoutRectangle` | `RectangleF` |  |
-
 ### DrawString(string s, Font font, Brush brush, RectangleF layoutRectangle, StringFormat format)
 
 ```csharp
@@ -296,14 +206,6 @@ public void DrawString(string s, Font font, Brush brush, RectangleF layoutRectan
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `s` | `string` |  |
-| `font` | `Font` |  |
-| `brush` | `Brush` |  |
-| `layoutRectangle` | `RectangleF` |  |
-| `format` | `StringFormat` |  |
 
 ### DrawEllipse(Pen pen, int x, int y, int width, int height)
 
@@ -313,14 +215,6 @@ public void DrawEllipse(Pen pen, int x, int y, int width, int height)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `pen` | `Pen` |  |
-| `x` | `int` |  |
-| `y` | `int` |  |
-| `width` | `int` |  |
-| `height` | `int` |  |
-
 ### DrawRectangle(Pen pen, int x, int y, int width, int height)
 
 ```csharp
@@ -328,14 +222,6 @@ public void DrawRectangle(Pen pen, int x, int y, int width, int height)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `pen` | `Pen` |  |
-| `x` | `int` |  |
-| `y` | `int` |  |
-| `width` | `int` |  |
-| `height` | `int` |  |
 
 ### FillEllipse(Brush brush, int x, int y, int width, int height)
 
@@ -345,14 +231,6 @@ public void FillEllipse(Brush brush, int x, int y, int width, int height)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `brush` | `Brush` |  |
-| `x` | `int` |  |
-| `y` | `int` |  |
-| `width` | `int` |  |
-| `height` | `int` |  |
-
 ### FillRectangle(Brush brush, int x, int y, int width, int height)
 
 ```csharp
@@ -360,14 +238,6 @@ public void FillRectangle(Brush brush, int x, int y, int width, int height)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `brush` | `Brush` |  |
-| `x` | `int` |  |
-| `y` | `int` |  |
-| `width` | `int` |  |
-| `height` | `int` |  |
 
 ### DrawImage(int xDst, int yDst, Image image, int xSrc, int ySrc, int width, int height, ushort opacity)
 
@@ -377,17 +247,6 @@ public void DrawImage(int xDst, int yDst, Image image, int xSrc, int ySrc, int w
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `xDst` | `int` |  |
-| `yDst` | `int` |  |
-| `image` | `Image` |  |
-| `xSrc` | `int` |  |
-| `ySrc` | `int` |  |
-| `width` | `int` |  |
-| `height` | `int` |  |
-| `opacity` | `ushort` |  |
-
 ### Flush(int x, int y, int width, int height)
 
 ```csharp
@@ -395,13 +254,6 @@ public void Flush(int x, int y, int width, int height)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `x` | `int` |  |
-| `y` | `int` |  |
-| `width` | `int` |  |
-| `height` | `int` |  |
 
 ### SetClippingRectangle(int x, int y, int width, int height)
 
@@ -411,13 +263,6 @@ public void SetClippingRectangle(int x, int y, int width, int height)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `x` | `int` |  |
-| `y` | `int` |  |
-| `width` | `int` |  |
-| `height` | `int` |  |
-
 ### DrawTextInRect(string text, int x, int y, int width, int height, DrawTextAlignment dtFlags, Color color, Font font)
 
 ```csharp
@@ -426,17 +271,6 @@ public void DrawTextInRect(string text, int x, int y, int width, int height, Dra
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `text` | `string` |  |
-| `x` | `int` |  |
-| `y` | `int` |  |
-| `width` | `int` |  |
-| `height` | `int` |  |
-| `dtFlags` | `DrawTextAlignment` |  |
-| `color` | `Color` |  |
-| `font` | `Font` |  |
-
 ### DrawTextInRect(ref string text, ref int xRelStart, ref int yRelStart, int x, int y, int width, int height, DrawTextAlignment dtFlags, Color color, Font font)
 
 ```csharp
@@ -444,19 +278,6 @@ public bool DrawTextInRect(ref string text, ref int xRelStart, ref int yRelStart
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `text` | `ref string` |  |
-| `xRelStart` | `ref int` |  |
-| `yRelStart` | `ref int` |  |
-| `x` | `int` |  |
-| `y` | `int` |  |
-| `width` | `int` |  |
-| `height` | `int` |  |
-| `dtFlags` | `DrawTextAlignment` |  |
-| `color` | `Color` |  |
-| `font` | `Font` |  |
 
 **Returns** `bool`
 
@@ -468,18 +289,6 @@ public void RotateImage(int angle, int xDst, int yDst, Image image, int xSrc, in
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `angle` | `int` |  |
-| `xDst` | `int` |  |
-| `yDst` | `int` |  |
-| `image` | `Image` |  |
-| `xSrc` | `int` |  |
-| `ySrc` | `int` |  |
-| `width` | `int` |  |
-| `height` | `int` |  |
-| `opacity` | `ushort` |  |
-
 ### MakeTransparent(Color color)
 
 ```csharp
@@ -487,10 +296,6 @@ public void MakeTransparent(Color color)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `color` | `Color` |  |
 
 ### StretchImage(int xDst, int yDst, int widthDst, int heightDst, Image image, int xSrc, int ySrc, int widthSrc, int heightSrc, ushort opacity)
 
@@ -500,19 +305,6 @@ public void StretchImage(int xDst, int yDst, int widthDst, int heightDst, Image 
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `xDst` | `int` |  |
-| `yDst` | `int` |  |
-| `widthDst` | `int` |  |
-| `heightDst` | `int` |  |
-| `image` | `Image` |  |
-| `xSrc` | `int` |  |
-| `ySrc` | `int` |  |
-| `widthSrc` | `int` |  |
-| `heightSrc` | `int` |  |
-| `opacity` | `ushort` |  |
-
 ### TileImage(int xDst, int yDst, Image image, int width, int height, ushort opacity)
 
 ```csharp
@@ -521,15 +313,6 @@ public void TileImage(int xDst, int yDst, Image image, int width, int height, us
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `xDst` | `int` |  |
-| `yDst` | `int` |  |
-| `image` | `Image` |  |
-| `width` | `int` |  |
-| `height` | `int` |  |
-| `opacity` | `ushort` |  |
-
 ### Scale9Image(int xDst, int yDst, int widthDst, int heightDst, Image image, int leftBorder, int topBorder, int rightBorder, int bottomBorder, ushort opacity)
 
 ```csharp
@@ -537,19 +320,6 @@ public void Scale9Image(int xDst, int yDst, int widthDst, int heightDst, Image i
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `xDst` | `int` |  |
-| `yDst` | `int` |  |
-| `widthDst` | `int` |  |
-| `heightDst` | `int` |  |
-| `image` | `Image` |  |
-| `leftBorder` | `int` |  |
-| `topBorder` | `int` |  |
-| `rightBorder` | `int` |  |
-| `bottomBorder` | `int` |  |
-| `opacity` | `ushort` |  |
 
 ## Events
 

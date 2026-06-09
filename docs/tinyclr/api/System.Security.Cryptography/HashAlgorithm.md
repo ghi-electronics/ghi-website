@@ -41,10 +41,6 @@ public abstract byte[] ComputeHash(byte[] buffer)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-
 **Returns** `byte[]`
 
 ### ComputeHash(byte[] buffer, int offset, int count)
@@ -55,12 +51,6 @@ public abstract byte[] ComputeHash(byte[] buffer, int offset, int count)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-| `offset` | `int` |  |
-| `count` | `int` |  |
-
 **Returns** `byte[]`
 
 ### ComputeHash(Stream inputStream)
@@ -70,10 +60,6 @@ public abstract byte[] ComputeHash(Stream inputStream)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `inputStream` | `Stream` |  |
 
 **Returns** `byte[]`
 

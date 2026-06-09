@@ -12,9 +12,3 @@ _No description available._
 ```csharp
 public delegate void PostRenderEventHandler(DrawingContext dc);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `dc` | `DrawingContext` |  |

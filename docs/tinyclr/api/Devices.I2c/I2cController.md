@@ -83,10 +83,6 @@ public static I2cController FromName(string name)
 
 Returns an I²C controller identified by its native API name.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `name` | `string` |  |
-
 **Returns** `I2cController`
 
 ### FromName(string name, GpioPin sdaPin, GpioPin sclPin)
@@ -96,12 +92,6 @@ public static I2cController FromName(string name, GpioPin sdaPin, GpioPin sclPin
 ```
 
 Returns a software (bit-bang) I²C controller using the supplied SDA/SCL pins.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `name` | `string` |  |
-| `sdaPin` | `GpioPin` |  |
-| `sclPin` | `GpioPin` |  |
 
 **Returns** `I2cController`
 
@@ -129,10 +119,6 @@ public static I2cController FromProvider(II2cControllerProvider provider)
 ```
 
 Creates a controller from a custom `II2cControllerProvider`.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `provider` | `II2cControllerProvider` |  |
 
 **Returns** `I2cController`
 

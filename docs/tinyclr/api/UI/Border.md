@@ -43,13 +43,6 @@ public void GetBorderThickness(out int left, out int top, out int right, out int
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `left` | `out int` |  |
-| `top` | `out int` |  |
-| `right` | `out int` |  |
-| `bottom` | `out int` |  |
-
 ### SetBorderThickness(int length)
 
 ```csharp
@@ -57,10 +50,6 @@ public void SetBorderThickness(int length)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `length` | `int` |  |
 
 ### SetBorderThickness(int left, int top, int right, int bottom)
 
@@ -70,13 +59,6 @@ public void SetBorderThickness(int left, int top, int right, int bottom)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `left` | `int` |  |
-| `top` | `int` |  |
-| `right` | `int` |  |
-| `bottom` | `int` |  |
-
 ### ArrangeOverride(int arrangeWidth, int arrangeHeight)
 
 ```csharp
@@ -84,11 +66,6 @@ protected override void ArrangeOverride(int arrangeWidth, int arrangeHeight)
 ```
 
 ArrangeOverride allows for the customization of the positioning of children. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `arrangeWidth` | `int` |  |
-| `arrangeHeight` | `int` |  |
 
 ### MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
 
@@ -112,7 +89,3 @@ public override void OnRender(DrawingContext dc)
 ```
 
 Renders the DataGrid onto it's parent container's graphics. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `dc` | `DrawingContext` |  |

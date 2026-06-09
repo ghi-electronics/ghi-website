@@ -23,10 +23,6 @@ public Pen(Color color) : this(color, 1.0f)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `color` | `Color` |  |
-
 ### Pen(Brush brush)
 
 ```csharp
@@ -34,10 +30,6 @@ public Pen(Brush brush) : this(brush, 1.0f)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `brush` | `Brush` |  |
 
 ### Pen(Color color, float width)
 
@@ -47,11 +39,6 @@ public Pen(Color color, float width)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `color` | `Color` |  |
-| `width` | `float` |  |
-
 ### Pen(Brush brush, float width)
 
 ```csharp
@@ -59,11 +46,6 @@ public Pen(Brush brush, float width)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `brush` | `Brush` |  |
-| `width` | `float` |  |
 
 ## Properties
 

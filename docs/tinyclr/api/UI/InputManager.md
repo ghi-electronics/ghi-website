@@ -73,12 +73,6 @@ public static readonly RoutedEvent PreviewInputReportEvent = new RoutedEvent( , 
 
 A routed event indicating that an input report arrived.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `` | `` |  |
-| `RoutingStrategy.Tunnel` | `` |  |
-| `typeof(InputReportEventHandler)` | `` |  |
-
 **Returns** `RoutedEvent PreviewInputReportEvent = new`
 
 ### RoutedEvent( ,  RoutingStrategy.Bubble,  typeof(InputReportEventHandler))
@@ -88,12 +82,6 @@ public static readonly RoutedEvent InputReportEvent = new RoutedEvent( , Routing
 ```
 
 A routed event indicating that an input report arrived.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `` | `` |  |
-| `RoutingStrategy.Bubble` | `` |  |
-| `typeof(InputReportEventHandler)` | `` |  |
 
 **Returns** `RoutedEvent InputReportEvent = new`
 
@@ -118,10 +106,6 @@ public bool ProcessInput(InputEventArgs input)
 ```
 
 Synchronously processes the specified input.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `input` | `InputEventArgs` |  |
 
 **Returns** `bool` — Whether or not any event generated as a consequence of this event was handled.
 

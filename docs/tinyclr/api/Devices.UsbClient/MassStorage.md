@@ -23,10 +23,6 @@ public MassStorage(UsbClientController usbClientController) : this(usbClientCont
 
 Creates a new mass storage with default parameters.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `usbClientController` | `UsbClientController` |  |
-
 ### MassStorage(UsbClientController usbClientController, UsbClientSetting usbClientSetting)
 
 ```csharp

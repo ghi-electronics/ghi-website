@@ -12,10 +12,3 @@ _No description available._
 ```csharp
 public delegate void DataReceivedEventHandler(RawDevice sender, uint count);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sender` | `RawDevice` |  |
-| `count` | `uint` |  |

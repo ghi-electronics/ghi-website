@@ -85,10 +85,6 @@ public virtual void Write(char value)
 
 Write a fileinfo or directoryinfo to the socket _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `value` | `char` |  |
-
 ### Write(char[] buffer)
 
 ```csharp
@@ -96,10 +92,6 @@ public virtual void Write(char[] buffer)
 ```
 
 Write a fileinfo or directoryinfo to the socket _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `char[]` |  |
 
 ### Write(char[] buffer, int index, int count)
 
@@ -123,10 +115,6 @@ public virtual void Write(bool value)
 
 Write a fileinfo or directoryinfo to the socket _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `value` | `bool` |  |
-
 ### Write(int value)
 
 ```csharp
@@ -134,10 +122,6 @@ public virtual void Write(int value)
 ```
 
 Write a fileinfo or directoryinfo to the socket _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `value` | `int` |  |
 
 ### Write(uint value)
 
@@ -147,10 +131,6 @@ public virtual void Write(uint value)
 
 Write a fileinfo or directoryinfo to the socket _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `value` | `uint` |  |
-
 ### Write(long value)
 
 ```csharp
@@ -158,10 +138,6 @@ public virtual void Write(long value)
 ```
 
 Write a fileinfo or directoryinfo to the socket _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `value` | `long` |  |
 
 ### Write(ulong value)
 
@@ -171,10 +147,6 @@ public virtual void Write(ulong value)
 
 Write a fileinfo or directoryinfo to the socket _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `value` | `ulong` |  |
-
 ### Write(float value)
 
 ```csharp
@@ -182,10 +154,6 @@ public virtual void Write(float value)
 ```
 
 Write a fileinfo or directoryinfo to the socket _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `value` | `float` |  |
 
 ### Write(double value)
 
@@ -195,10 +163,6 @@ public virtual void Write(double value)
 
 Write a fileinfo or directoryinfo to the socket _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `value` | `double` |  |
-
 ### Write(string value)
 
 ```csharp
@@ -207,10 +171,6 @@ public virtual void Write(string value)
 
 Write a fileinfo or directoryinfo to the socket _(inherited)_
 
-| Parameter | Type | Description |
-|---|---|---|
-| `value` | `string` |  |
-
 ### Write(object value)
 
 ```csharp
@@ -218,10 +178,6 @@ public virtual void Write(object value)
 ```
 
 Write a fileinfo or directoryinfo to the socket _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `value` | `object` |  |
 
 ### WriteLine()
 
@@ -239,10 +195,6 @@ public virtual void WriteLine(char value)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `value` | `char` |  |
-
 ### WriteLine(char[] buffer)
 
 ```csharp
@@ -250,10 +202,6 @@ public virtual void WriteLine(char[] buffer)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `char[]` |  |
 
 ### WriteLine(char[] buffer, int index, int count)
 
@@ -263,12 +211,6 @@ public virtual void WriteLine(char[] buffer, int index, int count)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `char[]` |  |
-| `index` | `int` |  |
-| `count` | `int` |  |
-
 ### WriteLine(bool value)
 
 ```csharp
@@ -276,10 +218,6 @@ public virtual void WriteLine(bool value)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `value` | `bool` |  |
 
 ### WriteLine(int value)
 
@@ -289,10 +227,6 @@ public virtual void WriteLine(int value)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `value` | `int` |  |
-
 ### WriteLine(uint value)
 
 ```csharp
@@ -300,10 +234,6 @@ public virtual void WriteLine(uint value)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `value` | `uint` |  |
 
 ### WriteLine(long value)
 
@@ -313,10 +243,6 @@ public virtual void WriteLine(long value)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `value` | `long` |  |
-
 ### WriteLine(ulong value)
 
 ```csharp
@@ -324,10 +250,6 @@ public virtual void WriteLine(ulong value)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `value` | `ulong` |  |
 
 ### WriteLine(float value)
 
@@ -337,10 +259,6 @@ public virtual void WriteLine(float value)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `value` | `float` |  |
-
 ### WriteLine(double value)
 
 ```csharp
@@ -348,10 +266,6 @@ public virtual void WriteLine(double value)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `value` | `double` |  |
 
 ### WriteLine(string value)
 
@@ -361,10 +275,6 @@ public virtual void WriteLine(string value)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `value` | `string` |  |
-
 ### WriteLine(object value)
 
 ```csharp
@@ -372,7 +282,3 @@ public virtual void WriteLine(object value)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `value` | `object` |  |

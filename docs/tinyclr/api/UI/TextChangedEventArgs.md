@@ -22,8 +22,3 @@ public TextChangedEventArgs(RoutedEvent routedEvent, object source) : base(route
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `routedEvent` | `RoutedEvent` |  |
-| `source` | `object` |  |

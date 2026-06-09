@@ -37,10 +37,6 @@ public int CompareTo(object obj)
 
 IComparable contract. Compares this row against another DataGridItem using column 0. For non-default column comparisons use the typed CompareTo(DataGridItem, int) overload.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `obj` | `object` |  |
-
 **Returns** `int`
 
 ### CompareTo(DataGridItem row, int columnIndex)

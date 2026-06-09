@@ -23,10 +23,6 @@ public UnmanagedBuffer(int length) : this(length, UnmanagedBufferLocation.Unmana
 
 Allocates a buffer of the given length in the unmanaged heap.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `length` | `int` |  |
-
 ### UnmanagedBuffer(int length, UnmanagedBufferLocation location)
 
 ```csharp

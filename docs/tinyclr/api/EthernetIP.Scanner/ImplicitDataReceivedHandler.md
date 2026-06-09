@@ -12,10 +12,3 @@ _No description available._
 ```csharp
 public delegate void ImplicitDataReceivedHandler(ScannerController scanner, byte[] snapshot);
 ```
-
-## Parameters
-
-| Parameter | Type | Description |
-|---|---|---|
-| `scanner` | `ScannerController` |  |
-| `snapshot` | `byte[]` |  |

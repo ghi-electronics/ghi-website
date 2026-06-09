@@ -57,13 +57,6 @@ public static Color FromArgb(byte a, byte r, byte g, byte b)
 
 _No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `a` | `byte` |  |
-| `r` | `byte` |  |
-| `g` | `byte` |  |
-| `b` | `byte` |  |
-
 **Returns** `Color`
 
 ### FromRgb(byte r, byte g, byte b)
@@ -73,11 +66,5 @@ public static Color FromRgb(byte r, byte g, byte b)
 ```
 
 _No description available._
-
-| Parameter | Type | Description |
-|---|---|---|
-| `r` | `byte` |  |
-| `g` | `byte` |  |
-| `b` | `byte` |  |
 
 **Returns** `Color`
