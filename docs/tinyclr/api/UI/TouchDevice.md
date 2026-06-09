@@ -5,7 +5,7 @@ sidebar_label: "TouchDevice"
 
 # TouchDevice Class
 
-**Namespace:** `GHIElectronics.TinyCLR.UI.Input` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Input`
 
 The TouchDevice class represents the stylus/touch device to the members of a context.
 

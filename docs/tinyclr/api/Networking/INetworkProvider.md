@@ -5,7 +5,7 @@ sidebar_label: "INetworkProvider"
 
 # INetworkProvider Interface
 
-**Namespace:** `GHIElectronics.TinyCLR.Networking` · **Assembly:** `GHIElectronics.TinyCLR.Networking`
+**NuGet:** `GHIElectronics.TinyCLR.Networking`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking`<br/>**Namespace:** `GHIElectronics.TinyCLR.Networking`
 
 _No description available._
 

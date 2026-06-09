@@ -5,7 +5,7 @@ sidebar_label: "HMACSHA256"
 
 # HMACSHA256 Class
 
-**Namespace:** `System.Security.Cryptography` · **Assembly:** `GHIElectronics.TinyCLR.System.Security.Cryptography`
+**NuGet:** `GHIElectronics.TinyCLR.Cryptography`<br/>**Assembly:** `System.Security.Cryptography`<br/>**Namespace:** `System.Security.Cryptography`
 
 HMAC-SHA256 keyed hash (256-bit output).
 

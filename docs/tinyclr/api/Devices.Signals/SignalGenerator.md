@@ -5,7 +5,7 @@ sidebar_label: "SignalGenerator"
 
 # SignalGenerator Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Signals` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Signals`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Signals`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Signals`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Signals`
 
 Drives a pin through a precise sequence of high/low transitions. Suitable for generating IR-remote waveforms, addressable-LED streams (WS281x), and other strict-timing protocols. Optional carrier-frequency modulation is available for IR.
 

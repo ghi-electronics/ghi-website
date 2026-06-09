@@ -5,7 +5,7 @@ sidebar_label: "UartParity"
 
 # UartParity Enum
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Uart` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Uart`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Uart`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Uart`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Uart`
 
 Parity bit policy for a UART frame.
 

@@ -5,7 +5,7 @@ sidebar_label: "Graphics"
 
 # Graphics Class
 
-**Namespace:** `System.Drawing` · **Assembly:** `GHIElectronics.TinyCLR.Drawing`
+**NuGet:** `GHIElectronics.TinyCLR.Drawing`<br/>**Assembly:** `GHIElectronics.TinyCLR.Drawing`<br/>**Namespace:** `System.Drawing`
 
 2-D drawing surface backed by a `Bitmap`. Issue line, rectangle, ellipse, text, and image draws against this surface, then push the result to the display via `Flush(IntPtr)`.
 

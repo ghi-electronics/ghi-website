@@ -5,7 +5,7 @@ sidebar_label: "NetworkInterfaceProperties"
 
 # NetworkInterfaceProperties Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Network` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Network`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Network`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Network`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Network`
 
 Common interface properties. Cast via `GetEthernetProperties` / `GetWiFiProperties` / `GetPppProperties` for transport-specific fields.
 

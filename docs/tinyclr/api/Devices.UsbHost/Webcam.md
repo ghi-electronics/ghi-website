@@ -5,7 +5,7 @@ sidebar_label: "Webcam"
 
 # Webcam Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbHost` · **Assembly:** `GHIElectronics.TinyCLR.Devices.UsbHost`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.UsbHost`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbHost`
 
 Allows a USB webcam (UVC class, YUY2 uncompressed) to be used.
 

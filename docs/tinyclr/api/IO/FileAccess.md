@@ -5,7 +5,7 @@ sidebar_label: "FileAccess"
 
 # FileAccess Enum
 
-**Namespace:** `System.IO` · **Assembly:** `GHIElectronics.TinyCLR.IO`
+**NuGet:** `GHIElectronics.TinyCLR.IO`<br/>**Assembly:** `GHIElectronics.TinyCLR.IO`<br/>**Namespace:** `System.IO`
 
 _No description available._
 

@@ -5,7 +5,7 @@ sidebar_label: "Bitmap"
 
 # Bitmap Class
 
-**Namespace:** `System.Drawing` · **Assembly:** `GHIElectronics.TinyCLR.Drawing`
+**NuGet:** `GHIElectronics.TinyCLR.Drawing`<br/>**Assembly:** `GHIElectronics.TinyCLR.Drawing`<br/>**Namespace:** `System.Drawing`
 
 A raster bitmap loaded from a resource or stream (BMP/JPEG/GIF; PNG and TIFF are not supported).
 

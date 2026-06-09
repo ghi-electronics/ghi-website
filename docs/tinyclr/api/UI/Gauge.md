@@ -5,7 +5,7 @@ sidebar_label: "Gauge"
 
 # Gauge Class
 
-**Namespace:** `GHIElectronics.TinyCLR.UI.Controls` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
 Analog gauge with calibrated tick marks, optional threshold arc, optional seven-segment digital readout, dial label, and pointer needle. Always square — pass the side length to the constructor. Rendering is cached: the static background (dial face, calibration, threshold, digital number, label) is drawn once into a backing bitmap; only the pointer is redrawn each paint. Any property change marks the background dirty.
 

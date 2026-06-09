@@ -5,7 +5,7 @@ sidebar_label: "WebException"
 
 # WebException Class
 
-**Namespace:** `System.Net` · **Assembly:** `GHIElectronics.TinyCLR.Networking.Http`
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Namespace:** `System.Net`
 
 Defines the exception that is thrown by `System.Net.WebRequest` instances when an error occurs.
 

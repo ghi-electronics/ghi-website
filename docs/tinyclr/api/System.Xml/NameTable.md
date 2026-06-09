@@ -5,7 +5,7 @@ sidebar_label: "NameTable"
 
 # NameTable Class
 
-**Namespace:** `System.Xml` · **Assembly:** `GHIElectronics.TinyCLR.System.Xml`
+**NuGet:** `GHIElectronics.TinyCLR.System.Xml`<br/>**Assembly:** `GHIElectronics.TinyCLR.System.Xml`<br/>**Namespace:** `System.Xml`
 
 Hashtable-backed `XmlNameTable`.
 

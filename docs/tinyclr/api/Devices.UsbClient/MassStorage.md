@@ -5,7 +5,7 @@ sidebar_label: "MassStorage"
 
 # MassStorage Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbClient` · **Assembly:** `GHIElectronics.TinyCLR.Devices.UsbClient`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbClient`
 
 This device emulates a mass storage. Your Micro Framework device will appear as a virtual mass storage device similar to a USB Drive. This works by exposing the storage connected to this device, such as SD card or USB sticks, to the host.
 

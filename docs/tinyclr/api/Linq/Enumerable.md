@@ -5,7 +5,7 @@ sidebar_label: "Enumerable"
 
 # Enumerable Class
 
-**Namespace:** `System.Linq` · **Assembly:** `GHIElectronics.TinyCLR.Linq`
+**NuGet:** `GHIElectronics.TinyCLR.Linq`<br/>**Assembly:** `GHIElectronics.TinyCLR.Linq`<br/>**Namespace:** `System.Linq`
 
 LINQ to Objects on top of `IEnumerable{T}`. Subset of the .NET BCL surface picked for embedded use - covers the common filter / project / aggregate / order / group / convert operators. Lazy operators (Where, Select, etc.) use iterator state machines; terminal operators (ToArray, Sum, OrderBy, etc.) are eager.
 

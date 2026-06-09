@@ -5,7 +5,7 @@ sidebar_label: "XmlReaderSettings"
 
 # XmlReaderSettings Class
 
-**Namespace:** `System.Xml` · **Assembly:** `GHIElectronics.TinyCLR.System.Xml`
+**NuGet:** `GHIElectronics.TinyCLR.System.Xml`<br/>**Assembly:** `GHIElectronics.TinyCLR.System.Xml`<br/>**Namespace:** `System.Xml`
 
 Settings bag passed to `XmlReader.Create(Stream, XmlReaderSettings)`. Mirrors the .NET BCL type.
 

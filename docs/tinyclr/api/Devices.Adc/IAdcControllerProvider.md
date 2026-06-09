@@ -5,7 +5,7 @@ sidebar_label: "IAdcControllerProvider"
 
 # IAdcControllerProvider Interface
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Adc.Provider` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Adc`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Adc`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Adc`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Adc.Provider`
 
 Provider contract for an ADC controller. Most users call `AdcController` / `AdcChannel` directly; implement this interface only when supplying a custom or virtual ADC.
 

@@ -5,7 +5,7 @@ sidebar_label: "NetworkControllerApiWrapper"
 
 # NetworkControllerApiWrapper Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Network.Provider` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Network`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Network`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Network`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Network.Provider`
 
 Concrete `INetworkControllerProvider` backed by the native TinyCLR network HAL (lwIP + mbedTLS).
 

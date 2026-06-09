@@ -5,7 +5,7 @@ sidebar_label: "RSAEncryptionPadding"
 
 # RSAEncryptionPadding Class
 
-**Namespace:** `System.Security.Cryptography` · **Assembly:** `GHIElectronics.TinyCLR.System.Security.Cryptography`
+**NuGet:** `GHIElectronics.TinyCLR.Cryptography`<br/>**Assembly:** `System.Security.Cryptography`<br/>**Namespace:** `System.Security.Cryptography`
 
 _No description available._
 

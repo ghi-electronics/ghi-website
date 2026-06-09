@@ -5,7 +5,7 @@ sidebar_label: "Xtea"
 
 # Xtea Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Cryptography` · **Assembly:** `GHIElectronics.TinyCLR.Cryptography`
+**NuGet:** `GHIElectronics.TinyCLR.Cryptography`<br/>**Assembly:** `GHIElectronics.TinyCLR.Cryptography`<br/>**Namespace:** `GHIElectronics.TinyCLR.Cryptography`
 
 XTEA (eXtended Tiny Encryption Algorithm) block cipher. 128-bit key, 64-bit blocks.
 

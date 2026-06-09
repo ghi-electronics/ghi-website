@@ -5,7 +5,7 @@ sidebar_label: "XmlNodeType"
 
 # XmlNodeType Enum
 
-**Namespace:** `System.Xml` · **Assembly:** `GHIElectronics.TinyCLR.System.Xml`
+**NuGet:** `GHIElectronics.TinyCLR.System.Xml`<br/>**Assembly:** `GHIElectronics.TinyCLR.System.Xml`<br/>**Namespace:** `System.Xml`
 
 Node kinds in an XML document. Same values as .NET's `System.Xml.XmlNodeType`.
 

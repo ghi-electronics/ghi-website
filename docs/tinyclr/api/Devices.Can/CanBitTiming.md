@@ -5,7 +5,7 @@ sidebar_label: "CanBitTiming"
 
 # CanBitTiming Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Can` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Can`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Can`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Can`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Can`
 
 Bit-timing parameters for one phase (arbitration or data) of a CAN frame.
 

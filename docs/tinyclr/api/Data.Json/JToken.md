@@ -5,7 +5,7 @@ sidebar_label: "JToken"
 
 # JToken Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Data.Json` · **Assembly:** `GHIElectronics.TinyCLR.Data.Json`
+**NuGet:** `GHIElectronics.TinyCLR.Data.Json`<br/>**Assembly:** `GHIElectronics.TinyCLR.Data.Json`<br/>**Namespace:** `GHIElectronics.TinyCLR.Data.Json`
 
 Abstract base for every JSON value type: `JObject`, `JArray`, `JValue`, and `JProperty`. Use `JsonConverter` to parse JSON text into a token tree or serialize a tree back to text.
 

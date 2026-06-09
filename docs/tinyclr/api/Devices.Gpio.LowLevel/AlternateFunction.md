@@ -5,7 +5,7 @@ sidebar_label: "AlternateFunction"
 
 # AlternateFunction Enum
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Gpio.LowLevel` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Gpio.LowLevel`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Gpio.LowLevel`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Gpio.LowLevel`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Gpio.LowLevel`
 
 Alternate-function index selecting which peripheral the pin connects to (platform-specific meaning).
 

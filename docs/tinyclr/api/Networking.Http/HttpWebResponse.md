@@ -5,7 +5,7 @@ sidebar_label: "HttpWebResponse"
 
 # HttpWebResponse Class
 
-**Namespace:** `System.Net` · **Assembly:** `GHIElectronics.TinyCLR.Networking.Http`
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Namespace:** `System.Net`
 
 Handles retrieval of HTTP Response headers, and handles data reads.
 

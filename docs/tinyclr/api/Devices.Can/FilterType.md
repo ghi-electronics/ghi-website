@@ -5,7 +5,7 @@ sidebar_label: "FilterType"
 
 # FilterType Enum
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Can` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Can`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Can`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Can`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Can`
 
 How a filter matches arbitration IDs.
 

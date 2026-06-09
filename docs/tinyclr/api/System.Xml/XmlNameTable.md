@@ -5,7 +5,7 @@ sidebar_label: "XmlNameTable"
 
 # XmlNameTable Class
 
-**Namespace:** `System.Xml` · **Assembly:** `GHIElectronics.TinyCLR.System.Xml`
+**NuGet:** `GHIElectronics.TinyCLR.System.Xml`<br/>**Assembly:** `GHIElectronics.TinyCLR.System.Xml`<br/>**Namespace:** `System.Xml`
 
 Atomized-string table shared between readers and writers.
 

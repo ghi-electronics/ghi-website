@@ -5,7 +5,7 @@ sidebar_label: "I2cBusSpeed"
 
 # I2cBusSpeed Enum
 
-**Namespace:** `System.Device.I2c` · **Assembly:** `GHIElectronics.TinyCLR.System.Device.I2c`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.I2c`<br/>**Assembly:** `System.Device.I2c`<br/>**Namespace:** `System.Device.I2c`
 
 Standard .NET-style I²C bus speed selector.
 

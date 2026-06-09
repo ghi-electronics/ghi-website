@@ -5,7 +5,7 @@ sidebar_label: "FtpListenerResponse"
 
 # FtpListenerResponse Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Networking` · **Assembly:** `GHIElectronics.TinyCLR.Networking.Ftp`
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Ftp`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Ftp`<br/>**Namespace:** `GHIElectronics.TinyCLR.Networking`
 
 The ftp response
 

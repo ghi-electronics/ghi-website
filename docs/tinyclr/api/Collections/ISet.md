@@ -5,7 +5,7 @@ sidebar_label: "ISet<T>"
 
 # ISet&lt;T> Interface
 
-**Namespace:** `System.Collections.Generic` · **Assembly:** `GHIElectronics.TinyCLR.Collections`
+**NuGet:** `GHIElectronics.TinyCLR.Collections`<br/>**Assembly:** `GHIElectronics.TinyCLR.Collections`<br/>**Namespace:** `System.Collections.Generic`
 
 Generic set abstraction. Mirrors the .NET BCL `System.Collections.Generic.ISet<T>` shape so HashSet&lt;T> and future set implementations interop cleanly with portable BCL-using code.
 

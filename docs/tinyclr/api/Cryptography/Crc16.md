@@ -5,7 +5,7 @@ sidebar_label: "Crc16"
 
 # Crc16 Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Cryptography` · **Assembly:** `GHIElectronics.TinyCLR.Cryptography`
+**NuGet:** `GHIElectronics.TinyCLR.Cryptography`<br/>**Assembly:** `GHIElectronics.TinyCLR.Cryptography`<br/>**Namespace:** `GHIElectronics.TinyCLR.Cryptography`
 
 CRC-16 hash. Computes a 16-bit CRC over a byte buffer, optionally with a non-zero seed.
 

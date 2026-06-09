@@ -5,7 +5,7 @@ sidebar_label: "PwmChannel"
 
 # PwmChannel Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Pwm` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Pwm`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Pwm`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Pwm`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Pwm`
 
 A single PWM channel opened from a `PwmController`. Configure `Polarity` and duty cycle, then call `Start` to begin driving the output.
 

@@ -5,7 +5,7 @@ sidebar_label: "SerializationCtx"
 
 # SerializationCtx Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Data.Json` · **Assembly:** `GHIElectronics.TinyCLR.Data.Json`
+**NuGet:** `GHIElectronics.TinyCLR.Data.Json`<br/>**Assembly:** `GHIElectronics.TinyCLR.Data.Json`<br/>**Namespace:** `GHIElectronics.TinyCLR.Data.Json`
 
 _No description available._
 

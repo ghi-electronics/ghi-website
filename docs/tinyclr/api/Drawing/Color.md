@@ -5,7 +5,7 @@ sidebar_label: "Color"
 
 # Color Struct
 
-**Namespace:** `System.Drawing` · **Assembly:** `GHIElectronics.TinyCLR.Drawing`
+**NuGet:** `GHIElectronics.TinyCLR.Drawing`<br/>**Assembly:** `GHIElectronics.TinyCLR.Drawing`<br/>**Namespace:** `System.Drawing`
 
 32-bit ARGB color value. Construct via `FromArgb(int, int, int)` / `FromArgb(int, int, int, int)`, or use one of the named static constants.
 

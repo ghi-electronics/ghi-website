@@ -5,7 +5,7 @@ sidebar_label: "OperationTimedOutException"
 
 # OperationTimedOutException Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Usb` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Usb`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Usb`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Usb`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Usb`
 
 The exception thrown when an operation times out.
 

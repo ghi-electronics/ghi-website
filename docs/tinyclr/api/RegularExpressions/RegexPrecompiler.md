@@ -5,7 +5,7 @@ sidebar_label: "RegexPrecompiler"
 
 # RegexPrecompiler Class
 
-**Namespace:** `System.Text.RegularExpressions` · **Assembly:** `GHIElectronics.TinyCLR.RegularExpressions`
+**NuGet:** `GHIElectronics.TinyCLR.RegularExpressions`<br/>**Assembly:** `GHIElectronics.TinyCLR.RegularExpressions`<br/>**Namespace:** `System.Text.RegularExpressions`
 
 Class for precompiling regular expressions for later use
 

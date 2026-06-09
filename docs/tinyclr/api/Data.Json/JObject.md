@@ -5,7 +5,7 @@ sidebar_label: "JObject"
 
 # JObject Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Data.Json` · **Assembly:** `GHIElectronics.TinyCLR.Data.Json`
+**NuGet:** `GHIElectronics.TinyCLR.Data.Json`<br/>**Assembly:** `GHIElectronics.TinyCLR.Data.Json`<br/>**Namespace:** `GHIElectronics.TinyCLR.Data.Json`
 
 A JSON object — an unordered map of name/`JToken` pairs.
 

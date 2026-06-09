@@ -5,7 +5,7 @@ sidebar_label: "GpioController"
 
 # GpioController Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Gpio` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Gpio`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Gpio`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Gpio`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Gpio`
 
 Represents a GPIO controller — the hardware peripheral that owns a set of individually addressable pins. Use `GetDefault` to obtain the device's primary controller, then `OpenPin(int)` to acquire pins for input or output.
 

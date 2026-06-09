@@ -5,7 +5,7 @@ sidebar_label: "Enumerator"
 
 # Enumerator Struct
 
-**Namespace:** `GHIElectronics.TinyCLR.UI` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI`
 
 This is a simple UIElementCollection enumerator that is based on the ArrayListEnumeratorSimple that is used for ArrayLists. The following comment is from the CLR people: For a straightforward enumeration of the entire ArrayList, this is faster, because it's smaller. Benchmarks showed this.
 

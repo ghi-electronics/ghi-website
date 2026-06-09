@@ -5,7 +5,7 @@ sidebar_label: "MulticastDns"
 
 # MulticastDns Class
 
-**Namespace:** `System.Net` · **Assembly:** `GHIElectronics.TinyCLR.Networking`
+**NuGet:** `GHIElectronics.TinyCLR.Networking`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking`<br/>**Namespace:** `System.Net`
 
 _No description available._
 

@@ -5,7 +5,7 @@ sidebar_label: "RSACryptoServiceProvider"
 
 # RSACryptoServiceProvider Class
 
-**Namespace:** `System.Security.Cryptography` · **Assembly:** `GHIElectronics.TinyCLR.System.Security.Cryptography`
+**NuGet:** `GHIElectronics.TinyCLR.Cryptography`<br/>**Assembly:** `System.Security.Cryptography`<br/>**Namespace:** `System.Security.Cryptography`
 
 Concrete RSA implementation. Construct with the desired key size or with externally supplied `RSAParameters`.
 

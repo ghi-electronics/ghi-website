@@ -5,7 +5,7 @@ sidebar_label: "PinValue"
 
 # PinValue Enum
 
-**Namespace:** `System.Device.Gpio` · **Assembly:** `GHIElectronics.TinyCLR.System.Device.Gpio`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Gpio`<br/>**Assembly:** `System.Device.Gpio`<br/>**Namespace:** `System.Device.Gpio`
 
 Logical pin level.
 

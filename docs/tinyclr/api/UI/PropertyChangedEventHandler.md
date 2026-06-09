@@ -5,7 +5,7 @@ sidebar_label: "PropertyChangedEventHandler"
 
 # PropertyChangedEventHandler Delegate
 
-**Namespace:** `GHIElectronics.TinyCLR.UI` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI`
 
 Represents the method that will handle the event raised when a Property is changed
 

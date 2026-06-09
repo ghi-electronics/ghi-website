@@ -5,7 +5,7 @@ sidebar_label: "AccessPointClientConnectionChangedEventHandler"
 
 # AccessPointClientConnectionChangedEventHandler Delegate
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Network` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Network`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Network`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Network`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Network`
 
 Handler signature for `AccessPointClientConnectionChanged`.
 

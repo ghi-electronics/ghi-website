@@ -5,7 +5,7 @@ sidebar_label: "InterfaceCapabilityFlags"
 
 # InterfaceCapabilityFlags Struct
 
-**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Scanner.ObjectLibrary` · **Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`
+**NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Scanner.ObjectLibrary`
 
 Chapter 5-3.2.2.2 Volume 2
 

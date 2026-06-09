@@ -5,7 +5,7 @@ sidebar_label: "CameraController"
 
 # CameraController Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Camera` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Camera`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Camera`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Camera`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Camera`
 
 Represents a DCMI / parallel camera interface. Configure timing via `SetActiveSettings`, `Enable` the capture engine, then call `Capture(byte[], int)` to read a frame into a buffer.
 

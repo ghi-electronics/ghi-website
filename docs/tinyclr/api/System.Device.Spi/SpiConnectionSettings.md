@@ -5,7 +5,7 @@ sidebar_label: "SpiConnectionSettings"
 
 # SpiConnectionSettings Class
 
-**Namespace:** `System.Device.Spi` · **Assembly:** `GHIElectronics.TinyCLR.System.Device.Spi`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Spi`<br/>**Assembly:** `System.Device.Spi`<br/>**Namespace:** `System.Device.Spi`
 
 Per-device SPI settings in the standard `System.Device.Spi` shape. TinyCLR maps these onto its native SPI driver via `SpiDevice.Create(SpiConnectionSettings)`.
 

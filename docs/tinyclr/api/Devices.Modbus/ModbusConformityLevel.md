@@ -5,7 +5,7 @@ sidebar_label: "ModbusConformityLevel"
 
 # ModbusConformityLevel Enum
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Modbus` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Modbus`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Modbus`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Modbus`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Modbus`
 
 Identification conformity level of the device and type of supported access.
 

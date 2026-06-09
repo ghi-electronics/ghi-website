@@ -5,7 +5,7 @@ sidebar_label: "UserAuthenticationResult"
 
 # UserAuthenticationResult Enum
 
-**Namespace:** `GHIElectronics.TinyCLR.Networking` · **Assembly:** `GHIElectronics.TinyCLR.Networking.Ftp`
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Ftp`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Ftp`<br/>**Namespace:** `GHIElectronics.TinyCLR.Networking`
 
 User anthentication result
 

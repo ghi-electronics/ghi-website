@@ -5,7 +5,7 @@ sidebar_label: "RegexOptions"
 
 # RegexOptions Enum
 
-**Namespace:** `System.Text.RegularExpressions` · **Assembly:** `GHIElectronics.TinyCLR.RegularExpressions`
+**NuGet:** `GHIElectronics.TinyCLR.RegularExpressions`<br/>**Assembly:** `GHIElectronics.TinyCLR.RegularExpressions`<br/>**Namespace:** `System.Text.RegularExpressions`
 
 Options which can be applied to a RegularExpression
 

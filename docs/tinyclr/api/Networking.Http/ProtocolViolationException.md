@@ -5,7 +5,7 @@ sidebar_label: "ProtocolViolationException"
 
 # ProtocolViolationException Class
 
-**Namespace:** `System.Net` · **Assembly:** `GHIElectronics.TinyCLR.Networking.Http`
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Namespace:** `System.Net`
 
 The exception that is thrown when an error is made while using a network protocol.
 

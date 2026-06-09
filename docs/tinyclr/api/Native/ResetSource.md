@@ -5,7 +5,7 @@ sidebar_label: "ResetSource"
 
 # ResetSource Enum
 
-**Namespace:** `GHIElectronics.TinyCLR.Native` · **Assembly:** `GHIElectronics.TinyCLR.Native`
+**NuGet:** `GHIElectronics.TinyCLR.Native`<br/>**Assembly:** `GHIElectronics.TinyCLR.Native`<br/>**Namespace:** `GHIElectronics.TinyCLR.Native`
 
 Reasons reported by `Power.GetResetSource`.
 

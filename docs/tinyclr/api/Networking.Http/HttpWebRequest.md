@@ -5,7 +5,7 @@ sidebar_label: "HttpWebRequest"
 
 # HttpWebRequest Class
 
-**Namespace:** `System.Net` · **Assembly:** `GHIElectronics.TinyCLR.Networking.Http`
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Namespace:** `System.Net`
 
 Provides an HTTP-specific implementation of the `System.Net.WebRequest` class.
 

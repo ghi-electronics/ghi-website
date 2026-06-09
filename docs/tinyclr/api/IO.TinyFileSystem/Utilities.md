@@ -5,7 +5,7 @@ sidebar_label: "Utilities"
 
 # Utilities Class
 
-**Namespace:** `GHIElectronics.TinyCLR.IO.TinyFileSystem` · **Assembly:** `GHIElectronics.TinyCLR.IO.TinyFileSystem`
+**NuGet:** `GHIElectronics.TinyCLR.IO.TinyFileSystem`<br/>**Assembly:** `GHIElectronics.TinyCLR.IO.TinyFileSystem`<br/>**Namespace:** `GHIElectronics.TinyCLR.IO.TinyFileSystem`
 
 General utility functions.
 

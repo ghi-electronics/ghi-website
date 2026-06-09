@@ -5,7 +5,7 @@ sidebar_label: "PulseFeedbackMode"
 
 # PulseFeedbackMode Enum
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Signals` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Signals`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Signals`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Signals`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Signals`
 
 How a `PulseFeedback` session is driven.
 

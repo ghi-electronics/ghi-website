@@ -5,7 +5,7 @@ sidebar_label: "ResultSet"
 
 # ResultSet Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Data.SQLite` · **Assembly:** `GHIElectronics.TinyCLR.Data.SQLite`
+**NuGet:** `GHIElectronics.TinyCLR.Data.SQLite`<br/>**Assembly:** `GHIElectronics.TinyCLR.Data.SQLite`<br/>**Namespace:** `GHIElectronics.TinyCLR.Data.SQLite`
 
 Result of a SQL SELECT — rows × columns plus column-name metadata. Index by `this[row]` for an ArrayList of cells in that row, or `this[row, column]` for an individual cell.
 

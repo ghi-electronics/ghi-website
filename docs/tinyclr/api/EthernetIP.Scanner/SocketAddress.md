@@ -5,7 +5,7 @@ sidebar_label: "SocketAddress"
 
 # SocketAddress Class
 
-**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Scanner` · **Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`
+**NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`
 
 Socket Address (see section 2-6.3.2)
 

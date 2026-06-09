@@ -5,7 +5,7 @@ sidebar_label: "ICanControllerProvider"
 
 # ICanControllerProvider Interface
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Can.Provider` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Can`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Can`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Can`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Can.Provider`
 
 Provider contract for a CAN controller.
 

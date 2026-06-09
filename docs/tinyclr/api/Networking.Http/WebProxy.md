@@ -5,7 +5,7 @@ sidebar_label: "WebProxy"
 
 # WebProxy Class
 
-**Namespace:** `System.Net` · **Assembly:** `GHIElectronics.TinyCLR.Networking.Http`
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Namespace:** `System.Net`
 
 Contains HTTP proxy settings for the `System.Net.WebRequest` class.
 

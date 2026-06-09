@@ -5,7 +5,7 @@ sidebar_label: "DispatcherFrame"
 
 # DispatcherFrame Class
 
-**Namespace:** `GHIElectronics.TinyCLR.UI.Threading` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Threading`
 
 Representation of Dispatcher frame.
 

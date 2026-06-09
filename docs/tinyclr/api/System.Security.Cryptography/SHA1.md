@@ -5,7 +5,7 @@ sidebar_label: "SHA1"
 
 # SHA1 Class
 
-**Namespace:** `System.Security.Cryptography` · **Assembly:** `GHIElectronics.TinyCLR.System.Security.Cryptography`
+**NuGet:** `GHIElectronics.TinyCLR.Cryptography`<br/>**Assembly:** `System.Security.Cryptography`<br/>**Namespace:** `System.Security.Cryptography`
 
 SHA-1 hash (160-bit). Use `HashAlgorithm.Create()` overloads or instantiate directly.
 

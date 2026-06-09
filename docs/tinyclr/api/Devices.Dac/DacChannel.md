@@ -5,7 +5,7 @@ sidebar_label: "DacChannel"
 
 # DacChannel Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Dac` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Dac`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Dac`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Dac`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Dac`
 
 A single DAC channel opened from a `DacController`. Call `WriteValue(int)` for raw codes or `WriteValue(double)` for a 0.0–1.0 ratio of the output range.
 

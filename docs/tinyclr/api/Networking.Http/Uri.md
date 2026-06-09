@@ -5,7 +5,7 @@ sidebar_label: "Uri"
 
 # Uri Class
 
-**Namespace:** `System` · **Assembly:** `GHIElectronics.TinyCLR.Networking.Http`
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Namespace:** `System`
 
 Provides an object representation of a uniform resource identifier (URI) and easy access to the parts of the URI.
 

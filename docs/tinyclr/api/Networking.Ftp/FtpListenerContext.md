@@ -5,7 +5,7 @@ sidebar_label: "FtpListenerContext"
 
 # FtpListenerContext Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Networking` · **Assembly:** `GHIElectronics.TinyCLR.Networking.Ftp`
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Ftp`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Ftp`<br/>**Namespace:** `GHIElectronics.TinyCLR.Networking`
 
 A Context containing an ftp request and a response scratch that should be completed by listeners
 

@@ -5,7 +5,7 @@ sidebar_label: "I2cControllerApiWrapper"
 
 # I2cControllerApiWrapper Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.I2c.Provider` · **Assembly:** `GHIElectronics.TinyCLR.Devices.I2c`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.I2c`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.I2c`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.I2c.Provider`
 
 Concrete `II2cControllerProvider` backed by the native TinyCLR I²C HAL.
 

@@ -5,7 +5,7 @@ sidebar_label: "ClearToSendChangedEventHandler"
 
 # ClearToSendChangedEventHandler Delegate
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Uart` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Uart`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Uart`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Uart`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Uart`
 
 Handler signature for `UartController.ClearToSendChanged`.
 

@@ -5,7 +5,7 @@ sidebar_label: "Polygon"
 
 # Polygon Class
 
-**Namespace:** `GHIElectronics.TinyCLR.UI.Shapes` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Shapes`
 
 _No description available._
 

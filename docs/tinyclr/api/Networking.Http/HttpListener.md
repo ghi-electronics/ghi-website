@@ -5,7 +5,7 @@ sidebar_label: "HttpListener"
 
 # HttpListener Class
 
-**Namespace:** `System.Net` · **Assembly:** `GHIElectronics.TinyCLR.Networking.Http`
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Namespace:** `System.Net`
 
 Provides a simple, programmatically controlled HTTP protocol listener. This class cannot be inherited.
 

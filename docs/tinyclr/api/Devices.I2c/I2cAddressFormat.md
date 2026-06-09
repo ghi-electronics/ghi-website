@@ -5,7 +5,7 @@ sidebar_label: "I2cAddressFormat"
 
 # I2cAddressFormat Enum
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.I2c` · **Assembly:** `GHIElectronics.TinyCLR.Devices.I2c`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.I2c`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.I2c`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.I2c`
 
 I²C address width.
 

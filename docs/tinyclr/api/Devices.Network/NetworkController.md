@@ -5,7 +5,7 @@ sidebar_label: "NetworkController"
 
 # NetworkController Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Network` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Network`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Network`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Network`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Network`
 
 Represents a network interface — Ethernet, WiFi (station or AP), or PPP. Configure the interface settings, optionally the underlying communication interface (built-in MAC, SPI, or UART), then `Enable` the controller. Subscribe to `NetworkLinkConnectedChanged` and `NetworkAddressChanged` for status. Use `SetAsDefaultController` to choose which interface handles outbound traffic when multiple are up.
 

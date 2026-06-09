@@ -5,7 +5,7 @@ sidebar_label: "AuthenticationType"
 
 # AuthenticationType Enum
 
-**Namespace:** `System.Net` · **Assembly:** `GHIElectronics.TinyCLR.Networking.Http`
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Namespace:** `System.Net`
 
 Network authentication type. Currently supports: Basic Authentication Microsoft Live Id Delegate Authentication
 

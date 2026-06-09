@@ -5,7 +5,7 @@ sidebar_label: "FtpListener"
 
 # FtpListener Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Networking` · **Assembly:** `GHIElectronics.TinyCLR.Networking.Ftp`
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Ftp`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Ftp`<br/>**Namespace:** `GHIElectronics.TinyCLR.Networking`
 
 The base class for all Ftp listeners implemented all basic functionalities like context queue management, authentication events
 

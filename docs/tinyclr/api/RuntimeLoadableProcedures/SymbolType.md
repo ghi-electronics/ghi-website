@@ -5,7 +5,7 @@ sidebar_label: "SymbolType"
 
 # SymbolType Enum
 
-**Namespace:** `GHIElectronics.TinyCLR.RuntimeLoadableProcedures` · **Assembly:** `GHIElectronics.TinyCLR.RuntimeLoadableProcedures`
+**NuGet:** `GHIElectronics.TinyCLR.RuntimeLoadableProcedures`<br/>**Assembly:** `GHIElectronics.TinyCLR.RuntimeLoadableProcedures`<br/>**Namespace:** `GHIElectronics.TinyCLR.RuntimeLoadableProcedures`
 
 Classification of an ELF symbol.
 

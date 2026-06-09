@@ -5,7 +5,7 @@ sidebar_label: "GpioPinValueChangedEventHandler"
 
 # GpioPinValueChangedEventHandler Delegate
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Gpio` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Gpio`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Gpio`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Gpio`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Gpio`
 
 Handler invoked when a `GpioPin` configured as an input observes a level change matching its `GpioPin.ValueChangedEdge`.
 

@@ -5,7 +5,7 @@ sidebar_label: "SpiConnectionSettings"
 
 # SpiConnectionSettings Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Spi` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Spi`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Spi`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Spi`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Spi`
 
 Per-device SPI bus settings: clock, mode, chip select, etc.
 

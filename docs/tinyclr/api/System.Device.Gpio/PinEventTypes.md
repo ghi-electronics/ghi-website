@@ -5,7 +5,7 @@ sidebar_label: "PinEventTypes"
 
 # PinEventTypes Enum
 
-**Namespace:** `System.Device.Gpio` · **Assembly:** `GHIElectronics.TinyCLR.System.Device.Gpio`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Gpio`<br/>**Assembly:** `System.Device.Gpio`<br/>**Namespace:** `System.Device.Gpio`
 
 Edge selector for `GpioController` change notifications. Same shape as .NET IoT.
 

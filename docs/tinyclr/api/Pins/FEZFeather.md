@@ -6,6 +6,8 @@ sidebar_label: "FEZFeather"
 
 <h1 className="api-package-heading">FEZFeather</h1>
 
+**NuGet:** `GHIElectronics.TinyCLR.Pins`<br/>**Assembly:** `GHIElectronics.TinyCLR.Pins`<br/>**Namespace:** `GHIElectronics.TinyCLR.Pins`
+
 ## Adc.Controller1
 
 ADC controller.

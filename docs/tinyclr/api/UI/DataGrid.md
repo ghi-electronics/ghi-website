@@ -5,7 +5,7 @@ sidebar_label: "DataGrid"
 
 # DataGrid Class
 
-**Namespace:** `GHIElectronics.TinyCLR.UI.Controls` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
 The DataGrid component is a list-based component that provides a grid of rows and columns.
 

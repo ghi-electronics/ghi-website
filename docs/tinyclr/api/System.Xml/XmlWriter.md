@@ -5,7 +5,7 @@ sidebar_label: "XmlWriter"
 
 # XmlWriter Class
 
-**Namespace:** `System.Xml` · **Assembly:** `GHIElectronics.TinyCLR.System.Xml`
+**NuGet:** `GHIElectronics.TinyCLR.System.Xml`<br/>**Assembly:** `GHIElectronics.TinyCLR.System.Xml`<br/>**Namespace:** `System.Xml`
 
 Forward-only XML writer. Same surface as .NET's `System.Xml.XmlWriter`.
 

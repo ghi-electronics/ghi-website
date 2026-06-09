@@ -5,7 +5,7 @@ sidebar_label: "IBlockDriver"
 
 # IBlockDriver Interface
 
-**Namespace:** `GHIElectronics.TinyCLR.IO.TinyFileSystem` · **Assembly:** `GHIElectronics.TinyCLR.IO.TinyFileSystem`
+**NuGet:** `GHIElectronics.TinyCLR.IO.TinyFileSystem`<br/>**Assembly:** `GHIElectronics.TinyCLR.IO.TinyFileSystem`<br/>**Namespace:** `GHIElectronics.TinyCLR.IO.TinyFileSystem`
 
 Interface to abstract the file system from the physical device.
 

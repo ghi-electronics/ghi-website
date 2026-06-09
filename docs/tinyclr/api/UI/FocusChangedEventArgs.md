@@ -5,7 +5,7 @@ sidebar_label: "FocusChangedEventArgs"
 
 # FocusChangedEventArgs Class
 
-**Namespace:** `GHIElectronics.TinyCLR.UI.Input` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Input`
 
 The FocusChangedEventArgs class contains information about focus states
 

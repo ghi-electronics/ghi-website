@@ -5,7 +5,7 @@ sidebar_label: "Cdc"
 
 # Cdc Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbClient` · **Assembly:** `GHIElectronics.TinyCLR.Devices.UsbClient`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbClient`
 
 This device emulates a CDC virtual COM port.
 

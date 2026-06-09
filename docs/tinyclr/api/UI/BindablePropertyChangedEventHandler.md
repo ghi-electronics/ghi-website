@@ -5,7 +5,7 @@ sidebar_label: "BindablePropertyChangedEventHandler"
 
 # BindablePropertyChangedEventHandler Delegate
 
-**Namespace:** `GHIElectronics.TinyCLR.UI` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI`
 
 PC-style change notification for simple MVVM binding (TinyCLR subset).
 

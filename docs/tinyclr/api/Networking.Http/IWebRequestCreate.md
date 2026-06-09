@@ -5,7 +5,7 @@ sidebar_label: "IWebRequestCreate"
 
 # IWebRequestCreate Interface
 
-**Namespace:** `System.Net` · **Assembly:** `GHIElectronics.TinyCLR.Networking.Http`
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Namespace:** `System.Net`
 
 The interface for creating `System.Net.WebRequest` class objects.
 

@@ -5,7 +5,7 @@ sidebar_label: "I2cTransferResult"
 
 # I2cTransferResult Struct
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.I2c` · **Assembly:** `GHIElectronics.TinyCLR.Devices.I2c`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.I2c`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.I2c`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.I2c`
 
 Outcome of a partial-transfer call (`I2cDevice.ReadPartial(byte[])` and friends).
 

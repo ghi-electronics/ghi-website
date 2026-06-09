@@ -5,7 +5,7 @@ sidebar_label: "NativeApi"
 
 # NativeApi Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Native` · **Assembly:** `GHIElectronics.TinyCLR.Native`
+**NuGet:** `GHIElectronics.TinyCLR.Native`<br/>**Assembly:** `GHIElectronics.TinyCLR.Native`<br/>**Namespace:** `GHIElectronics.TinyCLR.Native`
 
 Handle to a native API surfaced by the firmware. Use `Find` to obtain a specific API by name, or `FindAll` to enumerate everything the firmware exposes.
 

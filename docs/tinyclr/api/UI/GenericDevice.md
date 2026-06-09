@@ -5,7 +5,7 @@ sidebar_label: "GenericDevice"
 
 # GenericDevice Class
 
-**Namespace:** `GHIElectronics.TinyCLR.UI.Input` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Input`
 
 The GenericDevice class represents the Generic device to the members of a context.
 

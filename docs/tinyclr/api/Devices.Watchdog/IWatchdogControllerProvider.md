@@ -5,7 +5,7 @@ sidebar_label: "IWatchdogControllerProvider"
 
 # IWatchdogControllerProvider Interface
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Watchdog.Provider` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Watchdog`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Watchdog`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Watchdog`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Watchdog.Provider`
 
 Provider contract for a watchdog controller.
 

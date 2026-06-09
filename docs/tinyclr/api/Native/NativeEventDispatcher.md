@@ -5,7 +5,7 @@ sidebar_label: "NativeEventDispatcher"
 
 # NativeEventDispatcher Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Native` · **Assembly:** `GHIElectronics.TinyCLR.Native`
+**NuGet:** `GHIElectronics.TinyCLR.Native`<br/>**Assembly:** `GHIElectronics.TinyCLR.Native`<br/>**Namespace:** `GHIElectronics.TinyCLR.Native`
 
 Marshals native ISR events to managed handlers. One dispatcher exists per well-known event name (e.g. `GHIElectronics.TinyCLR.NativeEventNames.Gpio.PinChanged`); retrieve the singleton with `GetDispatcher(string)` and subscribe to `OnInterrupt`. The first subscription enables the native interrupt; removing the last one disables it.
 

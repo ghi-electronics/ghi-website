@@ -5,7 +5,7 @@ sidebar_label: "INetworkControllerProvider"
 
 # INetworkControllerProvider Interface
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Network.Provider` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Network`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Network`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Network`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Network.Provider`
 
 Provider contract for a network controller.
 

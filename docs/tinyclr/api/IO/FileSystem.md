@@ -5,7 +5,7 @@ sidebar_label: "FileSystem"
 
 # FileSystem Class
 
-**Namespace:** `GHIElectronics.TinyCLR.IO` · **Assembly:** `GHIElectronics.TinyCLR.IO`
+**NuGet:** `GHIElectronics.TinyCLR.IO`<br/>**Assembly:** `GHIElectronics.TinyCLR.IO`<br/>**Namespace:** `GHIElectronics.TinyCLR.IO`
 
 Mounts and unmounts file systems on top of a `GHIElectronics.TinyCLR.Devices.Storage.StorageController`. Pass the controller's `Hdc` to `Mount(IntPtr)` to make its content accessible via `System.IO.File` / `System.IO.Directory`.
 

@@ -5,7 +5,7 @@ sidebar_label: "AdcController"
 
 # AdcController Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Adc` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Adc`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Adc`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Adc`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Adc`
 
 Represents an ADC peripheral. Open a channel via `OpenChannel(int)` to take samples; use `MinValue`/`MaxValue` to know the raw-code range for the configured resolution.
 

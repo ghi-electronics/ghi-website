@@ -5,7 +5,7 @@ sidebar_label: "I2cController"
 
 # I2cController Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.I2c` · **Assembly:** `GHIElectronics.TinyCLR.Devices.I2c`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.I2c`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.I2c`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.I2c`
 
 Represents an I²C bus controller. Open a peer with `GetDevice(I2cConnectionSettings)` to transact with a specific slave address. The same controller can serve multiple slaves — settings are re-applied per transfer.
 

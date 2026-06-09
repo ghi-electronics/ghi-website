@@ -5,7 +5,7 @@ sidebar_label: "ButtonState"
 
 # ButtonState Enum
 
-**Namespace:** `GHIElectronics.TinyCLR.UI.Input` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Input`
 
 The ButtonState enumeration describes the state that buttons can be in.
 

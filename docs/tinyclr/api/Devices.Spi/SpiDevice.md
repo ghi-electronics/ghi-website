@@ -5,7 +5,7 @@ sidebar_label: "SpiDevice"
 
 # SpiDevice Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Spi` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Spi`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Spi`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Spi`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Spi`
 
 Represents a single chip on an SPI bus. Each transfer is preceded by a re-apply of `ConnectionSettings`, so multiple devices on the same controller can coexist without manual reconfiguration between calls.
 

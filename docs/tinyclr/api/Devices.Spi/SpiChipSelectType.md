@@ -5,7 +5,7 @@ sidebar_label: "SpiChipSelectType"
 
 # SpiChipSelectType Enum
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Spi` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Spi`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Spi`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Spi`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Spi`
 
 How chip-select is driven.
 

@@ -5,7 +5,7 @@ sidebar_label: "NativeFunction"
 
 # NativeFunction Class
 
-**Namespace:** `GHIElectronics.TinyCLR.RuntimeLoadableProcedures` · **Assembly:** `GHIElectronics.TinyCLR.RuntimeLoadableProcedures`
+**NuGet:** `GHIElectronics.TinyCLR.RuntimeLoadableProcedures`<br/>**Assembly:** `GHIElectronics.TinyCLR.RuntimeLoadableProcedures`<br/>**Namespace:** `GHIElectronics.TinyCLR.RuntimeLoadableProcedures`
 
 Wraps a native function located at a known address. The first call to `Invoke` fixes the argument count and types; subsequent calls must match. Supported argument types: 8/16/32/64-bit integers (signed and unsigned), float, double, bool, and arrays of those types.
 

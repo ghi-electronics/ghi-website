@@ -5,7 +5,7 @@ sidebar_label: "DriveInfo"
 
 # DriveInfo Class
 
-**Namespace:** `System.IO` · **Assembly:** `GHIElectronics.TinyCLR.IO`
+**NuGet:** `GHIElectronics.TinyCLR.IO`<br/>**Assembly:** `GHIElectronics.TinyCLR.IO`<br/>**Namespace:** `System.IO`
 
 Information about a mounted volume — total/available space, type, root path.
 

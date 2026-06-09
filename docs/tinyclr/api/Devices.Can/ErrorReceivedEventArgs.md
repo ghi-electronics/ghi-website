@@ -5,7 +5,7 @@ sidebar_label: "ErrorReceivedEventArgs"
 
 # ErrorReceivedEventArgs Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Can` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Can`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Can`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Can`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Can`
 
 Arguments for `CanController.ErrorReceived`.
 

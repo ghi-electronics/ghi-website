@@ -5,7 +5,7 @@ sidebar_label: "BindingErrorEventArgs"
 
 # BindingErrorEventArgs Class
 
-**Namespace:** `GHIElectronics.TinyCLR.UI.Controls` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
 Reported by controls (currently `TextBox`) when a reflection- based binding read or write fails. Subscribing is optional — the framework defaults to silent so a misspelled property name doesn't crash the UI, but a subscriber can log or surface the error.
 

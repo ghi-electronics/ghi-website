@@ -5,7 +5,7 @@ sidebar_label: "Flash"
 
 # Flash Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Native` · **Assembly:** `GHIElectronics.TinyCLR.Native`
+**NuGet:** `GHIElectronics.TinyCLR.Native`<br/>**Assembly:** `GHIElectronics.TinyCLR.Native`<br/>**Namespace:** `GHIElectronics.TinyCLR.Native`
 
 Controls how the firmware uses the device's flash storage. Most apps don't need this — call `EnableExtendDeployment` only on devices with external flash that should be used to extend the deployment region.
 

@@ -5,7 +5,7 @@ sidebar_label: "LowLevelController"
 
 # LowLevelController Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Gpio.LowLevel` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Gpio.LowLevel`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Gpio.LowLevel`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Gpio.LowLevel`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Gpio.LowLevel`
 
 Low-level pin-mux helper. Lets a driver re-route or reconfigure pins at a level finer than the regular `GpioPin` API (slew rate, alternate function, etc.). Mostly used by peripheral library authors; ordinary apps don't need this.
 

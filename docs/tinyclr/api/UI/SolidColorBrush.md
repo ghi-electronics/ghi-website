@@ -5,7 +5,7 @@ sidebar_label: "SolidColorBrush"
 
 # SolidColorBrush Class
 
-**Namespace:** `GHIElectronics.TinyCLR.UI.Media` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Media`
 
 _No description available._
 

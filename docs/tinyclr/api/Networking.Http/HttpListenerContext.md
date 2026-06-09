@@ -5,7 +5,7 @@ sidebar_label: "HttpListenerContext"
 
 # HttpListenerContext Class
 
-**Namespace:** `System.Net` · **Assembly:** `GHIElectronics.TinyCLR.Networking.Http`
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Namespace:** `System.Net`
 
 Provides access to the request and response objects used by the HttpListener class. This class cannot be inherited.
 

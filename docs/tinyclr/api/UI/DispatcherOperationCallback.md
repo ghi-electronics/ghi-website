@@ -5,7 +5,7 @@ sidebar_label: "DispatcherOperationCallback"
 
 # DispatcherOperationCallback Delegate
 
-**Namespace:** `GHIElectronics.TinyCLR.UI.Threading` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Threading`
 
 A convenient delegate to use for dispatcher operations.
 

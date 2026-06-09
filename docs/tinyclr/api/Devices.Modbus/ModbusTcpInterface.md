@@ -5,7 +5,7 @@ sidebar_label: "ModbusTcpInterface"
 
 # ModbusTcpInterface Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Modbus.Interface` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Modbus`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Modbus`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Modbus`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Modbus.Interface`
 
 ModbusTcpInterface is a Modbus TCP implemention of the `IModbusInterface` interface to be used with `ModbusMaster` or `ModbusDevice`.
 

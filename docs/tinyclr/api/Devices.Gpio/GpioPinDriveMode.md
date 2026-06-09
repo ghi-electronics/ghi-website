@@ -5,7 +5,7 @@ sidebar_label: "GpioPinDriveMode"
 
 # GpioPinDriveMode Enum
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Gpio` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Gpio`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Gpio`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Gpio`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Gpio`
 
 Electrical drive mode applied to a `GpioPin`. Not every mode is available on every pin — call `GpioPin.IsDriveModeSupported(GpioPinDriveMode)` before `GpioPin.SetDriveMode(GpioPinDriveMode)` when in doubt.
 

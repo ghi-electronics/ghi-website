@@ -5,7 +5,7 @@ sidebar_label: "II2cControllerProvider"
 
 # II2cControllerProvider Interface
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.I2c.Provider` · **Assembly:** `GHIElectronics.TinyCLR.Devices.I2c`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.I2c`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.I2c`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.I2c.Provider`
 
 Provider contract for an I²C controller.
 

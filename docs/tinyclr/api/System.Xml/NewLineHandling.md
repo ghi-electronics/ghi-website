@@ -5,7 +5,7 @@ sidebar_label: "NewLineHandling"
 
 # NewLineHandling Enum
 
-**Namespace:** `System.Xml` · **Assembly:** `GHIElectronics.TinyCLR.System.Xml`
+**NuGet:** `GHIElectronics.TinyCLR.System.Xml`<br/>**Assembly:** `GHIElectronics.TinyCLR.System.Xml`<br/>**Namespace:** `System.Xml`
 
 How the writer represents line breaks.
 

@@ -5,7 +5,7 @@ sidebar_label: "HttpKnownHeaderNames"
 
 # HttpKnownHeaderNames Class
 
-**Namespace:** `System.Net` · **Assembly:** `GHIElectronics.TinyCLR.Networking.Http`
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Namespace:** `System.Net`
 
 Contains known HTTP header names.
 

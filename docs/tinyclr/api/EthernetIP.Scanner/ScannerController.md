@@ -5,7 +5,7 @@ sidebar_label: "ScannerController"
 
 # ScannerController Class
 
-**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Scanner` · **Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`
+**NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`
 
 Runs the device as an EtherNet/IP Scanner (the client/originator side — the role that talks to PLCs, motor drives, or other EIP adapters). Pure C# implementation, no native interop.
 

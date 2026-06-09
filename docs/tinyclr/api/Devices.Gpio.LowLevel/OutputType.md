@@ -5,7 +5,7 @@ sidebar_label: "OutputType"
 
 # OutputType Enum
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Gpio.LowLevel` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Gpio.LowLevel`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Gpio.LowLevel`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Gpio.LowLevel`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Gpio.LowLevel`
 
 How a GPIO pin's output driver is wired.
 

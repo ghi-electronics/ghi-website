@@ -5,7 +5,7 @@ sidebar_label: "DeviceStats"
 
 # DeviceStats Struct
 
-**Namespace:** `GHIElectronics.TinyCLR.IO.TinyFileSystem` · **Assembly:** `GHIElectronics.TinyCLR.IO.TinyFileSystem`
+**NuGet:** `GHIElectronics.TinyCLR.IO.TinyFileSystem`<br/>**Assembly:** `GHIElectronics.TinyCLR.IO.TinyFileSystem`<br/>**Namespace:** `GHIElectronics.TinyCLR.IO.TinyFileSystem`
 
 Statistics for the device
 

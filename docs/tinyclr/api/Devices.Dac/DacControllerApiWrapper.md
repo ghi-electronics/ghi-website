@@ -5,7 +5,7 @@ sidebar_label: "DacControllerApiWrapper"
 
 # DacControllerApiWrapper Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Dac.Provider` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Dac`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Dac`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Dac`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Dac.Provider`
 
 Concrete `IDacControllerProvider` backed by the native TinyCLR DAC HAL. Constructed internally by `DacController`; you don't normally need to use this type directly.
 

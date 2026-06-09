@@ -5,7 +5,7 @@ sidebar_label: "PulseFeedback"
 
 # PulseFeedback Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Signals` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Signals`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Signals`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Signals`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Signals`
 
 Generates a digital pulse on one pin and measures a pulse-related duration on the same pin or a separate echo pin. Common applications: ultrasonic distance sensors (HC-SR04), 1-wire interrogation, capacitive touch.
 

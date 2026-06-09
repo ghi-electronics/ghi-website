@@ -5,7 +5,7 @@ sidebar_label: "AfterAssemblyDataReceivedHandler"
 
 # AfterAssemblyDataReceivedHandler Delegate
 
-**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Adapter` · **Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`
+**NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`<br/>**Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`<br/>**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`
 
 _No description available._
 

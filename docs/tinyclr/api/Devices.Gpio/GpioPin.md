@@ -5,7 +5,7 @@ sidebar_label: "GpioPin"
 
 # GpioPin Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Gpio` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Gpio`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Gpio`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Gpio`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Gpio`
 
 A single GPIO pin opened from a `GpioController`. Configure the direction with `SetDriveMode(GpioPinDriveMode)`, then drive it with `Write(GpioPinValue)` or sample it with `Read`. Subscribe to `ValueChanged` for edge-triggered notifications on inputs.
 

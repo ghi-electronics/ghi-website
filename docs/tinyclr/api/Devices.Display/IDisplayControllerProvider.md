@@ -5,7 +5,7 @@ sidebar_label: "IDisplayControllerProvider"
 
 # IDisplayControllerProvider Interface
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Display.Provider` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Display`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Display`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Display`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Display.Provider`
 
 Provider contract for a display controller.
 

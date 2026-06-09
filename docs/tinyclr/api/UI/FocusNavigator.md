@@ -5,7 +5,7 @@ sidebar_label: "FocusNavigator"
 
 # FocusNavigator Class
 
-**Namespace:** `GHIElectronics.TinyCLR.UI.Input` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Input`
 
 PC-style tab order over the logical tree. Call from hardware mappings (e.g. next/previous) via `InputProvider.RaiseFocusNavigation`.
 

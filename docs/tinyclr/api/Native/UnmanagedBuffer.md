@@ -5,7 +5,7 @@ sidebar_label: "UnmanagedBuffer"
 
 # UnmanagedBuffer Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Native` · **Assembly:** `GHIElectronics.TinyCLR.Native`
+**NuGet:** `GHIElectronics.TinyCLR.Native`<br/>**Assembly:** `GHIElectronics.TinyCLR.Native`<br/>**Namespace:** `GHIElectronics.TinyCLR.Native`
 
 A fixed-address byte buffer suitable for DMA targets and native interop. The `Bytes` property exposes it as a regular byte[]. Dispose to release the underlying memory.
 

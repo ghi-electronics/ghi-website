@@ -5,7 +5,7 @@ sidebar_label: "FtpWebRequest"
 
 # FtpWebRequest Class
 
-**Namespace:** `System.Net` · **Assembly:** `GHIElectronics.TinyCLR.Networking.Ftp`
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Ftp`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Ftp`<br/>**Namespace:** `System.Net`
 
 FtpWebRequest - first implement Active mode
 

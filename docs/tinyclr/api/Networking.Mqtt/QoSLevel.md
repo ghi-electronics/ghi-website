@@ -5,7 +5,7 @@ sidebar_label: "QoSLevel"
 
 # QoSLevel Enum
 
-**Namespace:** `GHIElectronics.TinyCLR.Networking.Mqtt` · **Assembly:** `GHIElectronics.TinyCLR.Networking.Mqtt`
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Mqtt`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Mqtt`<br/>**Namespace:** `GHIElectronics.TinyCLR.Networking.Mqtt`
 
 MQTT Quality-of-Service level.
 

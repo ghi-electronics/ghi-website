@@ -5,7 +5,7 @@ sidebar_label: "PhysicalLink"
 
 # PhysicalLink Struct
 
-**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Scanner.ObjectLibrary` · **Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`
+**NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Scanner.ObjectLibrary`
 
 Page 5.5 Volume 2
 

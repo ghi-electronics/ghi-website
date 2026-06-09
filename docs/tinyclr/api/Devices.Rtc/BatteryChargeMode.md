@@ -5,7 +5,7 @@ sidebar_label: "BatteryChargeMode"
 
 # BatteryChargeMode Enum
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Rtc` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Rtc`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Rtc`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Rtc`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Rtc`
 
 Trickle-charge setting applied to the RTC backup battery.
 

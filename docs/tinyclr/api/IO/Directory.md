@@ -5,7 +5,7 @@ sidebar_label: "Directory"
 
 # Directory Class
 
-**Namespace:** `System.IO` · **Assembly:** `GHIElectronics.TinyCLR.IO`
+**NuGet:** `GHIElectronics.TinyCLR.IO`<br/>**Assembly:** `GHIElectronics.TinyCLR.IO`<br/>**Namespace:** `System.IO`
 
 Static helpers for directory management — create, delete, enumerate, get current directory.
 

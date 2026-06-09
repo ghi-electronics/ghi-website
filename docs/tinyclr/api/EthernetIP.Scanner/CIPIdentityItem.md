@@ -5,7 +5,7 @@ sidebar_label: "CIPIdentityItem"
 
 # CIPIdentityItem Class
 
-**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Scanner` · **Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`
+**NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`
 
 Table 2-4.4 CIP Identity Item
 

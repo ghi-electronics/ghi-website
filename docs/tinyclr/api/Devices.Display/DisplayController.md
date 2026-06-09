@@ -5,7 +5,7 @@ sidebar_label: "DisplayController"
 
 # DisplayController Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Display` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Display`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Display`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Display`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Display`
 
 Represents the framebuffer / panel controller. After supplying timing via `SetConfiguration(DisplayControllerSettings)` and calling `Enable`, push pixels with `DrawBuffer` / `DrawPixel` — or mount the controller into the higher-level drawing/UI stack via `Hdc`.
 

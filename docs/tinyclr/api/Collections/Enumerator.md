@@ -5,7 +5,7 @@ sidebar_label: "Enumerator"
 
 # Enumerator Struct
 
-**Namespace:** `System.Collections.Generic` · **Assembly:** `GHIElectronics.TinyCLR.Collections`
+**NuGet:** `GHIElectronics.TinyCLR.Collections`<br/>**Assembly:** `GHIElectronics.TinyCLR.Collections`<br/>**Namespace:** `System.Collections.Generic`
 
 _No description available._
 

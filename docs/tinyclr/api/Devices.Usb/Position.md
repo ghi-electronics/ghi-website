@@ -5,7 +5,7 @@ sidebar_label: "Position"
 
 # Position Struct
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Usb` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Usb`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Usb`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Usb`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Usb`
 
 Represents the a generic position.
 

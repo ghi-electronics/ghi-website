@@ -5,7 +5,7 @@ sidebar_label: "PulseReadEventHandler"
 
 # PulseReadEventHandler Delegate
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Signals` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Signals`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Signals`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Signals`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Signals`
 
 Handler for `OnReadPulseFinished`.
 

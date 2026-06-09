@@ -5,7 +5,7 @@ sidebar_label: "InputManager"
 
 # InputManager Class
 
-**Namespace:** `GHIElectronics.TinyCLR.UI.Input` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Input`
 
 The InputManager class is responsible for coordinating all of the input system in TinyCore. The input manager exists per Dispatcher
 

@@ -5,7 +5,7 @@ sidebar_label: "RuntimeLoadableProcedures"
 
 # RuntimeLoadableProcedures Class
 
-**Namespace:** `GHIElectronics.TinyCLR.RuntimeLoadableProcedures` · **Assembly:** `GHIElectronics.TinyCLR.RuntimeLoadableProcedures`
+**NuGet:** `GHIElectronics.TinyCLR.RuntimeLoadableProcedures`<br/>**Assembly:** `GHIElectronics.TinyCLR.RuntimeLoadableProcedures`<br/>**Namespace:** `GHIElectronics.TinyCLR.RuntimeLoadableProcedures`
 
 Runtime Loadable Procedures (RLP) — load a compiled ELF blob onto the device at runtime, look up symbols by name, and call native C functions from managed code. Useful for shipping hardware-accelerated routines (DSP, image processing) without rebuilding the firmware.
 

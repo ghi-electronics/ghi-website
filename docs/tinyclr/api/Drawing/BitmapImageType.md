@@ -5,7 +5,7 @@ sidebar_label: "BitmapImageType"
 
 # BitmapImageType Enum
 
-**Namespace:** `System.Drawing` · **Assembly:** `GHIElectronics.TinyCLR.Drawing`
+**NuGet:** `GHIElectronics.TinyCLR.Drawing`<br/>**Assembly:** `GHIElectronics.TinyCLR.Drawing`<br/>**Namespace:** `System.Drawing`
 
 _No description available._
 

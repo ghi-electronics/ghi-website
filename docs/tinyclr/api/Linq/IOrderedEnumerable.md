@@ -5,7 +5,7 @@ sidebar_label: "IOrderedEnumerable<TElement>"
 
 # IOrderedEnumerable&lt;TElement> Interface
 
-**Namespace:** `System.Linq` · **Assembly:** `GHIElectronics.TinyCLR.Linq`
+**NuGet:** `GHIElectronics.TinyCLR.Linq`<br/>**Assembly:** `GHIElectronics.TinyCLR.Linq`<br/>**Namespace:** `System.Linq`
 
 Represents a sorted sequence. Used as the chain link between `OrderBy`/`OrderByDescending` and `ThenBy`/`ThenByDescending`.
 

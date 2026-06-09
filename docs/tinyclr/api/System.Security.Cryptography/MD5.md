@@ -5,7 +5,7 @@ sidebar_label: "MD5"
 
 # MD5 Class
 
-**Namespace:** `System.Security.Cryptography` · **Assembly:** `GHIElectronics.TinyCLR.System.Security.Cryptography`
+**NuGet:** `GHIElectronics.TinyCLR.Cryptography`<br/>**Assembly:** `System.Security.Cryptography`<br/>**Namespace:** `System.Security.Cryptography`
 
 MD5 hash (128-bit). Cryptographically broken; use for checksums, not for security.
 

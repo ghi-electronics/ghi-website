@@ -5,7 +5,7 @@ sidebar_label: "Slider"
 
 # Slider Class
 
-**Namespace:** `GHIElectronics.TinyCLR.UI.Controls` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
 Horizontal or vertical value slider with optional tick marks and snap-to intervals. The knob is rendered with the shared Scale9 Button bitmaps so it picks up the theme's surface styling automatically.
 

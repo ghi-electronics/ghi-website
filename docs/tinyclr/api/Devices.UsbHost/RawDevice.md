@@ -5,7 +5,7 @@ sidebar_label: "RawDevice"
 
 # RawDevice Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbHost` · **Assembly:** `GHIElectronics.TinyCLR.Devices.UsbHost`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.UsbHost`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbHost`
 
 Provides low level access functionalities for the connected USB device. This is useful if there is not already a predefined driver for that device.
 

@@ -5,7 +5,7 @@ sidebar_label: "StopBits"
 
 # StopBits Enum
 
-**Namespace:** `System.IO.Ports` · **Assembly:** `GHIElectronics.TinyCLR.System.IO.Ports`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Uart`<br/>**Assembly:** `System.IO.Ports`<br/>**Namespace:** `System.IO.Ports`
 
 _No description available._
 

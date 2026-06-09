@@ -5,7 +5,7 @@ sidebar_label: "DriveType"
 
 # DriveType Enum
 
-**Namespace:** `System.IO` · **Assembly:** `GHIElectronics.TinyCLR.IO`
+**NuGet:** `GHIElectronics.TinyCLR.IO`<br/>**Assembly:** `GHIElectronics.TinyCLR.IO`<br/>**Namespace:** `System.IO`
 
 Classification of a mounted volume.
 

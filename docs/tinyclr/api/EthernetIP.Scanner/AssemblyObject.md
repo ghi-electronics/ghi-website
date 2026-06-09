@@ -5,7 +5,7 @@ sidebar_label: "AssemblyObject"
 
 # AssemblyObject Class
 
-**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Scanner.ObjectLibrary` · **Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`
+**NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Scanner.ObjectLibrary`
 
 _No description available._
 

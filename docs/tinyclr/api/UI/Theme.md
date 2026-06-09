@@ -5,7 +5,7 @@ sidebar_label: "Theme"
 
 # Theme Class
 
-**Namespace:** `GHIElectronics.TinyCLR.UI` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI`
 
 Central palette for TinyCLR.UI. Brushes are shared instances; change `WindowBackground` etc. then replace the corresponding brush field if you need live updates.
 

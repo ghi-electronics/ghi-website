@@ -5,7 +5,7 @@ sidebar_label: "SpiControllerSoftwareProvider"
 
 # SpiControllerSoftwareProvider Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Spi.Provider` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Spi`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Spi`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Spi`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Spi.Provider`
 
 Software (bit-bang) SPI provider. Useful when no hardware SPI peripheral is available on the desired pins, or to escape pin-mux conflicts. Significantly slower than the native hardware provider.
 

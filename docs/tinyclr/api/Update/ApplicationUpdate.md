@@ -5,7 +5,7 @@ sidebar_label: "ApplicationUpdate"
 
 # ApplicationUpdate Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Update` · **Assembly:** `GHIElectronics.TinyCLR.Update`
+**NuGet:** `GHIElectronics.TinyCLR.Update`<br/>**Assembly:** `GHIElectronics.TinyCLR.Update`<br/>**Namespace:** `GHIElectronics.TinyCLR.Update`
 
 Applies an over-the-air application update from a stream. Verifies the signature against `key`, then flashes and reboots into the new app.
 

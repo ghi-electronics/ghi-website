@@ -5,7 +5,7 @@ sidebar_label: "BufferDrawTargetRgb444"
 
 # BufferDrawTargetRgb444 Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Drawing` · **Assembly:** `GHIElectronics.TinyCLR.Drawing`
+**NuGet:** `GHIElectronics.TinyCLR.Drawing`<br/>**Assembly:** `GHIElectronics.TinyCLR.Drawing`<br/>**Namespace:** `GHIElectronics.TinyCLR.Drawing`
 
 _No description available._
 

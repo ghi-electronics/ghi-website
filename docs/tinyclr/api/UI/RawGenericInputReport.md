@@ -5,7 +5,7 @@ sidebar_label: "RawGenericInputReport"
 
 # RawGenericInputReport Class
 
-**Namespace:** `GHIElectronics.TinyCLR.UI.Input` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Input`
 
 The RawGenericInputReport class encapsulates the raw input provided from a keyboard.
 

@@ -5,7 +5,7 @@ sidebar_label: "IGpioControllerProvider"
 
 # IGpioControllerProvider Interface
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Gpio.Provider` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Gpio`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Gpio`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Gpio`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Gpio.Provider`
 
 Provider contract for a GPIO controller. Most users call `GpioController` / `GpioPin` directly; implement this interface only when supplying a custom or virtual controller.
 

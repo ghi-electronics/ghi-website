@@ -5,7 +5,7 @@ sidebar_label: "ISpiControllerProvider"
 
 # ISpiControllerProvider Interface
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Spi.Provider` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Spi`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Spi`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Spi`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Spi.Provider`
 
 Provider contract for an SPI controller.
 

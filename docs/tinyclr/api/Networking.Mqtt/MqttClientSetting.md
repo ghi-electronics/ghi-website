@@ -5,7 +5,7 @@ sidebar_label: "MqttClientSetting"
 
 # MqttClientSetting Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Networking.Mqtt` · **Assembly:** `GHIElectronics.TinyCLR.Networking.Mqtt`
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Mqtt`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Mqtt`<br/>**Namespace:** `GHIElectronics.TinyCLR.Networking.Mqtt`
 
 Transport-level MQTT settings — broker host/port, TLS, certificates.
 

@@ -578,7 +578,8 @@ function renderType(t) {
   L.push('');
   L.push(`# ${prose(t.name)} ${cap(t.kind)}`);
   L.push('');
-  L.push(`**Namespace:** \`${t.ns}\`${t.assembly ? ` · **Assembly:** \`${t.assembly}\`` : ''}`);
+  const _meta = packageMeta(t.assembly);
+  L.push([`**NuGet:** \`${_meta.nuget}\``, `**Assembly:** \`${_meta.assembly}\``, `**Namespace:** \`${t.ns}\``].join('<br/>'));
   L.push('');
   L.push(t.doc && t.doc.summary ? prose(t.doc.summary) : NODESC);
   L.push('');
@@ -702,6 +703,18 @@ for (const [parent, shim, api] of SHIM_PAIRS) {
     ':::info\n' +
     `The standard, .NET-compatible \`${api}\` API for TinyCLR. It ships inside the **[${parent}](../${shortName(parent)}/index.md)** NuGet — there is no separate package to install.\n` +
     ':::';
+}
+
+// shim package folder -> the parent NuGet it ships inside.
+const SHIM_PARENT = { 'GHIElectronics.TinyCLR.System.Security.Cryptography': 'GHIElectronics.TinyCLR.Cryptography' };
+for (const [parent, shim] of SHIM_PAIRS) SHIM_PARENT[shim] = parent;
+
+// For a package folder: the NuGet you install, and the real assembly (DLL) name. For the
+// 6 compat shims these differ (NuGet = parent, assembly = the System.* DLL); for everything
+// else they're the same full id.
+function packageMeta(folder) {
+  const parent = SHIM_PARENT[folder];
+  return { nuget: parent || folder, assembly: parent ? shortName(folder) : folder };
 }
 
 function renderAssemblyIndex(assembly, types, fileOf) {
@@ -830,6 +843,8 @@ function renderPinsBoardPage(board, allTypes) {
     .sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true })); // Controller2 before Controller12
   const L = ['---', `title: ${yaml(board.name)}`, 'hide_title: true', `sidebar_label: ${yaml(board.name)}`, '---', '',
     `<h1 className="api-package-heading">${board.name}</h1>`, ''];
+  const _meta = packageMeta(board.assembly);
+  L.push([`**NuGet:** \`${_meta.nuget}\``, `**Assembly:** \`${_meta.assembly}\``, `**Namespace:** \`${board.ns}\``].join('<br/>'), '');
   if (board.doc && board.doc.summary) L.push(proseCell(board.doc.summary), '');
   const prefix = board.name + '.';
   const walk = (type) => {

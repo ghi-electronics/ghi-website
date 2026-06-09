@@ -5,7 +5,7 @@ sidebar_label: "RandomNumberGenerator"
 
 # RandomNumberGenerator Class
 
-**Namespace:** `System.Security.Cryptography` · **Assembly:** `GHIElectronics.TinyCLR.System.Security.Cryptography`
+**NuGet:** `GHIElectronics.TinyCLR.Cryptography`<br/>**Assembly:** `System.Security.Cryptography`<br/>**Namespace:** `System.Security.Cryptography`
 
 Cryptographically secure RNG. Create via `Create()`; do not seed manually.
 

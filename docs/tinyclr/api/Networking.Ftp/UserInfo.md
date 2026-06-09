@@ -5,7 +5,7 @@ sidebar_label: "UserInfo"
 
 # UserInfo Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Networking.Ftp` · **Assembly:** `GHIElectronics.TinyCLR.Networking.Ftp`
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Ftp`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Ftp`<br/>**Namespace:** `GHIElectronics.TinyCLR.Networking.Ftp`
 
 User information containing username and password
 

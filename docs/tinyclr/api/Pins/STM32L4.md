@@ -6,6 +6,8 @@ sidebar_label: "STM32L4"
 
 <h1 className="api-package-heading">STM32L4</h1>
 
+**NuGet:** `GHIElectronics.TinyCLR.Pins`<br/>**Assembly:** `GHIElectronics.TinyCLR.Pins`<br/>**Namespace:** `GHIElectronics.TinyCLR.Pins`
+
 Board definition for the STM32L4.
 
 ## Adc

@@ -5,7 +5,7 @@ sidebar_label: "GpioPinEdge"
 
 # GpioPinEdge Enum
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Gpio` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Gpio`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Gpio`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Gpio`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Gpio`
 
 Which edges trigger the `GpioPin.ValueChanged` event. The flags can be combined to fire on both edges.
 

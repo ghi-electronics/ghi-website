@@ -5,7 +5,7 @@ sidebar_label: "ClearToSendChangedEventArgs"
 
 # ClearToSendChangedEventArgs Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Uart` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Uart`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Uart`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Uart`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Uart`
 
 Arguments for `UartController.ClearToSendChanged`.
 

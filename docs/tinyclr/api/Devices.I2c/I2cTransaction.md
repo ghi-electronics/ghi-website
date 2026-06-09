@@ -5,7 +5,7 @@ sidebar_label: "I2cTransaction"
 
 # I2cTransaction Enum
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.I2c` · **Assembly:** `GHIElectronics.TinyCLR.Devices.I2c`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.I2c`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.I2c`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.I2c`
 
 Master-initiated transaction kind observed by a slave.
 

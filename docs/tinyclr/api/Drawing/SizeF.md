@@ -5,7 +5,7 @@ sidebar_label: "SizeF"
 
 # SizeF Struct
 
-**Namespace:** `System.Drawing` · **Assembly:** `GHIElectronics.TinyCLR.Drawing`
+**NuGet:** `GHIElectronics.TinyCLR.Drawing`<br/>**Assembly:** `GHIElectronics.TinyCLR.Drawing`<br/>**Namespace:** `System.Drawing`
 
 A floating-point width × height size.
 

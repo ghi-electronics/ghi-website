@@ -5,7 +5,7 @@ sidebar_label: "NetworkInterfaceConfiguration"
 
 # NetworkInterfaceConfiguration Struct
 
-**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Scanner.ObjectLibrary` · **Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`
+**NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Scanner.ObjectLibrary`
 
 Chapter 5-3.2.2.5 Volume 2
 

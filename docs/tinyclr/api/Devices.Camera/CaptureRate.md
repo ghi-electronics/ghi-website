@@ -5,7 +5,7 @@ sidebar_label: "CaptureRate"
 
 # CaptureRate Enum
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Camera` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Camera`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Camera`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Camera`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Camera`
 
 Frame-dropping policy for the capture engine.
 

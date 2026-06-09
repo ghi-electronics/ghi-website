@@ -5,7 +5,7 @@ sidebar_label: "ErrorReceivedEventHandler"
 
 # ErrorReceivedEventHandler Delegate
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.I2c` · **Assembly:** `GHIElectronics.TinyCLR.Devices.I2c`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.I2c`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.I2c`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.I2c`
 
 Handler signature for `I2cDevice.ErrorReceived`.
 

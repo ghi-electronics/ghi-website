@@ -5,7 +5,7 @@ sidebar_label: "DescriptorType"
 
 # DescriptorType Enum
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbHost.Descriptors` · **Assembly:** `GHIElectronics.TinyCLR.Devices.UsbHost`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.UsbHost`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbHost.Descriptors`
 
 The possible types of descriptors.
 

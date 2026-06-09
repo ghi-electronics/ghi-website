@@ -5,7 +5,7 @@ sidebar_label: "PresentationSource"
 
 # PresentationSource Class
 
-**Namespace:** `GHIElectronics.TinyCLR.UI` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI`
 
 Presentation source is our connection to the rest of the managed system.
 

@@ -5,7 +5,7 @@ sidebar_label: "RSAEncryptionPaddingMode"
 
 # RSAEncryptionPaddingMode Enum
 
-**Namespace:** `System.Security.Cryptography` · **Assembly:** `GHIElectronics.TinyCLR.System.Security.Cryptography`
+**NuGet:** `GHIElectronics.TinyCLR.Cryptography`<br/>**Assembly:** `System.Security.Cryptography`<br/>**Namespace:** `System.Security.Cryptography`
 
 Padding scheme applied to RSA-encrypted blocks.
 

@@ -5,7 +5,7 @@ sidebar_label: "PropertyChangedEventArgs"
 
 # PropertyChangedEventArgs Class
 
-**Namespace:** `GHIElectronics.TinyCLR.UI` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI`
 
 Provides data for the various property changed events.
 

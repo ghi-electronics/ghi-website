@@ -5,7 +5,7 @@ sidebar_label: "RtcDateTime"
 
 # RtcDateTime Struct
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Rtc` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Rtc`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Rtc`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Rtc`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Rtc`
 
 RTC-native calendar time representation. Mirrors the underlying hardware registers — most app code should round-trip through `ToDateTime` / `FromDateTime(DateTime)` rather than touching fields directly.
 

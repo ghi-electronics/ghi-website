@@ -5,7 +5,7 @@ sidebar_label: "UriKind"
 
 # UriKind Enum
 
-**Namespace:** `System` · **Assembly:** `GHIElectronics.TinyCLR.Networking.Http`
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Namespace:** `System`
 
 Defines the kinds of `System.Uri`s for the `System.Uri.IsWellFormedUriString` method and several `System.Uri` methods.
 

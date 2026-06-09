@@ -5,7 +5,7 @@ sidebar_label: "AdcChannelMode"
 
 # AdcChannelMode Enum
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Adc` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Adc`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Adc`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Adc`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Adc`
 
 How an ADC channel sees its input.
 

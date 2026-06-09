@@ -5,7 +5,7 @@ sidebar_label: "X509Certificate"
 
 # X509Certificate Class
 
-**Namespace:** `System.Security.Cryptography.X509Certificates` · **Assembly:** `GHIElectronics.TinyCLR.Networking`
+**NuGet:** `GHIElectronics.TinyCLR.Networking`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking`<br/>**Namespace:** `System.Security.Cryptography.X509Certificates`
 
 _No description available._
 

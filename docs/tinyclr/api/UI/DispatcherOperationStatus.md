@@ -5,7 +5,7 @@ sidebar_label: "DispatcherOperationStatus"
 
 # DispatcherOperationStatus Enum
 
-**Namespace:** `GHIElectronics.TinyCLR.UI.Threading` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Threading`
 
 An enumeration describing the status of a DispatcherOperation.
 

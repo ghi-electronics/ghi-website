@@ -5,7 +5,7 @@ sidebar_label: "CanControllerApiWrapper"
 
 # CanControllerApiWrapper Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Can.Provider` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Can`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Can`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Can`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Can.Provider`
 
 Concrete `ICanControllerProvider` backed by the native TinyCLR CAN HAL.
 

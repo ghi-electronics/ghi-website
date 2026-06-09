@@ -5,7 +5,7 @@ sidebar_label: "WebExceptionStatus"
 
 # WebExceptionStatus Enum
 
-**Namespace:** `System.Net` · **Assembly:** `GHIElectronics.TinyCLR.Networking.Http`
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Namespace:** `System.Net`
 
 Defines status codes for the `System.Net.WebException` class.
 

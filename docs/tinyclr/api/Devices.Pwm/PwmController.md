@@ -5,7 +5,7 @@ sidebar_label: "PwmController"
 
 # PwmController Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Pwm` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Pwm`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Pwm`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Pwm`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Pwm`
 
 Represents a PWM peripheral. Set the frequency via `SetDesiredFrequency(double)`, open one or more channels with `OpenChannel(int)`, then drive each channel's duty cycle.
 

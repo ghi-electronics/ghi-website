@@ -5,7 +5,7 @@ sidebar_label: "InFieldUpdate"
 
 # InFieldUpdate Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Update` · **Assembly:** `GHIElectronics.TinyCLR.Update`
+**NuGet:** `GHIElectronics.TinyCLR.Update`<br/>**Assembly:** `GHIElectronics.TinyCLR.Update`<br/>**Namespace:** `GHIElectronics.TinyCLR.Update`
 
 In-Field Update — feed firmware and/or application bytes in chunks, verify the signatures, then flash and reboot. Supports caching the chunks in RAM (faster) or to an external `StorageController` (handles images larger than free RAM).
 

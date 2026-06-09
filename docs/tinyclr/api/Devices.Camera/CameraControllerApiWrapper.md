@@ -5,7 +5,7 @@ sidebar_label: "CameraControllerApiWrapper"
 
 # CameraControllerApiWrapper Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Camera.Provider` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Camera`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Camera`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Camera`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Camera.Provider`
 
 Concrete `ICameraControllerProvider` backed by the native TinyCLR camera HAL.
 

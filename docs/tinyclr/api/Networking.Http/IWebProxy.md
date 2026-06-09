@@ -5,7 +5,7 @@ sidebar_label: "IWebProxy"
 
 # IWebProxy Interface
 
-**Namespace:** `System.Net` · **Assembly:** `GHIElectronics.TinyCLR.Networking.Http`
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Namespace:** `System.Net`
 
 Provides the base interface for implementing proxy access for the `System.Net.WebRequest` class.
 

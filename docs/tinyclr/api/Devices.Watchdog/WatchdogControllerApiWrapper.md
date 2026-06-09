@@ -5,7 +5,7 @@ sidebar_label: "WatchdogControllerApiWrapper"
 
 # WatchdogControllerApiWrapper Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Watchdog.Provider` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Watchdog`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Watchdog`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Watchdog`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Watchdog.Provider`
 
 Concrete `IWatchdogControllerProvider` backed by the native TinyCLR HAL.
 

@@ -5,7 +5,7 @@ sidebar_label: "HashSet<T>"
 
 # HashSet&lt;T> Class
 
-**Namespace:** `System.Collections.Generic` · **Assembly:** `GHIElectronics.TinyCLR.Collections`
+**NuGet:** `GHIElectronics.TinyCLR.Collections`<br/>**Assembly:** `GHIElectronics.TinyCLR.Collections`<br/>**Namespace:** `System.Collections.Generic`
 
 Hash-table-based generic set. Mirrors the .NET BCL surface for the subset we ship. Same chained-collision layout and prime-table sizing as `Dictionary{TKey, TValue}`; the entry holds the element directly instead of a key/value pair. null IS a valid element when T is a reference type — the comparer (`EqualityComparer{T}.Default`) treats null consistently (GetHashCode(null) = 0, Equals(null, null) = true).
 

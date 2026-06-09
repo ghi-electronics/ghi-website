@@ -5,7 +5,7 @@ sidebar_label: "WebResponse"
 
 # WebResponse Class
 
-**Namespace:** `System.Net` · **Assembly:** `GHIElectronics.TinyCLR.Networking.Http`
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Namespace:** `System.Net`
 
 Provides a response from a Uniform Resource Identifier (URI). This is an abstract class.
 

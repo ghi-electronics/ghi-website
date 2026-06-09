@@ -5,7 +5,7 @@ sidebar_label: "DataFlow"
 
 # DataFlow Enum
 
-**Namespace:** `System.Device.Spi` · **Assembly:** `GHIElectronics.TinyCLR.System.Device.Spi`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Spi`<br/>**Assembly:** `System.Device.Spi`<br/>**Namespace:** `System.Device.Spi`
 
 Bit ordering within an SPI frame.
 

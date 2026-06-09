@@ -5,7 +5,7 @@ sidebar_label: "SecureStorage"
 
 # SecureStorage Enum
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.SecureStorage` · **Assembly:** `GHIElectronics.TinyCLR.Devices.SecureStorage`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.SecureStorage`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.SecureStorage`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.SecureStorage`
 
 Selects which on-chip non-volatile region the controller targets.
 

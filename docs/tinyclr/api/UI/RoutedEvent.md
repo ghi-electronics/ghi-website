@@ -5,7 +5,7 @@ sidebar_label: "RoutedEvent"
 
 # RoutedEvent Class
 
-**Namespace:** `GHIElectronics.TinyCLR.UI` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI`
 
 RoutedEvent is a unique identifier for any registered RoutedEvent
 

@@ -5,7 +5,7 @@ sidebar_label: "RoutedEventHandler"
 
 # RoutedEventHandler Delegate
 
-**Namespace:** `GHIElectronics.TinyCLR.UI` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI`
 
 RoutedEventHandler Definition
 

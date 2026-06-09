@@ -5,7 +5,7 @@ sidebar_label: "DispatcherOperation"
 
 # DispatcherOperation Class
 
-**Namespace:** `GHIElectronics.TinyCLR.UI.Threading` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Threading`
 
 DispatcherOperation represents a delegate that has been posted to the Dispatcher queue.
 

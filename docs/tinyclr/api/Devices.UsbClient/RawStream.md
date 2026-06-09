@@ -5,7 +5,7 @@ sidebar_label: "RawStream"
 
 # RawStream Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbClient` · **Assembly:** `GHIElectronics.TinyCLR.Devices.UsbClient`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbClient`
 
 USB stream for reading and writing data through two endpoints.
 

@@ -5,7 +5,7 @@ sidebar_label: "SystemTime"
 
 # SystemTime Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Native` · **Assembly:** `GHIElectronics.TinyCLR.Native`
+**NuGet:** `GHIElectronics.TinyCLR.Native`<br/>**Assembly:** `GHIElectronics.TinyCLR.Native`<br/>**Namespace:** `GHIElectronics.TinyCLR.Native`
 
 Reads and writes the system wall clock (separate from the `GHIElectronics.TinyCLR.Devices.Rtc.RtcController` chip register). Time zone is carried as a minutes-from-UTC offset.
 

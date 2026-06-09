@@ -5,7 +5,7 @@ sidebar_label: "StagingAreaInputItem"
 
 # StagingAreaInputItem Class
 
-**Namespace:** `GHIElectronics.TinyCLR.UI.Input` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Input`
 
 This class encapsulates an input event while it is being processed by the input manager.
 

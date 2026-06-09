@@ -5,7 +5,7 @@ sidebar_label: "PwmPulsePolarity"
 
 # PwmPulsePolarity Enum
 
-**Namespace:** `System.Device.Pwm` · **Assembly:** `GHIElectronics.TinyCLR.System.Device.Pwm`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Pwm`<br/>**Assembly:** `System.Device.Pwm`<br/>**Namespace:** `System.Device.Pwm`
 
 _No description available._
 

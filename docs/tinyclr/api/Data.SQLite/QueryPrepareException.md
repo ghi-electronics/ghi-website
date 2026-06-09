@@ -5,7 +5,7 @@ sidebar_label: "QueryPrepareException"
 
 # QueryPrepareException Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Data.SQLite` · **Assembly:** `GHIElectronics.TinyCLR.Data.SQLite`
+**NuGet:** `GHIElectronics.TinyCLR.Data.SQLite`<br/>**Assembly:** `GHIElectronics.TinyCLR.Data.SQLite`<br/>**Namespace:** `GHIElectronics.TinyCLR.Data.SQLite`
 
 Thrown when SQLite cannot prepare (compile) a query.
 

@@ -5,7 +5,7 @@ sidebar_label: "SpiMode"
 
 # SpiMode Enum
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Spi` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Spi`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Spi`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Spi`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Spi`
 
 Standard SPI modes — combinations of clock polarity (CPOL) and clock phase (CPHA). Mode 0 (CPOL=0, CPHA=0) is the most common.
 

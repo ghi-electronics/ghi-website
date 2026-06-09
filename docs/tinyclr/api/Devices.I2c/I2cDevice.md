@@ -5,7 +5,7 @@ sidebar_label: "I2cDevice"
 
 # I2cDevice Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.I2c` · **Assembly:** `GHIElectronics.TinyCLR.Devices.I2c`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.I2c`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.I2c`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.I2c`
 
 Represents a single slave on the I²C bus. Master-mode devices use the blocking `Read(byte[])` / `Write(byte[])` / `WriteRead(byte[],byte[])` family; slave-mode devices additionally expose `FrameReceived` and `ErrorReceived` events.
 

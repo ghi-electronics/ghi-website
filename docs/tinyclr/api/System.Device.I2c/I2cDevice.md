@@ -5,7 +5,7 @@ sidebar_label: "I2cDevice"
 
 # I2cDevice Class
 
-**Namespace:** `System.Device.I2c` · **Assembly:** `GHIElectronics.TinyCLR.System.Device.I2c`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.I2c`<br/>**Assembly:** `System.Device.I2c`<br/>**Namespace:** `System.Device.I2c`
 
 .NET-style I²C device. Standard surface (`Read` / `Write` / `WriteRead`); internally TinyCLR routes calls through `GHIElectronics.TinyCLR.Devices.I2c.I2cController`.
 

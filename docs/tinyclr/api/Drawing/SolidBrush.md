@@ -5,7 +5,7 @@ sidebar_label: "SolidBrush"
 
 # SolidBrush Class
 
-**Namespace:** `System.Drawing` · **Assembly:** `GHIElectronics.TinyCLR.Drawing`
+**NuGet:** `GHIElectronics.TinyCLR.Drawing`<br/>**Assembly:** `GHIElectronics.TinyCLR.Drawing`<br/>**Namespace:** `System.Drawing`
 
 A brush that fills with a single solid `Color`.
 

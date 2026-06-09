@@ -5,7 +5,7 @@ sidebar_label: "HttpVersion"
 
 # HttpVersion Class
 
-**Namespace:** `System.Net` · **Assembly:** `GHIElectronics.TinyCLR.Networking.Http`
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Namespace:** `System.Net`
 
 Defines the HTTP version numbers that are supported by the `System.Net.HttpWebRequest` and `System.Net.HttpWebResponse` classes.
 

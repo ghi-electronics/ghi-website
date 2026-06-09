@@ -5,7 +5,7 @@ sidebar_label: "SQLiteDatabase"
 
 # SQLiteDatabase Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Data.SQLite` · **Assembly:** `GHIElectronics.TinyCLR.Data.SQLite`
+**NuGet:** `GHIElectronics.TinyCLR.Data.SQLite`<br/>**Assembly:** `GHIElectronics.TinyCLR.Data.SQLite`<br/>**Namespace:** `GHIElectronics.TinyCLR.Data.SQLite`
 
 SQLite database handle. Open an in-memory database with the parameterless constructor or a file-backed database via the path constructor. Use `ExecuteNonQuery` for inserts/updates and `ExecuteQuery` for SELECTs that return a `ResultSet`.
 

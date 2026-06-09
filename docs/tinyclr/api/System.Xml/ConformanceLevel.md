@@ -5,7 +5,7 @@ sidebar_label: "ConformanceLevel"
 
 # ConformanceLevel Enum
 
-**Namespace:** `System.Xml` · **Assembly:** `GHIElectronics.TinyCLR.System.Xml`
+**NuGet:** `GHIElectronics.TinyCLR.System.Xml`<br/>**Assembly:** `GHIElectronics.TinyCLR.System.Xml`<br/>**Namespace:** `System.Xml`
 
 XML conformance level (auto-detect, fragment, or full document).
 

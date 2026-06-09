@@ -5,7 +5,7 @@ sidebar_label: "StorageDescriptor"
 
 # StorageDescriptor Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Storage` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Storage`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Storage`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Storage`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Storage`
 
 Describes a storage medium's geometry and capabilities.
 

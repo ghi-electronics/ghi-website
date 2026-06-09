@@ -5,7 +5,7 @@ sidebar_label: "RSAParameters"
 
 # RSAParameters Struct
 
-**Namespace:** `System.Security.Cryptography` · **Assembly:** `GHIElectronics.TinyCLR.System.Security.Cryptography`
+**NuGet:** `GHIElectronics.TinyCLR.Cryptography`<br/>**Assembly:** `System.Security.Cryptography`<br/>**Namespace:** `System.Security.Cryptography`
 
 RSA key parameters (modulus, exponent, and optional private components) matching the .NET Framework struct.
 

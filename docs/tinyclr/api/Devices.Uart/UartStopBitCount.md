@@ -5,7 +5,7 @@ sidebar_label: "UartStopBitCount"
 
 # UartStopBitCount Enum
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Uart` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Uart`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Uart`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Uart`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Uart`
 
 Number of stop bits per frame.
 

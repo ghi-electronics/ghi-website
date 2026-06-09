@@ -5,7 +5,7 @@ sidebar_label: "DataGridItemComparer"
 
 # DataGridItemComparer Class
 
-**Namespace:** `GHIElectronics.TinyCLR.UI.Controls` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
 The DataGridItemComparer class allows comparison between DataGridItems.
 

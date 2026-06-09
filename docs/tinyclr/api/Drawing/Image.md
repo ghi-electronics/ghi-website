@@ -5,7 +5,7 @@ sidebar_label: "Image"
 
 # Image Class
 
-**Namespace:** `System.Drawing` · **Assembly:** `GHIElectronics.TinyCLR.Drawing`
+**NuGet:** `GHIElectronics.TinyCLR.Drawing`<br/>**Assembly:** `GHIElectronics.TinyCLR.Drawing`<br/>**Namespace:** `System.Drawing`
 
 Abstract base for raster images. Concrete subclass: `Bitmap`.
 

@@ -5,7 +5,7 @@ sidebar_label: "IUsbHostControllerProvider"
 
 # IUsbHostControllerProvider Interface
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbHost.Provider` · **Assembly:** `GHIElectronics.TinyCLR.Devices.UsbHost`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.UsbHost`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbHost.Provider`
 
 _No description available._
 

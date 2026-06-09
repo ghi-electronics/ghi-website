@@ -5,7 +5,7 @@ sidebar_label: "FtpDefaultListener"
 
 # FtpDefaultListener Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Networking.Ftp` · **Assembly:** `GHIElectronics.TinyCLR.Networking.Ftp`
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Ftp`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Ftp`<br/>**Namespace:** `GHIElectronics.TinyCLR.Networking.Ftp`
 
 _No description available._
 

@@ -5,7 +5,7 @@ sidebar_label: "WatchdogController"
 
 # WatchdogController Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Watchdog` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Watchdog`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Watchdog`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Watchdog`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Watchdog`
 
 Independent watchdog timer. `Enable(uint)` with a timeout and call `Reset` periodically — if the timer ever expires without being reset, the chip reboots. Useful as a failsafe against firmware lockups.
 

@@ -5,7 +5,7 @@ sidebar_label: "NotifyInputEventArgs"
 
 # NotifyInputEventArgs Class
 
-**Namespace:** `GHIElectronics.TinyCLR.UI.Input` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Input`
 
 Provides information about an input event being processed by the input manager.
 

@@ -5,7 +5,7 @@ sidebar_label: "KeyState"
 
 # KeyState Enum
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Usb` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Usb`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Usb`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Usb`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Usb`
 
 The possible key states.
 

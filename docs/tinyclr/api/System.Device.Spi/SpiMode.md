@@ -5,7 +5,7 @@ sidebar_label: "SpiMode"
 
 # SpiMode Enum
 
-**Namespace:** `System.Device.Spi` · **Assembly:** `GHIElectronics.TinyCLR.System.Device.Spi`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Spi`<br/>**Assembly:** `System.Device.Spi`<br/>**Namespace:** `System.Device.Spi`
 
 Standard SPI mode — combinations of clock polarity and phase.
 

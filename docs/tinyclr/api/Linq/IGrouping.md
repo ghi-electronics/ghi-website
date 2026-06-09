@@ -5,7 +5,7 @@ sidebar_label: "IGrouping<TKey, TElement>"
 
 # IGrouping&lt;TKey, TElement> Interface
 
-**Namespace:** `System.Linq` · **Assembly:** `GHIElectronics.TinyCLR.Linq`
+**NuGet:** `GHIElectronics.TinyCLR.Linq`<br/>**Assembly:** `GHIElectronics.TinyCLR.Linq`<br/>**Namespace:** `System.Linq`
 
 Represents a collection of objects that have a common key. Returned by `GroupBy`.
 

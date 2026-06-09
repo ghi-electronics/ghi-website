@@ -5,7 +5,7 @@ sidebar_label: "UsbClientControllerApiWrapper"
 
 # UsbClientControllerApiWrapper Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbClient.Provider` · **Assembly:** `GHIElectronics.TinyCLR.Devices.UsbClient`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbClient.Provider`
 
 _No description available._
 

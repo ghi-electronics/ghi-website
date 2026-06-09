@@ -5,7 +5,7 @@ sidebar_label: "Brush"
 
 # Brush Class
 
-**Namespace:** `System.Drawing` · **Assembly:** `GHIElectronics.TinyCLR.Drawing`
+**NuGet:** `GHIElectronics.TinyCLR.Drawing`<br/>**Assembly:** `GHIElectronics.TinyCLR.Drawing`<br/>**Namespace:** `System.Drawing`
 
 Abstract base for objects that fill graphics shapes (rectangles, ellipses, paths).
 

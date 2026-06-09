@@ -5,7 +5,7 @@ sidebar_label: "I2cConnectionSettings"
 
 # I2cConnectionSettings Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.I2c` · **Assembly:** `GHIElectronics.TinyCLR.Devices.I2c`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.I2c`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.I2c`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.I2c`
 
 Per-device I²C connection settings: address, bus speed, and master/slave role.
 

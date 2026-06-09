@@ -5,7 +5,7 @@ sidebar_label: "SpiNetworkCommunicationInterfaceSettings"
 
 # SpiNetworkCommunicationInterfaceSettings Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Network` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Network`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Network`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Network`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Network`
 
 Settings for an external SPI-attached network controller (chip select, reset, interrupt pins, SPI mode).
 

@@ -5,7 +5,7 @@ sidebar_label: "Chart"
 
 # Chart Class
 
-**Namespace:** `GHIElectronics.TinyCLR.UI.Controls` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
 Simple line / bar chart. The rendered surface is cached and only rebuilt when `Refresh` is called or the control's render size changes — so calling Invalidate on the parent each frame does not redo the chart math.
 

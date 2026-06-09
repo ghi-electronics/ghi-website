@@ -5,7 +5,7 @@ sidebar_label: "UnmanagedBufferLocation"
 
 # UnmanagedBufferLocation Enum
 
-**Namespace:** `GHIElectronics.TinyCLR.Native` · **Assembly:** `GHIElectronics.TinyCLR.Native`
+**NuGet:** `GHIElectronics.TinyCLR.Native`<br/>**Assembly:** `GHIElectronics.TinyCLR.Native`<br/>**Namespace:** `GHIElectronics.TinyCLR.Native`
 
 Which heap an `UnmanagedBuffer` draws from.
 

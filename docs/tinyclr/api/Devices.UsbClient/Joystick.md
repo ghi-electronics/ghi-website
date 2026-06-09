@@ -5,7 +5,7 @@ sidebar_label: "Joystick"
 
 # Joystick Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbClient` · **Assembly:** `GHIElectronics.TinyCLR.Devices.UsbClient`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbClient`
 
 This device emulates a joystick. You can set the x, y, and z axis values, the z axis rotation, the state of 32 buttons, and 8 hat swtich directions.
 

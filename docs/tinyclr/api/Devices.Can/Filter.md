@@ -5,7 +5,7 @@ sidebar_label: "Filter"
 
 # Filter Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Can` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Can`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Can`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Can`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Can`
 
 Acceptance-filter configuration for a CAN controller.
 

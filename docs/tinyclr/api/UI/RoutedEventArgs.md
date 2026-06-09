@@ -5,7 +5,7 @@ sidebar_label: "RoutedEventArgs"
 
 # RoutedEventArgs Class
 
-**Namespace:** `GHIElectronics.TinyCLR.UI` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI`
 
 The container for all state associated with a RoutedEvent
 

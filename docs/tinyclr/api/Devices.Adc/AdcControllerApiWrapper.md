@@ -5,7 +5,7 @@ sidebar_label: "AdcControllerApiWrapper"
 
 # AdcControllerApiWrapper Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Adc.Provider` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Adc`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Adc`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Adc`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Adc.Provider`
 
 Concrete `IAdcControllerProvider` backed by the native TinyCLR ADC HAL. Constructed internally by `AdcController`; you don't normally need to use this type directly.
 

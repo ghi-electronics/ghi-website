@@ -5,7 +5,7 @@ sidebar_label: "PinNumberingScheme"
 
 # PinNumberingScheme Enum
 
-**Namespace:** `System.Device.Gpio` · **Assembly:** `GHIElectronics.TinyCLR.System.Device.Gpio`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Gpio`<br/>**Assembly:** `System.Device.Gpio`<br/>**Namespace:** `System.Device.Gpio`
 
 How `GpioController` interprets pin numbers — TinyCLR uses `Logical`.
 

@@ -5,7 +5,7 @@ sidebar_label: "IPwmControllerProvider"
 
 # IPwmControllerProvider Interface
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Pwm.Provider` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Pwm`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Pwm`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Pwm`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Pwm.Provider`
 
 Provider contract for a PWM controller. Most users call `PwmController` / `PwmChannel` directly; implement this interface only when supplying a custom or virtual PWM.
 

@@ -5,7 +5,7 @@ sidebar_label: "CIPCommonServices"
 
 # CIPCommonServices Enum
 
-**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Scanner` · **Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`
+**NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`
 
 Table A-3.1 Volume 1 Chapter A-3
 

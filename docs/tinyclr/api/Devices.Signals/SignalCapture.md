@@ -5,7 +5,7 @@ sidebar_label: "SignalCapture"
 
 # SignalCapture Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Signals` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Signals`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Signals`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Signals`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Signals`
 
 Samples a digital input and records the durations between successive edges — the inverse of `SignalGenerator`. Useful for capturing IR-remote codes, decoding bit-banged protocols, or measuring pulse widths.
 

@@ -5,7 +5,7 @@ sidebar_label: "NetworkInterfaceSettings"
 
 # NetworkInterfaceSettings Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Network` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Network`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Network`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Network`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Network`
 
 Common interface settings — IP/DHCP/DNS/MAC. Subclass per transport for additional fields.
 

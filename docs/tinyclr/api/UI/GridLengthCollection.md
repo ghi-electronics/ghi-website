@@ -5,7 +5,7 @@ sidebar_label: "GridLengthCollection"
 
 # GridLengthCollection Class
 
-**Namespace:** `GHIElectronics.TinyCLR.UI.Controls` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
 Notifying GridLength collection. Every mutation invalidates the owning Grid's measure pass so layout stays in sync without callers having to remember to call InvalidateMeasure() manually.
 

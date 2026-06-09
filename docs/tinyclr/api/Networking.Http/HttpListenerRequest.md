@@ -5,7 +5,7 @@ sidebar_label: "HttpListenerRequest"
 
 # HttpListenerRequest Class
 
-**Namespace:** `System.Net` · **Assembly:** `GHIElectronics.TinyCLR.Networking.Http`
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Namespace:** `System.Net`
 
 Describes an incoming HTTP request to an `System.Net.HttpListener` object.
 

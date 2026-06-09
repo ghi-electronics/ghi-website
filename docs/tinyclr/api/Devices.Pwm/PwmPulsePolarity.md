@@ -5,7 +5,7 @@ sidebar_label: "PwmPulsePolarity"
 
 # PwmPulsePolarity Enum
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Pwm` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Pwm`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Pwm`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Pwm`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Pwm`
 
 Defines which level represents the "active" portion of the PWM pulse.
 

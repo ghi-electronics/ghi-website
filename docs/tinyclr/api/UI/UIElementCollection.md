@@ -5,7 +5,7 @@ sidebar_label: "UIElementCollection"
 
 # UIElementCollection Class
 
-**Namespace:** `GHIElectronics.TinyCLR.UI` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI`
 
 A UIElementCollection is a ordered collection of UIElements.
 

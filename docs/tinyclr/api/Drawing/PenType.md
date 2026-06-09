@@ -5,7 +5,7 @@ sidebar_label: "PenType"
 
 # PenType Enum
 
-**Namespace:** `System.Drawing.Drawing2D` · **Assembly:** `GHIElectronics.TinyCLR.Drawing`
+**NuGet:** `GHIElectronics.TinyCLR.Drawing`<br/>**Assembly:** `GHIElectronics.TinyCLR.Drawing`<br/>**Namespace:** `System.Drawing.Drawing2D`
 
 _No description available._
 

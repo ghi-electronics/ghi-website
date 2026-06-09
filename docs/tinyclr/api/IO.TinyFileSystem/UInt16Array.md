@@ -5,7 +5,7 @@ sidebar_label: "UInt16Array"
 
 # UInt16Array Class
 
-**Namespace:** `GHIElectronics.TinyCLR.IO.TinyFileSystem` · **Assembly:** `GHIElectronics.TinyCLR.IO.TinyFileSystem`
+**NuGet:** `GHIElectronics.TinyCLR.IO.TinyFileSystem`<br/>**Assembly:** `GHIElectronics.TinyCLR.IO.TinyFileSystem`<br/>**Namespace:** `GHIElectronics.TinyCLR.IO.TinyFileSystem`
 
 Dynamically growing array of UInt16 (ushort) elements.
 

@@ -5,7 +5,7 @@ sidebar_label: "ElfImage"
 
 # ElfImage Class
 
-**Namespace:** `GHIElectronics.TinyCLR.RuntimeLoadableProcedures` · **Assembly:** `GHIElectronics.TinyCLR.RuntimeLoadableProcedures`
+**NuGet:** `GHIElectronics.TinyCLR.RuntimeLoadableProcedures`<br/>**Assembly:** `GHIElectronics.TinyCLR.RuntimeLoadableProcedures`<br/>**Namespace:** `GHIElectronics.TinyCLR.RuntimeLoadableProcedures`
 
 A loaded ELF binary. Construct with the ELF bytes, look up symbols by name, then build a `NativeFunction` from a function-symbol's address to call it.
 

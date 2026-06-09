@@ -5,7 +5,7 @@ sidebar_label: "UriHostNameType"
 
 # UriHostNameType Enum
 
-**Namespace:** `System` · **Assembly:** `GHIElectronics.TinyCLR.Networking.Http`
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Namespace:** `System`
 
 Defines host name types for the http and https protocols. method.
 

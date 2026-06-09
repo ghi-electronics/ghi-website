@@ -5,7 +5,7 @@ sidebar_label: "Mqtt"
 
 # Mqtt Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Networking.Mqtt` · **Assembly:** `GHIElectronics.TinyCLR.Networking.Mqtt`
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Mqtt`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Mqtt`<br/>**Namespace:** `GHIElectronics.TinyCLR.Networking.Mqtt`
 
 MQTT client. Construct with an `MqttClientSetting`, call `Connect` with an `MqttConnectionSetting`, subscribe to topics, and publish messages. Asynchronous events deliver inbound traffic.
 

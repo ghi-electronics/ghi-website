@@ -5,7 +5,7 @@ sidebar_label: "RSASignaturePadding"
 
 # RSASignaturePadding Class
 
-**Namespace:** `System.Security.Cryptography` · **Assembly:** `GHIElectronics.TinyCLR.System.Security.Cryptography`
+**NuGet:** `GHIElectronics.TinyCLR.Cryptography`<br/>**Assembly:** `System.Security.Cryptography`<br/>**Namespace:** `System.Security.Cryptography`
 
 Signature-padding configuration. Matches the .NET Framework type.
 

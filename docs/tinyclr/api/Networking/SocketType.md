@@ -5,7 +5,7 @@ sidebar_label: "SocketType"
 
 # SocketType Enum
 
-**Namespace:** `System.Net.Sockets` · **Assembly:** `GHIElectronics.TinyCLR.Networking`
+**NuGet:** `GHIElectronics.TinyCLR.Networking`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking`<br/>**Namespace:** `System.Net.Sockets`
 
 _No description available._
 

@@ -5,7 +5,7 @@ sidebar_label: "IStorageControllerProvider"
 
 # IStorageControllerProvider Interface
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Storage.Provider` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Storage`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Storage`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Storage`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Storage.Provider`
 
 Provider contract for a block-storage controller.
 

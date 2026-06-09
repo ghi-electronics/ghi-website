@@ -5,7 +5,7 @@ sidebar_label: "StorageControllerApiWrapper"
 
 # StorageControllerApiWrapper Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Storage.Provider` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Storage`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Storage`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Storage`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Storage.Provider`
 
 Concrete `IStorageControllerProvider` backed by the native TinyCLR storage HAL.
 

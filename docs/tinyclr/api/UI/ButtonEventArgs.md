@@ -5,7 +5,7 @@ sidebar_label: "ButtonEventArgs"
 
 # ButtonEventArgs Class
 
-**Namespace:** `GHIElectronics.TinyCLR.UI.Input` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Input`
 
 The ButtonEventArgs class contains information about button states.
 

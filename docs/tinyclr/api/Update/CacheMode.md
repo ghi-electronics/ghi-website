@@ -5,7 +5,7 @@ sidebar_label: "CacheMode"
 
 # CacheMode Enum
 
-**Namespace:** `GHIElectronics.TinyCLR.Update` · **Assembly:** `GHIElectronics.TinyCLR.Update`
+**NuGet:** `GHIElectronics.TinyCLR.Update`<br/>**Assembly:** `GHIElectronics.TinyCLR.Update`<br/>**Namespace:** `GHIElectronics.TinyCLR.Update`
 
 Where the updater caches incoming chunks before flashing.
 

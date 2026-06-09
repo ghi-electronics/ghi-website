@@ -5,7 +5,7 @@ sidebar_label: "AuthenticationSchemes"
 
 # AuthenticationSchemes Enum
 
-**Namespace:** `System.Net` · **Assembly:** `GHIElectronics.TinyCLR.Networking.Http`
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Namespace:** `System.Net`
 
 _No description available._
 

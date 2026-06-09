@@ -5,7 +5,7 @@ sidebar_label: "SpiDevice"
 
 # SpiDevice Class
 
-**Namespace:** `System.Device.Spi` · **Assembly:** `GHIElectronics.TinyCLR.System.Device.Spi`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Spi`<br/>**Assembly:** `System.Device.Spi`<br/>**Namespace:** `System.Device.Spi`
 
 .NET-style SPI device. Standard surface (`Read` / `Write` / `TransferFullDuplex`); internally TinyCLR routes calls through `GHIElectronics.TinyCLR.Devices.Spi.SpiController`.
 

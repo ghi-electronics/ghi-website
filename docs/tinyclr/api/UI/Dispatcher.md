@@ -5,7 +5,7 @@ sidebar_label: "Dispatcher"
 
 # Dispatcher Class
 
-**Namespace:** `GHIElectronics.TinyCLR.UI.Threading` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Threading`
 
 Provides UI services for a thread.
 

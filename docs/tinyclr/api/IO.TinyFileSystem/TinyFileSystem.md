@@ -5,7 +5,7 @@ sidebar_label: "TinyFileSystem"
 
 # TinyFileSystem Class
 
-**Namespace:** `GHIElectronics.TinyCLR.IO.TinyFileSystem` · **Assembly:** `GHIElectronics.TinyCLR.IO.TinyFileSystem`
+**NuGet:** `GHIElectronics.TinyCLR.IO.TinyFileSystem`<br/>**Assembly:** `GHIElectronics.TinyCLR.IO.TinyFileSystem`<br/>**Namespace:** `GHIElectronics.TinyCLR.IO.TinyFileSystem`
 
 Tiny File System provides a basic file system which can be overlayed on any device providing a concrete implementation of the IBlockDriver interface.
 

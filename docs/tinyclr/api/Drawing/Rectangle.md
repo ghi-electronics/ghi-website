@@ -5,7 +5,7 @@ sidebar_label: "Rectangle"
 
 # Rectangle Struct
 
-**Namespace:** `System.Drawing` · **Assembly:** `GHIElectronics.TinyCLR.Drawing`
+**NuGet:** `GHIElectronics.TinyCLR.Drawing`<br/>**Assembly:** `GHIElectronics.TinyCLR.Drawing`<br/>**Namespace:** `System.Drawing`
 
 An integer rectangle defined by upper-left corner (X,Y) and size (Width,Height).
 

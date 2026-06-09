@@ -5,7 +5,7 @@ sidebar_label: "ErrorStateIndicator"
 
 # ErrorStateIndicator Enum
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Can` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Can`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Can`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Can`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Can`
 
 CAN-FD error state indicator carried in a received message.
 

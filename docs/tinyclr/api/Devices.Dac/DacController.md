@@ -5,7 +5,7 @@ sidebar_label: "DacController"
 
 # DacController Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Dac` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Dac`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Dac`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Dac`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Dac`
 
 Represents a DAC peripheral. Open a channel via `OpenChannel(int)` to drive analog output; use `MinValue`/`MaxValue` to know the raw-code range for the configured resolution.
 

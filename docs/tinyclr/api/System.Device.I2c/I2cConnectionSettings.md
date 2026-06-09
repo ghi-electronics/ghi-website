@@ -5,7 +5,7 @@ sidebar_label: "I2cConnectionSettings"
 
 # I2cConnectionSettings Class
 
-**Namespace:** `System.Device.I2c` · **Assembly:** `GHIElectronics.TinyCLR.System.Device.I2c`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.I2c`<br/>**Assembly:** `System.Device.I2c`<br/>**Namespace:** `System.Device.I2c`
 
 Per-device I²C settings in the standard `System.Device.I2c` shape. TinyCLR maps these onto its native I²C driver via `I2cDevice.Create(I2cConnectionSettings)`.
 

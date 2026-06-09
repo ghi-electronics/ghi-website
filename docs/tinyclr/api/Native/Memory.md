@@ -5,7 +5,7 @@ sidebar_label: "Memory"
 
 # Memory Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Native` · **Assembly:** `GHIElectronics.TinyCLR.Native`
+**NuGet:** `GHIElectronics.TinyCLR.Native`<br/>**Assembly:** `GHIElectronics.TinyCLR.Native`<br/>**Namespace:** `GHIElectronics.TinyCLR.Native`
 
 Allocator façade exposing both the managed (GC) heap and the unmanaged heap. Most apps don't touch this directly — use `UnmanagedBuffer` when you need a fixed-address byte buffer (for DMA, native interop, etc.).
 

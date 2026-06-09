@@ -5,7 +5,7 @@ sidebar_label: "UartControllerApiWrapper"
 
 # UartControllerApiWrapper Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Uart.Provider` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Uart`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Uart`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Uart`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Uart.Provider`
 
 Concrete `IUartControllerProvider` backed by the native TinyCLR UART HAL.
 

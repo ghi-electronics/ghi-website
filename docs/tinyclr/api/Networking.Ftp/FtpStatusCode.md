@@ -5,7 +5,7 @@ sidebar_label: "FtpStatusCode"
 
 # FtpStatusCode Enum
 
-**Namespace:** `System.Net` · **Assembly:** `GHIElectronics.TinyCLR.Networking.Ftp`
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Ftp`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Ftp`<br/>**Namespace:** `System.Net`
 
 _No description available._
 

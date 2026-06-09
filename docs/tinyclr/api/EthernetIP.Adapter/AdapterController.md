@@ -5,7 +5,7 @@ sidebar_label: "AdapterController"
 
 # AdapterController Class
 
-**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Adapter` · **Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`
+**NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`<br/>**Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`<br/>**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`
 
 Runs the device as an EtherNet/IP Adapter (the server side of EIP — what a PLC scanner connects to). Wraps the native OpENer stack with a managed-C# API.
 

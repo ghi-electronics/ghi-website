@@ -5,7 +5,7 @@ sidebar_label: "DigitalSignal"
 
 # DigitalSignal Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Signals` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Signals`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Signals`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Signals`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Signals`
 
 DMA/timer-backed pulse-train I/O on a small set of pins. Capable of pulse counting (`ReadPulse`), high-resolution edge capture (`Capture`), and emitting pulse-width-modulated sequences (`Generate`). All three operations are mutually exclusive and run asynchronously — completion is reported via `OnReadPulseFinished` / `OnCaptureFinished` / `OnGenerateFinished`. Only specific pins are supported (currently 0, 1, and 19).
 

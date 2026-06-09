@@ -5,7 +5,7 @@ sidebar_label: "Grid"
 
 # Grid Class
 
-**Namespace:** `GHIElectronics.TinyCLR.UI.Controls` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
 Row/column layout with pixel, auto, and star sizing (WPF-style subset). Use `GetRow` / `SetRow` and `GetColumn` / `SetColumn` on children.
 

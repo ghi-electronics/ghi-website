@@ -5,7 +5,7 @@ sidebar_label: "RSA"
 
 # RSA Class
 
-**Namespace:** `System.Security.Cryptography` · **Assembly:** `GHIElectronics.TinyCLR.System.Security.Cryptography`
+**NuGet:** `GHIElectronics.TinyCLR.Cryptography`<br/>**Assembly:** `System.Security.Cryptography`<br/>**Namespace:** `System.Security.Cryptography`
 
 Abstract RSA implementation; create concrete instances via `RSACryptoServiceProvider`.
 

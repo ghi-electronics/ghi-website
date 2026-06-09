@@ -5,7 +5,7 @@ sidebar_label: "BreakDetectedEventArgs"
 
 # BreakDetectedEventArgs Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Uart` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Uart`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Uart`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Uart`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Uart`
 
 Arguments for break-condition events (reserved; not raised by the standard controller).
 

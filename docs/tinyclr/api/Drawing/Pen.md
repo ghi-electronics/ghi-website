@@ -5,7 +5,7 @@ sidebar_label: "Pen"
 
 # Pen Class
 
-**Namespace:** `System.Drawing` · **Assembly:** `GHIElectronics.TinyCLR.Drawing`
+**NuGet:** `GHIElectronics.TinyCLR.Drawing`<br/>**Assembly:** `GHIElectronics.TinyCLR.Drawing`<br/>**Namespace:** `System.Drawing`
 
 Defines an object used to draw lines and outlines — color, width, and brush.
 

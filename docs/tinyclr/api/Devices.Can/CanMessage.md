@@ -5,7 +5,7 @@ sidebar_label: "CanMessage"
 
 # CanMessage Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Can` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Can`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Can`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Can`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Can`
 
 One CAN (or CAN-FD) frame. Set `ArbitrationId`, optionally `ExtendedId` for 29-bit IDs, and the payload via `Data` / `Length`. For CAN-FD, set `FdCan` and optionally `BitRateSwitch`.
 

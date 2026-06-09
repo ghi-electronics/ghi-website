@@ -5,7 +5,7 @@ sidebar_label: "PreProcessInputEventArgs"
 
 # PreProcessInputEventArgs Class
 
-**Namespace:** `GHIElectronics.TinyCLR.UI.Input` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Input`
 
 Allows the handler to cancel the processing of an input event.
 

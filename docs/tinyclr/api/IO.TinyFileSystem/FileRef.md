@@ -5,7 +5,7 @@ sidebar_label: "FileRef"
 
 # FileRef Class
 
-**Namespace:** `GHIElectronics.TinyCLR.IO.TinyFileSystem` · **Assembly:** `GHIElectronics.TinyCLR.IO.TinyFileSystem`
+**NuGet:** `GHIElectronics.TinyCLR.IO.TinyFileSystem`<br/>**Assembly:** `GHIElectronics.TinyCLR.IO.TinyFileSystem`<br/>**Namespace:** `GHIElectronics.TinyCLR.IO.TinyFileSystem`
 
 In memory representation of a file on "disk". This structure tracks the files total size, the clusters that make up the content of the file and the number of currently open Streams on the file.
 

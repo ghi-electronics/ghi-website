@@ -5,7 +5,7 @@ sidebar_label: "StorageController"
 
 # StorageController Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Storage` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Storage`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Storage`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Storage`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Storage`
 
 Represents a block-storage device — internal flash, external SPI/SD flash, SD/MMC, or USB mass-storage. Use `Hdc` to mount the controller with the file-system stack, or call the provider's Read/Write/Erase methods directly for raw block access.
 

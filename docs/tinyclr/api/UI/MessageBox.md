@@ -5,7 +5,7 @@ sidebar_label: "MessageBox"
 
 # MessageBox Class
 
-**Namespace:** `GHIElectronics.TinyCLR.UI.Controls` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
 WinForms-style modal message box. Usage: `MessageBox.DefaultFont = myFont; // once at app start var r = MessageBox.Show("Erase all data?", "Confirm", MessageBoxButtons.YesNo); if (r == DialogResult.Yes) { ... }` Show() is synchronous: it nests a dispatcher frame so the UI keeps painting and dispatching input while the box is up, and returns when the user picks a button (or Esc cancels). Safe to call from any UI-thread event handler.
 

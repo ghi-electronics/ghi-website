@@ -5,7 +5,7 @@ sidebar_label: "SslStream"
 
 # SslStream Class
 
-**Namespace:** `System.Net.Security` · **Assembly:** `GHIElectronics.TinyCLR.Networking`
+**NuGet:** `GHIElectronics.TinyCLR.Networking`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking`<br/>**Namespace:** `System.Net.Security`
 
 _No description available._
 

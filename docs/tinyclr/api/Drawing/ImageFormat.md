@@ -5,7 +5,7 @@ sidebar_label: "ImageFormat"
 
 # ImageFormat Class
 
-**Namespace:** `System.Drawing.Imaging` · **Assembly:** `GHIElectronics.TinyCLR.Drawing`
+**NuGet:** `GHIElectronics.TinyCLR.Drawing`<br/>**Assembly:** `GHIElectronics.TinyCLR.Drawing`<br/>**Namespace:** `System.Drawing.Imaging`
 
 _No description available._
 

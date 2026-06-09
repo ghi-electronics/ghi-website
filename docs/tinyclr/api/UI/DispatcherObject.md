@@ -5,7 +5,7 @@ sidebar_label: "DispatcherObject"
 
 # DispatcherObject Class
 
-**Namespace:** `GHIElectronics.TinyCLR.UI.Threading` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Threading`
 
 A DispatcherObject is an object associated with a `Dispatcher`. A DispatcherObject instance should only be access by the dispatcher's thread.
 

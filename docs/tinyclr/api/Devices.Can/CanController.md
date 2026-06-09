@@ -5,7 +5,7 @@ sidebar_label: "CanController"
 
 # CanController Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Can` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Can`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Can`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Can`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Can`
 
 Represents a CAN bus controller. Configure bit timing and acceptance filters, `Enable` the controller, then exchange `CanMessage`s. Subscribe to `MessageReceived` for event-driven receive instead of polling `MessagesToRead`.
 

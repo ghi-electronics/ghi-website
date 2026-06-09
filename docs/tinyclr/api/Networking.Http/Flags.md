@@ -5,7 +5,7 @@ sidebar_label: "Flags"
 
 # Flags Enum
 
-**Namespace:** `System` · **Assembly:** `GHIElectronics.TinyCLR.Networking.Http`
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Namespace:** `System`
 
 Defines flags kept in m_Flags variable.
 

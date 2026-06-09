@@ -5,7 +5,7 @@ sidebar_label: "PwmControllerApiWrapper"
 
 # PwmControllerApiWrapper Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Pwm.Provider` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Pwm`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Pwm`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Pwm`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Pwm.Provider`
 
 Concrete `IPwmControllerProvider` backed by the native TinyCLR PWM HAL. Constructed internally by `PwmController`; you don't normally need to use this type directly.
 

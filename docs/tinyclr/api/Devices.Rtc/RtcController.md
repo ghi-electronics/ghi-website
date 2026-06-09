@@ -5,7 +5,7 @@ sidebar_label: "RtcController"
 
 # RtcController Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Rtc` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Rtc`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Rtc`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Rtc`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Rtc`
 
 Real-time clock controller. Tracks calendar time across power cycles when backed by a coin cell, and exposes a small region of battery-backed RAM via `WriteBackupMemory(byte[])` / `ReadBackupMemory(byte[])`.
 

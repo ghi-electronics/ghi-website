@@ -5,7 +5,7 @@ sidebar_label: "IDacControllerProvider"
 
 # IDacControllerProvider Interface
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Dac.Provider` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Dac`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Dac`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Dac`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Dac.Provider`
 
 Provider contract for a DAC controller. Most users call `DacController` / `DacChannel` directly; implement this interface only when supplying a custom or virtual DAC.
 

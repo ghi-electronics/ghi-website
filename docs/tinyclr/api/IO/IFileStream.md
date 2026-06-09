@@ -5,7 +5,7 @@ sidebar_label: "IFileStream"
 
 # IFileStream Interface
 
-**Namespace:** `GHIElectronics.TinyCLR.IO` · **Assembly:** `GHIElectronics.TinyCLR.IO`
+**NuGet:** `GHIElectronics.TinyCLR.IO`<br/>**Assembly:** `GHIElectronics.TinyCLR.IO`<br/>**Namespace:** `GHIElectronics.TinyCLR.IO`
 
 _No description available._
 

@@ -5,7 +5,7 @@ sidebar_label: "SecureStorageController"
 
 # SecureStorageController Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.SecureStorage` · **Assembly:** `GHIElectronics.TinyCLR.Devices.SecureStorage`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.SecureStorage`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.SecureStorage`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.SecureStorage`
 
 Reads and writes blocks in one of the chip's secure non-volatile regions. Pick the region in the constructor; subsequent calls operate on that region.
 

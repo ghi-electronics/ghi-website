@@ -5,7 +5,7 @@ sidebar_label: "OneWireController"
 
 # OneWireController Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Onewire` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Onewire`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Onewire`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Onewire`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Onewire`
 
 Software 1-Wire bus master driven from a single GPIO pin. Devices like DS18B20 temperature sensors and DS24xx ROM chips can be enumerated with `FindAllDevices`, addressed by 8-byte serial number, and then transacted with via `TouchReset` / `WriteByte` / `ReadByte`.
 

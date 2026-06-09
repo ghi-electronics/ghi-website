@@ -5,7 +5,7 @@ sidebar_label: "VirtualizingListBox"
 
 # VirtualizingListBox Class
 
-**Namespace:** `GHIElectronics.TinyCLR.UI.Controls` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
 Large homogeneous lists: recycles a small pool of rows while preserving full scroll extent. Set `ItemsSource` to an `IList` (e.g. `ArrayList`); each item is shown via `ToString()`.
 

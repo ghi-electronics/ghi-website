@@ -5,7 +5,7 @@ sidebar_label: "Interrupt"
 
 # Interrupt Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Native` · **Assembly:** `GHIElectronics.TinyCLR.Native`
+**NuGet:** `GHIElectronics.TinyCLR.Native`<br/>**Assembly:** `GHIElectronics.TinyCLR.Native`<br/>**Namespace:** `GHIElectronics.TinyCLR.Native`
 
 CPU interrupt mask. Wrap a tight critical section in `Disable`/`Enable` to prevent context switches and hardware interrupts from running during it. Keep the disabled window short — while interrupts are off, RTOS threads cannot preempt and ISR latencies grow.
 

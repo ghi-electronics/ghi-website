@@ -5,7 +5,7 @@ sidebar_label: "IModbusInterface"
 
 # IModbusInterface Interface
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Modbus.Interface` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Modbus`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Modbus`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Modbus`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Modbus.Interface`
 
 Interface for physical modbus implementations
 

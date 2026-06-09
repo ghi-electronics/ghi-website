@@ -5,7 +5,7 @@ sidebar_label: "ExchangeAlgorithmType"
 
 # ExchangeAlgorithmType Enum
 
-**Namespace:** `System.Security.Authentication` · **Assembly:** `GHIElectronics.TinyCLR.Networking`
+**NuGet:** `GHIElectronics.TinyCLR.Networking`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking`<br/>**Namespace:** `System.Security.Authentication`
 
 _No description available._
 

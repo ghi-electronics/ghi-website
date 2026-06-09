@@ -5,7 +5,7 @@ sidebar_label: "DrawingContext"
 
 # DrawingContext Class
 
-**Namespace:** `GHIElectronics.TinyCLR.UI.Media` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Media`
 
 Drawing Context.
 

@@ -5,7 +5,7 @@ sidebar_label: "BitmapImage"
 
 # BitmapImage Class
 
-**Namespace:** `GHIElectronics.TinyCLR.UI.Media.Imaging` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Media.Imaging`
 
 _No description available._
 

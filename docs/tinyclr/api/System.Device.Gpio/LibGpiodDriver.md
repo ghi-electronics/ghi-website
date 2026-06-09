@@ -5,7 +5,7 @@ sidebar_label: "LibGpiodDriver"
 
 # LibGpiodDriver Class
 
-**Namespace:** `System.Device.Gpio.Drivers` · **Assembly:** `GHIElectronics.TinyCLR.System.Device.Gpio`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Gpio`<br/>**Assembly:** `System.Device.Gpio`<br/>**Namespace:** `System.Device.Gpio.Drivers`
 
 Alias of `TinyClrGpioDriver` for source-compatibility with Linux .NET IoT samples that reference `LibGpiodDriver`.
 

@@ -5,7 +5,7 @@ sidebar_label: "GpioControllerApiWrapper"
 
 # GpioControllerApiWrapper Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Gpio.Provider` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Gpio`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Gpio`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Gpio`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Gpio.Provider`
 
 Concrete `IGpioControllerProvider` backed by the native TinyCLR GPIO HAL. Constructed internally by `GpioController`; you don't normally need to use this type directly.
 

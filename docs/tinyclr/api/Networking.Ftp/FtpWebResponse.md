@@ -5,7 +5,7 @@ sidebar_label: "FtpWebResponse"
 
 # FtpWebResponse Class
 
-**Namespace:** `System.Net` · **Assembly:** `GHIElectronics.TinyCLR.Networking.Ftp`
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Ftp`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Ftp`<br/>**Namespace:** `System.Net`
 
 Only contains a stream to write data
 

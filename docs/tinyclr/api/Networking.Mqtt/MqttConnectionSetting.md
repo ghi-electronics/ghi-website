@@ -5,7 +5,7 @@ sidebar_label: "MqttConnectionSetting"
 
 # MqttConnectionSetting Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Networking.Mqtt` · **Assembly:** `GHIElectronics.TinyCLR.Networking.Mqtt`
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Mqtt`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Mqtt`<br/>**Namespace:** `GHIElectronics.TinyCLR.Networking.Mqtt`
 
 Per-session MQTT settings — client ID, credentials, last-will, keepalive.
 

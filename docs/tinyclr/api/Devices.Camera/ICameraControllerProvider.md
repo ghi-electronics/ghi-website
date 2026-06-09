@@ -5,7 +5,7 @@ sidebar_label: "ICameraControllerProvider"
 
 # ICameraControllerProvider Interface
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Camera.Provider` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Camera`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Camera`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Camera`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Camera.Provider`
 
 Provider contract for a camera controller.
 

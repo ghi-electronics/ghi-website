@@ -5,7 +5,7 @@ sidebar_label: "ExtendedDataMode"
 
 # ExtendedDataMode Enum
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Camera` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Camera`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Camera`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Camera`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Camera`
 
 Camera-to-SoC parallel data bus width.
 

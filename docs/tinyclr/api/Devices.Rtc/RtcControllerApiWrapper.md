@@ -5,7 +5,7 @@ sidebar_label: "RtcControllerApiWrapper"
 
 # RtcControllerApiWrapper Class
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Rtc.Provider` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Rtc`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Rtc`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Rtc`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Rtc.Provider`
 
 Concrete `IRtcControllerProvider` backed by the native TinyCLR RTC HAL.
 

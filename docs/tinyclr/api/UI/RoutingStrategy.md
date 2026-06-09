@@ -5,7 +5,7 @@ sidebar_label: "RoutingStrategy"
 
 # RoutingStrategy Enum
 
-**Namespace:** `GHIElectronics.TinyCLR.UI` · **Assembly:** `GHIElectronics.TinyCLR.UI`
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI`
 
 Routing Strategy can be either of Tunnel or Bubble
 

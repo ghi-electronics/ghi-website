@@ -5,7 +5,7 @@ sidebar_label: "WaitForEventResult"
 
 # WaitForEventResult Struct
 
-**Namespace:** `System.Device.Gpio` · **Assembly:** `GHIElectronics.TinyCLR.System.Device.Gpio`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Gpio`<br/>**Assembly:** `System.Device.Gpio`<br/>**Namespace:** `System.Device.Gpio`
 
 Result of a `GpioController.WaitForEvent(int, PinEventTypes, TimeSpan)` call. Same shape as .NET IoT.
 

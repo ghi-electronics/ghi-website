@@ -5,7 +5,7 @@ sidebar_label: "ErrorReceivedEventHandler"
 
 # ErrorReceivedEventHandler Delegate
 
-**Namespace:** `GHIElectronics.TinyCLR.Devices.Can` · **Assembly:** `GHIElectronics.TinyCLR.Devices.Can`
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Can`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.Can`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.Can`
 
 Handler signature for `CanController.ErrorReceived`.
 

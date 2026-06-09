@@ -5,7 +5,7 @@ sidebar_label: "HttpContinueDelegate"
 
 # HttpContinueDelegate Delegate
 
-**Namespace:** `System.Net` · **Assembly:** `GHIElectronics.TinyCLR.Networking.Http`
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Namespace:** `System.Net`
 
 Represents the method that notifies callers when a continue response is received by the client.
 
