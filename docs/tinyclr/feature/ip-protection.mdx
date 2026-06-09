@@ -2,26 +2,95 @@
 title: IP Protection
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
+**IP Protection** is TinyCLR's set of features for keeping your **intellectual property** — your application code, keys, and sensitive data — unreadable on shipped devices. Combined with [Secure Boot](secure-boot.mdx), [TLS](tls.mdx), and [Secure Storage](secure-storage.mdx), it gives you a defensible posture against reverse engineering, key extraction, and code theft.
+
+The protection comes in two parts: protecting your **code** at rest, and protecting your **data** at runtime.
+
+## Threat model
+
+What IP Protection defends against:
+
+- **Reading your application code** off the device via the debug interface
+- **Reading code stored in external QSPI flash** by probing the flash chip directly
+- **Reading sensitive data** from external RAM
+
+What it can't defend against:
+
+- Compromising a key that you embed in your application source — keys baked into the code are only as safe as the protection of the code itself; rotate keys via [In-Field Update](in-field-update.mdx) when needed
+- Attacks against the [Bootloader](/docs/tinyclr/bootloader) — anyone with physical access can force the device into bootloader mode and `Erase All`, but doing so wipes the protected application without revealing it
+
+## Securing user code
+
+### Internal flash by default
+
+Your application code lives in the SITCore's **internal flash**, which isn't accessible from outside the chip. The only paths into it are:
+
+- The **USB or serial debug interface** — open during development, normally **disabled in production**
+- The **bootloader** — which can erase but not read
+
+### Disabling the debug interface
+
+In production, disable the debug interface so a physical attacker can't read out your code via Visual Studio:
+
+```csharp
+using GHIElectronics.TinyCLR.Native;
+
+DeviceInformation.SetDebugInterface(DebugInterface.Disable);
+```
+
+This can also be done from [TinyCLR Config](/docs/tinyclr/tinyclr-config) without writing code.
+
+:::warning
+**`DebugInterface.Disable` can only be undone by a full `Erase All`** from TinyCLR Config or the bootloader. That wipes the application along with the setting. Plan firmware updates via [In-Field Update](in-field-update.mdx) instead — `Disable` is one-way for the deployment, not for the device.
 :::
 
-Designed with security as a top priority, TinyCLR provides protection for both user's code and user's data.
+When the debug interface is disabled:
 
-## Securing Code
-By default, user's code is stored securely on the internal flash memory. It can only be reached by the USB or serial debug interfaces, which can be disabled using the [TinyCLR Config](https://docs.ghielectronics.com/software/tinyclr/tinyclr-config.html) utility program or using `GHIElectronics.TinyCLR.Native.DeviceInformation.SetDebugInterface(DebugInterface.Disable)`. This `DebugInterface.Disable` can only be undone by a complete system Erase All, from TinyCLR Config. When the debug interface is set to `DebugInterface.Disable` APP and MOD become inactive. The current active debug interface can be read through `GHIElectronics.TinyCLR.Native.DeviceInformation.DebugInterface`. 
+- The **APP** and **MOD** [special pins](/docs/tinyclr/special-pins) become inactive
+- Visual Studio can no longer deploy or debug
+- The current state can still be read with `DeviceInformation.DebugInterface`
 
-The system supports extending the deployment region, where user's code/assemblies are stored, into external unsecured flash memory. To keep important data secure, the system supports `Secure Assemblies`. Those assemblies are loaded into the internal secure flash. To tag an assembly as secure, users must edit the `AssemblyInfo.cs` file in the `Properties` folder within the project's folder. Change the line `[assembly: AssemblyConfiguration("")]` to `[assembly: AssemblyConfiguration("secure")]` (the word "secure" is not case sensitive).  During deployment Visual Studio will display an allocation table showing both the secure and unsecure assemblies and their address, a quick way to verify secure assemblies. This is found in the `TinyCLR Device Deployment` Visual Studio output window.
+### Secure assemblies (for code in external flash)
 
-The [In-Field Update](in-field-update.mdx) page covers the details on updating a locked system.
+When you [extend the deployment region](external-memory.mdx) into external QSPI flash, the assemblies stored externally **can be physically probed** off the chip. To protect specific assemblies, mark them as **secure** — the deployment system will then place them in internal flash regardless of the extended region setting.
 
----
+Edit `AssemblyInfo.cs` (under the project's **Properties** folder) and change:
 
-## Securing Data
-The entire system, including user's keys, cryptography, and everything else are stored on the internal RAM, accessible only by the system itself and the user's application. When external RAM is utilized, it is only there for the graphics engine. Having images stored in unsecure memory has very little security concerns, unless for example, a key is shown on one of the images. There is also a special `UnmanagedBuffer` class that allocates memory from `Unmanaged Heap`, where the user is aware and is in control of what to do with this unsecure buffer.
+```csharp
+[assembly: AssemblyConfiguration("")]
+```
 
-If desired, designs that require large heaps of RAM for the entire application have the option to extend the heap to fully encapsulate the external memory, making the system data unsecure. However, external RAM (SDRAM) isn't probed easily like external flash (QSPI) even if used for extended heap, not secure in this case but more challenging to probe.
+to:
 
-Refer to the [External Memory](external-memory.mdx) page for more info.
+```csharp
+[assembly: AssemblyConfiguration("secure")]
+```
 
+The word `secure` is **not case-sensitive**.
 
+During deployment, Visual Studio's **TinyCLR Device Deployment** output window shows an allocation table indicating which assemblies landed in secure (internal) flash and which went to external — a quick way to verify your secure assemblies ended up where you expected.
+
+## Securing data
+
+### Internal RAM
+
+By default, **the entire managed heap lives in the SITCore's internal RAM** — keys, cryptographic state, decrypted payloads, everything. Internal RAM isn't probable from outside the chip, so anything there is safe from physical attack.
+
+### External RAM and SDRAM
+
+External SDRAM is used for the **graphics engine** and for explicit [`UnmanagedBuffer`](unmanaged-heap.mdx) allocations. Both are deliberately exposed to potential probing — but the typical contents (display framebuffers, large media buffers) aren't sensitive:
+
+- Graphics buffers contain rendered images. Usually nothing private — unless your UI shows a key on screen.
+- **`UnmanagedBuffer`** is your conscious choice to put data in unsecured memory. Use it for bulk data that doesn't matter if read, not for secrets.
+
+### Extending the managed heap into external SDRAM
+
+If your application needs more managed RAM than the SITCore's internal memory provides, you can extend the heap into external SDRAM — but this puts your managed data (including potentially-sensitive state) into unsecured memory.
+
+:::warning
+Extending the managed heap into external SDRAM **trades security for capacity**. Don't do this if you handle keys, credentials, or other sensitive data — keep those in internal memory.
+:::
+
+That said, **external SDRAM isn't trivially probable** the way external QSPI flash is. SDRAM is dynamic and needs continuous refresh; cold-chip readout is harder than reading a static flash chip. It's not secure, just *more annoying to attack* than external flash.
+
+See [External Memory](external-memory.mdx) for the heap-extension API and the trade-off in more depth.

@@ -2,10 +2,30 @@
 title: TLS
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
-:::
+**Transport Layer Security (TLS)** is the standard cryptographic protocol behind HTTPS, secure MQTT, and most other encrypted network traffic. TinyCLR supports **TLS 1.2** with the same handshake, cipher suites, and certificate validation as desktop .NET.
 
-TLS (Transport Layer Security) is how the Internet securely works, for banks, airports and security systems. TinyCLR supports TLS 1.2, a global security standard. All encryption, decryption and certification are done in secure internal memory to keep sensitive data safe.
+The whole crypto stack — handshake, encryption, decryption, certificate validation — runs **inside the SITCore processor's internal memory**, not on an external chip or over the network. Sensitive material (private keys, session keys, decrypted payloads) never leaves the chip's secure memory.
 
-TinyCLR can be set up using TLS as a [Client](tls-client.mdx) or [Server](tls-server.mdx).
+## When to use which
+
+TinyCLR can act as either side of a TLS connection:
+
+- **[TLS Client](tls-client.mdx)** — your device connects out to an HTTPS server, MQTT broker, cloud service, etc. You'll need the server's **root CA certificate** to validate the connection.
+- **[TLS Server](tls-server.mdx)** — your device accepts incoming encrypted connections (a web UI, a local API). You'll need a **server certificate** and **private key** on the device.
+
+## Common patterns
+
+TLS shows up in several places throughout TinyCLR — each one uses the same underlying TLS 1.2 stack:
+
+- **HTTPS** — see [HTTP/HTTPS](http-https.mdx). Just use an `https://` URL with `HttpWebRequest` and TLS is handled automatically.
+- **Secure MQTT** — see [MQTT](mqtt.mdx). Set `SslProtocol = SslProtocols.Tls12` on the client settings.
+- **Cloud SDKs** — [Azure](azure.mdx) and [AWS](aws.mdx) both connect over TLS-protected MQTT on port 8883.
+- **Raw sockets** — wrap a `Socket` with `SslStream` and call `AuthenticateAsClient` or `AuthenticateAsServer`.
+
+## Certificate maintenance
+
+Root CA and server certificates **expire**. For deployed devices:
+
+- Track when each embedded certificate expires.
+- Plan an [in-field update](in-field-update.mdx) path so you can deploy new certificates before the old ones expire.
+- Some services rotate their root CAs every few years (see notes on [Azure](azure.mdx) for one example).

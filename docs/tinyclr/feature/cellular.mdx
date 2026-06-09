@@ -2,13 +2,10 @@
 title: Cellular
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
-:::
+Any cellular modem with **PPP** support works with TinyCLR. See the [PPP page](ppp.mdx) for the setup procedure and sample code. The standard sockets API used over PPP is the same one documented on the [Networking Core](networking-core.mdx) page, so the higher-level networking patterns from [WiFi](wifi.mdx) and [Ethernet](ethernet.mdx) apply identically once the link is up.
 
-Any Cellular modem with PPP support should simply work with TinyCLR. Please see our [PPP tutorial](ppp.mdx) for more details and sample code. Other networking information and sample code can be found on our [WiFi](wifi.mdx) and [Ethernet](ethernet.mdx) tutorials.
+## Security
 
-## Security Clarification
-Most users of embedded systems that connect to mobile networks assume they are secure, but often they are not. Typically, a serial connection with AT commands is used to communicate with the Internet. While the data over the air is secure, all data transmitted over the serial connection is raw unencrypted data that can be easily scoped. This is not the case with TinyCLR.
+Most embedded systems that connect to cellular networks talk to the modem over a **serial connection with AT commands**. The over-the-air link is encrypted by the cellular network, but the serial link between the host MCU and the modem is **plain unencrypted data** — easy to intercept with a probe or logic analyzer.
 
-With TinyCLR, serial data between the device and the modem is encrypted. All data handling is done internally inside the core processor, which is extremely difficult to hack into.
+TinyCLR handles this differently. All TLS and network cryptography runs **inside the SITCore processor**, so the data leaving the host on the serial line to the modem is already encrypted. Even with physical access to the serial wires, the payload isn't readable without breaking the cryptography running on-chip.

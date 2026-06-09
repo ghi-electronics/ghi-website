@@ -134,10 +134,12 @@ const config: Config = {
         theme: {
           customCss: './src/css/custom.css',
         },
-        gtag: {
-          trackingID: 'G-C6ETSS107S',
-          anonymizeIP: true,
-        },
+        ...(process.env.NODE_ENV === 'production' && {
+          gtag: {
+            trackingID: 'G-C6ETSS107S',
+            anonymizeIP: true,
+          },
+        }),
       } satisfies Preset.Options,
     ],
   ],

@@ -2,102 +2,101 @@
 title: Secure Storage
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
-:::
+SITCore exposes two **secure storage** regions inside the chip's internal flash — separate from the deployment region and not accessible externally. Both are addressed in 32-byte blocks through the same `SecureStorageController` API.
 
-There are two secure storage areas you may find useful: the configuration storage area and the one-time programmable storage area.
+- **[Configuration storage](#configuration-storage)** — mutable. Read, write, erase. Wiped on `Erase All`. Use for runtime configuration that needs to persist across reboots but can change over time (network settings, calibration data, device serial numbers).
+- **[OTP storage](#one-time-programmable-otp-storage)** — write-once. Survives `Erase All`. Use for immutable per-device data set at manufacturing (factory keys, customer IDs, hardware revision).
 
-## Configuration Storage
-On SC20260 (and SC20100), there is 128 KByte secure storage area is organized as 4096 blocks of 32 bytes each. 
+NuGet package: **`GHIElectronics.TinyCLR.Devices.SecureStorage`**.
 
-On SC13048 there is 8KB secure storage, organized as 256 blocks of 32 bytes each.
+## Sizes
 
-Configuration storage can be erased and modified. Performing an `erase all` in TinyCLR Config will wipe out this area. As this area is comprised of a single sector of flash memory, only the whole storage area can be erased. Partial erases are not possible.
+| Chipset             | Configuration storage    | OTP storage              |
+|---------------------|--------------------------|--------------------------|
+| **SC20100, SC20260** | 128 KB (4096 × 32 B blocks) | 64 KB (2048 × 32 B blocks) |
+| **SC13048**          | 8 KB (256 × 32 B blocks)    | 2 KB (64 × 32 B blocks)    |
 
-:::tip
-Needed NuGets: GHIElectronics.TinyCLR.Core, GHIElectronics.TinyCLR.Devices.SecureStorage
-:::
+## Configuration storage
+
+Configuration storage can be read, written, and erased. Because the entire region is one flash sector, **partial erases aren't possible** — `Erase()` wipes the whole region.
+
+The example below queries the size, verifies the region is blank (erasing if not), writes a test pattern, and reads it back to verify:
 
 ```csharp
-const uint STORAGE_SIZE = 32 * 1024;
+using GHIElectronics.TinyCLR.Devices.SecureStorage;
+using System;
+using System.Diagnostics;
+using System.Threading;
+
 var configStorage = new SecureStorageController(SecureStorage.Configuration);
-var data = new byte[STORAGE_SIZE];
 
-Debug.WriteLine("Configuration storage total size: " +
-    configStorage.TotalSize.ToString() + " bytes.");
+Debug.WriteLine("Total size:  " + configStorage.TotalSize + " bytes");
+Debug.WriteLine("Block size:  " + configStorage.BlockSize + " bytes");
 
-Debug.WriteLine("Configuration storage block size: " +
-    configStorage.BlockSize.ToString() + " bytes.");
+var totalBlocks = configStorage.TotalSize / configStorage.BlockSize;
 
-Debug.WriteLine("Checking if blank. . .");
+// Check if every block is blank.
 var isBlank = true;
-
-for (uint block = 0; block < configStorage.TotalSize / configStorage.BlockSize; block++) {
-    if (!configStorage.IsBlank(block)) isBlank = false;
+for (uint block = 0; block < totalBlocks; block++) {
+    if (!configStorage.IsBlank(block)) {
+        isBlank = false;
+        break;
+    }
 }
 
-if (isBlank) {
-    Debug.WriteLine("Configuration storage area is blank.");
-}
-else {
-    Debug.WriteLine("Erasing entire configuration storage area...");
+if (!isBlank) {
+    Debug.WriteLine("Erasing...");
     configStorage.Erase();
 }
 
-Debug.WriteLine("Filling buffer...");
-
-for (var i = 0; i < data.Length; i++) {
+// Fill the first 32 KB of the region with a known pattern.
+const uint testBytes = 32 * 1024;
+var data = new byte[testBytes];
+for (var i = 0; i < data.Length; i++)
     data[i] = (byte)(i % 255);
+
+// Write in 32-byte chunks.
+var chunk = new byte[configStorage.BlockSize];
+for (uint block = 0; block < data.Length / configStorage.BlockSize; block++) {
+    Array.Copy(data, (int)(block * configStorage.BlockSize), chunk, 0, (int)configStorage.BlockSize);
+    configStorage.Write(block, chunk);
 }
 
-Debug.WriteLine("Writing buffer...");
-var dataBlock = new byte[configStorage.BlockSize];
-
+// Read back and verify.
 for (uint block = 0; block < data.Length / configStorage.BlockSize; block++) {
-    Array.Copy(data, (int)(block * configStorage.BlockSize), dataBlock, 0,
-        (int)(configStorage.BlockSize));
-
-    configStorage.Write(block, dataBlock);
-}
-
-Debug.WriteLine("Comparing buffer...");
-
-for (uint block = 0; block < data.Length / configStorage.BlockSize; block++) {
-    for (var byteIndex = 0; byteIndex < configStorage.BlockSize; byteIndex++) {
-        configStorage.Read(block, dataBlock);
-
-        if (data[block * configStorage.BlockSize + byteIndex] != dataBlock[byteIndex]) {
-            Debug.WriteLine("Configuration storage data is corrupted!");
+    configStorage.Read(block, chunk);
+    for (var i = 0; i < configStorage.BlockSize; i++) {
+        if (data[block * configStorage.BlockSize + i] != chunk[i]) {
+            Debug.WriteLine("Mismatch — data is corrupted");
             Thread.Sleep(Timeout.Infinite);
         }
     }
 }
 
-Debug.WriteLine("Configuration storage is good to go!!!");
+Debug.WriteLine("Verified");
 ```
 
----
+## One-time programmable (OTP) storage
 
-## One Time Programmable Area
+OTP blocks **cannot be erased or rewritten** once written. There's no way to undo a write — not from your application, not from TinyCLR Config's `Erase All`, not from the bootloader. This is what makes OTP useful for per-device identity values you want to fix at manufacturing.
 
-:::note
-If all 32 bytes of any OTP flash block contain 0xFF, the block is considered unused. If you write only 0xFF to the contents of a block, the block will be regarded as unused and you will be able to rewrite the block. 
-:::
-
-
-The one time programmable (OTP) secure flash region is organized into 2048 blocks on SC20260 (or SC20100), and 64 blocks on SC13048 of 32 bytes each. Once you write to a block, that block can be read but never changed.
-
-There is no way to modify written data. Erasing the entire device `Erase All` in TinyCLR Config will not erase or modify this area.
-
-The API for OTP storage is the same as for the configuration storage area, except that instantiation takes a different argument and the `Erase` method is disabled.
-
-OTP secure storage is instantiated as follows:
+The API is identical to configuration storage except for the constructor argument and the absence of `Erase()`:
 
 ```csharp
+using GHIElectronics.TinyCLR.Devices.SecureStorage;
+
 var otpStorage = new SecureStorageController(SecureStorage.Otp);
+
+// Read and Write work the same as configuration storage.
+otpStorage.Write(block: 0, data: factoryKey);
 ```
 
-:::note
-SC13048 allows write one time on each block, even data all is 0xFF.
+### Per-chip differences
+
+**SC20100 / SC20260** — a block containing **all `0xFF`** is treated as unused and can be written again. Practically, this means writing all-`0xFF` to a block doesn't burn it, so accidental writes of empty buffers don't lose a block.
+
+**SC13048** — every `Write()` call **burns the block**, even if the data being written is all `0xFF`. There's no safety net here; check your data before writing.
+
+:::warning
+OTP writes are **permanent**. Verify your code, double-check your inputs, and consider writing to a non-OTP block first as a dry run before committing the value to OTP.
 :::

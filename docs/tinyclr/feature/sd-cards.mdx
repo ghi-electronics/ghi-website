@@ -2,18 +2,62 @@
 title: SD/MMC Cards
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
-:::
+SD and MMC cards are exposed through TinyCLR's [File System](file-system.mdx) library, with the FAT16/FAT32 file system handled by the built-in driver. SD cards over the built-in SDIO interface use one `StorageController` name; SPI-attached SD cards go through the **`ManagedFileSystem`** software utility driver.
 
-SD and MMC cards are fully supported through the [File System](file-system.mdx) libraries.
+NuGet packages: **`GHIElectronics.TinyCLR.IO`**, **`GHIElectronics.TinyCLR.Devices.Storage`**, and **`GHIElectronics.TinyCLR.Pins`**.
 
-This is a sample on how setup the SD driver.
+## Mounting an SD card
 
 ```csharp
-var sd = StorageController.FromName(SC20100.StorageController.SdCard);
+using GHIElectronics.TinyCLR.Devices.Storage;
+using GHIElectronics.TinyCLR.IO;
+using GHIElectronics.TinyCLR.Pins;
 
+var sd = StorageController.FromName(SC20100.StorageController.SdCard);
 var drive = FileSystem.Mount(sd.Hdc);
 ```
 
-Additionally, SPI SD drivers are also supported through the `ManagedFileSystem` software utility [drivers](https://docs.ghielectronics.com/software/tinyclr/drivers/software-utility.html).
+Once mounted, `drive.Name` gives you the root path (something like `A:\`) — pass it to `DirectoryInfo`, `FileStream`, and the rest of `System.IO` to read and write files.
+
+## Reading and writing files
+
+See the [File System page](file-system.mdx#reading-and-writing-files) for a complete read/write example. The short version:
+
+```csharp
+using System.IO;
+using System.Text;
+
+var file = new FileStream(drive.Name + "log.txt", FileMode.OpenOrCreate);
+file.Write(Encoding.UTF8.GetBytes("hello"), 0, 5);
+file.Flush();
+
+FileSystem.Flush(sd.Hdc);       // Flush the file-system buffers to the card.
+```
+
+:::tip
+Always call **`FileSystem.Flush(sd.Hdc)`** before removing power or pulling the card — otherwise pending writes can be lost.
+:::
+
+## SPI-attached SD cards
+
+When the SD card is wired over SPI instead of the native SDIO interface, use the **ManagedFileSystem** software utility driver to bridge the SPI bus to the file-system layer.
+
+The same FAT16/FAT32 file-system code from the [File System page](file-system.mdx) works on top of it — only the controller setup differs. Check the driver's source in the [TinyCLR-Drivers repo](https://github.com/ghi-electronics/TinyCLR-Drivers) for the current API.
+
+## Advanced: tuning the SD clock speed
+
+The default SDMMC clock runs at **25 MHz**. Some board designs or low-cost SD cards can't keep up cleanly at that speed and need a slower clock for reliable operation. The clock divider is exposed through a [Marshal](marshal.mdx) write to a TinyCLR-internal configuration address:
+
+```csharp
+using System;
+using System.Runtime.InteropServices;
+
+const int SD_CLOCK_ADDRESS_REG = 0x00000004;
+
+// Divider: 0,1,2,3 → 25 MHz; 4 → 12 MHz; 5 → 10 MHz; 6 → 8 MHz; ...
+var clockDivider = 4;
+
+Marshal.WriteInt32((IntPtr)SD_CLOCK_ADDRESS_REG, clockDivider);
+```
+
+Use this only if you're seeing read/write errors that go away at lower clock speeds. Most boards run reliably at the default and don't need tuning.

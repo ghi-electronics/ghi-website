@@ -2,45 +2,35 @@
 title: Serialization
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
-:::
+**Serialization** converts an object's state into a byte stream so it can be persisted to storage, sent over a network, or otherwise transported. **Deserialization** reverses the process — turning a byte stream back into a live object. TinyCLR supports three serialization formats:
 
-Serialization is the process of converting the state of an object into a form that can be persisted or transported. The complement of serialization is deserialization, which converts a stream into an object. Together, these processes allow objects to be stored and transferred.
+- **[Binary](#binary-serialization)** — fast, compact, TinyCLR-internal format. Best when both sides are TinyCLR.
+- **[JSON](#json)** — text or BSON, broadly compatible with any platform.
+- **[XML](#xml)** — structured text, useful for configuration files and interop with legacy systems.
 
-## Binary Serialization
-Binary Serialization is a native, fast and lean way to serialize objects. To keep serialization fast and efficient on embedded devices, TinyCLR's serialization is not compatible with binary serialization on desktop PCs. However, an implementation on the PC can be used to process the serialized binary data if necessary.
+## Binary serialization
 
-:::tip
-Needed NuGets: GHIElectronics.TinyCLR.Core and System.Reflection.
-:::
+The native binary serializer is the **fastest and most compact** option for storing objects to flash or sending them between TinyCLR devices. It uses runtime reflection to walk the object's fields.
+
+NuGet package: **`GHIElectronics.TinyCLR.Core`** (reflection-based serializer is part of the core).
 
 ```csharp
-public enum MyEnum : short { A, B, C };
+using System;
+using System.Diagnostics;
+using System.Reflection;
 
-private static void Main() {
-    MySerializableClass original = new MySerializableClass(1, "ABCD", 3, MyEnum.B, 0.1f);
+public enum MyEnum : short { A, B, C }
 
-    Debug.WriteLine("original: " + original.ToString());
-
-    byte[] buffer = Reflection.Serialize(original,
-        typeof(MySerializableClass));
-
-    MySerializableClass restored = (MySerializableClass)Reflection.
-        Deserialize(buffer, typeof(MySerializableClass));
-
-    Debug.WriteLine("restored: " + restored.ToString());
-    Debug.WriteLine("Number of bytes: " + buffer.Length.ToString());
-}
-
-[System.Serializable]
+[Serializable]
 public class MySerializableClass {
     public int a;
     public string b;
     private byte c;
     private MyEnum d;
     private float e;
-    private System.DateTime dt;
+    private DateTime dt;
+
+    public MySerializableClass() { }            // Parameterless constructor needed for deserialization.
 
     public MySerializableClass(int a, string b, byte c, MyEnum d, float e) {
         this.a = a;
@@ -48,144 +38,126 @@ public class MySerializableClass {
         this.c = c;
         this.d = d;
         this.e = e;
-        this.dt = this.dt = new System.DateTime(2007, 1, 22);
+        this.dt = new DateTime(2026, 1, 22);
     }
 
-    public override string ToString() {
-        return "a=" + a.ToString() + ", b=" + b + ", c=" + c.ToString() + ", d=" +
-            ((object)d).ToString() + ", e=" + e.ToString("F2");
-    }
+    public override string ToString() =>
+        "a=" + a + ", b=" + b + ", c=" + c + ", d=" + d + ", e=" + e.ToString("F2");
 }
+
+var original = new MySerializableClass(1, "ABCD", 3, MyEnum.B, 0.1f);
+Debug.WriteLine("Original: " + original);
+
+byte[] buffer = Reflection.Serialize(original, typeof(MySerializableClass));
+
+var restored = (MySerializableClass)Reflection.Deserialize(buffer, typeof(MySerializableClass));
+Debug.WriteLine("Restored: " + restored);
+Debug.WriteLine("Bytes: " + buffer.Length);
 ```
 
 :::note
-Serialization in TinyCLR is not compatible with full .NET. That means you cannot deserialize an object with .NET on a PC from a byte stream that was created with TinyCLR and vice versa. There is a solution which allows Serialization in TinyCLR and the .NET Framework to be compatible. For details, look at the BinarySerializationDesktopSample here: **https://github.com/Apress/exp-.net-micro-framework/tree/master/source/Chapter09/BinarySerializationDesktopSample**
+The TinyCLR binary format is **not wire-compatible with full .NET's `BinaryFormatter`** out of the box. If you need PC↔device interop, you have two options:
+
+- **Use [JSON](#json)** — simplest path, works with any platform and language.
+- **Use a desktop bridge** — the [BinarySerializationDesktopSample](https://github.com/Apress/exp-.net-micro-framework/tree/master/source/Chapter09/BinarySerializationDesktopSample) repo on GitHub shows how to read TinyCLR-serialized binary on a desktop PC. Useful when you want compact binary on the wire but still need PC tooling to read it.
 :::
 
 :::warning
-GHI Electronics does not own or have rights to the code in this repository: https://github.com/Apress/exp-.net-micro-framework. It is your responsibility to adhere to the license provided by the owner of this code.
+GHI Electronics doesn't own or maintain the [`Apress/exp-.net-micro-framework`](https://github.com/Apress/exp-.net-micro-framework) repository linked above. It's published under its own license — review and comply with the license terms before using the code in your own projects.
 :::
-
----
 
 ## JSON
 
-TinyCLR includes a built in JSON library.
+JSON works across every platform that can speak HTTP — making it the natural choice for cloud integrations, web APIs, and PC tools. TinyCLR's JSON library also supports **BSON** (binary JSON), which is more compact on the wire.
 
-:::tip
-Needed NuGets: GHIElectronics.TinyCLR.Core, GHIElectronics.TinyCLR.Data.Json.
-:::
+NuGet package: **`GHIElectronics.TinyCLR.Data.Json`**.
 
 ```csharp
-var intArray = new int[] { 1, 3, 5, 7, 9 };
-var result = JsonConverter.Serialize(intArray);
-var bson = result.ToBson();
+using GHIElectronics.TinyCLR.Data.Json;
+using System.Diagnostics;
 
-var compare = (System.Array).Json.JsonConverter.
-    FromBson(bson, typeof(int[]));
+// Serialize to JSON text.
+var intArray = new int[] { 1, 3, 5, 7, 9 };
+var jsonText = JsonConverter.Serialize(intArray).ToString();
+Debug.WriteLine(jsonText);                          // "[1,3,5,7,9]"
+
+// Round-trip through BSON (binary JSON).
+var bson = JsonConverter.Serialize(intArray).ToBson();
+var restored = (int[])JsonConverter.FromBson(bson, typeof(int[]));
 
 for (var i = 0; i < intArray.Length; i++) {
-    if (intArray[i] != (int)compare.GetValue(i)) {
-        Debug.WriteLine("Array test failed");
-        break;
+    if (intArray[i] != restored[i]) {
+        Debug.WriteLine("Array round-trip failed at index " + i);
+        return;
     }
 }
-Debug.WriteLine("Array test succeeded");
+Debug.WriteLine("Array round-trip succeeded");
 ```
 
----
+The same `Serialize` / `FromBson` pattern works for any class with public fields or properties — TinyCLR walks the type via reflection.
 
 ## XML
-TinyCLR supports both the writing and reading of XML (eXtensible Markup Language) files through its XmlReader and XmlWriter classes. Full documentation of XML is beyond the scope of this document, but for more information Microsoft's [.NET XML documentation](https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmldocument?view=netcore-3.1) is a good place to start. Please note that the TinyCLR implementation of XML is not fully .NET compatible, for example the asynchronous API is not supported.
 
+TinyCLR includes `XmlReader` and `XmlWriter` for reading and writing XML — the standard streaming API from .NET. Useful for configuration files, structured logs, or interop with legacy systems that expect XML.
+
+NuGet package: **`GHIElectronics.TinyCLR.Data.Xml`**.
 
 :::note
-XmlReader and XmlWriter both implement the IDisposable interface.
+TinyCLR's XML is **not fully .NET-compatible** — the asynchronous API isn't supported. For the full API surface, see Microsoft's [`System.Xml`](https://learn.microsoft.com/dotnet/api/system.xml) documentation.
+
+Both `XmlReader` and `XmlWriter` implement `IDisposable`. Use `using` blocks to ensure they're closed properly.
 :::
 
-The following example shows the creation and reading of an XML file to and from a memory stream:
-:::tip
-Needed NuGets: GHIElectronics.TinyCLR.Core and GHIElectronics.TinyCLR.Data.Xml.
-:::
+The example below writes a small XML document to a memory stream, then reads it back:
 
 ```csharp
-MemoryStream stream = new MemoryStream();
+using System.Diagnostics;
+using System.IO;
+using System.Text;
+using System.Xml;
 
-XmlWriter writer = XmlWriter.Create(stream);
+// Write the XML.
+var stream = new MemoryStream();
+using (var writer = XmlWriter.Create(stream)) {
+    writer.WriteProcessingInstruction("xml", "version=\"1.0\" encoding=\"utf-8\"");
+    writer.WriteComment("Sample logger configuration");
+    writer.WriteStartElement("DataLogger");
+        writer.WriteElementString("FileName", "Data");
+        writer.WriteElementString("FileExt", "txt");
+        writer.WriteElementString("SampleFrequency", "10");
+    writer.WriteEndElement();
+    writer.Flush();
+}
 
-writer.WriteProcessingInstruction("xml", "version=\"1.0\" encoding=\"utf-8\"");
-writer.WriteComment("This is just a comment");
-writer.WriteRaw("\r\n");
-writer.WriteStartElement("NETMF_DataLogger"); //Root element
-writer.WriteString("\r\n\t");
-writer.WriteStartElement("FileName");         //Child element
-writer.WriteString("Data");
-writer.WriteEndElement();
-writer.WriteRaw("\r\n\t");
-writer.WriteStartElement("FileExt");
-writer.WriteString("txt");
-writer.WriteEndElement();
-writer.WriteRaw("\r\n\t");
-writer.WriteStartElement("SampleFeq");
-writer.WriteString("10");
-writer.WriteEndElement();
-writer.WriteRaw("\r\n");
-writer.WriteEndElement();                     //End of root element
+byte[] xmlBytes = stream.ToArray();
+Debug.WriteLine(Encoding.UTF8.GetString(xmlBytes));
 
-writer.Flush();
-writer.Close();
-
-//Display the XML data.
-byte[] byteArray = stream.ToArray();
-char[] characterArray = UTF8Encoding.UTF8.GetChars(byteArray);
-Debug.WriteLine(new string(characterArray) + "\r\n\r\n");
-stream.Dispose();
-
-//Read the XML data.
-stream = new MemoryStream(byteArray);
-
-XmlReaderSettings settings = new XmlReaderSettings();
-settings.IgnoreWhitespace = true;
-settings.IgnoreComments = false;
-
-XmlReader reader = XmlReader.Create(stream, settings);
-
-while (!reader.EOF) {
-    reader.Read();
-
-    switch (reader.NodeType) {
-        case XmlNodeType.Element:
-            Debug.WriteLine("Element: " + reader.Name);
-            break;
-
-        case XmlNodeType.Text:
-            Debug.WriteLine("Text: " + reader.Value);
-            break;
-
-        case XmlNodeType.XmlDeclaration:
-            Debug.WriteLine("Declaration: " + reader.Name + ", " + reader.Value);
-            break;
-
-        case XmlNodeType.Comment:
-            Debug.WriteLine("Comment: " + reader.Value);
-            break;
-
-        case XmlNodeType.EndElement:
-            Debug.WriteLine("End element");
-            break;
-
-        case XmlNodeType.Whitespace:
-            Debug.WriteLine("White space");
-            break;
-
-        case XmlNodeType.None:
-            Debug.WriteLine("None");
-            break;
-
-        default:
-            Debug.WriteLine(reader.NodeType.ToString());
-            break;
+// Read the XML back.
+using (var readStream = new MemoryStream(xmlBytes))
+using (var reader = XmlReader.Create(readStream, new XmlReaderSettings {
+    IgnoreWhitespace = true,
+    IgnoreComments = false,
+})) {
+    while (reader.Read()) {
+        switch (reader.NodeType) {
+            case XmlNodeType.Element:
+                Debug.WriteLine("Element: " + reader.Name);
+                break;
+            case XmlNodeType.Text:
+                Debug.WriteLine("Text: " + reader.Value);
+                break;
+            case XmlNodeType.Comment:
+                Debug.WriteLine("Comment: " + reader.Value);
+                break;
+            case XmlNodeType.XmlDeclaration:
+                Debug.WriteLine("Declaration: " + reader.Name + " " + reader.Value);
+                break;
+            case XmlNodeType.EndElement:
+                Debug.WriteLine("End: " + reader.Name);
+                break;
+        }
     }
 }
 ```
 
+The `WriteElementString(name, value)` helper is much cleaner than the original verbose pattern (`WriteStartElement` → `WriteString` → `WriteEndElement`) when you don't need to write attributes.

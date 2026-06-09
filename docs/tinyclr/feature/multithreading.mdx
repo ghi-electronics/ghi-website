@@ -2,22 +2,58 @@
 title: Multithreading
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
-:::
+TinyCLR runs **one application** — your code — with no shared user-mode processes or services like a desktop OS would have. That's a security win (smaller attack surface, no untrusted neighbors) but it doesn't mean your code is single-threaded. **Threads work like they do in full .NET**: same `System.Threading.Thread` class, same `lock` / `Monitor` / `ManualResetEvent` primitives, same patterns.
 
-TinyCLR is a single process system, only running your application. This is in fact a good security feature! However, TinyCLR supports threading similar to full .NET.
+Use threads when you have **independent work** that can run in parallel — for example, blinking an LED in the background while the main thread does sensor reads, or running a network reader in parallel with a UI loop.
+
+## Starting a thread
 
 ```csharp
+using System.Threading;
+
 void Blinker() {
-    // LED on
-    Thread.Sleep(100);
-    // LED off
-    Thread.Sleep(100);
+    while (true) {
+        // LED on
+        Thread.Sleep(100);
+        // LED off
+        Thread.Sleep(100);
+    }
 }
 
 var t = new Thread(Blinker);
 t.Start();
-// do secondary task
+
+// Main thread keeps running here.
 Thread.Sleep(Timeout.Infinite);
 ```
+
+The new thread starts on `t.Start()` and runs until the method returns. To stop it cleanly, share a `bool` flag (or a `CancellationTokenSource`) that the thread checks each loop iteration.
+
+## Sleeping and yielding
+
+- **`Thread.Sleep(milliseconds)`** — block the thread for a given duration. Granularity is typically a few milliseconds; don't expect microsecond accuracy.
+- **`Thread.Sleep(0)`** — yield to the scheduler immediately without blocking. Useful in tight loops to avoid starving lower-priority threads.
+- **`Thread.Sleep(Timeout.Infinite)`** — block forever. The main thread often does this so the program doesn't exit while background threads run.
+
+## Synchronization
+
+Standard .NET primitives are supported:
+
+- **`lock` / `Monitor`** — mutual exclusion around shared state.
+- **`ManualResetEvent` / `AutoResetEvent`** — signal between threads.
+- **`Interlocked`** — atomic read/modify/write on integers.
+
+```csharp
+private static readonly object syncLock = new object();
+private static int counter;
+
+void IncrementSafely() {
+    lock (syncLock) {
+        counter++;
+    }
+}
+```
+
+## Async/await
+
+TinyCLR v3 supports **C# `async` and `await`** on top of `System.Threading.Tasks` — useful for I/O-bound code (network requests, file reads) where you'd otherwise block a thread waiting for completion. See the [release notes](/docs/tinyclr/release-notes) for the version where this landed.

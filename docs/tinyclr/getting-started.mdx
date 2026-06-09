@@ -12,7 +12,7 @@ Set up the TinyCLR programming environment, install the firmware on a SITCore de
 
 TinyCLR is a .NET runtime for embedded products from GHI Electronics. You write C# in Visual Studio, deploy and debug over USB, and the same code runs across every [SITCore hardware](hardware.mdx) form factor — chipsets, modules, single-board computers, and dev boards. No JTAG, no external programmer, no separate toolchain.
 
-Out of the box: modern C# (generics, async/await, top-level statements), step debugging in Visual Studio, full peripheral coverage (GPIO, SPI, I²C, UART, networking, displays, file system), security (TLS, secure boot, IP protection, encrypted firmware updates), and cloud SDKs for Azure, AWS, and Google Cloud. Browse the full [features list](features.mdx) for the deep dive.
+Out of the box: modern C# (generics, async/await, top-level statements), step debugging in Visual Studio, full peripheral coverage (GPIO, SPI, I²C, UART, networking, displays, file system), security (TLS, secure boot, IP protection, encrypted firmware updates), and cloud SDKs for Azure and AWS. Browse the full [features list](features.mdx) for the deep dive.
 
 TinyCLR is royalty-free for SITCore customers.
 
@@ -90,7 +90,7 @@ Let's blink an LED on a SITCore board.
 
    ![Configure project](/img/docs/configure-project.gif)
 
-5. Install the **`GHIElectronics.TinyCLR.Devices.Gpio`** and **`GHIElectronics.TinyCLR.Pins`** [NuGet packages](feature/nuget.mdx).
+5. Install the **`GHIElectronics.TinyCLR.Devices.Gpio`** and **`GHIElectronics.TinyCLR.Pins`** NuGet packages.
 
 6. Paste this into `Program.cs`:
 

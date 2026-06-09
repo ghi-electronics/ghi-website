@@ -4,10 +4,6 @@ sidebar_position: 1
 title: Features
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
-:::
-
 # Features
 
 TinyCLR is a real .NET runtime on embedded hardware. The pages below cover every capability the runtime provides — pin-level I/O, communication buses, networking, cloud integration, storage, displays, security, and the modern .NET features you'd expect (multithreading, reflection, collections, and more).
@@ -57,9 +53,7 @@ Native support for the major cloud platforms — no bridging code or external SD
 
 - [Azure](feature/azure.mdx) — Microsoft Azure IoT Hub
 - [AWS](feature/aws.mdx) — Amazon Web Services IoT
-- [Google Cloud](feature/google-cloud.mdx) — Google Cloud IoT
 - [IFTTT](feature/ifttt.mdx) — IFTTT webhook integration
-- [Adafruit IO](feature/adafruit-io.mdx) — Adafruit IO dashboards and data
 
 ## Storage
 
@@ -102,35 +96,33 @@ Production-grade security stack — secure boot, encrypted updates, TLS, and IP 
 
 ## System Services
 
-Power management, time-keeping, and system-level utilities.
+SITCore hardware features exposed through TinyCLR APIs — power, time, and board-level memory.
 
 - [Power Management](feature/power-management.mdx) — sleep modes and wake sources
 - [Watchdog Timer](feature/watchdog-timer.mdx) — hardware watchdog for reliability
-- [Real-Time Clock](feature/real-time-clock.mdx) — battery-backed RTC
-- [Timers](feature/timers.mdx) — software and hardware timer APIs
-- [Specialized](feature/specialized.mdx) — board-specific and uncommon features
+- [Real-Time Clock](feature/real-time-clock.mdx) — battery-backed RTC and time keeping
+- [External Memory](feature/external-memory.mdx) — external SDRAM and QSPI flash
+- [Device Info](feature/device-info.mdx) — hardware ID, firmware version, debug interface control
 
 ## Runtime Essentials
 
-Productivity-grade tooling — debugging, memory management, NuGet packaging, and device introspection.
+TinyCLR-specific runtime behavior — what's different from desktop .NET and how to work with it. TinyCLR libraries ship as standard NuGet packages on [nuget.org](https://www.nuget.org/) — search **tinyclr** in Visual Studio's NuGet package manager.
 
-- [Debugging](feature/debugging.mdx) — Visual Studio breakpoint debugging
-- [Memory Management](feature/memory.mdx) — garbage collection and memory pressure
-- [External Memory](feature/external-memory.mdx) — using external RAM
-- [Unmanaged Heap](feature/unmanaged-heap.mdx) — allocate outside the GC heap
-- [NuGet Libraries](feature/nuget.mdx) — TinyCLR's NuGet ecosystem
-- [Device Info](feature/device-info.mdx) — read hardware ID, firmware version, and more
+- [Debugging](feature/debugging.mdx) — Visual Studio breakpoint debugging over USB or serial
+- [Memory Management](feature/memory.mdx) — garbage collection, hardware-resource lifetime, pinned memory
+- [Unmanaged Heap](feature/unmanaged-heap.mdx) — allocate outside the GC heap for large buffers and graphics
+- [Marshal](feature/marshal.mdx) — direct register access and interrupt control (advanced)
+- [Application Domain](feature/application-domain.mdx) — load PE assemblies at runtime from storage
 
 ## Modern .NET
 
-The .NET features you expect — multithreading, reflection, collections, and more — running on embedded hardware.
+Standard .NET APIs available on TinyCLR — running on embedded hardware just like they'd run on desktop.
 
-- [Multithreading](feature/multithreading.mdx) — threads, locks, and synchronization primitives
-- [Reflection](feature/reflection.mdx) — runtime type inspection
-- [Collections](feature/collections.mdx) — lists, dictionaries, and sets
-- [Serialization](feature/serialization.mdx) — binary and JSON serialization
-- [Encoding/Decoding](feature/encoding-decoding.mdx) — UTF-8, Base64, and hex
-- [Application Domain](feature/application-domain.mdx) — application isolation
-- [Marshal](feature/marshal.mdx) — pointer and memory marshaling
-- [RegEx](feature/regex.mdx) — regular expressions
-- [Stream](feature/stream.mdx) — Stream class and derivatives
+- [Multithreading](feature/multithreading.mdx) — threads, locks, synchronization, async/await
+- [Collections](feature/collections.mdx) — ArrayList, Hashtable, Stack, Queue (plus generics in v3)
+- [Reflection](feature/reflection.mdx) — runtime type inspection and dynamic invocation
+- [Serialization](feature/serialization.mdx) — binary, JSON, and XML serializers
+- [Encoding & Decoding](feature/encoding-decoding.mdx) — Encoding, Base64, BitConverter, StringBuilder
+- [Regex](feature/regex.mdx) — pattern matching, replacement, and splitting
+- [Stream](feature/stream.mdx) — Stream abstraction with file, memory, and network backends
+- [Timers](feature/timers.mdx) — System.Threading.Timer for scheduled callbacks

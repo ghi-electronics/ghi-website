@@ -2,31 +2,39 @@
 title: Resources
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
-:::
+**Resource files** let you bundle binary assets — images, audio, certificates, lookup tables, configuration data — into the application binary. Everything in the resources file ships with your code in a single deployment and is accessed at runtime by name.
 
-Resource files can be used to store strings, images, audio files, and other binary or text files that will be used by your application.
+## Adding a resources file
 
-Right-click on your project and `Add-> New Item...` Select `TinyCLR` and click on `Resources File`. Name the file `Resources` to match the code samples in Docs.
+In Visual Studio, right-click your project and choose **Add → New Item…**, select **TinyCLR** in the left pane, and pick **Resources File**. Name the file **`Resources`** to match the snippets in the rest of the TinyCLR docs.
 
-![Resources](/img/docs/add-resources.jpg)
+![Adding a TinyCLR resources file in Visual Studio](/img/docs/add-resources.jpg)
 
-You can now drag resources right into the file.
+Drag files (images, certificates, binary blobs, etc.) directly onto the resources editor to add them. Each one gets a generated identifier in `Resources.BinaryResources.*` you can use from C#:
 
-![Resources](/img/docs/resources.jpg)
+![Resources view in Visual Studio](/img/docs/resources.jpg)
 
-In the background, a file is generated to reflect the added resources. Using the resource will look similar to `var resourceData = Resources.GetBytes(Resources.BinaryResources.data);`
+## Loading a resource
 
+The generated `Resources` class exposes each item by its identifier. For binary data:
+
+```csharp
+var resourceData = Resources.GetBytes(Resources.BinaryResources.data);
+```
+
+For string resources, use `Resources.GetString(...)`. Visual Studio generates the matching getter based on the resource type.
 
 :::tip
-If you are copying example code that uses resource files, some changes may be needed to match the resources' names in your project.
+When copying example code from these docs, the resource identifier (`Resources.BinaryResources.data` above) needs to match the name you gave the resource in your own project. The docs use generic names like `data`, `cert`, or `image` — swap in your actual names.
 :::
 
 ## Partial loading
-Large resources can be partially loaded in RAM as needed.
+
+For large resources where loading the entire blob into RAM at once isn't practical, you can read a region by offset and length. This is useful for streaming audio playback, paging through a large lookup table, or reading just the metadata header of a binary asset.
 
 ```csharp
-var resourceId = (short)Resources.BinaryResources.YourResourceId;
-var data = (byte[])(Resources.ResourceManager.GetObject(resourceId, offset, readSize));
+var resourceId = (short)Resources.BinaryResources.LargeBlob;
+var chunk = (byte[])Resources.ResourceManager.GetObject(resourceId, offset, readSize);
 ```
+
+Each call returns a fresh `byte[]` of length `readSize` containing the bytes starting at `offset` — the rest of the resource stays unread in flash.

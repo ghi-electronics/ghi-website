@@ -2,80 +2,45 @@
 title: Hashing
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
-:::
+TinyCLR exposes both the **standard .NET hash algorithms** (MD5, SHA-1, HMAC variants) and a TinyCLR-specific **CRC16** for error detection.
 
-:::tip
-Needed NuGets: GHIElectronics.TinyCLR.Core and GHIElectronics.TinyCLR.Cryptography
-:::
+NuGet package: **`GHIElectronics.TinyCLR.Cryptography`**.
 
-## MD5
-TinyCLR supports MD5 hash function.
+## Standard .NET hashes
 
- The following commands will calculate the MD5 hash value of a byte array:
+The following algorithms behave identically to their desktop .NET counterparts — use the same code you'd use on a PC. For algorithm details, parameter semantics, and the full API surface, see Microsoft's [`System.Security.Cryptography`](https://learn.microsoft.com/dotnet/api/system.security.cryptography) documentation. For the exact subset of methods TinyCLR exposes, see the [API reference](/docs/tinyclr/api).
 
-```csharp
-var md5 = GHIElectronics.TinyCLR.Cryptography.MD5.Create();
-var hashValue = md5.ComputeHash(data); //data is a byte array.
-```
----
+- **`MD5`** — legacy 128-bit hash. Don't use for security; useful for cache keys, file fingerprinting.
+- **`SHA1`** — 160-bit hash. Considered cryptographically weak; still useful for non-security integrity checks.
+- **`HMACSHA1`** — keyed message authentication code built on SHA-1.
+- **`HMACSHA256`** — keyed message authentication code built on SHA-256. Required for **Shared Access Signatures** when integrating with [Azure](azure.mdx).
 
 ## CRC16
-TinyCLR supports CRC16.
+
+**`Crc16`** is a 16-bit cyclic redundancy check — fast error detection for serial protocols, packet framing, and stored data. It's part of TinyCLR's library and isn't in standard .NET.
+
+Hash an entire buffer in one call:
 
 ```csharp
-ComputeHash(byte[] data, int offset, int count);
-```
+using GHIElectronics.TinyCLR.Cryptography;
 
-Large amounts of data can be calculated in chunks and the hash is concatenated automatically. 
-
-```csharp
-var crc16 = new Crc16();
+var crc = new Crc16();
 var data = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 };
-            
-// Uses entire array to build the hash
-var crcVal1 = crc16.ComputeHash(data, 0, data.Length);
 
-// Uses chunks of the array to build the hash
-var crc1 = crc16.ComputeHash(data, 0, 3);
-
-var crc1_2 = crc16.ComputeHash(data, 3, 1, crc1);         
-
+var hash = crc.ComputeHash(data, 0, data.Length);
 ```
----
 
-## SHA1
-SHA-1 is most often used to verify that a file has been unaltered. This is done by producing a checksum before the file has been transmitted, and then again once it reaches its destination.
+Or hash in chunks — pass the running hash back into the next call to continue from where the previous chunk left off:
 
 ```csharp
-var data = new byte[] { 1, 2, 3, 4, 5 };
-var sha1 = SHA1.Create();
+var crc = new Crc16();
+var data = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 };
 
-var result = sha1.ComputeHash(data);
+// Hash the first 3 bytes.
+var partial = crc.ComputeHash(data, 0, 3);
+
+// Hash the next byte, continuing from the previous result.
+var combined = crc.ComputeHash(data, 3, 1, partial);
 ```
 
----
-
-## HMAC-SHA1
-HMACSHA1 is a type of keyed hash algorithm that is constructed from the SHA1 hash function and used as an HMAC, or hash-based message authentication code.
-
-```csharp
-var data = new byte[] { 1, 2, 3, 4, 5 };
-var hmacSha1 = new HMACSHA1();
-
-var result = hmacSha1.ComputeHash(data);
-```
----
-
-## HMAC-SHA256
-HMAC-SHA256 offers better security than standard SHA256. It is also required for SAS(Shared Access Signature), needed for [Microsoft Azure](azure.mdx).
-
-```csharp
-var key = new byte[] { 1, 2, 3, 4, 5, 6 };
-var hmacSha256 = new HMACSHA256(key);
-
-var message = "this is for test";
-var result = hmacSha256.ComputeHash(System.Text.UTF8Encoding.UTF8.GetBytes(message));
-```
-
+This is useful when the data arrives a chunk at a time (streamed from disk, received over UART) and you don't want to buffer the full payload before computing the CRC.

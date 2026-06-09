@@ -2,20 +2,36 @@
 title: Debugging
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
-:::
+TinyCLR gives you **full Visual Studio debugging on the device** — set breakpoints, step through code, inspect variables, and view exceptions, all over a regular USB cable. No JTAG probe, no specialized hardware, no separate toolchain.
 
-TinyCLR allows developers to debug tiny IoT devices just like you would debug an application on a full PC, right from  within Visual Studio, over USB or Serial. Set breakpoints, step through code, and examine variables without the need for specialized hardware or software.
+## Debug interface
 
-By default, the system checks the [MOD pin](https://docs.ghielectronics.com/software/tinyclr/special-pins.html) to determine the debug interface, USB or Serial. The user has the option to disable MOD pin feature and force (or disable) the debug interface. See [Device Info](device-info.mdx) for details.
+By default, the device chooses its debug interface (USB or serial) by reading the **MOD pin** at startup — see [Special Pins](/docs/tinyclr/special-pins) for the pin reference. The MOD-pin selection can be overridden — see [Device Info](device-info.mdx) for forcing or disabling either interface.
 
-When serial debugging is selected, it defaults to:
+When serial debugging is active, the default UART is:
 
- * UART1 on SC13xxx
- * UART1 on SC20100
- * UART5 on SC20260
+- **SC13xxx** — UART1
+- **SC20100** — UART1
+- **SC20260** — UART5
 
-:::tip
-Information on using the Visual Studio debugger can be found in Microsoft's documentation [here](https://docs.microsoft.com/en-us/visualstudio/debugger/debugger-feature-tour?view=vs-2019).
-:::
+USB is the default choice for most workflows. Serial is useful when the USB Client port is needed for other purposes (a USB device profile, mass storage, etc. — see [USB Client](usb-client.mdx)).
+
+## Debug output
+
+Use `System.Diagnostics.Debug` for printf-style debugging — output appears in the **Output** window in Visual Studio:
+
+```csharp
+using System.Diagnostics;
+
+Debug.WriteLine("Sensor reading: " + reading);
+```
+
+Debug output is stripped from release builds automatically — you don't need to remove the calls before shipping.
+
+## Disabling the debug interface in production
+
+Production devices should usually have the debug interface **disabled** — both to free the port for other uses and as a defense-in-depth security measure. See [IP Protection](ip-protection.mdx) for the secure-design pattern that disables the debug interface and uses [In-Field Update](in-field-update.mdx) for post-deployment firmware updates instead.
+
+## Using the Visual Studio debugger
+
+The on-device experience matches the regular .NET Visual Studio debugger. For the keyboard shortcuts, breakpoint types, watch windows, and call-stack navigation features, see Microsoft's [Visual Studio debugger feature tour](https://learn.microsoft.com/visualstudio/debugger/debugger-feature-tour).
