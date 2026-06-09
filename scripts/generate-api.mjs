@@ -664,17 +664,21 @@ const KIND_SECTIONS = [
   ['enum', 'Enums'], ['delegate', 'Delegates'],
 ];
 
+// Folder / URL segment for a package: the NuGet id minus the "GHIElectronics.TinyCLR."
+// prefix (e.g. "System.Security.Cryptography"). Used for api/<name>/ paths and links.
+const shortName = (asm) => asm.replace(/^GHIElectronics\.TinyCLR\./, '');
+
 // Per-package admonition shown under the heading. Used to cross-link a NuGet to the
 // standard-.NET compat shim DLL it ships alongside (same NuGet, separate assembly),
 // so users browsing the small helper package discover the richer .NET-compatible API.
 const PACKAGE_NOTES = {
   'GHIElectronics.TinyCLR.Cryptography':
     ':::tip\n' +
-    '**Need standard .NET cryptography?** This NuGet also provides the .NET-compatible `System.Security.Cryptography` API (hashing, AES, RSA, X.509, …) — see **[GHIElectronics.TinyCLR.System.Security.Cryptography](../GHIElectronics.TinyCLR.System.Security.Cryptography/index.md)**. The `Crc16` and `Xtea` types here are lightweight extras.\n' +
+    '**Need standard .NET cryptography?** This NuGet also provides the .NET-compatible `System.Security.Cryptography` API (hashing, AES, RSA, X.509, …) — see **[GHIElectronics.TinyCLR.System.Security.Cryptography](../System.Security.Cryptography/index.md)**. The `Crc16` and `Xtea` types here are lightweight extras.\n' +
     ':::',
   'GHIElectronics.TinyCLR.System.Security.Cryptography':
     ':::info\n' +
-    'The standard-.NET `System.Security.Cryptography` API for TinyCLR. It ships inside the **[GHIElectronics.TinyCLR.Cryptography](../GHIElectronics.TinyCLR.Cryptography/index.md)** NuGet — there is no separate package to install.\n' +
+    'The standard-.NET `System.Security.Cryptography` API for TinyCLR. It ships inside the **[GHIElectronics.TinyCLR.Cryptography](../Cryptography/index.md)** NuGet — there is no separate package to install.\n' +
     ':::',
 };
 
@@ -692,11 +696,11 @@ const SHIM_PAIRS = [
 for (const [parent, shim, api] of SHIM_PAIRS) {
   PACKAGE_NOTES[parent] =
     ':::tip\n' +
-    `This NuGet also includes the standard, .NET-compatible **\`${api}\`** API — see **[${shim}](../${shim}/index.md)**.\n` +
+    `This NuGet also includes the standard, .NET-compatible **\`${api}\`** API — see **[${shim}](../${shortName(shim)}/index.md)**.\n` +
     ':::';
   PACKAGE_NOTES[shim] =
     ':::info\n' +
-    `The standard, .NET-compatible \`${api}\` API for TinyCLR. It ships inside the **[${parent}](../${parent}/index.md)** NuGet — there is no separate package to install.\n` +
+    `The standard, .NET-compatible \`${api}\` API for TinyCLR. It ships inside the **[${parent}](../${shortName(parent)}/index.md)** NuGet — there is no separate package to install.\n` +
     ':::';
 }
 
@@ -711,10 +715,12 @@ function renderAssemblyIndex(assembly, types, fileOf) {
   L.push(`sidebar_label: Overview`);
   L.push('---');
   L.push('');
-  // Heading mirrors Microsoft's API style ("<name> Namespace") — here "<package> NuGet" —
-  // and uses a raw <h1> (className works because Docusaurus 3 parses .md as MDX) so custom.css
-  // can size it like the Microsoft docs page instead of Docusaurus's oversized default H1.
-  L.push(`<h1 className="api-package-heading">${assembly} NuGet</h1>`);
+  // Heading: "<name> Library" (matches the index "Library" column). Each page is one
+  // assembly/DLL — it may span several namespaces and isn't always a separate NuGet (the
+  // System.* shims ship inside a parent package), so "Library" reads better than "NuGet"
+  // or "Namespace". Raw <h1> (className works because Docusaurus 3 parses .md as MDX) lets
+  // custom.css size it like the Microsoft docs page, not Docusaurus's oversized default.
+  L.push(`<h1 className="api-package-heading">${shortName(assembly)} Library</h1>`);
   L.push('');
   if (PACKAGE_NOTES[assembly]) {
     L.push(PACKAGE_NOTES[assembly], '');
@@ -806,7 +812,7 @@ function renderPinsIndex(asm, boards) {
   const real = boards.filter(b => !/^STM32/.test(b.name));
   const chips = boards.filter(b => /^STM32/.test(b.name));
   const L = ['---', `title: ${yaml(asm)}`, 'hide_title: true', 'sidebar_label: Overview', '---', '',
-    `<h1 className="api-package-heading">${asm} NuGet</h1>`, '',
+    `<h1 className="api-package-heading">${shortName(asm)} Library</h1>`, '',
     'Pin, peripheral, and bus definitions, grouped by board. Pick your board:', '',
     '## Boards', ''];
   for (const b of real) L.push(`- [${b.name}](./${encodeURIComponent(b.name)}.md)`);
@@ -884,7 +890,7 @@ async function main() {
 
   const assemblies = [...byAsm.keys()].sort();
   for (const asm of assemblies) {
-    const asmDir = path.join(outRoot, asm);
+    const asmDir = path.join(outRoot, shortName(asm));
     await fs.mkdir(asmDir, { recursive: true });
     const types = byAsm.get(asm).sort((a, b) => a.name.localeCompare(b.name));
     const fileOf = assignFilenames(types);
@@ -919,10 +925,9 @@ async function main() {
   for (const asm of assemblies) descOf.set(asm, await readPackageDescription(libsRoot, asm));
   const idx2 = ['---', 'title: API Reference', 'sidebar_label: Overview', 'slug: /tinyclr/api', '---', '',
     '# TinyCLR API Reference', '',
-    '## Packages', '',
-    '| NuGet package | Description |', '|---|---|'];
+    '| Library | Description |', '|---|---|'];
   for (const asm of assemblies)
-    idx2.push(`| [${asm}](./${encodeURIComponent(asm)}/index.md) | ${proseCell(descOf.get(asm))} |`);
+    idx2.push(`| [${shortName(asm)}](./${encodeURIComponent(shortName(asm))}/index.md) | ${proseCell(descOf.get(asm))} |`);
   await fs.writeFile(path.join(outRoot, 'index.md'), idx2.join('\n'));
 
   const total = model.types.length;
