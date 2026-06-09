@@ -46,3 +46,10 @@ The timeout has to be **longer than the worst-case time between kicks**, or you'
 A common pattern is to set the timeout to **roughly 2× your steady-state kick interval** so transient delays don't trip it, but real hangs do.
 
 If you set it **too short**, the device gets stuck in a reset loop. If you set it **too long**, the system might be unresponsive for a long time before recovering. Tune to your application's responsiveness budget.
+
+
+## API reference
+
+| Namespace | Description |
+|---|---|
+| [GHIElectronics.TinyCLR.Devices.Watchdog](/docs/tinyclr/api/Devices.Watchdog/) | Watchdog timer controller classes |

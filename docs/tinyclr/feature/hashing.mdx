@@ -8,7 +8,7 @@ NuGet package: **`GHIElectronics.TinyCLR.Cryptography`**.
 
 ## Standard .NET hashes
 
-The following algorithms behave identically to their desktop .NET counterparts — use the same code you'd use on a PC. For algorithm details, parameter semantics, and the full API surface, see Microsoft's [`System.Security.Cryptography`](https://learn.microsoft.com/dotnet/api/system.security.cryptography) documentation. For the exact subset of methods TinyCLR exposes, see the [API reference](/docs/tinyclr/api).
+The following algorithms behave identically to their desktop .NET counterparts — use the same code you'd use on a PC. For algorithm details, parameter semantics, and the full API surface, see Microsoft's [`System.Security.Cryptography`](https://learn.microsoft.com/dotnet/api/system.security.cryptography) documentation. For the exact subset of methods TinyCLR exposes, see the [System.Security.Cryptography API reference](/docs/tinyclr/api/System.Security.Cryptography/).
 
 - **`MD5`** — legacy 128-bit hash. Don't use for security; useful for cache keys, file fingerprinting.
 - **`SHA1`** — 160-bit hash. Considered cryptographically weak; still useful for non-security integrity checks.
@@ -44,3 +44,10 @@ var combined = crc.ComputeHash(data, 3, 1, partial);
 ```
 
 This is useful when the data arrives a chunk at a time (streamed from disk, received over UART) and you don't want to buffer the full payload before computing the CRC.
+
+
+## API reference
+
+| Namespace | Description |
+|---|---|
+| [GHIElectronics.TinyCLR.System.Security.Cryptography](/docs/tinyclr/api/System.Security.Cryptography/) | SHA, MD5, HMAC, AES, and RSA cryptographic classes |

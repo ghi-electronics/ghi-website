@@ -127,3 +127,10 @@ Verify the connection in the AWS IoT console — under your thing, you'll see th
 - **`-ats` endpoint** — always use the Amazon Trust Services (`-ats`) endpoint suffix. The older non-`-ats` endpoint uses an outdated root CA chain.
 - **Time sync** — TLS validates certificate dates against the device clock. Make sure the clock is reasonably correct (within a few hours of real UTC) or the TLS handshake will fail.
 - **Certificate rotation** — AWS IoT supports rotating client certificates. Plan an OTA update path so you can refresh the device certificate before it expires (default validity is configurable but finite).
+
+
+## API reference
+
+| Namespace | Description |
+|---|---|
+| [GHIElectronics.TinyCLR.Networking.Mqtt](/docs/tinyclr/api/Networking.Mqtt/) | MQTT client classes |

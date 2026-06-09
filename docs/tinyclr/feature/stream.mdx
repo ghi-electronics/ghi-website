@@ -105,3 +105,10 @@ public class UartStream : Stream {
 :::tip
 The `Read` implementation above **busy-waits** with `while (this.uart.BytesToRead == 0) ;` — that hogs CPU. For higher-power-efficiency code, swap in a small `Thread.Sleep(1)` inside the spin loop or use `UartController.DataReceived` events to signal a waiter.
 :::
+
+
+## API reference
+
+| Namespace | Description |
+|---|---|
+| [GHIElectronics.TinyCLR.IO](/docs/tinyclr/api/IO/) | Stream subclasses including DataReader and DataWriter |

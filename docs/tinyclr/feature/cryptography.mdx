@@ -8,7 +8,7 @@ NuGet package: **`GHIElectronics.TinyCLR.Cryptography`**.
 
 ## Standard .NET cryptography
 
-The standard cryptographic primitives from `System.Security.Cryptography` behave the same as on desktop .NET — `RSACryptoServiceProvider`, `AesCryptoServiceProvider`, and friends. For algorithm details, parameter semantics, and full API documentation, see Microsoft's [`System.Security.Cryptography`](https://learn.microsoft.com/dotnet/api/system.security.cryptography) reference. For the exact subset of methods TinyCLR exposes, see the [API reference](/docs/tinyclr/api).
+The standard cryptographic primitives from `System.Security.Cryptography` behave the same as on desktop .NET — `RSACryptoServiceProvider`, `AesCryptoServiceProvider`, and friends. For algorithm details, parameter semantics, and full API documentation, see Microsoft's [`System.Security.Cryptography`](https://learn.microsoft.com/dotnet/api/system.security.cryptography) reference. For the exact subset of methods TinyCLR exposes, see the [System.Security.Cryptography API reference](/docs/tinyclr/api/System.Security.Cryptography/).
 
 For network security, [TLS](tls.mdx) wraps these primitives in a high-level API — most applications won't touch raw RSA/AES directly.
 
@@ -42,3 +42,10 @@ Debug.WriteLine("Decrypted: " + Encoding.UTF8.GetString(decrypted));
 :::warning
 **XTEA is not a current-standard cipher.** For new designs that need symmetric encryption, prefer **AES** from `System.Security.Cryptography` — it's faster on most modern hardware, has wider library compatibility, and is the choice every audit will expect. Reach for XTEA only for compatibility with existing TinyCLR 2 code, or in extreme footprint-constrained scenarios.
 :::
+
+
+## API reference
+
+| Namespace | Description |
+|---|---|
+| [GHIElectronics.TinyCLR.System.Security.Cryptography](/docs/tinyclr/api/System.Security.Cryptography/) | RSA, AES, ECC, SHA, HMAC, and certificate classes |

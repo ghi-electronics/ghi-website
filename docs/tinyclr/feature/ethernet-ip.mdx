@@ -377,3 +377,11 @@ static void Adapter_ReceivedExplicitTcpData(AdapterController adapter, ushort co
 static void Adapter_ReceivedExplicitUdpData(AdapterController adapter, ushort commandCode, IPAddress ip, bool unicast)
     => Debug.WriteLine("UDP: command=" + commandCode + " from=" + ip + " unicast=" + unicast);
 ```
+
+
+## API reference
+
+| Namespace | Description |
+|---|---|
+| [GHIElectronics.TinyCLR.EthernetIP.Scanner](/docs/tinyclr/api/EthernetIP.Scanner/) | EtherNet/IP scanner (master) classes |
+| [GHIElectronics.TinyCLR.EthernetIP.Adapter](/docs/tinyclr/api/EthernetIP.Adapter/) | EtherNet/IP adapter (slave) classes |

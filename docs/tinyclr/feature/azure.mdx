@@ -110,3 +110,10 @@ Messages sent from the Azure side land in `PublishReceivedChanged`:
 - **API version** — bump `apiVersion` when Microsoft publishes a newer one with features you need. Older API versions continue to work but may be deprecated over time. Check [Microsoft's MQTT support reference](https://learn.microsoft.com/azure/iot-hub/iot-hub-mqtt-support) for the current value.
 - **Time sync is mandatory** — SAS tokens carry an expiration timestamp validated by Azure against its current UTC. A device with a clock that's hours off from real time will get its tokens rejected. Set the clock at startup from a time source (NTP server, cellular network, or pass-through from a connected gateway).
 - **Provisioning at scale** — for fleets, consider the **Azure IoT Hub Device Provisioning Service (DPS)** instead of hand-registering each device. DPS uses the same MQTT flow but provisions the IoT Hub assignment dynamically.
+
+
+## API reference
+
+| Namespace | Description |
+|---|---|
+| [GHIElectronics.TinyCLR.Networking.Mqtt](/docs/tinyclr/api/Networking.Mqtt/) | MQTT client classes |
