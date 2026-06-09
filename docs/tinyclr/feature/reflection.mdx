@@ -2,52 +2,55 @@
 title: Reflection
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
-:::
+**Reflection** lets you inspect and use type information at runtime — discovering the type of an object, listing its members, reading attributes, or invoking methods by name. TinyCLR's reflection API lives in the standard `System.Reflection` namespace and mirrors the desktop .NET surface (minus a few advanced features).
 
-Reflection objects are used for obtaining type information at runtime. This class is in the System.Reflection namespace.
+Common embedded uses: looking up a handler method by string name, parsing custom attributes for configuration metadata, or serializing arbitrary objects to JSON.
+
+## Getting an object's type
 
 ```csharp
-var i=20;
+var i = 20;
 Type type = i.GetType();
-
-//type = System.Int32
+// type.FullName == "System.Int32"
 ```
 
-Another example below shows how to access a private function from a different class. Let's say we have a class named ReflectionExample with private functions named FunctionA() and FunctionB().
+## Invoking a private method by name
+
+Reflection can reach into members that aren't publicly accessible — useful for testing, plugin patterns, or working around third-party APIs that didn't expose what you need.
+
+Given a class with two private methods:
 
 ```csharp
 public class ReflectionExample {
     private uint FunctionA() => 0x1234;
-
     private uint FunctionB(uint numPlus) => 0x1234 + numPlus;
 }
 ```
 
-Reflection provides a way to access these two functions even though they are declared as private.
+You can look up and invoke each by name:
 
 ```csharp
-var r = new ReflectionExample();
+using System;
+using System.Diagnostics;
+using System.Reflection;
 
+var r = new ReflectionExample();
 var type = r.GetType();
 
+// No-argument private method.
 var methodA = type.GetMethod("FunctionA", BindingFlags.NonPublic | BindingFlags.Instance);
-
 var valueA = methodA.Invoke(r, null);
 
-var methodB= type.GetMethod("FunctionB", BindingFlags.NonPublic | BindingFlags.Instance);
-
+// Private method taking one argument.
+var methodB = type.GetMethod("FunctionB", BindingFlags.NonPublic | BindingFlags.Instance);
 var valueB = methodB.Invoke(r, new object[] { (uint)1 });
 
-Debug.WriteLine("methodA : " + valueA);
-Debug.WriteLine("methodB : " + valueB);
+Debug.WriteLine("methodA: " + valueA);      // 4660  (= 0x1234)
+Debug.WriteLine("methodB: " + valueB);      // 4661  (= 0x1234 + 1)
 ```
 
-The output will be:
+The `BindingFlags.NonPublic | BindingFlags.Instance` combination is required to find private instance methods — without `NonPublic`, only public members are matched; without `Instance`, only static members are matched.
 
-```
-methodA : 4660
-methodB : 4661
-```
-
+:::tip
+**Reflection isn't free.** Looking up members by string name is slower than direct invocation, and `Invoke` boxes value-type arguments and return values. For performance-sensitive code paths, cache the `MethodInfo` you get from `GetMethod` and reuse it rather than looking it up every call.
+:::

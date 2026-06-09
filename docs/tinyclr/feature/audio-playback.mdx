@@ -2,18 +2,50 @@
 title: Audio Playback
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
-:::
+TinyCLR can play uncompressed **WAV** audio directly through the built-in DAC, and play **MP3** by offloading decoding to an external decoder chip. Codec drivers for both live in the [TinyCLR-Drivers repository](https://github.com/ghi-electronics/TinyCLR-Drivers).
 
-## WAV Files
+## WAV
 
-Simple audio playback is accomplished by reading a PCM WAV file and passing the data to the built-in analog out pin. Even easier, parse the WAV file on a PC and include the PCM samples.
+WAV playback is a thin pipeline: read PCM samples from the file (or from a baked-in resource) and push them to the [DAC](analog-out.mdx) at the sample rate the file specifies. The WAV driver in TinyCLR-Drivers handles the header parsing and the sample-timing loop — you supply the source bytes and a DAC channel.
 
-A WAV file parser driver is provided under the [Codec](https://docs.ghielectronics.com/software/tinyclr/drivers/codec.html) drives page.
+The example below plays a WAV file from an SD card on the SC20100S Dev Board:
 
----
+```csharp
+using GHIElectronics.TinyCLR.Devices.Dac;
+using GHIElectronics.TinyCLR.Devices.Storage;
+using GHIElectronics.TinyCLR.Drivers.Audio;     // From TinyCLR-Drivers — see repo for source.
+using GHIElectronics.TinyCLR.IO;
+using GHIElectronics.TinyCLR.Pins;
+using System.IO;
 
-## MP3 Files
+// Mount the SD card.
+var sd = StorageController.FromName(SC20100.StorageController.SdCard);
+var drive = FileSystem.Mount(sd.Hdc);
 
-MP3 file decoding can be accomplished by using one of the many MP3 decoders available from VLSI Solution http://www.vlsi.fi/. A driver is already provide, see the [Codec](https://docs.ghielectronics.com/software/tinyclr/drivers/codec.html) drives page.
+// Open the DAC channel that drives the audio output.
+var dac = DacController.GetDefault().OpenChannel(SC20100.Dac.Channel.PA4);
+
+// Pass the file stream and the DAC channel to the WAV player.
+using var wavStream = new FileStream(drive.Name + "music.wav", FileMode.Open);
+
+var player = new WavPlayer(dac);
+player.Play(wavStream);             // Blocks until playback finishes.
+```
+
+For maximum efficiency on small devices, **parse the WAV on a PC** and embed just the PCM sample bytes (plus the sample rate) as a [resource](resources.mdx). At runtime, push the samples directly to the DAC at the correct rate — no header parsing, smaller resource footprint than the original `.wav`.
+
+The exact `WavPlayer` API and the PCM-direct pattern live in the [TinyCLR-Drivers repository](https://github.com/ghi-electronics/TinyCLR-Drivers) — that's the canonical reference for the driver.
+
+The DAC output is a clean line-level signal — for a speaker, you'll need an external audio amplifier. See [Analog Out → Other ways to output analog signals](analog-out.mdx) for the signal-conditioning side.
+
+## MP3
+
+MP3 decoding on the SITCore CPU itself isn't practical — MP3 decode is computationally heavy and requires a license. Instead, TinyCLR works with external MP3 decoder chips, most commonly the [VLSI Solution](http://www.vlsi.fi/) **VS1053** family.
+
+The flow:
+
+1. The SITCore reads MP3 bytes from a file or network stream.
+2. Streams them over **SPI** to the VS1053.
+3. The VS1053 decodes in hardware and drives a speaker through its own audio output.
+
+The driver for the VS1053 lives in the [TinyCLR-Drivers repository](https://github.com/ghi-electronics/TinyCLR-Drivers) — the same place as the WAV driver. Other VLSI parts (VS1003, VS1063) follow similar patterns.

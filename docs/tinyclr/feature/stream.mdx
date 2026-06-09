@@ -1,97 +1,107 @@
 ---
-title: Stream Class
+title: Streams
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
-:::
+A **`Stream`** is the standard .NET abstraction for a sequence of bytes you can read from, write to, or both. It's the common interface used by file I/O, network sockets, in-memory buffers, and custom transports. TinyCLR supports the standard `System.IO.Stream` API plus the concrete subclasses below.
 
-Provides a generic view of a sequence of bytes. This is an abstract class.
-
-:::tip
-Need NuGets: GHIElectronics.TinyCLR.Core
-:::
+NuGet package: **`GHIElectronics.TinyCLR.Core`** (`System.IO.Stream` and the standard subclasses live in the core).
 
 ## FileStream
 
+Reads from and writes to a file on a mounted file system (SD card, USB drive, etc.).
+
 ```csharp
-var fileStream = new FileStream(@"A:\filename.tca", FileMode.Open);
+using System.IO;
 
-// Allocate a buffer with size fileStream.Length
-var buffer = new byte[fileStream.Length];
-
-// Read data
-fileStream.Read(buffer, 0, buffer.Length);
+using (var fs = new FileStream(@"A:\filename.tca", FileMode.Open)) {
+    var buffer = new byte[fs.Length];
+    fs.Read(buffer, 0, buffer.Length);
+}
 ```
+
+See the [File System](file-system.mdx) and [SD Cards](sd-cards.mdx) pages for mounting and file-system setup.
 
 ## MemoryStream
 
+Backs a stream with a `byte[]` in RAM — useful as a buffer for serializing/deserializing structured data without involving storage or the network.
+
 ```csharp
-var bufferIn = new byte[3] { 1, 2, 3 };
+using System.IO;
 
-var memoryStream = new System.IO.MemoryStream();
+var bufferIn = new byte[] { 1, 2, 3 };
 
-memoryStream.Seek(0, System.IO.SeekOrigin.Begin);
-memoryStream.Write(bufferIn, 0, bufferIn.Length);
+using (var ms = new MemoryStream()) {
+    ms.Write(bufferIn, 0, bufferIn.Length);
 
-var bufferOut = memoryStream.ToArray();
-
-// bufferIn and bufferOut match
-
+    var bufferOut = ms.ToArray();
+    // bufferOut == bufferIn
+}
 ```
+
 ## NetworkStream
 
+Wraps a TCP `Socket` so you can use stream-based I/O over the network — including chaining the socket through standard helpers like `StreamReader` / `StreamWriter`.
+
 ```csharp
-var myNetworkStream = new NetworkStream(networkSocket);
+using System.Net.Sockets;
+
+var ns = new NetworkStream(networkSocket);
+// Use ns.Read / ns.Write or wrap with StreamReader / StreamWriter.
 ```
 
-## UartStream
+See [Networking Core](networking-core.mdx) for setting up the underlying socket.
+
+## Custom: UartStream
+
+Most TinyCLR peripherals don't expose a `Stream` directly — they have their own `Read`/`Write` methods on the controller. You can bridge any of them into a `Stream` by subclassing `Stream` and implementing the abstract members. The example below wraps a `UartController` so you can pass it to anything that takes a `Stream`.
 
 ```csharp
-public class UartStream : Stream {
+using GHIElectronics.TinyCLR.Devices.Uart;
+using System;
+using System.IO;
 
-    private UartController uart;
+public class UartStream : Stream {
+    private readonly UartController uart;
+
     public UartStream(UartController uart) => this.uart = uart;
-    
+
     public override bool CanRead => true;
     public override bool CanSeek => false;
     public override bool CanWrite => true;
 
-    public override long Length => throw new NotImplementedException();
+    public override bool DataAvailable => this.uart.BytesToRead > 0;
 
-    public override long Position { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public override long Length => throw new NotImplementedException();
+    public override long Position {
+        get => throw new NotImplementedException();
+        set => throw new NotImplementedException();
+    }
 
     public override void Flush() => this.uart.Flush();
 
     public override int Read(byte[] buffer, int offset, int count) {
         var read = 0;
-        while (read < count){
+        while (read < count) {
+            // Busy-wait for at least one byte to arrive.
             while (this.uart.BytesToRead == 0) ;
 
             read += this.uart.Read(buffer, offset + read, count - read);
         }
-
         return read;
     }
 
-    public override long Seek(long offset, SeekOrigin origin) => throw new NotImplementedException();
-
-    public override void SetLength(long value) => throw new NotImplementedException();
-
-    public override void Write(byte[] buffer, int offset, int count){
-        var write = 0;
-
-        while (write < count){
-            write += this.uart.Write(buffer, offset + write, count - write);
+    public override void Write(byte[] buffer, int offset, int count) {
+        var written = 0;
+        while (written < count) {
+            written += this.uart.Write(buffer, offset + written, count - written);
         }
     }
 
-    public override bool DataAvailable => this.uart.BytesToRead > 0;
+    public override long Seek(long offset, SeekOrigin origin) => throw new NotImplementedException();
+    public override void SetLength(long value) => throw new NotImplementedException();
 }
 ```
 
-
-
-
-
-
+:::tip
+The `Read` implementation above **busy-waits** with `while (this.uart.BytesToRead == 0) ;` — that hogs CPU. For higher-power-efficiency code, swap in a small `Thread.Sleep(1)` inside the spin loop or use `UartController.DataReceived` events to signal a waiter.
+:::

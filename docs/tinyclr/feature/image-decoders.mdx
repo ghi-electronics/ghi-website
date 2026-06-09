@@ -2,41 +2,57 @@
 title: Image Decoders
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
+TinyCLR can decode **JPG**, **GIF**, and **BMP** images directly into `Bitmap` objects that the graphics engine can draw to the screen. Source bytes can come from a project [resource](resources.mdx), an SD card, the network, or anywhere else you can produce a `byte[]`.
+
+NuGet package: **`GHIElectronics.TinyCLR.Drawing`**.
+
+:::note
+- **BMP** — 256-color and 24-bit color depths supported.
+- **GIF** — static images only. Animated GIFs aren't supported.
+- **JPG** — standard baseline JPEG.
 :::
 
-TinyCLR provides methods for converting JPG, BMP, and GIF files into bitmaps that can be used in your application. The image can be added to your project as a [resource](resources.mdx), or the image can be loaded from a byte array, like from and SD card.
+## Loading from a resource
 
-:::tip
-BMP supports 256 colors and 24bit.
-GIF does not support animated images.
-:::
+If the image ships with the application, embed it as a [resource](resources.mdx) and load directly:
+
+```csharp
+var image = Resources.GetBitmap(Resources.BitmapResources.jpegImageFile);
+```
+
+## Loading from a byte array
+
+When the image arrives at runtime (SD card, USB drive, downloaded over the network), construct a `Bitmap` from the bytes and specify the format:
+
+```csharp
+var jpegBitmap = new Bitmap(dataArray, BitmapImageType.Jpeg);
+var gifBitmap  = new Bitmap(dataArray, BitmapImageType.Gif);
+var bmpBitmap  = new Bitmap(dataArray, BitmapImageType.Bmp);
+```
+
+## Drawing the image
+
+Once you have a `Bitmap`, draw it to a `Graphics` surface — see [Graphics](graphics.mdx) for the full drawing API:
 
 ```csharp
 var screen = Graphics.FromImage(new Bitmap(displayController.ActiveConfiguration.Width,
-    displayController.ActiveConfiguration.Height));
+                                            displayController.ActiveConfiguration.Height));
 
-//Image is in a resource file named "jpegImageFile":
-var imageBitmap = Resources.GetBitmap(Resources.BitmapResources.jpegImageFile);
-
-var b1 = new Bitmap(dataArray, BitmapImageType.Jpeg);
-var b2 = new Bitmap(dataArray, BitmapImageType.Gif);
-var b3 = new Bitmap(dataArray, BitmapImageType.Bmp);  
-
-var imageX = 0;
-var imageY = 0;
-
-screen.DrawImage(imageBitmap, imageX, imageY);
+screen.DrawImage(image, x: 0, y: 0);
+screen.Flush();
 ```
 
-## Saving Bitmaps 
-Image class supports saving Bitmaps in a file stream format using the following code sample:
+## Saving a bitmap
+
+Save a `Bitmap` to a stream — useful for writing to an SD card or sending over the network:
 
 ```csharp
-var bm = new Bitmap(data, width, height);
-bm.Save(yourFilestream, System.Drawing.Imaging.ImageFormat.Bmp);
+using System.Drawing.Imaging;
+
+var bitmap = new Bitmap(data, width, height);
+bitmap.Save(fileStream, ImageFormat.Bmp);
 ```
 
-## Video playback
-Video playback can be achieved through [Motion JPEG](mjpeg-video.mdx).
+## Video
+
+For motion content, see [Motion JPEG](mjpeg-video.mdx).

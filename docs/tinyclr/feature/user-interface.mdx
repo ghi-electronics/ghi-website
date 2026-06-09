@@ -2,626 +2,375 @@
 title: User Interface
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
-:::
+The **`GHIElectronics.TinyCLR.UI`** library provides a **WPF-inspired** UI framework — windows, panels, layouts, controls, an event-driven dispatcher, and styling via brushes. If you've written Windows Presentation Foundation code, the patterns will feel familiar.
 
-You can use the `GHIElectronics.TinyCLR.UI` library to create user interfaces for your application. The UI library is inspired by Windows Presentation Foundation on the desktop.
+NuGet packages: **`GHIElectronics.TinyCLR.UI`** and **`GHIElectronics.TinyCLR.UI.Media`** for the framework; whichever **display** and **bus** packages your panel needs ([Graphics → Native displays](graphics.mdx#native-displays) or [Virtual displays](graphics.mdx#virtual-displays)).
 
-## Application Management
-The UI library requires internal management that is handled by the application class. The following code provides a good starting point.
+## Application skeleton
 
-:::tip
-Needed NuGets: GHIElectronics.TinyCLR.Devices.Display, GHIElectronics.TinyCLR.UI
-:::
+A UI program subclasses `Application` and hands it a configured `DisplayController`. The `Application` runs the dispatcher loop, wires touch/button input, and renders elements when invalidated.
 
 ```csharp
 using GHIElectronics.TinyCLR.Devices.Display;
 using GHIElectronics.TinyCLR.UI;
 
-namespace UserInterfaceExample {
-    class Program : Application {
-        public Program(DisplayController d) : base(d) {
-        }
+class Program : Application {
+    public Program(DisplayController d) : base(d) { }
 
-        static void Main() {
-            var display = DisplayController.GetDefault();
+    static void Main() {
+        var display = DisplayController.GetDefault();
+        display.SetConfiguration(new ParallelDisplayControllerSettings { /* see Graphics page */ });
+        display.Enable();
 
-            display.SetConfiguration(new ParallelDisplayControllerSettings {
-                //Your display configuration
-            });
+        var app = new Program(display);
+        app.Run(CreateWindow(display));
+    }
 
-            display.Enable();
-
-            var app = new Program(display);
-            app.Run(Program.CreateWindow(display));
-        }
-
-        private static Window CreateWindow(DisplayController display) {
-            var window = ...
-            return window;
-        }
+    private static Window CreateWindow(DisplayController display) {
+        var window = new Window { /* configure */ };
+        return window;
     }
 }
 ```
 
----
+For the display setup itself (timing parameters, backlight, SPI driver wiring), follow the patterns on the [Graphics page](graphics.mdx) — the UI library uses the same display backends.
 
 ## Windows
 
-While you can have multiple windows in your UI application, it is mandatory to have at least one window. Here is a complete example that shows a window with a gradient brush background. The code is for SCM20260D Dev board with the 4.3 inch display.
-
-:::tip
-Needed NuGets: GHIElectronics.TinyCLR.Devices.Display, GHIElectronics.TinyCLR.Devices.Gpio, GHIElectronics.TinyCLR.Devices.I2c, GHIElectronics.TinyCLR.Native, GHIElectronics.TinyCLR.Pins, GHIElectronics.TinyCLR.UI, GHIElectronics.TinyCLR.UI.Media
-:::
+Every UI application needs at least one `Window`. A window's `Background` accepts a `Brush` — solid color, gradient, image, etc. The example below targets the **SCM20260D Dev Board** with the **4.3" parallel display** and shows a window with a linear-gradient background.
 
 ```csharp
 using GHIElectronics.TinyCLR.Devices.Display;
 using GHIElectronics.TinyCLR.Devices.Gpio;
-using GHIElectronics.TinyCLR.Devices.I2c;
-using GHIElectronics.TinyCLR.Native;
 using GHIElectronics.TinyCLR.Pins;
 using GHIElectronics.TinyCLR.UI;
 using GHIElectronics.TinyCLR.UI.Media;
 using System.Drawing;
 
-namespace UserInterfaceExample {
-    class Program : Application {
-        public Program(DisplayController d) : base(d){
-        }
-        static Program app;
+class Program : Application {
+    static Program app;
 
-        static void Main() {
-            GpioPin backlight = GpioController.GetDefault().OpenPin(SC20260.GpioPin.PA15);
-            backlight.SetDriveMode(GpioPinDriveMode.Output);
-            backlight.Write(GpioPinValue.High);
-            var display = DisplayController.GetDefault();
+    public Program(DisplayController d) : base(d) { }
 
-            var controllerSetting = new 
-                GHIElectronics.TinyCLR.Devices.Display.ParallelDisplayControllerSettings {
-                Width = 480,
-                Height = 272,
-                DataFormat = GHIElectronics.TinyCLR.Devices.Display.DisplayDataFormat.Rgb565,
-                Orientation = DisplayOrientation.Degrees0, //Rotate display.
-                PixelClockRate = 10000000,
-                PixelPolarity = false,
-                DataEnablePolarity = false,
-                DataEnableIsFixed = false,
-                HorizontalFrontPorch = 2,
-                HorizontalBackPorch = 2,
-                HorizontalSyncPulseWidth = 41,
-                HorizontalSyncPolarity = false,
-                VerticalFrontPorch = 2,
-                VerticalBackPorch = 2,
-                VerticalSyncPulseWidth = 10,
-                VerticalSyncPolarity = false,
-            };
+    static void Main() {
+        var backlight = GpioController.GetDefault().OpenPin(SC20260.GpioPin.PA15);
+        backlight.SetDriveMode(GpioPinDriveMode.Output);
+        backlight.Write(GpioPinValue.High);
 
-            display.SetConfiguration(controllerSetting);
-            display.Enable();
+        var display = DisplayController.GetDefault();
+        display.SetConfiguration(new ParallelDisplayControllerSettings {
+            Width = 480, Height = 272,
+            DataFormat = DisplayDataFormat.Rgb565,
+            Orientation = DisplayOrientation.Degrees0,
+            PixelClockRate = 10_000_000,
+            HorizontalFrontPorch = 2, HorizontalBackPorch = 2,
+            HorizontalSyncPulseWidth = 41, HorizontalSyncPolarity = false,
+            VerticalFrontPorch = 2, VerticalBackPorch = 2,
+            VerticalSyncPulseWidth = 10, VerticalSyncPolarity = false,
+            PixelPolarity = false, DataEnablePolarity = false, DataEnableIsFixed = false,
+        });
+        display.Enable();
 
-            var screen = Graphics.FromHdc(display.Hdc);
-            var controller = I2cController.GetDefault();
+        app = new Program(display);
+        app.Run(CreateWindow(display));
+    }
 
-            app = new Program(display);
-            app.Run(Program.CreateWindow(display));
-        }
-
-        private static Window CreateWindow(DisplayController display){
-            var window = new Window {
-                Height = (int)display.ActiveConfiguration.Height,
-                Width = (int)display.ActiveConfiguration.Width
-            };
-
-            window.Background = new LinearGradientBrush
-                (Colors.Blue, Colors.Teal, 0, 0, window.Width, window.Height);
-
-            window.Visibility = Visibility.Visible;
-
-            return window;
-        }
+    private static Window CreateWindow(DisplayController display) {
+        var window = new Window {
+            Width = (int)display.ActiveConfiguration.Width,
+            Height = (int)display.ActiveConfiguration.Height,
+            Background = new LinearGradientBrush(Colors.Blue, Colors.Teal, 0, 0,
+                (int)display.ActiveConfiguration.Width, (int)display.ActiveConfiguration.Height),
+            Visibility = Visibility.Visible,
+        };
+        return window;
     }
 }
 ```
 
-When using the 7" display with the above code sample, change the display configuration to the following:
+For a **7" display**, use width 800 × height 480 and the timing values from [Graphics → 7" display configuration](graphics.mdx#7-display-configuration).
+
+For an **SPI virtual display** (like the **ST7735** on the SC20100S Dev Board), the `Application` is constructed with explicit width/height instead of a `DisplayController`, and you route flush events to the SPI driver. See [Graphics → Virtual displays](graphics.mdx#virtual-displays) for the SPI display setup; the UI portion becomes:
 
 ```csharp
-var controllerSetting = new 
-    GHIElectronics.TinyCLR.Devices.Display.ParallelDisplayControllerSettings {
-                Width = 800,
-                Height = 480,
-                DataFormat = DisplayDataFormat.Rgb565,
-                Orientation = DisplayOrientation.Degrees0, //Rotate Display.
-                PixelClockRate = 24000000,
-                PixelPolarity = false,
-                DataEnablePolarity = false,
-                DataEnableIsFixed = false,
-                HorizontalFrontPorch = 16,
-                HorizontalBackPorch = 46,
-                HorizontalSyncPulseWidth = 1,
-                HorizontalSyncPolarity = false,
-                VerticalFrontPorch = 7,
-                VerticalBackPorch = 23,
-                VerticalSyncPulseWidth = 1,
-                VerticalSyncPolarity = false,
-            };
-```
+class Program : Application {
+    public Program(int width, int height) : base(width, height) { }
 
-This code is for the SC20100S Dev Board with the N18 1.8 inch display.
+    static void Main() {
+        // ... set up st7735 controller (see Graphics → Virtual displays)
+        Graphics.OnFlushEvent += (sender, data, x, y, w, h, origW) => st7735.DrawBuffer(data);
 
-:::tip
-Needed NuGets: GHIElectronics.TinyCLR.Devices.Display, GHIElectronics.TinyCLR.Devices.Gpio, GHIElectronics.TinyCLR.Devices.Spi, GHIElectronics.TinyCLR.Drivers.Sitronix.ST7735, GHIElectronics.TinyCLR.Pins, GHIElectronics.TinyCLR.UI, GHIElectronics.TinyCLR.UI.Media
-:::
+        var app = new Program(160, 128);
+        app.Run(CreateWindow(160, 128));
+    }
 
-```csharp
-using GHIElectronics.TinyCLR.Devices.Display;
-using GHIElectronics.TinyCLR.Devices.Gpio;
-using GHIElectronics.TinyCLR.Devices.Spi;
-using GHIElectronics.TinyCLR.Drivers.Sitronix.ST7735;
-using GHIElectronics.TinyCLR.Pins;
-using GHIElectronics.TinyCLR.UI;
-using GHIElectronics.TinyCLR.UI.Media;
-using System;
-using System.Drawing;
-
-namespace SC20100_N18_WPF{
-    class Program : Application{
-        public Program(int width, int height) : base(width, height){
-        }
-
-        private static ST7735Controller st7735;
-        private const int SCREEN_WIDTH = 160;
-        private const int SCREEN_HEIGHT = 128;
-
-        private static void Main(){
-            var spi = SpiController.FromName(SC20100.SpiBus.Spi3);
-            var gpio = GpioController.GetDefault();
-
-            st7735 = new ST7735Controller(
-                spi.GetDevice(ST7735Controller.GetConnectionSettings
-                (SpiChipSelectType.Gpio, SC20100.GpioPin.PD10)), //CS pin.
-                gpio.OpenPin(SC20100.GpioPin.PC4), //RS pin.
-                gpio.OpenPin(SC20100.GpioPin.PE15) //RESET pin.
-            );
-
-            var backlight = gpio.OpenPin(SC20100.GpioPin.PE5);
-            backlight.SetDriveMode(GpioPinDriveMode.Output);
-            backlight.Write(GpioPinValue.High);
-            
-            st7735.SetDataAccessControl(true, true, false, false); //Rotate the screen.
-            st7735.SetDrawWindow(0, 0, SCREEN_WIDTH-1, SCREEN_HEIGHT-1);
-            st7735.Enable();
-            
-            Graphics.OnFlushEvent += Graphics_OnFlushEvent;
-
-            app = new Program(SCREEN_WIDTH, SCREEN_HEIGHT);
-
-            app.Run(Program.CreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT));     
-        }
-
-        private static void Graphics_OnFlushEvent(Graphics sender, byte[] data, int x, int y, int width, int height, int originalWidth){
-            st7735.DrawBuffer(data);
-        }
-
-        private static Window CreateWindow(int width, int height){
-            var window = new Window{
-                Height = height,
-                Width = width
-            };
-
-            window.Background = new LinearGradientBrush
-                Colors.Blue, Colors.Red, 0, 0, window.Width, -20);
-
-            window.Visibility = Visibility.Visible;
-
-            return window;
-        }
+    private static Window CreateWindow(int width, int height) {
+        var window = new Window {
+            Width = width,
+            Height = height,
+            Background = new LinearGradientBrush(Colors.Blue, Colors.Red, 0, 0, width, height),
+            Visibility = Visibility.Visible,
+        };
+        return window;
     }
 }
 ```
-
----
 
 ## Elements
-A window is not very useful without some elements (controls). There are many available standard elements, and you can make your own custom elements as well. All elements descend from the `UIElement` class. Explore the `GHIElectronics.TinyCLR.UI.Controls` namespace to see what's available.
 
-For the sake of simplifying the rest of this tutorial, we've added the `private static UIElement Elements()` method that creates and returns the elements. This is then assigned to the child of our window. You will need to add `window.Child = Elements()` right before returning from `CreateWindow`.
+A `Window` has a single `Child` — a `UIElement`. If you need more than one element on screen, the child is a container (`Panel`, `Canvas`, `StackPanel`) holding the rest. The convention in this page is a `private static UIElement Elements()` method that builds the tree and returns it; assign it with `window.Child = Elements();` in `CreateWindow`.
 
-
-:::tip
-This example needs a [font](font-support.mdx).
-:::
-
-```csharp
-private static UIElement Elements() {
-    var txt = new TextBox {
-        Font = font,
-        Text = "Hello World!",
-        HorizontalAlignment = HorizontalAlignment.Center,
-        VerticalAlignment = VerticalAlignment.Center
-    };
-    return txt;
-}
-```
+All elements live under `GHIElectronics.TinyCLR.UI.Controls` and descend from `UIElement`. The rest of this page references the available elements with short construction examples. Each example assumes `font` is a loaded [font resource](font-support.mdx).
 
 ### TextBox
-The TextBox allows for both single line and multiple line text input.
+
+Single or multi-line text input.
 
 ```csharp
-var textBox = new TextBox() {
-    Text = "This is TextBox",
-    Font = fontB,
+var textBox = new TextBox {
+    Text = "Hello World!",
+    Font = font,
     Width = 120,
     Height = 25,
     HorizontalAlignment = HorizontalAlignment.Center,
     VerticalAlignment = VerticalAlignment.Center,
-
 };
 ```
 
 ### Panel
-A `Window` can carry only a single `Child`, that is a single element. This is not a concern because the single element can be a container, like a `Panel`, which holds multiple elements. You can even have panels within panels with each having its own elements. This example will introduce shapes found in the `GHIElectronics.TinyCLR.UI.Shapes` namespace. It also shows an example of the `TextBox` element. We will also set margins for a better look.
+
+A simple container that holds multiple children without any layout rules — positions are determined by each child's alignment and margin properties.
 
 ```csharp
-private static UIElement Elements() {
-    var panel = new Panel();
+var panel = new Panel();
 
-    var txt1 = new TextBox() {
-        HorizontalAlignment = HorizontalAlignment.Left,
-        VerticalAlignment = VerticalAlignment.Top,
-    };
+var txt1 = new TextBox {
+    Font = font,
+    Text = "Hello World!",
+    HorizontalAlignment = HorizontalAlignment.Left,
+    VerticalAlignment = VerticalAlignment.Top,
+};
+txt1.SetMargin(20);
 
-    txt1.Font = font;
-    txt1.SetMargin(20);
-    txt1.Text = "Hello World!";
+var txt2 = new Text(font, "TinyCLR is Great!") {
+    ForeColor = Colors.White,
+    HorizontalAlignment = HorizontalAlignment.Right,
+};
+txt2.SetMargin(20);
 
-    var txt2 = new Text(font, "TinyCLR is Great!") {
-        ForeColor = Colors.White,
-        HorizontalAlignment = HorizontalAlignment.Right,
-    };
+var rect = new Rectangle(200, 10) {
+    Fill = new SolidColorBrush(Colors.Green),
+    HorizontalAlignment = HorizontalAlignment.Center,
+};
 
-    txt2.SetMargin(20);
-
-    var rect = new Rectangle(200, 10) {
-        Fill = new SolidColorBrush(Colors.Green),
-        HorizontalAlignment = HorizontalAlignment.Center,
-    };
-
-    panel.Children.Add(txt1);
-    panel.Children.Add(txt2);
-    panel.Children.Add(rect);
-
-    return panel;
-}
+panel.Children.Add(txt1);
+panel.Children.Add(txt2);
+panel.Children.Add(rect);
 ```
 
 ### StackPanel
 
-There are also two types of elements that descend from panels, `Canvas` and `StackPanel`. The Canvas control allows elements to be added anywhere. StackPanels, on the other hand, place elements in order.
-
-We will modify the previous example to use a vertical StackPanel. The elements will stack and be arranged to the right and the left. Note that setting vertical alignment will be ignored as the vertical StackPanel overrides how elements are stacked.
+Like `Panel`, but stacks children in order — vertically or horizontally. The stacking direction overrides the corresponding axis of `VerticalAlignment` / `HorizontalAlignment`.
 
 ```csharp
-private static UIElement Elements() {
-    var panel = new StackPanel(Orientation.Vertical);
-
-    var txt1 = new TextBox() {
-        HorizontalAlignment = HorizontalAlignment.Left,
-        VerticalAlignment = VerticalAlignment.Top,
-    };
-
-    txt1.Font = font;
-    txt1.SetMargin(20);
-    txt1.Text = "Hello World!";
-
-    var txt2 = new Text(font, "TinyCLR is Great!") {
-        ForeColor = Colors.White,
-        HorizontalAlignment = HorizontalAlignment.Right,
-    };
-
-    txt2.SetMargin(20);
-
-    var rect = new Rectangle(200, 10) {
-        Fill = new SolidColorBrush(Colors.Green),
-        HorizontalAlignment = HorizontalAlignment.Center,
-    };
-
-    panel.Children.Add(txt1);
-    panel.Children.Add(txt2);
-    panel.Children.Add(rect);
-
-    return panel;
-}
+var panel = new StackPanel(Orientation.Vertical);
+panel.Children.Add(txt1);
+panel.Children.Add(txt2);
+panel.Children.Add(rect);
 ```
 
 ### Canvas
 
-The Canvas element provides pixel level control over the placement of its child controls. The `Width` and `Height` properties of Canvas are requested dimensions, but the actual size depends on the size of the parent element. The `ActualWidth` and `ActualHeight` properties can be used to determine the actual size of the Canvas. Controls within a Canvas are positioned relative to the four edges of the Canvas.
+Pixel-precise child placement. Position with `Canvas.SetLeft(...)`, `Canvas.SetTop(...)`, `Canvas.SetRight(...)`, `Canvas.SetBottom(...)`. `Width`/`Height` are *requested* dimensions; the actual size is constrained by the parent. Read `ActualWidth`/`ActualHeight` for the final size.
 
 ```csharp
-private static UIElement Elements() {
-    var canvas = new Canvas();
+var canvas = new Canvas();
 
-    var txt = new Text(font, "TinyCLR is Great!") {
-        ForeColor = Colors.White,
-    };
+var txt = new Text(font, "TinyCLR is Great!") { ForeColor = Colors.White };
+Canvas.SetLeft(txt, 30);
+Canvas.SetBottom(txt, 25);
 
-    var rect = new Rectangle(150, 30) {
-        Fill = new SolidColorBrush(Colors.Green),
-        HorizontalAlignment = HorizontalAlignment.Center,
-    };
+var rect = new Rectangle(150, 30) {
+    Fill = new SolidColorBrush(Colors.Green),
+    HorizontalAlignment = HorizontalAlignment.Center,
+};
+Canvas.SetLeft(rect, 20);
+Canvas.SetBottom(rect, 20);
 
-    Canvas.SetLeft(rect, 20);
-    Canvas.SetBottom(rect, 20);
-
-    canvas.Children.Add(rect);
-
-    Canvas.SetLeft(txt, 30);
-    Canvas.SetBottom(txt, 25);
-
-    canvas.Children.Add(txt);
-
-    return canvas;
-}
+canvas.Children.Add(rect);
+canvas.Children.Add(txt);
 ```
 
 ### Border
 
-This element defines a border inside another element. The position of child elements is constrained to the area inside the border. In this example the border thickness is set to 10, but if the children do not fill the area within the border, the border's thickness will automatically increase. Uncomment the two alignment lines to see an undesired effect of how borders work.
+A decorative border around a single `Child`.
 
 ```csharp
-private static UIElement Elements() {
-    var border = new Border();
-    border.SetBorderThickness(10);
-    border.BorderBrush = new SolidColorBrush(Colors.Red)
+var border = new Border();
+border.SetBorderThickness(10);
+border.BorderBrush = new SolidColorBrush(Colors.Red);
 
-    var txt = new TextBox() {
-        //HorizontalAlignment = HorizontalAlignment.Center,
-        //VerticalAlignment= VerticalAlignment.Center,
-    };
-
-    txt.Font = font;
-    txt.Text = "TinyCLR is Great!";
-    border.Child = txt;
-
-    return border;
-}
+var txt = new TextBox { Font = font, Text = "TinyCLR is Great!" };
+border.Child = txt;
 ```
 
-The fix is to add a container and then the container will have a border. In this example, the parent of the border is the canvas instead of the window.
+:::tip
+If the child doesn't fill the area inside the border, the border thickness will grow to compensate. To prevent that, put the `Border` inside a `Canvas` (or any container) and set explicit positions:
 
 ```csharp
-private static UIElement Elements() {
-    var canvas = new Canvas();
-    var border = new Border();
-
-    border.SetBorderThickness(10);
-    border.BorderBrush = new SolidColorBrush(Colors.Red);
-
-    Canvas.SetLeft(border, 20);
-    Canvas.SetTop(border, 20);
-
-    var txt = new TextBox();
-    txt.Font = font;
-    txt.Text = "TinyCLR is Great!";
-
-    border.Child = txt;
-    canvas.Children.Add(border);
-
-    return canvas;
-}
+var canvas = new Canvas();
+Canvas.SetLeft(border, 20);
+Canvas.SetTop(border, 20);
+canvas.Children.Add(border);
 ```
+:::
 
 ### Button
 
-Buttons are simple controls that accept user input in the form of a click, which in embedded devices is usually a finger tap on a touch screen. The button needs a child, typically text, which describes the button's function. Buttons have a `Click` event to respond to user input.
+Accepts taps (touch screen) or selects (hardware buttons). Needs a `Child` — typically text — to label the button. Hook the `Click` event for input.
 
 ```csharp
-private static UIElement Elements() {
-    var txt = new Text(font, "Push me!") {
-        VerticalAlignment = VerticalAlignment.Center,
-        HorizontalAlignment = HorizontalAlignment.Center,
-    };
+var label = new Text(font, "Push me!") {
+    HorizontalAlignment = HorizontalAlignment.Center,
+    VerticalAlignment = VerticalAlignment.Center,
+};
 
-    var button = new Button() {
-        Child = txt,
-        Width = 100,
-        Height = 40,
-    };
+var button = new Button {
+    Child = label,
+    Width = 100,
+    Height = 40,
+};
 
-    button.Click += Button_Click;
-    return button;
-}
-
-private static void Button_Click(object sender, RoutedEventArgs e) {
-    // Add button click event code here...
-}
+button.Click += (sender, e) => Debug.WriteLine("Tapped");
 ```
 
 ### TextFlow
 
-TextFlow is a more powerful version of TextBlock that supports more advanced text formatting, and works well with large blocks of text.
+Mixed-run rich text — different colors and fonts in the same paragraph, line breaks, larger blocks than `TextBox` handles comfortably.
 
 ```csharp
-private static UIElement Elements() {
-    var textFlow = new TextFlow();
-    textFlow.TextRuns.Add("Hello ", font, Colors.Red);
-    textFlow.TextRuns.Add("World!", font, Colors.Purple);
-    textFlow.TextRuns.Add(TextRun.EndOfLine);
-    textFlow.TextRuns.Add("TinyCLR is Great!", font, Colors.Yellow);
-
-    return textFlow;
-}
+var textFlow = new TextFlow();
+textFlow.TextRuns.Add("Hello ", font, Colors.Red);
+textFlow.TextRuns.Add("World!", font, Colors.Purple);
+textFlow.TextRuns.Add(TextRun.EndOfLine);
+textFlow.TextRuns.Add("TinyCLR is Great!", font, Colors.Yellow);
 ```
 
 ### ListBox
 
-This element provides a list of options for users to select from.
+A vertical list of selectable items.
 
 ```csharp
-private static UIElement Elements() {
-    var listBox = new ListBox();
-    listBox.Items.Add(new Text(font, "Item 1"));
-    listBox.Items.Add(new Text(font, "Item 2"));
-    listBox.Items.Add(new Text(font, "Item 3"));
-    listBox.Items.Add(new Text(font, "Item 4"));
-
-    return listBox;
-}
+var listBox = new ListBox();
+listBox.Items.Add(new Text(font, "Item 1"));
+listBox.Items.Add(new Text(font, "Item 2"));
+listBox.Items.Add(new Text(font, "Item 3"));
+listBox.Items.Add(new Text(font, "Item 4"));
 ```
 
-It is also possible to add a separator between items, simply by using a rectangle. This item will be set to be not selectable.
+To add a non-selectable separator (e.g., a thin line between groups), wrap a `Rectangle` in a `ListBoxItem` with `IsSelectable = false`:
 
 ```csharp
-private static UIElement Elements() {
-    var rect = new Rectangle() {
-        Height = 1,
-        Width=30,
-        Stroke = new Pen(Colors.Black),
-    };
+var rect = new Rectangle {
+    Height = 1, Width = 30,
+    Stroke = new Pen(Colors.Black),
+};
 
-    var separator = new ListBoxItem() {
-        Child = rect,
-        IsSelectable = false,
-    };
+var separator = new ListBoxItem {
+    Child = rect,
+    IsSelectable = false,
+};
+separator.SetMargin(2);
 
-    separator.SetMargin(2);
-
-    var listBox = new ListBox();
-
-    listBox.Items.Add(new Text(font, "Item 1"));
-    listBox.Items.Add(new Text(font, "Item 2"));
-    listBox.Items.Add(separator);
-    listBox.Items.Add(new Text(font, "Item 3"));
-    listBox.Items.Add(new Text(font, "Item 4"));
-
-    return listBox;
-}
+listBox.Items.Add(separator);
 ```
 
 ### ScrollViewer
 
-The scroll viewer allows for viewing content that is larger than the viewing area. User input is used to shift the content within the viewing area.
+Wraps content larger than the visible area and provides scrolling — line-by-line or by page.
 
 ```csharp
-// Create a scrollviewer
 var scrollViewer = new ScrollViewer {
-	Background = new SolidColorBrush(Colors.Gray),
-
-	// scroll line by line with 10 pixels per line
-	ScrollingStyle = ScrollingStyle.LineByLine,
-	LineWidth = 10,
-	LineHeight = 10    
+    Background = new SolidColorBrush(Colors.Gray),
+    ScrollingStyle = ScrollingStyle.LineByLine,
+    LineWidth = 10,
+    LineHeight = 10,
 };
-    
-```
 
-Register Touch event, items in scrollViewer will go up or down every time touched. 
-
-```csharp
-scrollViewer.TouchUp += ScrollViewer_TouchUp;
-```
-
-```csharp
-private void ScrollViewer_TouchUp(object sender, GHIElectronics.TinyCLR.UI.Input.TouchEventArgs e) {
-	var s = (ScrollViewer)sender;
-
-	s.LineDown();
-}
+scrollViewer.TouchUp += (sender, e) => ((ScrollViewer)sender).LineDown();
 ```
 
 ### MessageBox
 
+A modal dialog with a message, caption, and standard buttons (Yes/No, OK/Cancel, etc.).
+
 ```csharp
-var font = "user font";
 var messageBox = new MessageBox(font);
+messageBox.ButtonClick += (sender, e) => Debug.WriteLine(e.DialogResult.ToString());
 
-messageBox.Show("Is this messageBox?", "MessageBox caption", MessageBox.MessageBoxButtons.YesNo);
-
-messageBox.ButtonClick += (a, b) =>
-{
-	Debug.WriteLine(b.DialogResult.ToString());
-
-};
+messageBox.Show("Confirm action?", "Are you sure?", MessageBox.MessageBoxButtons.YesNo);
 ```
 
 ### Slider
 
-```csharp
-var slider = new Slider(30, 150);
+A draggable bar for selecting a numeric value within a range.
 
-slider.Direction = Orientation.Vertical;
-slider.OnValueChanged += (a, b) => Debug.WriteLine("new value = " + b.Value);	
+```csharp
+var slider = new Slider(30, 150) {
+    Direction = Orientation.Vertical,
+};
+
+slider.OnValueChanged += (sender, e) => Debug.WriteLine("new value = " + e.Value);
 ```
 
 ### DataGrid
 
+A simple table with columns and rows. Cells can be tapped via `TapCellEvent`.
+
 ```csharp
-var gridWidth = 400;
-var rowCount = 5;
-var columnWidth = 60;
-var rowHeight = 60;
-var font = "user font";
+var dataGrid = new DataGrid(width: 400, rowHeight: 60, rowCount: 5, font);
 
-var dataGrid = new DataGrid(gridWidth, rowHeight, rowCount, font);
+dataGrid.AddColumn(new DataGridColumn("Column 1", 60));
+dataGrid.AddColumn(new DataGridColumn("Column 2", 60));
+dataGrid.AddColumn(new DataGridColumn("Column 3", 60));
 
-var colum1 = new DataGridColumn("Column 1", columnWidth);
-var colum2 = new DataGridColumn("Column 2", columnWidth);
-var colum3 = new DataGridColumn("Column 3", columnWidth);
+dataGrid.AddItem(new DataGridItem(new[] { "item 1", "item 2", "item 3" }));
+dataGrid.AddItem(new DataGridItem(new[] { "item 4", "item 5", "item 6" }));
 
-
-var item123 = new DataGridItem(new string[] { "item 1", "item 2", "item 3" });
-var item456 = new DataGridItem(new string[] { "item 4", "item 5", "item 6" });
-
-// Add column
-dataGrid.AddColumn(colum1);
-dataGrid.AddColumn(colum2);
-dataGrid.AddColumn(colum3);
-
-
-// Add Item
-dataGrid.AddItem(item123);
-dataGrid.AddItem(item456);
-
-// Touch Event
-dataGrid.TapCellEvent += (a, b) =>
-{
-	Debug.WriteLine(b.ToString());
-};
+dataGrid.TapCellEvent += (sender, e) => Debug.WriteLine(e.ToString());
 ```
 
 ### Chart
 
-```csharp
-var chartData = new ArrayList();
+Simple plotting with bars, points, or other modes.
 
+```csharp
+var data = new ArrayList();
 var random = new Random();
-for (var i = 0; i < 10; i++) {
-	chartData.Add(new DataItem() { Value = random.Next(100), Name = $"N{i}" });
-}
+for (var i = 0; i < 10; i++)
+    data.Add(new DataItem { Value = random.Next(100), Name = "N" + i });
 
 var chart = new Chart(400, 200) {
-
-	Font = 'your font', // need font
-	DivisionAxisX = 1,
-	DivisionAxisY = 10,
-	RadiusPoint = 10,
-	ChartTitle = "TinyCLR Chart",
-	Items = chartData,
-	Mode = ChartMode.RectangleMode
+    Font = font,
+    DivisionAxisX = 1,
+    DivisionAxisY = 10,
+    RadiusPoint = 10,
+    ChartTitle = "TinyCLR Chart",
+    Items = data,
+    Mode = ChartMode.RectangleMode,
 };
-
 ```
 
-### The Dispatcher
+## The Dispatcher
 
-The User Interface libraries rely on a dispatcher to handle system events and update invalidated elements. All elements are changed and updated from within the dispatcher. In this example, we will show the time on the screen. The time will be in a text box that is updated every second using a `Timer`. Since timers run in their own thread, a dispatcher invoke is needed.
+The UI runs on a single thread driven by a **Dispatcher**. All element updates have to happen on that thread — if you change an element from a background thread (a `Timer` callback, a network reader, an interrupt handler), wrap the update in `Application.Current.Dispatcher.Invoke(...)`.
+
+The example below shows a clock that updates once a second from a `System.Threading.Timer`:
 
 ```csharp
-static void Counter(object o) {
+static void Counter(object state) {
     Application.Current.Dispatcher.Invoke(TimeSpan.FromMilliseconds(1), _ => {
-        Text txt = (Text)o;
+        var txt = (Text)state;
         txt.TextContent = DateTime.Now.ToString();
         txt.Invalidate();
         return null;
@@ -635,12 +384,12 @@ private static UIElement Elements() {
         HorizontalAlignment = HorizontalAlignment.Center,
     };
 
-    Timer timer = new Timer(Counter, txt, 2000, 1000);
+    new Timer(Counter, txt, 2000, 1000);
     return txt;
 }
 ```
 
-You can also use the dispatcher timer directly:
+Or use the built-in `DispatcherTimer`, which fires its callback **on the UI thread** so no `Invoke` is needed:
 
 ```csharp
 private static UIElement Elements() {
@@ -650,41 +399,38 @@ private static UIElement Elements() {
         HorizontalAlignment = HorizontalAlignment.Center,
     };
 
-    var timer = new DispatcherTimer();
-    timer.Tag = txt;
-    timer.Tick += Counter;
-    timer.Interval = new TimeSpan(0, 0, 1);
+    var timer = new DispatcherTimer { Tag = txt, Interval = new TimeSpan(0, 0, 1) };
+    timer.Tick += (sender, e) => {
+        var t = (Text)((DispatcherTimer)sender).Tag;
+        t.TextContent = DateTime.Now.ToString();
+        t.Invalidate();
+    };
     timer.Start();
+
     return txt;
 }
-
-private static void Counter(object sender, EventArgs e) {
-    var txt = (Text)((DispatcherTimer)sender).Tag;
-    txt.TextContent = DateTime.Now.ToString();
-    txt.Invalidate();
-}
 ```
 
-### User Input
-A user can feed input to the graphical interface through touch or button input.
+## User input
 
-#### Touch input
+### Touch
+
+The UI library consumes touch events through `app.InputProvider`. Wire your [touch screen driver](touch-screen.mdx) to call:
+
 ```csharp
 app.InputProvider.RaiseTouch(x, y, touchState, DateTime.UtcNow);
-app.InputProvider.RaiseButton(btn, btnState, DateTime.UtcNow);
 ```
 
-The [touch](touch-screen.mdx) tutorial has further details.
+with the position and state from the driver's `TouchMove` / `TouchUp` / `TouchDown` events.
 
-#### Button input
+### Hardware buttons
 
-User can map gpio pin to button left, right, back, home or select. Below is how to use left, right on MessageBox, assuming that Left is Yes, Right is No.
+Hardware buttons map to logical roles (`Left`, `Right`, `Up`, `Down`, `Select`, `Back`, `Home`) so the UI can be navigated without a touch screen. The example below maps GPIO pins to `Left` and `Right` for navigating a `MessageBox`:
 
-```
-//Declare gpio pin cs
+```csharp
+using GHIElectronics.TinyCLR.UI.Input;
 
 var buttonLeft = gpioController.OpenPin(SC20100.GpioPin.PE3);
-
 var buttonRight = gpioController.OpenPin(SC20100.GpioPin.PB7);
 
 buttonLeft.SetDriveMode(GpioPinDriveMode.InputPullUp);
@@ -696,59 +442,46 @@ buttonRight.DebounceTimeout = TimeSpan.FromMilliseconds(50);
 buttonLeft.ValueChangedEdge = GpioPinEdge.RisingEdge;
 buttonRight.ValueChangedEdge = GpioPinEdge.RisingEdge;
 
-// Map to Input event
-buttonLeft.ValueChanged += (a, b) =>
-{
-    Program.MainApp.InputProvider.RaiseButton(GHIElectronics.TinyCLR.UI.Input.HardwareButton.Left, true, DateTime.UtcNow);
-};
+buttonLeft.ValueChanged += (sender, e) =>
+    Program.MainApp.InputProvider.RaiseButton(HardwareButton.Left, true, DateTime.UtcNow);
 
-buttonRight.ValueChanged += (a, b) =>
-{
-    Program.MainApp.InputProvider.RaiseButton(GHIElectronics.TinyCLR.UI.Input.HardwareButton.Right, true, DateTime.UtcNow);
-};
+buttonRight.ValueChanged += (sender, e) =>
+    Program.MainApp.InputProvider.RaiseButton(HardwareButton.Right, true, DateTime.UtcNow);
+```
 
-// Usage:
+Routing those button events to a focused element uses `Buttons.Focus` and the `Buttons.ButtonUpEvent` routed event:
 
-void TestMessageBox(int counter)
-{	
-    var messageBox = new MessageBox(this.font12); // assuming font12 load from resource. Example: font12 = Resources.GetFont(Resources.FontResources.droid_reg12);
-    this.mainStackPanel.Children.Add(messageBox); //  messagebox to parent Element, here is this.mainStackPanel: example mainStackPanel = new StackPanel(Orientation.Vertical);
-    messageBox.AddHandler(Buttons.ButtonUpEvent, new RoutedEventHandler(ProcessMessageboxButtons), true);
-    messageBox.Show("Counter " + counter.ToString() + ". Are you sure?", "Confirm", MessageBox.MessageBoxButtons.YesNo);
-    Buttons.Focus(messageBox); // focus event to messagebox
+```csharp
+void ShowConfirmation(int counter) {
+    var messageBox = new MessageBox(font12);
+    mainStackPanel.Children.Add(messageBox);
 
-	// Use touch if touch is available.
-    messageBox.ButtonClick += (a, b) =>
-    {
-        if (b.DialogResult == MessageBox.DialogResult.Yes)
-        {
-            Debug.WriteLine("Press yes");
-        }
+    messageBox.AddHandler(Buttons.ButtonUpEvent, new RoutedEventHandler(ProcessButtons), true);
+    messageBox.Show("Counter " + counter + ". Are you sure?", "Confirm", MessageBox.MessageBoxButtons.YesNo);
+    Buttons.Focus(messageBox);
 
+    // Touch route — works in parallel with hardware buttons.
+    messageBox.ButtonClick += (sender, e) => {
+        if (e.DialogResult == MessageBox.DialogResult.Yes)
+            Debug.WriteLine("Yes");
     };
 
-	// Process gpio button events
-    void ProcessMessageboxButtons(object sender, RoutedEventArgs e)
-    {
-        var buttonSource = (GHIElectronics.TinyCLR.UI.Input.ButtonEventArgs)e;                       
-        switch (buttonSource.Button)
-        {
-            case GHIElectronics.TinyCLR.UI.Input.HardwareButton.Left:                
-                Debug.WriteLine("Button left - "Yes" pressed");
+    void ProcessButtons(object sender, RoutedEventArgs e) {
+        var args = (ButtonEventArgs)e;
+        switch (args.Button) {
+            case HardwareButton.Left:
+                Debug.WriteLine("Left → Yes");
                 break;
-
-            case GHIElectronics.TinyCLR.UI.Input.HardwareButton.Right:
-                Debug.WriteLine("Button Right - "No" pressed");
+            case HardwareButton.Right:
+                Debug.WriteLine("Right → No");
                 break;
-
-            case GHIElectronics.TinyCLR.UI.Input.HardwareButton.Select:
-                Debug.WriteLine("Button Select pressed");
+            case HardwareButton.Select:
+                Debug.WriteLine("Select");
                 break;
-
         }
-        messageBox.Close(); // close messagebox       
+        messageBox.Close();
     }
-    this.mainStackPanel.Invalidate(); // parent Invalidate
-}
 
+    mainStackPanel.Invalidate();
+}
 ```

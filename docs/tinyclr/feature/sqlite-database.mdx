@@ -2,137 +2,104 @@
 title: SQLite Database
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
+**SQLite** is a self-contained, serverless, single-file SQL database engine — the most widely deployed database engine in the world. TinyCLR includes a port of SQLite that's well-suited to embedded use cases where you need structured queries: data loggers, configuration stores, recipe tables, lookup data for sensor calibration, and similar.
+
+The database can live entirely in **RAM** (fast, lost on power-off) or on persistent storage like an **SD card** or **USB drive** — same code either way; only the connection string changes.
+
+NuGet package: **`GHIElectronics.TinyCLR.Data.SQLite`**.
+
+:::note
+TinyCLR's SQLite is a **trimmed subset** of the full engine. Several commands and features are omitted to reduce memory footprint — see [Omitted features](#omitted-features) for the full list. Most standard SQL works; just don't expect ALTER TABLE, TRIGGER, FOREIGN KEY, subqueries, etc.
 :::
 
-According to the SQLite homepage, "SQLite is a software library that implements a self-contained, serverless, zero-configuration, transactional SQL database engine. SQLite is the most widely deployed SQL database engine in the world." SQLite lets you set up a database that resides entirely in a single file on a persistent storage device.
+## Create, insert, query
 
-:::tip
-Needed NuGets: GHIElectronics.TinyCLR.Data.SQLite
-:::
-
-
-
-The code below is a simple example that creates a database file in RAM (SD cards and USB drives can be used as well). A table is created, a few rows are filled, and then this data is read from the database. This data is then iterated over and printed out. ColumnNames returns the name of each of the columns.
+The example below creates an in-memory database, builds a table, inserts a few rows, runs three queries, and prints the results.
 
 ```csharp
+using GHIElectronics.TinyCLR.Data.SQLite;
 using System.Collections;
 using System.Diagnostics;
-using GHIElectronics.TinyCLR.Data.SQLite;
 
 using (var db = new SQLiteDatabase()) {
-
-    Debug.WriteLine("Executing 1...");
     db.ExecuteNonQuery("CREATE TABLE Test (Var1 TEXT, Var2 INTEGER, Var3 DOUBLE);");
 
-    Debug.WriteLine("Executing 2...");
-    db.ExecuteNonQuery("INSERT INTO Test(Var1, Var2, Var3) VALUES ('Hello, World!', 25, 3.14);");
+    db.ExecuteNonQuery("INSERT INTO Test (Var1, Var2, Var3) VALUES ('Hello, World!', 25, 3.14);");
+    db.ExecuteNonQuery("INSERT INTO Test (Var1, Var2, Var3) VALUES ('Goodbye, World!', 15, 6.28);");
+    db.ExecuteNonQuery("INSERT INTO Test (Var1) VALUES ('Red'), ('Blue'), ('Green'), ('White');");
 
-    Debug.WriteLine("Executing 3...");
-    db.ExecuteNonQuery("INSERT INTO Test(Var1, Var2, Var3) VALUES('Goodbye, World!', 15, 6.28); ");
+    // Select every Var1 value.
+    PrintResult(db.ExecuteQuery("SELECT Var1 FROM Test;"));
 
-    Debug.WriteLine("Executing 4...");
-    db.ExecuteNonQuery("INSERT INTO Test (Var1) VALUES('Red'),('Blue'),('Green'),('White');");
+    // Filter with WHERE.
+    PrintResult(db.ExecuteQuery("SELECT Var1, Var2, Var3 FROM Test WHERE Var2 > 10;"));
 
-    Debug.WriteLine("Executing 5...");
-    var result1 = db.ExecuteQuery("SELECT Var1 FROM Test;");
+    // Range filter with BETWEEN.
+    PrintResult(db.ExecuteQuery("SELECT Var1, Var2, Var3 FROM Test WHERE Var2 BETWEEN 24 AND 26;"));
+}
 
-    Debug.WriteLine("Executing 6...");
-    var result2 = db.ExecuteQuery("SELECT Var1, Var2, Var3 FROM Test WHERE Var2 > 10;");
+static void PrintResult(ResultSet result) {
+    Debug.WriteLine(result.RowCount + " row(s), " + result.ColumnCount + " column(s)");
 
-    Debug.WriteLine("Executing 7...");
-    var result3 = db.ExecuteQuery("SELECT Var1, Var2, Var3 FROM Test WHERE Var2 BETWEEN 24 AND 26");
+    foreach (ArrayList row in result.Data) {
+        var line = "";
+        foreach (object value in row)
+            line += value.ToString() + " ";
 
-    Debug.WriteLine("Executing 7...");
-    Debug.WriteLine(result2.ColumnCount.ToString() + " " +
-        result2.RowCount.ToString());
-
-    var str = "";
-
-    //foreach (var j in result1.ColumnNames)
-    //    str += j + " ";
-
-    //Debug.WriteLine(str);
-
-    foreach (ArrayList i in result1.Data) {
-        str = "";
-
-        foreach (object j in i)
-            str += j.ToString() + " ";
-
-        Debug.WriteLine(str);
-                
-    }
-
-    foreach (ArrayList i in result2.Data) {
-        str = "";
-
-        foreach (object j in i)
-            str += j.ToString() + " ";
-
-        Debug.WriteLine(str);
-    }
-
-    foreach (ArrayList i in result3.Data) {
-        str = "";
-
-        foreach (object j in i)
-            str += j.ToString() + " ";
-
-        Debug.WriteLine(str);
+        Debug.WriteLine(line);
     }
 }
-``` 
+```
 
-## Omitted commands & features
+`ResultSet.ColumnNames` gives you the names of each column if you want to print a header row, and `ResultSet.Data` is a list of `ArrayList` rows where each `ArrayList` holds the column values in the same order as `ColumnNames`.
 
-In order to reduce the memory requirements, some commands and features of SQLite have been omitted. Below is a table of those omitted features.
-For more information regarding these omissions see the [SQLite Website.](https://www.sqlite.org/compile.html) 
+## Omitted features
 
-|Omitted Command or Feature                  |                                                               |             
-|----------------------------|---------------------------------------------------------------|
-| **ALTER TABLE**            | Executing the statement causes a parse error                  | 
-| **ANALYZE**                | Command omitted from the build                                | 
-| **ATTACH**                 | ATTACH and DETACH commands are omitted                        | 
-| **REINDEX**                | Executing the statement causes a parse error                  | 
-| **AUTOMATIC INDEX**        | Feature omitted from the build                                |
-| **AUTHORIZATION**          | Authorization callback feature omitted                        |
-| **AUTOINCREMENT**          | Feature omitted from the build                                |
-| **AUTOVACCUM**             | Feature omitted from the build                                |
-| **BLOB LITERAL**           | Not possible to specify a blob in an SQL statement using X'ABCD' syntax |
-| **CTE**                    | Common Table Expressions omitted from the build  |
-| **DATETIME FUNCS**         | SQL functions julianday(), date(), time(), datetime() and strftime() are not available  |
-| **DEPRECATED**             | Omitted support for interfaces marked deprecated by SQLite  |
-| **EXPLAIN**                | Executing the statement causes a parse error                                |
-| **FLAG PRAGMAS**           | PRAGMA commands that query and set boolean properties omitted |
-| **FOREIGN KEY**            | Foreign key constraint syntax is not recognized      |
-| **HEX INTEGER**            | Support for Hexadecimal integer literals omitted      |
-| **INCRBLOB**               | Support for incremental BLOB I/O omitted      |
-| **INTEGRITY CHECK**        | Support for integrity check pragma omitted      |
-| **LIKE OPTIMIZATION**      | Feature to help resolve LIKE and GLOB operators in a WHERE clause omitted     |
-| **LOAD EXTENSION**         | Extension loading mechanism omitted    |
-| **LOCALTIME**              | "localtime" modifier from the date and time functions omitted    |
-| **LOOKASIDE**              | Lookaside memory allocator omitted   |
-| **OR OPTIMIZATION**        | Index together with terms of a WHERE clause connected by the OR operator, disabled.   |
-| **PAGER PRAGMAS**          | Pragmas related to the pager subsystem omitted from the build   |
-| **PRAGMA**                 | P ragma command has been omitted                                 |
-| **PROGRESS CALLBACK**      | "progress" callbacks capability during long-running SQL statements omitted.       |
-| **QUICKBALANCE**           | Omitted an alternative, faster B-Tree balancing routine.      |
-| **SCHEMA PRAGMAS**         | Pragmas for querying the database schema from the build omitted      |
-| **SCHEMA VERSION PRAGMAS** | Pragmas for querying & modifying the database schema and user versions omitted     |
-| **SHARED CACHE**           | Support for shared-cache mode has been omitted     |
-| **SUBQUERY**               | Support for sub-selects and the IN() operator are omitted.     |
-| **TCL VARIABLE**           | "$" syntax used to automatically bind SQL variables to TCL variables is omitted.     |
-| **TEMPDB**                 | Support for TEMP or TEMPORARY tables omitted     |
-| **TRACE**                  | Sqlite3_profile() and sqlite3_trace() interfaces and their associated logic omitted     |
-| **TRIGGER**                | TRIGGER objects omitted. CREATE TRIGGER or DROP TRIGGER commands are unavailable     |
-| **TRUNCATE OPTIMIZATION**  | Removing this feature only affects the speed of operation     |
-| **UTF16**                  | Support for UTF16 text encoding has been omitted.     |
-| **VIRTUALTABLE**           | Virtual Table mechanism in SQLite omitted.     |
-| **XFER OPT**               | Removed optimization that help INSERT INTO...SELECT...run faster     |
-| **WAL**                    | Write-ahead log capability omitted.      |
+To keep the binary size manageable, TinyCLR's SQLite drops a number of commands and features. See the [SQLite compile-time options](https://www.sqlite.org/compile.html) for what each option does in the upstream engine.
 
+| Omitted command or feature  | Behavior |
+|-----------------------------|----------|
+| **ALTER TABLE**             | Executing causes a parse error |
+| **ANALYZE**                 | Omitted from the build |
+| **ATTACH** / **DETACH**     | ATTACH and DETACH commands are omitted |
+| **REINDEX**                 | Executing causes a parse error |
+| **AUTOMATIC INDEX**         | Feature omitted from the build |
+| **AUTHORIZATION**           | Authorization callback feature omitted |
+| **AUTOINCREMENT**           | Feature omitted from the build |
+| **AUTOVACUUM**              | Feature omitted from the build |
+| **BLOB LITERAL**            | Not possible to specify a blob in SQL using `X'ABCD'` syntax |
+| **CTE**                     | Common Table Expressions omitted |
+| **DATETIME FUNCS**          | `julianday()`, `date()`, `time()`, `datetime()`, `strftime()` not available |
+| **DEPRECATED**              | Support for interfaces marked deprecated by SQLite is omitted |
+| **EXPLAIN**                 | Executing causes a parse error |
+| **FLAG PRAGMAS**            | PRAGMA commands that query/set boolean properties omitted |
+| **FOREIGN KEY**             | Foreign-key constraint syntax not recognized |
+| **HEX INTEGER**             | Hexadecimal integer literals omitted |
+| **INCRBLOB**                | Incremental BLOB I/O omitted |
+| **INTEGRITY CHECK**         | Integrity-check pragma omitted |
+| **LIKE OPTIMIZATION**       | Optimization for `LIKE` and `GLOB` in WHERE clauses omitted |
+| **LOAD EXTENSION**          | Extension loading mechanism omitted |
+| **LOCALTIME**               | `localtime` modifier from date/time functions omitted |
+| **LOOKASIDE**               | Lookaside memory allocator omitted |
+| **OR OPTIMIZATION**         | Index optimization for terms connected by `OR` disabled |
+| **PAGER PRAGMAS**           | Pragmas related to the pager subsystem omitted |
+| **PRAGMA**                  | `PRAGMA` command has been omitted |
+| **PROGRESS CALLBACK**       | Progress callbacks during long-running SQL statements omitted |
+| **QUICKBALANCE**            | Alternative faster B-Tree balancing routine omitted |
+| **SCHEMA PRAGMAS**          | Pragmas for querying the schema omitted |
+| **SCHEMA VERSION PRAGMAS**  | Pragmas for querying/modifying schema and user versions omitted |
+| **SHARED CACHE**            | Shared-cache mode omitted |
+| **SUBQUERY**                | Sub-selects and `IN()` operator omitted |
+| **TCL VARIABLE**            | `$`-prefix binding for TCL variables omitted |
+| **TEMPDB**                  | `TEMP` / `TEMPORARY` tables omitted |
+| **TRACE**                   | `sqlite3_profile()` / `sqlite3_trace()` interfaces omitted |
+| **TRIGGER**                 | `CREATE TRIGGER` / `DROP TRIGGER` unavailable |
+| **TRUNCATE OPTIMIZATION**   | Speed optimization removed (functionally equivalent) |
+| **UTF16**                   | UTF-16 text encoding omitted (UTF-8 only) |
+| **VIRTUALTABLE**            | Virtual Table mechanism omitted |
+| **XFER OPT**                | Optimization for `INSERT INTO ... SELECT ...` removed |
+| **WAL**                     | Write-ahead log capability omitted |
 
-## More Info
-Further details on SQLite can be found at the official SQLite website http://www.sqlite.org/
+## More information
+
+The official SQLite documentation at [sqlite.org](https://www.sqlite.org/) covers the SQL syntax, data types, and engine behavior — all of which apply to TinyCLR's port except where noted above.

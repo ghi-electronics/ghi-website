@@ -13,18 +13,18 @@ NuGet packages: **`GHIElectronics.TinyCLR.Devices.Dac`** for the API, and **`GHI
 ## Writing a value
 
 ```csharp
+using System.Threading;
 using GHIElectronics.TinyCLR.Devices.Dac;
 using GHIElectronics.TinyCLR.Pins;
-using System.Threading;
 
 var dac = DacController.GetDefault();
-var analog = dac.OpenChannel(SC20100.Dac.PA4);
+var analogPad4 = dac.OpenChannel(FEZBit.Dac.PA4);
 
 double d = 0.5;
 double dd = 0.01;
 
-while (true) {
-    analog.WriteValue(d);
+while (true){
+    analogPad4.WriteValue(d);
     d += dd;
     if (d <= 0 || d >= 1)
         dd *= -1;       // Invert direction

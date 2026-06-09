@@ -2,144 +2,138 @@
 title: Power Management
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
-:::
+TinyCLR exposes several power modes for trading off responsiveness against energy consumption — useful for battery-powered devices, deep-sleep IoT nodes, and anything that needs to nap until something interesting happens.
 
-TinyCLR supports multiple power-saving modes.
+NuGet packages: **`GHIElectronics.TinyCLR.Native`** for the `Power` API, plus **`GHIElectronics.TinyCLR.Devices.Gpio`** and **`GHIElectronics.TinyCLR.Pins`** when wiring wake-up interrupts.
 
 ## Idle
-The system enters this state whenever it is idle, such as when waiting on events and there are no running threads. This is automatic and they user is not required to take any action.
 
-## Slow Clock Speed
+When the runtime has nothing to do — all threads sleeping or blocked on events — the system **automatically enters idle**. You don't call anything; this is the default state between active work.
 
-The system can operate at half speed, saving about 40% power consumption. The system can switch speed (with a required soft reset) but it can optionally persist the slow clock.
+## Slow clock speed
+
+The CPU can run at half speed, cutting power use by about **40%**. Switching requires a soft reset, and the change can optionally persist across resets.
 
 ```csharp
-var PersistClock = false;
+using GHIElectronics.TinyCLR.Native;
+
+var persistClock = false;
+
 if (Power.GetSystemClock() == SystemClock.High) {
-    Power.SetSystemClock(SystemClock.Low, PersistClock);
+    Power.SetSystemClock(SystemClock.Low, persistClock);
     Power.Reset();
 }
 ```
 
-Switch back to full speed (only if "PersistClock" was false):
+Switch back to full speed (only works if `persistClock` was `false` when you switched down):
 
 ```csharp
 if (Power.GetSystemClock() == SystemClock.Low) {
-    Power.SetSystemClock(SystemClock.High, false);
+    Power.SetSystemClock(SystemClock.High, persist: false);
     Power.Reset();
 }
 ```
 
-When not persisted, calling `Power.Reset()` will retain the set clock speed, but hardware reset (reset pin) or power cycle will revert to the default state.
+When not persisted, `Power.Reset()` keeps the current clock speed, but a hardware reset (reset pin) or a power cycle reverts to the default.
 
-## Sleep 
-In this mode, most of the system features are disabled. A GPIO or RTC interrupt can be used to wake the system and resume operations.
+## Sleep
+
+Sleep disables most of the system to drop power consumption substantially. A **GPIO edge** or the **RTC** can wake the device and resume execution where it left off.
 
 :::note
-Don't forget to configure the interrupt and interrupt handler for the pin that will be used to wake up from Sleep.
-:::
-
-:::tip
-Needed NuGets: GHIElectronics.TinyCLR.Core, GHIElectronics.TinyCLR.Devices.Gpio, GHIElectronics.TinyCLR.Native, GHIElectronics.TinyCLR.Pins
+You must register an interrupt handler on the wake-up pin **before** calling `Power.Sleep()` — otherwise the system has no idea what edge to wake on.
 :::
 
 ```csharp
+using GHIElectronics.TinyCLR.Devices.Gpio;
+using GHIElectronics.TinyCLR.Native;
+using GHIElectronics.TinyCLR.Pins;
+using System.Diagnostics;
+
 var ldrButton = GpioController.GetDefault().OpenPin(SC20100.GpioPin.PE3);
 ldrButton.SetDriveMode(GpioPinDriveMode.InputPullUp);
-ldrButton.ValueChanged += ldrButton_ValueChanged;
+ldrButton.ValueChanged += LdrButton_ValueChanged;
 
-Debug.WriteLine("System is going to sleep...");
+Debug.WriteLine("Going to sleep...");
 Power.Sleep();
-Debug.WriteLine("This will print after system wakeup");
+Debug.WriteLine("Woken up");
 
-// An event is needed to activate the interrupts internally
-private static void ldrButton_ValueChanged(GpioPin sender, GpioPinValueChangedEventArgs e) { }
+// Handler can be empty — its existence is what arms the interrupt for wake-up.
+static void LdrButton_ValueChanged(GpioPin sender, GpioPinValueChangedEventArgs e) { }
 ```
 
-To sleep for a specific time, using RTC:
+Sleep for a specific time using the RTC:
 
 ```csharp
-Power.Sleep(DateTime.Now.AddSeconds(90)); //Will wake up after 90 seconds.
+Power.Sleep(DateTime.Now.AddSeconds(90));    // Wake in 90 seconds.
 ```
----
 
 ## Shutdown
-In this mode the system completely shuts down. It can only be awakened by reset, power cycle, RTC, or by toggling the WKUP pin, which will also reset the system. When `Shutdown` is used the system is turned completely off, internal pull-up resistors are also disabled. Adding pull-up or pull-down resistor on WKUP pin is required.
+
+The deepest power state. The system is completely off, internal pull-ups are disabled, and the only ways to wake it are:
+
+- A reset
+- A power cycle
+- The RTC alarm firing
+- A configured edge on the **WKUP pin**
+
+:::warning
+Waking from Shutdown **always resets the system**. Your application starts over from scratch — it doesn't resume where it left off. Anything you need across the sleep has to live in [battery-backed memory](real-time-clock.mdx#battery-backed-memory) or external storage.
+:::
 
 :::note
-Waking from Shutdown mode always resets the system. Your application will start over, it will not resume where it left off.
+Internal pull-ups are off in Shutdown, so add an **external pull-up or pull-down** to the WKUP pin to give it a stable default state — otherwise spurious wake-ups are possible.
 :::
 
-:::tip
-Needed NuGets: GHIElectronics.TinyCLR.Core, GHIElectronics.TinyCLR.Devices.Gpio, GHIElectronics.TinyCLR.Native, and GHIElectronics.TinyCLR.Pins
-:::
-
-The following code shuts down the system to only wake up using WKUP pin.
+Shutdown until WKUP changes:
 
 ```csharp
-Power.Shutdown(true, DateTime.MaxValue); 
+Power.Shutdown(true, DateTime.MaxValue);
 ```
 
-By default, a rising edge on WKUP pin is needed to wake the system up. The system also allows for using a falling edge instead.
+By default the system wakes on a **rising edge** of WKUP. Switch to falling edge:
 
 ```csharp
 Power.WakeupEdge = WakeupEdge.Falling;
 ```
 
-To shutdown for a specific time:
-```csharp
-Power.Shutdown(false, DateTime.Now.AddSeconds(90); //Will wake up after 90 seconds.
-                                                   //WKUP pin has no effect.
-```
-
-To shutdown for a specific time or when the WKUP pin changes state (whichever comes first):
-```csharp
-Power.Shutdown(true, DateTime.Now.AddSeconds(90); //Will wake up after 90 seconds or
-                                                  //when WKUP is pressed.
-```
-
----
-
-## On-board Ethernet
-Some modules include an on-board Ethernet PHY. This can be disabled by setting a specific GPIO to **low**. Below are the pin numbers.
-
-| Module      | Pin  |
-|-------------|------|
-| SCM20260E/D | PG3  |
-| SCM20100E   | PD8  |
-
-
----
-
-## Software Reset
-
-TinyCLR provides two reset modes within your application:
-
-### Reset Application
-This command allows to reset your application:
+Shutdown for a fixed time (WKUP pin ignored):
 
 ```csharp
-GHIElectronics.TinyCLR.Native.Power.Reset();
+Power.Shutdown(false, DateTime.Now.AddSeconds(90));
 ```
 
-### Reset to Bootloader mode
+Shutdown for a fixed time or until WKUP changes (whichever comes first):
 
-The command below will boot the device in GHI Bootloader mode:
 ```csharp
-GHIElectronics.TinyCLR.Native.Power.Reset(false);
+Power.Shutdown(true, DateTime.Now.AddSeconds(90));
 ```
 
----
+## Disabling on-board Ethernet PHY
 
-### Reset Source
+Modules with an on-board Ethernet PHY draw power even when networking isn't in use. Pulling a specific GPIO pin **low** disables the PHY:
 
-The cause of the previous reset can be found through `GetResetSource`. This is useful to determine if, for example, a watchdog or was the reason for the reset.
+| Module        | Disable pin |
+|---------------|-------------|
+| SCM20260E/D   | PG3         |
+| SCM20100E     | PD8         |
 
-:::tip
-Needed NuGets: GHIElectronics.TinyCLR.Core, GHIElectronics.TinyCLR.Native
-:::
+## Software reset
+
+Reset the application from code without a hardware reset:
+
+```csharp
+using GHIElectronics.TinyCLR.Native;
+
+Power.Reset();              // Reset application.
+Power.Reset(false);         // Reset into GHI Bootloader mode.
+```
+
+The bootloader-mode reset is useful for triggering firmware updates from inside the application — for example, from an in-app "Check for updates" menu.
+
+### Identifying the previous reset cause
+
+After boot, `GetResetSource` returns what triggered the last reset — useful for distinguishing a watchdog reset, a brown-out, a user reset button press, or a clean power-up.
 
 ```csharp
 var resetSource = Power.GetResetSource();

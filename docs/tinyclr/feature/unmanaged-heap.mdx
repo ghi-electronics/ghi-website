@@ -2,55 +2,61 @@
 title: Unmanaged Heap
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
-:::
+The **unmanaged heap** is a region of memory that lives outside the garbage-collected managed heap — typically backed by [external SDRAM](external-memory.mdx#external-ram-sdram) on devices that have it. Most SITCore SoMs include **32 MB of external SDRAM** for this purpose.
 
-TinyCLR's [memory management](memory.mdx) system takes care of everything in internal secure memory; however, TinyCLR also supports external unsecure memory through a special unmanaged heap. This memory is used in two different ways, for Large Buffers and for the Graphics system, and is only available on boards with that include external SDRAM memory. Most SITCore SoMs have 32 MBytes of external SDRAM.
+Use it when you need:
 
-To ensure that unmanaged resources get disposed of properly, it is necessary to dispose of the buffer pointing to unmanaged heap manually, as shown in the sample code below.
+- **Large buffers** (audio samples, sensor capture, file caches) that don't fit comfortably in internal RAM.
+- **Graphics framebuffers** — the [graphics](graphics.mdx) engine automatically allocates from unmanaged heap when external SDRAM is available.
 
-## Unmanaged Buffers
+The trade-off vs the managed heap:
 
-This is an easy way to create buffers that reside in external memory, which typically provides much more storage than internal memory. The following example creates an array uTable[] in unmanaged heap space on the SCM20260D Dev Board and then disposes of it.
+- ✅ **Much more space** than internal RAM allows
+- ✅ No GC pressure or compaction cost
+- ⚠️ **Not secure** — external SDRAM can be probed (see [External Memory](external-memory.mdx))
+- ⚠️ **Manual lifetime** — you have to `Dispose()` buffers yourself
 
-:::tip
-Needed Nuget: GHIElectronics.TinyCLR.Native
+NuGet package: **`GHIElectronics.TinyCLR.Native`**.
 
-Needed Namespace: GHIElectronics.TinyCLR.Native
-:::
+## UnmanagedBuffer
+
+`UnmanagedBuffer` is the convenient way to allocate a chunk of unmanaged heap, expose it as a normal `byte[]`, and release it when done. The example below allocates a 100 KB buffer on an SCM20260D Dev Board:
 
 ```csharp
-//Allocate space for 100,000 byte array in unmanaged heap.
-UnmanagedBuffer uBuffer = new UnmanagedBuffer(100000);
+using GHIElectronics.TinyCLR.Native;
 
-var uTable = uBuffer.Bytes;
-//uTable is now available as a byte array with 100,000 elements.
+// Allocate 100,000 bytes in unmanaged heap.
+var uBuffer = new UnmanagedBuffer(100000);
+var uTable = uBuffer.Bytes;     // Usable as a regular byte[].
 
-// Properly release the objects. This is unmanaged so it is mandatory!
-uTable = null;
+// ... use uTable ...
+
+// Release the unmanaged memory — mandatory, the GC won't do it for you.
 uBuffer.Dispose();
-
 ```
 
-:::tip
-Optionally, users may utilize the built-in [cryptography](cryptography.mdx) services to encrypt the data before it is loaded into the `UnmanagedBuffer`
+:::warning
+**You must call `Dispose()` on `UnmanagedBuffer`** — there's no automatic cleanup. Wrap the buffer in a `using` block if its lifetime fits a single scope.
 :::
 
----
+:::tip
+For sensitive data, encrypt the contents before putting them in the unmanaged buffer. See [Cryptography](cryptography.mdx) for the available algorithms.
+:::
 
-## Graphical Memory
-When the [graphics](graphics.mdx) engine detects available external memory, it automatically uses it. Also, garbage collection will dispose of unmanaged graphics buffers automatically. You do not have to dispose of unmanaged graphics buffers like you do for unmanaged non-graphic buffers.
+## Graphics memory
 
----
+When external SDRAM is present, the [graphics engine](graphics.mdx) automatically allocates its display buffers, bitmaps, and intermediate render targets from the unmanaged heap — no special API needed. **Graphics buffers are exempt from the manual-disposal rule**: garbage collection handles graphics buffers in unmanaged heap automatically.
 
-## Helper Methods
+This means a typical graphics-heavy application doesn't see the unmanaged heap directly. It only matters when you're explicitly allocating large buffers via `UnmanagedBuffer`.
+
+## Checking unmanaged heap usage
+
+Same pattern as managed memory — useful for debugging leaks and tuning buffer sizes:
 
 ```csharp
-//Print number of available bytes in unmanaged memory.
-System.Diagnostics.Debug.WriteLine(Memory.UnmanagedMemory.FreeBytes.ToString());
+using GHIElectronics.TinyCLR.Native;
+using System.Diagnostics;
 
-//Print the number of bytes being used in unmanaged memory.
-System.Diagnostics.Debug.WriteLine(Memory.UnmanagedMemory.UsedBytes.ToString());
+Debug.WriteLine("Unmanaged free:  " + Memory.UnmanagedMemory.FreeBytes);
+Debug.WriteLine("Unmanaged used:  " + Memory.UnmanagedMemory.UsedBytes);
 ```
-

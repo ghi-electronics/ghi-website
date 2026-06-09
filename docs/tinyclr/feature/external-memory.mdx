@@ -2,38 +2,47 @@
 title: External Memory
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
+SITCore SoCs and modules can be paired with **external memory** for additional capacity — both **SDRAM** (volatile, for large in-RAM datasets and graphics buffers) and **QSPI flash** (non-volatile, for extending deployment storage).
+
+:::warning
+**External memory is physically accessible** with chip-level probing. Anything stored there can potentially be read by an attacker with the right equipment. For data that needs to stay secure, keep it inside the SITCore's internal memory. See [IP Protection](ip-protection.mdx) for the full security pattern.
 :::
 
-External memory is typically not secure as it can be probed by hackers. However, external memory provides the large amount of storage required by some applications.
+## External RAM (SDRAM)
 
-## External RAM
-Devices with external RAM have the option of utilizing this memory as [Unmanaged Heap](unmanaged-heap.mdx). Unmanaged heap is great for storing large amounts of data, but it is not considered secure. Bitmaps and `UnmanagedBuffer` are automatically stored in unmanaged heap.
+Most SITCore SoMs include **32 MB of external SDRAM**. This SDRAM is used in two ways:
 
-Developers also have the option of extending core managed heap into unsecure external memory, in which case, it removes unmanaged heap space. This feature is a trade off between security and convenience -- it provides a large amount of managed heap space, but data is stored outside of the microcontroller chip where it's less secure. Please see the [IP Protection](ip-protection.mdx) page for more information.
+- **As [Unmanaged Heap](unmanaged-heap.mdx)** — the default. Large buffers (`UnmanagedBuffer`, graphics bitmaps) live there automatically; internal RAM stays free for managed application state.
+- **As extended managed heap** — opt-in. You can extend the core managed heap into external SDRAM, trading the unmanaged heap region for a much larger managed heap. Use when your application needs more managed memory than internal RAM provides, and you've evaluated the security trade-off.
 
-[TinyCLR Config](https://docs.ghielectronics.com/software/tinyclr/tinyclr-config.html) can be used to extend the heap into external SDRAM, as well as the following method, you'll also have to follow with software reset method:
-```csharp
-GHIElectronics.TinyCLR.Native.Memory.ExtendHeap()
-GHIElectronics.TinyCLR.Native.Power.Reset();
-```
----
-
-## External Flash
-An optional 16MB QSPI external flash can be used to increase the available flash memory. In fact, most SITCore SoMs/boards already include this 16MB external flash.
-
-The top 6MB of the optional external flash can be used to extend the deployment region, which holds the application and its resources. This is done by using [TinyCLR Config](https://docs.ghielectronics.com/software/tinyclr/tinyclr-config.html) or through code:
+Extend the heap with [TinyCLR Config](/docs/tinyclr/tinyclr-config) or in code, followed by a software reset:
 
 ```csharp
-GHIElectronics.TinyCLR.Native.Flash.EnableExtendDeployment()
-GHIElectronics.TinyCLR.Native.Power.Reset();
+using GHIElectronics.TinyCLR.Native;
+
+Memory.ExtendHeap();
+Power.Reset();
 ```
 
-Since external memory chips can be probed, TinyCLR supports `Secure Assemblies`. See the [IP Protection](ip-protection.mdx) page for more information.
+## External flash (QSPI)
+
+Most SITCore SoMs and dev boards already include **16 MB QSPI external flash**. You can use it three ways:
+
+- **As extended deployment** — devote the top 6 MB to the application/resources deployment region, giving you more program flash. The bottom 10 MB remains free for [Tiny File System](file-system.mdx) or raw sector access.
+- **As an external file system** — full 16 MB available via [Tiny File System](file-system.mdx) or via direct raw sector reads/writes.
+- **As both** — split between extended deployment and a smaller TFS region.
+
+Enable extended deployment with [TinyCLR Config](/docs/tinyclr/tinyclr-config) or in code:
+
+```csharp
+using GHIElectronics.TinyCLR.Native;
+
+Flash.EnableExtendDeployment();
+Power.Reset();
+```
+
+Because external flash can be probed, **assemblies extended into external flash can be cryptographically secured** with **Secure Assemblies** — see [IP Protection](ip-protection.mdx) for how to keep application code unreadable even when stored externally.
 
 :::tip
-[TinyCLR Config](https://docs.ghielectronics.com/software/tinyclr/tinyclr-config.html) can be used to display the internal `Deployment Map`.
+[TinyCLR Config](/docs/tinyclr/tinyclr-config) can also display the current **Deployment Map**, showing what's stored where — useful for verifying that secure assemblies end up in internal flash and only the appropriate items live externally.
 :::
-
-The entire 16MB of flash, or 10MB when deployment is extended, can be used directly by reading/writing raw sectors or using [Tiny File System](file-system.mdx).

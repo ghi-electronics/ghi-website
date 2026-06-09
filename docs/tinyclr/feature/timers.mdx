@@ -2,24 +2,56 @@
 title: Timers
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
-:::
+`System.Threading.Timer` calls a method at a scheduled time or on a repeating interval. Use it for periodic background work — polling a sensor every second, blinking an LED, refreshing a UI element — without writing a dedicated thread.
 
-A timer is used to call a method at a specific time. This example will call or invoke the Ticker method after a three second delay, and then it will call Ticker once a second indefinitely.
+NuGet package: **`GHIElectronics.TinyCLR.Core`** (`System.Threading.Timer` is in the core).
+
+## Periodic timer
+
+The example below waits 3 seconds, then calls `Ticker` once a second forever:
 
 ```csharp
-static void Ticker(object o) {
+using System.Diagnostics;
+using System.Threading;
+
+static void Ticker(object state) {
     Debug.WriteLine("Hello!");
 }
 
-static void Main() {
-    Timer timer = new Timer(Ticker, null, 3000, 1000);
+var timer = new Timer(Ticker, null, dueTime: 3000, period: 1000);
 
-    Thread.Sleep(Timeout.Infinite);
-}
+Thread.Sleep(Timeout.Infinite);
 ```
 
-A thread can also be created that loops once a second on its own, without being called by a timer. The difference is that a thread that contains a one second sleep will delay for that one second in addition to the time used by other code in the thread. So, if a thread needs 0.5 second to complete what it is doing, sleeping for one second will cause the thread to execute every 1.5 seconds. This also gets more complex as a thread's code can have different processing time in every loop.
+The constructor's third argument (`dueTime`) is the **delay before the first call**; the fourth (`period`) is the **interval between calls**. Use `Timeout.Infinite` for either to disable initial delay or stop repeating.
 
-A timer set to invoke a method every second will do so every second regardless of how long the invoked method takes to execute. However, care must be taken, because if a timer calls a method every 100 milliseconds, but the method needs more than 100 milliseconds to execute, you will end up flooding the system. The best practice is for timers to invoke methods that execute in a very short time.
+## Timer vs Thread
+
+A common alternative is a thread with `Thread.Sleep` at the end of a loop. The difference matters:
+
+- A **thread sleeping 1 second per loop** runs every `(processing time + 1 second)` — variable, drifts with workload.
+- A **timer with 1 second period** fires every 1 second on the dot, regardless of how long the previous invocation took.
+
+Timer wins when you want **predictable cadence**. Thread wins when the work itself takes most of the budget and you just want to throttle the loop.
+
+:::warning
+**Keep timer callbacks fast.** If your timer fires every 100 ms but the callback takes 150 ms to run, you'll flood the system — invocations queue up and back-pressure builds. As a rule, timer callbacks should complete in much less time than the period.
+:::
+
+## One-shot timer
+
+Pass `Timeout.Infinite` as the period to fire exactly once:
+
+```csharp
+new Timer(Ticker, null, dueTime: 5000, period: Timeout.Infinite);
+```
+
+## Changing or stopping a timer
+
+`Timer.Change(dueTime, period)` reschedules a running timer; `Dispose()` stops it and releases the resource.
+
+```csharp
+timer.Change(0, 500);       // Restart immediately, 500 ms cadence.
+timer.Change(Timeout.Infinite, Timeout.Infinite);   // Stop firing without disposing.
+timer.Dispose();            // Stop and release.
+```

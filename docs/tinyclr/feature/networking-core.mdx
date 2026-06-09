@@ -2,50 +2,101 @@
 title: Networking Core
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
+TinyCLR's networking stack implements a subset of Microsoft's standard `System.Net.Sockets` API. Most `.NET` socket code runs on TinyCLR with little or no modification — including TCP/UDP sockets, DNS lookups, and TLS. Familiarity with the standard [`System.Net.Sockets.Socket`](https://learn.microsoft.com/dotnet/api/system.net.sockets.socket) class transfers directly.
+
+This page covers the common pieces — MAC addresses, IP assignment, sockets, DNS, mDNS — that apply regardless of the underlying transport (Ethernet, WiFi, cellular, PPP).
+
+## MAC addresses
+
+Before using SITCore's built-in PHY or the ENC28-based Ethernet, you **must set a MAC address** — otherwise an exception is raised on enable. For internal testing, any locally-administered MAC will work; for shipped products, you need a valid, unique MAC.
+
+If you don't have access to a registered OUI, sensible options are:
+
+- Use a MAC address from a decommissioned computer or network card.
+- Use an online MAC generator (acceptable for one-offs, not for production volumes).
+
+:::warning
+Two devices with the same MAC address on the same local subnet **break each other** — neither will communicate reliably. Plan for unique MACs on every shipped unit.
 :::
 
-Networking support in TinyCLR is a subset of Microsoft's .NET Framework networking stack. More details will be added to this tutorial in the future. You might want to look at the [Microsoft Sockets Class]( https://docs.microsoft.com/en-us/dotnet/api/system.net.sockets.socket?view=netframework-4.8) documentation to get started -- it should very closely resemble the TinyCLR sockets class.
+The **WINC1500** WiFi module ships with a manufacturer-assigned unique MAC. That MAC is used by default, but you can override it if you need to.
 
-## MAC Addresses
-Before using SITCore's built in PHY and ENC28 Ethernet networking, you have to set a MAC address or an exception will be raised. While you may not need a unique MAC address for internal testing, you will need to set a valid and unique MAC address before shipping your product. If you do not have access to an appropriate MAC address, you can either use an online MAC address generator, which is not ideal, or you can use a MAC address from an old computer or network card that is no longer used.
+## IP assignment
 
-Not having a unique MAC address can be a problem. If two devices with the same MAC address are present on the same local network subnet, neither device will be able to communicate properly.
+TinyCLR supports both **static** and **dynamic** IP. With either method, a `NetworkAddressChanged` event fires once an IP is available so your application can react:
 
-The WINC1500 WiFi module supported by SITCore devices ships with a manufacturer assigned unique MAC address. This address is used by default, although you can provide your own MAC address if desired.
-
----
-
-## Secure Sockets
-TLS is natively supported. See the [TLS page](tls.mdx) for details.
-
----
-
-## .NET Sockets
-TinyCLR's support of sockets is very similar to .NET socket support. Most .NET socket code should run with little modification. Socket support is provided as part of the TinyCLR core. Tiny CLR sockets work similar to .NET sockets -- most .NET examples are applicable to TinyCLR.
-
----
-
-## TCP/UDP
-TCP and UDP are the core of the Internet protocols and are supported through standard .NET Sockets. The web is full of examples on using TCP and UDP Sockets that should work as is or with minor changes.
-
-TCP example:
 ```csharp
-var s = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)){               
-    try {
-        var ip = IPAddress.Parse("192.168.1.87");                 
-        s.Connect(new IPEndPoint(ip, 80));           
-        s.Send(System.Text.UTF8Encoding.UTF8.GetBytes("I am SITCore\n\r"));
-    }
-    catch {
-    }               
+networkController.NetworkAddressChanged += NetworkController_NetworkAddressChanged;
+
+static void NetworkController_NetworkAddressChanged(NetworkController sender, NetworkAddressChangedEventArgs e) {
+    var ipProperties = sender.GetIPProperties();
 }
 ```
 
-UDP example:
+:::tip
+Static IP addressing is not available on [PPP](ppp.mdx) connections.
+:::
+
+### Static IP
+
+Set the address, mask, gateway, and DNS servers manually:
+
 ```csharp
-var socket = new System.Net.Sockets.Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+networkInterfaceSetting.DhcpEnabled = false;
+networkInterfaceSetting.Address = new IPAddress(new byte[] { 192, 168, 1, 122 });
+networkInterfaceSetting.SubnetMask = new IPAddress(new byte[] { 255, 255, 255, 0 });
+networkInterfaceSetting.GatewayAddress = new IPAddress(new byte[] { 192, 168, 1, 1 });
+networkInterfaceSetting.DnsAddresses = new IPAddress[] {
+    new IPAddress(new byte[] { 75, 75, 75, 75 }),
+    new IPAddress(new byte[] { 75, 75, 75, 76 }),
+};
+```
+
+### Dynamic IP
+
+A single setting enables DHCP. The device tries to lease an IP from a DHCP server first; if that fails, it falls back to **AutoIP** (self-assigning a link-local address). Both paths can take a few seconds — wait for the `NetworkAddressChanged` event to know when the IP is ready.
+
+```csharp
+networkInterfaceSetting.DhcpEnabled = true;
+```
+
+:::tip
+AutoIP addresses always fall in the **169.254.x.x** range. Check the assigned address against that range to know whether DHCP succeeded or AutoIP took over.
+:::
+
+## TCP and UDP sockets
+
+TCP and UDP are accessed through the standard `System.Net.Sockets.Socket` API. Most desktop .NET examples for these protocols work with little or no change on TinyCLR.
+
+### TCP
+
+```csharp
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
+
+using var s = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+
+try {
+    var ip = IPAddress.Parse("192.168.1.87");
+    s.Connect(new IPEndPoint(ip, 80));
+    s.Send(Encoding.UTF8.GetBytes("I am SITCore\r\n"));
+}
+catch {
+    // Connection or send failed.
+}
+```
+
+### UDP
+
+```csharp
+using System.Diagnostics;
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
+using System.Threading;
+
+var socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
 var ip = new IPAddress(new byte[] { 192, 168, 1, 87 });
 var endPoint = new IPEndPoint(ip, 2000);
 
@@ -55,91 +106,66 @@ byte[] bytesToSend = Encoding.UTF8.GetBytes(msg);
 
 while (true) {
     socket.SendTo(bytesToSend, bytesToSend.Length, SocketFlags.None, endPoint);
-    while (socket.Poll(2000000, SelectMode.SelectRead)){
-        if (socket.Available > 0){
+
+    while (socket.Poll(2_000_000, SelectMode.SelectRead)) {
+        if (socket.Available > 0) {
             byte[] inBuf = new byte[socket.Available];
             var recEndPoint = new IPEndPoint(IPAddress.Any, 0);
             socket.ReceiveFrom(inBuf, ref recEndPoint);
-            if (!recEndPoint.Equals(endPoint))// Check if the received packet is from the 192.168.0.2
+
+            // Ignore packets that didn't come from the address we're talking to.
+            if (!recEndPoint.Equals(endPoint))
                 continue;
-            Debug.WriteLine(new String(Encoding.UTF8.GetChars(inBuf)));
+
+            Debug.WriteLine(new string(Encoding.UTF8.GetChars(inBuf)));
         }
     }
+
     Thread.Sleep(100);
-}     
-```
-
----
-
-## IP Assignment
-TinyCLR supports both static and dynamic IP addressing. With either method, an event is fired providing the local IP settings.
-
-```csharp
-networkController.NetworkAddressChanged += NetworkController_NetworkAddressChanged;
-// ...
-private static void NetworkController_NetworkAddressChanged
-    (NetworkController sender, NetworkAddressChangedEventArgs e) {
-    var ipProperties = sender.GetIPProperties();
 }
 ```
-
-:::tip
-Static IP addressing does not work with [PPP](ppp.mdx).
-:::
-
-### Static IP
-
-With static IP addressing, the following settings must be provided.
-
-```csharp
-networkInterfaceSetting.DhcpEnabled = false;
-networkInterfaceSetting.Address = new IPAddress(new byte[] { 192, 168, 1, 122 });
-networkInterfaceSetting.SubnetMask = new IPAddress(new byte[] { 255, 255, 255, 0 });
-networkInterfaceSetting.GatewayAddress = new IPAddress(new byte[] { 192, 168, 1, 1 });
-networkInterfaceSetting.DnsAddresses = new IPAddress[] { new IPAddress(new byte[]
-    { 75, 75, 75, 75 }), new IPAddress(new byte[] { 75, 75, 75, 76 }) };
-```
-### Dynamic IP
-
-The following line of code enables dynamic IP, which start by trying to lease an IP from a DHCP server. If that fails, the system will self-assign an IP address through AutoIP mechanism. This can take a while but an event is fired when an IP is available.
-
-```csharp
-networkInterfaceSetting.DhcpEnabled = true;
-```
-
-:::tip
-AutoIP addresses always fall within the 169.254.x.x range to determine if an IP was generated using AutoIP
-:::
-
----
 
 ## DNS
-The TinyCLR Dns class can be used to resolve a URL into its IP address by using the following code:
+
+Resolve a hostname to an IP address with `Dns.GetHostEntry`:
 
 ```csharp
+using System;
+using System.Net;
+
 var hostEntry = Dns.GetHostEntry(hostName);
 
-if ((hostEntry != null) && (hostEntry.AddressList.Length > 0)) {
-    var i = 0;
-    
-    while (hostEntry.AddressList[i] == null) i++;
-    
-    remoteIpAddress = hostEntry.AddressList[i];
-}
+if (hostEntry != null && hostEntry.AddressList.Length > 0) {
+    IPAddress remoteIpAddress = null;
+    for (int i = 0; i < hostEntry.AddressList.Length; i++) {
+        if (hostEntry.AddressList[i] != null) {
+            remoteIpAddress = hostEntry.AddressList[i];
+            break;
+        }
+    }
 
+    if (remoteIpAddress == null)
+        throw new Exception("No usable address returned for " + hostName);
+}
 else {
-    throw new Exception("Server not found."); ;
+    throw new Exception("Server not found: " + hostName);
 }
 ```
----
+
 ## mDNS
-Multicast DNS is a local name resolution service over local networks. Please note that not all operating systems support mDNS.
+
+**Multicast DNS** lets devices discover each other on the local network without a central DNS server. Not all client operating systems include an mDNS responder — macOS and recent Windows do; some Linux distributions require `avahi`.
 
 ```csharp
 networkInterfaceSetting.MulticastDnsEnable = true;
 
 networkController.Enable();
 
-MulticastDns.Start("MyServer", TimeSpan.FromSeconds(1*60*60));    // TTL set to 1 hour
-
+MulticastDns.Start("MyServer", TimeSpan.FromHours(1));      // TTL: 1 hour
 ```
+
+Once started, the device responds to lookups for `MyServer.local` on the local subnet.
+
+## Secure sockets (TLS)
+
+TLS 1.2 is natively supported and integrates with the standard socket API. See the [TLS page](tls.mdx) for the full reference.

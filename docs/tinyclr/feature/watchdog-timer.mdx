@@ -2,44 +2,47 @@
 title: Watchdog
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
+A **watchdog timer** automatically resets the system if your application stops responding — useful as a safety net against firmware bugs, deadlocks, or peripheral hangs that would otherwise leave the device stuck. The watchdog counts down from a configured timeout, and your application must **kick** it periodically (`Reset()`) to prevent the count from reaching zero. If it reaches zero, the system reboots.
+
+NuGet package: **`GHIElectronics.TinyCLR.Devices.Watchdog`**.
+
+:::warning
+Once the watchdog is enabled, **it cannot be disabled** without a full system reset or power cycle. Plan the timeout carefully before enabling.
 :::
 
-A watchdog timer is used to reset the system if the system fails or locks up. 
-
-During normal operation, the application will regularly reset the watchdog timer so it never reaches zero and doesn't reset the system. 
-
-:::note
-Once Watchdog is enabled it can't be disabled without resetting the system or a power cycle.
+:::warning
+**Don't enable the watchdog while step-debugging** — the system will reset every time you pause on a breakpoint. Either disable the call during development or wrap it in a debug-vs-release conditional.
 :::
 
-:::tip
-Needed NuGets: GHIElectronics.TinyCLR.Devices.Watchdog 
-:::
+## Basic usage
 
-It's recommend to run Watchdog inside a thread in the application.  
+Run the watchdog in its own thread so the timeout is independent of what your main loop is doing. The example below sets a **5-second timeout** and kicks the watchdog **every 4 seconds** — giving the system a 1-second margin before it would reset.
 
 ```csharp
-new Thread(RunWatchDog).Start();
-                 
-static void RunWatchDog() {
+using GHIElectronics.TinyCLR.Devices.Watchdog;
+using System.Threading;
 
-    // Set watchdog to 5 seconds and reset it every 4 seconds
-    var WatchDog = WatchdogController.GetDefault();
-    WatchDog.Enable(5000);
+new Thread(RunWatchdog).Start();
+
+static void RunWatchdog() {
+    var watchdog = WatchdogController.GetDefault();
+    watchdog.Enable(5000);      // 5-second timeout.
 
     while (true) {
-        //reset the timer
-        WatchDog.Reset();
-        Thread.Sleep(4000);
+        watchdog.Reset();       // Kick the watchdog.
+        Thread.Sleep(4000);     // Run again before the timeout expires.
     }
 }
 ```
-:::tip
-Set your Watchdog timer to a reasonable amount of time, setting it too low will cause the application to constantly reset. 
-:::
 
-:::note
-Enabling the watchdog timer when debugging is a bad idea since the system will probably reset while stepping through code.
-:::
+## Picking a timeout
+
+The timeout has to be **longer than the worst-case time between kicks**, or you'll false-trip and reboot in normal operation. Things that affect this:
+
+- Worst-case work in the kicking thread between `Reset()` calls
+- GC pauses (occasional, hundreds of ms in heavy workloads)
+- Slow blocking operations (file I/O, network requests)
+
+A common pattern is to set the timeout to **roughly 2× your steady-state kick interval** so transient delays don't trip it, but real hangs do.
+
+If you set it **too short**, the device gets stuck in a reset loop. If you set it **too long**, the system might be unresponsive for a long time before recovering. Tune to your application's responsiveness budget.
