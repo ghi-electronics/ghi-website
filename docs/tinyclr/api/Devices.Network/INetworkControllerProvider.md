@@ -21,7 +21,7 @@ public interface INetworkControllerProvider : IDisposable, INetworkProvider
 NetworkInterfaceType InterfaceType { get; }
 ```
 
-Interface type — Ethernet, WiFi, or PPP. _(inherited)_
+_No description available._
 
 ### CommunicationInterface
 
@@ -29,7 +29,7 @@ Interface type — Ethernet, WiFi, or PPP. _(inherited)_
 NetworkCommunicationInterface CommunicationInterface { get; }
 ```
 
-Physical bus carrying the interface — built-in MAC, SPI, or UART. _(inherited)_
+_No description available._
 
 ## Methods
 
@@ -39,7 +39,7 @@ Physical bus carrying the interface — built-in MAC, SPI, or UART. _(inherited)
 void Enable()
 ```
 
-Re-enables interrupts after a matching `Disable`. _(inherited)_
+_No description available._
 
 ### Disable()
 
@@ -47,7 +47,7 @@ Re-enables interrupts after a matching `Disable`. _(inherited)_
 void Disable()
 ```
 
-Disables interrupts on the current core. Always pair with `Enable`. _(inherited)_
+_No description available._
 
 ### Suspend()
 
@@ -55,7 +55,7 @@ Disables interrupts on the current core. Always pair with `Enable`. _(inherited)
 void Suspend()
 ```
 
-Suspends the interface (low-power state with state preserved). _(inherited)_
+_No description available._
 
 ### Resume()
 
@@ -63,7 +63,7 @@ Suspends the interface (low-power state with state preserved). _(inherited)_
 void Resume()
 ```
 
-Resumes a previously `Suspend`ed interface. _(inherited)_
+_No description available._
 
 ### GetLinkConnected()
 
@@ -71,7 +71,7 @@ Resumes a previously `Suspend`ed interface. _(inherited)_
 bool GetLinkConnected()
 ```
 
-True when the physical link is currently up. _(inherited)_
+_No description available._
 
 **Returns** `bool`
 
@@ -91,7 +91,7 @@ _No description available._
 NetworkIPProperties GetIPProperties()
 ```
 
-Returns the current IP address, subnet, gateway, and DNS servers. _(inherited)_
+_No description available._
 
 **Returns** `NetworkIPProperties`
 
@@ -101,7 +101,7 @@ Returns the current IP address, subnet, gateway, and DNS servers. _(inherited)_
 NetworkInterfaceProperties GetInterfaceProperties()
 ```
 
-Returns interface-specific properties (MAC address and friends). _(inherited)_
+_No description available._
 
 **Returns** `NetworkInterfaceProperties`
 
@@ -111,7 +111,7 @@ Returns interface-specific properties (MAC address and friends). _(inherited)_
 void SetInterfaceSettings(NetworkInterfaceSettings settings)
 ```
 
-Applies `NetworkInterfaceSettings` (IP address, DHCP, DNS). _(inherited)_
+_No description available._
 
 ### SetCommunicationInterfaceSettings(NetworkCommunicationInterfaceSettings settings)
 
@@ -119,7 +119,7 @@ Applies `NetworkInterfaceSettings` (IP address, DHCP, DNS). _(inherited)_
 void SetCommunicationInterfaceSettings(NetworkCommunicationInterfaceSettings settings)
 ```
 
-Applies the underlying physical-bus settings (built-in MAC, SPI, or UART). _(inherited)_
+_No description available._
 
 ## Events
 
@@ -129,7 +129,7 @@ Applies the underlying physical-bus settings (built-in MAC, SPI, or UART). _(inh
 event NetworkLinkConnectedChangedEventHandler NetworkLinkConnectedChanged
 ```
 
-Raised when the physical link goes up or down. _(inherited)_
+_No description available._
 
 ### NetworkAddressChanged
 
@@ -137,4 +137,4 @@ Raised when the physical link goes up or down. _(inherited)_
 event NetworkAddressChangedEventHandler NetworkAddressChanged
 ```
 
-Raised when the IP address, gateway, or DNS servers change (e.g. on DHCP lease assignment). _(inherited)_
+_No description available._

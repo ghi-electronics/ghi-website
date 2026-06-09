@@ -47,7 +47,7 @@ _No description available._
 public IPAddress Address { get; set; }
 ```
 
-Gets or sets the address of the proxy server. _(inherited)_
+_No description available._
 
 ### Port
 
@@ -55,7 +55,7 @@ Gets or sets the address of the proxy server. _(inherited)_
 public int Port { get; set; }
 ```
 
-Gets the port number of this URI. _(inherited)_
+_No description available._
 
 ## Methods
 
@@ -75,7 +75,7 @@ _No description available._
 public override EndPoint Create(SocketAddress socketAddress)
 ```
 
-Creates a WebRequest . _(inherited)_
+_No description available._
 
 **Returns** `EndPoint`
 
@@ -85,7 +85,7 @@ Creates a WebRequest . _(inherited)_
 public override string ToString()
 ```
 
-String representation _(inherited)_
+_No description available._
 
 **Returns** `string`
 
@@ -95,7 +95,7 @@ String representation _(inherited)_
 public override bool Equals(object obj)
 ```
 
-Is the given RoutedEventHandlerInfo equals the current _(inherited)_
+_No description available._
 
 **Returns** `bool`
 
@@ -105,7 +105,7 @@ Is the given RoutedEventHandlerInfo equals the current _(inherited)_
 public override int GetHashCode()
 ```
 
-Serves as a hash function for a particular type, suitable for use in hashing algorithms and data structures like a hash table _(inherited)_
+_No description available._
 
 **Returns** `int`
 

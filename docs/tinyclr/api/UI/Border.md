@@ -21,7 +21,7 @@ public class Border : ContentControl
 public Border()
 ```
 
-Legacy alias for `RadiusBorder`. Will be removed. _(inherited)_
+_No description available._
 
 ## Properties
 
@@ -65,7 +65,12 @@ _No description available._
 protected override void ArrangeOverride(int arrangeWidth, int arrangeHeight)
 ```
 
-ArrangeOverride allows for the customization of the positioning of children. _(inherited)_
+ArrangeOverride allows for the customization of the final sizing and positioning of children. _(inherited)_
+
+| Parameter | Type | Description |
+|---|---|---|
+| `arrangeWidth` | `int` | Final width |
+| `arrangeHeight` | `int` | Final height |
 
 ### MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
 
@@ -88,4 +93,4 @@ Measurement override. Implement your size-to-content logic here. _(inherited)_
 public override void OnRender(DrawingContext dc)
 ```
 
-Renders the DataGrid onto it's parent container's graphics. _(inherited)_
+_No description available._

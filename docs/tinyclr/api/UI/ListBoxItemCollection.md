@@ -31,7 +31,7 @@ _No description available._
 public ListBoxItem this[int index] { get; set; }
 ```
 
-Indexer for the UIElementCollection. Gets or sets the UIElement stored at the zero-based index of the UIElementCollection. _(inherited)_
+_No description available._
 
 ### Count
 
@@ -39,7 +39,7 @@ Indexer for the UIElementCollection. Gets or sets the UIElement stored at the ze
 public int Count { get; }
 ```
 
-Gets the number of elements contained in the array. _(inherited)_
+_No description available._
 
 ### IsSynchronized
 
@@ -47,7 +47,7 @@ Gets the number of elements contained in the array. _(inherited)_
 public bool IsSynchronized { get; }
 ```
 
-Gets a value indicating whether access to the collection is synchronized (thread-safe). _(inherited)_
+_No description available._
 
 ### SyncRoot
 
@@ -55,7 +55,7 @@ Gets a value indicating whether access to the collection is synchronized (thread
 public object SyncRoot { get; }
 ```
 
-Gets an object that can be used to synchronize access to the collection. _(inherited)_
+_No description available._
 
 ## Methods
 
@@ -65,9 +65,9 @@ Gets an object that can be used to synchronize access to the collection. _(inher
 public int Add(ListBoxItem item)
 ```
 
-Appends a UIElement to the end of the UIElementCollection. _(inherited)_
+_No description available._
 
-**Returns** `int` — The UIElementCollection index at which the UIElement has been added.
+**Returns** `int`
 
 ### Add(UIElement element)
 
@@ -75,9 +75,9 @@ Appends a UIElement to the end of the UIElementCollection. _(inherited)_
 public int Add(UIElement element)
 ```
 
-Appends a UIElement to the end of the UIElementCollection. _(inherited)_
+_No description available._
 
-**Returns** `int` — The UIElementCollection index at which the UIElement has been added.
+**Returns** `int`
 
 ### Clear()
 
@@ -85,7 +85,7 @@ Appends a UIElement to the end of the UIElementCollection. _(inherited)_
 public void Clear()
 ```
 
-Removes all elements from the UIElementCollection. _(inherited)_
+_No description available._
 
 ### Contains(ListBoxItem item)
 
@@ -93,7 +93,7 @@ Removes all elements from the UIElementCollection. _(inherited)_
 public bool Contains(ListBoxItem item)
 ```
 
-Determines whether a element is in the UIElementCollection. _(inherited)_
+_No description available._
 
 **Returns** `bool`
 
@@ -103,7 +103,7 @@ Determines whether a element is in the UIElementCollection. _(inherited)_
 public int IndexOf(ListBoxItem item)
 ```
 
-Returns the zero-based index of the UIElement. If the UIElement is not in the UIElementCollection -1 is returned. If null is passed to the method, the index of the first entry with null is returned. If there is no null entry -1 is returned. _(inherited)_
+_No description available._
 
 **Returns** `int`
 
@@ -113,12 +113,7 @@ Returns the zero-based index of the UIElement. If the UIElement is not in the UI
 public void Insert(int index, ListBoxItem item)
 ```
 
-Inserts an element into the UIElementCollection at the specified index. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `index` | `int` | The zero-based index at which value should be inserted. |
-| `item` | `ListBoxItem` |  |
+_No description available._
 
 ### Remove(ListBoxItem item)
 
@@ -126,7 +121,7 @@ Inserts an element into the UIElementCollection at the specified index. _(inheri
 public void Remove(ListBoxItem item)
 ```
 
-Removes the specified element from the UIElementCollection. _(inherited)_
+_No description available._
 
 ### RemoveAt(int index)
 
@@ -134,8 +129,4 @@ Removes the specified element from the UIElementCollection. _(inherited)_
 public void RemoveAt(int index)
 ```
 
-Removes the UIElement at the specified index. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `index` | `int` | The zero-based index of the element to remove. |
+_No description available._

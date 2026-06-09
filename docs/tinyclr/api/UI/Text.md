@@ -47,7 +47,7 @@ _No description available._
 public System.Drawing.Font Font { get; set; }
 ```
 
-Font used by the text. _(inherited)_
+_No description available._
 
 ### ForeColor
 
@@ -120,7 +120,7 @@ Measurement override. Implement your size-to-content logic here. _(inherited)_
 public override void OnRender(DrawingContext dc)
 ```
 
-Renders the DataGrid onto it's parent container's graphics. _(inherited)_
+_No description available._
 
 ## Fields
 

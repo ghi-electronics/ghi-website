@@ -47,7 +47,7 @@ _No description available._
 public int Height { get; set; }
 ```
 
-Frame height in pixels. _(inherited)_
+_No description available._
 
 ### Width
 
@@ -55,7 +55,7 @@ Frame height in pixels. _(inherited)_
 public int Width { get; set; }
 ```
 
-Column width in pixels. _(inherited)_
+_No description available._
 
 ### LogicalChildren
 
@@ -161,11 +161,7 @@ _No description available._
 protected virtual void OnTouchDown(TouchEventArgs e)
 ```
 
-Handles the touch down event. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `TouchEventArgs` | Touch event arguments. |
+_No description available._
 
 ### OnTouchUp(TouchEventArgs e)
 
@@ -173,11 +169,7 @@ Handles the touch down event. _(inherited)_
 protected virtual void OnTouchUp(TouchEventArgs e)
 ```
 
-Handles the touch up event. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `TouchEventArgs` | Touch event arguments. |
+_No description available._
 
 ### OnTouchMove(TouchEventArgs e)
 
@@ -185,11 +177,7 @@ Handles the touch up event. _(inherited)_
 protected virtual void OnTouchMove(TouchEventArgs e)
 ```
 
-Handles the touch move event. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `TouchEventArgs` | Touch event arguments. |
+_No description available._
 
 ### OnTouchGestureStarted(TouchGestureEventArgs e)
 
@@ -480,7 +468,7 @@ Notification that is called by Measure of a child when it ends up with different
 public virtual void OnRender(DrawingContext dc)
 ```
 
-Renders the DataGrid onto it's parent container's graphics. _(inherited)_
+_No description available._
 
 ### RenderRecursive(DrawingContext dc)
 

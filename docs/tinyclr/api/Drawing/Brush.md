@@ -21,7 +21,7 @@ public abstract class Brush : MarshalByRefObject, ICloneable, IDisposable
 public abstract object Clone()
 ```
 
-Creates a new object that is a copy of the current instance. _(inherited)_
+_No description available._
 
 **Returns** `object`
 
@@ -31,7 +31,7 @@ Creates a new object that is a copy of the current instance. _(inherited)_
 public void Dispose()
 ```
 
-Releases buffered memory (the unmanaged firmware/application buffers). _(inherited)_
+_No description available._
 
 ### Dispose(bool disposing)
 
@@ -39,8 +39,4 @@ Releases buffered memory (the unmanaged firmware/application buffers). _(inherit
 protected virtual void Dispose(bool disposing)
 ```
 
-Closes a response stream, if present. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `disposing` | `bool` | Not used. |
+_No description available._

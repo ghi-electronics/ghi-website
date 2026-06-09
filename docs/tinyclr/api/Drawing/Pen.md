@@ -55,7 +55,7 @@ _No description available._
 public float Width { get; set; }
 ```
 
-Column width in pixels. _(inherited)_
+_No description available._
 
 ### Color
 
@@ -89,7 +89,7 @@ _No description available._
 public void Dispose()
 ```
 
-Releases buffered memory (the unmanaged firmware/application buffers). _(inherited)_
+_No description available._
 
 ### Clone()
 
@@ -97,6 +97,6 @@ Releases buffered memory (the unmanaged firmware/application buffers). _(inherit
 public object Clone()
 ```
 
-Creates a new object that is a copy of the current instance. _(inherited)_
+_No description available._
 
 **Returns** `object`

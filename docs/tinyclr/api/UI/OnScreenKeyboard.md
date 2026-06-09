@@ -21,4 +21,4 @@ public class OnScreenKeyboard : Window
 public static new Font Font { get; set; }
 ```
 
-Font used by the text. _(inherited)_
+_No description available._

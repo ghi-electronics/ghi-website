@@ -49,7 +49,7 @@ Releases the native controller.
 public extern void Enable()
 ```
 
-Re-enables interrupts after a matching `Disable`. _(inherited)_
+Powers on the panel. _(inherited)_
 
 ### Disable()
 
@@ -57,7 +57,7 @@ Re-enables interrupts after a matching `Disable`. _(inherited)_
 public extern void Disable()
 ```
 
-Disables interrupts on the current core. Always pair with `Enable`. _(inherited)_
+Powers off the panel. _(inherited)_
 
 ### DrawBuffer(int targetX, int targetY, int sourceX, int sourceY, int width, int height, int originalWidth, byte[] data, int offset)
 

@@ -47,7 +47,7 @@ _No description available._
 public Font Font { get; set; }
 ```
 
-Font used by the text. _(inherited)_
+_No description available._
 
 ### AxisPen
 
@@ -127,7 +127,7 @@ _No description available._
 public ChartMode Mode { get; set; }
 ```
 
-SPI mode (clock polarity + phase). See `SpiMode`. _(inherited)_
+_No description available._
 
 ## Methods
 
@@ -145,7 +145,7 @@ Marks the cached chart surface stale. Call after mutating `Items` or any styling
 public override void OnRender(DrawingContext dc)
 ```
 
-Renders the DataGrid onto it's parent container's graphics. _(inherited)_
+_No description available._
 
 ### Dispose()
 
@@ -153,7 +153,7 @@ Renders the DataGrid onto it's parent container's graphics. _(inherited)_
 public void Dispose()
 ```
 
-Releases buffered memory (the unmanaged firmware/application buffers). _(inherited)_
+_No description available._
 
 ### Dispose(bool disposing)
 
@@ -161,8 +161,4 @@ Releases buffered memory (the unmanaged firmware/application buffers). _(inherit
 protected virtual void Dispose(bool disposing)
 ```
 
-Closes a response stream, if present. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `disposing` | `bool` | Not used. |
+_No description available._

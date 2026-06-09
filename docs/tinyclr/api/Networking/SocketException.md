@@ -55,7 +55,7 @@ _No description available._
 public int ErrorCode { get; }
 ```
 
-Gets the modbus error code _(inherited)_
+_No description available._
 
 ### Message
 

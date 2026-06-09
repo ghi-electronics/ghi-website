@@ -31,4 +31,4 @@ _No description available._
 public double Value { get; }
 ```
 
-Current needle position. Only this property doesn't dirty the background — the pointer is repainted every frame. _(inherited)_
+_No description available._

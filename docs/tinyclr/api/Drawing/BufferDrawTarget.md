@@ -31,7 +31,7 @@ _No description available._
 public int Width { get; }
 ```
 
-Column width in pixels. _(inherited)_
+_No description available._
 
 ### Height
 
@@ -39,7 +39,7 @@ Column width in pixels. _(inherited)_
 public int Height { get; }
 ```
 
-Frame height in pixels. _(inherited)_
+_No description available._
 
 ## Methods
 
@@ -67,7 +67,7 @@ _No description available._
 public virtual void Dispose()
 ```
 
-Releases buffered memory (the unmanaged firmware/application buffers). _(inherited)_
+_No description available._
 
 ### Flush()
 
@@ -75,7 +75,7 @@ Releases buffered memory (the unmanaged firmware/application buffers). _(inherit
 public virtual void Flush()
 ```
 
-Writes unwritten data to the file. _(inherited)_
+_No description available._
 
 ### GetPixel(int x, int y)
 

@@ -21,7 +21,7 @@ public class UsbClientSetting
 public UsbClientMode Mode { get; set; }
 ```
 
-SPI mode (clock polarity + phase). See `SpiMode`. _(inherited)_
+_No description available._
 
 ### ManufactureName
 
@@ -37,7 +37,7 @@ _No description available._
 public string ProductName { get; set; }
 ```
 
-gets the Product Name / Read "Identity Object" Class Code 0x01 - Attribute ID 7 _(inherited)_
+_No description available._
 
 ### SerialNumber
 
@@ -45,7 +45,7 @@ gets the Product Name / Read "Identity Object" Class Code 0x01 - Attribute ID 7 
 public string SerialNumber { get; set; }
 ```
 
-gets the Serial number / Read "Identity Object" Class Code 0x01 - Attribute ID 6 _(inherited)_
+_No description available._
 
 ### Guid
 
@@ -61,7 +61,7 @@ _No description available._
 public ushort ProductId { get; set; }
 ```
 
-The device's product id. _(inherited)_
+_No description available._
 
 ### VendorId
 
@@ -69,7 +69,7 @@ The device's product id. _(inherited)_
 public ushort VendorId { get; set; }
 ```
 
-The device's vendor id. _(inherited)_
+_No description available._
 
 ### BcdUsb
 
@@ -77,7 +77,7 @@ The device's vendor id. _(inherited)_
 public ushort BcdUsb { get; set; }
 ```
 
-The version of the device. _(inherited)_
+_No description available._
 
 ### BcdDevice
 
@@ -85,7 +85,7 @@ The version of the device. _(inherited)_
 public ushort BcdDevice { get; set; }
 ```
 
-The version of the device. _(inherited)_
+_No description available._
 
 ### MaxPower
 
@@ -93,7 +93,7 @@ The version of the device. _(inherited)_
 public ushort MaxPower { get; set; }
 ```
 
-The maximum power consumption in 2mA units. _(inherited)_
+_No description available._
 
 ### InterfaceName
 

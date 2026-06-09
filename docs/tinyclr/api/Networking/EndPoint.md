@@ -41,6 +41,6 @@ _No description available._
 public abstract EndPoint Create(SocketAddress socketAddress)
 ```
 
-Creates a WebRequest . _(inherited)_
+_No description available._
 
 **Returns** `EndPoint`

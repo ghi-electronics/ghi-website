@@ -109,4 +109,9 @@ Releases a previously opened channel. _(inherited)_
 public extern void Write(int channel, int value)
 ```
 
-Writes one block at the given block index. _(inherited)_
+Writes a raw code to the channel. _(inherited)_
+
+| Parameter | Type | Description |
+|---|---|---|
+| `channel` | `int` | Controller-relative channel index. |
+| `value` | `int` | Output code. |

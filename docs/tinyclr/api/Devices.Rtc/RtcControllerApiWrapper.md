@@ -77,7 +77,7 @@ Releases the native controller.
 public extern RtcDateTime GetTime()
 ```
 
-Reads the system clock as a UTC `DateTime`. _(inherited)_
+Reads the current calendar time. _(inherited)_
 
 **Returns** `RtcDateTime`
 
@@ -87,7 +87,11 @@ Reads the system clock as a UTC `DateTime`. _(inherited)_
 public extern void SetTime(RtcDateTime value)
 ```
 
-Sets the system clock from a UTC `DateTime`. _(inherited)_
+Sets the RTC time. _(inherited)_
+
+| Parameter | Type | Description |
+|---|---|---|
+| `value` | `RtcDateTime` | Calendar time to write. |
 
 ### WriteBackupMemory(byte[] sourceData, uint sourceOffset, uint destinationOffset, int count)
 

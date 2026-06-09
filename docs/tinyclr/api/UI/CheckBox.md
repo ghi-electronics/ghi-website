@@ -31,7 +31,7 @@ _No description available._
 public string Name { get; set; }
 ```
 
-The native API name. _(inherited)_
+_No description available._
 
 ### Alpha
 
@@ -47,7 +47,7 @@ _No description available._
 public ushort RadiusBorder { get; set; }
 ```
 
-Corner radius in pixels for the Scale9Image-rendered bar. _(inherited)_
+_No description available._
 
 ### IsChecked
 
@@ -65,7 +65,7 @@ _No description available._
 public override void OnRender(DrawingContext dc)
 ```
 
-Renders the DataGrid onto it's parent container's graphics. _(inherited)_
+_No description available._
 
 ### OnTouchUp(TouchEventArgs e)
 
@@ -73,11 +73,7 @@ Renders the DataGrid onto it's parent container's graphics. _(inherited)_
 protected override void OnTouchUp(TouchEventArgs e)
 ```
 
-Handles the touch up event. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `TouchEventArgs` | Touch event arguments. |
+_No description available._
 
 ### OnTouchDown(TouchEventArgs e)
 
@@ -85,11 +81,7 @@ Handles the touch up event. _(inherited)_
 protected override void OnTouchDown(TouchEventArgs e)
 ```
 
-Handles the touch down event. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `TouchEventArgs` | Touch event arguments. |
+_No description available._
 
 ### OnButtonUp(ButtonEventArgs e)
 
@@ -105,7 +97,7 @@ An event reporting a button was released. _(inherited)_
 public void Dispose()
 ```
 
-Releases buffered memory (the unmanaged firmware/application buffers). _(inherited)_
+_No description available._
 
 ### Dispose(bool disposing)
 
@@ -113,11 +105,7 @@ Releases buffered memory (the unmanaged firmware/application buffers). _(inherit
 protected virtual void Dispose(bool disposing)
 ```
 
-Closes a response stream, if present. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `disposing` | `bool` | Not used. |
+_No description available._
 
 ## Events
 
@@ -127,7 +115,7 @@ Closes a response stream, if present. _(inherited)_
 public event RoutedEventHandler Click
 ```
 
-Fires when the user commits the current selection — either by tapping a ListBoxItem or by pressing `HardwareButton.Select` while the ListBox has focus. The event source is the committed `ListBoxItem`. _(inherited)_
+_No description available._
 
 ### Checked
 

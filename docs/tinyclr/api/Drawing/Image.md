@@ -21,7 +21,7 @@ public abstract class Image : MarshalByRefObject, ICloneable, IDisposable
 public int Width { get; }
 ```
 
-Column width in pixels. _(inherited)_
+_No description available._
 
 ### Height
 
@@ -29,7 +29,7 @@ Column width in pixels. _(inherited)_
 public int Height { get; }
 ```
 
-Frame height in pixels. _(inherited)_
+_No description available._
 
 ## Methods
 
@@ -39,7 +39,7 @@ Frame height in pixels. _(inherited)_
 public object Clone()
 ```
 
-Creates a new object that is a copy of the current instance. _(inherited)_
+_No description available._
 
 **Returns** `object`
 
@@ -67,11 +67,7 @@ _No description available._
 protected virtual void Dispose(bool disposing)
 ```
 
-Closes a response stream, if present. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `disposing` | `bool` | Not used. |
+_No description available._
 
 ### Dispose()
 
@@ -79,7 +75,7 @@ Closes a response stream, if present. _(inherited)_
 public void Dispose()
 ```
 
-Releases buffered memory (the unmanaged firmware/application buffers). _(inherited)_
+_No description available._
 
 ### SetPixel(int x, int y, Color color)
 

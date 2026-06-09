@@ -39,7 +39,7 @@ _No description available._
 public int ChipSelectLine { get; set; }
 ```
 
-The GPIO pin that drives chip-select when `ChipSelectType` is `SpiChipSelectType.Gpio`. _(inherited)_
+_No description available._
 
 ### ClockFrequency
 
@@ -47,7 +47,7 @@ The GPIO pin that drives chip-select when `ChipSelectType` is `SpiChipSelectType
 public int ClockFrequency { get; set; }
 ```
 
-SCK frequency in Hz the controller is asked to use. _(inherited)_
+_No description available._
 
 ### DataBitLength
 
@@ -55,7 +55,7 @@ SCK frequency in Hz the controller is asked to use. _(inherited)_
 public int DataBitLength { get; set; }
 ```
 
-Frame width in bits. Fixed at 8 in this build. _(inherited)_
+_No description available._
 
 ### DataFlow
 
@@ -71,4 +71,4 @@ _No description available._
 public SpiMode Mode { get; set; }
 ```
 
-SPI mode (clock polarity + phase). See `SpiMode`. _(inherited)_
+_No description available._

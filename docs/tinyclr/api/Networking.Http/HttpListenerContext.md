@@ -39,4 +39,4 @@ Gets the HttpListenerResponse object that will be sent to the client in response
 public void Reset()
 ```
 
-Sets the enumerator to its initial position, which is before the first element in the collection. _(inherited)_
+_No description available._

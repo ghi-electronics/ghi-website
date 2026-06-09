@@ -47,7 +47,7 @@ Largest legal timeout in milliseconds. _(inherited)_
 public extern bool IsEnabled { get; }
 ```
 
-Fetches the value of the IsEnabled property _(inherited)_
+True once the watchdog is running. _(inherited)_
 
 ## Methods
 
@@ -73,7 +73,7 @@ Starts the watchdog with the given timeout in milliseconds. _(inherited)_
 public extern void Disable()
 ```
 
-Disables interrupts on the current core. Always pair with `Enable`. _(inherited)_
+Disables the watchdog where the hardware permits it. _(inherited)_
 
 ### Reset()
 
@@ -81,4 +81,4 @@ Disables interrupts on the current core. Always pair with `Enable`. _(inherited)
 public extern void Reset()
 ```
 
-Sets the enumerator to its initial position, which is before the first element in the collection. _(inherited)_
+Re-arms the watchdog. _(inherited)_

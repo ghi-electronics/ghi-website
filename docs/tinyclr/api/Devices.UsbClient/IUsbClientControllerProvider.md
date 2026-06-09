@@ -21,7 +21,7 @@ public interface IUsbClientControllerProvider : IDisposable
 int WriteBufferSize { get; set; }
 ```
 
-Size in bytes of the transmit buffer. _(inherited)_
+_No description available._
 
 ### ReadBufferSize
 
@@ -29,7 +29,7 @@ Size in bytes of the transmit buffer. _(inherited)_
 int ReadBufferSize { get; set; }
 ```
 
-Size in bytes of the receive buffer. _(inherited)_
+_No description available._
 
 ### DeviceState
 
@@ -67,7 +67,7 @@ _No description available._
 void Enable()
 ```
 
-Re-enables interrupts after a matching `Disable`. _(inherited)_
+_No description available._
 
 ### Disable()
 
@@ -75,7 +75,7 @@ Re-enables interrupts after a matching `Disable`. _(inherited)_
 void Disable()
 ```
 
-Disables interrupts on the current core. Always pair with `Enable`. _(inherited)_
+_No description available._
 
 ### SetActiveSetting(UsbClientSetting setting)
 
@@ -123,7 +123,7 @@ _No description available._
 int Read(int streamIndex, byte[] data, int offset, int count)
 ```
 
-Captures a slice of inter-edge intervals after waiting for `waitForState`. _(inherited)_
+_No description available._
 
 **Returns** `int`
 
@@ -133,7 +133,7 @@ Captures a slice of inter-edge intervals after waiting for `waitForState`. _(inh
 int Write(int streamIndex, byte[] data, int offset, int count)
 ```
 
-Writes `length` bytes; optional trailing break of `breakDuration`. _(inherited)_
+_No description available._
 
 **Returns** `int`
 
@@ -189,7 +189,7 @@ _No description available._
 event DataReceivedEventHandler DataReceived
 ```
 
-Raised when receive data becomes available. _(inherited)_
+_No description available._
 
 ### DeviceStateChanged
 

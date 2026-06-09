@@ -61,7 +61,7 @@ _No description available._
 public abstract string Value { get; }
 ```
 
-Current needle position. Only this property doesn't dirty the background — the pointer is repainted every frame. _(inherited)_
+_No description available._
 
 ### Depth
 
@@ -117,7 +117,7 @@ _No description available._
 public virtual string Name { get; }
 ```
 
-The native API name. _(inherited)_
+_No description available._
 
 ### HasAttributes
 
@@ -225,7 +225,7 @@ _No description available._
 public abstract bool Read()
 ```
 
-Samples the current level of the pin without waiting. _(inherited)_
+_No description available._
 
 **Returns** `bool`
 
@@ -235,7 +235,7 @@ Samples the current level of the pin without waiting. _(inherited)_
 public abstract void Close()
 ```
 
-When overridden by a descendant class, closes the response stream. _(inherited)_
+_No description available._
 
 ### LookupNamespace(string prefix)
 
@@ -343,7 +343,7 @@ _No description available._
 public virtual void Dispose()
 ```
 
-Releases buffered memory (the unmanaged firmware/application buffers). _(inherited)_
+_No description available._
 
 ### Create(Stream input)
 
@@ -351,7 +351,7 @@ Releases buffered memory (the unmanaged firmware/application buffers). _(inherit
 public static XmlReader Create(Stream input)
 ```
 
-Creates a WebRequest . _(inherited)_
+_No description available._
 
 **Returns** `XmlReader`
 
@@ -361,9 +361,9 @@ Creates a WebRequest . _(inherited)_
 public static XmlReader Create(Stream input, XmlReaderSettings settings)
 ```
 
-Creates or overwrites a file. _(inherited)_
+_No description available._
 
-**Returns** `XmlReader` — TinyFileStream that provides stream based access to the file.
+**Returns** `XmlReader`
 
 ### Create(Stream input, XmlReaderSettings settings, string baseUri)
 

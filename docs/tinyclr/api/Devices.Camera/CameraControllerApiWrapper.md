@@ -57,7 +57,7 @@ Applies a complete set of camera timing/protocol settings. _(inherited)_
 public int Capture(byte[] data, int offset, int count, int timeoutMillisecond)
 ```
 
-Capture timestamps of `count` edges on the pin. _(inherited)_
+Captures one frame. _(inherited)_
 
 **Returns** `int`
 
@@ -67,7 +67,7 @@ Capture timestamps of `count` edges on the pin. _(inherited)_
 public void Enable()
 ```
 
-Re-enables interrupts after a matching `Disable`. _(inherited)_
+Powers on the capture engine. _(inherited)_
 
 ### Disable()
 
@@ -75,4 +75,4 @@ Re-enables interrupts after a matching `Disable`. _(inherited)_
 public void Disable()
 ```
 
-Disables interrupts on the current core. Always pair with `Enable`. _(inherited)_
+Powers off the capture engine. _(inherited)_

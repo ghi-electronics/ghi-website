@@ -31,7 +31,7 @@ _No description available._
 public int HorizontalOffset { get; set; }
 ```
 
-Horizontal offset of the scroll. _(inherited)_
+_No description available._
 
 ### VerticalOffset
 
@@ -39,7 +39,7 @@ Horizontal offset of the scroll. _(inherited)_
 public int VerticalOffset { get; set; }
 ```
 
-Vertical offset of the scroll. _(inherited)_
+_No description available._
 
 ### ExtentHeight
 
@@ -47,7 +47,7 @@ Vertical offset of the scroll. _(inherited)_
 public int ExtentHeight { get; }
 ```
 
-Extent height of the scroll area. _(inherited)_
+_No description available._
 
 ### ExtentWidth
 
@@ -55,7 +55,7 @@ Extent height of the scroll area. _(inherited)_
 public int ExtentWidth { get; }
 ```
 
-Extent width of the scroll area. _(inherited)_
+_No description available._
 
 ### LineWidth
 
@@ -79,7 +79,7 @@ _No description available._
 public ScrollingStyle ScrollingStyle { get; set; }
 ```
 
-The scrolling style. _(inherited)_
+_No description available._
 
 ## Methods
 
@@ -104,7 +104,12 @@ Measurement override. Implement your size-to-content logic here. _(inherited)_
 protected override void ArrangeOverride(int arrangeWidth, int arrangeHeight)
 ```
 
-ArrangeOverride allows for the customization of the positioning of children. _(inherited)_
+ArrangeOverride allows for the customization of the final sizing and positioning of children. _(inherited)_
+
+| Parameter | Type | Description |
+|---|---|---|
+| `arrangeWidth` | `int` | Final width |
+| `arrangeHeight` | `int` | Final height |
 
 ### LineDown()
 
@@ -186,4 +191,4 @@ An event reporting a button was pressed. _(inherited)_
 public event ScrollChangedEventHandler ScrollChanged
 ```
 
-Event handler if the scroll changes. _(inherited)_
+_No description available._

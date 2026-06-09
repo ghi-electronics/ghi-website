@@ -21,7 +21,7 @@ public struct Enumerator : IEnumerator<T>, IEnumerator
 public T Current { get; }
 ```
 
-Gets the current UIElement. _(inherited)_
+_No description available._
 
 ## Methods
 
@@ -31,7 +31,7 @@ Gets the current UIElement. _(inherited)_
 public bool MoveNext()
 ```
 
-Advances the enumerator to the next element of the collection. _(inherited)_
+_No description available._
 
 **Returns** `bool`
 
@@ -41,4 +41,4 @@ Advances the enumerator to the next element of the collection. _(inherited)_
 public void Dispose()
 ```
 
-Releases buffered memory (the unmanaged firmware/application buffers). _(inherited)_
+_No description available._

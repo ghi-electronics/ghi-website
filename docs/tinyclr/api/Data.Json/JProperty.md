@@ -39,7 +39,7 @@ _No description available._
 public string Name { get; set; }
 ```
 
-The native API name. _(inherited)_
+_No description available._
 
 ### Value
 
@@ -47,7 +47,7 @@ The native API name. _(inherited)_
 public JToken Value { get; set; }
 ```
 
-Current needle position. Only this property doesn't dirty the background — the pointer is repainted every frame. _(inherited)_
+_No description available._
 
 ## Methods
 
@@ -57,7 +57,7 @@ Current needle position. Only this property doesn't dirty the background — the
 public override string ToString()
 ```
 
-String representation _(inherited)_
+_No description available._
 
 **Returns** `string`
 

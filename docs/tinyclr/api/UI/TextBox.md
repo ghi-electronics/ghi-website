@@ -105,11 +105,7 @@ _No description available._
 protected override void OnTouchUp(TouchEventArgs e)
 ```
 
-Handles the touch up event. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `TouchEventArgs` | Touch event arguments. |
+_No description available._
 
 ### OnButtonDown(ButtonEventArgs e)
 
@@ -140,7 +136,12 @@ Measurement override. Implement your size-to-content logic here. _(inherited)_
 protected override void ArrangeOverride(int arrangeWidth, int arrangeHeight)
 ```
 
-ArrangeOverride allows for the customization of the positioning of children. _(inherited)_
+ArrangeOverride allows for the customization of the final sizing and positioning of children. _(inherited)_
+
+| Parameter | Type | Description |
+|---|---|---|
+| `arrangeWidth` | `int` | Final width |
+| `arrangeHeight` | `int` | Final height |
 
 ### OnRender(DrawingContext dc)
 
@@ -148,7 +149,7 @@ ArrangeOverride allows for the customization of the positioning of children. _(i
 public override void OnRender(DrawingContext dc)
 ```
 
-Renders the DataGrid onto it's parent container's graphics. _(inherited)_
+_No description available._
 
 ## Events
 

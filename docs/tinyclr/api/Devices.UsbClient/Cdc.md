@@ -71,4 +71,4 @@ Creates a new instance of a CDC stream.
 public event DataReceivedEventHandler DataReceived
 ```
 
-Raised when receive data becomes available. _(inherited)_
+_No description available._

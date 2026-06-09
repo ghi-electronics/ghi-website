@@ -204,11 +204,7 @@ Get the current statistics of the file system.
 protected void Dispose(bool disposing)
 ```
 
-Closes a response stream, if present. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `disposing` | `bool` | Not used. |
+_No description available._
 
 ### Dispose()
 
@@ -216,4 +212,4 @@ Closes a response stream, if present. _(inherited)_
 public void Dispose()
 ```
 
-Releases buffered memory (the unmanaged firmware/application buffers). _(inherited)_
+_No description available._

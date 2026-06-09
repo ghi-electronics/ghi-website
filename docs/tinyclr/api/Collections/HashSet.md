@@ -79,7 +79,7 @@ _No description available._
 public int Count { get; }
 ```
 
-Gets the number of elements contained in the array. _(inherited)_
+_No description available._
 
 ## Methods
 
@@ -89,9 +89,9 @@ Gets the number of elements contained in the array. _(inherited)_
 public bool Add(T item)
 ```
 
-Appends a UIElement to the end of the UIElementCollection. _(inherited)_
+_No description available._
 
-**Returns** `bool` — The UIElementCollection index at which the UIElement has been added.
+**Returns** `bool`
 
 ### Clear()
 
@@ -99,7 +99,7 @@ Appends a UIElement to the end of the UIElementCollection. _(inherited)_
 public void Clear()
 ```
 
-Removes all elements from the UIElementCollection. _(inherited)_
+_No description available._
 
 ### Contains(T item)
 
@@ -107,7 +107,7 @@ Removes all elements from the UIElementCollection. _(inherited)_
 public bool Contains(T item)
 ```
 
-Determines whether a element is in the UIElementCollection. _(inherited)_
+_No description available._
 
 **Returns** `bool`
 
@@ -117,7 +117,7 @@ Determines whether a element is in the UIElementCollection. _(inherited)_
 public bool Remove(T item)
 ```
 
-Removes the specified element from the UIElementCollection. _(inherited)_
+_No description available._
 
 **Returns** `bool`
 
@@ -155,7 +155,7 @@ _No description available._
 public void CopyTo(T[] array, int arrayIndex)
 ```
 
-Strongly typed version of CopyTo Copies the collection into the Array. _(inherited)_
+_No description available._
 
 ### CopyTo(T[] array, int arrayIndex, int count)
 

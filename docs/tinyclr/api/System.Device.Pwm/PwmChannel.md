@@ -39,7 +39,7 @@ _No description available._
 public int Channel { get; }
 ```
 
-AP channel (1..13). AccessPoint mode only. _(inherited)_
+_No description available._
 
 ### Controller
 
@@ -47,7 +47,7 @@ AP channel (1..13). AccessPoint mode only. _(inherited)_
 public int Controller { get; }
 ```
 
-The `SpiController` this device transacts over. _(inherited)_
+_No description available._
 
 ### Frequency
 
@@ -71,7 +71,7 @@ _No description available._
 public PwmPulsePolarity Polarity { get; set; }
 ```
 
-Selects whether the active part of the pulse is high or low. _(inherited)_
+_No description available._
 
 ## Methods
 
@@ -81,9 +81,9 @@ Selects whether the active part of the pulse is high or low. _(inherited)_
 public static PwmChannel Create(int chip, int channel)
 ```
 
-Creates or overwrites a file. _(inherited)_
+_No description available._
 
-**Returns** `PwmChannel` — TinyFileStream that provides stream based access to the file.
+**Returns** `PwmChannel`
 
 ### Create(int chip, int channel, int frequency, double dutyCyclePercentage)
 
@@ -101,7 +101,7 @@ _No description available._
 public void Start()
 ```
 
-Starts the timer. _(inherited)_
+_No description available._
 
 ### Stop()
 
@@ -109,7 +109,7 @@ Starts the timer. _(inherited)_
 public void Stop()
 ```
 
-Stops the timer. _(inherited)_
+_No description available._
 
 ### Dispose()
 
@@ -117,4 +117,4 @@ Stops the timer. _(inherited)_
 public void Dispose()
 ```
 
-Releases buffered memory (the unmanaged firmware/application buffers). _(inherited)_
+_No description available._

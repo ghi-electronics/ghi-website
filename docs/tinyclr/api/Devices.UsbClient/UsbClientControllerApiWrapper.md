@@ -31,7 +31,7 @@ _No description available._
 public NativeApi Api { get; }
 ```
 
-The underlying native API descriptor. _(inherited)_
+_No description available._
 
 ### DeviceState
 
@@ -47,7 +47,7 @@ _No description available._
 public extern int WriteBufferSize { get; set; }
 ```
 
-Size in bytes of the transmit buffer. _(inherited)_
+_No description available._
 
 ### ReadBufferSize
 
@@ -55,7 +55,7 @@ Size in bytes of the transmit buffer. _(inherited)_
 public extern int ReadBufferSize { get; set; }
 ```
 
-Size in bytes of the receive buffer. _(inherited)_
+_No description available._
 
 ## Methods
 
@@ -65,7 +65,7 @@ Size in bytes of the receive buffer. _(inherited)_
 public void Dispose()
 ```
 
-Releases buffered memory (the unmanaged firmware/application buffers). _(inherited)_
+_No description available._
 
 ### Dispose(bool disposing)
 
@@ -73,11 +73,7 @@ Releases buffered memory (the unmanaged firmware/application buffers). _(inherit
 protected virtual void Dispose(bool disposing)
 ```
 
-Closes a response stream, if present. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `disposing` | `bool` | Not used. |
+_No description available._
 
 ### BytesToRead(int streamIndex)
 
@@ -105,7 +101,7 @@ _No description available._
 public extern void Enable()
 ```
 
-Re-enables interrupts after a matching `Disable`. _(inherited)_
+_No description available._
 
 ### Disable()
 
@@ -113,7 +109,7 @@ Re-enables interrupts after a matching `Disable`. _(inherited)_
 public extern void Disable()
 ```
 
-Disables interrupts on the current core. Always pair with `Enable`. _(inherited)_
+_No description available._
 
 ### SetActiveSetting(UsbClientSetting setting)
 
@@ -129,7 +125,7 @@ _No description available._
 public extern int Read(int streamIndex, byte[] data, int offset, int count)
 ```
 
-Captures a slice of inter-edge intervals after waiting for `waitForState`. _(inherited)_
+_No description available._
 
 **Returns** `int`
 
@@ -139,7 +135,7 @@ Captures a slice of inter-edge intervals after waiting for `waitForState`. _(inh
 public extern int Write(int streamIndex, byte[] data, int offset, int count)
 ```
 
-Writes `length` bytes; optional trailing break of `breakDuration`. _(inherited)_
+_No description available._
 
 **Returns** `int`
 
@@ -227,7 +223,7 @@ _No description available._
 public event DataReceivedEventHandler DataReceived
 ```
 
-Raised when receive data becomes available. _(inherited)_
+_No description available._
 
 ### DeviceStateChanged
 

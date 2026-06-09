@@ -79,7 +79,7 @@ _No description available._
 public int BaudRate { get; set; }
 ```
 
-Bits per second. _(inherited)_
+_No description available._
 
 ### Parity
 
@@ -87,7 +87,7 @@ Bits per second. _(inherited)_
 public Parity Parity { get; set; }
 ```
 
-Parity policy. _(inherited)_
+_No description available._
 
 ### DataBits
 
@@ -95,7 +95,7 @@ Parity policy. _(inherited)_
 public int DataBits { get; set; }
 ```
 
-Frame width in data bits (typically 7 or 8). _(inherited)_
+_No description available._
 
 ### StopBits
 
@@ -103,7 +103,7 @@ Frame width in data bits (typically 7 or 8). _(inherited)_
 public StopBits StopBits { get; set; }
 ```
 
-Stop-bit policy. _(inherited)_
+_No description available._
 
 ### Handshake
 
@@ -119,7 +119,7 @@ _No description available._
 public int ReadTimeout { get; set; }
 ```
 
-How long to wait before timing out a read operation. _(inherited)_
+_No description available._
 
 ### WriteTimeout
 
@@ -127,7 +127,7 @@ How long to wait before timing out a read operation. _(inherited)_
 public int WriteTimeout { get; set; }
 ```
 
-How long to wait before timing out a write operation. _(inherited)_
+_No description available._
 
 ### ReadBufferSize
 
@@ -135,7 +135,7 @@ How long to wait before timing out a write operation. _(inherited)_
 public int ReadBufferSize { get; set; }
 ```
 
-Size in bytes of the receive buffer. _(inherited)_
+_No description available._
 
 ### WriteBufferSize
 
@@ -143,7 +143,7 @@ Size in bytes of the receive buffer. _(inherited)_
 public int WriteBufferSize { get; set; }
 ```
 
-Size in bytes of the transmit buffer. _(inherited)_
+_No description available._
 
 ### ReceivedBytesThreshold
 
@@ -183,7 +183,7 @@ _No description available._
 public int BytesToRead { get; }
 ```
 
-The number of bytes available to read. _(inherited)_
+_No description available._
 
 ### BytesToWrite
 
@@ -191,7 +191,7 @@ The number of bytes available to read. _(inherited)_
 public int BytesToWrite { get; }
 ```
 
-The number of bytes that are in the process of being written. _(inherited)_
+_No description available._
 
 ### CtsHolding
 
@@ -249,7 +249,7 @@ _No description available._
 public void Open()
 ```
 
-Powers on and initializes the media. _(inherited)_
+_No description available._
 
 ### Close()
 
@@ -257,7 +257,7 @@ Powers on and initializes the media. _(inherited)_
 public void Close()
 ```
 
-When overridden by a descendant class, closes the response stream. _(inherited)_
+_No description available._
 
 ### Dispose()
 
@@ -265,7 +265,7 @@ When overridden by a descendant class, closes the response stream. _(inherited)_
 public void Dispose()
 ```
 
-Releases buffered memory (the unmanaged firmware/application buffers). _(inherited)_
+_No description available._
 
 ### Read(byte[] buffer, int offset, int count)
 
@@ -273,13 +273,7 @@ Releases buffered memory (the unmanaged firmware/application buffers). _(inherit
 public int Read(byte[] buffer, int offset, int count)
 ```
 
-Reads a block of bytes from the stream. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-| `offset` | `int` | The byte offset in the array at which read bytes will be placed. |
-| `count` | `int` | The maximun number of bytes to read. |
+_No description available._
 
 **Returns** `int`
 
@@ -289,7 +283,7 @@ Reads a block of bytes from the stream. _(inherited)_
 public int ReadByte()
 ```
 
-Reads a single byte (drives 0xFF on the bus to sample the slave). _(inherited)_
+_No description available._
 
 **Returns** `int`
 
@@ -309,13 +303,7 @@ _No description available._
 public int Read(char[] buffer, int offset, int count)
 ```
 
-Reads a block of bytes from the stream. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `char[]` |  |
-| `offset` | `int` | The byte offset in the array at which read bytes will be placed. |
-| `count` | `int` | The maximun number of bytes to read. |
+_No description available._
 
 **Returns** `int`
 
@@ -345,7 +333,7 @@ _No description available._
 public string ReadTo(string value)
 ```
 
-Read data the file stream provided in the paramenter _(inherited)_
+_No description available._
 
 **Returns** `string`
 
@@ -355,7 +343,7 @@ Read data the file stream provided in the paramenter _(inherited)_
 public void Write(string text)
 ```
 
-Write a fileinfo or directoryinfo to the socket _(inherited)_
+_No description available._
 
 ### WriteLine(string text)
 
@@ -371,13 +359,7 @@ _No description available._
 public void Write(byte[] buffer, int offset, int count)
 ```
 
-Writes a block of bytes to the file stream. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-| `offset` | `int` | The byte offset in the array from which to start writing bytes to the stream. |
-| `count` | `int` | The number of bytes to write. |
+_No description available._
 
 ### Write(char[] buffer, int offset, int count)
 
@@ -385,13 +367,7 @@ Writes a block of bytes to the file stream. _(inherited)_
 public void Write(char[] buffer, int offset, int count)
 ```
 
-Writes a block of bytes to the file stream. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `char[]` |  |
-| `offset` | `int` | The byte offset in the array from which to start writing bytes to the stream. |
-| `count` | `int` | The number of bytes to write. |
+_No description available._
 
 ### DiscardInBuffer()
 
@@ -427,7 +403,7 @@ _No description available._
 public event SerialDataReceivedEventHandler DataReceived
 ```
 
-Raised when receive data becomes available. _(inherited)_
+_No description available._
 
 ### ErrorReceived
 
@@ -435,7 +411,7 @@ Raised when receive data becomes available. _(inherited)_
 public event SerialErrorReceivedEventHandler ErrorReceived
 ```
 
-Raised when a frame/parity/overrun error is detected. _(inherited)_
+_No description available._
 
 ### PinChanged
 

@@ -41,6 +41,6 @@ _No description available._
 public static bool Capture(UIElement element, CaptureMode mode)
 ```
 
-Captures one frame into the supplied buffer. _(inherited)_
+_No description available._
 
-**Returns** `bool` — Number of bytes actually captured.
+**Returns** `bool`

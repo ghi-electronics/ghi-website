@@ -291,7 +291,7 @@ Cancels a request to an Internet resource. Closes any open request/response stre
 public void Reset()
 ```
 
-Sets the enumerator to its initial position, which is before the first element in the collection. _(inherited)_
+_No description available._
 
 ### AddRange(int from, int to)
 

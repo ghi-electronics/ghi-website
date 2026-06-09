@@ -21,7 +21,7 @@ public sealed class GridLengthCollection
 public int Count { get; }
 ```
 
-Gets the number of elements contained in the array. _(inherited)_
+_No description available._
 
 ### index]
 
@@ -29,7 +29,7 @@ Gets the number of elements contained in the array. _(inherited)_
 public GridLength this[int index] { get; set; }
 ```
 
-Indexer for the UIElementCollection. Gets or sets the UIElement stored at the zero-based index of the UIElementCollection. _(inherited)_
+_No description available._
 
 ## Methods
 
@@ -39,7 +39,7 @@ Indexer for the UIElementCollection. Gets or sets the UIElement stored at the ze
 public void Add(GridLength item)
 ```
 
-Appends a UIElement to the end of the UIElementCollection. _(inherited)_
+_No description available._
 
 ### Clear()
 
@@ -47,7 +47,7 @@ Appends a UIElement to the end of the UIElementCollection. _(inherited)_
 public void Clear()
 ```
 
-Removes all elements from the UIElementCollection. _(inherited)_
+_No description available._
 
 ### Insert(int index, GridLength item)
 
@@ -55,12 +55,7 @@ Removes all elements from the UIElementCollection. _(inherited)_
 public void Insert(int index, GridLength item)
 ```
 
-Inserts an element into the UIElementCollection at the specified index. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `index` | `int` | The zero-based index at which value should be inserted. |
-| `item` | `GridLength` |  |
+_No description available._
 
 ### RemoveAt(int index)
 
@@ -68,8 +63,4 @@ Inserts an element into the UIElementCollection at the specified index. _(inheri
 public void RemoveAt(int index)
 ```
 
-Removes the UIElement at the specified index. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `index` | `int` | The zero-based index of the element to remove. |
+_No description available._

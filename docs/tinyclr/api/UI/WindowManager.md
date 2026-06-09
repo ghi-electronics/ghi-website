@@ -31,14 +31,7 @@ _No description available._
 protected override void MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
 ```
 
-Measurement override. Implement your size-to-content logic here. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `availableWidth` | `int` | Available size that parent can give to the child. May be MaxValue(when parent wants to measure to content). This is soft constraint. Child can return bigger size to indicate that it wants bigger space and hope that parent can throw in scrolling... |
-| `availableHeight` | `int` |  |
-| `desiredWidth` | `out int` |  |
-| `desiredHeight` | `out int` |  |
+_No description available._
 
 ### OnChildrenChanged(UIElement added, UIElement removed, int indexAffected)
 
@@ -46,7 +39,7 @@ Measurement override. Implement your size-to-content logic here. _(inherited)_
 protected internal override void OnChildrenChanged(UIElement added, UIElement removed, int indexAffected)
 ```
 
-OnChildrenChanged is called when the UIElementCollection of the UIElement is edited. _(inherited)_
+_No description available._
 
 ### RenderRecursive(DrawingContext dc)
 

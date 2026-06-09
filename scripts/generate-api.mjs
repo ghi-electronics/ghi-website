@@ -532,18 +532,48 @@ function splitTop(s, sep) {
 }
 
 // ---------------------------------------------------------------------------
-// 6. inheritdoc resolution (same-assembly, by name + param count).
+// 6. inheritdoc resolution: walk a member's ACTUAL base/interface hierarchy (within the
+//    same assembly) to inherit a documented summary. The previous version matched members
+//    by name+param-count GLOBALLY, which pulled docs off unrelated types (e.g. an SPI
+//    "Mode" onto a crypto type, RoutedEventHandlerInfo.Equals onto everything) — always
+//    wrong. Now a doc is only inherited from a real ancestor that defines that member.
 // ---------------------------------------------------------------------------
 function resolveInheritdoc(model) {
-  const byKey = new Map();
-  const keyOf = (m) => `${m.name}/${(m.params || []).length}`;
-  for (const t of model.types)
-    for (const m of [...t.methods, ...t.properties, ...t.events])
-      if (m.doc && m.doc.summary) byKey.set(keyOf(m), m.doc);
+  const memberKey = (m) => `${m.name}/${(m.params || []).length}`;
+  const bareName = (n) => n.replace(/<.*>/, '');
+  const typeIndex = new Map();                                  // "assembly|TypeName" -> type
+  for (const t of model.types) typeIndex.set(`${t.assembly || ''}|${bareName(t.name)}`, t);
+
+  const docCache = new Map();                                   // type -> Map(memberKey -> doc)
+  const docsOf = (t) => {
+    let m = docCache.get(t);
+    if (!m) {
+      m = new Map();
+      for (const mem of [...t.methods, ...t.properties, ...t.events])
+        if (mem.doc && mem.doc.summary) m.set(memberKey(mem), mem.doc);
+      docCache.set(t, m);
+    }
+    return m;
+  };
+
+  // Nearest documented ancestor member, following t's base/interface list (same assembly).
+  const findInherited = (t, mk, seen) => {
+    for (const baseName of (t.bases || [])) {
+      const base = typeIndex.get(`${t.assembly || ''}|${bareName(baseName)}`);
+      if (!base || seen.has(base)) continue;
+      seen.add(base);
+      const doc = docsOf(base).get(mk);
+      if (doc) return doc;
+      const deeper = findInherited(base, mk, seen);
+      if (deeper) return deeper;
+    }
+    return null;
+  };
+
   for (const t of model.types)
     for (const m of [...t.methods, ...t.properties, ...t.events])
       if (!m.doc || m.doc.inheritdoc || !m.doc.summary) {
-        const found = byKey.get(keyOf(m));
+        const found = findInherited(t, memberKey(m), new Set());
         if (found) m.doc = { ...found, inherited: true };
       }
 }

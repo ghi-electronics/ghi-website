@@ -21,7 +21,7 @@ public abstract class SpiDevice : IDisposable
 public abstract SpiConnectionSettings ConnectionSettings { get; }
 ```
 
-The per-device bus settings (clock, mode, chip select, etc.). _(inherited)_
+_No description available._
 
 ## Methods
 
@@ -31,7 +31,7 @@ The per-device bus settings (clock, mode, chip select, etc.). _(inherited)_
 public static SpiDevice Create(SpiConnectionSettings settings)
 ```
 
-Creates a WebRequest . _(inherited)_
+_No description available._
 
 **Returns** `SpiDevice`
 
@@ -41,7 +41,7 @@ Creates a WebRequest . _(inherited)_
 public abstract void Read(byte[] buffer)
 ```
 
-Read the data from internal buffer _(inherited)_
+_No description available._
 
 ### Write(byte[] buffer)
 
@@ -49,7 +49,7 @@ Read the data from internal buffer _(inherited)_
 public abstract void Write(byte[] buffer)
 ```
 
-Write a fileinfo or directoryinfo to the socket _(inherited)_
+_No description available._
 
 ### TransferFullDuplex(byte[] writeBuffer, byte[] readBuffer)
 
@@ -57,12 +57,7 @@ Write a fileinfo or directoryinfo to the socket _(inherited)_
 public abstract void TransferFullDuplex(byte[] writeBuffer, byte[] readBuffer)
 ```
 
-Writes and reads simultaneously; both buffers must be the same length. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `writeBuffer` | `byte[]` | Bytes to transmit. |
-| `readBuffer` | `byte[]` | Receives the bytes shifted in. |
+_No description available._
 
 ### Dispose()
 
@@ -70,4 +65,4 @@ Writes and reads simultaneously; both buffers must be the same length. _(inherit
 public abstract void Dispose()
 ```
 
-Releases buffered memory (the unmanaged firmware/application buffers). _(inherited)_
+_No description available._

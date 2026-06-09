@@ -31,7 +31,7 @@ _No description available._
 public BindingErrorDirection Direction { get; }
 ```
 
-The new direction of the hat switch. _(inherited)_
+_No description available._
 
 ### PropertyName
 

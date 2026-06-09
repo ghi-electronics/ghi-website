@@ -21,7 +21,7 @@ public sealed class MqttPacket
 public byte[] Payload { get; set; }
 ```
 
-The payload of the descriptor excluding length and type. _(inherited)_
+_No description available._
 
 ### PacketId
 

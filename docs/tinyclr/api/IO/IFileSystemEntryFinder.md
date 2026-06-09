@@ -31,4 +31,4 @@ _No description available._
 void Close()
 ```
 
-When overridden by a descendant class, closes the response stream. _(inherited)_
+_No description available._

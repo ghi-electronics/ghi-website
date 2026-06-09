@@ -31,7 +31,7 @@ _No description available._
 public ScrollingStyle ScrollingStyle { get; set; }
 ```
 
-The scrolling style. _(inherited)_
+_No description available._
 
 ### TextAlignment
 
@@ -88,7 +88,7 @@ An event reporting a button was pressed. _(inherited)_
 public override void OnRender(Media.DrawingContext dc)
 ```
 
-Renders the DataGrid onto it's parent container's graphics. _(inherited)_
+_No description available._
 
 ## Fields
 

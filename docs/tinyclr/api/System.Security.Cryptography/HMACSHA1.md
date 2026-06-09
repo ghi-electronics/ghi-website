@@ -95,4 +95,4 @@ _No description available._
 public override void Dispose()
 ```
 
-Releases buffered memory (the unmanaged firmware/application buffers). _(inherited)_
+_No description available._

@@ -39,7 +39,7 @@ _No description available._
 public override long Length { get; }
 ```
 
-Gets length of bytes in the stream. _(inherited)_
+_No description available._
 
 ### DataAvailable
 
@@ -105,11 +105,7 @@ _No description available._
 protected override void Dispose(bool disposing)
 ```
 
-Closes a response stream, if present. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `disposing` | `bool` | Not used. |
+_No description available._
 
 ### Read(byte[] buffer, int offset, int size)
 
@@ -117,13 +113,7 @@ Closes a response stream, if present. _(inherited)_
 public override int Read(byte[] buffer, int offset, int size)
 ```
 
-Reads a block of bytes from the stream. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-| `offset` | `int` | The byte offset in the array at which read bytes will be placed. |
-| `size` | `int` |  |
+_No description available._
 
 **Returns** `int`
 
@@ -133,10 +123,4 @@ Reads a block of bytes from the stream. _(inherited)_
 public override void Write(byte[] buffer, int offset, int size)
 ```
 
-Writes a block of bytes to the file stream. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-| `offset` | `int` | The byte offset in the array from which to start writing bytes to the stream. |
-| `size` | `int` |  |
+_No description available._

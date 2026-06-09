@@ -94,7 +94,11 @@ Releases the GPIO pins held for MOSI/MISO/SCK/CS.
 public void SetActiveSettings(SpiConnectionSettings connectionSettings)
 ```
 
-Applies a complete set of serial settings (baud, framing, handshake, polarity). _(inherited)_
+Applies the given settings before the next transfer. _(inherited)_
+
+| Parameter | Type | Description |
+|---|---|---|
+| `connectionSettings` | `SpiConnectionSettings` | Per-device configuration. |
 
 ### WriteRead(byte[] writeBuffer, int writeOffset, int writeLength, byte[] readBuffer, int readOffset, int readLength, bool deselectAfter)
 

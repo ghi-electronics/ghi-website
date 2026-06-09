@@ -21,7 +21,7 @@ public class CaptureCollection : ICollection, IEnumerable
 public int Count { get; }
 ```
 
-Gets the number of elements contained in the array. _(inherited)_
+_No description available._
 
 ### IsReadOnly
 
@@ -29,7 +29,7 @@ Gets the number of elements contained in the array. _(inherited)_
 public bool IsReadOnly { get; }
 ```
 
-Gets a value that indicates whether the collection is read only. _(inherited)_
+_No description available._
 
 ### IsSynchronized
 
@@ -37,7 +37,7 @@ Gets a value that indicates whether the collection is read only. _(inherited)_
 public bool IsSynchronized { get; }
 ```
 
-Gets a value indicating whether access to the collection is synchronized (thread-safe). _(inherited)_
+_No description available._
 
 ### i]
 
@@ -45,7 +45,7 @@ Gets a value indicating whether access to the collection is synchronized (thread
 public Capture this[int i] { get; }
 ```
 
-Gets an individual member of the collection. _(inherited)_
+_No description available._
 
 ### SyncRoot
 
@@ -53,7 +53,7 @@ Gets an individual member of the collection. _(inherited)_
 public object SyncRoot { get; }
 ```
 
-Gets an object that can be used to synchronize access to the collection. _(inherited)_
+_No description available._
 
 ## Methods
 
@@ -63,7 +63,7 @@ Gets an object that can be used to synchronize access to the collection. _(inher
 public void CopyTo(Array array, int arrayIndex)
 ```
 
-Strongly typed version of CopyTo Copies the collection into the Array. _(inherited)_
+_No description available._
 
 ### GetEnumerator()
 

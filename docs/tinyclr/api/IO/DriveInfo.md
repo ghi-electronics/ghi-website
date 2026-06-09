@@ -31,7 +31,7 @@ _No description available._
 public string Name { get; }
 ```
 
-The native API name. _(inherited)_
+_No description available._
 
 ### RootDirectory
 
@@ -87,7 +87,7 @@ _No description available._
 public long TotalSize { get; }
 ```
 
-Total size of the region, in bytes. _(inherited)_
+_No description available._
 
 ### VolumeLabel
 

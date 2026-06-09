@@ -21,7 +21,7 @@ public abstract class I2cDevice : IDisposable
 public abstract I2cConnectionSettings ConnectionSettings { get; }
 ```
 
-The per-device bus settings (clock, mode, chip select, etc.). _(inherited)_
+_No description available._
 
 ## Methods
 
@@ -31,7 +31,7 @@ The per-device bus settings (clock, mode, chip select, etc.). _(inherited)_
 public static I2cDevice Create(I2cConnectionSettings settings)
 ```
 
-Creates a WebRequest . _(inherited)_
+_No description available._
 
 **Returns** `I2cDevice`
 
@@ -41,7 +41,7 @@ Creates a WebRequest . _(inherited)_
 public abstract void Read(byte[] buffer)
 ```
 
-Read the data from internal buffer _(inherited)_
+_No description available._
 
 ### Write(byte[] buffer)
 
@@ -49,7 +49,7 @@ Read the data from internal buffer _(inherited)_
 public abstract void Write(byte[] buffer)
 ```
 
-Write a fileinfo or directoryinfo to the socket _(inherited)_
+_No description available._
 
 ### WriteRead(byte[] writeBuffer, byte[] readBuffer)
 
@@ -57,7 +57,7 @@ Write a fileinfo or directoryinfo to the socket _(inherited)_
 public abstract void WriteRead(byte[] writeBuffer, byte[] readBuffer)
 ```
 
-Performs a register-style write-then-read transaction. _(inherited)_
+_No description available._
 
 ### Dispose()
 
@@ -65,4 +65,4 @@ Performs a register-style write-then-read transaction. _(inherited)_
 public abstract void Dispose()
 ```
 
-Releases buffered memory (the unmanaged firmware/application buffers). _(inherited)_
+_No description available._

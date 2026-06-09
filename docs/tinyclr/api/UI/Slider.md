@@ -47,7 +47,7 @@ _No description available._
 public int RadiusBorder { get; set; }
 ```
 
-Corner radius in pixels for the Scale9Image-rendered bar. _(inherited)_
+_No description available._
 
 ### Orientation
 
@@ -55,7 +55,7 @@ Corner radius in pixels for the Scale9Image-rendered bar. _(inherited)_
 public Orientation Orientation { get; set; }
 ```
 
-Logical screen rotation. _(inherited)_
+_No description available._
 
 ### Minimum
 
@@ -79,7 +79,7 @@ _No description available._
 public double Value { get; set; }
 ```
 
-Current needle position. Only this property doesn't dirty the background — the pointer is repainted every frame. _(inherited)_
+_No description available._
 
 ### KnobSize
 
@@ -121,7 +121,7 @@ Color used for the track line and tick marks.
 public override void OnRender(DrawingContext dc)
 ```
 
-Renders the DataGrid onto it's parent container's graphics. _(inherited)_
+_No description available._
 
 ### OnTouchDown(TouchEventArgs e)
 
@@ -129,11 +129,7 @@ Renders the DataGrid onto it's parent container's graphics. _(inherited)_
 protected override void OnTouchDown(TouchEventArgs e)
 ```
 
-Handles the touch down event. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `TouchEventArgs` | Touch event arguments. |
+_No description available._
 
 ### OnTouchUp(TouchEventArgs e)
 
@@ -141,11 +137,7 @@ Handles the touch down event. _(inherited)_
 protected override void OnTouchUp(TouchEventArgs e)
 ```
 
-Handles the touch up event. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `TouchEventArgs` | Touch event arguments. |
+_No description available._
 
 ### OnTouchMove(TouchEventArgs e)
 
@@ -153,11 +145,7 @@ Handles the touch up event. _(inherited)_
 protected override void OnTouchMove(TouchEventArgs e)
 ```
 
-Handles the touch move event. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `TouchEventArgs` | Touch event arguments. |
+_No description available._
 
 ### OnButtonDown(ButtonEventArgs e)
 
@@ -173,7 +161,7 @@ Hardware button support: Left/Right step a horizontal slider, Up/Down step a ver
 public void Dispose()
 ```
 
-Releases buffered memory (the unmanaged firmware/application buffers). _(inherited)_
+_No description available._
 
 ### Dispose(bool disposing)
 
@@ -181,11 +169,7 @@ Releases buffered memory (the unmanaged firmware/application buffers). _(inherit
 protected virtual void Dispose(bool disposing)
 ```
 
-Closes a response stream, if present. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `disposing` | `bool` | Not used. |
+_No description available._
 
 ## Events
 
@@ -195,4 +179,4 @@ Closes a response stream, if present. _(inherited)_
 public event ValueChangedEventHandler ValueChanged
 ```
 
-Raised when the pin transitions on an edge selected by `ValueChangedEdge`. The handler runs on the driver's event thread — keep it short and avoid blocking. _(inherited)_
+_No description available._

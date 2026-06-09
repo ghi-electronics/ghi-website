@@ -21,6 +21,6 @@ public sealed class GenericEvents
 public static readonly RoutedEvent GenericStandardEvent = new RoutedEvent( , RoutingStrategy.Tunnel, typeof(GenericEventArgs))
 ```
 
-A routed event indicating that an input report arrived. _(inherited)_
+_No description available._
 
 **Returns** `RoutedEvent GenericStandardEvent = new`

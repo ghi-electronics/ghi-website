@@ -21,7 +21,7 @@ public class TextRunCollection : ICollection
 public int Count { get; }
 ```
 
-Gets the number of elements contained in the array. _(inherited)_
+_No description available._
 
 ### index]
 
@@ -29,7 +29,7 @@ Gets the number of elements contained in the array. _(inherited)_
 public TextRun this[int index] { get; set; }
 ```
 
-Indexer for the UIElementCollection. Gets or sets the UIElement stored at the zero-based index of the UIElementCollection. _(inherited)_
+_No description available._
 
 ### SyncRoot
 
@@ -37,7 +37,7 @@ Indexer for the UIElementCollection. Gets or sets the UIElement stored at the ze
 public object SyncRoot { get; }
 ```
 
-Gets an object that can be used to synchronize access to the collection. _(inherited)_
+_No description available._
 
 ## Methods
 
@@ -57,9 +57,9 @@ _No description available._
 public int Add(TextRun textRun)
 ```
 
-Appends a UIElement to the end of the UIElementCollection. _(inherited)_
+_No description available._
 
-**Returns** `int` — The UIElementCollection index at which the UIElement has been added.
+**Returns** `int`
 
 ### Clear()
 
@@ -67,7 +67,7 @@ Appends a UIElement to the end of the UIElementCollection. _(inherited)_
 public void Clear()
 ```
 
-Removes all elements from the UIElementCollection. _(inherited)_
+_No description available._
 
 ### Contains(TextRun run)
 
@@ -75,7 +75,7 @@ Removes all elements from the UIElementCollection. _(inherited)_
 public bool Contains(TextRun run)
 ```
 
-Determines whether a element is in the UIElementCollection. _(inherited)_
+_No description available._
 
 **Returns** `bool`
 
@@ -85,7 +85,7 @@ Determines whether a element is in the UIElementCollection. _(inherited)_
 public int IndexOf(TextRun run)
 ```
 
-Returns the zero-based index of the UIElement. If the UIElement is not in the UIElementCollection -1 is returned. If null is passed to the method, the index of the first entry with null is returned. If there is no null entry -1 is returned. _(inherited)_
+_No description available._
 
 **Returns** `int`
 
@@ -95,12 +95,7 @@ Returns the zero-based index of the UIElement. If the UIElement is not in the UI
 public void Insert(int index, TextRun run)
 ```
 
-Inserts an element into the UIElementCollection at the specified index. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `index` | `int` | The zero-based index at which value should be inserted. |
-| `run` | `TextRun` |  |
+_No description available._
 
 ### Remove(TextRun run)
 
@@ -108,7 +103,7 @@ Inserts an element into the UIElementCollection at the specified index. _(inheri
 public void Remove(TextRun run)
 ```
 
-Removes the specified element from the UIElementCollection. _(inherited)_
+_No description available._
 
 ### RemoveAt(int index)
 
@@ -116,11 +111,7 @@ Removes the specified element from the UIElementCollection. _(inherited)_
 public void RemoveAt(int index)
 ```
 
-Removes the UIElement at the specified index. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `index` | `int` | The zero-based index of the element to remove. |
+_No description available._
 
 ### CopyTo(Array array, int index)
 
@@ -128,4 +119,4 @@ Removes the UIElement at the specified index. _(inherited)_
 public void CopyTo(Array array, int index)
 ```
 
-Strongly typed version of CopyTo Copies the collection into the Array. _(inherited)_
+_No description available._

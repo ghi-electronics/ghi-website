@@ -47,7 +47,7 @@ _No description available._
 public ClassId ClassCode { get; }
 ```
 
-The class code. _(inherited)_
+_No description available._
 
 ### NumberClassAttributes
 
@@ -111,7 +111,7 @@ _No description available._
 public string Name { get; }
 ```
 
-The native API name. _(inherited)_
+_No description available._
 
 ### Revision
 
@@ -119,7 +119,7 @@ The native API name. _(inherited)_
 public ushort Revision { get; }
 ```
 
-gets the Revision / Read "Identity Object" Class Code 0x01 - Attribute ID 4 _(inherited)_
+_No description available._
 
 ### DefaultInitialize
 

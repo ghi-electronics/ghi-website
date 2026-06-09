@@ -47,7 +47,7 @@ _No description available._
 public byte[] Data { get; }
 ```
 
-The payload buffer. Up to 64 bytes for CAN-FD, 8 for classic CAN. _(inherited)_
+_No description available._
 
 ### Size
 
@@ -55,4 +55,4 @@ The payload buffer. Up to 64 bytes for CAN-FD, 8 for classic CAN. _(inherited)_
 public ushort Size { get; }
 ```
 
-Total size of the loaded image. _(inherited)_
+_No description available._

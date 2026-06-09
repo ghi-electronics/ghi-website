@@ -31,7 +31,7 @@ _No description available._
 public override void Start()
 ```
 
-Starts the timer. _(inherited)_
+Start the listener _(inherited)_
 
 ### AddFile(FileInfo info)
 

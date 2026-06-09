@@ -31,7 +31,7 @@ _No description available._
 public override string Name { get; }
 ```
 
-The native API name. _(inherited)_
+_No description available._
 
 ### Length
 
@@ -39,7 +39,7 @@ The native API name. _(inherited)_
 public long Length { get; }
 ```
 
-Gets length of bytes in the stream. _(inherited)_
+_No description available._
 
 ### DirectoryName
 
@@ -91,6 +91,6 @@ _No description available._
 public override string ToString()
 ```
 
-String representation _(inherited)_
+_No description available._
 
 **Returns** `string`

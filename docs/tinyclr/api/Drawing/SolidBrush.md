@@ -41,6 +41,6 @@ _No description available._
 public override object Clone()
 ```
 
-Creates a new object that is a copy of the current instance. _(inherited)_
+_No description available._
 
 **Returns** `object`

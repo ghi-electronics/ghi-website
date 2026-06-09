@@ -21,7 +21,7 @@ public class FileSystemEntry
 public FileAttributes Attributes { get; set; }
 ```
 
-The attributes of the endpoint. _(inherited)_
+_No description available._
 
 ### CreationTime
 
@@ -53,7 +53,7 @@ _No description available._
 public long Size { get; set; }
 ```
 
-Total size of the loaded image. _(inherited)_
+_No description available._
 
 ### FileName
 

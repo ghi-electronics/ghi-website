@@ -39,7 +39,7 @@ _No description available._
 void Shutdown(int socket, SocketShutdown how)
 ```
 
-Powers off until either one of the selected wake-up pins asserts or the RTC alarm fires. _(inherited)_
+_No description available._
 
 ### Bind(int socket, SocketAddress address)
 

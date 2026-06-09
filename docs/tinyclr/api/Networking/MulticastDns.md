@@ -29,4 +29,4 @@ _No description available._
 public extern static void Stop()
 ```
 
-Stops the timer. _(inherited)_
+_No description available._

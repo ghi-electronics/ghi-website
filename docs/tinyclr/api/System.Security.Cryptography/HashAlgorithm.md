@@ -77,7 +77,7 @@ _No description available._
 public void Clear()
 ```
 
-Removes all elements from the UIElementCollection. _(inherited)_
+_No description available._
 
 ### Dispose()
 
@@ -85,4 +85,4 @@ Removes all elements from the UIElementCollection. _(inherited)_
 public virtual void Dispose()
 ```
 
-Releases buffered memory (the unmanaged firmware/application buffers). _(inherited)_
+_No description available._

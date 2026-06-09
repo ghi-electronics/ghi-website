@@ -47,8 +47,4 @@ _No description available._
 protected override void OnTouchUp(TouchEventArgs e)
 ```
 
-Handles the touch up event. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `e` | `TouchEventArgs` | Touch event arguments. |
+_No description available._

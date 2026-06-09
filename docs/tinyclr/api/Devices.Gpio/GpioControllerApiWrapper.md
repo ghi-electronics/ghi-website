@@ -139,7 +139,11 @@ Configures the pin's drive mode. _(inherited)_
 public extern GpioPinValue Read(int pin)
 ```
 
-Read the data from internal buffer _(inherited)_
+Samples the pin and returns its current logical level. _(inherited)_
+
+| Parameter | Type | Description |
+|---|---|---|
+| `pin` | `int` | Controller-relative pin index. |
 
 **Returns** `GpioPinValue`
 
@@ -149,7 +153,12 @@ Read the data from internal buffer _(inherited)_
 public extern void Write(int pin, GpioPinValue value)
 ```
 
-Writes one block at the given block index. _(inherited)_
+Drives an output pin to the specified level. _(inherited)_
+
+| Parameter | Type | Description |
+|---|---|---|
+| `pin` | `int` | Controller-relative pin index. |
+| `value` | `GpioPinValue` | Level to drive. |
 
 ### IsDriveModeSupported(int pin, GpioPinDriveMode mode)
 

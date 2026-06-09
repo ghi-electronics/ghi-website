@@ -65,7 +65,7 @@ Powers on and initializes the media. _(inherited)_
 public extern void Close()
 ```
 
-When overridden by a descendant class, closes the response stream. _(inherited)_
+Powers off the media. _(inherited)_
 
 ### Read(long address, int count, byte[] buffer, int offset, TimeSpan timeout)
 
@@ -73,15 +73,7 @@ When overridden by a descendant class, closes the response stream. _(inherited)_
 public extern int Read(long address, int count, byte[] buffer, int offset, TimeSpan timeout)
 ```
 
-Read a block of data from a cluster. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `address` | `long` |  |
-| `count` | `int` | The maximum number of bytes to read. |
-| `buffer` | `byte[]` |  |
-| `offset` | `int` |  |
-| `timeout` | `TimeSpan` |  |
+Reads `count` bytes from `address` into `buffer`+`offset`. _(inherited)_
 
 **Returns** `int`
 
@@ -91,15 +83,7 @@ Read a block of data from a cluster. _(inherited)_
 public extern int Write(long address, int count, byte[] buffer, int offset, TimeSpan timeout)
 ```
 
-Write a block of data to a cluster. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `address` | `long` |  |
-| `count` | `int` | The number of bytes to write. |
-| `buffer` | `byte[]` |  |
-| `offset` | `int` |  |
-| `timeout` | `TimeSpan` |  |
+Writes `count` bytes from `buffer`+`offset` to `address`. _(inherited)_
 
 **Returns** `int`
 

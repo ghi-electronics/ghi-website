@@ -37,7 +37,7 @@ _No description available._
 public abstract string Name { get; }
 ```
 
-The native API name. _(inherited)_
+_No description available._
 
 ### Exists
 
@@ -53,7 +53,7 @@ _No description available._
 public FileAttributes Attributes { get; }
 ```
 
-The attributes of the endpoint. _(inherited)_
+_No description available._
 
 ### CreationTime
 
@@ -119,7 +119,7 @@ _No description available._
 public void Refresh()
 ```
 
-Marks the cached chart surface stale. Call after mutating `Items` or any styling property to force a re-render on the next paint. _(inherited)_
+_No description available._
 
 ### RefreshIfNull()
 

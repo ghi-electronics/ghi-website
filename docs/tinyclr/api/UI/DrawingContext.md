@@ -21,7 +21,7 @@ public class DrawingContext : DispatcherObject, IDisposable
 public int Width { get; }
 ```
 
-Column width in pixels. _(inherited)_
+_No description available._
 
 ### Height
 
@@ -29,7 +29,7 @@ Column width in pixels. _(inherited)_
 public int Height { get; }
 ```
 
-Frame height in pixels. _(inherited)_
+_No description available._
 
 ## Methods
 
@@ -55,7 +55,7 @@ _No description available._
 public void Clear()
 ```
 
-Removes all elements from the UIElementCollection. _(inherited)_
+_No description available._
 
 ### DrawPolygon(Brush brush, Pen pen, int[] pts)
 
@@ -201,7 +201,7 @@ _No description available._
 public void Dispose()
 ```
 
-Releases buffered memory (the unmanaged firmware/application buffers). _(inherited)_
+_No description available._
 
 ### Dispose(bool disposing)
 
@@ -209,8 +209,4 @@ Releases buffered memory (the unmanaged firmware/application buffers). _(inherit
 protected virtual void Dispose(bool disposing)
 ```
 
-Closes a response stream, if present. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `disposing` | `bool` | Not used. |
+_No description available._

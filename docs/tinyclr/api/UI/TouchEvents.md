@@ -21,7 +21,7 @@ public sealed class TouchEvents
 public static readonly RoutedEvent TouchDownEvent = new RoutedEvent( , RoutingStrategy.Bubble, typeof(TouchEventArgs))
 ```
 
-A routed event indicating that an input report arrived. _(inherited)_
+_No description available._
 
 **Returns** `RoutedEvent TouchDownEvent = new`
 
@@ -31,7 +31,7 @@ A routed event indicating that an input report arrived. _(inherited)_
 public static readonly RoutedEvent TouchMoveEvent = new RoutedEvent( , RoutingStrategy.Bubble, typeof(TouchEventArgs))
 ```
 
-A routed event indicating that an input report arrived. _(inherited)_
+_No description available._
 
 **Returns** `RoutedEvent TouchMoveEvent = new`
 
@@ -41,6 +41,6 @@ A routed event indicating that an input report arrived. _(inherited)_
 public static readonly RoutedEvent TouchUpEvent = new RoutedEvent( , RoutingStrategy.Bubble, typeof(TouchEventArgs))
 ```
 
-A routed event indicating that an input report arrived. _(inherited)_
+_No description available._
 
 **Returns** `RoutedEvent TouchUpEvent = new`

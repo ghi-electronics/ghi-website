@@ -21,9 +21,9 @@ public class FtpWebResponse : WebResponse
 public override Stream GetResponseStream()
 ```
 
-When overridden in a descendant class, returns the data stream from the Internet resource. _(inherited)_
+_No description available._
 
-**Returns** `Stream` — An instance of the `System.IO.Stream` class for reading data from the Internet resource.
+**Returns** `Stream`
 
 ### Close()
 
@@ -31,4 +31,4 @@ When overridden in a descendant class, returns the data stream from the Internet
 public override void Close()
 ```
 
-When overridden by a descendant class, closes the response stream. _(inherited)_
+_No description available._

@@ -21,7 +21,7 @@ public abstract class GpioDriver : IDisposable
 public abstract int PinCount { get; }
 ```
 
-Total number of pins exposed by this controller. _(inherited)_
+_No description available._
 
 ## Methods
 
@@ -31,7 +31,7 @@ Total number of pins exposed by this controller. _(inherited)_
 protected internal abstract void OpenPin(int pinNumber)
 ```
 
-Acquires exclusive access to the specified pin. _(inherited)_
+_No description available._
 
 ### ClosePin(int pinNumber)
 
@@ -39,7 +39,7 @@ Acquires exclusive access to the specified pin. _(inherited)_
 protected internal abstract void ClosePin(int pinNumber)
 ```
 
-Releases a previously opened pin. _(inherited)_
+_No description available._
 
 ### IsPinModeSupported(int pinNumber, PinMode mode)
 
@@ -75,7 +75,7 @@ _No description available._
 protected internal abstract PinValue Read(int pinNumber)
 ```
 
-Read the data from internal buffer _(inherited)_
+_No description available._
 
 **Returns** `PinValue`
 
@@ -85,7 +85,7 @@ Read the data from internal buffer _(inherited)_
 protected internal abstract void Write(int pinNumber, PinValue value)
 ```
 
-Writes one block at the given block index. _(inherited)_
+_No description available._
 
 ### AddCallbackForPinValueChangedEvent(int pinNumber, PinEventTypes eventTypes, PinChangeEventHandler callback)
 
@@ -109,4 +109,4 @@ _No description available._
 public abstract void Dispose()
 ```
 
-Releases buffered memory (the unmanaged firmware/application buffers). _(inherited)_
+_No description available._

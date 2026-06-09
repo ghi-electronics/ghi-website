@@ -61,7 +61,7 @@ Set ftp mode
 public NetworkCredential Credentials { get; set; }
 ```
 
-Set or Get NetworkCredential if user have send user name and password. _(inherited)_
+_No description available._
 
 ### Method
 
@@ -69,7 +69,7 @@ Set or Get NetworkCredential if user have send user name and password. _(inherit
 public override string Method { get; set; }
 ```
 
-When overridden in a descendant class, gets or sets the protocol method to use in this request. _(inherited)_
+_No description available._
 
 ### RequestUri
 

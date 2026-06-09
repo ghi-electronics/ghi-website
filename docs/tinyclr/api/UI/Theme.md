@@ -53,7 +53,7 @@ _No description available._
 public static Color Border { get; set; }
 ```
 
-Legacy alias for `RadiusBorder`. Will be removed. _(inherited)_
+_No description available._
 
 ### FocusRing
 

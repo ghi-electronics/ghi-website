@@ -21,7 +21,7 @@ public class UsbHostController : IDisposable
 public IUsbHostControllerProvider Provider { get; }
 ```
 
-The low-level provider backing this controller. _(inherited)_
+_No description available._
 
 ## Methods
 
@@ -31,7 +31,7 @@ The low-level provider backing this controller. _(inherited)_
 public static UsbHostController GetDefault()
 ```
 
-Returns the default watchdog for this device. _(inherited)_
+_No description available._
 
 **Returns** `UsbHostController`
 
@@ -41,7 +41,7 @@ Returns the default watchdog for this device. _(inherited)_
 public static UsbHostController FromName(string name)
 ```
 
-Returns a watchdog identified by its native API name. _(inherited)_
+_No description available._
 
 **Returns** `UsbHostController`
 
@@ -51,7 +51,7 @@ Returns a watchdog identified by its native API name. _(inherited)_
 public static UsbHostController FromProvider(IUsbHostControllerProvider provider)
 ```
 
-Creates a controller from a custom `IWatchdogControllerProvider`. _(inherited)_
+_No description available._
 
 **Returns** `UsbHostController`
 
@@ -61,7 +61,7 @@ Creates a controller from a custom `IWatchdogControllerProvider`. _(inherited)_
 public void Dispose()
 ```
 
-Releases buffered memory (the unmanaged firmware/application buffers). _(inherited)_
+_No description available._
 
 ### Enable()
 
@@ -69,7 +69,7 @@ Releases buffered memory (the unmanaged firmware/application buffers). _(inherit
 public void Enable()
 ```
 
-Re-enables interrupts after a matching `Disable`. _(inherited)_
+_No description available._
 
 ### Disable()
 
@@ -77,7 +77,7 @@ Re-enables interrupts after a matching `Disable`. _(inherited)_
 public void Disable()
 ```
 
-Disables interrupts on the current core. Always pair with `Enable`. _(inherited)_
+_No description available._
 
 ### GetConnectedDevices()
 

@@ -31,4 +31,4 @@ _No description available._
 public override void OnRender(Media.DrawingContext dc)
 ```
 
-Renders the DataGrid onto it's parent container's graphics. _(inherited)_
+_No description available._

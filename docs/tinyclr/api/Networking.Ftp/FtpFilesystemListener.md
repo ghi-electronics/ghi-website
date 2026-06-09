@@ -65,7 +65,7 @@ _No description available._
 public override void Start()
 ```
 
-Starts the timer. _(inherited)_
+Start the listener _(inherited)_
 
 ### Stop()
 
@@ -73,4 +73,4 @@ Starts the timer. _(inherited)_
 public override void Stop()
 ```
 
-Stops the timer. _(inherited)_
+Stop the listener _(inherited)_

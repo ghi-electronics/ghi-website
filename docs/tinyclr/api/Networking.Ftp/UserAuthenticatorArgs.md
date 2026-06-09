@@ -31,7 +31,7 @@ _No description available._
 public UserAuthenticationResult Result { get; set; }
 ```
 
-Returns the result of the operation if it has completed. _(inherited)_
+_No description available._
 
 ## Fields
 

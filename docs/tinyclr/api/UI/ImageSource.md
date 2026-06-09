@@ -31,7 +31,7 @@ _No description available._
 public virtual int Width { get; }
 ```
 
-Column width in pixels. _(inherited)_
+_No description available._
 
 ### Height
 
@@ -39,4 +39,4 @@ Column width in pixels. _(inherited)_
 public virtual int Height { get; }
 ```
 
-Frame height in pixels. _(inherited)_
+_No description available._

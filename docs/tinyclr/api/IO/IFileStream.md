@@ -21,7 +21,7 @@ public interface IFileStream
 bool CanWrite { get; }
 ```
 
-Gets a value indicating whether the current stream supports writing. _(inherited)_
+_No description available._
 
 ### CanRead
 
@@ -29,7 +29,7 @@ Gets a value indicating whether the current stream supports writing. _(inherited
 bool CanRead { get; }
 ```
 
-Gets a value indicating whether the current stream supports reading. _(inherited)_
+_No description available._
 
 ### CanSeek
 
@@ -37,7 +37,7 @@ Gets a value indicating whether the current stream supports reading. _(inherited
 bool CanSeek { get; }
 ```
 
-Gets a value indicating whether the current stream supports seeking. _(inherited)_
+_No description available._
 
 ### Length
 
@@ -45,7 +45,7 @@ Gets a value indicating whether the current stream supports seeking. _(inherited
 long Length { get; set; }
 ```
 
-Gets length of bytes in the stream. _(inherited)_
+_No description available._
 
 ## Methods
 
@@ -55,7 +55,7 @@ Gets length of bytes in the stream. _(inherited)_
 int Read(byte[] buffer, int offset, int count, TimeSpan timeout)
 ```
 
-Captures a slice of inter-edge intervals after waiting for `waitForState`. _(inherited)_
+_No description available._
 
 **Returns** `int`
 
@@ -65,7 +65,7 @@ Captures a slice of inter-edge intervals after waiting for `waitForState`. _(inh
 int Write(byte[] buffer, int offset, int count, TimeSpan timeout)
 ```
 
-Writes `length` bytes; optional trailing break of `breakDuration`. _(inherited)_
+_No description available._
 
 **Returns** `int`
 
@@ -75,14 +75,9 @@ Writes `length` bytes; optional trailing break of `breakDuration`. _(inherited)_
 long Seek(long offset, SeekOrigin origin)
 ```
 
-Sets the current position of this stream to a given value. _(inherited)_
+_No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `offset` | `long` | The offset of the positon relative to the origin. |
-| `origin` | `SeekOrigin` | Specified the beginning, end or current postion as a reference point to apply the offset. |
-
-**Returns** `long` — The new postion in the stream.
+**Returns** `long`
 
 ### Flush()
 
@@ -90,7 +85,7 @@ Sets the current position of this stream to a given value. _(inherited)_
 void Flush()
 ```
 
-Writes unwritten data to the file. _(inherited)_
+_No description available._
 
 ### Close()
 
@@ -98,4 +93,4 @@ Writes unwritten data to the file. _(inherited)_
 void Close()
 ```
 
-When overridden by a descendant class, closes the response stream. _(inherited)_
+_No description available._

@@ -41,9 +41,9 @@ _No description available._
 public static bool Exists(string path)
 ```
 
-Determines if the specified file exists. _(inherited)_
+_No description available._
 
-**Returns** `bool` — true if the file exists otherwise false.
+**Returns** `bool`
 
 ### EnumerateFiles(string path)
 
@@ -119,7 +119,7 @@ _No description available._
 public static void Move(string sourceDirName, string destDirName)
 ```
 
-Moves a file from the source to the destination. _(inherited)_
+_No description available._
 
 ### Delete(string path)
 
@@ -127,7 +127,7 @@ Moves a file from the source to the destination. _(inherited)_
 public static void Delete(string path)
 ```
 
-Deletes a file from the device. _(inherited)_
+_No description available._
 
 ### Delete(string path, bool recursive)
 

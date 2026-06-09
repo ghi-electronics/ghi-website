@@ -39,7 +39,7 @@ The underlying native API descriptor.
 public extern int WriteBufferSize { get; set; }
 ```
 
-Size in bytes of the transmit buffer. _(inherited)_
+Size of the transmit message queue. _(inherited)_
 
 ### ReadBufferSize
 
@@ -47,7 +47,7 @@ Size in bytes of the transmit buffer. _(inherited)_
 public extern int ReadBufferSize { get; set; }
 ```
 
-Size in bytes of the receive buffer. _(inherited)_
+Size of the receive message queue. _(inherited)_
 
 ### MessagesToWrite
 
@@ -121,7 +121,7 @@ Releases the native controller.
 public extern void Enable()
 ```
 
-Re-enables interrupts after a matching `Disable`. _(inherited)_
+Powers on the controller. _(inherited)_
 
 ### Disable()
 
@@ -129,7 +129,7 @@ Re-enables interrupts after a matching `Disable`. _(inherited)_
 public extern void Disable()
 ```
 
-Disables interrupts on the current core. Always pair with `Enable`. _(inherited)_
+Powers off the controller. _(inherited)_
 
 ### WriteMessages(CanMessage[] messages, int offset, int count)
 
@@ -173,7 +173,7 @@ Configures CAN-FD data-phase bit timing. _(inherited)_
 public extern void ClearWriteBuffer()
 ```
 
-Empties the transmit buffer. _(inherited)_
+Empties the transmit queue. _(inherited)_
 
 ### ClearReadBuffer()
 
@@ -181,7 +181,7 @@ Empties the transmit buffer. _(inherited)_
 public extern void ClearReadBuffer()
 ```
 
-Empties the receive buffer. _(inherited)_
+Empties the receive queue. _(inherited)_
 
 ### AddFilter(Filter.IdType idType, Filter.FilterType filterType, uint id1, uint id2)
 
@@ -223,4 +223,4 @@ Raised when messages arrive. _(inherited)_
 public event ErrorReceivedEventHandler ErrorReceived
 ```
 
-Raised when a frame/parity/overrun error is detected. _(inherited)_
+Raised when a bus error or state change is observed. _(inherited)_

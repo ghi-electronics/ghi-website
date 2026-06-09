@@ -47,7 +47,7 @@ _No description available._
 public virtual void Dispose()
 ```
 
-Releases buffered memory (the unmanaged firmware/application buffers). _(inherited)_
+_No description available._
 
 ### Clear()
 
@@ -55,4 +55,4 @@ Releases buffered memory (the unmanaged firmware/application buffers). _(inherit
 public void Clear()
 ```
 
-Removes all elements from the UIElementCollection. _(inherited)_
+_No description available._

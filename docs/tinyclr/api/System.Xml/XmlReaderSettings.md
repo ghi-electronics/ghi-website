@@ -113,7 +113,7 @@ _No description available._
 public void Reset()
 ```
 
-Sets the enumerator to its initial position, which is before the first element in the collection. _(inherited)_
+_No description available._
 
 ### Clone()
 
@@ -121,6 +121,6 @@ Sets the enumerator to its initial position, which is before the first element i
 public XmlReaderSettings Clone()
 ```
 
-Creates a new object that is a copy of the current instance. _(inherited)_
+_No description available._
 
 **Returns** `XmlReaderSettings`

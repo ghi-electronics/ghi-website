@@ -55,7 +55,7 @@ _No description available._
 public int InterfaceIndex { get; set; }
 ```
 
-The logical device interface index. _(inherited)_
+_No description available._
 
 ## Methods
 

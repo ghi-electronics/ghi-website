@@ -39,7 +39,7 @@ The underlying native API descriptor.
 public extern int WriteBufferSize { get; set; }
 ```
 
-Size in bytes of the transmit buffer. _(inherited)_
+Slave-mode only: size in bytes of the controller's outgoing buffer. _(inherited)_
 
 ### ReadBufferSize
 
@@ -47,7 +47,7 @@ Size in bytes of the transmit buffer. _(inherited)_
 public extern int ReadBufferSize { get; set; }
 ```
 
-Size in bytes of the receive buffer. _(inherited)_
+Slave-mode only: size in bytes of the controller's incoming buffer. _(inherited)_
 
 ### BytesToWrite
 
@@ -55,7 +55,7 @@ Size in bytes of the receive buffer. _(inherited)_
 public extern int BytesToWrite { get; }
 ```
 
-The number of bytes that are in the process of being written. _(inherited)_
+Slave-mode only: bytes currently queued to transmit. _(inherited)_
 
 ### BytesToRead
 
@@ -63,7 +63,7 @@ The number of bytes that are in the process of being written. _(inherited)_
 public extern int BytesToRead { get; }
 ```
 
-The number of bytes available to read. _(inherited)_
+Slave-mode only: bytes currently available to read. _(inherited)_
 
 ### Timeout
 
@@ -71,7 +71,7 @@ The number of bytes available to read. _(inherited)_
 public TimeSpan Timeout { get; set; }
 ```
 
-Gets or sets the length of time, in milliseconds, before the request times out. _(inherited)_
+Maximum time the controller will block on a single transfer. _(inherited)_
 
 ## Methods
 
@@ -89,7 +89,7 @@ Releases the native controller.
 public extern void SetActiveSettings(I2cConnectionSettings connectionSettings)
 ```
 
-Applies a complete set of serial settings (baud, framing, handshake, polarity). _(inherited)_
+Applies the given settings before the next transfer. _(inherited)_
 
 ### WriteRead(byte[] writeBuffer, int writeOffset, int writeLength, byte[] readBuffer, int readOffset, int readLength, out int written, out int read)
 
@@ -107,7 +107,7 @@ Performs a write-then-read transaction. _(inherited)_
 public extern void ClearWriteBuffer()
 ```
 
-Empties the transmit buffer. _(inherited)_
+Slave-mode only: empties the controller's outgoing buffer. _(inherited)_
 
 ### ClearReadBuffer()
 
@@ -115,7 +115,7 @@ Empties the transmit buffer. _(inherited)_
 public extern void ClearReadBuffer()
 ```
 
-Empties the receive buffer. _(inherited)_
+Slave-mode only: empties the controller's incoming buffer. _(inherited)_
 
 ## Events
 
@@ -133,4 +133,4 @@ Slave-mode only: raised when a master frame addressed to this slave is observed.
 public event ErrorReceivedEventHandler ErrorReceived
 ```
 
-Raised when a frame/parity/overrun error is detected. _(inherited)_
+Slave-mode only: raised when the controller detects a bus error. _(inherited)_

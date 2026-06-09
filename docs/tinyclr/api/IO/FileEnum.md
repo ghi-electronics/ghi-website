@@ -31,7 +31,7 @@ _No description available._
 public bool MoveNext()
 ```
 
-Advances the enumerator to the next element of the collection. _(inherited)_
+_No description available._
 
 **Returns** `bool`
 
@@ -41,4 +41,4 @@ Advances the enumerator to the next element of the collection. _(inherited)_
 public void Reset()
 ```
 
-Sets the enumerator to its initial position, which is before the first element in the collection. _(inherited)_
+_No description available._

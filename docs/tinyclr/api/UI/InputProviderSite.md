@@ -47,11 +47,7 @@ Unregisters this input provider.
 protected virtual void Dispose(bool disposing)
 ```
 
-Closes a response stream, if present. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `disposing` | `bool` | Not used. |
+_No description available._
 
 ### ReportInput(InputDevice device, InputReport inputReport)
 

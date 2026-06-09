@@ -21,7 +21,7 @@ public class UserInfo
 public string UserName { get; set; }
 ```
 
-Set or get user name. _(inherited)_
+_No description available._
 
 ### PassWord
 

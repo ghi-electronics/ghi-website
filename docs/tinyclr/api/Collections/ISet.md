@@ -21,9 +21,9 @@ public interface ISet<T> : ICollection<T>
 new bool Add(T item)
 ```
 
-Appends a UIElement to the end of the UIElementCollection. _(inherited)_
+_No description available._
 
-**Returns** `bool` — The UIElementCollection index at which the UIElement has been added.
+**Returns** `bool`
 
 ### UnionWith(IEnumerable&lt;T> other)
 

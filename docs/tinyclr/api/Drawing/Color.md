@@ -141,7 +141,7 @@ _No description available._
 public string Name { get; }
 ```
 
-The native API name. _(inherited)_
+_No description available._
 
 ## Methods
 
@@ -241,7 +241,7 @@ _No description available._
 public override string ToString()
 ```
 
-String representation _(inherited)_
+_No description available._
 
 **Returns** `string`
 
@@ -251,7 +251,7 @@ String representation _(inherited)_
 public static bool operator ==(Color left, Color right)
 ```
 
-Equals operator overload _(inherited)_
+_No description available._
 
 **Returns** `bool operator`
 
@@ -261,7 +261,7 @@ Equals operator overload _(inherited)_
 public static bool operator !=(Color left, Color right)
 ```
 
-NotEquals operator overload _(inherited)_
+_No description available._
 
 **Returns** `bool operator`
 
@@ -271,7 +271,7 @@ NotEquals operator overload _(inherited)_
 public override int GetHashCode()
 ```
 
-Serves as a hash function for a particular type, suitable for use in hashing algorithms and data structures like a hash table _(inherited)_
+_No description available._
 
 **Returns** `int`
 
@@ -281,7 +281,7 @@ Serves as a hash function for a particular type, suitable for use in hashing alg
 public override bool Equals(object obj)
 ```
 
-Is the given RoutedEventHandlerInfo equals the current _(inherited)_
+_No description available._
 
 **Returns** `bool`
 

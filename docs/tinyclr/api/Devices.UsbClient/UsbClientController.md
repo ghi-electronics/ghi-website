@@ -21,7 +21,7 @@ public class UsbClientController : IDisposable
 public IUsbClientControllerProvider Provider { get; }
 ```
 
-The low-level provider backing this controller. _(inherited)_
+_No description available._
 
 ## Methods
 
@@ -31,7 +31,7 @@ The low-level provider backing this controller. _(inherited)_
 public static UsbClientController GetDefault()
 ```
 
-Returns the default watchdog for this device. _(inherited)_
+_No description available._
 
 **Returns** `UsbClientController`
 
@@ -41,7 +41,7 @@ Returns the default watchdog for this device. _(inherited)_
 public static UsbClientController FromName(string name)
 ```
 
-Returns a watchdog identified by its native API name. _(inherited)_
+_No description available._
 
 **Returns** `UsbClientController`
 
@@ -51,7 +51,7 @@ Returns a watchdog identified by its native API name. _(inherited)_
 public static UsbClientController FromProvider(IUsbClientControllerProvider provider)
 ```
 
-Creates a controller from a custom `IWatchdogControllerProvider`. _(inherited)_
+_No description available._
 
 **Returns** `UsbClientController`
 
@@ -61,4 +61,4 @@ Creates a controller from a custom `IWatchdogControllerProvider`. _(inherited)_
 public void Dispose()
 ```
 
-Releases buffered memory (the unmanaged firmware/application buffers). _(inherited)_
+_No description available._

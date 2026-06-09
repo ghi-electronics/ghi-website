@@ -55,7 +55,7 @@ Size in bytes of the receive buffer. _(inherited)_
 public extern int BytesToWrite { get; }
 ```
 
-The number of bytes that are in the process of being written. _(inherited)_
+Bytes currently queued for transmission. _(inherited)_
 
 ### BytesToRead
 
@@ -63,7 +63,7 @@ The number of bytes that are in the process of being written. _(inherited)_
 public extern int BytesToRead { get; }
 ```
 
-The number of bytes available to read. _(inherited)_
+Bytes currently available to read. _(inherited)_
 
 ### IsRequestToSendEnabled
 
@@ -97,7 +97,7 @@ Releases the native controller.
 public extern void Enable()
 ```
 
-Re-enables interrupts after a matching `Disable`. _(inherited)_
+Powers on the port. _(inherited)_
 
 ### Disable()
 
@@ -105,7 +105,7 @@ Re-enables interrupts after a matching `Disable`. _(inherited)_
 public extern void Disable()
 ```
 
-Disables interrupts on the current core. Always pair with `Enable`. _(inherited)_
+Powers off the port. _(inherited)_
 
 ### SetActiveSettings(int baudRate, int dataBits, UartParity parity, UartStopBitCount stopBits, UartHandshake handshaking, bool enableDePin, bool invertTxPolarity, bool invertRxPolarity, bool invertBinaryData, bool swapTxRxPin, bool invertDePolarity)
 
@@ -121,7 +121,7 @@ Applies a complete set of serial settings. _(inherited)_
 public extern void Flush()
 ```
 
-Writes unwritten data to the file. _(inherited)_
+Blocks until all buffered TX bytes have been shifted out. _(inherited)_
 
 ### Read(byte[] buffer, int offset, int length)
 
@@ -129,13 +129,7 @@ Writes unwritten data to the file. _(inherited)_
 public extern int Read(byte[] buffer, int offset, int length)
 ```
 
-Reads a block of bytes from the stream. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-| `offset` | `int` | The byte offset in the array at which read bytes will be placed. |
-| `length` | `int` |  |
+Reads up to `length` bytes; returns the count actually read. _(inherited)_
 
 **Returns** `int`
 

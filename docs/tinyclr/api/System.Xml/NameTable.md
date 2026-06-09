@@ -31,9 +31,9 @@ _No description available._
 public override string Add(string array)
 ```
 
-Appends a UIElement to the end of the UIElementCollection. _(inherited)_
+_No description available._
 
-**Returns** `string` — The UIElementCollection index at which the UIElement has been added.
+**Returns** `string`
 
 ### Add(char[] array, int offset, int length)
 

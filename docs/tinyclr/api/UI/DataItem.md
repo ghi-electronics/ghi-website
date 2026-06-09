@@ -21,7 +21,7 @@ public class DataItem
 public double Value { get; set; }
 ```
 
-Current needle position. Only this property doesn't dirty the background — the pointer is repainted every frame. _(inherited)_
+_No description available._
 
 ### Name
 
@@ -29,4 +29,4 @@ Current needle position. Only this property doesn't dirty the background — the
 public string Name { get; set; }
 ```
 
-The native API name. _(inherited)_
+_No description available._

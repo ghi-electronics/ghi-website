@@ -61,7 +61,7 @@ _No description available._
 public System.Drawing.Font Font { get; set; }
 ```
 
-Font used by the text. _(inherited)_
+_No description available._
 
 ### Foreground
 
@@ -79,7 +79,7 @@ _No description available._
 public override void OnRender(DrawingContext dc)
 ```
 
-Renders the DataGrid onto it's parent container's graphics. _(inherited)_
+_No description available._
 
 ### SolidColorBrush( Colors.Black)
 

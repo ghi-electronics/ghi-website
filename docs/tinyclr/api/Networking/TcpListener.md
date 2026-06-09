@@ -39,7 +39,7 @@ _No description available._
 public Socket Server { get; }
 ```
 
-Gets the name of the server that sent the response. _(inherited)_
+_No description available._
 
 ### Active
 
@@ -65,7 +65,7 @@ _No description available._
 public void Start()
 ```
 
-Starts the timer. _(inherited)_
+_No description available._
 
 ### Start(int backlog)
 
@@ -81,7 +81,7 @@ _No description available._
 public void Stop()
 ```
 
-Stops the timer. _(inherited)_
+_No description available._
 
 ### Pending()
 
@@ -119,6 +119,6 @@ _No description available._
 public static TcpListener Create(int port)
 ```
 
-Creates a WebRequest . _(inherited)_
+_No description available._
 
 **Returns** `TcpListener`

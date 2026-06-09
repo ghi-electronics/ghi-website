@@ -29,7 +29,7 @@ Returns the element that input from this device is sent to.
 public override InputManager.InputDeviceType DeviceType { get; }
 ```
 
-gets the Device Type / Read "Identity Object" Class Code 0x01 - Attribute ID 2 _(inherited)_
+_No description available._
 
 ## Methods
 

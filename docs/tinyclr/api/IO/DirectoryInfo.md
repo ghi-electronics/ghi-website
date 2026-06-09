@@ -31,7 +31,7 @@ _No description available._
 public override string Name { get; }
 ```
 
-The native API name. _(inherited)_
+_No description available._
 
 ### Parent
 
@@ -83,9 +83,9 @@ _No description available._
 public FileInfo[] GetFiles()
 ```
 
-Returns the names of the files in the file system. _(inherited)_
+_No description available._
 
-**Returns** `FileInfo[]` — An array of the names of the files.
+**Returns** `FileInfo[]`
 
 ### GetDirectories()
 
@@ -119,7 +119,7 @@ _No description available._
 public void Delete(bool recursive)
 ```
 
-Deletes a file from the device. _(inherited)_
+_No description available._
 
 ### ToString()
 
@@ -127,6 +127,6 @@ Deletes a file from the device. _(inherited)_
 public override string ToString()
 ```
 
-String representation _(inherited)_
+_No description available._
 
 **Returns** `string`

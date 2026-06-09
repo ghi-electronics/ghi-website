@@ -61,7 +61,7 @@ _No description available._
 long TotalSize { get; }
 ```
 
-Total size of the region, in bytes. _(inherited)_
+_No description available._
 
 ### VolumeLabel
 
@@ -77,7 +77,7 @@ _No description available._
 string Name { get; }
 ```
 
-The native API name. _(inherited)_
+_No description available._
 
 ## Methods
 
@@ -87,7 +87,7 @@ The native API name. _(inherited)_
 IFileSystemEntryFinder Find(string path, string searchPattern)
 ```
 
-Locates a native API by name and type. _(inherited)_
+_No description available._
 
 **Returns** `IFileSystemEntryFinder`
 
@@ -117,7 +117,7 @@ _No description available._
 void Delete(string path)
 ```
 
-Deletes a file from the device. _(inherited)_
+_No description available._
 
 ### Move(string source, string destination)
 
@@ -125,7 +125,7 @@ Deletes a file from the device. _(inherited)_
 bool Move(string source, string destination)
 ```
 
-Moves a file from the source to the destination. _(inherited)_
+_No description available._
 
 **Returns** `bool`
 

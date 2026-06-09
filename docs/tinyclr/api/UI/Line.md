@@ -39,7 +39,7 @@ _No description available._
 public Direction Direction { get; set; }
 ```
 
-The new direction of the hat switch. _(inherited)_
+_No description available._
 
 ## Methods
 
@@ -49,4 +49,4 @@ The new direction of the hat switch. _(inherited)_
 public override void OnRender(Media.DrawingContext dc)
 ```
 
-Renders the DataGrid onto it's parent container's graphics. _(inherited)_
+_No description available._

@@ -39,7 +39,7 @@ _No description available._
 public object Value { get; set; }
 ```
 
-Current needle position. Only this property doesn't dirty the background — the pointer is repainted every frame. _(inherited)_
+_No description available._
 
 ## Methods
 
@@ -59,7 +59,7 @@ _No description available._
 public override string ToString()
 ```
 
-String representation _(inherited)_
+_No description available._
 
 **Returns** `string`
 

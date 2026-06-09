@@ -47,7 +47,7 @@ Fixed row height in pixels (all rows use this for virtualization math).
 public int SelectedIndex { get; set; }
 ```
 
-The currently selected index. _(inherited)_
+_No description available._
 
 ### HorizontalOffset
 
@@ -55,7 +55,7 @@ The currently selected index. _(inherited)_
 public int HorizontalOffset { get; set; }
 ```
 
-Horizontal offset of the scroll. _(inherited)_
+_No description available._
 
 ### VerticalOffset
 
@@ -63,7 +63,7 @@ Horizontal offset of the scroll. _(inherited)_
 public int VerticalOffset { get; set; }
 ```
 
-Vertical offset of the scroll. _(inherited)_
+_No description available._
 
 ## Methods
 
@@ -88,7 +88,12 @@ Measurement override. Implement your size-to-content logic here. _(inherited)_
 protected override void ArrangeOverride(int arrangeWidth, int arrangeHeight)
 ```
 
-ArrangeOverride allows for the customization of the positioning of children. _(inherited)_
+ArrangeOverride allows for the customization of the final sizing and positioning of children. _(inherited)_
+
+| Parameter | Type | Description |
+|---|---|---|
+| `arrangeWidth` | `int` | Final width |
+| `arrangeHeight` | `int` | Final height |
 
 ### Dispose()
 
@@ -96,7 +101,7 @@ ArrangeOverride allows for the customization of the positioning of children. _(i
 public void Dispose()
 ```
 
-Releases buffered memory (the unmanaged firmware/application buffers). _(inherited)_
+_No description available._
 
 ### Dispose(bool disposing)
 
@@ -104,11 +109,7 @@ Releases buffered memory (the unmanaged firmware/application buffers). _(inherit
 protected virtual void Dispose(bool disposing)
 ```
 
-Closes a response stream, if present. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `disposing` | `bool` | Not used. |
+_No description available._
 
 ## Events
 

@@ -37,7 +37,7 @@ _No description available._
 public string UserName { get; set; }
 ```
 
-Set or get user name. _(inherited)_
+_No description available._
 
 ### Password
 
@@ -45,7 +45,7 @@ Set or get user name. _(inherited)_
 public string Password { get; set; }
 ```
 
-Set or get password. _(inherited)_
+_No description available._
 
 ### LastWillTopic
 

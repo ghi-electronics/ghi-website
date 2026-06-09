@@ -149,7 +149,7 @@ _No description available._
 public abstract void Flush()
 ```
 
-Writes unwritten data to the file. _(inherited)_
+_No description available._
 
 ### Close()
 
@@ -157,7 +157,7 @@ Writes unwritten data to the file. _(inherited)_
 public abstract void Close()
 ```
 
-When overridden by a descendant class, closes the response stream. _(inherited)_
+_No description available._
 
 ### LookupPrefix(string ns)
 
@@ -183,7 +183,7 @@ _No description available._
 public virtual void Dispose()
 ```
 
-Releases buffered memory (the unmanaged firmware/application buffers). _(inherited)_
+_No description available._
 
 ### Create(Stream output)
 
@@ -191,6 +191,6 @@ Releases buffered memory (the unmanaged firmware/application buffers). _(inherit
 public static XmlWriter Create(Stream output)
 ```
 
-Creates a WebRequest . _(inherited)_
+_No description available._
 
 **Returns** `XmlWriter`

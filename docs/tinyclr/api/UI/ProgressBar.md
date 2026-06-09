@@ -31,7 +31,7 @@ _No description available._
 public Direction Direction { get; set; }
 ```
 
-The new direction of the hat switch. _(inherited)_
+_No description available._
 
 ### MaxValue
 
@@ -39,7 +39,7 @@ The new direction of the hat switch. _(inherited)_
 public int MaxValue { get; set; }
 ```
 
-Largest raw value accepted by `Write(int, int)`. _(inherited)_
+_No description available._
 
 ### Value
 
@@ -47,7 +47,7 @@ Largest raw value accepted by `Write(int, int)`. _(inherited)_
 public int Value { get; set; }
 ```
 
-Current needle position. Only this property doesn't dirty the background — the pointer is repainted every frame. _(inherited)_
+_No description available._
 
 ### Alpha
 
@@ -81,7 +81,7 @@ Legacy alias for `RadiusBorder`. Will be removed.
 public override void OnRender(DrawingContext dc)
 ```
 
-Renders the DataGrid onto it's parent container's graphics. _(inherited)_
+_No description available._
 
 ### Dispose()
 
@@ -89,7 +89,7 @@ Renders the DataGrid onto it's parent container's graphics. _(inherited)_
 public void Dispose()
 ```
 
-Releases buffered memory (the unmanaged firmware/application buffers). _(inherited)_
+_No description available._
 
 ### Dispose(bool disposing)
 
@@ -97,8 +97,4 @@ Releases buffered memory (the unmanaged firmware/application buffers). _(inherit
 protected virtual void Dispose(bool disposing)
 ```
 
-Closes a response stream, if present. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `disposing` | `bool` | Not used. |
+_No description available._

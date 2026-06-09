@@ -29,13 +29,7 @@ _No description available._
 public static void Copy(string sourceFileName, string destFileName, bool overwrite)
 ```
 
-Copies a file to a new file. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sourceFileName` | `string` | The file to copy. |
-| `destFileName` | `string` | The name of the destination file |
-| `overwrite` | `bool` | Specifies if the destination should be overwritten if it already exists. Default true. |
+_No description available._
 
 ### Create(string path)
 
@@ -43,7 +37,7 @@ Copies a file to a new file. _(inherited)_
 public static FileStream Create(string path)
 ```
 
-Creates a WebRequest . _(inherited)_
+_No description available._
 
 **Returns** `FileStream`
 
@@ -53,14 +47,9 @@ Creates a WebRequest . _(inherited)_
 public static FileStream Create(string path, int bufferSize)
 ```
 
-Creates or overwrites a file. _(inherited)_
+_No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `path` | `string` |  |
-| `bufferSize` | `int` | Size of the read/write buffer. 0 for no buffering. |
-
-**Returns** `FileStream` — TinyFileStream that provides stream based access to the file.
+**Returns** `FileStream`
 
 ### Delete(string path)
 
@@ -68,7 +57,7 @@ Creates or overwrites a file. _(inherited)_
 public static void Delete(string path)
 ```
 
-Deletes a file from the device. _(inherited)_
+_No description available._
 
 ### Exists(string path)
 
@@ -76,9 +65,9 @@ Deletes a file from the device. _(inherited)_
 public static bool Exists(string path)
 ```
 
-Determines if the specified file exists. _(inherited)_
+_No description available._
 
-**Returns** `bool` — true if the file exists otherwise false.
+**Returns** `bool`
 
 ### Open(string path, FileMode mode)
 
@@ -96,9 +85,9 @@ _No description available._
 public static FileStream Open(string path, FileMode mode, FileAccess access)
 ```
 
-Opens a TinyFileStream for the specified file. _(inherited)_
+_No description available._
 
-**Returns** `FileStream` — A TinyFileStream which provides stream based access to the file.
+**Returns** `FileStream`
 
 ### Open(string path, FileMode mode, FileAccess access, FileShare share)
 
@@ -154,9 +143,9 @@ _No description available._
 public static byte[] ReadAllBytes(string path)
 ```
 
-Opens a file, reads the content into a byte array and then closes the file. _(inherited)_
+_No description available._
 
-**Returns** `byte[]` — A byte array containing the data from the file.
+**Returns** `byte[]`
 
 ### WriteAllBytes(string path, byte[] bytes)
 
@@ -164,7 +153,7 @@ Opens a file, reads the content into a byte array and then closes the file. _(in
 public static void WriteAllBytes(string path, byte[] bytes)
 ```
 
-Creates a new file, writes the byte array to the file and then closes it. The file is overwritten if it already exists. _(inherited)_
+_No description available._
 
 ### Move(string sourceFileName, string destFileName)
 
@@ -172,9 +161,4 @@ Creates a new file, writes the byte array to the file and then closes it. The fi
 public static void Move(string sourceFileName, string destFileName)
 ```
 
-Moves a file from the source to the destination. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `sourceFileName` | `string` | Name of the file to move. |
-| `destFileName` | `string` | New name of the file. |
+_No description available._

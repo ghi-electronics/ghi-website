@@ -97,7 +97,7 @@ _No description available._
 public void Dispose()
 ```
 
-Releases buffered memory (the unmanaged firmware/application buffers). _(inherited)_
+_No description available._
 
 ### Dispose(bool disposing)
 
@@ -105,11 +105,7 @@ Releases buffered memory (the unmanaged firmware/application buffers). _(inherit
 protected virtual void Dispose(bool disposing)
 ```
 
-Closes a response stream, if present. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `disposing` | `bool` | Not used. |
+_No description available._
 
 ### BeginSend(byte[] datagram, int bytes)
 
@@ -185,7 +181,7 @@ _No description available._
 public void Close()
 ```
 
-When overridden by a descendant class, closes the response stream. _(inherited)_
+_No description available._
 
 ### Connect(string hostname, int port)
 
@@ -227,9 +223,9 @@ _No description available._
 public int Send(byte[] dgram, int bytes, IPEndPoint endPoint)
 ```
 
-Sends a UDP datagram to a specified port on a specified remote host. _(inherited)_
+_No description available._
 
-**Returns** `int` — The number of bytes sent.
+**Returns** `int`
 
 ### Send(byte[] datagram, IPEndPoint endPoint)
 
@@ -278,9 +274,9 @@ Sends a UDP datagram to a specified port on a specified remote host.
 public int Send(byte[] dgram, int bytes)
 ```
 
-Sends a UDP datagram to the host at the specified remote endpoint. _(inherited)_
+_No description available._
 
-**Returns** `int` — The number of bytes sent.
+**Returns** `int`
 
 ### Send(byte[] datagram)
 

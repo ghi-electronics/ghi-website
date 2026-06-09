@@ -121,7 +121,7 @@ _No description available._
 public override bool Equals(object o)
 ```
 
-Is the given RoutedEventHandlerInfo equals the current _(inherited)_
+_No description available._
 
 **Returns** `bool`
 
@@ -131,7 +131,7 @@ Is the given RoutedEventHandlerInfo equals the current _(inherited)_
 public override int GetHashCode()
 ```
 
-Serves as a hash function for a particular type, suitable for use in hashing algorithms and data structures like a hash table _(inherited)_
+_No description available._
 
 **Returns** `int`
 
@@ -141,6 +141,6 @@ Serves as a hash function for a particular type, suitable for use in hashing alg
 public override string ToString()
 ```
 
-String representation _(inherited)_
+_No description available._
 
 **Returns** `string`

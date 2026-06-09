@@ -21,7 +21,7 @@ public class FtpListenerRequest
 public string Method { get; }
 ```
 
-When overridden in a descendant class, gets or sets the protocol method to use in this request. _(inherited)_
+_No description available._
 
 ### QueryString
 

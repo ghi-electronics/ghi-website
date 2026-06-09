@@ -21,7 +21,7 @@ public interface IUsbHostControllerProvider : IDisposable
 void Enable()
 ```
 
-Re-enables interrupts after a matching `Disable`. _(inherited)_
+_No description available._
 
 ### Disable()
 
@@ -29,7 +29,7 @@ Re-enables interrupts after a matching `Disable`. _(inherited)_
 void Disable()
 ```
 
-Disables interrupts on the current core. Always pair with `Enable`. _(inherited)_
+_No description available._
 
 ## Events
 

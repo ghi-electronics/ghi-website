@@ -39,7 +39,7 @@ _No description available._
 public Orientation Orientation { get; set; }
 ```
 
-Logical screen rotation. _(inherited)_
+_No description available._
 
 ## Methods
 
@@ -64,4 +64,9 @@ Measurement override. Implement your size-to-content logic here. _(inherited)_
 protected override void ArrangeOverride(int arrangeWidth, int arrangeHeight)
 ```
 
-ArrangeOverride allows for the customization of the positioning of children. _(inherited)_
+ArrangeOverride allows for the customization of the final sizing and positioning of children. _(inherited)_
+
+| Parameter | Type | Description |
+|---|---|---|
+| `arrangeWidth` | `int` | Final width |
+| `arrangeHeight` | `int` | Final height |

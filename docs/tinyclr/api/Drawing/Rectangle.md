@@ -31,7 +31,7 @@ _No description available._
 public int X { get; set; }
 ```
 
-Sets the x axis position. It must be between –32,768 to +32,767. _(inherited)_
+_No description available._
 
 ### Y
 
@@ -39,7 +39,7 @@ Sets the x axis position. It must be between –32,768 to +32,767. _(inherited)_
 public int Y { get; set; }
 ```
 
-Sets the y axis position. It must be between –32,768 to +32,767. _(inherited)_
+_No description available._
 
 ### Width
 
@@ -47,7 +47,7 @@ Sets the y axis position. It must be between –32,768 to +32,767. _(inherited)_
 public int Width { get; set; }
 ```
 
-Column width in pixels. _(inherited)_
+_No description available._
 
 ### Height
 
@@ -55,4 +55,4 @@ Column width in pixels. _(inherited)_
 public int Height { get; set; }
 ```
 
-Frame height in pixels. _(inherited)_
+_No description available._

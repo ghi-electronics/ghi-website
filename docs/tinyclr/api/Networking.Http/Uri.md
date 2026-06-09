@@ -257,7 +257,7 @@ Parses relative Uri into variables.
 public override int GetHashCode()
 ```
 
-Serves as a hash function for a particular type, suitable for use in hashing algorithms and data structures like a hash table _(inherited)_
+_No description available._
 
 **Returns** `int`
 
@@ -267,7 +267,7 @@ Serves as a hash function for a particular type, suitable for use in hashing alg
 public override bool Equals(object o)
 ```
 
-Is the given RoutedEventHandlerInfo equals the current _(inherited)_
+_No description available._
 
 **Returns** `bool`
 
@@ -277,7 +277,7 @@ Is the given RoutedEventHandlerInfo equals the current _(inherited)_
 public static bool operator ==(Uri lhs, Uri rhs)
 ```
 
-Equals operator overload _(inherited)_
+_No description available._
 
 **Returns** `bool operator`
 
@@ -287,7 +287,7 @@ Equals operator overload _(inherited)_
 public static bool operator !=(Uri lhs, Uri rhs)
 ```
 
-NotEquals operator overload _(inherited)_
+_No description available._
 
 **Returns** `bool operator`
 

@@ -31,7 +31,7 @@ _No description available._
 public Font Font { get; set; }
 ```
 
-Font used by the text. _(inherited)_
+_No description available._
 
 ### EnableDigitalNumber
 
@@ -79,7 +79,7 @@ _No description available._
 public float MinValue { get; set; }
 ```
 
-Smallest raw value accepted by `Write(int, int)`. _(inherited)_
+_No description available._
 
 ### MaxValue
 
@@ -87,7 +87,7 @@ Smallest raw value accepted by `Write(int, int)`. _(inherited)_
 public float MaxValue { get; set; }
 ```
 
-Largest raw value accepted by `Write(int, int)`. _(inherited)_
+_No description available._
 
 ### ThresholdPercent
 
@@ -161,7 +161,7 @@ When true, the dial face is overlapped by a slightly larger ellipse in the back 
 public void Dispose()
 ```
 
-Releases buffered memory (the unmanaged firmware/application buffers). _(inherited)_
+_No description available._
 
 ### Dispose(bool disposing)
 
@@ -169,11 +169,7 @@ Releases buffered memory (the unmanaged firmware/application buffers). _(inherit
 protected virtual void Dispose(bool disposing)
 ```
 
-Closes a response stream, if present. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `disposing` | `bool` | Not used. |
+_No description available._
 
 ### OnRender(DrawingContext dc)
 
@@ -181,4 +177,4 @@ Closes a response stream, if present. _(inherited)_
 public override void OnRender(DrawingContext dc)
 ```
 
-Renders the DataGrid onto it's parent container's graphics. _(inherited)_
+_No description available._

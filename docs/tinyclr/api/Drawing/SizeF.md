@@ -47,7 +47,7 @@ _No description available._
 public float Width { get; set; }
 ```
 
-Column width in pixels. _(inherited)_
+_No description available._
 
 ### Height
 
@@ -55,7 +55,7 @@ Column width in pixels. _(inherited)_
 public float Height { get; set; }
 ```
 
-Frame height in pixels. _(inherited)_
+_No description available._
 
 ## Methods
 

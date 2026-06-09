@@ -31,7 +31,7 @@ _No description available._
 public virtual int Count { get; }
 ```
 
-Gets the number of elements contained in the array. _(inherited)_
+_No description available._
 
 ### IsSynchronized
 
@@ -39,7 +39,7 @@ Gets the number of elements contained in the array. _(inherited)_
 public virtual bool IsSynchronized { get; }
 ```
 
-Gets a value indicating whether access to the collection is synchronized (thread-safe). _(inherited)_
+_No description available._
 
 ### SyncRoot
 
@@ -47,7 +47,7 @@ Gets a value indicating whether access to the collection is synchronized (thread
 public virtual object SyncRoot { get; }
 ```
 
-Gets an object that can be used to synchronize access to the collection. _(inherited)_
+_No description available._
 
 ### Capacity
 

@@ -39,7 +39,7 @@ _No description available._
 public int RadiusBorder { get; set; }
 ```
 
-Corner radius in pixels for the Scale9Image-rendered bar. _(inherited)_
+_No description available._
 
 ### MaxOpenHeight
 
@@ -73,7 +73,7 @@ Hardware button support: `HardwareButton.Select` toggles the dropdown open/close
 public override void OnRender(DrawingContext dc)
 ```
 
-Renders the DataGrid onto it's parent container's graphics. _(inherited)_
+_No description available._
 
 ### Dispose()
 
@@ -81,7 +81,7 @@ Renders the DataGrid onto it's parent container's graphics. _(inherited)_
 public void Dispose()
 ```
 
-Releases buffered memory (the unmanaged firmware/application buffers). _(inherited)_
+_No description available._
 
 ### Dispose(bool disposing)
 
@@ -89,8 +89,4 @@ Releases buffered memory (the unmanaged firmware/application buffers). _(inherit
 protected virtual void Dispose(bool disposing)
 ```
 
-Closes a response stream, if present. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `disposing` | `bool` | Not used. |
+_No description available._

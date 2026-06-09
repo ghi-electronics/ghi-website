@@ -39,4 +39,4 @@ _No description available._
 public int PinNumber { get; }
 ```
 
-The controller-relative pin index this object represents. _(inherited)_
+_No description available._

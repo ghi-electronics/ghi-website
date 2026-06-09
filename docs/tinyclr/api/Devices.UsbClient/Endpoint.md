@@ -21,7 +21,7 @@ public class Endpoint
 public Endpoint(byte EndpointAddress, byte Attributes)
 ```
 
-Constructs a new descriptor. _(inherited)_
+_No description available._
 
 ## Fields
 

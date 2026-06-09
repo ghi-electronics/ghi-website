@@ -59,7 +59,7 @@ Sample width in bits. _(inherited)_
 public extern int MinValue { get; }
 ```
 
-Smallest raw value accepted by `Write(int, int)`. _(inherited)_
+Smallest raw value `Read(int, TimeSpan)` can return. _(inherited)_
 
 ### MaxValue
 
@@ -67,7 +67,7 @@ Smallest raw value accepted by `Write(int, int)`. _(inherited)_
 public extern int MaxValue { get; }
 ```
 
-Largest raw value accepted by `Write(int, int)`. _(inherited)_
+Largest raw value `Read(int, TimeSpan)` can return. _(inherited)_
 
 ## Methods
 
@@ -145,6 +145,11 @@ Releases a previously opened channel. _(inherited)_
 public extern int Read(int channel, TimeSpan samplingTime)
 ```
 
-Waits for the pin to reach `waitForState`, then captures inter-edge intervals. _(inherited)_
+Performs a conversion on the channel and returns the raw code. _(inherited)_
 
-**Returns** `int` — Number of intervals captured.
+| Parameter | Type | Description |
+|---|---|---|
+| `channel` | `int` | Controller-relative channel index. |
+| `samplingTime` | `TimeSpan` | Requested sample-and-hold time. |
+
+**Returns** `int`

@@ -31,7 +31,7 @@ _No description available._
 public NativeApi Api { get; }
 ```
 
-The underlying native API descriptor. _(inherited)_
+_No description available._
 
 ### InterfaceType
 
@@ -39,7 +39,7 @@ The underlying native API descriptor. _(inherited)_
 public extern NetworkInterfaceType InterfaceType { get; }
 ```
 
-Interface type — Ethernet, WiFi, or PPP. _(inherited)_
+_No description available._
 
 ### CommunicationInterface
 
@@ -47,7 +47,7 @@ Interface type — Ethernet, WiFi, or PPP. _(inherited)_
 public extern NetworkCommunicationInterface CommunicationInterface { get; }
 ```
 
-Physical bus carrying the interface — built-in MAC, SPI, or UART. _(inherited)_
+_No description available._
 
 ## Methods
 
@@ -57,7 +57,7 @@ Physical bus carrying the interface — built-in MAC, SPI, or UART. _(inherited)
 public void Dispose()
 ```
 
-Releases buffered memory (the unmanaged firmware/application buffers). _(inherited)_
+_No description available._
 
 ### SetNetworkLinkConnectedChangedEventEnabled(bool enabled)
 
@@ -81,7 +81,7 @@ _No description available._
 public extern void Enable()
 ```
 
-Re-enables interrupts after a matching `Disable`. _(inherited)_
+_No description available._
 
 ### EnableAsync()
 
@@ -89,7 +89,7 @@ Re-enables interrupts after a matching `Disable`. _(inherited)_
 public extern void EnableAsync()
 ```
 
-Non-blocking variant of `Enable`. Returns immediately while the slow PHY autonegotiation / WiFi firmware boot runs in a native RTOS task. The interface is NOT ready when this returns — subscribe to `NetworkLinkConnectedChanged` (link becomes physical-up) and `NetworkAddressChanged` (DHCP / static IP assigned) to learn when it is. Call at most once per controller per boot. _(inherited)_
+_No description available._
 
 ### Disable()
 
@@ -97,7 +97,7 @@ Non-blocking variant of `Enable`. Returns immediately while the slow PHY autoneg
 public extern void Disable()
 ```
 
-Disables interrupts on the current core. Always pair with `Enable`. _(inherited)_
+_No description available._
 
 ### Suspend()
 
@@ -105,7 +105,7 @@ Disables interrupts on the current core. Always pair with `Enable`. _(inherited)
 public extern void Suspend()
 ```
 
-Suspends the interface (low-power state with state preserved). _(inherited)_
+_No description available._
 
 ### Resume()
 
@@ -113,7 +113,7 @@ Suspends the interface (low-power state with state preserved). _(inherited)_
 public extern void Resume()
 ```
 
-Resumes a previously `Suspend`ed interface. _(inherited)_
+_No description available._
 
 ### SetAsDefault()
 
@@ -129,7 +129,7 @@ _No description available._
 public void SetInterfaceSettings(NetworkInterfaceSettings settings)
 ```
 
-Applies `NetworkInterfaceSettings` (IP address, DHCP, DNS). _(inherited)_
+_No description available._
 
 ### SetCommunicationInterfaceSettings(NetworkCommunicationInterfaceSettings settings)
 
@@ -137,7 +137,7 @@ Applies `NetworkInterfaceSettings` (IP address, DHCP, DNS). _(inherited)_
 public void SetCommunicationInterfaceSettings(NetworkCommunicationInterfaceSettings settings)
 ```
 
-Applies the underlying physical-bus settings (built-in MAC, SPI, or UART). _(inherited)_
+_No description available._
 
 ### GetLinkConnected()
 
@@ -145,7 +145,7 @@ Applies the underlying physical-bus settings (built-in MAC, SPI, or UART). _(inh
 public extern bool GetLinkConnected()
 ```
 
-True when the physical link is currently up. _(inherited)_
+_No description available._
 
 **Returns** `bool`
 
@@ -155,7 +155,7 @@ True when the physical link is currently up. _(inherited)_
 public extern NetworkIPProperties GetIPProperties()
 ```
 
-Returns the current IP address, subnet, gateway, and DNS servers. _(inherited)_
+_No description available._
 
 **Returns** `NetworkIPProperties`
 
@@ -165,7 +165,7 @@ Returns the current IP address, subnet, gateway, and DNS servers. _(inherited)_
 public extern NetworkInterfaceProperties GetInterfaceProperties()
 ```
 
-Returns interface-specific properties (MAC address and friends). _(inherited)_
+_No description available._
 
 **Returns** `NetworkInterfaceProperties`
 
@@ -377,7 +377,7 @@ _No description available._
 public extern void Shutdown(int socket, SocketShutdown how)
 ```
 
-Powers off until either one of the selected wake-up pins asserts or the RTC alarm fires. _(inherited)_
+_No description available._
 
 ## Events
 
@@ -387,7 +387,7 @@ Powers off until either one of the selected wake-up pins asserts or the RTC alar
 public event NetworkLinkConnectedChangedEventHandler NetworkLinkConnectedChanged
 ```
 
-Raised when the physical link goes up or down. _(inherited)_
+_No description available._
 
 ### NetworkAddressChanged
 
@@ -395,4 +395,4 @@ Raised when the physical link goes up or down. _(inherited)_
 public event NetworkAddressChangedEventHandler NetworkAddressChanged
 ```
 
-Raised when the IP address, gateway, or DNS servers change (e.g. on DHCP lease assignment). _(inherited)_
+_No description available._

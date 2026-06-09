@@ -21,7 +21,7 @@ public class ResultSet
 public int RowCount { get; }
 ```
 
-Number of rows displayed. _(inherited)_
+_No description available._
 
 ### ColumnCount
 
@@ -45,7 +45,7 @@ _No description available._
 public ArrayList Data { get; }
 ```
 
-The payload buffer. Up to 64 bytes for CAN-FD, 8 for classic CAN. _(inherited)_
+_No description available._
 
 ### row]
 

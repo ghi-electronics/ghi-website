@@ -31,7 +31,7 @@ _No description available._
 public virtual void Close()
 ```
 
-When overridden by a descendant class, closes the response stream. _(inherited)_
+_No description available._
 
 ### Dispose()
 
@@ -39,7 +39,7 @@ When overridden by a descendant class, closes the response stream. _(inherited)_
 public void Dispose()
 ```
 
-Releases buffered memory (the unmanaged firmware/application buffers). _(inherited)_
+_No description available._
 
 ### Dispose(bool disposing)
 
@@ -47,11 +47,7 @@ Releases buffered memory (the unmanaged firmware/application buffers). _(inherit
 protected virtual void Dispose(bool disposing)
 ```
 
-Closes a response stream, if present. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `disposing` | `bool` | Not used. |
+_No description available._
 
 ### Peek()
 
@@ -69,7 +65,7 @@ _No description available._
 public virtual int Read()
 ```
 
-Samples the current level of the pin without waiting. _(inherited)_
+_No description available._
 
 **Returns** `int`
 
@@ -79,13 +75,7 @@ Samples the current level of the pin without waiting. _(inherited)_
 public virtual int Read(char[] buffer, int index, int count)
 ```
 
-Reads a block of bytes from the stream. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `char[]` |  |
-| `index` | `int` |  |
-| `count` | `int` | The maximun number of bytes to read. |
+_No description available._
 
 **Returns** `int`
 

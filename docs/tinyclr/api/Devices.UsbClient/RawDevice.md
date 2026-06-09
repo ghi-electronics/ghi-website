@@ -175,7 +175,7 @@ Adds an interface to the device.
 public virtual void Enable()
 ```
 
-Re-enables interrupts after a matching `Disable`. _(inherited)_
+_No description available._
 
 ### Disable()
 
@@ -183,7 +183,7 @@ Re-enables interrupts after a matching `Disable`. _(inherited)_
 public virtual void Disable()
 ```
 
-Disables interrupts on the current core. Always pair with `Enable`. _(inherited)_
+_No description available._
 
 ### Dispose()
 
@@ -191,7 +191,7 @@ Disables interrupts on the current core. Always pair with `Enable`. _(inherited)
 public void Dispose()
 ```
 
-Releases buffered memory (the unmanaged firmware/application buffers). _(inherited)_
+_No description available._
 
 ### CreateStream(int writeEndpoint, int readEndpoint)
 

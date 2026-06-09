@@ -39,7 +39,7 @@ _No description available._
 public override bool CanRead { get; }
 ```
 
-Gets a value indicating whether the current stream supports reading. _(inherited)_
+_No description available._
 
 ### CanSeek
 
@@ -47,7 +47,7 @@ Gets a value indicating whether the current stream supports reading. _(inherited
 public override bool CanSeek { get; }
 ```
 
-Gets a value indicating whether the current stream supports seeking. _(inherited)_
+_No description available._
 
 ### CanWrite
 
@@ -55,7 +55,7 @@ Gets a value indicating whether the current stream supports seeking. _(inherited
 public override bool CanWrite { get; }
 ```
 
-Gets a value indicating whether the current stream supports writing. _(inherited)_
+_No description available._
 
 ### Length
 
@@ -63,7 +63,7 @@ Gets a value indicating whether the current stream supports writing. _(inherited
 public override long Length { get; }
 ```
 
-Gets length of bytes in the stream. _(inherited)_
+_No description available._
 
 ### Position
 
@@ -71,7 +71,7 @@ Gets length of bytes in the stream. _(inherited)_
 public override long Position { get; set; }
 ```
 
-Gets or sets the current possition in the stream. _(inherited)_
+_No description available._
 
 ## Methods
 
@@ -81,7 +81,7 @@ Gets or sets the current possition in the stream. _(inherited)_
 public override void Flush()
 ```
 
-Writes unwritten data to the file. _(inherited)_
+_No description available._
 
 ### Close()
 
@@ -89,7 +89,7 @@ Writes unwritten data to the file. _(inherited)_
 public override void Close()
 ```
 
-When overridden by a descendant class, closes the response stream. _(inherited)_
+_No description available._
 
 ### Read(byte[] buffer, int offset, int count)
 
@@ -97,13 +97,7 @@ When overridden by a descendant class, closes the response stream. _(inherited)_
 public override int Read(byte[] buffer, int offset, int count)
 ```
 
-Reads a block of bytes from the stream. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-| `offset` | `int` | The byte offset in the array at which read bytes will be placed. |
-| `count` | `int` | The maximun number of bytes to read. |
+_No description available._
 
 **Returns** `int`
 
@@ -113,14 +107,9 @@ Reads a block of bytes from the stream. _(inherited)_
 public override long Seek(long offset, SeekOrigin origin)
 ```
 
-Sets the current position of this stream to a given value. _(inherited)_
+_No description available._
 
-| Parameter | Type | Description |
-|---|---|---|
-| `offset` | `long` | The offset of the positon relative to the origin. |
-| `origin` | `SeekOrigin` | Specified the beginning, end or current postion as a reference point to apply the offset. |
-
-**Returns** `long` — The new postion in the stream.
+**Returns** `long`
 
 ### SetLength(long value)
 
@@ -128,7 +117,7 @@ Sets the current position of this stream to a given value. _(inherited)_
 public override void SetLength(long value)
 ```
 
-Adjusts the length of the array. This can be used to trim the end of the array. _(inherited)_
+_No description available._
 
 ### Write(byte[] buffer, int offset, int count)
 
@@ -136,13 +125,7 @@ Adjusts the length of the array. This can be used to trim the end of the array. 
 public override void Write(byte[] buffer, int offset, int count)
 ```
 
-Writes a block of bytes to the file stream. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `byte[]` |  |
-| `offset` | `int` | The byte offset in the array from which to start writing bytes to the stream. |
-| `count` | `int` | The number of bytes to write. |
+_No description available._
 
 ### Write(string s)
 

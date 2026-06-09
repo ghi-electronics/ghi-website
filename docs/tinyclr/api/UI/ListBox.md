@@ -39,7 +39,7 @@ _No description available._
 public int SelectedIndex { get; set; }
 ```
 
-The currently selected index. _(inherited)_
+_No description available._
 
 ### SelectedItem
 

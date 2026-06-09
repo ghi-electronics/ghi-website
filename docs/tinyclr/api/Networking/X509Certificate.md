@@ -39,7 +39,7 @@ _No description available._
 public string Password { get; set; }
 ```
 
-Set or get password. _(inherited)_
+_No description available._
 
 ## Methods
 

@@ -21,7 +21,7 @@ public sealed class I2cConnectionSettings
 public I2cConnectionSettings(int busId, int deviceAddress)
 ```
 
-Builds a 7-bit settings object with the given role (master/slave). _(inherited)_
+_No description available._
 
 ## Properties
 
@@ -47,4 +47,4 @@ _No description available._
 public I2cBusSpeed BusSpeed { get; set; }
 ```
 
-Bus speed in Hz (e.g. 100_000 for standard, 400_000 for fast mode). _(inherited)_
+_No description available._

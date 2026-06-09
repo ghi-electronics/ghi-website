@@ -21,7 +21,7 @@ public class Graphics : MarshalByRefObject, IDisposable
 public int Width { get; }
 ```
 
-Column width in pixels. _(inherited)_
+_No description available._
 
 ### Height
 
@@ -29,7 +29,7 @@ Column width in pixels. _(inherited)_
 public int Height { get; }
 ```
 
-Frame height in pixels. _(inherited)_
+_No description available._
 
 ### PageUnit
 
@@ -85,7 +85,7 @@ _No description available._
 public void Dispose()
 ```
 
-Releases buffered memory (the unmanaged firmware/application buffers). _(inherited)_
+_No description available._
 
 ### MeasureString(string text, Font font)
 
@@ -113,7 +113,7 @@ _No description available._
 public void Clear()
 ```
 
-Removes all elements from the UIElementCollection. _(inherited)_
+_No description available._
 
 ### FromHdc(IntPtr hdc)
 
@@ -141,7 +141,7 @@ _No description available._
 public void Flush()
 ```
 
-Writes unwritten data to the file. _(inherited)_
+_No description available._
 
 ### DrawImage(Image image, int x, int y, Rectangle srcRect, GraphicsUnit srcUnit)
 

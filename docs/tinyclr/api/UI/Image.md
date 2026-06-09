@@ -29,7 +29,7 @@ _No description available._
 public ImageSource Source { get; set; }
 ```
 
-Returns Source object that raised the RoutedEvent _(inherited)_
+_No description available._
 
 ## Methods
 
@@ -54,4 +54,4 @@ Measurement override. Implement your size-to-content logic here. _(inherited)_
 public override void OnRender(DrawingContext dc)
 ```
 
-Renders the DataGrid onto it's parent container's graphics. _(inherited)_
+_No description available._

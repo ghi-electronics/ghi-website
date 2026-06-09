@@ -47,7 +47,7 @@ _No description available._
 public virtual void Close()
 ```
 
-When overridden by a descendant class, closes the response stream. _(inherited)_
+_No description available._
 
 ### Dispose()
 
@@ -55,7 +55,7 @@ When overridden by a descendant class, closes the response stream. _(inherited)_
 public void Dispose()
 ```
 
-Releases buffered memory (the unmanaged firmware/application buffers). _(inherited)_
+_No description available._
 
 ### Dispose(bool disposing)
 
@@ -63,11 +63,7 @@ Releases buffered memory (the unmanaged firmware/application buffers). _(inherit
 protected virtual void Dispose(bool disposing)
 ```
 
-Closes a response stream, if present. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `disposing` | `bool` | Not used. |
+_No description available._
 
 ### Flush()
 
@@ -75,7 +71,7 @@ Closes a response stream, if present. _(inherited)_
 public virtual void Flush()
 ```
 
-Writes unwritten data to the file. _(inherited)_
+_No description available._
 
 ### Write(char value)
 
@@ -83,7 +79,7 @@ Writes unwritten data to the file. _(inherited)_
 public virtual void Write(char value)
 ```
 
-Write a fileinfo or directoryinfo to the socket _(inherited)_
+_No description available._
 
 ### Write(char[] buffer)
 
@@ -91,7 +87,7 @@ Write a fileinfo or directoryinfo to the socket _(inherited)_
 public virtual void Write(char[] buffer)
 ```
 
-Write a fileinfo or directoryinfo to the socket _(inherited)_
+_No description available._
 
 ### Write(char[] buffer, int index, int count)
 
@@ -99,13 +95,7 @@ Write a fileinfo or directoryinfo to the socket _(inherited)_
 public virtual void Write(char[] buffer, int index, int count)
 ```
 
-Writes a block of bytes to the file stream. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `buffer` | `char[]` |  |
-| `index` | `int` |  |
-| `count` | `int` | The number of bytes to write. |
+_No description available._
 
 ### Write(bool value)
 
@@ -113,7 +103,7 @@ Writes a block of bytes to the file stream. _(inherited)_
 public virtual void Write(bool value)
 ```
 
-Write a fileinfo or directoryinfo to the socket _(inherited)_
+_No description available._
 
 ### Write(int value)
 
@@ -121,7 +111,7 @@ Write a fileinfo or directoryinfo to the socket _(inherited)_
 public virtual void Write(int value)
 ```
 
-Write a fileinfo or directoryinfo to the socket _(inherited)_
+_No description available._
 
 ### Write(uint value)
 
@@ -129,7 +119,7 @@ Write a fileinfo or directoryinfo to the socket _(inherited)_
 public virtual void Write(uint value)
 ```
 
-Write a fileinfo or directoryinfo to the socket _(inherited)_
+_No description available._
 
 ### Write(long value)
 
@@ -137,7 +127,7 @@ Write a fileinfo or directoryinfo to the socket _(inherited)_
 public virtual void Write(long value)
 ```
 
-Write a fileinfo or directoryinfo to the socket _(inherited)_
+_No description available._
 
 ### Write(ulong value)
 
@@ -145,7 +135,7 @@ Write a fileinfo or directoryinfo to the socket _(inherited)_
 public virtual void Write(ulong value)
 ```
 
-Write a fileinfo or directoryinfo to the socket _(inherited)_
+_No description available._
 
 ### Write(float value)
 
@@ -153,7 +143,7 @@ Write a fileinfo or directoryinfo to the socket _(inherited)_
 public virtual void Write(float value)
 ```
 
-Write a fileinfo or directoryinfo to the socket _(inherited)_
+_No description available._
 
 ### Write(double value)
 
@@ -161,7 +151,7 @@ Write a fileinfo or directoryinfo to the socket _(inherited)_
 public virtual void Write(double value)
 ```
 
-Write a fileinfo or directoryinfo to the socket _(inherited)_
+_No description available._
 
 ### Write(string value)
 
@@ -169,7 +159,7 @@ Write a fileinfo or directoryinfo to the socket _(inherited)_
 public virtual void Write(string value)
 ```
 
-Write a fileinfo or directoryinfo to the socket _(inherited)_
+_No description available._
 
 ### Write(object value)
 
@@ -177,7 +167,7 @@ Write a fileinfo or directoryinfo to the socket _(inherited)_
 public virtual void Write(object value)
 ```
 
-Write a fileinfo or directoryinfo to the socket _(inherited)_
+_No description available._
 
 ### WriteLine()
 

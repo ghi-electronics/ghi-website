@@ -29,7 +29,7 @@ _No description available._
 public ushort Length { get; set; }
 ```
 
-Gets length of bytes in the stream. _(inherited)_
+_No description available._
 
 ### SessionHandle
 
@@ -45,7 +45,7 @@ _No description available._
 public StatusEnum Status { get; }
 ```
 
-The status of this operation. _(inherited)_
+_No description available._
 
 ## Methods
 

@@ -31,7 +31,7 @@ _No description available._
 public NativeApi Api { get; }
 ```
 
-The underlying native API descriptor. _(inherited)_
+_No description available._
 
 ## Methods
 
@@ -41,7 +41,7 @@ The underlying native API descriptor. _(inherited)_
 public void Dispose()
 ```
 
-Releases buffered memory (the unmanaged firmware/application buffers). _(inherited)_
+_No description available._
 
 ### Enable()
 
@@ -49,7 +49,7 @@ Releases buffered memory (the unmanaged firmware/application buffers). _(inherit
 public extern void Enable()
 ```
 
-Re-enables interrupts after a matching `Disable`. _(inherited)_
+_No description available._
 
 ### Disable()
 
@@ -57,7 +57,7 @@ Re-enables interrupts after a matching `Disable`. _(inherited)_
 public extern void Disable()
 ```
 
-Disables interrupts on the current core. Always pair with `Enable`. _(inherited)_
+_No description available._
 
 ## Events
 

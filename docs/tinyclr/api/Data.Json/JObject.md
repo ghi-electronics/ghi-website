@@ -39,7 +39,7 @@ _No description available._
 public bool Contains(string name)
 ```
 
-Determines whether a element is in the UIElementCollection. _(inherited)_
+_No description available._
 
 **Returns** `bool`
 
@@ -67,7 +67,7 @@ _No description available._
 public override string ToString()
 ```
 
-String representation _(inherited)_
+_No description available._
 
 **Returns** `string`
 

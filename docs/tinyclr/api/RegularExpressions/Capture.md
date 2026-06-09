@@ -21,7 +21,7 @@ public class Capture
 public int Length { get; }
 ```
 
-Gets length of bytes in the stream. _(inherited)_
+_No description available._
 
 ### Value
 
@@ -29,7 +29,7 @@ Gets length of bytes in the stream. _(inherited)_
 public string Value { get; }
 ```
 
-Current needle position. Only this property doesn't dirty the background — the pointer is repainted every frame. _(inherited)_
+_No description available._
 
 ## Methods
 
@@ -39,6 +39,6 @@ Current needle position. Only this property doesn't dirty the background — the
 public override string ToString()
 ```
 
-String representation _(inherited)_
+_No description available._
 
 **Returns** `string`

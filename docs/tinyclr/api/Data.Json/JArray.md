@@ -39,7 +39,7 @@ _No description available._
 public int Length { get; }
 ```
 
-Gets length of bytes in the stream. _(inherited)_
+_No description available._
 
 ### Items
 
@@ -55,7 +55,7 @@ _No description available._
 public JToken this[int i] { get; }
 ```
 
-Gets an individual member of the collection. _(inherited)_
+_No description available._
 
 ## Methods
 
@@ -75,7 +75,7 @@ _No description available._
 public override string ToString()
 ```
 
-String representation _(inherited)_
+_No description available._
 
 **Returns** `string`
 
