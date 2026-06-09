@@ -27,10 +27,10 @@ using GHIElectronics.TinyCLR.Pins;
 using System.Diagnostics;
 using System.Threading;
 
-var adc = AdcController.FromName(SC20100.Adc.Controller1.Id);
-var analog = adc.OpenChannel(SC20100.Adc.Controller1.PA0);
+var adc = AdcController.FromName(FEZBit.Adc.Controller3.Id);
+var analog = adc.OpenChannel(FEZBit.Adc.Controller3.P0);
 
-while (true) {
+while (true){
     double ratio = analog.ReadRatio();
     Debug.WriteLine("An-> " + ratio.ToString("N2"));
     Thread.Sleep(100);
