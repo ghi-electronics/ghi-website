@@ -18,10 +18,10 @@ public class ButtonChangedEventArgs : EventArgs
 ### Which
 
 ```csharp
-public int Which { get; set; }
+public Buttons Which { get; set; }
 ```
 
-The index of the changed button.
+Which button changed its state.
 
 ### State
 

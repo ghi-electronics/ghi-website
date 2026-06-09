@@ -286,11 +286,14 @@ function parseFile(src, assembly, model) {
         walkNamespace(child, seg.bodyStart + 1, seg.bodyEnd);
         continue;
       }
-      classifyType(nsName, headerSrc, headerClean, seg);
+      classifyType(nsName, '', headerSrc, headerClean, seg);
     }
   }
 
-  function classifyType(nsName, headerSrc, headerClean, seg) {
+  // outerPath = dotted chain of enclosing TYPE names (e.g. "SC20260.Timer.Pwm"),
+  // distinct from the namespace. Recorded on each type so nested board peripherals
+  // (SC20260.Adc vs FEZBit.Adc) stay distinct instead of collapsing by simple name.
+  function classifyType(nsName, outerPath, headerSrc, headerClean, seg) {
     const { attrs, src: hSrc, clean: hClean } = stripAttributes(headerSrc, headerClean);
     const { mods, rest } = leadingWords(hClean);
     const kindM = /^(class|struct|interface|enum|delegate)\b/.exec(rest);
@@ -305,6 +308,7 @@ function parseFile(src, assembly, model) {
       const name = nameM ? nameM[1] + (nameM[2] || '') : '(delegate)';
       const t = makeType(nsName, name, 'delegate', mods, attrs, docFor(seg.headerStart));
       t.assembly = assembly;
+      t.outer = outerPath;
       t.signature = sig + ';';
       t.params = parseParams(extractParens(hClean));
       model.types.push(t);
@@ -317,13 +321,16 @@ function parseFile(src, assembly, model) {
     const baseM = /:\s*([^{]+)$/.exec(declSrc);
     const t = makeType(nsName, name, kind, mods, attrs, docFor(seg.headerStart));
     t.assembly = assembly;
+    t.outer = outerPath;
     t.bases = baseM ? baseM[1].split(',').map(s => collapse(s)).filter(Boolean) : [];
     t.signature = reconstructTypeSig(mods, kind, name, t.bases);
     model.types.push(t);
 
     if (seg.kind !== 'block') return;
+    const bare = name.replace(/<.*>/, '');
+    const ownPath = outerPath ? outerPath + '.' + bare : bare;
     if (kind === 'enum') parseEnumBody(t, seg.bodyStart + 1, seg.bodyEnd);
-    else parseTypeBody(t, kind, seg.bodyStart + 1, seg.bodyEnd, nsName);
+    else parseTypeBody(t, kind, seg.bodyStart + 1, seg.bodyEnd, nsName, ownPath);
   }
 
   function parseEnumBody(t, start, end) {
@@ -345,7 +352,7 @@ function parseFile(src, assembly, model) {
     if (code.slice(fieldStart, end).trim()) flush(fieldStart, end);
   }
 
-  function parseTypeBody(t, parentKind, start, end, nsName) {
+  function parseTypeBody(t, parentKind, start, end, nsName, ownPath) {
     for (const seg of segments(code, start, end)) {
       const headerSrc = src.slice(seg.headerStart, seg.headerEnd);
       const headerClean = code.slice(seg.headerStart, seg.headerEnd);
@@ -353,7 +360,7 @@ function parseFile(src, assembly, model) {
 
       // nested type?
       if (/^(class|struct|interface|enum|delegate)\b/.test(rest) || /^namespace\b/.test(rest)) {
-        classifyType(nsName, headerSrc, headerClean, seg);
+        classifyType(nsName, ownPath, headerSrc, headerClean, seg);
         continue;
       }
       classifyMember(t, parentKind, headerSrc, headerClean, seg);
@@ -405,6 +412,10 @@ function parseFile(src, assembly, model) {
     if (toks.length < 2) return;
     member.name = toks[toks.length - 1];
     member.type = toks.slice(0, -1).join(' ');
+    // Initializer from the ORIGINAL source: the cleaned text blanks string literals,
+    // which would empty const-string values like the native "...Controller\0" Ids.
+    const _eq = hSrc.search(/=(?![=>])/);
+    member.value = _eq >= 0 ? collapse(hSrc.slice(_eq + 1)).replace(/;\s*$/, '') : '';
     if (seg.kind === 'block') {
       const bodyClean = code.slice(seg.bodyStart + 1, seg.bodyEnd);
       const hasGet = /\bget\b/.test(bodyClean);
@@ -427,7 +438,7 @@ function parseFile(src, assembly, model) {
 }
 
 function makeType(ns, name, kind, mods, attrs, doc) {
-  return { ns, name, kind, mods, attrs, doc, bases: [], properties: [], methods: [], events: [], fields: [], params: null, signature: '' };
+  return { ns, name, kind, mods, attrs, doc, outer: '', bases: [], properties: [], methods: [], events: [], fields: [], params: null, signature: '' };
 }
 
 /**
@@ -442,7 +453,7 @@ function makeType(ns, name, kind, mods, attrs, doc) {
 function mergePartialTypes(model) {
   const groups = new Map();   // key -> fragments[]; insertion order preserved
   for (const t of model.types) {
-    const key = `${t.assembly || ''}|${t.ns}|${t.kind}|${t.name}`;
+    const key = `${t.assembly || ''}|${t.ns}|${t.outer || ''}|${t.kind}|${t.name}`;
     if (!groups.has(key)) groups.set(key, []);
     groups.get(key).push(t);
   }
@@ -786,6 +797,53 @@ async function readPackageDescription(libsRoot, asm) {
   return '';
 }
 
+// ---------------------------------------------------------------------------
+// Pins package: a board -> peripheral -> pin constant tree, rendered specially.
+// ---------------------------------------------------------------------------
+const pinsFullPath = (t) => (t.outer ? t.outer + '.' + t.name : t.name);
+
+function renderPinsIndex(asm, boards) {
+  const real = boards.filter(b => !/^STM32/.test(b.name));
+  const chips = boards.filter(b => /^STM32/.test(b.name));
+  const L = ['---', `title: ${yaml(asm)}`, 'hide_title: true', 'sidebar_label: Overview', '---', '',
+    `<h1 className="api-package-heading">${asm} NuGet</h1>`, '',
+    'Pin, peripheral, and bus definitions, grouped by board. Pick your board:', '',
+    '## Boards', ''];
+  for (const b of real) L.push(`- [${b.name}](./${encodeURIComponent(b.name)}.md)`);
+  if (chips.length) {
+    L.push('', '## Chip families', '',
+      'Shared chip-level definitions that the boards above reference.', '');
+    for (const b of chips) L.push(`- [${b.name}](./${encodeURIComponent(b.name)}.md)`);
+  }
+  L.push('');
+  return L.join('\n');
+}
+
+function renderPinsBoardPage(board, allTypes) {
+  const childrenOf = (p) => allTypes.filter(t => t.outer === p)
+    .sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true })); // Controller2 before Controller12
+  const L = ['---', `title: ${yaml(board.name)}`, 'hide_title: true', `sidebar_label: ${yaml(board.name)}`, '---', '',
+    `<h1 className="api-package-heading">${board.name}</h1>`, ''];
+  if (board.doc && board.doc.summary) L.push(proseCell(board.doc.summary), '');
+  const prefix = board.name + '.';
+  const walk = (type) => {
+    if (type.fields.length) {
+      const rel = pinsFullPath(type).slice(prefix.length) || type.name;  // path under the board, e.g. "Timer.Pwm.Controller1"
+      L.push(`## ${rel}`, '');
+      if (type.doc && type.doc.summary) L.push(proseCell(type.doc.summary), '');
+      L.push('| Member | Value |', '|---|---|');
+      for (const f of type.fields) {
+        const v = (f.value || '').replace(/^"([\s\S]*)"$/, '$1');   // unwrap a string-literal value, e.g. "...AdcController\\0"
+        L.push(`| \`${f.name}\` | ${v ? '`' + v.replace(/\|/g, '\\|') + '`' : ''} |`);
+      }
+      L.push('');
+    }
+    for (const c of childrenOf(pinsFullPath(type))) walk(c);
+  };
+  for (const c of childrenOf(board.name)) walk(c);
+  return L.join('\n');
+}
+
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const libsRoot = args.libs ? path.resolve(args.libs) : path.resolve(WEBSITE_ROOT, '..', 'TinyCLR-Libraries');
@@ -838,6 +896,18 @@ async function main() {
     const sidebarLabel = asm.replace(/^GHIElectronics\.TinyCLR\./, '');
     await fs.writeFile(path.join(asmDir, '_category_.json'),
       JSON.stringify({ label: sidebarLabel }, null, 2));
+
+    // Pins is a board -> peripheral -> pin constant tree, not normal API types:
+    // render a board index + one page per board instead of the flat type table.
+    if (asm === 'GHIElectronics.TinyCLR.Pins') {
+      const boards = types.filter(t => !t.outer && t.kind === 'class')
+        .sort((a, b) => a.name.localeCompare(b.name));
+      await fs.writeFile(path.join(asmDir, 'index.md'), renderPinsIndex(asm, boards));
+      for (const b of boards)
+        await fs.writeFile(path.join(asmDir, b.name + '.md'), renderPinsBoardPage(b, types));
+      continue;
+    }
+
     await fs.writeFile(path.join(asmDir, 'index.md'), renderAssemblyIndex(asm, types, fileOf));
     for (const t of types)
       await fs.writeFile(path.join(asmDir, fileOf.get(t) + '.md'), renderType(t));

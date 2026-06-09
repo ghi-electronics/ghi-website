@@ -1,14 +1,236 @@
 ---
-title: "FEZFeather Class"
+title: "FEZFeather"
+hide_title: true
 sidebar_label: "FEZFeather"
 ---
 
-# FEZFeather Class
+<h1 className="api-package-heading">FEZFeather</h1>
 
-**Namespace:** `GHIElectronics.TinyCLR.Pins` · **Assembly:** `GHIElectronics.TinyCLR.Pins`
+## Adc.Controller1
 
-_No description available._
+ADC controller.
 
-```csharp
-public static class FEZFeather
-```
+| Member | Value |
+|---|---|
+| `Id` | `STM32H7.Adc.Adc1` |
+| `PA6` | `STM32H7.Adc.Channel3` |
+| `PB1` | `STM32H7.Adc.Channel5` |
+| `PA7` | `STM32H7.Adc.Channel7` |
+| `PA0` | `STM32H7.Adc.Channel16` |
+| `PA5` | `STM32H7.Adc.Channel19` |
+
+## Adc.Controller3
+
+ADC controller.
+
+| Member | Value |
+|---|---|
+| `Id` | `STM32H7.Adc.Adc3` |
+| `InternalReferenceVoltage` | `STM32H7.Adc.Channel17` |
+| `InternalTemperatureSensor` | `STM32H7.Adc.Channel18` |
+| `VBAT` | `STM32H7.Adc.Channel19` |
+
+## CanBus
+
+CAN bus definitions.
+
+| Member | Value |
+|---|---|
+| `Can1` | `STM32H7.CanBus.Can1` |
+
+## Dac
+
+DAC channel definitions.
+
+| Member | Value |
+|---|---|
+| `Id` | `STM32H7.Dac.Id` |
+| `PA5` | `STM32H7.Dac.Channel2` |
+
+## GpioPin
+
+GPIO pin definitions.
+
+| Member | Value |
+|---|---|
+| `PD2` | `SC20260.GpioPin.PD2` |
+| `PC12` | `SC20260.GpioPin.PC12` |
+| `PC11` | `SC20260.GpioPin.PC11` |
+| `PC10` | `SC20260.GpioPin.PC10` |
+| `PC9` | `SC20260.GpioPin.PC9` |
+| `PC8` | `SC20260.GpioPin.PC8` |
+| `PD7` | `SC20260.GpioPin.PD7` |
+| `PA9` | `SC20260.GpioPin.PA9` |
+| `PA10` | `SC20260.GpioPin.PA10` |
+| `PE13` | `SC20260.GpioPin.PE13` |
+| `PE14` | `SC20260.GpioPin.PE14` |
+| `PE12` | `SC20260.GpioPin.PE12` |
+| `PB1` | `SC20260.GpioPin.PB1` |
+| `PA5` | `SC20260.GpioPin.PA5` |
+| `PA7` | `SC20260.GpioPin.PA7` |
+| `PA6` | `SC20260.GpioPin.PA6` |
+| `PA3` | `SC20260.GpioPin.PA3` |
+| `PA0` | `SC20260.GpioPin.PA0` |
+| `PE8` | `SC20260.GpioPin.PE8` |
+| `PE7` | `SC20260.GpioPin.PE7` |
+| `PD1` | `SC20260.GpioPin.PD1` |
+| `PD0` | `SC20260.GpioPin.PD0` |
+| `PB9` | `SC20260.GpioPin.PB9` |
+| `PB8` | `SC20260.GpioPin.PB8` |
+| `PD3` | `SC20260.GpioPin.PD3` |
+| `PD4` | `SC20260.GpioPin.PD4` |
+| `PD5` | `SC20260.GpioPin.PD5` |
+| `PD6` | `SC20260.GpioPin.PD6` |
+| `PE1` | `SC20260.GpioPin.PE1` |
+| `PE0` | `SC20260.GpioPin.PE0` |
+| `PE6` | `SC20260.GpioPin.PE6` |
+| `Led` | `SC20100.GpioPin.PE11` |
+| `WiFiInterrupt` | `SC20100.GpioPin.PB12` |
+| `WiFiChipselect` | `SC20100.GpioPin.PD15` |
+| `WiFiReset` | `SC20100.GpioPin.PB13` |
+| `WiFiEnable` | `SC20100.GpioPin.PA8` |
+| `ButtonLdr` | `SC20100.GpioPin.PE3` |
+| `ButtonApp` | `SC20100.GpioPin.PB7` |
+
+## I2cBus
+
+I2C bus definitions.
+
+| Member | Value |
+|---|---|
+| `I2c1` | `STM32H7.I2cBus.I2c1` |
+| `Chip0` | `0` |
+| `Software` | `STM32H7.I2cBus.Software` |
+
+## RtcController
+
+RTC controller definitions.
+
+| Member | Value |
+|---|---|
+| `Id` | `STM32H7.RtcController.Id` |
+
+## SpiBus
+
+SPI bus definitions.
+
+| Member | Value |
+|---|---|
+| `Spi4` | `STM32H7.SpiBus.Spi4` |
+| `Chip3` | `3` |
+| `Spi6` | `STM32H7.SpiBus.Spi6` |
+| `Chip5` | `5` |
+| `WiFi` | `STM32H7.SpiBus.Spi3` |
+| `Chip2` | `2` |
+
+## StorageController
+
+Storage controller definitions.
+
+| Member | Value |
+|---|---|
+| `SdCard` | `STM32H7.StorageController.SdCard` |
+| `UsbHostMassStorage` | `STM32H7.StorageController.UsbHostMassStorage` |
+
+## Timer.DigitalSignal.Controller5
+
+| Member | Value |
+|---|---|
+| `PA0` | `GpioPin.PA0` |
+
+## Timer.Pwm.Controller1
+
+PWM controller.
+
+| Member | Value |
+|---|---|
+| `Id` | `STM32H7.Timer.Tim1` |
+| `Chip` | `0` |
+| `Led` | `STM32H7.Timer.Channel1` |
+| `PE14` | `STM32H7.Timer.Channel3` |
+
+## Timer.Pwm.Controller2
+
+PWM controller.
+
+| Member | Value |
+|---|---|
+| `Id` | `STM32H7.Timer.Tim2` |
+| `Chip` | `1` |
+| `PA3` | `STM32H7.Timer.Channel3` |
+
+## Timer.Pwm.Controller3
+
+PWM controller.
+
+| Member | Value |
+|---|---|
+| `Id` | `STM32H7.Timer.Tim3` |
+| `Chip` | `2` |
+| `PB1` | `STM32H7.Timer.Channel3` |
+
+## Timer.Pwm.Controller5
+
+| Member | Value |
+|---|---|
+| `Id` | `STM32H7.Timer.Tim5` |
+| `Chip` | `4` |
+| `PA0` | `STM32H7.Timer.Channel0` |
+
+## Timer.Pwm.Controller13
+
+| Member | Value |
+|---|---|
+| `Id` | `STM32H7.Timer.Tim13` |
+| `Chip` | `12` |
+| `PA6` | `STM32H7.Timer.Channel0` |
+
+## Timer.Pwm.Controller14
+
+| Member | Value |
+|---|---|
+| `Id` | `STM32H7.Timer.Tim14` |
+| `Chip` | `13` |
+| `PA7` | `STM32H7.Timer.Channel0` |
+
+## Timer.Pwm.Controller15
+
+| Member | Value |
+|---|---|
+| `Id` | `STM32H7.Timer.Tim15` |
+| `Chip` | `14` |
+| `PE6` | `STM32H7.Timer.Channel1` |
+
+## Timer.Pwm.Controller16
+
+| Member | Value |
+|---|---|
+| `Id` | `STM32H7.Timer.Tim16` |
+| `Chip` | `15` |
+| `PB8` | `STM32H7.Timer.Channel0` |
+
+## Timer.Pwm.Controller17
+
+| Member | Value |
+|---|---|
+| `Id` | `STM32H7.Timer.Tim17` |
+| `Chip` | `16` |
+| `PB9` | `STM32H7.Timer.Channel0` |
+
+## Timer.Pwm.Software
+
+| Member | Value |
+|---|---|
+| `Id` | `STM32H7.Timer.SoftwarePwm` |
+
+## UartPort
+
+UART port definitions.
+
+| Member | Value |
+|---|---|
+| `Uart1` | `STM32H7.UartPort.Usart1` |
+| `Uart2` | `STM32H7.UartPort.Usart2` |
+| `Uart4` | `STM32H7.UartPort.Uart4` |
+| `Uart7` | `STM32H7.UartPort.Uart7` |
+| `Uart8` | `STM32H7.UartPort.Uart8` |

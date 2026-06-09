@@ -14,8 +14,10 @@ sidebar_label: Overview
 | [BaseDescriptor](./BaseDescriptor.md) | `GHIElectronics.TinyCLR.Devices.UsbHost.Descriptors` | The base USB descriptor. |
 | [BaseDevice](./BaseDevice.md) | `GHIElectronics.TinyCLR.Devices.UsbHost` | Represents a USB device connected. |
 | [ButtonChangedEventArgs](./ButtonChangedEventArgs.md) | `GHIElectronics.TinyCLR.Devices.UsbHost` | The events args for the ButtonPressed and ButtonReleased events. |
+| [ButtonChangedEventArgs](./ButtonChangedEventArgs_2.md) | `GHIElectronics.TinyCLR.Devices.UsbHost` | The events args for the ButtonPressed and ButtonReleased events. |
 | [Configuration](./Configuration.md) | `GHIElectronics.TinyCLR.Devices.UsbHost.Descriptors` | Configuration descriptor. |
 | [CursorMovedEventArgs](./CursorMovedEventArgs.md) | `GHIElectronics.TinyCLR.Devices.UsbHost` | The events args for the CursorMoved event. |
+| [CursorMovedEventArgs](./CursorMovedEventArgs_2.md) | `GHIElectronics.TinyCLR.Devices.UsbHost` | The events args for the CursorMoved event. |
 | [Device](./Device.md) | `GHIElectronics.TinyCLR.Devices.UsbHost.Descriptors` | Device descriptor. |
 | [DeviceConnectionEventArgs](./DeviceConnectionEventArgs.md) | `GHIElectronics.TinyCLR.Devices.UsbHost` |  |
 | [Endpoint](./Endpoint.md) | `GHIElectronics.TinyCLR.Devices.UsbHost.Descriptors` | Endpoint descriptor. |
@@ -53,6 +55,7 @@ sidebar_label: Overview
 | Delegate | Namespace | Summary |
 |---|---|---|
 | [CursorMovedEventHandler](./CursorMovedEventHandler.md) | `GHIElectronics.TinyCLR.Devices.UsbHost` | The delegate for when one of the joystick's cursors moves. |
+| [CursorMovedEventHandler](./CursorMovedEventHandler_2.md) | `GHIElectronics.TinyCLR.Devices.UsbHost` | The delegate for when the mouse's cursor moves. |
 | [DisconnectedEventHandler](./DisconnectedEventHandler.md) | `GHIElectronics.TinyCLR.Devices.UsbHost` | The event handler type for when the device disconnects. |
 | [FrameAvailableEventHandler](./FrameAvailableEventHandler.md) | `GHIElectronics.TinyCLR.Devices.UsbHost` | Delegate fired when a new frame is ready. |
 | [HatSwitchPressedEventHandler](./HatSwitchPressedEventHandler.md) | `GHIElectronics.TinyCLR.Devices.UsbHost` | The delegate for when the joystick's hat switch is pressed. |

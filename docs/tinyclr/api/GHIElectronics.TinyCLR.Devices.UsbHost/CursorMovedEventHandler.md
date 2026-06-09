@@ -10,7 +10,7 @@ sidebar_label: "CursorMovedEventHandler"
 The delegate for when one of the joystick's cursors moves.
 
 ```csharp
-public delegate CursorMovedEventHandler
+public delegate void CursorMovedEventHandler(Joystick sender, CursorMovedEventArgs e);
 ```
 
 ## Parameters

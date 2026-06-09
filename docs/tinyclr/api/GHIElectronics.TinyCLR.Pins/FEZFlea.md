@@ -1,14 +1,139 @@
 ---
-title: "FEZFlea Class"
+title: "FEZFlea"
+hide_title: true
 sidebar_label: "FEZFlea"
 ---
 
-# FEZFlea Class
+<h1 className="api-package-heading">FEZFlea</h1>
 
-**Namespace:** `GHIElectronics.TinyCLR.Pins` · **Assembly:** `GHIElectronics.TinyCLR.Pins`
+## Adc.Controller1
 
-_No description available._
+ADC controller.
 
-```csharp
-public static class FEZFlea
-```
+| Member | Value |
+|---|---|
+| `Id` | `STM32L4.Adc.Adc1` |
+| `PA3` | `STM32L4.Adc.Channel8` |
+| `PA0` | `STM32L4.Adc.Channel5` |
+| `PA1` | `STM32L4.Adc.Channel6` |
+| `PA2` | `STM32L4.Adc.Channel7` |
+| `PA4` | `STM32L4.Adc.Channel9` |
+| `PA5` | `STM32L4.Adc.Channel10` |
+| `InternalTemperatureSensor` | `STM32L4.Adc.Channel17` |
+
+## Dac
+
+DAC channel definitions.
+
+| Member | Value |
+|---|---|
+| `Id` | `STM32L4.Dac.Id` |
+| `PA4` | `STM32L4.Dac.Channel1` |
+
+## GpioPin
+
+GPIO pin definitions.
+
+| Member | Value |
+|---|---|
+| `PA4` | `SC13048.GpioPin.PA4` |
+| `PA0` | `SC13048.GpioPin.PA0` |
+| `PA1` | `SC13048.GpioPin.PA1` |
+| `PA5` | `SC13048.GpioPin.PA5` |
+| `PB9` | `SC13048.GpioPin.PB9` |
+| `PB8` | `SC13048.GpioPin.PB8` |
+| `PA2` | `SC13048.GpioPin.PA2` |
+| `PB15` | `SC13048.GpioPin.PB15` |
+| `PB14` | `SC13048.GpioPin.PB14` |
+| `PB13` | `SC13048.GpioPin.PB13` |
+| `PA3` | `SC13048.GpioPin.PA3` |
+| `Led` | `SC13048.GpioPin.PA8` |
+| `ButtonLdr` | `SC13048.GpioPin.PC13` |
+
+## I2cBus
+
+I2C bus definitions.
+
+| Member | Value |
+|---|---|
+| `I2c1` | `STM32L4.I2cBus.I2c1` |
+| `Chip0` | `0` |
+| `I2c2` | `STM32L4.I2cBus.I2c2` |
+| `Chip1` | `1` |
+| `Software` | `STM32L4.I2cBus.Software` |
+
+## RtcController
+
+RTC controller definitions.
+
+| Member | Value |
+|---|---|
+| `Id` | `STM32L4.RtcController.Id` |
+
+## SpiBus
+
+SPI bus definitions.
+
+| Member | Value |
+|---|---|
+| `Spi2` | `STM32L4.SpiBus.Spi2` |
+| `Chip1` | `1` |
+
+## Timer.DigitalSignal.Controller1
+
+| Member | Value |
+|---|---|
+| `PA1` | `GpioPin.PA1` |
+
+## Timer.Pwm.Controller1
+
+PWM controller.
+
+| Member | Value |
+|---|---|
+| `Id` | `STM32L4.Timer.Tim1` |
+| `Chip` | `0` |
+| `Led` | `STM32L4.Timer.Channel1` |
+
+## Timer.Pwm.Controller2
+
+PWM controller.
+
+| Member | Value |
+|---|---|
+| `Id` | `STM32L4.Timer.Tim2` |
+| `Chip` | `1` |
+| `PA5` | `STM32L4.Timer.Channel1` |
+| `PA1` | `STM32L4.Timer.Channel2` |
+
+## Timer.Pwm.Controller15
+
+| Member | Value |
+|---|---|
+| `Id` | `STM32L4.Timer.Tim15` |
+| `Chip` | `14` |
+| `PA2` | `STM32L4.Timer.Channel1` |
+| `PA3` | `STM32L4.Timer.Channel2` |
+
+## Timer.Pwm.Controller16
+
+| Member | Value |
+|---|---|
+| `Id` | `STM32L4.Timer.Tim16` |
+| `Chip` | `15` |
+| `PB8` | `STM32L4.Timer.Channel1` |
+
+## Timer.Pwm.Software
+
+| Member | Value |
+|---|---|
+| `Id` | `STM32L4.Timer.SoftwarePwm` |
+
+## UartPort
+
+UART port definitions.
+
+| Member | Value |
+|---|---|
+| `Uart2` | `STM32L4.UartPort.Usart2` |
+| `Uart4` | `STM32L4.UartPort.Uart4` |

@@ -15,14 +15,6 @@ public class CursorMovedEventArgs : EventArgs
 
 ## Properties
 
-### Which
-
-```csharp
-public Cursor Which { get; set; }
-```
-
-The index of the changed button.
-
 ### NewPosition
 
 ```csharp
