@@ -73,9 +73,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'feature/azure',
             'feature/aws',
-            'feature/google-cloud',
             'feature/ifttt',
-            'feature/adafruit-io',
           ],
         },
         {
@@ -131,8 +129,8 @@ const sidebars: SidebarsConfig = {
             'feature/power-management',
             'feature/watchdog-timer',
             'feature/real-time-clock',
-            'feature/timers',
-            'feature/specialized',
+            'feature/external-memory',
+            'feature/device-info',
           ],
         },
         {
@@ -142,10 +140,9 @@ const sidebars: SidebarsConfig = {
           items: [
             'feature/debugging',
             'feature/memory',
-            'feature/external-memory',
             'feature/unmanaged-heap',
-            'feature/nuget',
-            'feature/device-info',
+            'feature/marshal',
+            'feature/application-domain',
           ],
         },
         {
@@ -154,14 +151,13 @@ const sidebars: SidebarsConfig = {
           collapsed: true,
           items: [
             'feature/multithreading',
-            'feature/reflection',
             'feature/collections',
+            'feature/reflection',
             'feature/serialization',
             'feature/encoding-decoding',
-            'feature/application-domain',
-            'feature/marshal',
             'feature/regex',
             'feature/stream',
+            'feature/timers',
           ],
         },
       ],

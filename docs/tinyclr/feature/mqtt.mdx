@@ -2,23 +2,30 @@
 title: MQTT
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
+**MQTT** is a lightweight publish/subscribe messaging protocol designed for resource-constrained devices and unreliable networks. It's the standard transport for major cloud IoT services — see [Azure](azure.mdx) and [AWS](aws.mdx) for higher-level integrations on top of it.
+
+NuGet package: **`GHIElectronics.TinyCLR.Networking.Mqtt`**.
+
+:::note
+TinyCLR's MQTT driver is **client-only** — for hosting a broker, run one on a server and connect to it from the device.
 :::
 
-MQTT is a light weight messaging protocol for sensors that is supported by all major cloud services. See the following cloud provider pages for further details: [Azure](azure.mdx), [AWS](aws.mdx) and [Google Cloud](google-cloud.mdx).
+## Connect, subscribe, publish
 
-The following is a simple example of MQTT:
-
-:::tip
-Needed NuGets: GHIElectronics.TinyCLR.Networking.Mqtt
-:::
+The example below opens a TLS-protected connection to an MQTT broker on the standard port 8883, subscribes to a topic, and publishes one message. Received messages are logged to the debug output.
 
 ```csharp
-var caCertificate = new X509Certificate(UTF8Encoding.UTF8.GetBytes("Your certificate"));
+using GHIElectronics.TinyCLR.Networking.Mqtt;
+using System;
+using System.Diagnostics;
+using System.Security.Authentication;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+
+var caCertificate = new X509Certificate(Encoding.UTF8.GetBytes("Your CA certificate"));
 
 var mqttHost = "your_host";
-var mqttPort = 8883; //default 8883
+var mqttPort = 8883;                // Standard MQTT-over-TLS port.
 var deviceId = "your_device_id";
 
 var username = "your_username";
@@ -31,7 +38,7 @@ try {
         BrokerPort = mqttPort,
         ClientCertificate = null,
         CaCertificate = caCertificate,
-        SslProtocol = System.Security.Authentication.SslProtocols.Tls12
+        SslProtocol = SslProtocols.Tls12,
     };
 
     var client = new Mqtt(clientSetting);
@@ -39,48 +46,55 @@ try {
     var connectSetting = new MqttConnectionSetting {
         ClientId = deviceId,
         UserName = username,
-        Password = password
+        Password = password,
     };
 
-    // Connect to host
+    // Connect to the broker.
     var returnCode = client.Connect(connectSetting);
 
-    var packetId = 1;
-                
-    // Subscribe to a topic
-    client.Subscribe(new string[] { topic }, new QoSLevel[] { QoSLevel.ExactlyOnce },
-        (ushort)packetId++);
+    ushort packetId = 1;
 
-    // Publish a topic
-    client.Publish(topic, Encoding.UTF8.GetBytes("your message"), QoSLevel.MostOnce,
-        false, (ushort)packetId);
+    // Subscribe to a topic.
+    client.Subscribe(new string[] { topic }, new QoSLevel[] { QoSLevel.ExactlyOnce }, packetId++);
 
-    // Publish recieved change from a specific topic
-    client.PublishReceivedChanged += (object sender, string topic, byte[] data, bool duplicate, QoSLevel qosLevel, bool retain) => {
-    Debug.WriteLine("Received message: " + Encoding.UTF8.GetString(data));
+    // Publish a message.
+    client.Publish(topic, Encoding.UTF8.GetBytes("your message"), QoSLevel.MostOnce, retain: false, packetId);
+
+    // Handler runs for every message arriving on a subscribed topic.
+    client.PublishReceivedChanged += (sender, receivedTopic, data, duplicate, qosLevel, retain) => {
+        Debug.WriteLine("Received on " + receivedTopic + ": " + Encoding.UTF8.GetString(data));
     };
-
 }
-catch (Exception e) { 
+catch (Exception ex) {
+    Debug.WriteLine("MQTT setup failed: " + ex.Message);
 }
 ```
 
-:::note
-The MQTT driver in TinyCLR supports client mode only.
-:::
+## Event handlers
 
-The `PublishedReceivedChanged` Event allows you to select the topic that the device receives the change from.
+The `Mqtt` client exposes five events for lifecycle and message activity:
 
----
-
-# Event Handler
-
-The Mqtt driver provides five events:
+| Event | Fires when |
+|---|---|
+| `ConnectedChanged` | Connection to the broker is established or lost. |
+| `SubscribedChanged` | A subscription has been acknowledged by the broker. |
+| `UnsubscribedChanged` | An unsubscribe has been acknowledged by the broker. |
+| `PublishedChanged` | A locally-sent publish has been acknowledged. |
+| `PublishReceivedChanged` | A message arrived on one of the subscribed topics. |
 
 ```csharp
-client.PublishReceivedChanged += (p1, p2, p3, p4, p5, p6) => { Debug.WriteLine("Received message");};
-client.PublishedChanged += (a, b, c) => { Debug.WriteLine("Published Changed."); }; ;
-client.SubscribedChanged += (a, b, c) => { Debug.WriteLine("Subscribed Changed."); };
-client.ConnectedChanged += (a) => { Debug.WriteLine("Connected Changed."); };
-client.UnsubscribedChanged += (a, b) => { Debug.WriteLine("Unsubscribed Changed."); };
+client.ConnectedChanged += (connected) =>
+    Debug.WriteLine("Connection state changed");
+
+client.SubscribedChanged += (sender, packetId, qos) =>
+    Debug.WriteLine("Subscribe acknowledged, packet " + packetId);
+
+client.UnsubscribedChanged += (sender, packetId) =>
+    Debug.WriteLine("Unsubscribe acknowledged, packet " + packetId);
+
+client.PublishedChanged += (sender, packetId, qos) =>
+    Debug.WriteLine("Publish acknowledged, packet " + packetId);
+
+client.PublishReceivedChanged += (sender, topic, data, duplicate, qos, retain) =>
+    Debug.WriteLine("Received on " + topic + ": " + Encoding.UTF8.GetString(data));
 ```

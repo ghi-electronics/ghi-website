@@ -2,110 +2,43 @@
 title: Cryptography
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
-:::
+TinyCLR provides both the **standard .NET cryptography algorithms** (RSA, AES, etc.) and a TinyCLR-specific lightweight **XTEA** symmetric cipher.
 
-TinyCLR supports multiple algorithms.  
+NuGet package: **`GHIElectronics.TinyCLR.Cryptography`**.
+
+## Standard .NET cryptography
+
+The standard cryptographic primitives from `System.Security.Cryptography` behave the same as on desktop .NET — `RSACryptoServiceProvider`, `AesCryptoServiceProvider`, and friends. For algorithm details, parameter semantics, and full API documentation, see Microsoft's [`System.Security.Cryptography`](https://learn.microsoft.com/dotnet/api/system.security.cryptography) reference. For the exact subset of methods TinyCLR exposes, see the [API reference](/docs/tinyclr/api).
+
+For network security, [TLS](tls.mdx) wraps these primitives in a high-level API — most applications won't touch raw RSA/AES directly.
 
 ## XTEA
-XTEA encryption is a symmetrical encryption method that always uses a 128 bit key. Keys of any other size will throw an exception. XTEA encryption also requires the data to you are encrypting to be a multiple of eight bytes in length.
 
-XTEA encryption is not only dependent upon the supplied key, but also the "number of rounds" or iterations the encryption algorithm uses to encode and decode information. TinyCLR always uses 32 rounds. So, for example, if you are using a PC to decode data that was encoded using TinyCLR, make sure that both the correct key and number of rounds (32) are used on the PC side.
+**XTEA** (eXtended Tiny Encryption Algorithm) is a lightweight symmetric block cipher — much smaller and faster than AES, useful when you need symmetric encryption on tight RAM/CPU budgets and don't need a current-standard cipher. It's part of TinyCLR's library and isn't in standard .NET.
 
-:::tip
-Needed NuGets: GHIElectronics.TinyCLR.Core and GHIElectronics.TinyCLR.Cryptography
-:::
+Key facts about TinyCLR's XTEA implementation:
 
-The following sample code encrypts and decrypts a string of text.
+- **Key**: always **128 bits** (four `uint` values). Any other key size throws.
+- **Data**: must be a **multiple of 8 bytes**. Pad your input if needed.
+- **Rounds**: TinyCLR always uses **32 rounds**. If you're decrypting TinyCLR output on a PC (or vice versa), make sure the PC implementation uses 32 rounds too.
 
 ```csharp
-//Argument below is the 128 bit key. XTEA always uses a 128 bit key.
+using GHIElectronics.TinyCLR.Cryptography;
+using System.Diagnostics;
+using System.Text;
+
+// 128-bit key — four 32-bit values.
 var crypto = new Xtea(new uint[] { 0x01234567, 0x89ABCDEF, 0xFEDCBA98, 0x76543210 });
 
-byte[] dataToEncrypt = Encoding.UTF8.GetBytes("Data to encrypt.");
-byte[] encryptedData;
-byte[] decryptedData;
+var dataToEncrypt = Encoding.UTF8.GetBytes("Data to encrypt.");      // 16 bytes — multiple of 8.
 
-//Encrypt data. Data must be a multiple of 8 bytes.
-encryptedData = crypto.Encrypt(dataToEncrypt, 0, (uint)dataToEncrypt.Length);
+var encrypted = crypto.Encrypt(dataToEncrypt, 0, (uint)dataToEncrypt.Length);
+var decrypted = crypto.Decrypt(encrypted, 0, (uint)encrypted.Length);
 
-//Decrypt data.
-decryptedData = crypto.Decrypt(encryptedData, 0, (uint)encryptedData.Length);
-
-Debug.WriteLine("Decrypted: " + Encoding.UTF8.GetString(decryptedData));
+Debug.WriteLine("Decrypted: " + Encoding.UTF8.GetString(decrypted));
+// Decrypted: Data to encrypt.
 ```
 
-The above code outputs the following:
-```text
-Decrypted: Data to encrypt.
-```
-
----
-
-## RSA
-RSA public key cryptography has become the most popular asymmetric cryptography scheme on the Internet. While public key cryptography systems solve the problem of secure key sharing that exists in symmetric cryptography, they are much more computationally intensive. As a result, cryptography systems such as RSA are often used only to securely transfer the key for a symmetric cryptography method such as XTEA. Once the key has been sent, the computationally less intensive symmetric cryptography system is then used to encode and decode the bulk of the data.
-
-:::note
-`RSACryptoServiceProvider()` implements the IDisposable interface
+:::warning
+**XTEA is not a current-standard cipher.** For new designs that need symmetric encryption, prefer **AES** from `System.Security.Cryptography` — it's faster on most modern hardware, has wider library compatibility, and is the choice every audit will expect. Reach for XTEA only for compatibility with existing TinyCLR 2 code, or in extreme footprint-constrained scenarios.
 :::
-
-:::tip
-Needed NuGets: GHIElectronics.TinyCLR.Core and GHIElectronics.TinyCLR.Cryptography
-:::
-
-The following sample code encrypts and decrypts a string of text.
-
-```csharp
-byte[] dataToEncrypt = Encoding.UTF8.GetBytes("Data to Encrypt");
-byte[] encryptedData;
-byte[] decryptedData;
-
-using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider(2048)) {
-
-    //Encrypt data.
-    using (RSACryptoServiceProvider encryptRSA = new RSACryptoServiceProvider()) {
-
-        encryptRSA.ImportParameters(RSA.ExportParameters(false));
-        encryptedData = encryptRSA.Encrypt(dataToEncrypt);
-    }
-
-    //Decrypt data.
-    using (RSACryptoServiceProvider decryptRSA = new RSACryptoServiceProvider()) {
-
-        decryptRSA.ImportParameters(RSA.ExportParameters(true));
-        decryptedData = decryptRSA.Decrypt(encryptedData);
-    }
-}
-
-Debug.WriteLine("Decrypted: " + Encoding.UTF8.GetString(decryptedData));
-
-```
-
-The above code outputs the following:
-```text
-Decrypted: Data to Encrypt
-```
-
-If no key size is provided as an argument to `RSACryptoServiceProvider()`, a default key size of 1024 bits will be used.
-
-The boolean argument for `RSA.ExportParameters()` determines whether this method returns the private key (true) or public key (false). The public key is used to encrypt messages, while the private key is needed to decrypt messages.
-
-The code sample below demonstrates how to sign & verify data.
-
-```csharp
-var dataToSign = Encoding.UTF8.GetBytes("Data to sign. This is for test");
-byte[] signData;
-RSAParameters signKey;
-
-using (RSACryptoServiceProvider SignRSA = new RSACryptoServiceProvider()){
-    signKey = SignRSA.ExportParameters(true);
-    SignRSA.ImportParameters(signKey);
-    signData = SignRSA.SignData(dataToSign, true);
-}
-
-using (RSACryptoServiceProvider VerifyRSA = new RSACryptoServiceProvider()){
-    VerifyRSA.ImportParameters(signKey);
-    Debug.WriteLine("Signed: " + VerifyRSA.VerifyData(dataToSign, signData, true));
-}
-```

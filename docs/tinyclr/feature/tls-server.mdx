@@ -2,32 +2,35 @@
 title: TLS Server
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
-:::
+A **TLS server** accepts incoming encrypted connections — useful for hosting a secure web UI, a local REST API, or any other inbound TLS endpoint on the device. TinyCLR's TLS 1.2 implementation runs entirely inside SITCore's secure memory; see [TLS](tls.mdx) for the overall design.
 
-## Creating a self-signed certificate
-Many ways exists to reach the same goal, this is example is based on Linux and OpenSSL and creates not only a Server Certificate, but also a CA Certificate. An existing CA Certificate makes it easier for the Client PC trusts the Certificates as he only need to trust the CA Certificate and all Certificates signed by this CA (your own CA) are automatically trusted. This not only makes it easier for testing purposes but also if you need to create more Certificates
+NuGet package: **`GHIElectronics.TinyCLR.Devices.Network`**.
 
-Create the following 3 files:
+You'll need a **server certificate** and **private key** loaded on the device. For development, a self-signed certificate works fine; for production, use one signed by a real CA (or your own internal CA, as shown below).
 
-1. `ca.cnf` - ca certificate configuration
+## Generating a self-signed certificate
 
-```csharp
+There are many ways to produce a certificate. The flow below uses **OpenSSL** to create a CA certificate plus a server certificate signed by that CA. The advantage of generating a CA first is that **client PCs only need to trust the CA** — every certificate you sign with it after that is automatically trusted, which is much easier than installing each server cert individually.
+
+You'll need three OpenSSL config files. Create them next to where you'll run the commands.
+
+**`ca.cnf`** — CA certificate config:
+
+```ini
 [req]
 prompt = no
 distinguished_name = req_distinguished_name
 
 [req_distinguished_name]
-C = AT
+C = US
 ST = MYSTATE
 L = MYLOCALITY
 O = MYORGANIZATION
 ```
 
-2. `server.cnf` - server certificate configuration
+**`server.cnf`** — server certificate config:
 
-```csharp
+```ini
 [req]
 default_bits = 2048
 prompt = no
@@ -35,18 +38,16 @@ default_md = sha256
 distinguished_name = req_distinguished_name
 
 [req_distinguished_name]
-C = AT
+C = US
 ST = MYSTATE
 L = MYLOCALITY
 O = MYORGANIZATION
 CN = SCM20260D
 ```
 
+**`server_v3.ext`** — server certificate extensions (TLS clients require Subject Alternative Names in modern verifiers):
 
-
-3. `server_v3.ext` - server certificate extension
-
-```csharp
+```ini
 authorityKeyIdentifier=keyid,issuer
 basicConstraints=CA:FALSE
 keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
@@ -57,95 +58,106 @@ DNS.1 = SCM20260D
 IP.1 = 192.168.0.109
 ```
 
-The following steps produce a `ca.crt`(Certificate Authority) you can publish and import in your PC
+### Build the CA
 
-1. edit `ca.cnf`
-change the values for C, ST, L and O
-2. Generate a CA private key
-`$ openssl genrsa -out ca_privatekey.pem 2048`
-3. Generate a 10 years valid CA certificate (from Linux Shell)
-`$ openssl req -new -x509 -days 3650 -nodes -key ca_privatekey.pem -sha256 -out ca.crt -config ca.cnf`
+Update the `C`/`ST`/`L`/`O` fields in `ca.cnf`, then generate a CA private key and a 10-year CA certificate:
 
+```bash
+openssl genrsa -out ca_privatekey.pem 2048
+openssl req -new -x509 -days 3650 -nodes -key ca_privatekey.pem -sha256 -out ca.crt -config ca.cnf
+```
 
-The following steps produce 2 files named `serverkey.key` and `servercert.crt` you need to use in your device
+`ca.crt` is what you'll publish and install in trust stores. Keep `ca_privatekey.pem` secret.
 
-1. edit server.cnf
-change the values for C, ST, L and O
-change the value of CN, with DNS the FQDN (server.exampledomain.local), NetBIOS Name (SERVER) or IP Address
-2. edit server_v3.ext
-change the values in alt_names section, important to have an entry for the CN value from before
-important to include CN content from step before!
-3. Create a Certificate Signing Request
-`$ openssl req -new -nodes -out server.csr -keyout serverkey.key -config server.cnf`
-4. Generate a 1 year valid self signed Server Certificate
-`$ openssl x509 -req -in server.csr -CA ca.crt -CAkey ca_privatekey.pem -CAcreateserial -out servercert.crt -days 365 -extfile server_v3.ext`
+### Build the server certificate
 
-### Importing the root certificate
- Install the CA Certificate in "Current User" Store Location and "Trusted Root Certification Authorities" Certificate store
+Update `server.cnf` and `server_v3.ext` to match the **CN** (the FQDN, NetBIOS name, or IP address of the device) and the **`alt_names`** section (every DNS name or IP the device might be reached as).
 
-1. Double click on `ca.crt` and click `Install Certificate..`
+Generate the server CSR and sign it with the CA for 1-year validity:
 
-![Importing Root Certificate Step 1](/img/docs/tls-server1.png)
+```bash
+openssl req -new -nodes -out server.csr -keyout serverkey.key -config server.cnf
+openssl x509 -req -in server.csr -CA ca.crt -CAkey ca_privatekey.pem -CAcreateserial -out servercert.crt -days 365 -extfile server_v3.ext
+```
 
-2. Make sure `Current User` is selected.
+You now have:
 
-![Importing Root Certificate Step 2](/img/docs/tls-server2.png)
+- **`servercert.crt`** — the server certificate
+- **`serverkey.key`** — the server's private key
 
-3. Select `Place all certificates in the following store`. Click `Browse...` and select `Trusted Root Certification Authorities`
+Embed both as resources in your TinyCLR project.
 
-![Importing Root Certificate Step 3](/img/docs/tls-server3.png)
+## Installing the CA on a client PC
 
-From this moment your PC will trust all Certificates signed from your CA
+Once the CA is trusted by a PC, any server certificate signed by it (current and future) is automatically trusted on that PC.
 
-![Importing Root Certificate Step 4](/img/docs/tls-server4.png)
+1. Double-click `ca.crt` and click **Install Certificate…**
 
+   ![Importing root certificate, step 1](/img/docs/tls-server1.png)
 
-### Removing a root certificate from a PC
+2. Select **Current User** as the store location.
 
-1. Either run certmgr.msc or search for cert in Windows 10 Settings and select "Manage user certificates" to open Cert Manager for Current User, not for Local Computer
+   ![Importing root certificate, step 2](/img/docs/tls-server2.png)
 
-![Removing a Root Certificate Step 1](/img/docs/tls-server5.png)
+3. Choose **Place all certificates in the following store** → **Browse** → **Trusted Root Certification Authorities**.
 
-2. Select "Trusted Root Certification Authorities" and "Certificates", on the right side find your certificate based on the values from `ca.cnf`
+   ![Importing root certificate, step 3](/img/docs/tls-server3.png)
 
-![Removing a Root Certificate Step 2](/img/docs/tls-server6.png)
+4. Confirm and finish. The PC now trusts every certificate signed by your CA.
 
-This sample of code uses `X509Certificate`. Place the certificate inside the projects `Resources`
+   ![Importing root certificate, step 4](/img/docs/tls-server4.png)
 
-:::tip
-Add using statement: System.Security.Cryptography.X509Certificates;
-:::
+### Removing the CA later
+
+To uninstall the CA from a Windows machine:
+
+1. Run **`certmgr.msc`** (or search "Manage user certificates" in Settings) — make sure you open the **Current User** store, not Local Computer.
+
+   ![Removing the root certificate, step 1](/img/docs/tls-server5.png)
+
+2. Expand **Trusted Root Certification Authorities → Certificates**, find your CA by the `C`/`ST`/`L`/`O` values from `ca.cnf`, and delete it.
+
+   ![Removing the root certificate, step 2](/img/docs/tls-server6.png)
+
+## Loading the certificate on the device
+
+Embed `servercert.crt` and `serverkey.key` as resources in your TinyCLR project, then load them into an `X509Certificate`:
 
 ```csharp
-byte[] servercert = Resources.GetBytes(Resources.BinaryResources.servercert);
+using GHIElectronics.TinyCLR.Native;
+using System.Security.Cryptography.X509Certificates;
 
-X509Certificate certificate = new X509Certificate(servercert){
+byte[] serverCertBytes = Resources.GetBytes(Resources.BinaryResources.servercert);
+
+var certificate = new X509Certificate(serverCertBytes) {
     PrivateKey = Resources.GetBytes(Resources.BinaryResources.serverkey),
 };
 ```
 
-This sample of code uses `SslStream`
+## Accepting a TLS connection
 
-:::tip
-Add using statements:
-using System.Net.Security &
-using System.Net.Sockets
-:::
+Wrap an accepted `Socket` (or its `NetworkStream`) in an `SslStream` and call `AuthenticateAsServer` to perform the handshake:
 
 ```csharp
-Socket socket;
-NetworkStream stream;
-try{
-    SslStream sslStream = new SslStream(socket);
-    sslStream.AuthenticateAsServer(certificate, System.Security.Authentication.SslProtocols.Tls12);
+using System.Net.Security;
+using System.Net.Sockets;
+using System.Security.Authentication;
 
-    stream = sslStream;
-}
-catch (InvalidOperationException){
-}
-stream.Write(byte[]buffer,int offset, int count);
-stream.Read(byte[]buffer, int offset, int count);
+// `socket` is the accepted TCP connection from your listener.
+using var sslStream = new SslStream(socket);
 
+try {
+    sslStream.AuthenticateAsServer(certificate, SslProtocols.Tls12);
+}
+catch (InvalidOperationException ex) {
+    // Handshake failed — log, close, and accept the next connection.
+    return;
+}
+
+// Read and write encrypted data through sslStream as a regular Stream.
+byte[] buffer = new byte[1024];
+int bytesRead = sslStream.Read(buffer, 0, buffer.Length);
+sslStream.Write(buffer, 0, bytesRead);
 ```
 
-For further information on OpenSSL can be found [here.](https://www.openssl.org)
+For more on OpenSSL, see [openssl.org](https://www.openssl.org).

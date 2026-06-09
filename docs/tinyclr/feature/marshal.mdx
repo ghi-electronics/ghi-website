@@ -2,53 +2,80 @@
 title: Marshal
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
+The standard **`System.Runtime.InteropServices.Marshal`** class is available in TinyCLR with two methods exposed: `ReadInt32` and `WriteInt32`. Together they let you read and modify **peripheral hardware registers** directly — useful when a feature isn't surfaced through the managed API and you need bit-level control.
+
+NuGet package: **`GHIElectronics.TinyCLR.Core`** (Marshal lives in `System.Runtime.InteropServices`).
+
+:::warning
+**This is an advanced API.** Writing the wrong value to a hardware register can hang the device, corrupt other peripherals, or make the chip unrecoverable. Use only when you know exactly which register you're touching and why. Validate against the chip's reference manual before each write.
 :::
 
-Marshal is a static class that provides two functions `ReadInt32` to read, and `WriteInt32` to write and modify some special peripheral's registers.
+## Example: setting a GPIO output
 
-Example below shows how to use Marshal to read gpio input data register, and modify on gpio output data register to set pin PB0 to high:
-
-:::tip
-The example below requires `System.Runtime.InteropServices`.
-:::
+The example below reads the GPIO output data register for port B, sets bit 0 (pin PB0), and writes it back — driving PB0 high.
 
 ```csharp
+using System;
+using System.Runtime.InteropServices;
+
+// Address of GPIOB output data register on SC20xxx.
 var pinPB0OutDataReg = (IntPtr)0x58020414;
 
-var portValue = Marshal.ReadInt32(pinPB0OutDataReg) | (1 << 0); // Pin 0
-
+var portValue = Marshal.ReadInt32(pinPB0OutDataReg) | (1 << 0);     // Set bit 0.
 Marshal.WriteInt32(pinPB0OutDataReg, portValue);
-
 ```
+
 :::warning
-Some peripherals, reading status registers also clear their status, which may affect their behavior at run time.
+**Reading a status register can have side effects.** Some peripherals clear pending flags when you read their status register — so a probe-read can change the peripheral's behavior at runtime. Check the chip manual before reading a status register from observation code.
 :::
 
-Below is list of peripheral registers that TinyCLR allows access to. An exception will be thrown if an invalid register is used.
+## Disabling interrupts
 
-    - Analog-to-digital converters (ADC)
-    - Controller area network (CANFD)
-    - Digital-to-analog converter (DAC)
-    - Digital camera interface (DCMI)
-    - LCD-TFT Display Controller (LTDC)
-    - Ethernet (ETH)
-    - Flexible memory controller (FMC)
-    - General-purpose I/Os (GPIO)
-    - Inter-integrated circuit (I2C) interface
-    - Power control (PWR)
-    - Advanced-control timers (TIM1/TIM8)
-    - General-purpose timers (TIM2/TIM3/TIM4/TIM5/TIM12/TIM13/TIM14/TIM15/TIM16/TIM17)
-    - Basic timers (TIM6/TIM7)
-    - Quad-SPI interface (QUADSPI)
-    - Secure digital input/output MultiMediaCard interface (SDMMC1)
-    - Real Time Clock (RTC)
-    - Serial peripheral interface (SPI)
-    - Universal synchronous/asynchronous receiver transmitter (USART/UART)
-    - USB on-the-go (USB_OTG)
-    - WatchDog (WDG)
-    - Reset and Clock Control
-    - Voltage reference buffer (VREFBUF)
+For very tight timing-critical sequences (bit-banging a protocol, an atomic register modify, etc.) you can briefly disable all interrupts. Re-enable them as soon as the critical section is done — leaving interrupts off too long starves networking, USB, timers, and everything else that runs on them.
 
- 
+```csharp
+using GHIElectronics.TinyCLR.Native;
+
+var wasAlreadyDisabled = Interrupt.IsDisabled();
+
+if (!wasAlreadyDisabled)
+    Interrupt.Disable();
+
+// Timing-critical code goes here — keep it short.
+
+if (!wasAlreadyDisabled)
+    Interrupt.Enable();
+```
+
+The "was already disabled" check preserves the existing interrupt state if the caller had them off — important if your function might be called from inside another critical section.
+
+:::warning
+Keep interrupt-disabled regions to **microseconds, not milliseconds**. Long stalls cause dropped UART/USB bytes, missed timer events, and network instability. If you find yourself needing a long protected section, the design probably needs a `lock` or a thread instead.
+:::
+
+## Accessible register regions
+
+TinyCLR restricts `Marshal.ReadInt32` and `WriteInt32` to peripheral register ranges only. An attempt to access an address outside the allowed regions throws an exception.
+
+- Analog-to-digital converters (ADC)
+- Controller Area Network (CANFD)
+- Digital-to-analog converter (DAC)
+- Digital camera interface (DCMI)
+- LCD-TFT Display Controller (LTDC)
+- Ethernet (ETH)
+- Flexible memory controller (FMC)
+- General-purpose I/O (GPIO)
+- Inter-integrated circuit (I²C) interface
+- Power control (PWR)
+- Advanced-control timers (TIM1, TIM8)
+- General-purpose timers (TIM2, TIM3, TIM4, TIM5, TIM12, TIM13, TIM14, TIM15, TIM16, TIM17)
+- Basic timers (TIM6, TIM7)
+- Quad-SPI interface (QUADSPI)
+- Secure digital input/output MultiMediaCard interface (SDMMC1)
+- Real-time clock (RTC)
+- Serial peripheral interface (SPI)
+- Universal synchronous/asynchronous receiver-transmitter (USART/UART)
+- USB On-The-Go (USB_OTG)
+- Watchdog (WDG)
+- Reset and Clock Control (RCC)
+- Voltage reference buffer (VREFBUF)

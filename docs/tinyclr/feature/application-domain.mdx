@@ -2,65 +2,95 @@
 title: Application Domain
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
-:::
+The `AppDomain` class lets you **load assemblies from a byte stream at runtime** instead of baking them into the device's program flash. Common use cases:
 
-The `AppDomain` class lets you load assemblies from any file stream at runtime. This feature can be used to reduce the need for program flash memory by loading code only as needed from a USB flash drive or SD card, or when you won't know until runtime which assemblies will be used.
+- **Field-updatable modules** — ship a small core firmware and load feature modules from an SD card or USB drive as needed.
+- **Customer-specific features** — a single firmware binary that loads different feature sets depending on which `.pe` file is on the storage.
+- **Reducing flash pressure** — keep rarely-used code on external storage and load it on demand instead of consuming program flash.
+- **Late binding** — when you don't know until runtime which assemblies will be needed.
 
-The sample code below loads and executes a small assembly from a USB flash drive. To run this sample, start a new project in Visual Studio and copy the first code sample into the `Program.cs` window. Then add a new TinyCLR class named `TestAppDomainAssembly.cs`, and copy the second code sample into this window.
+NuGet packages: **`GHIElectronics.TinyCLR.Devices.Storage`** and **`GHIElectronics.TinyCLR.IO`** for the file access, plus **`GHIElectronics.TinyCLR.Pins`** for pin constants.
 
-:::tip
-Needed NuGets: GHIElectronics.TinyCLR.Core, GHIElectronics.TinyCLR.Devices.Storage, GHIElectronics.TinyCLR.IO, GHIElectronics.TinyCLR.Native, and GHIElectronics.TinyCLR.Pins.
-:::
+## Workflow
+
+There are **two projects** involved:
+
+1. **Main application** — runs on the SITCore. Mounts a USB drive (or SD card), reads a `.pe` file, and loads it via `AppDomain`.
+2. **Dynamically-loaded library** — a separate **TinyCLR Class Library** project that builds to a Portable Executable (`.pe`) file. You build this once, copy the `.pe` to the storage device, and the main app loads it at runtime.
+
+## Main application
 
 ```csharp
-var storageController = StorageController.
-    FromName(SC20260.StorageController.
-    UsbHostMassStorage);
+using GHIElectronics.TinyCLR.Devices.Storage;
+using GHIElectronics.TinyCLR.IO;
+using GHIElectronics.TinyCLR.Pins;
+using System;
+using System.IO;
+using System.Reflection;
 
+// Mount the USB mass-storage device.
+var storageController = StorageController.FromName(SC20260.StorageController.UsbHostMassStorage);
 var drive = FileSystem.Mount(storageController.Hdc);
 
 var filename = drive.Name + "\\TestAppDomain.pe";
 
-FileStream fsRead = new FileStream(filename,
-    System.IO.FileMode.Open);
+// Read the PE file into memory.
+byte[] assemblyBytes;
+using (var fs = new FileStream(filename, FileMode.Open)) {
+    assemblyBytes = new byte[fs.Length];
+    fs.Read(assemblyBytes, 0, assemblyBytes.Length);
+}
 
-var assemblyInBytes = new byte[fsRead.Length];
+// Load the assembly and create an instance of TestAssembly.
+var assembly = Assembly.Load(assemblyBytes);
+var obj = AppDomain.CurrentDomain.CreateInstanceAndUnwrap("TestAppDomain", "TestAppDomain.TestAssembly");
 
-fsRead.Read(assemblyInBytes, 0, assemblyInBytes.Length);
-
-var assembly = Assembly.Load(assemblyInBytes);
-var obj = AppDomain.CurrentDomain.CreateInstanceAndUnwrap("TestAppDomain",
-    "TestAppDomain.TestAssembly");
-
+// Invoke PrintMessage on the loaded object.
 var type = assembly.GetType("TestAppDomain.TestAssembly");
-
-MethodInfo mi = type.GetMethod("PrintMessage");
-mi.Invoke(obj, null);
+var method = type.GetMethod("PrintMessage");
+method.Invoke(obj, null);
 ```
 
-`TestAppDomainAssembly.cs` class:
+## Library project
+
+Create a separate **TinyCLR Class Library** project called `TestAppDomain` with this single class:
 
 ```csharp
+using System.Diagnostics;
+
 namespace TestAppDomain {
-    public class TestAssembly
-    {
-        public void PrintMessage()
-        {
-            System.Diagnostics.Debug.WriteLine("Hello from TestAssembly");
+    public class TestAssembly {
+        public void PrintMessage() {
+            Debug.WriteLine("Hello from TestAssembly");
         }
     }
 }
 ```
 
-In the `TestAppDomain` properties window (right click on `TestAppDomain` in Solution Explorer and select `Properties`), click on `TinyCLR` in the left panel and check the `Generate native stubs for internal methods` and `Generate bare native stubs` boxes. This tells Visual Studio to create the Portable Executable (PE) file that will be copied to the USB flash drive and then executed by the main program.
+## Build settings for the library
 
-![Native stubs check boxes](/img/docs/native-stubs-check-boxes.png)
+Right-click the **TestAppDomain** project in Solution Explorer, choose **Properties**, click **TinyCLR** in the left panel, and check both:
 
-Now build the project. Inside of the project's directory navigate to the `TestAppDomain/bin/Debug/pe` directory and copy the file `TestAppDomain.pe` to a USB flash drive. Now insert the flash drive into your SITCore board and deploy the program. The main program will load and run `TestAppDomain.pe` from the USB flash drive. If everything worked, you should see the following in your output window:
+- **Generate native stubs for internal methods**
+- **Generate bare native stubs**
+
+These options tell Visual Studio to produce the **Portable Executable** (`.pe`) file that the main app loads at runtime.
+
+![Native stubs configuration in the project Properties window](/img/docs/native-stubs-check-boxes.png)
+
+## Deploy and run
+
+1. Build the `TestAppDomain` project.
+2. Copy `TestAppDomain/bin/Debug/pe/TestAppDomain.pe` to a USB flash drive.
+3. Insert the drive into the SITCore.
+4. Deploy and run the main application.
+
+Expected output:
 
 ```text
 'GHIElectronics.TinyCLR.VisualStudio.ProjectSystem.dll' (Managed): Loaded 'TestAppDomain'
-   Assembly: TestAppDomain (1.0.0.0)  Hello from TestAssembly
+Assembly: TestAppDomain (1.0.0.0)
+Hello from TestAssembly
 ```
+
+The first two lines come from the loader confirming the assembly was found and parsed; `Hello from TestAssembly` is the `Debug.WriteLine` call inside the dynamically-loaded code.

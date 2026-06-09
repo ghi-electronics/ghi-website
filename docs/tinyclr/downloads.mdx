@@ -122,7 +122,9 @@ File | Date | Status | MD5
 Prebuilt software routines for common tasks. Normally pulled from NuGet.org — these zips are only needed for offline installs or specific older versions.
 
 :::note
-If you're using a preview release, check the **Include prerelease** box in the Visual Studio NuGet package manager.
+For preview releases of stable TinyCLR versions, check the **Include prerelease** box in the Visual Studio NuGet package manager.
+
+For offline installs or locked-down corporate environments, point Visual Studio at a **local NuGet feed**: `Tools → Options → NuGet Package Manager → Package Sources → Add`, then select the folder containing the downloaded `.nupkg` files.
 :::
 
 File | Date | Status | MD5

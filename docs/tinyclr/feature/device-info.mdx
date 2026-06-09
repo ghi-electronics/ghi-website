@@ -2,95 +2,109 @@
 title: Device Information
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
-:::
+The `DeviceInformation` class exposes runtime details about the SITCore device and the firmware running on it — useful for diagnostics, telemetry, conditional firmware behavior, and locking down a production device's debug surface.
 
-## CPU usage statistic
+NuGet package: **`GHIElectronics.TinyCLR.Native`** (lives in the `GHIElectronics.TinyCLR.Native` namespace).
 
-CPU usage statistic measures between 0 and 100%
+## CPU usage
+
+Returns CPU utilization as a percentage between 0 and 100. Sample at a steady interval so you can spot trends:
 
 ```csharp
-while (true) {                
-	
-	Thread.Sleep(100);	
+using GHIElectronics.TinyCLR.Native;
+using System;
+using System.Diagnostics;
+using System.Threading;
 
-	// Check CPU every one second
-	if ((DateTime.Now - last).TotalMilliseconds >= 1000) {
-		var cpuUsage = DeviceInformation.GetCpuUsageStatistic();
-		
-		Debug.WriteLine("Cpu usage = " + cpuUsage + " %");
-		
-		last = DateTime.Now;	
-	}
+var last = DateTime.Now;
+
+while (true) {
+    Thread.Sleep(100);
+
+    if ((DateTime.Now - last).TotalMilliseconds >= 1000) {
+        var cpuUsage = DeviceInformation.GetCpuUsageStatistic();
+        Debug.WriteLine("CPU usage: " + cpuUsage + "%");
+        last = DateTime.Now;
+    }
 }
 ```
 
-## Debug Interface
+## Debug interface
 
-MOD pin is normally used to select the debug interface as explained in the [Debugging](debugging.mdx) tutorial. However, the MOD pin feature can be disabled and the debug interface can be forced to a specific interface.
+By default, the **MOD pin** picks between USB and serial debug at startup (see [Debugging](debugging.mdx)). You can override the MOD pin and force a specific interface, or disable debug entirely.
 
 ```csharp
 DeviceInformation.SetDebugInterface(DebugInterface.Usb);
 DeviceInformation.SetDebugInterface(DebugInterface.Serial);
+DeviceInformation.SetDebugInterface(DebugInterface.Disable);    // Used as part of IP Protection.
 ```
-The debug interface can be completely disabled for the managed application's [IP Protection](ip-protection.mdx) `DeviceInformation.SetDebugInterface(DebugInterface.Disable);`
 
-The current debug interface can be determined as follows:
+Read the active interface back:
 
 ```csharp
 if (DeviceInformation.DebugInterface == DebugInterface.Usb)
-   Debug.WriteLine("Debug is in USB mode");
+    Debug.WriteLine("Debugging over USB");
 ```
 
-The return results from `DeviceInformation.DebugInterface` only states the current interface but it does not know if that is due to MOD pin being set in that mode or the interface was forced to that specific interface. The `DeviceInformation.IsModePinDisabled` can be used to determine if MOD was used.
+`DeviceInformation.DebugInterface` tells you the **active** interface but not *how* it was selected. If you need to know whether the MOD pin or an explicit override is in effect, check `DeviceInformation.IsModePinDisabled`.
 
-As an alternate option, users can change the debug interface using [TinyCLR Config](https://docs.ghielectronics.com/software/tinyclr/tinyclr-config.html) tool.
+The same override is available in [TinyCLR Config](/docs/tinyclr/tinyclr-config) as a GUI alternative.
 
-:::note
-Once the debug interfaces changed or disabled, it may not be possible to communicate with the device anymore. However, changing or disabling the interface does not affect the [bootloader](https://docs.ghielectronics.com/software/tinyclr/bootloader.html). Users can always enter the bootloader, which will be in serial or USB depending on MOD pin. From there a `Erase All` can be issues, manually or though the TinyCLR Config tool.
+:::warning
+Once the debug interface is changed or disabled, you may not be able to communicate with the device anymore from Visual Studio. The [Bootloader](/docs/tinyclr/bootloader) is unaffected — boot into it (MOD-pin-selected USB or serial) and issue **`Erase All`** to recover, or use TinyCLR Config to do the same.
 :::
 
-## APP Pin
+See [IP Protection](ip-protection.mdx) for the full secure-deployment pattern that uses `Disable` to lock down production devices.
 
-The [Special Pin](https://docs.ghielectronics.com/software/tinyclr/special-pins.html) APP's feature can be disabled using:
+## APP pin
+
+The **APP** [special pin](/docs/tinyclr/special-pins) is honored by default. Disable it (typically as part of an IP-protected deployment) with:
 
 ```csharp
 DeviceInformation.AppPinDisable();
-var appDisPin = DeviceInformation.IsAppPinDisabled();
+var disabled = DeviceInformation.IsAppPinDisabled();
 ```
 
-[TinyCLR Config](https://docs.ghielectronics.com/software/tinyclr/tinyclr-config.html) tool can also be used to disable APP feature.
+The same setting is available in [TinyCLR Config](/docs/tinyclr/tinyclr-config).
 
-## Unique ID
+## Unique device ID
 
-Returns devices `UniqueId`
+A factory-set ID unique to each chip — useful for identifying a specific device in telemetry, fleets, or licensing.
+
 ```csharp
 var deviceId = DeviceInformation.GetUniqueId();
 ```
 
-## Firmware Info
+## Firmware version
 
-Returns devices firmware `Version`.
+Returns the firmware version encoded as a 64-bit integer (major / minor / build / revision, 16 bits each):
+
 ```csharp
-var major = (ushort)((DeviceInformation.Version >> 48) & 0xFFFF);
-var minor = (ushort)((DeviceInformation.Version >> 32) & 0xFFFF);
-var build = (ushort)((DeviceInformation.Version >> 16) & 0xFFFF);
-var revision = (ushort)((DeviceInformation.Version >> 0) & 0xFFFF);
-Debug.WriteLine(major +"."+ minor +"."+ build +"."+ revision);
+var v = DeviceInformation.Version;
+
+var major    = (ushort)((v >> 48) & 0xFFFF);
+var minor    = (ushort)((v >> 32) & 0xFFFF);
+var build    = (ushort)((v >> 16) & 0xFFFF);
+var revision = (ushort)((v >>  0) & 0xFFFF);
+
+Debug.WriteLine(major + "." + minor + "." + build + "." + revision);
 ```
 
-## Manufacture Name
+## Manufacturer name
 
-Returns `ManufacturerName` information.  
 ```csharp
 Debug.WriteLine(DeviceInformation.ManufacturerName);
 ```
 
-## Device Name
+## Device name
 
-Devices have a default name that they ship with. This can be read using `DeviceInformation.DeviceName`. This name also shows on the USB debug interface. The name can changed only once through `DeviceInformation.SetDeviceName("New Device Name")`. Once set, a complete device erase is required before changing the name again.
+Each device ships with a default name (also shown over USB as the device name). It can be **changed once** with `SetDeviceName(...)`; after that, a full device erase is required before changing it again.
+
+```csharp
+DeviceInformation.SetDeviceName("MyCustomDevice");
+Debug.WriteLine(DeviceInformation.DeviceName);
+```
 
 :::tip
-Since Windows caches the name when loading the driver, Windows `Device Manager` will still show the old name. Simply right-click on the device and uninstall the driver. The next time it installs the drivers it will update with the new name.
+Windows **caches the USB device name** from the first time the driver loaded. To force Windows to pick up a renamed device, open Device Manager, right-click the device, and choose **Uninstall device**. The next plug-in reinstalls the driver with the new name.
 :::

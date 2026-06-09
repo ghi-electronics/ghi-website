@@ -2,8 +2,28 @@
 title: Secure Boot
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
-:::
+**Secure boot** is the foundation of TinyCLR's security model. Every layer in the boot chain verifies the next, so by the time your application runs, you have a strong guarantee that nothing tampered-with has been loaded along the way.
 
-TinyCLR is designed with security in mind. The system boots up from internal memories that are not accessible externally. The boot code only boots up an authenticated firmware that is provided by GHI Electronics. The user then controls the application and how it is updated though an encrypted [In-Field Update](in-field-update.mdx) and can also take advantage of the [IP Protection](ip-protection.mdx) feature.
+## The chain of trust
+
+A SITCore device boots in three stages, each verifying the one above it:
+
+1. **Boot ROM** — burned into the SITCore at manufacturing, lives in **internal memory that isn't externally accessible**. Verifies the bootloader's signature before running it.
+2. **GHI Bootloader** — handles firmware loading, recovery, and TinyCLR Config communications. Cryptographically signed by GHI Electronics. The boot ROM refuses to run it if the signature doesn't match.
+3. **TinyCLR Firmware** — the .NET runtime. Also signed by GHI Electronics. The bootloader refuses to run unauthenticated firmware.
+
+Once TinyCLR is running, your application loads from the deployment region — protected by [IP Protection](ip-protection.mdx) and [Secure Storage](secure-storage.mdx) for runtime data.
+
+## What this gets you
+
+- **Tamper detection** — a modified bootloader or firmware fails its signature check and the device refuses to boot.
+- **No external code execution** — there's no path for code that isn't signed by GHI to run on the device, even with physical access.
+- **Defense in depth** — combined with [IP Protection](ip-protection.mdx) (protects your application code at rest) and encrypted [In-Field Update](in-field-update.mdx) (protects firmware updates in transit), the device is closed from end to end.
+
+## What this doesn't cover
+
+Secure boot protects the **boot chain itself**. It doesn't automatically protect:
+
+- **Application secrets** — keys and credentials baked into your application code. Use [Secure Storage](secure-storage.mdx) for runtime secrets.
+- **Network traffic** — encrypted separately by [TLS](tls.mdx).
+- **External memory** — data in external SDRAM and QSPI flash can still be physically probed. Use [IP Protection](ip-protection.mdx)'s Secure Assemblies for code stored externally, and keep sensitive data inside the SITCore's internal memory.
