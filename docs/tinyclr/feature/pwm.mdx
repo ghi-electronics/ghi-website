@@ -39,19 +39,19 @@ PWM is perfect for dimming an LED or controlling the speed of a motor. When the 
 <TabItem value="netiot" label=".NET IoT API" default>
 
 ```csharp
-using System.Device.Pwm;
 using System.Threading;
+using System.Device.Pwm;
 using GHIElectronics.TinyCLR.Pins;
 
-// SC20260.Timer.Pwm.Controller3 → chip 2
-using PwmChannel led = PwmChannel.Create(2, SC20260.Timer.Pwm.Controller3.PB0, 10000, 0.5);
+// FEZBit.Timer.Pwm.Controller1 → chip 0
+using PwmChannel led = PwmChannel.Create(0, FEZBit.Timer.Pwm.Controller1.Led, 10000, 0.5);
 
 double duty = 0.5, speed = 0.01;
 
 led.Start();
 
-while (true) {
-    if (duty <= 0 || duty >= 1.0) {
+while (true){
+    if (duty <= 0 || duty >= 1.0){
         speed *= -1;    // Reverse direction.
         duty += speed;
     }
@@ -67,20 +67,20 @@ while (true) {
 <TabItem value="tinyclr" label="TinyCLR API">
 
 ```csharp
+using System.Threading;
 using GHIElectronics.TinyCLR.Devices.Pwm;
 using GHIElectronics.TinyCLR.Pins;
-using System.Threading;
 
-var controller = PwmController.FromName(SC20260.Timer.Pwm.Controller3.Id);
-var led = controller.OpenChannel(SC20260.Timer.Pwm.Controller3.PB0);
+var controller = PwmController.FromName(FEZBit.Timer.Pwm.Controller1.Id);
+var led = controller.OpenChannel(FEZBit.Timer.Pwm.Controller1.Led);
 controller.SetDesiredFrequency(10000);
 
 double duty = 0.5, speed = 0.01;
 
 led.Start();
 
-while (true) {
-    if (duty <= 0 || duty >= 1.0) {
+while (true){
+    if (duty <= 0 || duty >= 1.0){
         speed *= -1;    // Reverse direction.
         duty += speed;
     }
@@ -138,7 +138,7 @@ class Program {
 
     private static void Main() {
         // SC20100.Timer.Pwm.Controller3 → chip 2
-        using PwmChannel toneOut = PwmChannel.Create(2, SC20100.Timer.Pwm.Controller3.PB1, NOTE_C, 0.5);
+        using PwmChannel toneOut = PwmChannel.Create(2, FEZBit.Timer.Pwm.Controller3.Buzzer, NOTE_C, 0.5);
 
         while (true) {
             toneOut.Start();
@@ -159,11 +159,11 @@ class Program {
 <TabItem value="tinyclr" label="TinyCLR API">
 
 ```csharp
+using System.Threading;
 using GHIElectronics.TinyCLR.Devices.Pwm;
 using GHIElectronics.TinyCLR.Pins;
-using System.Threading;
 
-class Program {
+class Program{
     const int NOTE_C = 261;
     const int NOTE_D = 294;
     const int NOTE_E = 330;
@@ -190,15 +190,15 @@ class Program {
                                       QUARTER, QUARTER, QUARTER, QUARTER, QUARTER, QUARTER,
                                       QUARTER, QUARTER, QUARTERDOT, EIGHTH, WHOLE };
 
-    private static void Main() {
-        var controller = PwmController.FromName(SC20100.Timer.Pwm.Controller3.Id);
-        var toneOut = controller.OpenChannel(SC20100.Timer.Pwm.Controller3.PB1);
+    private static void Main(){
+        var controller = PwmController.FromName(FEZBit.Timer.Pwm.Controller3.Id);
+        var toneOut = controller.OpenChannel(FEZBit.Timer.Pwm.Controller3.Buzzer);
         toneOut.SetActiveDutyCyclePercentage(0.5);
 
-        while (true) {
+        while (true){
             toneOut.Start();
 
-            for (int i = 0; i < note.Length; i++) {
+            for (int i = 0; i < note.Length; i++){
                 controller.SetDesiredFrequency(note[i]);
                 Thread.Sleep(duration[i]);
             }
@@ -226,21 +226,21 @@ Software PWM is currently exposed through the TinyCLR API only.
 :::
 
 ```csharp
+using System.Threading;
 using GHIElectronics.TinyCLR.Devices.Pwm;
 using GHIElectronics.TinyCLR.Pins;
-using System.Threading;
 
-var softwarePwmController = PwmController.FromName(SC20260.Timer.Pwm.Software.Id);
-var pwmPinPB3 = softwarePwmController.OpenChannel(SC20260.GpioPin.PB3);
+var softwarePwmController = PwmController.FromName(FEZBit.Timer.Pwm.Software.Id);
+var buzzer = softwarePwmController.OpenChannel(FEZBit.GpioPin.Buzzer);
 
 softwarePwmController.SetDesiredFrequency(1000);    // 1 kHz
-pwmPinPB3.SetActiveDutyCyclePercentage(0.5);
+buzzer.SetActiveDutyCyclePercentage(0.5);
 
-pwmPinPB3.Start();
+buzzer.Start();
 
 Thread.Sleep(10 * 1000);    // 10 seconds
 
-pwmPinPB3.Stop();
+buzzer.Stop();
 ```
 
 ## Servo motors
@@ -259,16 +259,17 @@ Typical pulse width is **1–2 ms**, but check your servo's datasheet.
 NuGet packages needed: `GHIElectronics.TinyCLR.Devices.Pwm`, `GHIElectronics.TinyCLR.Pins`, `GHIElectronics.TinyCLR.Drivers.Motor.Servo`.
 
 ```csharp
+using System.Threading;
 using GHIElectronics.TinyCLR.Devices.Pwm;
 using GHIElectronics.TinyCLR.Drivers.Motor.Servo;
 using GHIElectronics.TinyCLR.Pins;
-using System.Threading;
 
-var softwarePwmController = PwmController.FromName(SC20260.Timer.Pwm.Software.Id);
-var pwmPinPB3 = softwarePwmController.OpenChannel(SC20260.GpioPin.PB3);
+var softwarePwmController = PwmController.FromName(FEZBit.Timer.Pwm.Software.Id);
+var pad0 = softwarePwmController.OpenChannel(FEZBit.GpioPin.P0);
 
-var servo = new ServoController(softwarePwmController, pwmPinPB3);
+var servo = new ServoController(softwarePwmController, pad0);
 
+while (true){ 
 servo.Set(0);       // 0 degrees
 Thread.Sleep(2000);
 
@@ -280,4 +281,5 @@ Thread.Sleep(2000);
 
 servo.Set(180.0);   // 180 degrees
 Thread.Sleep(4000);
+}
 ```
