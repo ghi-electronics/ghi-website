@@ -2,78 +2,75 @@
 title: Touch Screen
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
-:::
+Displays can optionally include a touch overlay so users can interact with the device by touching the screen. Two technologies are common:
 
-## Introduction
-Displays may optionally include a touch sensitive screen to detect user touch input. Touch Screens can be resistive or capacitive.
+- **Capacitive** — what modern phones use. Accurate, supports multi-touch, no calibration needed. **Preferred for new designs.**
+- **Resistive** — works through pressure (so usable with gloves) but less accurate and needs calibration.
 
-![UD435](/img/docs/ucm-touch-display.jpg)
+![SITCore module driving a touch display](/img/docs/ucm-touch-display.jpg)
 
----
+## Capacitive
 
-## Resistive Touch
+Capacitive panels use a dedicated controller chip on the panel's flat cable, talking to the SITCore over I²C (most common) or SPI. The capacitive displays in GHI Electronics' development options use a **FocalTech FT5xx6** controller, supported by the **`GHIElectronics.TinyCLR.Drivers.FocalTech.FT5xx6`** NuGet package.
 
-A resistive touch screen measures the resistance across the X and Y axes to determine the touch position. While it is possible to use GPIO and ADC, it is better to use dedicated chips. The only advantage of resistive touch over capacitive is that resistive touch works through a change in resistance induced by finger pressure, meaning you can use it while wearing gloves. However, resistive touch is not very accurate and requires calibration.
+The driver reports touch position **in display pixels** — no scaling or calibration code needed. The driver source lives in the [TinyCLR-Drivers repo](https://github.com/ghi-electronics/TinyCLR-Drivers).
 
-Unless you have specific reason to use resistive touch, capacitive touch is preferred.
-
-The NuGet package `GHIElectronics.TinyCLR.Drivers.Touch.ResistiveTouch` simplifies the process of adding resistive touch to a project. The code example below details how it is used.  
-
-```csharp
-var touch = new ResistiveTouchController(
-    320, // Screen width
-    240, // Screen height
-    SC20260.GpioPin.PA0,  // digital pin support analog
-    SC20260.GpioPin.PA3,  // digital pin support analog
-    SC20260.GpioPin.PA5,  // digital pin
-    SC20260.GpioPin.PC3,  // digital pin
-    SC20260.Adc.Controller1.Id, // Analog controller id
-    SC20260.Adc.Controller1.PA0, // analog channel id
-    SC20260.Adc.Controller1.PA3 // analog channel id
-    );
-
-touch.ScaleX = new Scale(20, 280); // option to get more accurate point
-touch.ScaleY = new Scale(20, 200); // option to get more accurate point
-
-while (true)
-{
-    Thread.Sleep(100); // poll interval every 100ms
-
-    var x = touch.X;
-    var y = touch.Y;
-
-    if (x >= 0 && y >= 0) // detected touch
-        Debug.WriteLine("X: " + x +", Y = " + y);
-}
-```
-
----
-
-## Capacitive Touch
-
-Capacitive touch screens are used on most modern devices, including phones. They are very accurate and capable of detecting multiple simultaneous touches.
-
-A special capacitive controller chip must be used to read the touch panel. This chip is usually mounted right on the flat cable going to the touch panel. These chips are usually I2C or SPI, with I2C being more common.
-
-The capacitive displays used in our development options use a touch controller from FocalTech.
-
-We provide the `GHIElectronics.TinyCLR.Drivers.FocalTech.FT5xx6` NuGet package to interact with capacitive touch screens. The constructor simply needs to know which I2C bus and reset pin are being used. The event fires giving the exact position using display pixels as units -- there is no need for scaling or calibration. The driver source code is found on the [TinyCLR Drivers repo](https://github.com/ghi-electronics/TinyCLR-Drivers).
-
-This simple example will draw a dot on touch move:
+The example below subscribes to `TouchMove` and draws a small ellipse at every reported point:
 
 ```csharp
 using GHIElectronics.TinyCLR.Drivers.FocalTech.FT5xx6;
 
 var touch = new FT5xx6Controller(
     i2cController.GetDevice(FT5xx6Controller.GetConnectionSettings()),
-    gpioController.OpenPin(SC20260.GpioPin.PJ14));
+    gpioController.OpenPin(SC20260.GpioPin.PJ14)        // Reset pin.
+);
 
-touch.Orientation = FT5xx6Controller.TouchOrientation.Degrees0; //Rotate touch coordinates.
+touch.Orientation = FT5xx6Controller.TouchOrientation.Degrees0;
 
-touch.TouchMove += (_, e) => {
+touch.TouchMove += (sender, e) => {
     screen.FillEllipse(brush, e.X, e.Y, 5, 5);
     screen.Flush();
 };
 ```
+
+`Orientation` lets you rotate the touch coordinate system if the display is mounted at 90°, 180°, or 270° relative to the panel's native orientation.
+
+## Resistive
+
+Resistive panels work by sensing the resistance change across X and Y axes when finger pressure shorts the layers together. The TinyCLR driver implements this using **GPIO + ADC** — four pins to drive the X/Y rails and two ADC channels to read the resulting voltages.
+
+The **`GHIElectronics.TinyCLR.Drivers.Touch.ResistiveTouch`** NuGet package wraps the pin sequencing and conversion math:
+
+```csharp
+using GHIElectronics.TinyCLR.Drivers.Touch.ResistiveTouch;
+
+var touch = new ResistiveTouchController(
+    screenWidth:  320,
+    screenHeight: 240,
+    xPlusPin:  SC20260.GpioPin.PA0,         // Digital pin that's also analog-capable.
+    yPlusPin:  SC20260.GpioPin.PA3,         // Digital pin that's also analog-capable.
+    xMinusPin: SC20260.GpioPin.PA5,         // Digital-only.
+    yMinusPin: SC20260.GpioPin.PC3,         // Digital-only.
+    adcControllerId: SC20260.Adc.Controller1.Id,
+    xAdcChannel: SC20260.Adc.Controller1.PA0,
+    yAdcChannel: SC20260.Adc.Controller1.PA3
+);
+
+// Calibration — tune to match your specific panel.
+touch.ScaleX = new Scale(20, 280);
+touch.ScaleY = new Scale(20, 200);
+
+while (true) {
+    Thread.Sleep(100);          // Poll every 100 ms.
+
+    var x = touch.X;
+    var y = touch.Y;
+
+    if (x >= 0 && y >= 0)
+        Debug.WriteLine("X: " + x + ", Y: " + y);
+}
+```
+
+The `ScaleX` and `ScaleY` properties let you trim the raw ADC range to match your panel — the right values come from a calibration step (touch the four corners, record the readings, work out the mapping).
+
+Choose resistive when you need glove or stylus operation; otherwise [capacitive](#capacitive) is the better default.

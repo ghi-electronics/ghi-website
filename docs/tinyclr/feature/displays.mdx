@@ -2,65 +2,89 @@
 title: Displays
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
-:::
+TinyCLR supports three kinds of displays. The first two are graphical (rendered through the [graphics engine](graphics.mdx)); the third is text-only.
 
-Graphical Displays can be grouped into two distinct interface categories, built-in parallel TFT displays and virtual displays, typically serial (SPI/I2C) displays. 
+- **[Native displays](#native-displays)** — parallel RGB TFTs driven directly by the SITCore's DMA. Highest performance, but require lots of RAM for the framebuffer.
+- **[Virtual displays](#virtual-displays)** — serial (SPI or I²C) displays where the driver pushes pixel data over the bus. Lower bandwidth, lower RAM requirement.
+- **[Character displays](#character-displays)** — text-only HD44780-style LCDs. No graphics engine; just GPIO.
 
-There are also non-graphical character displays and those work through a simple driver, not using the [graphics](graphics.mdx).
+The display driver's job is to **transfer pixel data from memory to the display**. The drawing itself happens in memory via the [graphics engine](graphics.mdx).
 
-The display drivers are meant to transfer the pixel data from memory to the actual display. The [graphics](graphics.mdx) tutorial shows how drawing is done in memory.
+## Native displays
 
----
+These displays connect to dedicated parallel RGB pins on the SITCore. The display controller uses **DMA to refresh the panel automatically and continuously** from a framebuffer in RAM — no CPU involvement, no per-frame work in your application. You just write to the framebuffer, and the panel updates.
 
-## Native Displays
-These displays connect to special dedicated pins on the processor. Internally, the display controller automatically transfers (refreshes) the display directly from memory without any processor interaction, using DMA. When the system needs to update the display, it simply writes to memory. Neither the operating system nor the application program are burdened with display processing. The down side to this is that the system needs to have enough RAM to handle the display. An 800x600 display with 16bpp needs 960,000 bytes!
+The trade-off is RAM. An **800×480 panel at 16 bpp** needs `800 × 480 × 2 = 768 KB` of framebuffer — well within range for SITCore SoMs with external SDRAM, much tighter on bare SoCs.
 
----
+For full code, see [Graphics → Native displays](graphics.mdx#native-displays).
 
-## Virtual Displays
-The internal graphics services can be mapped to work with virtual display displays, such as SPI displays. See the [Graphics](graphics.mdx) tutorial for more information and sample code.
+## Virtual displays
 
----
+Virtual displays render into a RAM bitmap; when `Flush` is called, an event fires with the pixel data to push to the panel — over SPI, I²C, a network socket, or any other transport. Slower than DMA-driven parallel, but works on smaller chips and on transports that don't have a dedicated controller.
 
-## Character Displays
-![Character Display](/img/docs/character-display.jpg)
+For full code, see [Graphics → Virtual displays](graphics.mdx#virtual-displays).
 
-These displays are capable of only showing characters. Most of these displays use the HD44780 controller. They are available in different sizes, but two lines of 16 characters is most common. These displays only require GPIO pins and can be used with TinyCLR. Sample code for HD44780 displays can be found in our GitHub [Samples Repo](https://github.com/ghi-electronics/TinyCLR-Samples).
+## Character displays
 
----
+![HD44780 character LCD wired to a SITCore](/img/docs/character-display.jpg)
 
-## Low Level Display Access
-TinyCLR also provides low level display access as part of the `GHIElectronics.TinyCLR.Devices.Display` library. These methods provide a simple way to write to a display without need for the `System.Drawing` library or an added font resource file.
+Character LCDs (the classic blue or green segmented displays) use the **HD44780** controller — a chip that's been the standard for decades. They display only text in a fixed grid (commonly **16×2** or **20×4** characters), and they're driven entirely from **GPIO pins** — no SPI, no I²C, no graphics engine.
+
+A complete HD44780 driver is in the [TinyCLR-Samples repository](https://github.com/ghi-electronics/TinyCLR-Samples/blob/master/Projects/Character%20Display/Display.HD44780.cs). Drop the file into your project and use it like this:
+
+```csharp
+using GHIElectronics.TinyCLR.Devices.Gpio;
+using GHIElectronics.TinyCLR.Pins;
+
+// HD44780 wired with 4-bit data + RS and Enable control lines.
+var gpio = GpioController.GetDefault();
+var lcd = new HD44780(
+    rs:     gpio.OpenPin(SC20100.GpioPin.PA0),
+    enable: gpio.OpenPin(SC20100.GpioPin.PA1),
+    d4:     gpio.OpenPin(SC20100.GpioPin.PA2),
+    d5:     gpio.OpenPin(SC20100.GpioPin.PA3),
+    d6:     gpio.OpenPin(SC20100.GpioPin.PA4),
+    d7:     gpio.OpenPin(SC20100.GpioPin.PA5)
+);
+
+lcd.Initialize(rows: 2, columns: 16);
+lcd.Clear();
+lcd.Print("Hello World!");
+lcd.SetCursor(row: 1, column: 0);
+lcd.Print("TinyCLR ready");
+```
+
+The HD44780 spec hasn't changed in years, so the driver should work as-is across SITCore boards — adjust the pin assignments to match your wiring.
+
+## Low-level display access
+
+TinyCLR also exposes a low-level API in `GHIElectronics.TinyCLR.Devices.Display` for writing raw pixel data without going through the graphics engine. Useful when you want to skip `System.Drawing`, avoid embedding font resources, or write a custom rendering pipeline.
 
 :::tip
-The low level support should only be used in advanced edge cases only.
+The low-level API is for **advanced cases only**. For typical applications, use the [graphics engine](graphics.mdx) — it's simpler, has shape and text primitives, and integrates with fonts and image decoders.
 :::
 
-The following example is written for the SC20260D Dev Board with the 4.3" display. It will paint the screen as shown in the picture beneath the code. Note that low level display access requires that you use the data format required by your display as configured. The SC20260D Dev Board used in this example expects each pixel to have 16 bits (two bytes per pixel) of color information in RGB565 format.
+The example below targets the **SCM20260D Dev Board** with a 4.3" panel in RGB565 (two bytes per pixel) format. It paints a gradient, draws built-in characters via `DrawString`, plots a single bitmap with `DrawBuffer`, and sets individual pixels via `DrawPixel`.
 
-:::tip
-Needed NuGets: GHIElectronics.TinyCLR.Core, GHIElectronics.TinyCLR.Devices.Display, GHIElectronics.TinyCLR.Devices.Gpio, GHIElectronics.TinyCLR.Devices.I2c, GHIElectronics.TinyCLR.Devices.Spi, GHIElectronics.TinyCLR.Native, and GHIElectronics.TinyCLR.Pins.
-:::
+NuGet packages: **`GHIElectronics.TinyCLR.Devices.Display`**, **`GHIElectronics.TinyCLR.Devices.Gpio`**, **`GHIElectronics.TinyCLR.Pins`**.
 
 ```csharp
 using GHIElectronics.TinyCLR.Devices.Display;
 using GHIElectronics.TinyCLR.Devices.Gpio;
 using GHIElectronics.TinyCLR.Pins;
 
-GpioPin backlight = GpioController.GetDefault().OpenPin(SC20260.GpioPin.PA15);
+var backlight = GpioController.GetDefault().OpenPin(SC20260.GpioPin.PA15);
 backlight.SetDriveMode(GpioPinDriveMode.Output);
 backlight.Write(GpioPinValue.High);
+
 var displayController = DisplayController.GetDefault();
 
-// Enter the proper display configurations
-displayController.SetConfiguration(new ParallelDisplayControllerSettings{
+displayController.SetConfiguration(new ParallelDisplayControllerSettings {
     Width = 480,
     Height = 272,
-    DataFormat = GHIElectronics.TinyCLR.Devices.Display.DisplayDataFormat.Rgb565,
-    Orientation = DisplayOrientation.Degrees0, //Rotate display.
-    PixelClockRate = 10000000,
+    DataFormat = DisplayDataFormat.Rgb565,
+    Orientation = DisplayOrientation.Degrees0,
+    PixelClockRate = 10_000_000,
     PixelPolarity = false,
     DataEnablePolarity = false,
     DataEnableIsFixed = false,
@@ -75,24 +99,25 @@ displayController.SetConfiguration(new ParallelDisplayControllerSettings{
 });
 
 displayController.Enable();
-byte[] myPic = new byte[480 * 272 * 2];
 
-for (var i = 0; i < myPic.Length; i++){
-    myPic[i] = (byte)(((i % 2) == 0) ?
-        ((i / 4080) & 0b00000111) << 5 : i / 32640);
+// Fill a buffer with a stripe gradient.
+byte[] picture = new byte[480 * 272 * 2];
+for (var i = 0; i < picture.Length; i++) {
+    picture[i] = (byte)(((i % 2) == 0) ? ((i / 4080) & 0b00000111) << 5 : i / 32640);
 }
 
-displayController.DrawString("\f");     
-displayController.DrawBuffer(0, 0, 0, 0, 480, 272, 480, myPic, 0);
+displayController.DrawString("\f");                                  // Clear text layer.
+displayController.DrawBuffer(0, 0, 0, 0, 480, 272, 480, picture, 0);
 displayController.DrawString("GHI Electronics\n");
-displayController.DrawString("Low Level Display Demo.");
+displayController.DrawString("Low-level display demo.");
 
-for (var x = 20; x < 459; x++){
-    displayController.DrawPixel(x, 50, 0xF800);     //Color is 31,0,0 (RGB565).
+// Draw a 2-pixel-thick red bar.
+for (var x = 20; x < 459; x++) {
+    displayController.DrawPixel(x, 50, 0xF800);     // 0xF800 = pure red in RGB565.
     displayController.DrawPixel(x, 51, 0xF800);
 }
 ```
 
-SCM20260D Dev Board 4.3" display after running the sample code:
+Result on the 4.3" panel:
 
-![Low Level Display Sample](/img/docs/low-level-display-sample.jpg)
+![Low-level display sample output on the SCM20260D Dev Board](/img/docs/low-level-display-sample.jpg)

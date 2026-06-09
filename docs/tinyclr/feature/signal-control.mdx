@@ -85,12 +85,19 @@ dsig.OnGenerateFinished += (sender, endValue) => {
 :::
 
 ```csharp
-var digitalSignalPin = GpioController.GetDefault().OpenPin(SC20260.Timer.DigitalSignal.Controller2.PB3);
+using System;
+using System.Diagnostics;
+using System.Threading;
+using GHIElectronics.TinyCLR.Devices.Gpio;
+using GHIElectronics.TinyCLR.Pins;
+using GHIElectronics.TinyCLR.Devices.Signals;
+
+var digitalSignalPin = GpioController.GetDefault().OpenPin(FEZBit.Timer.DigitalSignal.Controller5.PA0);
 var digitalSignal = new DigitalSignal(digitalSignalPin);
 
 bool waitForEdge = false;   // Start capturing immediately when Capture is called.
 
-digitalSignal.OnCaptureFinished += Digital_OnCaptureFinished;
+digitalSignal.OnCaptureFinished += DigitalSignal_OnCaptureFinished;
 
 // Capture 100 samples, timeout 15 seconds.
 digitalSignal.Capture(100, GpioPinEdge.RisingEdge | GpioPinEdge.FallingEdge, waitForEdge, TimeSpan.FromSeconds(15));
@@ -98,12 +105,12 @@ digitalSignal.Capture(100, GpioPinEdge.RisingEdge | GpioPinEdge.FallingEdge, wai
 // Do other work while capture runs.
 Thread.Sleep(Timeout.Infinite);
 
-private static void Digital_OnCaptureFinished(DigitalSignal sender, uint[] buffer, uint count, GpioPinValue pinValue) {
-    if (count == 0) {
+void DigitalSignal_OnCaptureFinished(DigitalSignal sender, double[] buffer, uint count, GpioPinValue initialState){
+    if (count == 0){
         Debug.WriteLine("No data was captured!");
         return;
     }
-    for (int i = 0; i < count; i++) {
+    for (int i = 0; i < count; i++){
         Debug.WriteLine("Sample [" + i + "]: " + buffer[i] + " ns");
     }
 }
@@ -118,7 +125,14 @@ The first captured pulse may have a shorter-than-actual value due to system prep
 `ReadPulse` measures the total duration of a fixed number of pulses — useful for measuring frequency.
 
 ```csharp
-var digitalSignalPin = GpioController.GetDefault().OpenPin(SC20260.Timer.DigitalSignal.Controller2.PB3);
+using System;
+using System.Diagnostics;
+using System.Threading;
+using GHIElectronics.TinyCLR.Devices.Gpio;
+using GHIElectronics.TinyCLR.Pins;
+using GHIElectronics.TinyCLR.Devices.Signals;
+
+var digitalSignalPin = GpioController.GetDefault().OpenPin(FEZBit.Timer.DigitalSignal.Controller5.PA0);
 var digitalSignal = new DigitalSignal(digitalSignalPin);
 
 bool waitForEdge = true;    // Wait for the first pulse before starting the timer.
@@ -150,7 +164,14 @@ void Digital_OnReadPulseFinished(DigitalSignal sender, TimeSpan duration, uint c
 Any `DigitalSignal` operation can be terminated early with `Abort`. The completion event still fires, with whatever data was collected up to the abort point.
 
 ```csharp
-var digitalSignalPin = GpioController.GetDefault().OpenPin(SC20260.Timer.DigitalSignal.Controller2.PB3);
+using System;
+using System.Diagnostics;
+using System.Threading;
+using GHIElectronics.TinyCLR.Devices.Gpio;
+using GHIElectronics.TinyCLR.Pins;
+using GHIElectronics.TinyCLR.Devices.Signals;
+
+var digitalSignalPin = GpioController.GetDefault().OpenPin(FEZBit.Timer.DigitalSignal.Controller5.PA0);
 var digitalSignal = new DigitalSignal(digitalSignalPin);
 
 digitalSignal.OnReadPulseFinished += Digital_OnReadPulseFinished;
@@ -201,11 +222,18 @@ The HC-SR04 requires a **5V power supply** — 3.3V logic on Trig and Echo is fi
 :::
 
 ```csharp
-var gpio = GpioController.GetDefault();
-var distanceTriggerPin = gpio.OpenPin(SC20260.GpioPin.PA15);
-var distanceEchoPin = gpio.OpenPin(SC20260.GpioPin.PJ14);
+using System;
+using System.Diagnostics;
+using System.Threading;
+using GHIElectronics.TinyCLR.Devices.Gpio;
+using GHIElectronics.TinyCLR.Devices.Signals;
+using GHIElectronics.TinyCLR.Pins;
 
-var pulseFeedback = new PulseFeedback(distanceTriggerPin, distanceEchoPin, PulseFeedbackMode.EchoDuration) {
+var gpio = GpioController.GetDefault();
+var distanceTriggerPin = gpio.OpenPin(FEZBit.GpioPin.P0);
+var distanceEchoPin = gpio.OpenPin(FEZBit.GpioPin.P1);
+
+var pulseFeedback = new PulseFeedback(distanceTriggerPin, distanceEchoPin, PulseFeedbackMode.EchoDuration){
     DisableInterrupts = false,
     Timeout = TimeSpan.FromSeconds(1),
     PulseLength = TimeSpan.FromTicks(100),
@@ -213,7 +241,7 @@ var pulseFeedback = new PulseFeedback(distanceTriggerPin, distanceEchoPin, Pulse
     PulseValue = GpioPinValue.High,
 };
 
-while (true) {
+while (true){
     var time = pulseFeedback.Trigger();
     var microseconds = time.TotalMilliseconds * 1000.0;
     var distance = microseconds * 0.036 / 2.0;
@@ -232,9 +260,16 @@ Similar to Echo Duration, but it measures the **time between trigger and echo**,
 The example reads distance from a **Polaroid 6500 Ranging Module**, which signals readiness by pulsing its ECHO pin after the host pulses INIT.
 
 ```csharp
+using System;
+using System.Diagnostics;
+using System.Threading;
+using GHIElectronics.TinyCLR.Devices.Gpio;
+using GHIElectronics.TinyCLR.Devices.Signals;
+using GHIElectronics.TinyCLR.Pins;
+
 var gpio = GpioController.GetDefault();
-var distanceTriggerPin = gpio.OpenPin(SC20260.GpioPin.PA15);
-var distanceEchoPin = gpio.OpenPin(SC20260.GpioPin.PJ14);
+var distanceTriggerPin = gpio.OpenPin(FEZBit.GpioPin.P0);
+var distanceEchoPin = gpio.OpenPin(FEZBit.GpioPin.P1);
 
 var pulseFeedback = new PulseFeedback(distanceTriggerPin, distanceEchoPin, PulseFeedbackMode.DurationUntilEcho) {
     DisableInterrupts = false,
@@ -265,17 +300,27 @@ Holds the pulse pin at a specified state for a specified time, then releases it 
 The example reads a capacitive touch sensor by charging a capacitor with a 10 µs pulse, then measuring the discharge time on the same pin.
 
 ```csharp
-var gpio = GpioController.GetDefault();
-var capacitiveSensePin = gpio.OpenPin(SC20260.GpioPin.PJ14);
+using System;
+using System.Diagnostics;
+using System.Threading;
+using GHIElectronics.TinyCLR.Devices.Gpio;
+using GHIElectronics.TinyCLR.Devices.Signals;
+using GHIElectronics.TinyCLR.Pins;
 
-var pulseFeedback = new PulseFeedback(capacitiveSensePin, PulseFeedbackMode.DrainDuration) {
+
+var gpio = GpioController.GetDefault();
+var capacitiveSensePin = gpio.OpenPin(FEZBit.GpioPin.P0);
+
+var pulseFeedback = new PulseFeedback(capacitiveSensePin, PulseFeedbackMode.DrainDuration)
+{
     DisableInterrupts = false,
     Timeout = TimeSpan.FromSeconds(1),
     PulseLength = TimeSpan.FromMilliseconds(1),
     PulseValue = GpioPinValue.High,
 };
 
-while (true) {
+while (true)
+{
     Debug.WriteLine(pulseFeedback.Trigger().TotalMilliseconds.ToString());
     Thread.Sleep(1000);
 }
@@ -292,8 +337,15 @@ while (true) {
 The example captures the signal from pressing the LDR button on the SC20100S Dev Board. It captures up to 100 transitions or waits up to 10 seconds, with the internal pull-up enabled. Button bounces will appear as bursts of closely-spaced transitions.
 
 ```csharp
+using System;
+using System.Diagnostics;
+using System.Threading;
+using GHIElectronics.TinyCLR.Devices.Gpio;
+using GHIElectronics.TinyCLR.Devices.Signals;
+using GHIElectronics.TinyCLR.Pins;
+
 var gpio = GpioController.GetDefault();
-var capturePin = gpio.OpenPin(SC20100.GpioPin.PE3);
+var capturePin = gpio.OpenPin(FEZBit.GpioPin.P0);
 
 var capture = new SignalCapture(capturePin);
 var buffer = new TimeSpan[100];
@@ -321,8 +373,15 @@ while (true) {
 The example blinks the user LED on the SC20100S Dev Board four times (one second each) every five seconds.
 
 ```csharp
+using System;
+using System.Diagnostics;
+using System.Threading;
+using GHIElectronics.TinyCLR.Devices.Gpio;
+using GHIElectronics.TinyCLR.Devices.Signals;
+using GHIElectronics.TinyCLR.Pins;
+
 var gpio = GpioController.GetDefault();
-var signalPin = gpio.OpenPin(SC20260.GpioPin.PE11);
+var signalPin = gpio.OpenPin(FEZBit.GpioPin.P0);
 var signalGen = new SignalGenerator(signalPin);
 
 var buffer = new[] {

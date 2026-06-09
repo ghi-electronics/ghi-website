@@ -1,82 +1,84 @@
 ---
-title: Vnc
+title: VNC
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
-:::
+**VNC** (Virtual Network Computing) lets you view and interact with the SITCore's display **remotely from a PC, phone, or tablet** — no physical screen needed on the device. The device runs a `VncServer` that exposes its graphics framebuffer over TCP, and the client connects with a standard VNC viewer.
 
-﻿# VNC (Virtual Network Computing)
----
-Users can use a VNC viewer to remotely view and control SITCore hardware from a PC, Phone or Tablet. Tested and compatible with the following VNC viewers:
+Useful for headless deployments, remote diagnostics, kiosks behind glass, and devices that don't have a local display at all (you still draw with the [graphics engine](graphics.mdx) — the pixels just go over the network instead of to a panel).
 
-1. TightVNC Viewer 2.8.27
-2. TightVNC Java Viewer 2.8.3
-3. UltraVNC 1.2.4.0
-4. bVNC: Secure VNC Viewer APP
+NuGet package: **`GHIElectronics.TinyCLR.Vnc`**.
 
-:::tip
-RealVNC is not supported.
-:::
+## Supported clients
 
-The only requirement to connect is the IP address of the Remote Host (SITCore device).
+The implementation has been tested with the following VNC viewers:
 
-![TightVNC](/img/docs/vnc-client.jpg)
-
-The Preferred encoding format should be set to Raw.
-
-![TightVNC](/img/docs/vnc-connection.jpg)
-
-From here, the TinyCLR `Graphics` will appear in the VNC client window. 
-
-![TightVNC](/img/docs/vnc-screen.jpg)
-
-Additionally, the `VncServer` receives Mouse coordinates & click status from the VNC client and are returned in the `PointerChangedEvent`.
-
-![TightVNC](/img/docs/vnc-debug.jpg)
+- TightVNC Viewer 2.8.27
+- TightVNC Java Viewer 2.8.3
+- UltraVNC 1.2.4.0
+- bVNC: Secure VNC Viewer (mobile)
 
 :::tip
-Needed NuGets: GHIElectronics.TinyCLR.Vnc;
+**RealVNC is not supported.** Use one of the above instead.
+
+In your VNC viewer, set the **preferred encoding** to **Raw**.
 :::
+
+## Example
+
+The device needs an active network connection ([WiFi](wifi.mdx), [Ethernet](ethernet.mdx), etc.) before the VNC server starts. The example below starts a 320×240 VNC server on port 5900, animates a moving ellipse with a frame counter, and prints any mouse interaction received from the client.
 
 ```csharp
-static VncServer vncServer;
+using GHIElectronics.TinyCLR.Vnc;
+using System.Diagnostics;
+using System.Drawing;
+using System.Threading;
 
-// To do: Setup the preferred network connection here
-// ...
-    
-// Start VNC 
-vncServer = new VncServer("VNC Viewer", 5900, 320, 240);
-vncServer.PointerChangedEvent += S_PointerChangedEvent;
+// Network connection (WiFi, Ethernet, etc.) must be up before this runs.
+
+var vncServer = new VncServer("VNC Viewer", port: 5900, width: 320, height: 240);
+vncServer.PointerChangedEvent += (x, y, pressed) =>
+    Debug.WriteLine("Pointer: x=" + x + ", y=" + y + ", pressed=" + pressed);
+
 vncServer.Start();
 Debug.WriteLine("VNC started");
-    
-// Start Drawing!
-Graphics vncDisplay = Graphics.FromImage(new Bitmap(320, 240));
+
+// Draw into a 320×240 bitmap; flush events push to the VNC client.
+var vncDisplay = Graphics.FromImage(new Bitmap(320, 240));
 var font = Resources.GetFont(Resources.FontResources.Arial);
+
+Graphics.OnFlushEvent += (sender, data, x, y, width, height, originalWidth) =>
+    vncServer.Send(data, x, y, width, height);
+
 var cnt = 0;
+while (true) {
+    vncDisplay.Clear();
+    vncDisplay.DrawString(cnt + " SITCore VNC!", font, new SolidBrush(Color.Yellow), 15, 20);
+    vncDisplay.DrawEllipse(new Pen(Color.Red), cnt, 160, 40, 40);
+    vncDisplay.Flush();
 
-Graphics.OnFlushEvent += Graphics_OnFlushEvent;
+    cnt += 5;
+    if (cnt > 320) cnt = 0;
 
-    while (true) {
-        vncDisplay.Clear();
-        vncDisplay.DrawString(cnt + " SITCore VNC ! ", font, new SolidBrush(Color.Yellow), 15, 20);
-        vncDisplay.DrawEllipse(new Pen(Color.Red), cnt, 160, 40, 40);
-
-        vncDisplay.Flush();
-        if ((cnt += 5) > 320) {
-            cnt = 0;
-            vncDisplay.Clear();
-        }        
-        Thread.Sleep(10);
-    }
-}
-
-void S_PointerChangedEvent(int x, int y, bool pressed) {
-    Debug.WriteLine("x = " + x + ", y = " + y + ", press: " + pressed);
-}
-
-void Graphics_OnFlushEvent(Graphics sender, byte[] data, int x, int y, int width, int height, int originalWidth) {
-        vncServer.Send(data, x, y, width, height);
+    Thread.Sleep(10);
 }
 ```
+
+The pattern is the same as [virtual displays](graphics.mdx#virtual-displays) — draw into a RAM bitmap, register an `OnFlushEvent` handler, push the bytes to the destination (here: the VNC client).
+
+## Connecting from a client
+
+The only thing you need to enter in the VNC viewer is the device's **IP address** (and port 5900 if you changed it):
+
+![Entering the SITCore IP address in TightVNC Viewer](/img/docs/vnc-client.jpg)
+
+Set the preferred encoding to **Raw**:
+
+![Setting preferred encoding to Raw in TightVNC](/img/docs/vnc-connection.jpg)
+
+Once connected, the TinyCLR graphics surface shows up in the VNC window:
+
+![Live TinyCLR graphics displayed in the VNC client](/img/docs/vnc-screen.jpg)
+
+Mouse coordinates and click state from the VNC client are routed back to the device through the `PointerChangedEvent`:
+
+![Debug output showing pointer events from the VNC client](/img/docs/vnc-debug.jpg)

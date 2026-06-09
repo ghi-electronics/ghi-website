@@ -2,8 +2,18 @@
 title: MJPEG Video
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
-:::
+**Motion JPEG (MJPEG)** is just a sequence of JPEG images concatenated into one stream. There's no inter-frame compression — every frame is a standalone JPEG. That makes it dramatically cheaper to decode than H.264/H.265 (no motion vectors, no reference frame management) and a perfect fit for embedded video playback.
 
-The MJPEG video format is simply a chain of JPG images that are stored in a single file. A codec driver is provide [here](https://docs.ghielectronics.com/software/tinyclr/drivers/codec.html).
+MJPEG content can come from anywhere the device can read bytes from — an SD card, an embedded [resource](resources.mdx), or a network stream.
+
+## How it works
+
+Because MJPEG is just JPEGs end-to-end, playback is straightforward — read the next JPEG from the stream, decode with the [image decoder](image-decoders.mdx), draw it to the [graphics](graphics.mdx) surface, repeat at the desired frame rate.
+
+The codec driver in the [TinyCLR-Drivers repository](https://github.com/ghi-electronics/TinyCLR-Drivers) handles the frame-boundary parsing and provides a higher-level read API on top of this base pattern.
+
+## See also
+
+- **[Image Decoders](image-decoders.mdx)** — decode individual JPEG frames into bitmaps
+- **[Graphics](graphics.mdx)** — draw decoded frames to the display
+- **[File System](file-system.mdx)** — load MJPEG files from SD card or USB drive
