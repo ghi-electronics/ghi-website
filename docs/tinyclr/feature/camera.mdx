@@ -1,85 +1,64 @@
 ---
-title: Camera Interface
+title: Camera
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
-:::
+TinyCLR supports the **Digital Camera Interface (DCMI)** on SITCore SC20260-based devices — a parallel video input that DMA's frames directly into RAM with no per-frame CPU work. Most camera modules also need a small **[I²C](i2c.mdx) configuration step** at startup (resolution, format, gain, etc.) before they'll stream.
 
-TinyCLR supports digital camera interface, sometimes referred to as DCMI or DCI, on devices using the SITCore SC20260 SoC. Typically, cameras need to be configured using [I2C bus](i2c.mdx). Check the Omnivision/Ov9655 driver under https://github.com/ghi-electronics/TinyCLR-Drivers for an example of how to configure your camera, or refer to the camera's manual to determine the needed configuration.
+NuGet packages: **`GHIElectronics.TinyCLR.Devices.I2c`** for the configuration bus, plus a camera-specific driver. The **`GHIElectronics.TinyCLR.Drivers.Omnivision.Ov9655`** driver is the canonical reference — its source in the [TinyCLR-Drivers repo](https://github.com/ghi-electronics/TinyCLR-Drivers) shows how the I²C config sequence is built and is a useful template if you're adapting another camera.
 
-The following function captures camera images:  
-```csharp
-public void Capture(byte[] data, int timeoutMillisecond) =>
-    this.cameraController.Capture(data, timeoutMillisecond);
-```
+## Capturing and displaying frames
 
-This example configures the camera and sends the images to the 4.3 inch display attached to the SCM20260D Dev Board.
+The example below targets the **SCM20260D Dev Board** with the **4.3" parallel display** and an **OmniVision OV9655** camera. It configures the camera for VGA (640×480), captures frames in a loop, and pushes each one to the display via `DrawBuffer`.
 
-:::tip
-Needed NuGets: GHIElectronics.TinyCLR.Devices.Gpio, GHIElectronics.TinyCLR.Devices.I2c, GHIElectronics.TinyCLR.Drivers.Omnivision.Ov9655, GHIElectronics.TinyCLR.Native, GHIElectronics.TinyCLR.Pins, GHIElectronics.TinyCLR.Devices.Display, GHIElectronics.TinyCLR.Drawing
-
-Needed Namespaces: GHIElectronics.TinyCLR.Devices.Gpio, GHIElectronics.TinyCLR.Devices.I2c, GHIElectronics.TinyCLR.Drivers.Omnivision.Ov9655, GHIElectronics.TinyCLR.Native, GHIElectronics.TinyCLR.Pins, System.Diagnostics, GHIElectronics.TinyCLR.Devices.Display, System.Drawing
-:::
+The display setup is the same as on the [Graphics → Native displays](graphics.mdx#native-displays) page — only the camera-specific code is shown below.
 
 ```csharp
-GpioPin backlight = GpioController.GetDefault().OpenPin(SC20260.GpioPin.PA15);
-backlight.SetDriveMode(GpioPinDriveMode.Output);
-backlight.Write(GpioPinValue.High);
+using GHIElectronics.TinyCLR.Devices.Display;
+using GHIElectronics.TinyCLR.Devices.I2c;
+using GHIElectronics.TinyCLR.Drivers.Omnivision.Ov9655;
+using GHIElectronics.TinyCLR.Pins;
+using System.Diagnostics;
+using System.Threading;
 
-var displayController = Display.DisplayController.GetDefault();
+// ... display setup (see Graphics → Native displays). `displayController` is the result.
 
-var controllerSetting = 
-    new ParallelDisplayControllerSettings {
-    Width = 480,
-    Height = 272,
-    DataFormat = DisplayDataFormat.Rgb565,
-    Orientation = DisplayOrientation.Degrees0, //Rotate display.
-    PixelClockRate = 10000000,
-    PixelPolarity = false,
-    DataEnablePolarity = false,
-    DataEnableIsFixed = false,
-    HorizontalFrontPorch = 2,
-    HorizontalBackPorch = 2,
-    HorizontalSyncPulseWidth = 41,
-    HorizontalSyncPolarity = false,
-    VerticalFrontPorch = 2,
-    VerticalBackPorch = 2,
-    VerticalSyncPulseWidth = 10,
-    VerticalSyncPolarity = false,
+var i2c = I2cController.FromName(SC20260.I2cBus.I2c1);
+
+var camera = new Ov9655Controller(i2c);
+
+camera.FrameReceived += (data, size) => {
+    // Display is 480x272; the camera frame is 640x480 (VGA).
+    // DrawBuffer clips the wider frame to the panel.
+    displayController.DrawBuffer(0, 0, 0, 0, 480, 272, sourceWidth: 640, data, 0);
 };
 
-displayController.SetConfiguration(controllerSetting);
-displayController.Enable();
+Debug.WriteLine("Camera ID: " + camera.ReadId());
 
-var screen = Graphics.FromHdc(displayController.Hdc);
-var controller = I2cController.FromName(SC20260.I2cBus.I2c1);
-
-// Camera
-var ov9655 = new Ov9655Controller(controller);
-ov9655.FrameReceived += Ov9655_FrameReceived;
-var id = ov9655.ReadId();
-
-Debug.WriteLine("id = " + id);
-
-ov9655.SetResolution(Ov9655Controller.Resolution.Vga);
-
-byte temp = 0;
+camera.SetResolution(Ov9655Controller.Resolution.Vga);
 
 while (true) {
     try {
-        ov9655.Capture();		
+        camera.Capture();
     }
-    catch (System.Exception) { 
+    catch (System.Exception ex) {
+        Debug.WriteLine("Capture failed: " + ex.Message);
     }
-	
-	Thread.Sleep(10);
-}
 
-private static void Ov9655_FrameReceived(byte[] data, int size) {
-	// 480 is screen width
-	// 272 is screen height
-	// 640 is original image width with VGA = 640
-	displayController.DrawBuffer(0, 0, 0, 0, 480, 272, 640, data, 0);
+    Thread.Sleep(10);
 }
 ```
+
+The `FrameReceived` event fires once per completed frame with the raw pixel data and its size. The `DrawBuffer` call lets you crop or downscale by passing the source frame width separately from the destination panel dimensions — handy when the camera's native resolution differs from the panel.
+
+## Capturing without a display
+
+If you're not showing frames on a panel (saving to SD card, sending over the network, running a vision algorithm), drop the display setup entirely and consume the frame bytes in `FrameReceived`:
+
+```csharp
+camera.FrameReceived += (data, size) => {
+    // data is the raw frame buffer; size is its length in bytes.
+    // Write it, transmit it, process it.
+};
+```
+
+The frame format depends on what you configured the camera for — see your camera's driver and datasheet for the layout.

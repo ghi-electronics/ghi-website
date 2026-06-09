@@ -2,411 +2,382 @@
 title: EtherNet/IP
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
+**EtherNet/IP** is an industrial communications protocol used in PLC and factory-floor automation. It defines two roles:
+
+- **Scanner** — the master that initiates connections. Typically a **PLC** or a workstation polling I/O.
+- **Adapter** — the slave/device that responds. Typically an **I/O module** that the PLC reads from and writes to.
+
+TinyCLR can act in either role:
+
+- **`GHIElectronics.TinyCLR.EthernetIP.Scanner`** NuGet — implements the Scanner side.
+- **`GHIElectronics.TinyCLR.EthernetIP.Adapter`** NuGet — implements the Adapter side.
+
+:::warning
+**This feature is experimental** and the API is subject to major changes or removal. Don't ship production firmware that depends on it without confirming the API surface against the current release.
 :::
 
-EtherNet/IP is an industerial communication protocol. It has two modes, an Adaptor, which is typically the PLC. The other mode is Scanner, usually used on the modules controlled by the PLC.
+EtherNet/IP runs on top of standard Ethernet — make sure the [NetworkController](ethernet.mdx) is enabled before any EtherNet/IP code runs.
 
+## Scanner
 
-:::note
-This is an experimental feature and it is subject to major changes or removal.
-:::
+A Scanner connects to one or more Adapters and exchanges messages with them. Three operations are typical:
 
-## Scanner device
-
-:::tip
-Needed NuGets: GHIElectronics.TinyCLR.EthernetIP.Scanner
-:::
+- **List Identity** — broadcast discovery to find Adapters on the local network.
+- **Explicit Messaging** — request/response over TCP. Used for occasional reads/writes (configuration, diagnostics).
+- **Implicit Messaging** — periodic I/O over UDP via a forward-open connection. Used for continuous I/O exchange (process data, sensor readings).
 
 ### List Identity
 
-The examples assume [NetworkController](ethernet.mdx) is already enabled.
+Broadcast a discovery request and enumerate all Adapters that respond.
 
 ```csharp
+using GHIElectronics.TinyCLR.EthernetIP.Scanner;
+using System;
+using System.Diagnostics;
+
 var eipClient = new ScannerController();
+var devices = eipClient.ListIdentity(networkController, TimeSpan.FromSeconds(5));
 
-var devices = eipClient.ListIdentity(networkcontroller, TimeSpan.FromSeconds(5));
-
-if (devices != null)
-{
-    for (int i = 0; i < devices.Length; i++)
-    {
-
-        Debug.WriteLine("Ethernet/IP Device Found:");
-        Debug.WriteLine(devices[i].ProductName1);
-        Debug.WriteLine("IP-Address: " + Encapsulation.CIPIdentityItem.GetIPAddress(devices[i].SocketAddress.SIN_Address));
-        Debug.WriteLine("Port: " + devices[i].SocketAddress.SIN_port);
-        Debug.WriteLine("Vendor ID: " + devices[i].VendorID1);
-        Debug.WriteLine("Product-code: " + devices[i].ProductCode1);
-        Debug.WriteLine("Type-Code: " + devices[i].ItemTypeCode);
-        Debug.WriteLine("Serial Number: " + devices[i].SerialNumber1);
-    }
-}
-else
-{
+if (devices == null) {
     Debug.WriteLine("No device found");
+    return;
 }
 
+for (int i = 0; i < devices.Length; i++) {
+    Debug.WriteLine("EtherNet/IP device found:");
+    Debug.WriteLine("  Product:     " + devices[i].ProductName1);
+    Debug.WriteLine("  IP:          " + Encapsulation.CIPIdentityItem.GetIPAddress(devices[i].SocketAddress.SIN_Address));
+    Debug.WriteLine("  Port:        " + devices[i].SocketAddress.SIN_port);
+    Debug.WriteLine("  Vendor ID:   " + devices[i].VendorID1);
+    Debug.WriteLine("  Product code:" + devices[i].ProductCode1);
+    Debug.WriteLine("  Type code:   " + devices[i].ItemTypeCode);
+    Debug.WriteLine("  Serial:      " + devices[i].SerialNumber1);
+}
 ```
 
-### Explicit Message
+### Explicit messaging
+
+Open a TCP session to a specific Adapter, send `GetAttributeSingle` / `SetAttributeSingle` requests, then close the session.
 
 ```csharp
-var classId = 0x04;
-var atributeId = 0x03;
-
 var eipClient = new ScannerController();
-eipClient.IPAddress = "xx.xx.xx.xx"; // address to send
+eipClient.IPAddress = "192.168.1.10";   // Target adapter.
+
+const byte classId = 0x04;
+const byte attributeId = 0x03;
 
 eipClient.RegisterSession();
-var cnt = 0;
-// Read and write 10 times
-while (cnt++ < 10)
-{
-	byte[] responses = eipClient.GetAttributeSingle(classId, DEMO_APP_EXPLICT_ASSEMBLY_NUM, atributeId);
-	var response_str = string.Empty;
-	foreach (byte response in responses)
-	{
-		response_str += response.ToString() + ", ";
 
-	}
-	Debug.WriteLine("AttributeSingle: " + response_str);
+for (var i = 0; i < 10; i++) {
+    // Read.
+    byte[] response = eipClient.GetAttributeSingle(classId, DEMO_APP_EXPLICIT_ASSEMBLY_NUM, attributeId);
 
-	var sendData = new byte[responses.Length];
+    var asString = "";
+    foreach (byte b in response)
+        asString += b + ", ";
+    Debug.WriteLine("Read: " + asString);
 
-	for (var i = 0; i < sendData.Length; i++)
-	{
-		sendData[i] = (byte)(responses[i] + 1);
-	}
+    // Write back (each byte incremented).
+    var write = new byte[response.Length];
+    for (var j = 0; j < write.Length; j++)
+        write[j] = (byte)(response[j] + 1);
 
-	eipClient.SetAttributeSingle(classId, DEMO_APP_EXPLICT_ASSEMBLY_NUM, atributeId, sendData);
+    eipClient.SetAttributeSingle(classId, DEMO_APP_EXPLICIT_ASSEMBLY_NUM, attributeId, write);
 
-	Thread.Sleep(1000);
+    Thread.Sleep(1000);
 }
 
 eipClient.UnRegisterSession();
 ```
 
-### Implicit Message
+### Implicit messaging
+
+Open a UDP I/O connection via `ForwardOpen`, exchange `O_T_IOData` (output, scanner→target) and `T_O_IOData` (input, target→scanner) buffers continuously, then close with `ForwardClose`.
 
 ```csharp
-var eeipClient = new ScannerController();
-eeipClient.IPAddress = "xxx.xxx.xxx.xxx"; // Address to send
+var eipClient = new ScannerController();
+eipClient.IPAddress = "192.168.1.10";
 
-eeipClient.RegisterSession();   
-eeipClient.ForwardOpen();
+eipClient.RegisterSession();
+eipClient.ForwardOpen();
 
-eeipClient.O_T_InstanceID = DEMO_APP_OUTPUT_ASSEMBLY_NUM;              
-eeipClient.O_T_IOData = new byte[O_T_IODataSize];                     
-eeipClient.O_T_RealTimeFormat = RealTimeFormat.Header32Bit;
-eeipClient.O_T_OwnerRedundant = false;
-eeipClient.O_T_Priority = Priority.Scheduled;
-eeipClient.O_T_VariableLength = false;
-eeipClient.O_T_ConnectionType = ConnectionType.Point_to_Point;
-eeipClient.RequestedPacketRate_O_T = 500000;        
-    
-eeipClient.T_O_InstanceID = DEMO_APP_INPUT_ASSEMBLY_NUM;
-eeipClient.T_O_IOData = new byte[T_O_IODataSize];
-eeipClient.T_O_RealTimeFormat = RealTimeFormat.ZeroLength;
-eeipClient.T_O_OwnerRedundant = false;
-eeipClient.T_O_Priority = Priority.Scheduled;
-eeipClient.T_O_VariableLength = false;
-eeipClient.T_O_ConnectionType = ConnectionType.Point_to_Point;
-eeipClient.RequestedPacketRate_T_O = 500000;    
+// Outgoing data (Originator → Target).
+eipClient.O_T_InstanceID = DEMO_APP_OUTPUT_ASSEMBLY_NUM;
+eipClient.O_T_IOData = new byte[O_T_IODataSize];
+eipClient.O_T_RealTimeFormat = RealTimeFormat.Header32Bit;
+eipClient.O_T_OwnerRedundant = false;
+eipClient.O_T_Priority = Priority.Scheduled;
+eipClient.O_T_VariableLength = false;
+eipClient.O_T_ConnectionType = ConnectionType.Point_to_Point;
+eipClient.RequestedPacketRate_O_T = 500_000;
 
-eeipClient.ConfigurationAssemblyInstanceID = DEMO_APP_CONFIG_ASSEMBLY_NUM; 
-// If user want to write config, init ConfigurationAssembly_Data array
-// Otherwise, keep this config null
-//eeipClient.ConfigurationAssembly_Data = new byte[Config_DataSize] { 1, 2, 3, 4, 5, 6, 7, 8 };// write config
+// Incoming data (Target → Originator).
+eipClient.T_O_InstanceID = DEMO_APP_INPUT_ASSEMBLY_NUM;
+eipClient.T_O_IOData = new byte[T_O_IODataSize];
+eipClient.T_O_RealTimeFormat = RealTimeFormat.ZeroLength;
+eipClient.T_O_OwnerRedundant = false;
+eipClient.T_O_Priority = Priority.Scheduled;
+eipClient.T_O_VariableLength = false;
+eipClient.T_O_ConnectionType = ConnectionType.Point_to_Point;
+eipClient.RequestedPacketRate_T_O = 500_000;
 
-var counter = 0;
-var t_o_data = -1;
+eipClient.ConfigurationAssemblyInstanceID = DEMO_APP_CONFIG_ASSEMBLY_NUM;
+// Set ConfigurationAssembly_Data if you want to write configuration; leave null otherwise.
+// eipClient.ConfigurationAssembly_Data = new byte[Config_DataSize] { 1, 2, 3, 4, 5, 6, 7, 8 };
 
-while (counter < 10)
-{                    
-    // Write O_T
-    for (var i = 0; i < eeipClient.O_T_IOData.Length; i++)
-    {            
-        eeipClient.O_T_IOData[i] = (byte)(counter);   
-    }
+for (var counter = 0; counter < 10; counter++) {
+    // Write the outgoing buffer.
+    for (var i = 0; i < eipClient.O_T_IOData.Length; i++)
+        eipClient.O_T_IOData[i] = (byte)counter;
 
-    // read T_O
-    var response_str = string.Empty;
-    for (var i = 0; i < eeipClient.T_O_IOData.Length; i++)
-    {
-        response_str += eeipClient.T_O_IOData[i].ToString() + ", ";
-    }
-
-    Debug.WriteLine(response_str);
+    // Read the incoming buffer.
+    var asString = "";
+    for (var i = 0; i < eipClient.T_O_IOData.Length; i++)
+        asString += eipClient.T_O_IOData[i] + ", ";
+    Debug.WriteLine(asString);
 
     Thread.Sleep(1000);
-
-    counter++;
 }
 
-eeipClient.ForwardClose();
-eeipClient.UnRegisterSession();
+eipClient.ForwardClose();
+eipClient.UnRegisterSession();
 ```
 
----
+## Adapter
 
-## Adapter device
+An Adapter publishes a CIP (Common Industrial Protocol) object model and waits for Scanners to connect. Setup is verbose — you have to declare the identity object, message router, connection manager, and one or more assembly objects matching the assembly instance numbers a Scanner will reference.
 
-The example below create a basic adapter device.
-
-:::tip
-Needed NuGets: GHIElectronics.TinyCLR.EthernetIP.Adapter
-:::
+### Top-level setup
 
 ```csharp
-public static void DoInitAdapter()
-{
-    string deviceName = "GHI Adapter";
-	uint deviceVendorID = 3;
-	ushort deviceType = 12;
-	ushort deviceProductCode = 65001;
-	uint deviceSerialNumber = 87654321;
-	byte deviceMajorRevision = 4;
-	byte deviceMinorRevision = 3;
-	
-	var adapter = new AdapterController(deviceName, deviceVendorID, deviceType, deviceProductCode, deviceSerialNumber, deviceMajorRevision, deviceMinorRevision);
+using GHIElectronics.TinyCLR.EthernetIP.Adapter;
+using System.Net;
+using System.Threading;
 
-    adapter.EnableHeaderO2T(true); // enable O2T 32bit header
-	
-	int numberClassAttributes = 0 ;
-	uint highestClassAttributeNumber = 7;
-	int numberClassServices = 1;
-	int numberInstanceAttributes = 2;
-	uint highestInstanceAttributeNumber = 4;
-	int numberInstanceServices = 2;
-	uint numberInstances = 0;
-	string name = "assembly";
-	ushort revision = 2;
+public static void DoInitAdapter() {
+    var adapter = new AdapterController(
+        deviceName:         "GHI Adapter",
+        deviceVendorID:     3,
+        deviceType:         12,
+        deviceProductCode:  65001,
+        deviceSerialNumber: 87654321,
+        deviceMajorRevision: 4,
+        deviceMinorRevision: 3
+    );
 
-    adapter.CreateAssemblyClass(numberClassAttributes, highestClassAttributeNumber, numberClassServices, numberInstanceAttributes, highestInstanceAttributeNumber,  numberInstanceServices, numberInstances, name, revision);
+    adapter.EnableHeaderO2T(true);      // Enable 32-bit O→T header.
+
+    // Define the Assembly class — covers the Input, Output, Config, and Heartbeat instances.
+    adapter.CreateAssemblyClass(
+        numberClassAttributes:           0,
+        highestClassAttributeNumber:     7,
+        numberClassServices:             1,
+        numberInstanceAttributes:        2,
+        highestInstanceAttributeNumber:  4,
+        numberInstanceServices:          2,
+        numberInstances:                 0,
+        name:                            "assembly",
+        revision:                        2
+    );
 
     MessageRouterInit(adapter);
     IdentityInit(adapter);
     ConnectionManagerInit(adapter);
-	
 
-    var g_assembly_t_o = new byte[T_O_IODataSize]; 
-    var g_assembly_o_t = new byte[O_T_IODataSize]; 
-    var g_assembly_cfg = new byte[Config_DataSize]; 
-    var g_assembly_explicit = new byte[ExplicitMessage_DataSize]; 
+    // Assembly buffers — Input (T→O), Output (O→T), Config, Explicit.
+    var inputBuffer    = new byte[T_O_IODataSize];
+    var outputBuffer   = new byte[O_T_IODataSize];
+    var configBuffer   = new byte[Config_DataSize];
+    var explicitBuffer = new byte[ExplicitMessage_DataSize];
 
-    var input_asm = new AssemblyObject(DEMO_APP_INPUT_ASSEMBLY_NUM, g_assembly_t_o, (ushort)g_assembly_t_o.Length);
-    var output_asm = new AssemblyObject(DEMO_APP_OUTPUT_ASSEMBLY_NUM, g_assembly_o_t, (ushort)g_assembly_o_t.Length);
-    var config_asm = new AssemblyObject(DEMO_APP_CONFIG_ASSEMBLY_NUM, g_assembly_cfg, (ushort)g_assembly_cfg.Length);
-    var heartbeat_input_asm = new AssemblyObject(DEMO_APP_HEARTBEAT_INPUT_ONLY_ASSEMBLY_NUM, null, 0);
-    var heartbeat_output_asm = new AssemblyObject(DEMO_APP_HEARTBEAT_LISTEN_ONLY_ASSEMBLY_NUM, null, 0);
-    var explicit_asm = new AssemblyObject(DEMO_APP_EXPLICT_ASSEMBLY_NUM, g_assembly_explicit, (ushort)g_assembly_explicit.Length);
+    adapter.AddAssemblyObject(new AssemblyObject(DEMO_APP_INPUT_ASSEMBLY_NUM,  inputBuffer,  (ushort)inputBuffer.Length));
+    adapter.AddAssemblyObject(new AssemblyObject(DEMO_APP_OUTPUT_ASSEMBLY_NUM, outputBuffer, (ushort)outputBuffer.Length));
+    adapter.AddAssemblyObject(new AssemblyObject(DEMO_APP_CONFIG_ASSEMBLY_NUM, configBuffer, (ushort)configBuffer.Length));
+    adapter.AddAssemblyObject(new AssemblyObject(DEMO_APP_HEARTBEAT_INPUT_ONLY_ASSEMBLY_NUM,  null, 0));
+    adapter.AddAssemblyObject(new AssemblyObject(DEMO_APP_HEARTBEAT_LISTEN_ONLY_ASSEMBLY_NUM, null, 0));
+    adapter.AddAssemblyObject(new AssemblyObject(DEMO_APP_EXPLICIT_ASSEMBLY_NUM, explicitBuffer, (ushort)explicitBuffer.Length));
 
-    adapter.AddAssemblyObject(input_asm);
-    adapter.AddAssemblyObject(output_asm);
-    adapter.AddAssemblyObject(config_asm);
-    adapter.AddAssemblyObject(heartbeat_input_asm);
-    adapter.AddAssemblyObject(heartbeat_output_asm);
-    adapter.AddAssemblyObject(explicit_asm);
-
+    // Map connection points to the assemblies above.
     adapter.ConfigureExclusiveOwnerConnectionPoint(0, DEMO_APP_OUTPUT_ASSEMBLY_NUM, DEMO_APP_INPUT_ASSEMBLY_NUM, DEMO_APP_CONFIG_ASSEMBLY_NUM);
     adapter.ConfigureInputOnlyConnectionPoint(0, DEMO_APP_HEARTBEAT_INPUT_ONLY_ASSEMBLY_NUM, DEMO_APP_INPUT_ASSEMBLY_NUM, DEMO_APP_CONFIG_ASSEMBLY_NUM);
     adapter.ConfigureListenOnlyConnectionPoint(0, DEMO_APP_HEARTBEAT_LISTEN_ONLY_ASSEMBLY_NUM, DEMO_APP_INPUT_ASSEMBLY_NUM, DEMO_APP_CONFIG_ASSEMBLY_NUM);
 
-
-    adapter.RegisterSessionDetected += Adapter_RegisterSessionDetected;
+    // Hook lifecycle events.
+    adapter.RegisterSessionDetected   += Adapter_RegisterSessionDetected;
     adapter.UnregisterSessionDetected += Adapter_UnregisterSessionDetected;
-
-    adapter.ForwardOpenDetected += Adapter_ForwardOpenDetected;
-    adapter.ForwardCloseDetected += Adapter_ForwardCloseDetected;
+    adapter.ForwardOpenDetected       += Adapter_ForwardOpenDetected;
+    adapter.ForwardCloseDetected      += Adapter_ForwardCloseDetected;
 
     adapter.Enable();
-	
-	Thread.sleep(-1);
+
+    Thread.Sleep(Timeout.Infinite);
 }
 ```
 
+### Identity object
+
+The Identity object reports the device's vendor, type, product code, revision, status, serial number, and product name to Scanners during enumeration.
+
 ```csharp
-// Implement Identity
-static void IdentityInit(AdapterController adapter)
-{
-    // Init Identity with:
-    int numberClassAttributes = 0;
-    uint highestClassAttributeNumber=7;
-    int numberClassServices=2;
-    int numberInstanceAttributes= 7;
-    uint highestInstanceAttributeNumber = 7;
-    int numberInstanceServices = 5;
-    uint numberInstances = 1;
-    string name = "identity";
-    ushort revision = 1;
-	
-    var identityClass = new CIPClass(AdapterController.ClassId.Identity, numberClassAttributes, highestClassAttributeNumber, numberClassServices, numberInstanceAttributes, highestInstanceAttributeNumber, numberInstanceServices, numberInstances, name, revision);
+static void IdentityInit(AdapterController adapter) {
+    var identityClass = new CIPClass(
+        AdapterController.ClassId.Identity,
+        numberClassAttributes:           0,
+        highestClassAttributeNumber:     7,
+        numberClassServices:             2,
+        numberInstanceAttributes:        7,
+        highestInstanceAttributeNumber:  7,
+        numberInstanceServices:          5,
+        numberInstances:                 1,
+        name:                            "identity",
+        revision:                        1
+    );
 
     adapter.AddCipClass(identityClass);
-
     var cipInstance = adapter.GetCipInstance(identityClass, 1);
 
-    var vendorId = new byte[] { 12, 0 };
-    var deviceType = new byte[] { 34, 0 };
+    var vendorId    = new byte[] { 12, 0 };
+    var deviceType  = new byte[] { 34, 0 };
     var productCode = new byte[] { 56, 0 };
-    var revision = new byte[] { 78, 87 };
-    var status = new byte[] { 90, 0 };
-    var serial = new byte[] { 11, 00, 00, 00 };
-    var productName = UTF8Encoding.UTF8.GetBytes("GHI custom");
+    var revision    = new byte[] { 78, 87 };
+    var status      = new byte[] { 90, 0 };
+    var serial      = new byte[] { 11, 0, 0, 0 };
+    var productName = System.Text.Encoding.UTF8.GetBytes("GHI custom");
 
-    adapter.InsertAttribute(cipInstance, 1, AdapterController.CIPDataType.kCipUint, AdapterController.CipAttributeEncodeInMessage.EncodeCipUint, AdapterController.CipAttributeDecodeFromMessage.None, vendorId, AdapterController.CIPAttributeFlag.kGetableSingleAndAll);
-    adapter.InsertAttribute(cipInstance, 2, AdapterController.CIPDataType.kCipUint, AdapterController.CipAttributeEncodeInMessage.EncodeCipUint, AdapterController.CipAttributeDecodeFromMessage.None, deviceType, AdapterController.CIPAttributeFlag.kGetableSingleAndAll);
-    adapter.InsertAttribute(cipInstance, 3, AdapterController.CIPDataType.kCipUint, AdapterController.CipAttributeEncodeInMessage.EncodeCipUint, AdapterController.CipAttributeDecodeFromMessage.None, productCode, AdapterController.CIPAttributeFlag.kGetableSingleAndAll);
-    adapter.InsertAttribute(cipInstance, 4, AdapterController.CIPDataType.kCipUsintUsint, AdapterController.CipAttributeEncodeInMessage.EncodeCipUint, AdapterController.CipAttributeDecodeFromMessage.None, revision, AdapterController.CIPAttributeFlag.kGetableSingleAndAll);
-    adapter.InsertAttribute(cipInstance, 5, AdapterController.CIPDataType.kCipUint, AdapterController.CipAttributeEncodeInMessage.EncodeCipUint, AdapterController.CipAttributeDecodeFromMessage.None, status, AdapterController.CIPAttributeFlag.kGetableSingleAndAll);
-    adapter.InsertAttribute(cipInstance, 6, AdapterController.CIPDataType.kCipUdint, AdapterController.CipAttributeEncodeInMessage.EncodeCipUdint, AdapterController.CipAttributeDecodeFromMessage.None, serial, AdapterController.CIPAttributeFlag.kGetableSingleAndAll);
-    adapter.InsertAttribute(cipInstance, 7, AdapterController.CIPDataType.kCipShortString, AdapterController.CipAttributeEncodeInMessage.EncodeCipShortString, AdapterController.CipAttributeDecodeFromMessage.None, productName, AdapterController.CIPAttributeFlag.kGetableSingleAndAll);
+    var getAllFlag = AdapterController.CIPAttributeFlag.kGetableSingleAndAll;
+
+    adapter.InsertAttribute(cipInstance, 1, AdapterController.CIPDataType.kCipUint,        AdapterController.CipAttributeEncodeInMessage.EncodeCipUint,        AdapterController.CipAttributeDecodeFromMessage.None, vendorId,    getAllFlag);
+    adapter.InsertAttribute(cipInstance, 2, AdapterController.CIPDataType.kCipUint,        AdapterController.CipAttributeEncodeInMessage.EncodeCipUint,        AdapterController.CipAttributeDecodeFromMessage.None, deviceType,  getAllFlag);
+    adapter.InsertAttribute(cipInstance, 3, AdapterController.CIPDataType.kCipUint,        AdapterController.CipAttributeEncodeInMessage.EncodeCipUint,        AdapterController.CipAttributeDecodeFromMessage.None, productCode, getAllFlag);
+    adapter.InsertAttribute(cipInstance, 4, AdapterController.CIPDataType.kCipUsintUsint,  AdapterController.CipAttributeEncodeInMessage.EncodeCipUint,        AdapterController.CipAttributeDecodeFromMessage.None, revision,    getAllFlag);
+    adapter.InsertAttribute(cipInstance, 5, AdapterController.CIPDataType.kCipUint,        AdapterController.CipAttributeEncodeInMessage.EncodeCipUint,        AdapterController.CipAttributeDecodeFromMessage.None, status,      getAllFlag);
+    adapter.InsertAttribute(cipInstance, 6, AdapterController.CIPDataType.kCipUdint,       AdapterController.CipAttributeEncodeInMessage.EncodeCipUdint,       AdapterController.CipAttributeDecodeFromMessage.None, serial,      getAllFlag);
+    adapter.InsertAttribute(cipInstance, 7, AdapterController.CIPDataType.kCipShortString, AdapterController.CipAttributeEncodeInMessage.EncodeCipShortString, AdapterController.CipAttributeDecodeFromMessage.None, productName, getAllFlag);
 
     adapter.InsertService(identityClass, AdapterController.CIPServiceCode.kGetAttributeSingle, AdapterController.CipServiceFunctionCode.kGetAttributeSingle, "GetAttributeSingle");
-    adapter.InsertService(identityClass, AdapterController.CIPServiceCode.kGetAttributeAll, AdapterController.CipServiceFunctionCode.kGetAttributeAll, "GetAttributeAll");
-    adapter.InsertService(identityClass, AdapterController.CIPServiceCode.kReset, AdapterController.CipServiceFunctionCode.kReset, "Reset");
-    adapter.InsertService(identityClass, AdapterController.CIPServiceCode.kGetAttributeList, AdapterController.CipServiceFunctionCode.kGetAttributeList, "GetAttributeList");
-    adapter.InsertService(identityClass, AdapterController.CIPServiceCode.kSetAttributeList, AdapterController.CipServiceFunctionCode.kSetAttributeList, "SetAttributeList");
+    adapter.InsertService(identityClass, AdapterController.CIPServiceCode.kGetAttributeAll,    AdapterController.CipServiceFunctionCode.kGetAttributeAll,    "GetAttributeAll");
+    adapter.InsertService(identityClass, AdapterController.CIPServiceCode.kReset,              AdapterController.CipServiceFunctionCode.kReset,              "Reset");
+    adapter.InsertService(identityClass, AdapterController.CIPServiceCode.kGetAttributeList,   AdapterController.CipServiceFunctionCode.kGetAttributeList,   "GetAttributeList");
+    adapter.InsertService(identityClass, AdapterController.CIPServiceCode.kSetAttributeList,   AdapterController.CipServiceFunctionCode.kSetAttributeList,   "SetAttributeList");
 }
 ```
 
+### Message router
+
 ```csharp
-// Implement MessageRouter
-static void MessageRouterInit(AdapterController adapter)
-{
-    // Init message router with:
-    int numberClassAttributes = 7;
-    uint highestClassAttributeNumber=7;
-    int numberClassServices=2;
-    int numberInstanceAttributes= 0;
-    uint highestInstanceAttributeNumber = 0;
-    int numberInstanceServices = 1;
-    uint numberInstances = 1;
-    string name = "message router";
-    ushort revision = 1;
-		
-    var messageRouterClass = new CIPClass(AdapterController.ClassId.MessageRouter, numberClassAttributes, highestClassAttributeNumber, numberClassServices, numberInstanceAttributes, highestInstanceAttributeNumber, numberInstanceServices, numberInstances, name, revision);
+static void MessageRouterInit(AdapterController adapter) {
+    var messageRouterClass = new CIPClass(
+        AdapterController.ClassId.MessageRouter,
+        numberClassAttributes:           7,
+        highestClassAttributeNumber:     7,
+        numberClassServices:             2,
+        numberInstanceAttributes:        0,
+        highestInstanceAttributeNumber:  0,
+        numberInstanceServices:          1,
+        numberInstances:                 1,
+        name:                            "message router",
+        revision:                        1
+    );
+
     adapter.AddCipClass(messageRouterClass);
     adapter.InsertService(messageRouterClass, AdapterController.CIPServiceCode.kGetAttributeSingle, AdapterController.CipServiceFunctionCode.kGetAttributeSingle, "GetAttributeSingle");
 }
 ```
 
+### Connection manager
+
 ```csharp
-// Implement ConnectionManager
-static void ConnectionManagerInit(AdapterController adapter)
-{
-    int numberClassAttributes = 0;
-    uint highestClassAttributeNumber=7;
-    int numberClassServices=2;
-    int numberInstanceAttributes= 0;
-    uint highestInstanceAttributeNumber = 14;
-    int numberInstanceServices = 8;
-    uint numberInstances = 1;
-    string name = "connection manager";
-    ushort revision = 1;
-	
-    var connectionManagerClass = new CIPClass(AdapterController.ClassId.ConnectionManager, numberClassAttributes, highestClassAttributeNumber, numberClassServices, numberInstanceAttributes, highestInstanceAttributeNumber, numberInstanceServices, numberInstances, name, revision);
+static void ConnectionManagerInit(AdapterController adapter) {
+    var connectionManagerClass = new CIPClass(
+        AdapterController.ClassId.ConnectionManager,
+        numberClassAttributes:           0,
+        highestClassAttributeNumber:     7,
+        numberClassServices:             2,
+        numberInstanceAttributes:        0,
+        highestInstanceAttributeNumber:  14,
+        numberInstanceServices:          8,
+        numberInstances:                 1,
+        name:                            "connection manager",
+        revision:                        1
+    );
 
     adapter.AddCipClass(connectionManagerClass);
-    var cipInstance = adapter.GetCipInstance(connectionManagerClass, 1);
 
-    adapter.InsertService(connectionManagerClass, AdapterController.CIPServiceCode.kGetAttributeSingle, AdapterController.CipServiceFunctionCode.kGetAttributeSingle, "GetAttributeSingle");
-    adapter.InsertService(connectionManagerClass, AdapterController.CIPServiceCode.kGetAttributeAll, AdapterController.CipServiceFunctionCode.kGetAttributeAll, "GetAttributeAll");
-
-    adapter.InsertService(connectionManagerClass, AdapterController.CIPServiceCode.kForwardOpen, AdapterController.CipServiceFunctionCode.kForwardOpen, "ForwardOpen");
-    adapter.InsertService(connectionManagerClass, AdapterController.CIPServiceCode.kLargeForwardOpen, AdapterController.CipServiceFunctionCode.kLargeForwardOpen, "LargeForwardOpen");
-    adapter.InsertService(connectionManagerClass, AdapterController.CIPServiceCode.kForwardClose, AdapterController.CipServiceFunctionCode.kForwardClose, "ForwardClose");
-
-    adapter.InsertService(connectionManagerClass, AdapterController.CIPServiceCode.kGetConnectionOwner, AdapterController.CipServiceFunctionCode.kGetConnectionOwner, "GetConnectionOwner");
-    adapter.InsertService(connectionManagerClass, AdapterController.CIPServiceCode.kGetConnectionData, AdapterController.CipServiceFunctionCode.kGetConnectionData, "GetConnectionData");
+    adapter.InsertService(connectionManagerClass, AdapterController.CIPServiceCode.kGetAttributeSingle,   AdapterController.CipServiceFunctionCode.kGetAttributeSingle,   "GetAttributeSingle");
+    adapter.InsertService(connectionManagerClass, AdapterController.CIPServiceCode.kGetAttributeAll,      AdapterController.CipServiceFunctionCode.kGetAttributeAll,      "GetAttributeAll");
+    adapter.InsertService(connectionManagerClass, AdapterController.CIPServiceCode.kForwardOpen,          AdapterController.CipServiceFunctionCode.kForwardOpen,          "ForwardOpen");
+    adapter.InsertService(connectionManagerClass, AdapterController.CIPServiceCode.kLargeForwardOpen,     AdapterController.CipServiceFunctionCode.kLargeForwardOpen,     "LargeForwardOpen");
+    adapter.InsertService(connectionManagerClass, AdapterController.CIPServiceCode.kForwardClose,         AdapterController.CipServiceFunctionCode.kForwardClose,         "ForwardClose");
+    adapter.InsertService(connectionManagerClass, AdapterController.CIPServiceCode.kGetConnectionOwner,   AdapterController.CipServiceFunctionCode.kGetConnectionOwner,   "GetConnectionOwner");
+    adapter.InsertService(connectionManagerClass, AdapterController.CIPServiceCode.kGetConnectionData,    AdapterController.CipServiceFunctionCode.kGetConnectionData,    "GetConnectionData");
     adapter.InsertService(connectionManagerClass, AdapterController.CIPServiceCode.kSearchConnectionData, AdapterController.CipServiceFunctionCode.kSearchConnectionData, "SearchConnectionData");
 }
 ```
 
-These variables below are shared between Scanner and Addapter device so Scanner know where messages send to / read from
+### Shared assembly numbers
+
+Both the Scanner and the Adapter need to agree on the assembly instance numbers and buffer sizes. Define them once in a shared file:
 
 ```csharp
-public const byte DEMO_APP_INPUT_ASSEMBLY_NUM = 100;
-public const byte DEMO_APP_OUTPUT_ASSEMBLY_NUM = 150;
-public const byte DEMO_APP_CONFIG_ASSEMBLY_NUM = 151;
-public const byte DEMO_APP_HEARTBEAT_INPUT_ONLY_ASSEMBLY_NUM = 152;
+public const byte DEMO_APP_INPUT_ASSEMBLY_NUM                 = 100;
+public const byte DEMO_APP_OUTPUT_ASSEMBLY_NUM                = 150;
+public const byte DEMO_APP_CONFIG_ASSEMBLY_NUM                = 151;
+public const byte DEMO_APP_HEARTBEAT_INPUT_ONLY_ASSEMBLY_NUM  = 152;
 public const byte DEMO_APP_HEARTBEAT_LISTEN_ONLY_ASSEMBLY_NUM = 153;
-public const byte DEMO_APP_EXPLICT_ASSEMBLY_NUM = 154;
+public const byte DEMO_APP_EXPLICIT_ASSEMBLY_NUM              = 154;
 
-public const ushort O_T_IODataSize = 8;
-public const ushort T_O_IODataSize = 8;
-public const ushort Config_DataSize = 8;
+public const ushort O_T_IODataSize          = 8;
+public const ushort T_O_IODataSize          = 8;
+public const ushort Config_DataSize         = 8;
 public const ushort ExplicitMessage_DataSize = 8;
 ```
 
-### Event Handler
+### Event handlers
+
+Beyond the lifecycle events wired up in `DoInitAdapter`, more granular events are available for low-level traffic and assembly data flow:
 
 ```csharp
-adapter.RegisterSessionDetected += Adapter_RegisterSessionDetected;
+adapter.RegisterSessionDetected   += Adapter_RegisterSessionDetected;
 adapter.UnregisterSessionDetected += Adapter_UnregisterSessionDetected;
-adapter.ForwardOpenDetected += Adapter_ForwardOpenDetected;
-adapter.ForwardCloseDetected += Adapter_ForwardCloseDetected;
+adapter.ForwardOpenDetected       += Adapter_ForwardOpenDetected;
+adapter.ForwardCloseDetected      += Adapter_ForwardCloseDetected;
 
-adapter.ReceivedExplictTcpData += Adapter_EventReceivedExplictTcpDataHandler;
-adapter.ReceivedExplictUdpData += Adapter_EventReceivedExplictUdpDataHandler;
-adapter.NotifyClass += Adapter_EventNotifyClassHandler;
-adapter.AfterAssemblyDataReceived += Adapter_EventAssemblyConnectedDataReceivedHandler;
-adapter.BeforeAssemblyDataSend += Adapter_BeforeAssemblyDataSend;
-
+adapter.ReceivedExplictTcpData    += Adapter_ReceivedExplicitTcpData;
+adapter.ReceivedExplictUdpData    += Adapter_ReceivedExplicitUdpData;
+adapter.NotifyClass               += Adapter_NotifyClass;
+adapter.AfterAssemblyDataReceived += Adapter_AfterAssemblyDataReceived;
+adapter.BeforeAssemblyDataSend    += Adapter_BeforeAssemblyDataSend;
 ```
 
+Sample implementations:
+
 ```csharp
-private static void Adapter_ForwardCloseDetected(AdapterController adapter, System.Net.IPAddress ipAdrress)
-{
+static void Adapter_RegisterSessionDetected(AdapterController adapter, IPAddress ip)
+    => Debug.WriteLine("RegisterSession from " + ip);
 
-    Debug.WriteLine("ForwardClosed from IP: " + ipAdrress.ToString());
+static void Adapter_UnregisterSessionDetected(AdapterController adapter, IPAddress ip)
+    => Debug.WriteLine("UnregisterSession from " + ip);
+
+static void Adapter_ForwardOpenDetected(AdapterController adapter, IPAddress ip, bool large)
+    => Debug.WriteLine("ForwardOpen from " + ip + " (large=" + large + ")");
+
+static void Adapter_ForwardCloseDetected(AdapterController adapter, IPAddress ip)
+    => Debug.WriteLine("ForwardClose from " + ip);
+
+static void Adapter_BeforeAssemblyDataSend(AdapterController adapter, ushort instanceNumber)
+    => Debug.WriteLine("Before send: instance=" + instanceNumber);
+
+static void Adapter_AfterAssemblyDataReceived(AdapterController adapter, ushort instanceNumber)
+    => Debug.WriteLine("After receive: instance=" + instanceNumber);
+
+static void Adapter_NotifyClass(AdapterController adapter, uint classCode, ushort instanceNumber, ushort attributeNumber, IPAddress ip) {
+    Debug.WriteLine("NotifyClass: class=" + classCode + " instance=" + instanceNumber
+                  + " attribute=" + attributeNumber + " from=" + ip);
 }
 
-private static void Adapter_ForwardOpenDetected(AdapterController adapter, System.Net.IPAddress ipAdrress, bool large)
-{
-    Debug.WriteLine("ForwardOpen from IP: " + ipAdrress.ToString() + ", Large: " + large.ToString());
-}
+static void Adapter_ReceivedExplicitTcpData(AdapterController adapter, ushort commandCode, IPAddress ip)
+    => Debug.WriteLine("TCP: command=" + commandCode + " from=" + ip);
 
-private static void Adapter_UnregisterSessionDetected(AdapterController adapter, System.Net.IPAddress ipAdrress)
-{
-    Debug.WriteLine("UnregisterSession from IP: " + ipAdrress.ToString());
-}
-
-private static void Adapter_RegisterSessionDetected(AdapterController adapter, System.Net.IPAddress ipAdrress)
-{
-    Debug.WriteLine("RegisterSession from IP: " + ipAdrress.ToString());
-}
-
-private static void Adapter_BeforeAssemblyDataSend(AdapterController adapter, ushort instanceNumbber)
-{
-    Debug.WriteLine("Before => instanceNumbber = " + instanceNumbber);
-}
-private static void Adapter_EventAssemblyConnectedDataReceivedHandler(AdapterController adapter, ushort instanceNumbber)
-{
-    Debug.WriteLine("After => instanceNumbber = " + instanceNumbber);
-
-}
-
-private static void Adapter_EventNotifyClassHandler(AdapterController adapter, uint classCode, ushort instanceNumbber, ushort attributeNumber, IPAddress ipAdrress)
-{
-    Debug.WriteLine("NotifyClass :  classCode = " + classCode);
-    Debug.WriteLine("               instanceNumbber = " + instanceNumbber);
-    Debug.WriteLine("               attributeNumber = " + attributeNumber);
-    Debug.WriteLine("               ipAdrress = " + ipAdrress.ToString());
-}
-
-private static void Adapter_EventReceivedExplictUdpDataHandler(AdapterController adapter, ushort commandCode, IPAddress ipAdrress, bool unicast)
-{
-    Debug.WriteLine("udp:   commandCode = " + commandCode);
-    Debug.WriteLine("       address = " + ipAdrress.ToString());
-    Debug.WriteLine("       unicast = " + unicast);
-}
-
-private static void Adapter_EventReceivedExplictTcpDataHandler(AdapterController adapter, ushort commandCode, IPAddress address)
-{
-    Debug.WriteLine("tcp: commandCode = " + commandCode);
-    Debug.WriteLine("     address = " + address.ToString());
-}
+static void Adapter_ReceivedExplicitUdpData(AdapterController adapter, ushort commandCode, IPAddress ip, bool unicast)
+    => Debug.WriteLine("UDP: command=" + commandCode + " from=" + ip + " unicast=" + unicast);
 ```

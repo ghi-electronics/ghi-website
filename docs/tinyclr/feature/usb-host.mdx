@@ -2,164 +2,149 @@
 title: USB Host
 ---
 
-:::info[Docs under migration]
-These docs are under active migration and updates. The original docs will remain available at [docs.ghielectronics.com](https://docs.ghielectronics.com/) for future reference.
-:::
+TinyCLR's USB Host API lets a SITCore device act as the **USB host** — driving the bus and accepting USB devices that you'd normally plug into a PC. Supported device classes:
 
-The USB Host API supports USB keyboards, mice, joysticks, raw devices, and USB MSC (Mass Storage Class), which allows file access on USB memory devices. The following code sample shows how to detect devices as they are connected to your SITCore device's USB host port.
+- **HID** — keyboards, mice, joysticks
+- **Mass Storage (MSC)** — USB sticks, external drives (FAT16/FAT32, see [File System](file-system.mdx))
+- **Raw devices** — anything else, accessed via the underlying USB descriptors and pipes
+
+NuGet packages: **`GHIElectronics.TinyCLR.Devices.UsbHost`**, plus **`GHIElectronics.TinyCLR.Devices.Storage`** and **`GHIElectronics.TinyCLR.IO`** if you need mass-storage support.
 
 :::note
-USB hubs are not currently supported. Special USB memory devices that have multiple interfaces or built in hubs will not work.
+**USB hubs aren't supported.** Devices with multiple interfaces (composite devices) or built-in hubs (some USB sticks) won't enumerate correctly.
 :::
 
-:::tip
-Needed NuGets: GHIElectronics.TinyCLR.Core, GHIElectronics.TinyCLR.Devices.Storage, GHIElectronics.TinyCLR.Devices.UsbHost, GHIElectronics.TinyCLR.IO, GHIElectronics.TinyCLR.Native, and GHIElectronics.TinyCLR.Pins.
-:::
+## Detecting connections
+
+The `UsbHostController` raises a single `OnConnectionChangedEvent` for every connect, disconnect, and bad-device condition. Inspect `e.Type` to find out what was plugged in and instantiate the matching driver class.
 
 ```csharp
-using System.IO;
-using System.Diagnostics;
-using System.Threading;
+using GHIElectronics.TinyCLR.Devices.Storage;
 using GHIElectronics.TinyCLR.Devices.UsbHost;
 using GHIElectronics.TinyCLR.Devices.UsbHost.Descriptors;
-using GHIElectronics.TinyCLR.Devices.Storage;
 using GHIElectronics.TinyCLR.IO;
 using GHIElectronics.TinyCLR.Pins;
+using System.Diagnostics;
+using System.IO;
+using System.Threading;
 
-class Program {
-    static void Main() {
-        var usbHostController = UsbHostController.GetDefault();
+var usbHostController = UsbHostController.GetDefault();
+usbHostController.OnConnectionChangedEvent += OnConnectionChanged;
+usbHostController.Enable();
 
-        usbHostController.OnConnectionChangedEvent +=
-            UsbHostController_OnConnectionChangedEvent;
+Thread.Sleep(Timeout.Infinite);
 
-        usbHostController.Enable();
+static void OnConnectionChanged(UsbHostController sender, DeviceConnectionEventArgs e) {
+    Debug.WriteLine("Id=" + e.Id + " interface=" + e.InterfaceIndex + " port=" + e.PortNumber
+                  + " type=" + e.Type + " vid=" + e.VendorId + " pid=" + e.ProductId);
 
-        Thread.Sleep(Timeout.Infinite);
-    }
-
-    private static void UsbHostController_OnConnectionChangedEvent
-        (UsbHostController sender, DeviceConnectionEventArgs e) {
-
-        Debug.WriteLine("e.Id = " + e.Id + " \n");
-        Debug.WriteLine("e.InterfaceIndex = " + e.InterfaceIndex + " \n");
-        Debug.WriteLine("e.PortNumber = " + e.PortNumber);
-        Debug.WriteLine("e.Type = " + ((object)(e.Type)).
-            ToString() + " \n");
-
-        Debug.WriteLine("e.VendorId = " + e.VendorId + " \n");
-        Debug.WriteLine("e.ProductId = " + e.ProductId + " \n");
-
-        switch (e.DeviceStatus) {
-            case DeviceConnectionStatus.Connected:
-                switch (e.Type) {
-                    case BaseDevice.DeviceType.Keyboard:
-                        var keyboard = new Keyboard(e.Id, e.InterfaceIndex);
-                        keyboard.KeyUp += Keyboard_KeyUp;
-                        keyboard.KeyDown += Keyboard_KeyDown;
-                        break;
-
-                    case BaseDevice.DeviceType.Mouse:
-                        var mouse = new Mouse(e.Id, e.InterfaceIndex);
-                        mouse.ButtonChanged += Mouse_ButtonChanged;
-                        mouse.CursorMoved += Mouse_CursorMoved;
-                        break;
-
-                    case BaseDevice.DeviceType.Joystick:
-                        var joystick = new Joystick(e.Id, e.InterfaceIndex);
-                        joystick.CursorMoved += Joystick_CursorMoved;
-                        joystick.HatSwitchPressed += Joystick_HatSwitchPressed;
-                        joystick.ButtonChanged += Joystick_ButtonChanged;
-                        break;
-
-                    case BaseDevice.DeviceType.MassStorage:
-                        var storageController = StorageController.FromName
-                            (SC20260.StorageController.UsbHostMassStorage);
-                        var driver = FileSystem.Mount(storageController.Hdc);
-                        var driveInfo = new DriveInfo(driver.Name);
-
-                        Debug.WriteLine("Free: " + driveInfo.TotalFreeSpace);
-                        Debug.WriteLine("TotalSize: " + driveInfo.TotalSize);
-                        Debug.WriteLine("VolumeLabel:" + driveInfo.VolumeLabel);
-                        Debug.WriteLine("RootDirectory: " + driveInfo.RootDirectory);
-                        Debug.WriteLine("DriveFormat: " + driveInfo.DriveFormat);
-
-                        break;
-
-                    default:
-                        // This example is mount keyboard as RawDevice
-                        var rawDevice = new RawDevice(e.Id, e.InterfaceIndex, e.Type);
-                        var devDesc = rawDevice.GetDeviceDescriptor();
-                        var cfgDesc = rawDevice.GetConfigurationDescriptor(0);
-						
-                        rawDevice.SendSetupPacket(0, 9, 1, 0); 
-						
-                        var endpointData = new byte[7];
-
-                        endpointData[0] = 7;        //Length in bytes of this descriptor.
-                        endpointData[1] = 5;        //Descriptor type (endpoint).
-                        endpointData[2] = 0x81;     //Input endpoint address.
-                        endpointData[3] = 3;        //Transfer type is interrupt endpoint.
-                        endpointData[4] = 8;        //Max packet size LSB.
-                        endpointData[5] = 0;        //Max packet size MSB.
-                        endpointData[6] = 10;       //Polling interval.
-
-                        var endpoint = new Endpoint(endpointData, 0);
-
-                        var pipe = rawDevice.OpenPipe(endpoint);
-                        pipe.TransferTimeout = 10;
-
-                        var data = new byte[8];
-                        var read = pipe.Transfer(data);
-
-                        if (read > 0) {
-                            Debug.WriteLine("Raw Device has new data "
-                                + data[0] + ", " + data[1] + ", " + data[2] + ", " + data[3]);
-                        }
-
-                        else if (read == 0) {
-                            Debug.WriteLine("No new data");
-                        }
-
-                        Thread.Sleep(500);
-                        break;
-                }
-                break;
-
-            case DeviceConnectionStatus.Disconnected:
-                Debug.WriteLine("Device Disconnected");
-                //Unmount filesystem if it was mounted.
-                break;
-
-            case DeviceConnectionStatus.Bad:
-                Debug.WriteLine("Bad Device");
-                break;
-        }
-    }
-    private static void Keyboard_KeyDown(Keyboard sender, Keyboard.KeyboardEventArgs args) {
-        Debug.WriteLine("Key pressed: " + ((object)args.Which).ToString());
-        Debug.WriteLine("Key pressed ASCII: " +
-            ((object)args.ASCII).ToString());
-    }
-    private static void Keyboard_KeyUp(Keyboard sender, Keyboard.KeyboardEventArgs args) {
-        Debug.WriteLine("Key released: " + ((object)args.Which).ToString());
-        Debug.WriteLine("Key released ASCII: " + ((object)args.ASCII).ToString());
-    }
-    private static void Mouse_CursorMoved(Mouse sender, Mouse.CursorMovedEventArgs e) {
-        Debug.WriteLine("Mouse moved to: " + e.NewPosition.X + ", " + e.NewPosition.Y);
-    }
-    private static void Mouse_ButtonChanged(Mouse sender, Mouse.ButtonChangedEventArgs args) {
-        Debug.WriteLine("Mouse button changed: " + ((object)args.Which).ToString());
-    }
-    private static void Joystick_ButtonChanged(Joystick sender, Joystick.ButtonChangedEventArgs e) {
-        Debug.WriteLine("Joystick button changed  = " + ((object)(e.Which)).ToString());
-    }
-    private static void Joystick_HatSwitchPressed(Joystick sender, Joystick.HatSwitchPressedEventArgs e) {
-        Debug.WriteLine("Joystick direction  = " + ((object)(e.Direction)).ToString());
-    }
-    private static void Joystick_CursorMoved(Joystick sender, Joystick.CursorMovedEventArgs e) {
-        Debug.WriteLine("Joystick.move  = " + e.NewPosition.X + ", " + e.NewPosition.Y);
+    switch (e.DeviceStatus) {
+        case DeviceConnectionStatus.Connected:
+            HandleConnect(e);
+            break;
+        case DeviceConnectionStatus.Disconnected:
+            Debug.WriteLine("Device disconnected");
+            // Unmount file system here if previously mounted.
+            break;
+        case DeviceConnectionStatus.Bad:
+            Debug.WriteLine("Bad device");
+            break;
     }
 }
 
+static void HandleConnect(DeviceConnectionEventArgs e) {
+    switch (e.Type) {
+        case BaseDevice.DeviceType.Keyboard:
+            var keyboard = new Keyboard(e.Id, e.InterfaceIndex);
+            keyboard.KeyDown += (s, a) => Debug.WriteLine("Key down: " + a.Which + " (ASCII " + a.ASCII + ")");
+            keyboard.KeyUp   += (s, a) => Debug.WriteLine("Key up: "   + a.Which + " (ASCII " + a.ASCII + ")");
+            break;
+
+        case BaseDevice.DeviceType.Mouse:
+            var mouse = new Mouse(e.Id, e.InterfaceIndex);
+            mouse.CursorMoved   += (s, a) => Debug.WriteLine("Mouse: " + a.NewPosition.X + "," + a.NewPosition.Y);
+            mouse.ButtonChanged += (s, a) => Debug.WriteLine("Mouse button: " + a.Which);
+            break;
+
+        case BaseDevice.DeviceType.Joystick:
+            var joystick = new Joystick(e.Id, e.InterfaceIndex);
+            joystick.CursorMoved      += (s, a) => Debug.WriteLine("Joystick: " + a.NewPosition.X + "," + a.NewPosition.Y);
+            joystick.HatSwitchPressed += (s, a) => Debug.WriteLine("Joystick hat: " + a.Direction);
+            joystick.ButtonChanged    += (s, a) => Debug.WriteLine("Joystick button: " + a.Which);
+            break;
+
+        case BaseDevice.DeviceType.MassStorage:
+            MountMassStorage();
+            break;
+
+        default:
+            ReadRawDevice(e);
+            break;
+    }
+}
 ```
+
+## Mass Storage
+
+When a USB stick or external drive is detected, mount it through `StorageController` and use it like any other [file system](file-system.mdx):
+
+```csharp
+static void MountMassStorage() {
+    var storage = StorageController.FromName(SC20260.StorageController.UsbHostMassStorage);
+    var drive = FileSystem.Mount(storage.Hdc);
+    var info = new DriveInfo(drive.Name);
+
+    Debug.WriteLine("Volume: "    + info.VolumeLabel);
+    Debug.WriteLine("Format: "    + info.DriveFormat);
+    Debug.WriteLine("Total size: " + info.TotalSize);
+    Debug.WriteLine("Free space: " + info.TotalFreeSpace);
+    Debug.WriteLine("Root: "      + info.RootDirectory);
+}
+```
+
+The mount lives until `FileSystem.Unmount(...)` (typically called on the `Disconnected` event).
+
+## Raw devices
+
+If a device's class doesn't match `Keyboard`, `Mouse`, `Joystick`, or `MassStorage`, you can talk to it as a **raw USB device** — reading descriptors, opening pipes, and exchanging bytes directly. Useful for proprietary HID devices, custom hardware, or testing unusual USB peripherals.
+
+```csharp
+static void ReadRawDevice(DeviceConnectionEventArgs e) {
+    var raw = new RawDevice(e.Id, e.InterfaceIndex, e.Type);
+
+    var deviceDescriptor = raw.GetDeviceDescriptor();
+    var configDescriptor = raw.GetConfigurationDescriptor(0);
+
+    // SET_CONFIGURATION(1) — standard setup packet to activate config 1.
+    raw.SendSetupPacket(0, 9, 1, 0);
+
+    // Build an Endpoint descriptor for an interrupt-in endpoint (address 0x81, 8-byte max packet, 10 ms poll).
+    var endpointData = new byte[7] {
+        7,        // Descriptor length.
+        5,        // Endpoint descriptor type.
+        0x81,     // Input endpoint, address 1.
+        3,        // Interrupt transfer type.
+        8, 0,     // Max packet size = 8 (LSB, MSB).
+        10,       // Polling interval (ms).
+    };
+
+    var endpoint = new Endpoint(endpointData, 0);
+    var pipe = raw.OpenPipe(endpoint);
+    pipe.TransferTimeout = 10;
+
+    var data = new byte[8];
+    var read = pipe.Transfer(data);
+
+    if (read > 0) {
+        Debug.WriteLine("Raw device read " + read + " bytes: "
+                      + data[0] + "," + data[1] + "," + data[2] + "," + data[3]);
+    }
+    else {
+        Debug.WriteLine("No data available");
+    }
+
+    Thread.Sleep(500);
+}
+```
+
+The endpoint descriptor (7 bytes) is the standard USB endpoint descriptor format from the USB spec — fill in the values that match your device's interface, available in its USB documentation or via tools like `lsusb -v` on Linux.
