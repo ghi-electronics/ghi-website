@@ -6,6 +6,10 @@ sidebar_label: Overview
 
 <h1 className="api-package-heading">GHIElectronics.TinyCLR.System.Security.Cryptography NuGet</h1>
 
+:::info
+The standard-.NET `System.Security.Cryptography` API for TinyCLR. It ships inside the **[GHIElectronics.TinyCLR.Cryptography](../GHIElectronics.TinyCLR.Cryptography/index.md)** NuGet — there is no separate package to install.
+:::
+
 ## Classes
 
 | Class | Namespace | Summary |

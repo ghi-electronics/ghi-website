@@ -6,6 +6,10 @@ sidebar_label: Overview
 
 <h1 className="api-package-heading">GHIElectronics.TinyCLR.Devices.I2c NuGet</h1>
 
+:::tip
+This NuGet also includes the standard, .NET-compatible **`System.Device.I2c`** API — see **[GHIElectronics.TinyCLR.System.Device.I2c](../GHIElectronics.TinyCLR.System.Device.I2c/index.md)**.
+:::
+
 ## Classes
 
 | Class | Namespace | Summary |

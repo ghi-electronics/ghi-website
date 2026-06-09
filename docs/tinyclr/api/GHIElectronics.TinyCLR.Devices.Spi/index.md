@@ -6,6 +6,10 @@ sidebar_label: Overview
 
 <h1 className="api-package-heading">GHIElectronics.TinyCLR.Devices.Spi NuGet</h1>
 
+:::tip
+This NuGet also includes the standard, .NET-compatible **`System.Device.Spi`** API — see **[GHIElectronics.TinyCLR.System.Device.Spi](../GHIElectronics.TinyCLR.System.Device.Spi/index.md)**.
+:::
+
 ## Classes
 
 | Class | Namespace | Summary |

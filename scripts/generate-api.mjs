@@ -652,6 +652,43 @@ const KIND_SECTIONS = [
   ['class', 'Classes'], ['struct', 'Structs'], ['interface', 'Interfaces'],
   ['enum', 'Enums'], ['delegate', 'Delegates'],
 ];
+
+// Per-package admonition shown under the heading. Used to cross-link a NuGet to the
+// standard-.NET compat shim DLL it ships alongside (same NuGet, separate assembly),
+// so users browsing the small helper package discover the richer .NET-compatible API.
+const PACKAGE_NOTES = {
+  'GHIElectronics.TinyCLR.Cryptography':
+    ':::tip\n' +
+    '**Need standard .NET cryptography?** This NuGet also provides the .NET-compatible `System.Security.Cryptography` API (hashing, AES, RSA, X.509, …) — see **[GHIElectronics.TinyCLR.System.Security.Cryptography](../GHIElectronics.TinyCLR.System.Security.Cryptography/index.md)**. The `Crc16` and `Xtea` types here are lightweight extras.\n' +
+    ':::',
+  'GHIElectronics.TinyCLR.System.Security.Cryptography':
+    ':::info\n' +
+    'The standard-.NET `System.Security.Cryptography` API for TinyCLR. It ships inside the **[GHIElectronics.TinyCLR.Cryptography](../GHIElectronics.TinyCLR.Cryptography/index.md)** NuGet — there is no separate package to install.\n' +
+    ':::',
+};
+
+// Device NuGets that also ship a standard-.NET compat shim DLL (same NuGet, separate
+// assembly): [parent package, shim package, shim API name]. Unlike crypto, here the
+// native parent API is primary and the shim is the .NET-compatibility option. Notes
+// are generated for both directions and merged into PACKAGE_NOTES.
+const SHIM_PAIRS = [
+  ['GHIElectronics.TinyCLR.Devices.Gpio', 'GHIElectronics.TinyCLR.System.Device.Gpio', 'System.Device.Gpio'],
+  ['GHIElectronics.TinyCLR.Devices.I2c',  'GHIElectronics.TinyCLR.System.Device.I2c',  'System.Device.I2c'],
+  ['GHIElectronics.TinyCLR.Devices.Spi',  'GHIElectronics.TinyCLR.System.Device.Spi',  'System.Device.Spi'],
+  ['GHIElectronics.TinyCLR.Devices.Pwm',  'GHIElectronics.TinyCLR.System.Device.Pwm',  'System.Device.Pwm'],
+  ['GHIElectronics.TinyCLR.Devices.Uart', 'GHIElectronics.TinyCLR.System.IO.Ports',    'System.IO.Ports'],
+];
+for (const [parent, shim, api] of SHIM_PAIRS) {
+  PACKAGE_NOTES[parent] =
+    ':::tip\n' +
+    `This NuGet also includes the standard, .NET-compatible **\`${api}\`** API — see **[${shim}](../${shim}/index.md)**.\n` +
+    ':::';
+  PACKAGE_NOTES[shim] =
+    ':::info\n' +
+    `The standard, .NET-compatible \`${api}\` API for TinyCLR. It ships inside the **[${parent}](../${parent}/index.md)** NuGet — there is no separate package to install.\n` +
+    ':::';
+}
+
 function renderAssemblyIndex(assembly, types, fileOf) {
   const showNs = true;                         // always show the Namespace column (uniform table shape)
   const L = [];
@@ -668,6 +705,9 @@ function renderAssemblyIndex(assembly, types, fileOf) {
   // can size it like the Microsoft docs page instead of Docusaurus's oversized default H1.
   L.push(`<h1 className="api-package-heading">${assembly} NuGet</h1>`);
   L.push('');
+  if (PACKAGE_NOTES[assembly]) {
+    L.push(PACKAGE_NOTES[assembly], '');
+  }
   for (const [kind, heading] of KIND_SECTIONS) {
     const group = types.filter(t => t.kind === kind).sort((a, b) => a.name.localeCompare(b.name));
     if (!group.length) continue;
