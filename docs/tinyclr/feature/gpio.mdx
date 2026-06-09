@@ -35,18 +35,18 @@ Digital pins on microcontrollers are weak — typically enough to drive small LE
 <TabItem value="netiot" label=".NET IoT API" default>
 
 ```csharp
-using System.Device.Gpio;
 using System.Threading;
+using System.Device.Gpio;
 using GHIElectronics.TinyCLR.Pins;
 
 using GpioController controller = new GpioController();
-controller.OpenPin(SC20260.GpioPin.PH6, PinMode.Output);
+controller.OpenPin(FEZBit.GpioPin.Led, PinMode.Output);
 
-while (true) {
-    controller.Write(SC20260.GpioPin.PH6, PinValue.High);
+while (true){
+    controller.Write(FEZBit.GpioPin.Led, PinValue.High);
     Thread.Sleep(100);
 
-    controller.Write(SC20260.GpioPin.PH6, PinValue.Low);
+    controller.Write(FEZBit.GpioPin.Led, PinValue.Low);
     Thread.Sleep(100);
 }
 ```
@@ -55,14 +55,15 @@ while (true) {
 <TabItem value="tinyclr" label="TinyCLR API">
 
 ```csharp
+using System.Threading;
 using GHIElectronics.TinyCLR.Devices.Gpio;
 using GHIElectronics.TinyCLR.Pins;
-using System.Threading;
 
-var led = GpioController.GetDefault().OpenPin(SC20260.GpioPin.PH6);
+var led = GpioController.GetDefault().OpenPin(FEZBit.GpioPin.Led);
+
 led.SetDriveMode(GpioPinDriveMode.Output);
 
-while (true) {
+while (true){
     led.Write(GpioPinValue.High);
     Thread.Sleep(100);
 
@@ -92,15 +93,15 @@ The code below uses an internal pull-up on a button pin. When the button is pres
 <TabItem value="netiot" label=".NET IoT API" default>
 
 ```csharp
-using System.Device.Gpio;
 using System.Threading;
+using System.Device.Gpio;
 using GHIElectronics.TinyCLR.Pins;
 
 using GpioController controller = new GpioController();
-controller.OpenPin(SC20260.GpioPin.PD7, PinMode.InputPullUp);
+controller.OpenPin(FEZBit.GpioPin.ButtonA, PinMode.InputPullUp);
 
-while (true) {
-    if (controller.Read(SC20260.GpioPin.PD7) == PinValue.Low) {
+while (true){
+    if (controller.Read(FEZBit.GpioPin.ButtonA) == PinValue.Low){
         // Button is pressed.
     }
     Thread.Sleep(10);   // Always give the system time to think!
@@ -111,16 +112,16 @@ while (true) {
 <TabItem value="tinyclr" label="TinyCLR API">
 
 ```csharp
+using System.Threading;
 using GHIElectronics.TinyCLR.Devices.Gpio;
 using GHIElectronics.TinyCLR.Pins;
-using System.Threading;
 
 var gpio = GpioController.GetDefault();
-var button = gpio.OpenPin(SC20260.GpioPin.PD7);
+var button = gpio.OpenPin(FEZBit.GpioPin.ButtonA);
 button.SetDriveMode(GpioPinDriveMode.InputPullUp);
 
-while (true) {
-    if (button.Read() == GpioPinValue.Low) {
+while (true){
+    if (button.Read() == GpioPinValue.Low){
         // Button is pressed.
     }
     Thread.Sleep(10);   // Always give the system time to think!
@@ -140,15 +141,15 @@ The example below registers a callback that fires on both **falling edges** (hig
 <TabItem value="netiot" label=".NET IoT API" default>
 
 ```csharp
-using System.Device.Gpio;
 using System.Threading;
+using System.Device.Gpio;
 using GHIElectronics.TinyCLR.Pins;
 
 using GpioController controller = new GpioController();
-controller.OpenPin(SC20260.GpioPin.PD7, PinMode.InputPullUp);
+controller.OpenPin(FEZBit.GpioPin.ButtonA, PinMode.InputPullUp);
 
 controller.RegisterCallbackForPinValueChangedEvent(
-    SC20260.GpioPin.PD7,
+    FEZBit.GpioPin.ButtonA,
     PinEventTypes.Falling | PinEventTypes.Rising,
     Button_ValueChanged
 );
@@ -156,10 +157,10 @@ controller.RegisterCallbackForPinValueChangedEvent(
 // Do other tasks here ...
 Thread.Sleep(Timeout.Infinite);
 
-void Button_ValueChanged(object sender, PinValueChangedEventArgs args) {
-    if (args.ChangeType == PinEventTypes.Falling) {
+void Button_ValueChanged(object sender, PinValueChangedEventArgs args){
+    if (args.ChangeType == PinEventTypes.Falling){
         // Pin went low — button pressed
-    } else {
+    } else{
         // Pin went high — button released
     }
 }
@@ -169,12 +170,13 @@ void Button_ValueChanged(object sender, PinValueChangedEventArgs args) {
 <TabItem value="tinyclr" label="TinyCLR API">
 
 ```csharp
+using System.Threading;
 using GHIElectronics.TinyCLR.Devices.Gpio;
 using GHIElectronics.TinyCLR.Pins;
-using System.Threading;
 
 var gpio = GpioController.GetDefault();
-var button = gpio.OpenPin(SC20260.GpioPin.PD7);
+var button = gpio.OpenPin(FEZBit.GpioPin.ButtonA);
+
 button.SetDriveMode(GpioPinDriveMode.InputPullUp);
 button.ValueChangedEdge = GpioPinEdge.FallingEdge | GpioPinEdge.RisingEdge;
 button.ValueChanged += Button_ValueChanged;
@@ -182,8 +184,8 @@ button.ValueChanged += Button_ValueChanged;
 // Do other tasks here ...
 Thread.Sleep(Timeout.Infinite);
 
-void Button_ValueChanged(GpioPin sender, GpioPinValueChangedEventArgs e) {
-    if (e.Edge == GpioPinEdge.FallingEdge) {
+void Button_ValueChanged(GpioPin sender, GpioPinValueChangedEventArgs e){
+    if (e.Edge == GpioPinEdge.FallingEdge){
         // Pin went low — button pressed
     } else {
         // Pin went high — button released
