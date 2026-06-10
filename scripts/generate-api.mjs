@@ -781,11 +781,11 @@ const shortName = (asm) => asm.replace(/^GHIElectronics\.TinyCLR\./, '');
 const PACKAGE_NOTES = {
   'GHIElectronics.TinyCLR.Cryptography':
     ':::tip\n' +
-    '**Need standard .NET cryptography?** This NuGet also provides the .NET-compatible **[`System.Security.Cryptography`](../System.Security.Cryptography/index.md)** API (hashing, AES, RSA, X.509, …). The `Crc16` and `Xtea` types here are lightweight extras.\n' +
+    '**Need standard .NET cryptography?** This NuGet also provides the .NET-compatible **[`System.Security.Cryptography`](../System.Security.Cryptography/index.mdx)** API (hashing, AES, RSA, X.509, …). The `Crc16` and `Xtea` types here are lightweight extras.\n' +
     ':::',
   'GHIElectronics.TinyCLR.System.Security.Cryptography':
     ':::info\n' +
-    'The standard-.NET `System.Security.Cryptography` API for TinyCLR. It ships inside the **[GHIElectronics.TinyCLR.Cryptography](../GHIElectronics.TinyCLR.Cryptography/index.md)** NuGet — there is no separate package to install.\n' +
+    'The standard-.NET `System.Security.Cryptography` API for TinyCLR. It ships inside the **[GHIElectronics.TinyCLR.Cryptography](../GHIElectronics.TinyCLR.Cryptography/index.mdx)** NuGet — there is no separate package to install.\n' +
     ':::',
 };
 
@@ -803,11 +803,11 @@ const SHIM_PAIRS = [
 for (const [parent, shim, api] of SHIM_PAIRS) {
   PACKAGE_NOTES[parent] =
     ':::tip\n' +
-    `This NuGet also includes the standard, .NET-compatible **[\`${api}\`](../${shortName(shim)}/index.md)** API.\n` +
+    `This NuGet also includes the standard, .NET-compatible **[\`${api}\`](../${shortName(shim)}/index.mdx)** API.\n` +
     ':::';
   PACKAGE_NOTES[shim] =
     ':::info\n' +
-    `The standard, .NET-compatible \`${api}\` API for TinyCLR. It ships inside the **[${parent}](../${parent}/index.md)** NuGet — there is no separate package to install.\n` +
+    `The standard, .NET-compatible \`${api}\` API for TinyCLR. It ships inside the **[${parent}](../${parent}/index.mdx)** NuGet — there is no separate package to install.\n` +
     ':::';
 }
 
@@ -859,7 +859,7 @@ function renderAssemblyIndex(assembly, types, fileOf) {
     L.push(showNs ? `| ${cap(kind)} | Namespace | Summary |` : `| ${cap(kind)} | Summary |`);
     L.push(showNs ? '|---|---|---|' : '|---|---|');
     for (const t of group) {
-      const link = `[${prose(t.name)}](./${encodeURIComponent(fileOf.get(t))}.md)`;
+      const link = `[${prose(t.name)}](./${encodeURIComponent(fileOf.get(t))}.mdx)`;
       const summary = t.doc && t.doc.summary ? proseCell(t.doc.summary) : '';
       L.push(showNs ? `| ${link} | \`${t.ns}\` | ${summary} |` : `| ${link} | ${summary} |`);
     }
@@ -943,11 +943,11 @@ function renderPinsIndex(asm, boards) {
     `**NuGet:** \`${packageMeta(asm).nuget}\``, '',
     'Pin, peripheral, and bus definitions, grouped by board. Pick your board:', '',
     '## Boards', ''];
-  for (const b of real) L.push(`- [${b.name}](./${encodeURIComponent(b.name)}.md)`);
+  for (const b of real) L.push(`- [${b.name}](./${encodeURIComponent(b.name)}.mdx)`);
   if (chips.length) {
     L.push('', '## Chip families', '',
       'Shared chip-level definitions that the boards above reference.', '');
-    for (const b of chips) L.push(`- [${b.name}](./${encodeURIComponent(b.name)}.md)`);
+    for (const b of chips) L.push(`- [${b.name}](./${encodeURIComponent(b.name)}.mdx)`);
   }
   L.push('');
   return L.join('\n');
@@ -1038,15 +1038,15 @@ async function main() {
     if (asm === 'GHIElectronics.TinyCLR.Pins') {
       const boards = types.filter(t => !t.outer && t.kind === 'class')
         .sort((a, b) => a.name.localeCompare(b.name));
-      await fs.writeFile(path.join(asmDir, 'index.md'), renderPinsIndex(asm, boards));
+      await fs.writeFile(path.join(asmDir, 'index.mdx'), renderPinsIndex(asm, boards));
       for (const b of boards)
-        await fs.writeFile(path.join(asmDir, b.name + '.md'), renderPinsBoardPage(b, types));
+        await fs.writeFile(path.join(asmDir, b.name + '.mdx'), renderPinsBoardPage(b, types));
       continue;
     }
 
-    await fs.writeFile(path.join(asmDir, 'index.md'), renderAssemblyIndex(asm, types, fileOf));
+    await fs.writeFile(path.join(asmDir, 'index.mdx'), renderAssemblyIndex(asm, types, fileOf));
     for (const t of types)
-      await fs.writeFile(path.join(asmDir, fileOf.get(t) + '.md'), renderType(t));
+      await fs.writeFile(path.join(asmDir, fileOf.get(t) + '.mdx'), renderType(t));
   }
 
   // top-level api index — list NuGet packages
@@ -1057,8 +1057,8 @@ async function main() {
     '# TinyCLR API Reference', '',
     '| Library | Description |', '|---|---|'];
   for (const asm of assemblies)
-    idx2.push(`| [${dirOf(asm)}](./${encodeURIComponent(dirOf(asm))}/index.md) | ${proseCell(descOf.get(asm))} |`);
-  await fs.writeFile(path.join(outRoot, 'index.md'), idx2.join('\n'));
+    idx2.push(`| [${dirOf(asm)}](./${encodeURIComponent(dirOf(asm))}/index.mdx) | ${proseCell(descOf.get(asm))} |`);
+  await fs.writeFile(path.join(outRoot, 'index.mdx'), idx2.join('\n'));
 
   const total = model.types.length;
   const documented = model.types.filter(t => t.doc && t.doc.summary).length;

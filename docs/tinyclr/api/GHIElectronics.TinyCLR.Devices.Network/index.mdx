@@ -1,0 +1,55 @@
+---
+title: "GHIElectronics.TinyCLR.Devices.Network"
+hide_title: true
+sidebar_label: Overview
+---
+
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Devices.Network</h1>
+
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Network`
+
+## Classes
+
+| Class | Namespace | Summary |
+|---|---|---|
+| [BuiltInNetworkCommunicationInterfaceSettings](./BuiltInNetworkCommunicationInterfaceSettings.mdx) | `GHIElectronics.TinyCLR.Devices.Network` | Built-in MAC — no extra wiring required. |
+| [EthernetNetworkInterfaceProperties](./EthernetNetworkInterfaceProperties.mdx) | `GHIElectronics.TinyCLR.Devices.Network` | Ethernet-specific interface properties. |
+| [EthernetNetworkInterfaceSettings](./EthernetNetworkInterfaceSettings.mdx) | `GHIElectronics.TinyCLR.Devices.Network` | Ethernet interface settings. |
+| [NetworkAddressChangedEventArgs](./NetworkAddressChangedEventArgs.mdx) | `GHIElectronics.TinyCLR.Devices.Network` | Arguments for `NetworkController.NetworkAddressChanged`. |
+| [NetworkCommunicationInterfaceSettings](./NetworkCommunicationInterfaceSettings.mdx) | `GHIElectronics.TinyCLR.Devices.Network` | Base class for transport-bus settings. |
+| [NetworkController](./NetworkController.mdx) | `GHIElectronics.TinyCLR.Devices.Network` | Represents a network interface — Ethernet, WiFi (station or AP), or PPP. Configure the interface settings, optionally the underlying communication interface (built-in MAC, SPI, or UART), then `Enable` the controller. Subscribe to `NetworkLinkConnectedChanged` and `NetworkAddressChanged` for status. Use `SetAsDefaultController` to choose which interface handles outbound traffic when multiple are up. |
+| [NetworkControllerApiWrapper](./NetworkControllerApiWrapper.mdx) | `GHIElectronics.TinyCLR.Devices.Network.Provider` | Concrete `INetworkControllerProvider` backed by the native TinyCLR network HAL (lwIP + mbedTLS). |
+| [NetworkInterfaceProperties](./NetworkInterfaceProperties.mdx) | `GHIElectronics.TinyCLR.Devices.Network` | Common interface properties. Cast via `GetEthernetProperties` / `GetWiFiProperties` / `GetPppProperties` for transport-specific fields. |
+| [NetworkInterfaceSettings](./NetworkInterfaceSettings.mdx) | `GHIElectronics.TinyCLR.Devices.Network` | Common interface settings — IP/DHCP/DNS/MAC. Subclass per transport for additional fields. |
+| [NetworkIPProperties](./NetworkIPProperties.mdx) | `GHIElectronics.TinyCLR.Devices.Network` | IP-level interface properties. |
+| [NetworkLinkConnectedChangedEventArgs](./NetworkLinkConnectedChangedEventArgs.mdx) | `GHIElectronics.TinyCLR.Devices.Network` | Arguments for `NetworkController.NetworkLinkConnectedChanged`. |
+| [PppNetworkInterfaceProperties](./PppNetworkInterfaceProperties.mdx) | `GHIElectronics.TinyCLR.Devices.Network` | PPP-specific interface properties. |
+| [PppNetworkInterfaceSettings](./PppNetworkInterfaceSettings.mdx) | `GHIElectronics.TinyCLR.Devices.Network` | PPP-specific interface settings (cellular modems, dial-up). |
+| [SpiNetworkCommunicationInterfaceSettings](./SpiNetworkCommunicationInterfaceSettings.mdx) | `GHIElectronics.TinyCLR.Devices.Network` | Settings for an external SPI-attached network controller (chip select, reset, interrupt pins, SPI mode). |
+| [UartNetworkCommunicationInterfaceSettings](./UartNetworkCommunicationInterfaceSettings.mdx) | `GHIElectronics.TinyCLR.Devices.Network` | Settings for an external UART-attached network controller (cellular modem, etc.). |
+| [WiFiNetworkInterfaceProperties](./WiFiNetworkInterfaceProperties.mdx) | `GHIElectronics.TinyCLR.Devices.Network` | WiFi-specific interface properties. |
+| [WiFiNetworkInterfaceSettings](./WiFiNetworkInterfaceSettings.mdx) | `GHIElectronics.TinyCLR.Devices.Network` | WiFi-specific interface settings. |
+
+## Interfaces
+
+| Interface | Namespace | Summary |
+|---|---|---|
+| [INetworkControllerProvider](./INetworkControllerProvider.mdx) | `GHIElectronics.TinyCLR.Devices.Network.Provider` | Provider contract for a network controller. |
+
+## Enums
+
+| Enum | Namespace | Summary |
+|---|---|---|
+| [NetworkCommunicationInterface](./NetworkCommunicationInterface.mdx) | `GHIElectronics.TinyCLR.Devices.Network` | Underlying physical bus carrying the network interface. |
+| [NetworkInterfaceType](./NetworkInterfaceType.mdx) | `GHIElectronics.TinyCLR.Devices.Network` | Transport type of a network interface. |
+| [PppAuthenticationType](./PppAuthenticationType.mdx) | `GHIElectronics.TinyCLR.Devices.Network` | PPP authentication protocol. |
+| [WiFiMode](./WiFiMode.mdx) | `GHIElectronics.TinyCLR.Devices.Network` | WiFi role for a WiFi interface. |
+| [WiFiSecurityMode](./WiFiSecurityMode.mdx) | `GHIElectronics.TinyCLR.Devices.Network` | WiFi security protocol. |
+
+## Delegates
+
+| Delegate | Namespace | Summary |
+|---|---|---|
+| [AccessPointClientConnectionChangedEventHandler](./AccessPointClientConnectionChangedEventHandler.mdx) | `GHIElectronics.TinyCLR.Devices.Network` | Handler signature for `AccessPointClientConnectionChanged`. |
+| [NetworkAddressChangedEventHandler](./NetworkAddressChangedEventHandler.mdx) | `GHIElectronics.TinyCLR.Devices.Network` | Handler signature for `NetworkController.NetworkAddressChanged`. |
+| [NetworkLinkConnectedChangedEventHandler](./NetworkLinkConnectedChangedEventHandler.mdx) | `GHIElectronics.TinyCLR.Devices.Network` | Handler signature for `NetworkController.NetworkLinkConnectedChanged`. |
