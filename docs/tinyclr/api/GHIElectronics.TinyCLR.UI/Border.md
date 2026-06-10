@@ -1,0 +1,84 @@
+---
+title: "Border Class"
+sidebar_label: "Border"
+---
+
+# Border Class
+
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
+
+Draws a border around its single child element.
+
+```csharp
+public class Border : ContentControl
+```
+
+## Constructors
+
+### Border()
+
+```csharp
+public Border()
+```
+
+Creates a new Border with a black, one-pixel border.
+
+## Properties
+
+### BorderBrush
+
+```csharp
+public Media.Brush BorderBrush { get; set; }
+```
+
+The brush used to paint the border.
+
+## Methods
+
+### GetBorderThickness(out int left, out int top, out int right, out int bottom)
+
+```csharp
+public void GetBorderThickness(out int left, out int top, out int right, out int bottom)
+```
+
+Gets the border thickness on each side, in pixels.
+
+### SetBorderThickness(int length)
+
+```csharp
+public void SetBorderThickness(int length)
+```
+
+Sets a uniform border thickness on all sides.
+
+### SetBorderThickness(int left, int top, int right, int bottom)
+
+```csharp
+public void SetBorderThickness(int left, int top, int right, int bottom)
+```
+
+Sets the border thickness for each side individually.
+
+### ArrangeOverride(int arrangeWidth, int arrangeHeight)
+
+```csharp
+protected override void ArrangeOverride(int arrangeWidth, int arrangeHeight)
+```
+
+Arranges the child inside the border.
+
+### MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
+
+```csharp
+protected override void MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
+```
+
+Measures the child plus the border thickness.
+
+### OnRender(DrawingContext dc)
+
+```csharp
+public override void OnRender(DrawingContext dc)
+```
+
+Draws the border and background.

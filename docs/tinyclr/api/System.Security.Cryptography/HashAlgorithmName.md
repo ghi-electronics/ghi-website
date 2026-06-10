@@ -7,7 +7,7 @@ sidebar_label: "HashAlgorithmName"
 
 **NuGet:** `GHIElectronics.TinyCLR.Cryptography`<br/>**Assembly:** `System.Security.Cryptography`<br/>**Namespace:** `System.Security.Cryptography`
 
-_No description available._
+Well-known hash-algorithm name selector matching .NET Framework's `System.Security.Cryptography.HashAlgorithmName`.
 
 ```csharp
 public struct HashAlgorithmName

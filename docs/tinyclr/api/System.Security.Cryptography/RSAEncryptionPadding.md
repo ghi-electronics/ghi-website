@@ -7,7 +7,7 @@ sidebar_label: "RSAEncryptionPadding"
 
 **NuGet:** `GHIElectronics.TinyCLR.Cryptography`<br/>**Assembly:** `System.Security.Cryptography`<br/>**Namespace:** `System.Security.Cryptography`
 
-_No description available._
+Encryption-padding configuration — padding mode plus (for OAEP) the hash algorithm. Matches the .NET Framework type.
 
 ```csharp
 public sealed class RSAEncryptionPadding

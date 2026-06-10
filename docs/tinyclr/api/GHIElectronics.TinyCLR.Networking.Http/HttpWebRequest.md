@@ -1,0 +1,398 @@
+---
+title: "HttpWebRequest Class"
+sidebar_label: "HttpWebRequest"
+---
+
+# HttpWebRequest Class
+
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Namespace:** `System.Net`
+
+Provides an HTTP-specific implementation of the `System.Net.WebRequest` class.
+
+```csharp
+public class HttpWebRequest : WebRequest
+```
+
+## Properties
+
+### Timeout
+
+```csharp
+public override int Timeout { get; set; }
+```
+
+Gets or sets the timeout value in milliseconds for the `System.Net.HttpWebRequest.GetResponse` and `System.Net.HttpWebRequest.GetRequestStream` methods.
+
+### Credentials
+
+```csharp
+public NetworkCredential Credentials { get; set; }
+```
+
+Set or Get NetworkCredential if user have send user name and password.
+
+### HttpsAuthentCerts
+
+```csharp
+public X509Certificate[] HttpsAuthentCerts { get; set; }
+```
+
+Gets or sets the array of certificates used to authenticate https servers. These certificates are used only for https connections; http connections do not require them.
+
+### ReadWriteTimeout
+
+```csharp
+public int ReadWriteTimeout { get; set; }
+```
+
+Gets or sets a timeout in milliseconds when writing to or reading from a stream.
+
+### RequestUri
+
+```csharp
+public override Uri RequestUri { get; }
+```
+
+Gets the original Uniform Resource Identifier (URI) of the request.
+
+### Address
+
+```csharp
+public Uri Address { get; }
+```
+
+Gets the URI for this request.
+
+### AllowWriteStreamBuffering
+
+```csharp
+public bool AllowWriteStreamBuffering { get; set; }
+```
+
+Gets or sets a value that indicates whether to buffer the data sent to the Internet resource.
+
+### ContentLength
+
+```csharp
+public override long ContentLength { get; set; }
+```
+
+Gets or sets the Content-Length of the request entity body.
+
+### ContinueDelegate
+
+```csharp
+public HttpContinueDelegate ContinueDelegate { get; set; }
+```
+
+Gets or sets the delegate used to signal on Continue callback.
+
+### AllowAutoRedirect
+
+```csharp
+public bool AllowAutoRedirect { get; set; }
+```
+
+Gets or sets a value that indicates whether the request should follow redirection responses.
+
+### MaximumAutomaticRedirections
+
+```csharp
+public int MaximumAutomaticRedirections { get; set; }
+```
+
+Gets or sets the maximum number of redirects that the request follows.
+
+### Connection
+
+```csharp
+public string Connection { get; set; }
+```
+
+Gets or sets the value of the `Connection` HTTP header.
+
+### Host
+
+```csharp
+public string Host { get; set; }
+```
+
+Gets or sets the value of the `Host` HTTP header.
+
+### Date
+
+```csharp
+public DateTime Date { get; set; }
+```
+
+Gets or sets the `Date` HTTP header.
+
+### MediaType
+
+```csharp
+public string MediaType { get; set; }
+```
+
+Gets or sets the media type of the request.
+
+### Method
+
+```csharp
+public override string Method { get; set; }
+```
+
+Gets or sets the HTTP method of this request.
+
+### KeepAlive
+
+```csharp
+public bool KeepAlive { get; set; }
+```
+
+Gets or sets whether to use a persistent connection, if available.
+
+### MaximumResponseHeadersLength
+
+```csharp
+public int MaximumResponseHeadersLength { get; set; }
+```
+
+Gets or sets the maximum allowed length of the response headers.
+
+### DefaultMaximumResponseHeadersLength
+
+```csharp
+public static int DefaultMaximumResponseHeadersLength { get; set; }
+```
+
+Gets or sets the default maximum allowed length of the response headers.
+
+### Headers
+
+```csharp
+public override WebHeaderCollection Headers { get; set; }
+```
+
+A collection of HTTP headers stored as name/value pairs.
+
+### Proxy
+
+```csharp
+public override IWebProxy Proxy { get; set; }
+```
+
+Gets or sets the proxy for the request.
+
+### SendChunked
+
+```csharp
+public bool SendChunked { get; set; }
+```
+
+Gets or sets the state of chunk transfer send mode.
+
+### ProtocolVersion
+
+```csharp
+public Version ProtocolVersion { get; set; }
+```
+
+Gets or sets the HTTP protocol version for this request.
+
+### ContentType
+
+```csharp
+public override string ContentType { get; set; }
+```
+
+Gets or sets the type of the entity body (the value of the content type).
+
+### TransferEncoding
+
+```csharp
+public string TransferEncoding { get; set; }
+```
+
+Gets or sets the TransferEncoding HTTP header.
+
+### Accept
+
+```csharp
+public string Accept { get; set; }
+```
+
+Gets or sets the value of the Accept HTTP header.
+
+### Referer
+
+```csharp
+public string Referer { get; set; }
+```
+
+Gets or sets the value of the Referer HTTP header.
+
+### UserAgent
+
+```csharp
+public string UserAgent { get; set; }
+```
+
+Gets or sets the value of the User-Agent HTTP header.
+
+### Expect
+
+```csharp
+public string Expect { get; set; }
+```
+
+Gets or sets the value of the Expect HTTP header.
+
+### IfModifiedSince
+
+```csharp
+public DateTime IfModifiedSince { get; set; }
+```
+
+Gets the IfModifiedSince value of HttpKnownHeaderNames .
+
+### HaveResponse
+
+```csharp
+public bool HaveResponse { get; }
+```
+
+Gets whether a response has been received from an Internet resource.
+
+## Methods
+
+### Dispose(bool disposing)
+
+```csharp
+protected override void Dispose(bool disposing)
+```
+
+Closes a response stream, if present.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `disposing` | `bool` | Not used. |
+
+### Abort()
+
+```csharp
+public override void Abort()
+```
+
+Cancels a request to an Internet resource. Closes any open request/response stream and releases the underlying socket. Subsequent calls to `GetResponse` / `GetRequestStream` on this instance throw.
+
+### Reset()
+
+```csharp
+public void Reset()
+```
+
+Clears the sent state, content length, write mode, and headers so the instance can be reused.
+
+### AddRange(int from, int to)
+
+```csharp
+public void AddRange(int from, int to)
+```
+
+Adds a byte range header to the request for a specified range.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `from` | `int` | The start of the range. |
+| `to` | `int` | The end of the range. |
+
+### AddRange(int range)
+
+```csharp
+public void AddRange(int range)
+```
+
+Adds a range header to a request for a specific range from the beginning or end of the requested data.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `range` | `int` | Start of the range. The end of the range is the end of the existing data. |
+
+### AddRange(string rangeSpecifier, int from, int to)
+
+```csharp
+public void AddRange(string rangeSpecifier, int from, int to)
+```
+
+Adds a range header to a request for a specified range.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `rangeSpecifier` | `string` | The description of the range, such as "bytes". |
+| `from` | `int` | The start of the range. |
+| `to` | `int` | The end of the range. |
+
+### AddRange(string rangeSpecifier, int range)
+
+```csharp
+public void AddRange(string rangeSpecifier, int range)
+```
+
+Adds a range header to a request for a specific range from the beginning or end of the requested data.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `rangeSpecifier` | `string` | The description of the range, such as "bytes". |
+| `range` | `int` | The range value. |
+
+### AddRange(long from, long to)
+
+```csharp
+public void AddRange(long from, long to)
+```
+
+Adds a byte range header for ranges that may exceed Int32.MaxValue.
+
+### AddRange(long range)
+
+```csharp
+public void AddRange(long range)
+```
+
+Adds a byte range header for a range that may exceed Int32.MaxValue.
+
+### AddRange(string rangeSpecifier, long from, long to)
+
+```csharp
+public void AddRange(string rangeSpecifier, long from, long to)
+```
+
+Adds a range header to a request for a specified range, with long endpoints.
+
+### AddRange(string rangeSpecifier, long range)
+
+```csharp
+public void AddRange(string rangeSpecifier, long range)
+```
+
+Adds a range header to a request from the beginning or end of the data, with a long range value.
+
+### GetResponse()
+
+```csharp
+public override WebResponse GetResponse()
+```
+
+Returns a response from an Internet resource. Overrides the WebRequest .`System.Net.WebRequest.GetResponse` method.
+
+**Returns** `WebResponse` — The response from the Internet resource.
+
+### GetRequestStream()
+
+```csharp
+public override Stream GetRequestStream()
+```
+
+Submits a request with HTTP headers to the server, and returns a Stream object to use to write request data.
+
+**Returns** `Stream` — A Stream to use to write request data.
