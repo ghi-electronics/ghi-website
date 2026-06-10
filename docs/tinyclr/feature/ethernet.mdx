@@ -21,17 +21,17 @@ The example below uses the internal MAC of the SC20260 paired with an external P
 NuGet packages: **`GHIElectronics.TinyCLR.Devices.Network`**, **`GHIElectronics.TinyCLR.Devices.Gpio`**, **`GHIElectronics.TinyCLR.Pins`**.
 
 ```csharp
-using GHIElectronics.TinyCLR.Devices.Gpio;
-using GHIElectronics.TinyCLR.Devices.Network;
-using GHIElectronics.TinyCLR.Pins;
 using System;
 using System.Diagnostics;
 using System.Net;
 using System.Threading;
+using GHIElectronics.TinyCLR.Devices.Gpio;
+using GHIElectronics.TinyCLR.Devices.Network;
+using GHIElectronics.TinyCLR.Pins;
 
-static bool linkReady = false;
+bool linkReady = false;
 
-static void EthernetTest() {
+void EthernetTest(){
     // Reset the external PHY.
     var gpioController = GpioController.GetDefault();
     var resetPin = gpioController.OpenPin(SC20260.GpioPin.PG3);
@@ -44,7 +44,7 @@ static void EthernetTest() {
 
     var networkController = NetworkController.FromName(SC20260.NetworkController.EthernetEmac);
 
-    var networkInterfaceSetting = new EthernetNetworkInterfaceSettings {
+    var networkInterfaceSetting = new EthernetNetworkInterfaceSettings{
         Address = new IPAddress(new byte[] { 192, 168, 1, 122 }),
         SubnetMask = new IPAddress(new byte[] { 255, 255, 255, 0 }),
         GatewayAddress = new IPAddress(new byte[] { 192, 168, 1, 1 }),
@@ -83,22 +83,24 @@ The Microchip **ENC28J60** is a low-cost 10BASE-T Ethernet controller that conne
 NuGet packages: **`GHIElectronics.TinyCLR.Devices.Network`**, **`GHIElectronics.TinyCLR.Devices.Gpio`**, **`GHIElectronics.TinyCLR.Devices.Spi`**, **`GHIElectronics.TinyCLR.Pins`**.
 
 ```csharp
-using GHIElectronics.TinyCLR.Devices.Gpio;
-using GHIElectronics.TinyCLR.Devices.Network;
-using GHIElectronics.TinyCLR.Devices.Spi;
-using GHIElectronics.TinyCLR.Pins;
 using System;
 using System.Diagnostics;
 using System.Net;
 using System.Threading;
+using GHIElectronics.TinyCLR.Devices.Gpio;
+using GHIElectronics.TinyCLR.Devices.Network;
+using GHIElectronics.TinyCLR.Devices.Spi;
+using GHIElectronics.TinyCLR.Pins;
 
-static void Enc28Test() {
+bool linkReady = false;
+
+void Enc28Test(){
     var gpioController = GpioController.GetDefault();
     var networkController = NetworkController.FromName(SC20260.NetworkController.Enc28j60);
 
     var cs = gpioController.OpenPin(SC20260.GpioPin.PG12);
 
-    var spiSettings = new SpiConnectionSettings {
+    var spiSettings = new SpiConnectionSettings{
         ChipSelectLine = cs,
         ClockFrequency = 4_000_000,
         Mode = SpiMode.Mode0,
@@ -107,7 +109,7 @@ static void Enc28Test() {
         ChipSelectSetupTime = TimeSpan.FromTicks(10),
     };
 
-    var networkCommunicationInterfaceSettings = new SpiNetworkCommunicationInterfaceSettings {
+    var networkCommunicationInterfaceSettings = new SpiNetworkCommunicationInterfaceSettings{
         SpiApiName = SC20260.SpiBus.Spi3,
         GpioApiName = SC20260.GpioPin.Id,
         SpiSettings = spiSettings,
@@ -118,7 +120,7 @@ static void Enc28Test() {
         ResetActiveState = GpioPinValue.Low,
     };
 
-    var networkInterfaceSetting = new EthernetNetworkInterfaceSettings {
+    var networkInterfaceSetting = new EthernetNetworkInterfaceSettings{
         Address = new IPAddress(new byte[] { 192, 168, 1, 122 }),
         SubnetMask = new IPAddress(new byte[] { 255, 255, 255, 0 }),
         GatewayAddress = new IPAddress(new byte[] { 192, 168, 1, 1 }),
@@ -230,11 +232,11 @@ The built-in and ENC28J60 examples both wire two events on the `NetworkControlle
 - **`NetworkLinkConnectedChanged`** — fires when the physical link state changes (cable plugged in or removed).
 
 ```csharp
-private static void NetworkController_NetworkLinkConnectedChanged(NetworkController sender, NetworkLinkConnectedChangedEventArgs e) {
+void NetworkController_NetworkLinkConnectedChanged(NetworkController sender, NetworkLinkConnectedChangedEventArgs e){
     Debug.WriteLine(e.Connected ? "Link connected" : "Link disconnected");
 }
 
-private static void NetworkController_NetworkAddressChanged(NetworkController sender, NetworkAddressChangedEventArgs e) {
+void NetworkController_NetworkAddressChanged(NetworkController sender, NetworkAddressChangedEventArgs e){
     var ipProperties = sender.GetIPProperties();
     var address = ipProperties.Address.GetAddressBytes();
     var subnet = ipProperties.SubnetMask.GetAddressBytes();
@@ -243,7 +245,7 @@ private static void NetworkController_NetworkAddressChanged(NetworkController se
     linkReady = address[0] != 0;
     Debug.WriteLine("IP: " + address[0] + "." + address[1] + "." + address[2] + "." + address[3]);
 
-    for (int i = 0; i < ipProperties.DnsAddresses.Length; i++) {
+    for (int i = 0; i < ipProperties.DnsAddresses.Length; i++){
         var dns = ipProperties.DnsAddresses[i].GetAddressBytes();
         Debug.WriteLine("DNS " + (i + 1) + ": " + dns[0] + "." + dns[1] + "." + dns[2] + "." + dns[3]);
     }
