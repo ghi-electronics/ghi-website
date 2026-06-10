@@ -1054,7 +1054,7 @@ async function main() {
     '# TinyCLR API Reference', '',
     '| Library | Description |', '|---|---|'];
   for (const asm of assemblies)
-    idx2.push(`| [${shortName(asm)}](./${encodeURIComponent(dirOf(asm))}/index.md) | ${proseCell(descOf.get(asm))} |`);
+    idx2.push(`| [${dirOf(asm)}](./${encodeURIComponent(dirOf(asm))}/index.md) | ${proseCell(descOf.get(asm))} |`);
   await fs.writeFile(path.join(outRoot, 'index.md'), idx2.join('\n'));
 
   const total = model.types.length;
