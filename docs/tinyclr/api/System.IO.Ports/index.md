@@ -7,7 +7,7 @@ sidebar_label: Overview
 <h1 className="api-package-heading">System.IO.Ports Library</h1>
 
 :::info
-The standard, .NET-compatible `System.IO.Ports` API for TinyCLR. It ships inside the **[GHIElectronics.TinyCLR.Devices.Uart](../Devices.Uart/index.md)** NuGet — there is no separate package to install.
+The standard, .NET-compatible `System.IO.Ports` API for TinyCLR. It ships inside the **[GHIElectronics.TinyCLR.Devices.Uart](../GHIElectronics.TinyCLR.Devices.Uart/index.md)** NuGet — there is no separate package to install.
 :::
 
 ## Classes

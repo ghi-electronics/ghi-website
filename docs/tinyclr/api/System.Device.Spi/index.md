@@ -7,7 +7,7 @@ sidebar_label: Overview
 <h1 className="api-package-heading">System.Device.Spi Library</h1>
 
 :::info
-The standard, .NET-compatible `System.Device.Spi` API for TinyCLR. It ships inside the **[GHIElectronics.TinyCLR.Devices.Spi](../Devices.Spi/index.md)** NuGet — there is no separate package to install.
+The standard, .NET-compatible `System.Device.Spi` API for TinyCLR. It ships inside the **[GHIElectronics.TinyCLR.Devices.Spi](../GHIElectronics.TinyCLR.Devices.Spi/index.md)** NuGet — there is no separate package to install.
 :::
 
 ## Classes

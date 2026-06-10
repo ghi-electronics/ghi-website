@@ -785,7 +785,7 @@ const PACKAGE_NOTES = {
     ':::',
   'GHIElectronics.TinyCLR.System.Security.Cryptography':
     ':::info\n' +
-    'The standard-.NET `System.Security.Cryptography` API for TinyCLR. It ships inside the **[GHIElectronics.TinyCLR.Cryptography](../Cryptography/index.md)** NuGet — there is no separate package to install.\n' +
+    'The standard-.NET `System.Security.Cryptography` API for TinyCLR. It ships inside the **[GHIElectronics.TinyCLR.Cryptography](../GHIElectronics.TinyCLR.Cryptography/index.md)** NuGet — there is no separate package to install.\n' +
     ':::',
 };
 
@@ -807,7 +807,7 @@ for (const [parent, shim, api] of SHIM_PAIRS) {
     ':::';
   PACKAGE_NOTES[shim] =
     ':::info\n' +
-    `The standard, .NET-compatible \`${api}\` API for TinyCLR. It ships inside the **[${parent}](../${shortName(parent)}/index.md)** NuGet — there is no separate package to install.\n` +
+    `The standard, .NET-compatible \`${api}\` API for TinyCLR. It ships inside the **[${parent}](../${parent}/index.md)** NuGet — there is no separate package to install.\n` +
     ':::';
 }
 
@@ -822,6 +822,12 @@ function packageMeta(folder) {
   const parent = SHIM_PARENT[folder];
   return { nuget: parent || folder, assembly: parent ? shortName(folder) : folder };
 }
+
+// Output folder name / URL segment for a package: the FULL assembly name
+// ("GHIElectronics.TinyCLR.Collections"), or the System.* assembly for the 6 compat
+// shims (System.Device.Gpio, …). The sidebar label (_category_.json) and the page
+// heading still use the short name — only the folder/URL is the full id.
+const dirOf = (folder) => packageMeta(folder).assembly;
 
 function renderAssemblyIndex(assembly, types, fileOf) {
   const showNs = true;                         // always show the Namespace column (uniform table shape)
@@ -1011,7 +1017,7 @@ async function main() {
 
   const assemblies = [...byAsm.keys()].sort();
   for (const asm of assemblies) {
-    const asmDir = path.join(outRoot, shortName(asm));
+    const asmDir = path.join(outRoot, dirOf(asm));
     await fs.mkdir(asmDir, { recursive: true });
     const types = byAsm.get(asm).sort((a, b) => a.name.localeCompare(b.name));
     const fileOf = assignFilenames(types);
@@ -1048,7 +1054,7 @@ async function main() {
     '# TinyCLR API Reference', '',
     '| Library | Description |', '|---|---|'];
   for (const asm of assemblies)
-    idx2.push(`| [${shortName(asm)}](./${encodeURIComponent(shortName(asm))}/index.md) | ${proseCell(descOf.get(asm))} |`);
+    idx2.push(`| [${shortName(asm)}](./${encodeURIComponent(dirOf(asm))}/index.md) | ${proseCell(descOf.get(asm))} |`);
   await fs.writeFile(path.join(outRoot, 'index.md'), idx2.join('\n'));
 
   const total = model.types.length;
