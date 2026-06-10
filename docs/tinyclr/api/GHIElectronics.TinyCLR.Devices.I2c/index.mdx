@@ -1,0 +1,53 @@
+---
+title: "GHIElectronics.TinyCLR.Devices.I2c"
+hide_title: true
+sidebar_label: Overview
+---
+
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Devices.I2c</h1>
+
+**NuGet:** `GHIElectronics.TinyCLR.Devices.I2c`
+
+:::tip
+This NuGet also includes the standard, .NET-compatible **[`System.Device.I2c`](../System.Device.I2c/index.mdx)** API.
+:::
+
+## Classes
+
+| Class | Namespace | Summary |
+|---|---|---|
+| [ErrorReceivedEventArgs](./ErrorReceivedEventArgs.mdx) | `GHIElectronics.TinyCLR.Devices.I2c` | Arguments for `I2cDevice.ErrorReceived`. |
+| [FrameEventArgs](./FrameEventArgs.mdx) | `GHIElectronics.TinyCLR.Devices.I2c` | Arguments for `I2cDevice.FrameReceived`. |
+| [I2cConnectionSettings](./I2cConnectionSettings.mdx) | `GHIElectronics.TinyCLR.Devices.I2c` | Per-device I²C connection settings: address, bus speed, and master/slave role. |
+| [I2cController](./I2cController.mdx) | `GHIElectronics.TinyCLR.Devices.I2c` | Represents an I²C bus controller. Open a peer with `GetDevice(I2cConnectionSettings)` to transact with a specific slave address. The same controller can serve multiple slaves — settings are re-applied per transfer. |
+| [I2cControllerApiWrapper](./I2cControllerApiWrapper.mdx) | `GHIElectronics.TinyCLR.Devices.I2c.Provider` | Concrete `II2cControllerProvider` backed by the native TinyCLR I²C HAL. |
+| [I2cDevice](./I2cDevice.mdx) | `GHIElectronics.TinyCLR.Devices.I2c` | Represents a single slave on the I²C bus. Master-mode devices use the blocking `Read(byte[])` / `Write(byte[])` / `WriteRead(byte[],byte[])` family; slave-mode devices additionally expose `FrameReceived` and `ErrorReceived` events. |
+
+## Structs
+
+| Struct | Namespace | Summary |
+|---|---|---|
+| [I2cTransferResult](./I2cTransferResult.mdx) | `GHIElectronics.TinyCLR.Devices.I2c` | Outcome of a partial-transfer call (`I2cDevice.ReadPartial(byte[])` and friends). |
+
+## Interfaces
+
+| Interface | Namespace | Summary |
+|---|---|---|
+| [II2cControllerProvider](./II2cControllerProvider.mdx) | `GHIElectronics.TinyCLR.Devices.I2c.Provider` | Provider contract for an I²C controller. |
+
+## Enums
+
+| Enum | Namespace | Summary |
+|---|---|---|
+| [I2cAddressFormat](./I2cAddressFormat.mdx) | `GHIElectronics.TinyCLR.Devices.I2c` | I²C address width. |
+| [I2cError](./I2cError.mdx) | `GHIElectronics.TinyCLR.Devices.I2c` | Bus errors reported via `I2cDevice.ErrorReceived`. |
+| [I2cMode](./I2cMode.mdx) | `GHIElectronics.TinyCLR.Devices.I2c` | Bus role for an `I2cDevice`. |
+| [I2cTransaction](./I2cTransaction.mdx) | `GHIElectronics.TinyCLR.Devices.I2c` | Master-initiated transaction kind observed by a slave. |
+| [I2cTransferStatus](./I2cTransferStatus.mdx) | `GHIElectronics.TinyCLR.Devices.I2c` | Outcome of an I²C transfer. |
+
+## Delegates
+
+| Delegate | Namespace | Summary |
+|---|---|---|
+| [ErrorReceivedEventHandler](./ErrorReceivedEventHandler.mdx) | `GHIElectronics.TinyCLR.Devices.I2c` | Handler signature for `I2cDevice.ErrorReceived`. |
+| [FrameReceivedEventHandler](./FrameReceivedEventHandler.mdx) | `GHIElectronics.TinyCLR.Devices.I2c` | Handler signature for `I2cDevice.FrameReceived`. |

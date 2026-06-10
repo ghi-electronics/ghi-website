@@ -1,0 +1,57 @@
+---
+title: "GHIElectronics.TinyCLR.Devices.UsbClient"
+hide_title: true
+sidebar_label: Overview
+---
+
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Devices.UsbClient</h1>
+
+**NuGet:** `GHIElectronics.TinyCLR.Devices.UsbClient`
+
+## Classes
+
+| Class | Namespace | Summary |
+|---|---|---|
+| [Cdc](./Cdc.mdx) | `GHIElectronics.TinyCLR.Devices.UsbClient` | This device emulates a CDC virtual COM port. |
+| [CdcStream](./CdcStream.mdx) | `GHIElectronics.TinyCLR.Devices.UsbClient` | Stream for reading and writing data over a CDC connection. |
+| [ClassDescriptor](./ClassDescriptor.mdx) | `GHIElectronics.TinyCLR.Devices.UsbClient` | A class-specific descriptor. |
+| [Configuration](./Configuration.mdx) | `GHIElectronics.TinyCLR.Devices.UsbClient` | Holds the set of USB descriptors that define a device. |
+| [ConfigurationDescriptor](./ConfigurationDescriptor.mdx) | `GHIElectronics.TinyCLR.Devices.UsbClient` | A USB configuration descriptor. |
+| [Descriptor](./Descriptor.mdx) | `GHIElectronics.TinyCLR.Devices.UsbClient` | Base class for all USB descriptors. |
+| [DeviceDescriptor](./DeviceDescriptor.mdx) | `GHIElectronics.TinyCLR.Devices.UsbClient` | The USB device descriptor. |
+| [Endpoint](./Endpoint.mdx) | `GHIElectronics.TinyCLR.Devices.UsbClient` | A USB endpoint descriptor. |
+| [GenericDescriptor](./GenericDescriptor.mdx) | `GHIElectronics.TinyCLR.Devices.UsbClient` | A generic descriptor returned in response to a control request. |
+| [Joystick](./Joystick.mdx) | `GHIElectronics.TinyCLR.Devices.UsbClient` | This device emulates a joystick. You can set the x, y, and z axis values, the z axis rotation, the state of 32 buttons, and 8 hat swtich directions. |
+| [Keyboard](./Keyboard.mdx) | `GHIElectronics.TinyCLR.Devices.UsbClient` | This device emulates a keyboard. You can set the state of any key, but only seven keys can be pressed at once. |
+| [MassStorage](./MassStorage.mdx) | `GHIElectronics.TinyCLR.Devices.UsbClient` | This device emulates a mass storage. Your Micro Framework device will appear as a virtual mass storage device similar to a USB Drive. This works by exposing the storage connected to this device, such as SD card or USB sticks, to the host. |
+| [Mouse](./Mouse.mdx) | `GHIElectronics.TinyCLR.Devices.UsbClient` | This device emulates a mouse. You can move the cursor, scroll the wheel, and press buttons. |
+| [RawDevice](./RawDevice.mdx) | `GHIElectronics.TinyCLR.Devices.UsbClient` | Represent a USB device. |
+| [RawStream](./RawStream.mdx) | `GHIElectronics.TinyCLR.Devices.UsbClient` | USB stream for reading and writing data through two endpoints. |
+| [StringDescriptor](./StringDescriptor.mdx) | `GHIElectronics.TinyCLR.Devices.UsbClient` | A USB string descriptor. |
+| [UsbClientController](./UsbClientController.mdx) | `GHIElectronics.TinyCLR.Devices.UsbClient` | Provides access to a USB client controller. |
+| [UsbClientControllerApiWrapper](./UsbClientControllerApiWrapper.mdx) | `GHIElectronics.TinyCLR.Devices.UsbClient.Provider` | The native implementation of a USB client controller provider. |
+| [UsbClientSetting](./UsbClientSetting.mdx) | `GHIElectronics.TinyCLR.Devices.UsbClient` | The settings used to configure a USB client device. |
+| [UsbInterface](./UsbInterface.mdx) | `GHIElectronics.TinyCLR.Devices.UsbClient` | A USB interface descriptor. |
+| [WinUsb](./WinUsb.mdx) | `GHIElectronics.TinyCLR.Devices.UsbClient` | This device emulates a WinUsb device for vendor-specific bulk communication with a host. |
+| [WinUsbStream](./WinUsbStream.mdx) | `GHIElectronics.TinyCLR.Devices.UsbClient` | Stream for reading and writing data over a CDC connection. |
+
+## Interfaces
+
+| Interface | Namespace | Summary |
+|---|---|---|
+| [IUsbClientControllerProvider](./IUsbClientControllerProvider.mdx) | `GHIElectronics.TinyCLR.Devices.UsbClient.Provider` | Provides the low-level interface for a USB client controller. |
+
+## Enums
+
+| Enum | Namespace | Summary |
+|---|---|---|
+| [DeviceState](./DeviceState.mdx) | `GHIElectronics.TinyCLR.Devices.UsbClient` | The possible states of a USB device. |
+| [PID](./PID.mdx) | `GHIElectronics.TinyCLR.Devices.UsbClient` | The default product ids for each built-in device type. |
+| [UsbClientMode](./UsbClientMode.mdx) | `GHIElectronics.TinyCLR.Devices.UsbClient` | The type of device to emulate. |
+
+## Delegates
+
+| Delegate | Namespace | Summary |
+|---|---|---|
+| [DataReceivedEventHandler](./DataReceivedEventHandler.mdx) | `GHIElectronics.TinyCLR.Devices.UsbClient` | Represents the method that handles a data received event. |
+| [DeviceStateChangedEventHandler](./DeviceStateChangedEventHandler.mdx) | `GHIElectronics.TinyCLR.Devices.UsbClient` | Represents the method that handles a device state changed event. |
