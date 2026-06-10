@@ -2232,3 +2232,31 @@ a.pillar-card:hover::after {
   line-height: 1.25;
   margin-bottom: 0.6rem;
 }
+
+/* ---- API reference: member-group section headers -------------------------
+   On generated API type pages, the top-level groups ("## Constructors /
+   Properties / Methods / Events / Fields") were only distinguished by a larger
+   font. Give each a branded divider so the groups read as clearly separate
+   sections. Docusaurus slugifies each "## Section" heading to a predictable id
+   (#constructors, #properties, …); no hand-written page uses these names, so
+   these id selectors effectively scope the styling to the API reference.
+   The headings stay real markdown headings, so the right-side TOC and anchor
+   links are unaffected. -------------------------------------------------- */
+.markdown h2#constructors,
+.markdown h2#properties,
+.markdown h2#methods,
+.markdown h2#events,
+.markdown h2#fields,
+.markdown h2#operators,
+.markdown h2#nested-types {
+  margin-top: 3rem;                 /* breathing room above each group */
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--ghi-accent, #ffaa55);  /* brand accent, not red */
+  color: var(--ifm-color-primary);  /* tint the group title in brand blue */
+}
+
+/* First section on the page shouldn't push down as hard (it follows the
+   class signature block, which already has spacing). */
+.markdown h2#constructors:first-of-type {
+  margin-top: 2rem;
+}
