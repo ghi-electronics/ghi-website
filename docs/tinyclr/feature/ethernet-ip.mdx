@@ -216,7 +216,7 @@ void DoInitAdapter(){
 The Identity object reports the device's vendor, type, product code, revision, status, serial number, and product name to Scanners during enumeration.
 
 ```csharp
-static void IdentityInit(AdapterController adapter) {
+void IdentityInit(AdapterController adapter) {
     var identityClass = new CIPClass(
         AdapterController.ClassId.Identity,
         numberClassAttributes:           0,
@@ -262,7 +262,7 @@ static void IdentityInit(AdapterController adapter) {
 ### Message router
 
 ```csharp
-static void MessageRouterInit(AdapterController adapter) {
+void MessageRouterInit(AdapterController adapter) {
     var messageRouterClass = new CIPClass(
         AdapterController.ClassId.MessageRouter,
         numberClassAttributes:           7,
@@ -284,7 +284,7 @@ static void MessageRouterInit(AdapterController adapter) {
 ### Connection manager
 
 ```csharp
-static void ConnectionManagerInit(AdapterController adapter) {
+void ConnectionManagerInit(AdapterController adapter) {
     var connectionManagerClass = new CIPClass(
         AdapterController.ClassId.ConnectionManager,
         numberClassAttributes:           0,
