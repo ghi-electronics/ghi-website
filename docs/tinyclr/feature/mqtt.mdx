@@ -15,12 +15,12 @@ TinyCLR's MQTT driver is **client-only** — for hosting a broker, run one on a 
 The example below opens a TLS-protected connection to an MQTT broker on the standard port 8883, subscribes to a topic, and publishes one message. Received messages are logged to the debug output.
 
 ```csharp
-using GHIElectronics.TinyCLR.Networking.Mqtt;
 using System;
 using System.Diagnostics;
 using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using GHIElectronics.TinyCLR.Networking.Mqtt;
 
 var caCertificate = new X509Certificate(Encoding.UTF8.GetBytes("Your CA certificate"));
 
@@ -32,8 +32,8 @@ var username = "your_username";
 var password = "your_password";
 var topic = "your_topic";
 
-try {
-    var clientSetting = new MqttClientSetting {
+try{
+    var clientSetting = new MqttClientSetting{
         BrokerName = mqttHost,
         BrokerPort = mqttPort,
         ClientCertificate = null,
@@ -43,7 +43,7 @@ try {
 
     var client = new Mqtt(clientSetting);
 
-    var connectSetting = new MqttConnectionSetting {
+    var connectSetting = new MqttConnectionSetting{
         ClientId = deviceId,
         UserName = username,
         Password = password,
@@ -58,14 +58,14 @@ try {
     client.Subscribe(new string[] { topic }, new QoSLevel[] { QoSLevel.ExactlyOnce }, packetId++);
 
     // Publish a message.
-    client.Publish(topic, Encoding.UTF8.GetBytes("your message"), QoSLevel.MostOnce, retain: false, packetId);
+    client.Publish(topic, Encoding.UTF8.GetBytes("your message"), QoSLevel.AtMostOnce, retain: false, packetId);
 
     // Handler runs for every message arriving on a subscribed topic.
     client.PublishReceivedChanged += (sender, receivedTopic, data, duplicate, qosLevel, retain) => {
         Debug.WriteLine("Received on " + receivedTopic + ": " + Encoding.UTF8.GetString(data));
     };
 }
-catch (Exception ex) {
+catch (Exception ex){
     Debug.WriteLine("MQTT setup failed: " + ex.Message);
 }
 ```
