@@ -7,7 +7,7 @@ sidebar_label: Overview
 <h1 className="api-package-heading">Devices.Pwm Library</h1>
 
 :::tip
-This NuGet also includes the standard, .NET-compatible **`System.Device.Pwm`** API — see **[GHIElectronics.TinyCLR.System.Device.Pwm](../System.Device.Pwm/index.md)**.
+This NuGet also includes the standard, .NET-compatible **[`System.Device.Pwm`](../System.Device.Pwm/index.md)** API.
 :::
 
 ## Classes

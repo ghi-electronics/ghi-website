@@ -781,7 +781,7 @@ const shortName = (asm) => asm.replace(/^GHIElectronics\.TinyCLR\./, '');
 const PACKAGE_NOTES = {
   'GHIElectronics.TinyCLR.Cryptography':
     ':::tip\n' +
-    '**Need standard .NET cryptography?** This NuGet also provides the .NET-compatible `System.Security.Cryptography` API (hashing, AES, RSA, X.509, …) — see **[GHIElectronics.TinyCLR.System.Security.Cryptography](../System.Security.Cryptography/index.md)**. The `Crc16` and `Xtea` types here are lightweight extras.\n' +
+    '**Need standard .NET cryptography?** This NuGet also provides the .NET-compatible **[`System.Security.Cryptography`](../System.Security.Cryptography/index.md)** API (hashing, AES, RSA, X.509, …). The `Crc16` and `Xtea` types here are lightweight extras.\n' +
     ':::',
   'GHIElectronics.TinyCLR.System.Security.Cryptography':
     ':::info\n' +
@@ -803,7 +803,7 @@ const SHIM_PAIRS = [
 for (const [parent, shim, api] of SHIM_PAIRS) {
   PACKAGE_NOTES[parent] =
     ':::tip\n' +
-    `This NuGet also includes the standard, .NET-compatible **\`${api}\`** API — see **[${shim}](../${shortName(shim)}/index.md)**.\n` +
+    `This NuGet also includes the standard, .NET-compatible **[\`${api}\`](../${shortName(shim)}/index.md)** API.\n` +
     ':::';
   PACKAGE_NOTES[shim] =
     ':::info\n' +

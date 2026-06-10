@@ -7,7 +7,7 @@ sidebar_label: Overview
 <h1 className="api-package-heading">Devices.I2c Library</h1>
 
 :::tip
-This NuGet also includes the standard, .NET-compatible **`System.Device.I2c`** API — see **[GHIElectronics.TinyCLR.System.Device.I2c](../System.Device.I2c/index.md)**.
+This NuGet also includes the standard, .NET-compatible **[`System.Device.I2c`](../System.Device.I2c/index.md)** API.
 :::
 
 ## Classes

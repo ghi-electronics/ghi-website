@@ -7,7 +7,7 @@ sidebar_label: Overview
 <h1 className="api-package-heading">Cryptography Library</h1>
 
 :::tip
-**Need standard .NET cryptography?** This NuGet also provides the .NET-compatible `System.Security.Cryptography` API (hashing, AES, RSA, X.509, …) — see **[GHIElectronics.TinyCLR.System.Security.Cryptography](../System.Security.Cryptography/index.md)**. The `Crc16` and `Xtea` types here are lightweight extras.
+**Need standard .NET cryptography?** This NuGet also provides the .NET-compatible **[`System.Security.Cryptography`](../System.Security.Cryptography/index.md)** API (hashing, AES, RSA, X.509, …). The `Crc16` and `Xtea` types here are lightweight extras.
 :::
 
 ## Classes

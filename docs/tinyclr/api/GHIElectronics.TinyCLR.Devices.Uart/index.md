@@ -7,7 +7,7 @@ sidebar_label: Overview
 <h1 className="api-package-heading">Devices.Uart Library</h1>
 
 :::tip
-This NuGet also includes the standard, .NET-compatible **`System.IO.Ports`** API — see **[GHIElectronics.TinyCLR.System.IO.Ports](../System.IO.Ports/index.md)**.
+This NuGet also includes the standard, .NET-compatible **[`System.IO.Ports`](../System.IO.Ports/index.md)** API.
 :::
 
 ## Classes
