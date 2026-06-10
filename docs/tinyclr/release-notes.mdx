@@ -71,7 +71,7 @@ New features
 Fixes
 
 - Fixed several floating-point / number-to-string formatting issues (G-format rounding, exponent, precision, and trailing zeros).
-- Fixed CAN: classic (non-FD) operation when no data bit-rate is set, a continuous CAN error condition, and a 0 Hz source-clock configuration.
+- Fixed CAN: classic (non-FD) operation when no data bit-rate is set, a continuous CAN error condition.
 - Reworked networking.
 - Improved I2C and optimized the STM32L4 drivers.
 - Fixed mass-storage (MSC) read/write and mount-after-format.
@@ -93,12 +93,12 @@ New features
 Fixes
 
 - Visual Studio no longer deadlocks or blocks when a device flash fails.
-- Added a clear "PNG is not supported" error message.
+- A "PNG is not supported" error message is displayed when a PNG resource is detected.
 
 Known issues
 
-- You must add a reference to `GHIElectronics.TinyCLR.Drawing` when adding a bitmap/image resource.
-- You must run **Run Custom Tool** on the resource to (re)generate the `GetBytes()` / `GetBitmap()` accessors.
+- Users need to add the GHIElectronics.TinyCLR.Drawing NuGet package when adding a bitmap or image resource (if it has not already been added to the project).
+- Users need to run **Run Custom Tool** on the resource to (re)generate the `GetBytes()` / `GetBitmap()` accessors.
 - Desktop mode does not support `Debug.WriteLine`; use `Console.WriteLine` instead.
 
 ### TinyCLR-Config
