@@ -45,8 +45,7 @@ The master is the host that initiates every transfer. A TinyCLR board is the mas
 using System.Device.I2c;
 using GHIElectronics.TinyCLR.Pins;
 
-// SC20100.I2cBus.I2c1 → busId 0
-var settings = new I2cConnectionSettings(0, 0x1C);
+var settings = new I2cConnectionSettings(FEZBit.I2cBus.Chip0, 0x1D);
 
 using I2cDevice device = I2cDevice.Create(settings);
 
@@ -61,12 +60,12 @@ device.WriteRead(write, read);              // Good for reading registers (write
 using GHIElectronics.TinyCLR.Devices.I2c;
 using GHIElectronics.TinyCLR.Pins;
 
-var settings = new I2cConnectionSettings(0x1C, 100_000);    // Slave address and bus speed.
-var controller = I2cController.FromName(SC20100.I2cBus.I2c1);
+var settings = new I2cConnectionSettings(0x1D, 100_000);    // Slave address and bus speed.
+var controller = I2cController.FromName(FEZBit.I2cBus.Chip0);
 var device = controller.GetDevice(settings);
 
 device.Write(new byte[] { 1, 2 });          // Send-only.
-device.WriteRead(write, read);              // Good for reading registers (write address, then read).
+device.WriteRead(write, read);
 ```
 
 </TabItem>
@@ -81,10 +80,11 @@ I²C slave mode is a TinyCLR API extension — it's not part of the Microsoft .N
 :::
 
 ```csharp
+using System.Diagnostics;
 using GHIElectronics.TinyCLR.Devices.I2c;
 using GHIElectronics.TinyCLR.Pins;
 
-var i2cController = I2cController.FromName(SC20260.I2cBus.I2c1);
+var i2cController = I2cController.FromName(FEZBit.I2cBus.Edge);
 
 i2cController.ReadBufferSize = 1024;        // Default 256
 i2cController.WriteBufferSize = 1024;       // Default 256
@@ -100,7 +100,8 @@ var i2cDevice = i2cController.GetDevice(i2cSettings);
 i2cDevice.ErrorReceived += (sender, args) => Debug.WriteLine("Error received " + args.Error);
 
 i2cDevice.FrameReceived += (sender, args) => {
-    switch (args.Event) {
+    switch (args.Event)
+    {
         case I2cTransaction.MasterWrite:
             Debug.WriteLine("Master is writing");
             break;
@@ -126,16 +127,20 @@ Software I²C is a TinyCLR API extension.
 :::
 
 ```csharp
-var sda = GpioController.GetDefault().OpenPin(SC20260.GpioPin.PB9);
-var scl = GpioController.GetDefault().OpenPin(SC20260.GpioPin.PB8);
+using GHIElectronics.TinyCLR.Devices.Gpio;
+using GHIElectronics.TinyCLR.Devices.I2c;
+using GHIElectronics.TinyCLR.Pins;
 
-var controller = I2cController.FromName(SC20260.I2cBus.Software, sda, scl);
+var sda = GpioController.GetDefault().OpenPin(FEZBit.GpioPin.P0);
+var scl = GpioController.GetDefault().OpenPin(FEZBit.GpioPin.P1);
+
+var controller = I2cController.FromName(FEZBit.I2cBus.Software, sda, scl);
 ```
 
 The internal pull-ups on the SDA and SCL pins can be enabled with a fourth argument. This is usually enough, but **external 2.2 kΩ pull-ups** are better for reliable operation.
 
 ```csharp
-var controller = I2cController.FromName(SC20260.I2cBus.Software, sda, scl, true);
+var controller = I2cController.FromName(FEZBit.I2cBus.Software, sda, scl, true);
 ```
 
 :::tip
