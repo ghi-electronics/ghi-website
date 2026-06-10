@@ -49,13 +49,11 @@ Example minimal policy (replace `<your-region>` and `<your-account>` and the thi
 ## Connecting and publishing a shadow update
 
 ```csharp
-using GHIElectronics.TinyCLR.Native;
-using GHIElectronics.TinyCLR.Networking.Mqtt;
-using System;
 using System.Diagnostics;
 using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using GHIElectronics.TinyCLR.Networking.Mqtt;
 
 // Replace with your account's endpoint, region, and device name.
 var iotEndPoint = "a13gxtasnslh-ats.iot.us-west-2.amazonaws.com";
@@ -78,7 +76,7 @@ var caCert = new X509Certificate(caCertSource);
 var clientCert = new X509Certificate(clientCertSource);
 clientCert.PrivateKey = privateKeyData;
 
-var clientSetting = new MqttClientSetting {
+var clientSetting = new MqttClientSetting{
     BrokerName = iotEndPoint,
     BrokerPort = iotPort,
     CaCertificate = caCert,
@@ -97,7 +95,7 @@ iotClient.SubscribedChanged += (sender, packetId, qos) => Debug.WriteLine("Subsc
 Debug.WriteLine("Connecting...");
 
 // AWS IoT uses X.509 client cert auth — leave username and password null.
-var connectSetting = new MqttConnectionSetting {
+var connectSetting = new MqttConnectionSetting{
     ClientId = deviceId,
     UserName = null,
     Password = null,
@@ -105,7 +103,7 @@ var connectSetting = new MqttConnectionSetting {
 
 var connectCode = iotClient.Connect(connectSetting);
 
-if (connectCode != ConnectReturnCode.ConnectionAccepted) {
+if (connectCode != ConnectReturnCode.ConnectionAccepted){
     Debug.WriteLine("Connect failed: " + connectCode);
     return;
 }
@@ -113,10 +111,10 @@ if (connectCode != ConnectReturnCode.ConnectionAccepted) {
 ushort packetId = 1;
 
 // Subscribe to shadow get responses.
-iotClient.Subscribe(new[] { topicShadowGet }, new[] { QoSLevel.LeastOnce }, packetId++);
+iotClient.Subscribe(new[] { topicShadowGet }, new[] { QoSLevel.AtLeastOnce }, packetId++);
 
 // Publish a shadow update.
-iotClient.Publish(topicShadowUpdate, Encoding.UTF8.GetBytes(message), QoSLevel.MostOnce, retain: false, packetId++);
+iotClient.Publish(topicShadowUpdate, Encoding.UTF8.GetBytes(message), QoSLevel.AtMostOnce, retain: false, packetId++);
 ```
 
 Verify the connection in the AWS IoT console — under your thing, you'll see the connection status, and any shadow updates will appear on the **Device Shadow** tab.
