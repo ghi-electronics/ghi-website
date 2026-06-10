@@ -23,14 +23,14 @@ Microsoft's [Send telemetry to Azure IoT Hub tutorial](https://learn.microsoft.c
 ## Connecting and publishing
 
 ```csharp
-using GHIElectronics.TinyCLR.Drivers.Azure.SAS;
-using GHIElectronics.TinyCLR.Native;
-using GHIElectronics.TinyCLR.Networking.Mqtt;
 using System;
 using System.Diagnostics;
 using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using GHIElectronics.TinyCLR.Drivers.Azure.SAS;
+using GHIElectronics.TinyCLR.Native;
+using GHIElectronics.TinyCLR.Networking.Mqtt;
 
 // Load the Azure root CA from project resources — see the section above
 // for which root certificate Azure currently uses.
@@ -93,7 +93,7 @@ try {
     client.Subscribe(new[] { topicCloudToDevice }, new[] { QoSLevel.ExactlyOnce }, packetId++);
 
     // Publish a device-to-cloud telemetry message.
-    client.Publish(topicDeviceToCloud, Encoding.UTF8.GetBytes("Your message"), QoSLevel.MostOnce, retain: false, packetId++);
+    client.Publish(topicDeviceToCloud, Encoding.UTF8.GetBytes("Your message"), QoSLevel.AtMostOnce, retain: false, packetId++);
 }
 catch (Exception ex) {
     Debug.WriteLine("Azure connect/publish failed: " + ex.Message);
