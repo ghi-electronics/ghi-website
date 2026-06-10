@@ -4,7 +4,9 @@ hide_title: true
 sidebar_label: Overview
 ---
 
-<h1 className="api-package-heading">Pins Library</h1>
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Pins</h1>
+
+**NuGet:** `GHIElectronics.TinyCLR.Pins`
 
 Pin, peripheral, and bus definitions, grouped by board. Pick your board:
 

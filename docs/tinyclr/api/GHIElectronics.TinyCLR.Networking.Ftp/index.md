@@ -4,7 +4,9 @@ hide_title: true
 sidebar_label: Overview
 ---
 
-<h1 className="api-package-heading">Networking.Ftp Library</h1>
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Networking.Ftp</h1>
+
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Ftp`
 
 ## Classes
 

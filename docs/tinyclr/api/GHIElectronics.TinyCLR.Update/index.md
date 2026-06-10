@@ -4,7 +4,9 @@ hide_title: true
 sidebar_label: Overview
 ---
 
-<h1 className="api-package-heading">Update Library</h1>
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Update</h1>
+
+**NuGet:** `GHIElectronics.TinyCLR.Update`
 
 ## Classes
 

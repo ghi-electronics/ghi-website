@@ -1,10 +1,12 @@
 ---
-title: "GHIElectronics.TinyCLR.System.Device.Gpio"
+title: "System.Device.Gpio"
 hide_title: true
 sidebar_label: Overview
 ---
 
-<h1 className="api-package-heading">System.Device.Gpio Library</h1>
+<h1 className="api-package-heading">System.Device.Gpio</h1>
+
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Gpio`
 
 :::info
 The standard, .NET-compatible `System.Device.Gpio` API for TinyCLR. It ships inside the **[GHIElectronics.TinyCLR.Devices.Gpio](../GHIElectronics.TinyCLR.Devices.Gpio/index.md)** NuGet — there is no separate package to install.

@@ -4,7 +4,9 @@ hide_title: true
 sidebar_label: Overview
 ---
 
-<h1 className="api-package-heading">Devices.Usb Library</h1>
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Devices.Usb</h1>
+
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Usb`
 
 ## Classes
 

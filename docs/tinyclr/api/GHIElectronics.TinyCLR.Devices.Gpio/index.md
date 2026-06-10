@@ -4,7 +4,9 @@ hide_title: true
 sidebar_label: Overview
 ---
 
-<h1 className="api-package-heading">Devices.Gpio Library</h1>
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Devices.Gpio</h1>
+
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Gpio`
 
 :::tip
 This NuGet also includes the standard, .NET-compatible **[`System.Device.Gpio`](../System.Device.Gpio/index.md)** API.

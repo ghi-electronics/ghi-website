@@ -4,7 +4,9 @@ hide_title: true
 sidebar_label: Overview
 ---
 
-<h1 className="api-package-heading">Devices.Storage Library</h1>
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Devices.Storage</h1>
+
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Storage`
 
 ## Classes
 

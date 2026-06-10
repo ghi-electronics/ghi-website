@@ -4,7 +4,9 @@ hide_title: true
 sidebar_label: Overview
 ---
 
-<h1 className="api-package-heading">EthernetIP.Scanner Library</h1>
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.EthernetIP.Scanner</h1>
+
+**NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`
 
 ## Classes
 

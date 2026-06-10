@@ -4,7 +4,9 @@ hide_title: true
 sidebar_label: Overview
 ---
 
-<h1 className="api-package-heading">Devices.Spi Library</h1>
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Devices.Spi</h1>
+
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Spi`
 
 :::tip
 This NuGet also includes the standard, .NET-compatible **[`System.Device.Spi`](../System.Device.Spi/index.md)** API.

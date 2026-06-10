@@ -833,19 +833,21 @@ function renderAssemblyIndex(assembly, types, fileOf) {
   const showNs = true;                         // always show the Namespace column (uniform table shape)
   const L = [];
   L.push('---');
-  L.push(`title: ${yaml(assembly)}`);
+  L.push(`title: ${yaml(dirOf(assembly))}`);
   // Suppress Docusaurus's auto-rendered (oversized) title H1; we emit our own
   // MS-styled <h1> below. Without this both show up (duplicate heading).
   L.push('hide_title: true');
   L.push(`sidebar_label: Overview`);
   L.push('---');
   L.push('');
-  // Heading: "<name> Library" (matches the index "Library" column). Each page is one
-  // assembly/DLL — it may span several namespaces and isn't always a separate NuGet (the
-  // System.* shims ship inside a parent package), so "Library" reads better than "NuGet"
-  // or "Namespace". Raw <h1> (className works because Docusaurus 3 parses .md as MDX) lets
-  // custom.css size it like the Microsoft docs page, not Docusaurus's oversized default.
-  L.push(`<h1 className="api-package-heading">${shortName(assembly)} Library</h1>`);
+  // Heading: the FULL assembly name (e.g. "GHIElectronics.TinyCLR.Collections", or
+  // "System.Device.Gpio" for a compat shim). Below it a single NuGet line tells the
+  // reader which package to install (the parent NuGet for the System.* shims). Raw <h1>
+  // (className works because Docusaurus 3 parses .md as MDX) lets custom.css size it like
+  // the Microsoft docs page, not Docusaurus's oversized default.
+  L.push(`<h1 className="api-package-heading">${dirOf(assembly)}</h1>`);
+  L.push('');
+  L.push(`**NuGet:** \`${packageMeta(assembly).nuget}\``);
   L.push('');
   if (PACKAGE_NOTES[assembly]) {
     L.push(PACKAGE_NOTES[assembly], '');
@@ -936,8 +938,9 @@ const pinsFullPath = (t) => (t.outer ? t.outer + '.' + t.name : t.name);
 function renderPinsIndex(asm, boards) {
   const real = boards.filter(b => !/^STM32/.test(b.name));
   const chips = boards.filter(b => /^STM32/.test(b.name));
-  const L = ['---', `title: ${yaml(asm)}`, 'hide_title: true', 'sidebar_label: Overview', '---', '',
-    `<h1 className="api-package-heading">${shortName(asm)} Library</h1>`, '',
+  const L = ['---', `title: ${yaml(dirOf(asm))}`, 'hide_title: true', 'sidebar_label: Overview', '---', '',
+    `<h1 className="api-package-heading">${dirOf(asm)}</h1>`, '',
+    `**NuGet:** \`${packageMeta(asm).nuget}\``, '',
     'Pin, peripheral, and bus definitions, grouped by board. Pick your board:', '',
     '## Boards', ''];
   for (const b of real) L.push(`- [${b.name}](./${encodeURIComponent(b.name)}.md)`);
@@ -1022,11 +1025,11 @@ async function main() {
     const types = byAsm.get(asm).sort((a, b) => a.name.localeCompare(b.name));
     const fileOf = assignFilenames(types);
     // _category_.json: label only — the folder's index.md becomes the category landing page.
-    // The sidebar label strips the "GHIElectronics.TinyCLR." prefix so the API tree
-    // stays readable (e.g. "System.Security.Cryptography" instead of the full id).
-    // The folder name and the page content (index.md title + heading) keep the FULL
-    // package name so users still see the real NuGet id and aren't misled.
-    const sidebarLabel = asm.replace(/^GHIElectronics\.TinyCLR\./, '');
+    // The sidebar label is the assembly name with only the "GHIElectronics." prefix removed
+    // (keeping "TinyCLR.") so the tree is short but still distinguishes our libs, e.g.
+    // "TinyCLR.Collections". The compat shims (System.Device.Gpio, …) have no GHIElectronics.
+    // prefix so they stay as-is. The folder name and page heading keep the FULL assembly id.
+    const sidebarLabel = dirOf(asm).replace(/^GHIElectronics\./, '');
     await fs.writeFile(path.join(asmDir, '_category_.json'),
       JSON.stringify({ label: sidebarLabel }, null, 2));
 

@@ -4,7 +4,9 @@ hide_title: true
 sidebar_label: Overview
 ---
 
-<h1 className="api-package-heading">Collections Library</h1>
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Collections</h1>
+
+**NuGet:** `GHIElectronics.TinyCLR.Collections`
 
 ## Classes
 

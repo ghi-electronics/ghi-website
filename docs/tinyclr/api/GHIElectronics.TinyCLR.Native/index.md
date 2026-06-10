@@ -4,7 +4,9 @@ hide_title: true
 sidebar_label: Overview
 ---
 
-<h1 className="api-package-heading">Native Library</h1>
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Native</h1>
+
+**NuGet:** `GHIElectronics.TinyCLR.Native`
 
 ## Classes
 

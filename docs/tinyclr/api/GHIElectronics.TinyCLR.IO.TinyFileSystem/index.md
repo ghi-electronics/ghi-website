@@ -4,7 +4,9 @@ hide_title: true
 sidebar_label: Overview
 ---
 
-<h1 className="api-package-heading">IO.TinyFileSystem Library</h1>
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.IO.TinyFileSystem</h1>
+
+**NuGet:** `GHIElectronics.TinyCLR.IO.TinyFileSystem`
 
 ## Classes
 

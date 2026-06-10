@@ -4,7 +4,9 @@ hide_title: true
 sidebar_label: Overview
 ---
 
-<h1 className="api-package-heading">UI Library</h1>
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.UI</h1>
+
+**NuGet:** `GHIElectronics.TinyCLR.UI`
 
 ## Classes
 
