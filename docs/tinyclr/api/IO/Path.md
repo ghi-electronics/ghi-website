@@ -7,7 +7,7 @@ sidebar_label: "Path"
 
 **NuGet:** `GHIElectronics.TinyCLR.IO`<br/>**Assembly:** `GHIElectronics.TinyCLR.IO`<br/>**Namespace:** `System.IO`
 
-_No description available._
+Static helpers for path-string manipulation — Combine, GetExtension, GetFileName, etc.
 
 ```csharp
 public sealed class Path
@@ -21,7 +21,7 @@ public sealed class Path
 public static readonly char[] InvalidPathChars { }
 ```
 
-_No description available._
+The characters that are not allowed in a path.
 
 ## Methods
 
@@ -31,7 +31,7 @@ _No description available._
 public static string ChangeExtension(string path, string extension)
 ```
 
-_No description available._
+Returns the path with its file extension changed to the given one.
 
 **Returns** `string`
 
@@ -41,7 +41,7 @@ _No description available._
 public static string GetDirectoryName(string path)
 ```
 
-_No description available._
+Returns the directory portion of a path, or null if the path is a root.
 
 **Returns** `string`
 
@@ -51,7 +51,7 @@ _No description available._
 public static char[] GetInvalidPathChars()
 ```
 
-_No description available._
+Returns a copy of the characters that are not allowed in a path.
 
 **Returns** `char[]`
 
@@ -61,7 +61,7 @@ _No description available._
 public static string GetFullPath(string path)
 ```
 
-_No description available._
+Returns the absolute path for the given path, resolving it against the current directory.
 
 **Returns** `string`
 
@@ -71,7 +71,7 @@ _No description available._
 public static string GetExtension(string path)
 ```
 
-_No description available._
+Returns the extension of the path, including the leading period, or an empty string if there is none.
 
 **Returns** `string`
 
@@ -81,7 +81,7 @@ _No description available._
 public static string GetFileName(string path)
 ```
 
-_No description available._
+Returns the file name and extension portion of the path.
 
 **Returns** `string`
 
@@ -91,7 +91,7 @@ _No description available._
 public static string GetFileNameWithoutExtension(string path)
 ```
 
-_No description available._
+Returns the file name of the path without its extension.
 
 **Returns** `string`
 
@@ -101,7 +101,7 @@ _No description available._
 public static string GetPathRoot(string path)
 ```
 
-_No description available._
+Returns the root portion of the path.
 
 **Returns** `string`
 
@@ -111,7 +111,7 @@ _No description available._
 public static bool HasExtension(string path)
 ```
 
-_No description available._
+Returns whether the path includes a file extension.
 
 **Returns** `bool`
 
@@ -121,7 +121,7 @@ _No description available._
 public static bool IsPathRooted(string path)
 ```
 
-_No description available._
+Returns whether the path is rooted with a drive letter.
 
 **Returns** `bool`
 
@@ -131,7 +131,7 @@ _No description available._
 public static string Combine(string path1, string path2)
 ```
 
-_No description available._
+Combines two path strings into a single path.
 
 **Returns** `string`
 
@@ -143,4 +143,4 @@ _No description available._
 public static readonly char DirectorySeparatorChar
 ```
 
-_No description available._
+The character used to separate directory levels in a path.

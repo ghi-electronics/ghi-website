@@ -7,7 +7,7 @@ sidebar_label: "FileShare"
 
 **NuGet:** `GHIElectronics.TinyCLR.IO`<br/>**Assembly:** `GHIElectronics.TinyCLR.IO`<br/>**Namespace:** `System.IO`
 
-_No description available._
+Controls the access other openers may have to a file that is already open.
 
 ```csharp
 public enum FileShare
@@ -17,7 +17,7 @@ public enum FileShare
 
 | Name | Value | Description |
 |---|---|---|
-| `None` | `0` |  |
-| `Read` | `1` |  |
-| `Write` | `2` |  |
-| `ReadWrite` | `3` |  |
+| `None` | `0` | No sharing; the file cannot be reopened until it is closed. |
+| `Read` | `1` | Allows the file to be subsequently opened for reading. |
+| `Write` | `2` | Allows the file to be subsequently opened for writing. |
+| `ReadWrite` | `3` | Allows the file to be subsequently opened for reading or writing. |

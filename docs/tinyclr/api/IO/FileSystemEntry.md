@@ -7,7 +7,7 @@ sidebar_label: "FileSystemEntry"
 
 **NuGet:** `GHIElectronics.TinyCLR.IO`<br/>**Assembly:** `GHIElectronics.TinyCLR.IO`<br/>**Namespace:** `GHIElectronics.TinyCLR.IO`
 
-_No description available._
+Describes a single file or directory returned by a drive provider.
 
 ```csharp
 public class FileSystemEntry
@@ -21,7 +21,7 @@ public class FileSystemEntry
 public FileAttributes Attributes { get; set; }
 ```
 
-_No description available._
+The attributes of the entry.
 
 ### CreationTime
 
@@ -29,7 +29,7 @@ _No description available._
 public DateTime CreationTime { get; set; }
 ```
 
-_No description available._
+The time the entry was created.
 
 ### LastAccessTime
 
@@ -37,7 +37,7 @@ _No description available._
 public DateTime LastAccessTime { get; set; }
 ```
 
-_No description available._
+The time the entry was last accessed.
 
 ### LastWriteTime
 
@@ -45,7 +45,7 @@ _No description available._
 public DateTime LastWriteTime { get; set; }
 ```
 
-_No description available._
+The time the entry was last written.
 
 ### Size
 
@@ -53,7 +53,7 @@ _No description available._
 public long Size { get; set; }
 ```
 
-_No description available._
+The size of the entry in bytes.
 
 ### FileName
 
@@ -61,4 +61,4 @@ _No description available._
 public string FileName { get; set; }
 ```
 
-_No description available._
+The name of the entry.

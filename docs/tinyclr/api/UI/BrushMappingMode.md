@@ -7,7 +7,7 @@ sidebar_label: "BrushMappingMode"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Media`
 
-_No description available._
+Specifies how brush coordinates are interpreted.
 
 ```csharp
 public enum BrushMappingMode
@@ -17,5 +17,5 @@ public enum BrushMappingMode
 
 | Name | Value | Description |
 |---|---|---|
-| `Absolute` |  |  |
-| `RelativeToBoundingBox` |  |  |
+| `Absolute` |  | Coordinates are interpreted as absolute pixel values. |
+| `RelativeToBoundingBox` |  | Coordinates are relative to the bounding box of the painted region. |

@@ -7,7 +7,7 @@ sidebar_label: "RawTouchActions"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Input`
 
-_No description available._
+Describes the raw actions reported for a touch.
 
 ```csharp
 public enum RawTouchActions
@@ -17,8 +17,8 @@ public enum RawTouchActions
 
 | Name | Value | Description |
 |---|---|---|
-| `TouchDown` | `0x01` |  |
-| `TouchUp` | `0x02` |  |
-| `Activate` | `0x04` |  |
-| `Deactivate` | `0x08` |  |
-| `TouchMove` | `0x10` |  |
+| `TouchDown` | `0x01` | A touch press occurred. |
+| `TouchUp` | `0x02` | A touch release occurred. |
+| `Activate` | `0x04` | The touch input source became active. |
+| `Deactivate` | `0x08` | The touch input source became inactive. |
+| `TouchMove` | `0x10` | A touch move occurred. |

@@ -21,7 +21,7 @@ public struct InterfaceControlFlags
 public bool UsePreviouslyStored
 ```
 
-_No description available._
+Use the previously stored interface configuration.
 
 ### EnableBootP
 
@@ -29,7 +29,7 @@ _No description available._
 public bool EnableBootP
 ```
 
-_No description available._
+Obtain the interface configuration via BootP.
 
 ### EnableDHCP
 
@@ -37,7 +37,7 @@ _No description available._
 public bool EnableDHCP
 ```
 
-_No description available._
+Obtain the interface configuration via DHCP.
 
 ### EnableDNS
 
@@ -45,4 +45,4 @@ _No description available._
 public bool EnableDNS
 ```
 
-_No description available._
+Enable DNS resolution on the interface.

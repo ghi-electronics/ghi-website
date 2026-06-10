@@ -7,7 +7,7 @@ sidebar_label: "FileEnum"
 
 **NuGet:** `GHIElectronics.TinyCLR.IO`<br/>**Assembly:** `GHIElectronics.TinyCLR.IO`<br/>**Namespace:** `System.IO`
 
-_No description available._
+Enumerates the file-system entries under a path.
 
 ```csharp
 public class FileEnum : IEnumerator, IDisposable
@@ -21,7 +21,7 @@ public class FileEnum : IEnumerator, IDisposable
 public FileEnum(string path, FileEnumFlags flags)
 ```
 
-_No description available._
+Creates an enumerator over the entries matching the given flags under the path.
 
 ## Methods
 
@@ -31,7 +31,7 @@ _No description available._
 public bool MoveNext()
 ```
 
-_No description available._
+Advances to the next entry.
 
 **Returns** `bool`
 
@@ -41,4 +41,4 @@ _No description available._
 public void Reset()
 ```
 
-_No description available._
+Resets the enumerator to the start.

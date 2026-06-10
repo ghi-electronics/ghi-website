@@ -7,7 +7,7 @@ sidebar_label: "CIPClass"
 
 **NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`<br/>**Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`<br/>**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`
 
-_No description available._
+Describes a CIP object class to be registered with the adapter.
 
 ```csharp
 public class CIPClass
@@ -21,7 +21,7 @@ public class CIPClass
 public CIPClass()
 ```
 
-_No description available._
+Creates an empty CIP class wrapper.
 
 ### CIPClass(ClassId classCode, int numberClassAttributes, uint highestClassAttributeNumber, int numberClassServices, int numberInstanceAttributes, uint highestInstanceAttributeNumber, int numberInstanceServices, uint numberInstances, string name, ushort revision, bool defaultInitialize)
 
@@ -29,7 +29,7 @@ _No description available._
 public CIPClass(ClassId classCode, int numberClassAttributes, uint highestClassAttributeNumber, int numberClassServices, int numberInstanceAttributes, uint highestInstanceAttributeNumber, int numberInstanceServices, uint numberInstances, string name, ushort revision, bool defaultInitialize = true)
 ```
 
-_No description available._
+Creates a CIP class with the given class code, attribute/service counts, name, and revision.
 
 ## Properties
 
@@ -39,7 +39,7 @@ _No description available._
 public IntPtr Impl { get; set; }
 ```
 
-_No description available._
+Native handle to the underlying CIP class.
 
 ### ClassCode
 
@@ -47,7 +47,7 @@ _No description available._
 public ClassId ClassCode { get; }
 ```
 
-_No description available._
+The CIP class code identifying this object class.
 
 ### NumberClassAttributes
 
@@ -55,7 +55,7 @@ _No description available._
 public int NumberClassAttributes { get; }
 ```
 
-_No description available._
+The number of class-level attributes.
 
 ### HighestClassAttributeNumber
 
@@ -63,7 +63,7 @@ _No description available._
 public uint HighestClassAttributeNumber { get; }
 ```
 
-_No description available._
+The highest class-attribute number used.
 
 ### NumberClassServices
 
@@ -71,7 +71,7 @@ _No description available._
 public int NumberClassServices { get; }
 ```
 
-_No description available._
+The number of class-level services.
 
 ### NumberInstanceAttributes
 
@@ -79,7 +79,7 @@ _No description available._
 public int NumberInstanceAttributes { get; }
 ```
 
-_No description available._
+The number of instance-level attributes.
 
 ### HighestInstanceAttributeNumber
 
@@ -87,7 +87,7 @@ _No description available._
 public uint HighestInstanceAttributeNumber { get; }
 ```
 
-_No description available._
+The highest instance-attribute number used.
 
 ### NumberInstanceServices
 
@@ -95,7 +95,7 @@ _No description available._
 public int NumberInstanceServices { get; }
 ```
 
-_No description available._
+The number of instance-level services.
 
 ### NumberInstances
 
@@ -103,7 +103,7 @@ _No description available._
 public uint NumberInstances { get; }
 ```
 
-_No description available._
+The number of instances to create for this class.
 
 ### Name
 
@@ -111,7 +111,7 @@ _No description available._
 public string Name { get; }
 ```
 
-_No description available._
+The class name.
 
 ### Revision
 
@@ -119,7 +119,7 @@ _No description available._
 public ushort Revision { get; }
 ```
 
-_No description available._
+The class revision number.
 
 ### DefaultInitialize
 
@@ -127,4 +127,4 @@ _No description available._
 public bool DefaultInitialize { get; }
 ```
 
-_No description available._
+Whether the class is created with the OpENer default initialization.

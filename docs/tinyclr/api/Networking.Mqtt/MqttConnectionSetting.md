@@ -21,7 +21,7 @@ public class MqttConnectionSetting
 public string ClientId { get; set; }
 ```
 
-_No description available._
+The unique client identifier presented to the broker.
 
 ### CleanSession
 
@@ -29,7 +29,7 @@ _No description available._
 public bool CleanSession { get; set; }
 ```
 
-_No description available._
+Whether the broker should start a clean session rather than resume a previous one.
 
 ### UserName
 
@@ -37,7 +37,7 @@ _No description available._
 public string UserName { get; set; }
 ```
 
-_No description available._
+The user name used to authenticate with the broker.
 
 ### Password
 
@@ -45,7 +45,7 @@ _No description available._
 public string Password { get; set; }
 ```
 
-_No description available._
+The password used to authenticate with the broker.
 
 ### LastWillTopic
 
@@ -53,7 +53,7 @@ _No description available._
 public string LastWillTopic { get; set; }
 ```
 
-_No description available._
+The topic the broker publishes the last-will message to if the client disconnects unexpectedly.
 
 ### LastWillQos
 
@@ -61,7 +61,7 @@ _No description available._
 public QoSLevel LastWillQos { get; set; }
 ```
 
-_No description available._
+The quality-of-service level used for the last-will message.
 
 ### LastWillMessage
 
@@ -69,7 +69,7 @@ _No description available._
 public string LastWillMessage { get; set; }
 ```
 
-_No description available._
+The message the broker publishes if the client disconnects unexpectedly.
 
 ### LastWillRetain
 
@@ -77,7 +77,7 @@ _No description available._
 public bool LastWillRetain { get; set; }
 ```
 
-_No description available._
+Whether the broker should retain the last-will message.
 
 ### KeepAliveTimeout
 
@@ -85,4 +85,4 @@ _No description available._
 public int KeepAliveTimeout { get; set; }
 ```
 
-_No description available._
+The keep-alive interval, in seconds, between client communications.

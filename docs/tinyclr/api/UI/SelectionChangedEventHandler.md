@@ -7,7 +7,7 @@ sidebar_label: "SelectionChangedEventHandler"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+Represents the method that handles the selection-changed event.
 
 ```csharp
 public delegate void SelectionChangedEventHandler(object sender, SelectionChangedEventArgs args);

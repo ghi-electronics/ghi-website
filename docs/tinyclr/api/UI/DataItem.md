@@ -7,7 +7,7 @@ sidebar_label: "DataItem"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+A single data point in the chart.
 
 ```csharp
 public class DataItem
@@ -21,7 +21,7 @@ public class DataItem
 public double Value { get; set; }
 ```
 
-_No description available._
+The point's value.
 
 ### Name
 
@@ -29,4 +29,4 @@ _No description available._
 public string Name { get; set; }
 ```
 
-_No description available._
+The point's axis label.

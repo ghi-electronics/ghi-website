@@ -21,7 +21,7 @@ public class HashSet<T> : ISet<T>, ICollection<T>, IEnumerable<T>, ICollection, 
 public HashSet() : this(0, null)
 ```
 
-_No description available._
+Initializes a new empty set that uses the default equality comparer.
 
 ### HashSet(IEqualityComparer&lt;T> comparer)
 
@@ -29,7 +29,7 @@ _No description available._
 public HashSet(IEqualityComparer<T> comparer) : this(0, comparer)
 ```
 
-_No description available._
+Initializes a new empty set that uses the specified equality comparer.
 
 ### HashSet(int capacity)
 
@@ -37,7 +37,7 @@ _No description available._
 public HashSet(int capacity) : this(capacity, null)
 ```
 
-_No description available._
+Initializes a new empty set with the specified initial capacity.
 
 ### HashSet(int capacity, IEqualityComparer&lt;T> comparer)
 
@@ -45,7 +45,7 @@ _No description available._
 public HashSet(int capacity, IEqualityComparer<T> comparer)
 ```
 
-_No description available._
+Initializes a new empty set with the specified initial capacity and equality comparer.
 
 ### HashSet(IEnumerable&lt;T> collection)
 
@@ -53,7 +53,7 @@ _No description available._
 public HashSet(IEnumerable<T> collection) : this(collection, null)
 ```
 
-_No description available._
+Initializes a new set that contains the elements copied from the specified collection.
 
 ### HashSet(IEnumerable&lt;T> collection, IEqualityComparer&lt;T> comparer)
 
@@ -61,7 +61,7 @@ _No description available._
 public HashSet(IEnumerable<T> collection, IEqualityComparer<T> comparer) : this(0, comparer)
 ```
 
-_No description available._
+Initializes a new set that contains the elements copied from the specified collection and uses the specified equality comparer.
 
 ## Properties
 
@@ -71,7 +71,7 @@ _No description available._
 public IEqualityComparer<T> Comparer { get; }
 ```
 
-_No description available._
+Gets the equality comparer used to determine equality of elements in the set.
 
 ### Count
 
@@ -79,7 +79,7 @@ _No description available._
 public int Count { get; }
 ```
 
-_No description available._
+Gets the number of elements contained in the set.
 
 ## Methods
 
@@ -89,7 +89,7 @@ _No description available._
 public bool Add(T item)
 ```
 
-_No description available._
+Adds the specified element to the set and returns whether it was newly added.
 
 **Returns** `bool`
 
@@ -99,7 +99,7 @@ _No description available._
 public void Clear()
 ```
 
-_No description available._
+Removes all elements from the set.
 
 ### Contains(T item)
 
@@ -107,7 +107,7 @@ _No description available._
 public bool Contains(T item)
 ```
 
-_No description available._
+Determines whether the set contains the specified element.
 
 **Returns** `bool`
 
@@ -117,7 +117,7 @@ _No description available._
 public bool Remove(T item)
 ```
 
-_No description available._
+Removes the specified element from the set and returns whether it was found and removed.
 
 **Returns** `bool`
 
@@ -127,7 +127,7 @@ _No description available._
 public int RemoveWhere(Predicate<T> match)
 ```
 
-_No description available._
+Removes all elements that match the conditions defined by the specified predicate and returns the number removed.
 
 **Returns** `int`
 
@@ -137,7 +137,7 @@ _No description available._
 public bool TryGetValue(T equalValue, out T actualValue)
 ```
 
-_No description available._
+Searches the set for the element that equals the specified value and returns whether it was found.
 
 **Returns** `bool`
 
@@ -147,7 +147,7 @@ _No description available._
 public void CopyTo(T[] array)
 ```
 
-_No description available._
+Copies the elements of the set to the specified array.
 
 ### CopyTo(T[] array, int arrayIndex)
 
@@ -155,7 +155,7 @@ _No description available._
 public void CopyTo(T[] array, int arrayIndex)
 ```
 
-_No description available._
+Copies the elements of the set to the specified array, starting at the specified array index.
 
 ### CopyTo(T[] array, int arrayIndex, int count)
 
@@ -163,7 +163,7 @@ _No description available._
 public void CopyTo(T[] array, int arrayIndex, int count)
 ```
 
-_No description available._
+Copies the specified number of elements of the set to the specified array, starting at the specified array index.
 
 ### UnionWith(IEnumerable&lt;T> other)
 
@@ -171,7 +171,7 @@ _No description available._
 public void UnionWith(IEnumerable<T> other)
 ```
 
-_No description available._
+Modifies the set to contain all elements that are present in itself, the specified collection, or both.
 
 ### IntersectWith(IEnumerable&lt;T> other)
 
@@ -179,7 +179,7 @@ _No description available._
 public void IntersectWith(IEnumerable<T> other)
 ```
 
-_No description available._
+Modifies the set to contain only elements that are also present in the specified collection.
 
 ### ExceptWith(IEnumerable&lt;T> other)
 
@@ -187,7 +187,7 @@ _No description available._
 public void ExceptWith(IEnumerable<T> other)
 ```
 
-_No description available._
+Removes all elements in the specified collection from the set.
 
 ### SymmetricExceptWith(IEnumerable&lt;T> other)
 
@@ -195,7 +195,7 @@ _No description available._
 public void SymmetricExceptWith(IEnumerable<T> other)
 ```
 
-_No description available._
+Modifies the set to contain only elements that are present either in itself or in the specified collection, but not both.
 
 ### IsSubsetOf(IEnumerable&lt;T> other)
 
@@ -203,7 +203,7 @@ _No description available._
 public bool IsSubsetOf(IEnumerable<T> other)
 ```
 
-_No description available._
+Determines whether the set is a subset of the specified collection.
 
 **Returns** `bool`
 
@@ -213,7 +213,7 @@ _No description available._
 public bool IsProperSubsetOf(IEnumerable<T> other)
 ```
 
-_No description available._
+Determines whether the set is a proper subset of the specified collection.
 
 **Returns** `bool`
 
@@ -223,7 +223,7 @@ _No description available._
 public bool IsSupersetOf(IEnumerable<T> other)
 ```
 
-_No description available._
+Determines whether the set is a superset of the specified collection.
 
 **Returns** `bool`
 
@@ -233,7 +233,7 @@ _No description available._
 public bool IsProperSupersetOf(IEnumerable<T> other)
 ```
 
-_No description available._
+Determines whether the set is a proper superset of the specified collection.
 
 **Returns** `bool`
 
@@ -243,7 +243,7 @@ _No description available._
 public bool Overlaps(IEnumerable<T> other)
 ```
 
-_No description available._
+Determines whether the set and the specified collection share any common elements.
 
 **Returns** `bool`
 
@@ -253,7 +253,7 @@ _No description available._
 public bool SetEquals(IEnumerable<T> other)
 ```
 
-_No description available._
+Determines whether the set and the specified collection contain the same elements.
 
 **Returns** `bool`
 
@@ -263,6 +263,6 @@ _No description available._
 public Enumerator GetEnumerator()
 ```
 
-_No description available._
+Returns an enumerator that iterates through the set.
 
 **Returns** `Enumerator`

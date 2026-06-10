@@ -7,7 +7,7 @@ sidebar_label: "CancelEventArgs"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI`
 
-_No description available._
+Provides data for a cancelable event.
 
 ```csharp
 public class CancelEventArgs : EventArgs
@@ -21,4 +21,4 @@ public class CancelEventArgs : EventArgs
 public bool Cancel
 ```
 
-_No description available._
+Set to true to cancel the operation; otherwise false.

@@ -7,7 +7,7 @@ sidebar_label: "SolidColorBrush"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Media`
 
-_No description available._
+A brush that paints a region with a solid color.
 
 ```csharp
 public sealed class SolidColorBrush : Brush
@@ -21,7 +21,7 @@ public sealed class SolidColorBrush : Brush
 public SolidColorBrush(Color color)
 ```
 
-_No description available._
+Creates a brush that paints with the given color.
 
 ## Fields
 
@@ -31,4 +31,4 @@ _No description available._
 public Color Color
 ```
 
-_No description available._
+The color painted by the brush.

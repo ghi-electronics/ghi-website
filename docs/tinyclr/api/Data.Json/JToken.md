@@ -21,7 +21,7 @@ public abstract class JToken
 protected void EnterSerialization(JsonSerializationOptions options = null)
 ```
 
-_No description available._
+Begins a serialization scope, establishing the shared formatting context if none exists.
 
 ### ExitSerialization()
 
@@ -29,7 +29,7 @@ _No description available._
 protected void ExitSerialization()
 ```
 
-_No description available._
+Ends the serialization scope, releasing the shared formatting context if this token owns it.
 
 ### Indent(bool incrementAfter)
 
@@ -37,7 +37,7 @@ _No description available._
 protected string Indent(bool incrementAfter = false)
 ```
 
-_No description available._
+Returns the indentation string for the current nesting level, optionally increasing the level afterwards.
 
 **Returns** `string`
 
@@ -47,7 +47,7 @@ _No description available._
 protected void Outdent()
 ```
 
-_No description available._
+Decreases the current indentation nesting level by one.
 
 ### ToBson()
 
@@ -55,7 +55,7 @@ _No description available._
 public byte[] ToBson()
 ```
 
-_No description available._
+Encodes this token as a standalone BSON document and returns the bytes.
 
 **Returns** `byte[]`
 
@@ -65,7 +65,7 @@ _No description available._
 public abstract BsonTypes GetBsonType()
 ```
 
-_No description available._
+Gets the BSON type code for this token.
 
 **Returns** `BsonTypes`
 
@@ -75,7 +75,7 @@ _No description available._
 public abstract int GetBsonSize()
 ```
 
-_No description available._
+Gets the number of bytes this token occupies when encoded as BSON.
 
 **Returns** `int`
 
@@ -85,7 +85,7 @@ _No description available._
 public abstract int GetBsonSize(string ename)
 ```
 
-_No description available._
+Gets the number of BSON bytes for this token including the given element name.
 
 **Returns** `int`
 
@@ -95,7 +95,7 @@ _No description available._
 public abstract void ToBson(byte[] buffer, ref int offset)
 ```
 
-_No description available._
+Writes this token to the buffer as BSON, advancing the offset.
 
 ### ToBson(string ename, byte[] buffer, ref int offset)
 
@@ -103,7 +103,7 @@ _No description available._
 public void ToBson(string ename, byte[] buffer, ref int offset)
 ```
 
-_No description available._
+Writes this token as a named BSON element (type byte, name, then value), advancing the offset.
 
 ### MarshallEName(string ename, byte[] buffer, ref int offset)
 
@@ -111,7 +111,7 @@ _No description available._
 protected void MarshallEName(string ename, byte[] buffer, ref int offset)
 ```
 
-_No description available._
+Writes a BSON element name as a null-terminated UTF-8 string, advancing the offset.
 
 ### ToString(JsonSerializationOptions options)
 
@@ -119,6 +119,6 @@ _No description available._
 public abstract string ToString(JsonSerializationOptions options)
 ```
 
-_No description available._
+Returns the JSON text for this token using the given formatting options.
 
 **Returns** `string`

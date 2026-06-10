@@ -7,7 +7,7 @@ sidebar_label: "LinearGradientBrush"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Media`
 
-_No description available._
+A brush that paints a region with a linear color gradient.
 
 ```csharp
 public sealed class LinearGradientBrush : Brush
@@ -21,7 +21,7 @@ public sealed class LinearGradientBrush : Brush
 public LinearGradientBrush(Color startColor, Color endColor) : this(startColor, endColor, 0, 0, RelativeBoundingBoxSize, RelativeBoundingBoxSize)
 ```
 
-_No description available._
+Creates a gradient brush spanning the painted region.
 
 ### LinearGradientBrush(Color startColor, Color endColor, int startX, int startY, int endX, int endY)
 
@@ -29,7 +29,7 @@ _No description available._
 public LinearGradientBrush(Color startColor, Color endColor, int startX, int startY, int endX, int endY)
 ```
 
-_No description available._
+Creates a gradient brush with the given start and end coordinates.
 
 ## Fields
 
@@ -39,7 +39,7 @@ _No description available._
 public Color StartColor
 ```
 
-_No description available._
+The color at the start of the gradient.
 
 ### EndColor
 
@@ -47,7 +47,7 @@ _No description available._
 public Color EndColor
 ```
 
-_No description available._
+The color at the end of the gradient.
 
 ### MappingMode
 
@@ -55,7 +55,7 @@ _No description available._
 public BrushMappingMode MappingMode
 ```
 
-_No description available._
+How the gradient start and end coordinates are interpreted.
 
 ### StartY
 
@@ -63,7 +63,7 @@ _No description available._
 public int StartX, StartY
 ```
 
-_No description available._
+The start coordinates of the gradient.
 
 ### EndY
 
@@ -71,7 +71,7 @@ _No description available._
 public int EndX, EndY
 ```
 
-_No description available._
+The end coordinates of the gradient.
 
 ### RelativeBoundingBoxSize
 
@@ -79,4 +79,4 @@ _No description available._
 public const int RelativeBoundingBoxSize
 ```
 
-_No description available._
+The coordinate range used for relative gradient mapping.

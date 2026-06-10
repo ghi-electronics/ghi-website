@@ -7,7 +7,7 @@ sidebar_label: "TouchEvent"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Input`
 
-_No description available._
+Represents a raw touch event with its touch points.
 
 ```csharp
 public class TouchEvent : BaseEvent
@@ -21,7 +21,7 @@ public class TouchEvent : BaseEvent
 public DateTime Time
 ```
 
-_No description available._
+The time when the event occurred.
 
 ### Touches
 
@@ -29,4 +29,4 @@ _No description available._
 public TouchInput[] Touches
 ```
 
-_No description available._
+The touch points associated with the event.

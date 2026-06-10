@@ -7,7 +7,7 @@ sidebar_label: "FileSystemInfo"
 
 **NuGet:** `GHIElectronics.TinyCLR.IO`<br/>**Assembly:** `GHIElectronics.TinyCLR.IO`<br/>**Namespace:** `System.IO`
 
-_No description available._
+Base class for objects that describe a file or directory.
 
 ```csharp
 public abstract class FileSystemInfo : MarshalByRefObject
@@ -21,7 +21,7 @@ public abstract class FileSystemInfo : MarshalByRefObject
 public virtual string FullName { get; }
 ```
 
-_No description available._
+The full path of the file or directory.
 
 ### Extension
 
@@ -29,7 +29,7 @@ _No description available._
 public string Extension { get; }
 ```
 
-_No description available._
+The extension portion of the name, including the leading period.
 
 ### Name
 
@@ -37,7 +37,7 @@ _No description available._
 public abstract string Name { get; }
 ```
 
-_No description available._
+The name of the file or directory.
 
 ### Exists
 
@@ -45,7 +45,7 @@ _No description available._
 public abstract bool Exists { get; }
 ```
 
-_No description available._
+Whether the file or directory exists.
 
 ### Attributes
 
@@ -53,7 +53,7 @@ _No description available._
 public FileAttributes Attributes { get; }
 ```
 
-_No description available._
+The attributes of the file or directory.
 
 ### CreationTime
 
@@ -61,7 +61,7 @@ _No description available._
 public DateTime CreationTime { get; }
 ```
 
-_No description available._
+The creation time in local time.
 
 ### CreationTimeUtc
 
@@ -69,7 +69,7 @@ _No description available._
 public DateTime CreationTimeUtc { get; }
 ```
 
-_No description available._
+The creation time in UTC.
 
 ### LastAccessTime
 
@@ -77,7 +77,7 @@ _No description available._
 public DateTime LastAccessTime { get; }
 ```
 
-_No description available._
+The last access time in local time.
 
 ### LastAccessTimeUtc
 
@@ -85,7 +85,7 @@ _No description available._
 public DateTime LastAccessTimeUtc { get; }
 ```
 
-_No description available._
+The last access time in UTC.
 
 ### LastWriteTime
 
@@ -93,7 +93,7 @@ _No description available._
 public DateTime LastWriteTime { get; }
 ```
 
-_No description available._
+The last write time in local time.
 
 ### LastWriteTimeUtc
 
@@ -101,7 +101,7 @@ _No description available._
 public DateTime LastWriteTimeUtc { get; }
 ```
 
-_No description available._
+The last write time in UTC.
 
 ## Methods
 
@@ -111,7 +111,7 @@ _No description available._
 public abstract void Delete()
 ```
 
-_No description available._
+Deletes the file or directory.
 
 ### Refresh()
 
@@ -119,7 +119,7 @@ _No description available._
 public void Refresh()
 ```
 
-_No description available._
+Reloads the cached metadata from the underlying file system.
 
 ### RefreshIfNull()
 
@@ -127,7 +127,7 @@ _No description available._
 protected void RefreshIfNull()
 ```
 
-_No description available._
+Loads the cached metadata if it has not been loaded yet.
 
 ## Fields
 
@@ -137,4 +137,4 @@ _No description available._
 protected string m_fullPath
 ```
 
-_No description available._
+The fully qualified path of the file or directory.

@@ -7,7 +7,7 @@ sidebar_label: "StateEnum"
 
 **NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Scanner.ObjectLibrary`
 
-_No description available._
+The operational state reported by the Identity Object (attribute 8).
 
 ```csharp
 public enum StateEnum
@@ -17,10 +17,10 @@ public enum StateEnum
 
 | Name | Value | Description |
 |---|---|---|
-| `Nonexistent` | `0` |  |
-| `DeviceSelfTesting` | `1` |  |
-| `Standby` | `2` |  |
-| `Operational` | `3` |  |
-| `MajorRecoverableFault` | `4` |  |
-| `MajorUnrecoverableFault` | `5` |  |
-| `DefaultforGet_Attributes_All_service` | `255` |  |
+| `Nonexistent` | `0` | The device or instance does not exist. |
+| `DeviceSelfTesting` | `1` | The device is performing self-test. |
+| `Standby` | `2` | The device is in standby (not yet configured). |
+| `Operational` | `3` | The device is operational. |
+| `MajorRecoverableFault` | `4` | The device has a major recoverable fault. |
+| `MajorUnrecoverableFault` | `5` | The device has a major unrecoverable fault. |
+| `DefaultforGet_Attributes_All_service` | `255` | Default value returned by the Get_Attributes_All service. |

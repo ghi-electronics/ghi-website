@@ -7,7 +7,7 @@ sidebar_label: "Constants"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Media`
 
-_No description available._
+Provides constant values used by the media types.
 
 ```csharp
 public static class Constants
@@ -21,4 +21,4 @@ public static class Constants
 public const int MaxExtent
 ```
 
-_No description available._
+The maximum extent allowed for a drawing operation.

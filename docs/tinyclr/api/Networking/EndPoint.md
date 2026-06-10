@@ -7,7 +7,7 @@ sidebar_label: "EndPoint"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking`<br/>**Namespace:** `System.Net`
 
-_No description available._
+Identifies a network address.
 
 ```csharp
 public abstract class EndPoint
@@ -21,7 +21,7 @@ public abstract class EndPoint
 public virtual AddressFamily AddressFamily { get; }
 ```
 
-_No description available._
+The address family to which the endpoint belongs.
 
 ## Methods
 
@@ -31,7 +31,7 @@ _No description available._
 public abstract SocketAddress Serialize()
 ```
 
-_No description available._
+Serializes endpoint information into a SocketAddress instance.
 
 **Returns** `SocketAddress`
 
@@ -41,6 +41,6 @@ _No description available._
 public abstract EndPoint Create(SocketAddress socketAddress)
 ```
 
-_No description available._
+Creates an endpoint from a socket address.
 
 **Returns** `EndPoint`

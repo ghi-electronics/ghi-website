@@ -21,7 +21,7 @@ public class ResultSet
 public int RowCount { get; }
 ```
 
-_No description available._
+The number of rows in the result set.
 
 ### ColumnCount
 
@@ -29,7 +29,7 @@ _No description available._
 public int ColumnCount { get; }
 ```
 
-_No description available._
+The number of columns in the result set.
 
 ### ColumnNames
 
@@ -37,7 +37,7 @@ _No description available._
 public string[] ColumnNames { get; }
 ```
 
-_No description available._
+The names of the columns in the result set.
 
 ### Data
 
@@ -45,7 +45,7 @@ _No description available._
 public ArrayList Data { get; }
 ```
 
-_No description available._
+The rows of the result set, each an ArrayList of cell values.
 
 ### row]
 
@@ -53,7 +53,7 @@ _No description available._
 public ArrayList this[int row] { get; }
 ```
 
-_No description available._
+Gets the cells of the given row as an ArrayList.
 
 ### column]
 
@@ -61,4 +61,4 @@ _No description available._
 public object this[int row, int column] { get; }
 ```
 
-_No description available._
+Gets the value of the cell at the given row and column.

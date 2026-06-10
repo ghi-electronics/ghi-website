@@ -7,7 +7,7 @@ sidebar_label: "ImageFormat"
 
 **NuGet:** `GHIElectronics.TinyCLR.Drawing`<br/>**Assembly:** `GHIElectronics.TinyCLR.Drawing`<br/>**Namespace:** `System.Drawing.Imaging`
 
-_No description available._
+Identifies the file format of an image by a unique GUID.
 
 ```csharp
 public sealed class ImageFormat
@@ -21,7 +21,7 @@ public sealed class ImageFormat
 public ImageFormat(Guid guid)
 ```
 
-_No description available._
+Initializes a new image format identified by the given GUID.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public Guid Guid { get; }
 ```
 
-_No description available._
+Gets the GUID that identifies this image format.
 
 ### RawBitmap
 
@@ -39,7 +39,7 @@ _No description available._
 public static ImageFormat RawBitmap { get; }
 ```
 
-_No description available._
+Gets the raw (uncompressed) bitmap format.
 
 ### Bmp
 
@@ -47,7 +47,7 @@ _No description available._
 public static ImageFormat Bmp { get; }
 ```
 
-_No description available._
+Gets the Windows bitmap (BMP) format.
 
 ### Emf
 
@@ -55,7 +55,7 @@ _No description available._
 public static ImageFormat Emf { get; }
 ```
 
-_No description available._
+Gets the enhanced metafile (EMF) format.
 
 ### Wmf
 
@@ -63,7 +63,7 @@ _No description available._
 public static ImageFormat Wmf { get; }
 ```
 
-_No description available._
+Gets the Windows metafile (WMF) format.
 
 ### Gif
 
@@ -71,7 +71,7 @@ _No description available._
 public static ImageFormat Gif { get; }
 ```
 
-_No description available._
+Gets the GIF format.
 
 ### Jpeg
 
@@ -79,7 +79,7 @@ _No description available._
 public static ImageFormat Jpeg { get; }
 ```
 
-_No description available._
+Gets the JPEG format.
 
 ### Png
 
@@ -87,7 +87,7 @@ _No description available._
 public static ImageFormat Png { get; }
 ```
 
-_No description available._
+Gets the PNG format.
 
 ### Tiff
 
@@ -95,7 +95,7 @@ _No description available._
 public static ImageFormat Tiff { get; }
 ```
 
-_No description available._
+Gets the TIFF format.
 
 ### Exif
 
@@ -103,7 +103,7 @@ _No description available._
 public static ImageFormat Exif { get; }
 ```
 
-_No description available._
+Gets the EXIF format.
 
 ### Icon
 
@@ -111,7 +111,7 @@ _No description available._
 public static ImageFormat Icon { get; }
 ```
 
-_No description available._
+Gets the icon format.
 
 ## Methods
 
@@ -121,7 +121,7 @@ _No description available._
 public override bool Equals(object o)
 ```
 
-_No description available._
+Determines whether the specified object is an image format with the same GUID.
 
 **Returns** `bool`
 
@@ -131,7 +131,7 @@ _No description available._
 public override int GetHashCode()
 ```
 
-_No description available._
+Returns a hash code for this image format.
 
 **Returns** `int`
 
@@ -141,6 +141,6 @@ _No description available._
 public override string ToString()
 ```
 
-_No description available._
+Returns the name of this image format.
 
 **Returns** `string`

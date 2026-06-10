@@ -7,7 +7,7 @@ sidebar_label: "OnFlushHandler"
 
 **NuGet:** `GHIElectronics.TinyCLR.Drawing`<br/>**Assembly:** `GHIElectronics.TinyCLR.Drawing`<br/>**Namespace:** `System.Drawing`
 
-_No description available._
+Represents the method that handles the flush event for a drawing surface.
 
 ```csharp
 public delegate void OnFlushHandler(Graphics sender, byte[] data, int x, int y, int width, int height, int originalWidth);

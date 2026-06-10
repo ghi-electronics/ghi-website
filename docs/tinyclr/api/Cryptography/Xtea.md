@@ -21,7 +21,7 @@ public class Xtea
 public Xtea(uint[] key)
 ```
 
-_No description available._
+Creates an XTEA cipher with the given 128-bit key (four 32-bit words).
 
 ## Methods
 
@@ -31,7 +31,7 @@ _No description available._
 public byte[] Encrypt(byte[] buffer, uint offset, uint count)
 ```
 
-_No description available._
+Encrypts a range of the buffer and returns the ciphertext.
 
 **Returns** `byte[]`
 
@@ -41,6 +41,6 @@ _No description available._
 public byte[] Decrypt(byte[] buffer, uint offset, uint count)
 ```
 
-_No description available._
+Decrypts a range of the buffer and returns the plaintext.
 
 **Returns** `byte[]`

@@ -7,7 +7,7 @@ sidebar_label: "MulticastDns"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking`<br/>**Namespace:** `System.Net`
 
-_No description available._
+Provides multicast DNS (mDNS) host name advertisement.
 
 ```csharp
 public static class MulticastDns
@@ -21,7 +21,7 @@ public static class MulticastDns
 public extern static void Start(string hostname, TimeSpan dnsTTL)
 ```
 
-_No description available._
+Starts advertising the specified host name over multicast DNS with the given time-to-live.
 
 ### Stop()
 
@@ -29,4 +29,4 @@ _No description available._
 public extern static void Stop()
 ```
 
-_No description available._
+Stops multicast DNS host name advertisement.

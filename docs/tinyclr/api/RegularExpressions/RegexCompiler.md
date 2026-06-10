@@ -21,4 +21,4 @@ public class RegexCompiler
 public string Pattern { get; }
 ```
 
-_No description available._
+The pattern string that was last compiled.

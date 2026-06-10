@@ -7,7 +7,7 @@ sidebar_label: "FtpFilesystemListener"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking.Ftp`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Ftp`<br/>**Namespace:** `GHIElectronics.TinyCLR.Networking.Ftp`
 
-_No description available._
+An FTP listener that serves files from a real filesystem directory under a virtual root.
 
 ```csharp
 public class FtpFilesystemListener : FtpListener
@@ -21,7 +21,7 @@ public class FtpFilesystemListener : FtpListener
 public FtpFilesystemListener(String virtualRoot, String filesystemRoot) : this(virtualRoot, filesystemRoot, true)
 ```
 
-_No description available._
+Creates a listener that maps the virtual root to the filesystem directory, allowing uploads.
 
 ### FtpFilesystemListener(String virtualRoot, String filesystemRoot, bool uploadsAllowed)
 
@@ -29,7 +29,7 @@ _No description available._
 public FtpFilesystemListener(String virtualRoot, String filesystemRoot, bool uploadsAllowed)
 ```
 
-_No description available._
+Creates a listener that maps the virtual root to the filesystem directory, optionally allowing uploads.
 
 ## Properties
 
@@ -39,7 +39,7 @@ _No description available._
 public String FilesystemRoot { get; set; }
 ```
 
-_No description available._
+The filesystem directory whose contents are served.
 
 ### VirtualRoot
 
@@ -47,7 +47,7 @@ _No description available._
 public String VirtualRoot { get; set; }
 ```
 
-_No description available._
+The virtual root path that clients see, mapped onto the filesystem directory.
 
 ### UploadsAllowed
 
@@ -55,7 +55,7 @@ _No description available._
 public bool UploadsAllowed { get; set; }
 ```
 
-_No description available._
+Whether clients are allowed to upload files.
 
 ## Methods
 

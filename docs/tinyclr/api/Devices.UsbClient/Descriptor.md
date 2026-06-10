@@ -7,7 +7,7 @@ sidebar_label: "Descriptor"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbClient`
 
-_No description available._
+Base class for all USB descriptors.
 
 ```csharp
 public abstract class Descriptor
@@ -21,7 +21,7 @@ public abstract class Descriptor
 protected Descriptor(byte Index)
 ```
 
-_No description available._
+Creates a new descriptor with the given index.
 
 ## Fields
 
@@ -31,4 +31,4 @@ _No description available._
 protected byte index
 ```
 
-_No description available._
+The index of the descriptor.

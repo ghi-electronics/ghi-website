@@ -7,7 +7,7 @@ sidebar_label: "Text"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+A lightweight element that draws a single string in a given font.
 
 ```csharp
 public class Text : UIElement
@@ -21,7 +21,7 @@ public class Text : UIElement
 public Text() : this(null, null)
 ```
 
-_No description available._
+Initializes a new empty text element.
 
 ### Text(string content)
 
@@ -29,7 +29,7 @@ _No description available._
 public Text(string content) : this(null, content)
 ```
 
-_No description available._
+Initializes a new text element with the given content and no font.
 
 ### Text(System.Drawing.Font font, string content)
 
@@ -37,7 +37,7 @@ _No description available._
 public Text(System.Drawing.Font font, string content)
 ```
 
-_No description available._
+Initializes a new text element with the given font and content.
 
 ## Properties
 
@@ -47,7 +47,7 @@ _No description available._
 public System.Drawing.Font Font { get; set; }
 ```
 
-_No description available._
+The font used to draw the text.
 
 ### ForeColor
 
@@ -55,7 +55,7 @@ _No description available._
 public Color ForeColor { get; set; }
 ```
 
-_No description available._
+The color used to draw the text.
 
 ### TextContent
 
@@ -63,7 +63,7 @@ _No description available._
 public string TextContent { get; set; }
 ```
 
-_No description available._
+The string of text to display.
 
 ### Trimming
 
@@ -71,7 +71,7 @@ _No description available._
 public TextTrimming Trimming { get; set; }
 ```
 
-_No description available._
+How text that does not fit is trimmed (for example, with an ellipsis).
 
 ### TextAlignment
 
@@ -79,7 +79,7 @@ _No description available._
 public TextAlignment TextAlignment { get; set; }
 ```
 
-_No description available._
+The horizontal alignment of the text.
 
 ### LineHeight
 
@@ -87,7 +87,7 @@ _No description available._
 public int LineHeight { get; }
 ```
 
-_No description available._
+The height of a single line of text, including external leading.
 
 ### TextWrap
 
@@ -95,7 +95,7 @@ _No description available._
 public bool TextWrap { get; set; }
 ```
 
-_No description available._
+Whether text wraps onto multiple lines when it exceeds the available width.
 
 ## Methods
 
@@ -105,14 +105,7 @@ _No description available._
 protected override void MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
 ```
 
-Measurement override. Implement your size-to-content logic here. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `availableWidth` | `int` | Available size that parent can give to the child. May be MaxValue(when parent wants to measure to content). This is soft constraint. Child can return bigger size to indicate that it wants bigger space and hope that parent can throw in scrolling... |
-| `availableHeight` | `int` |  |
-| `desiredWidth` | `out int` |  |
-| `desiredHeight` | `out int` |  |
+Measures the size needed to draw the text in the available width.
 
 ### OnRender(DrawingContext dc)
 
@@ -120,9 +113,17 @@ Measurement override. Implement your size-to-content logic here. _(inherited)_
 public override void OnRender(DrawingContext dc)
 ```
 
-_No description available._
+Draws the text using the current font, color, alignment, and trimming.
 
 ## Fields
+
+### _font
+
+```csharp
+protected System.Drawing.Font _font
+```
+
+The font used to render the text.
 
 ### _text
 
@@ -130,4 +131,4 @@ _No description available._
 protected string _text
 ```
 
-_No description available._
+The text content to render.

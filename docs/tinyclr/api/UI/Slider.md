@@ -21,7 +21,7 @@ public class Slider : ContentControl, IDisposable
 public Slider() : this(0, 0)
 ```
 
-_No description available._
+Initializes a new slider with default size.
 
 ### Slider(int width, int height)
 
@@ -29,7 +29,7 @@ _No description available._
 public Slider(int width, int height)
 ```
 
-_No description available._
+Initializes a new slider with the given width and height.
 
 ## Properties
 
@@ -39,7 +39,7 @@ _No description available._
 public ushort Alpha { get; set; }
 ```
 
-_No description available._
+The opacity applied when rendering the knob.
 
 ### RadiusBorder
 
@@ -47,7 +47,7 @@ _No description available._
 public int RadiusBorder { get; set; }
 ```
 
-_No description available._
+Corner radius in pixels for the Scale9-rendered knob.
 
 ### Orientation
 
@@ -55,7 +55,7 @@ _No description available._
 public Orientation Orientation { get; set; }
 ```
 
-_No description available._
+Whether the slider is laid out horizontally or vertically.
 
 ### Minimum
 
@@ -63,7 +63,7 @@ _No description available._
 public double Minimum { get; set; }
 ```
 
-_No description available._
+The minimum value the slider can represent.
 
 ### Maximum
 
@@ -71,7 +71,7 @@ _No description available._
 public double Maximum { get; set; }
 ```
 
-_No description available._
+The maximum value the slider can represent.
 
 ### Value
 
@@ -79,7 +79,7 @@ _No description available._
 public double Value { get; set; }
 ```
 
-_No description available._
+The current slider value, clamped between `Minimum` and `Maximum`.
 
 ### KnobSize
 
@@ -121,7 +121,7 @@ Color used for the track line and tick marks.
 public override void OnRender(DrawingContext dc)
 ```
 
-_No description available._
+Renders the track, tick marks, and knob for the slider.
 
 ### OnTouchDown(TouchEventArgs e)
 
@@ -129,7 +129,7 @@ _No description available._
 protected override void OnTouchDown(TouchEventArgs e)
 ```
 
-_No description available._
+Begins dragging the knob when the slider is touched.
 
 ### OnTouchUp(TouchEventArgs e)
 
@@ -137,7 +137,7 @@ _No description available._
 protected override void OnTouchUp(TouchEventArgs e)
 ```
 
-_No description available._
+Ends knob dragging when the touch is released.
 
 ### OnTouchMove(TouchEventArgs e)
 
@@ -145,7 +145,7 @@ _No description available._
 protected override void OnTouchMove(TouchEventArgs e)
 ```
 
-_No description available._
+Updates the value as the knob is dragged.
 
 ### OnButtonDown(ButtonEventArgs e)
 
@@ -161,7 +161,7 @@ Hardware button support: Left/Right step a horizontal slider, Up/Down step a ver
 public void Dispose()
 ```
 
-_No description available._
+Releases the knob bitmap resources used by the slider.
 
 ### Dispose(bool disposing)
 
@@ -169,7 +169,7 @@ _No description available._
 protected virtual void Dispose(bool disposing)
 ```
 
-_No description available._
+Releases the knob bitmap resources used by the slider.
 
 ## Events
 
@@ -179,4 +179,4 @@ _No description available._
 public event ValueChangedEventHandler ValueChanged
 ```
 
-_No description available._
+Raised when the slider value changes.

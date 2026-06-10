@@ -7,7 +7,7 @@ sidebar_label: "UsbClientMode"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbClient`
 
-_No description available._
+The type of device to emulate.
 
 ```csharp
 public enum UsbClientMode
@@ -17,10 +17,10 @@ public enum UsbClientMode
 
 | Name | Value | Description |
 |---|---|---|
-| `RawDevice` | `0` |  |
-| `Cdc` | `1` |  |
-| `WinUsb` | `2` |  |
-| `Keyboard` | `3` |  |
-| `Mouse` | `4` |  |
-| `Joystick` | `5` |  |
-| `MassStorage` | `6` |  |
+| `RawDevice` | `0` | A raw device. |
+| `Cdc` | `1` | A CDC virtual COM port. |
+| `WinUsb` | `2` | A WinUsb device. |
+| `Keyboard` | `3` | A keyboard. |
+| `Mouse` | `4` | A mouse. |
+| `Joystick` | `5` | A joystick. |
+| `MassStorage` | `6` | A mass storage device. |

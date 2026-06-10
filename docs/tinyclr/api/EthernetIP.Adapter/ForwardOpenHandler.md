@@ -7,7 +7,7 @@ sidebar_label: "ForwardOpenHandler"
 
 **NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`<br/>**Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`<br/>**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`
 
-_No description available._
+Handles a successful Forward Open opening a CIP connection.
 
 ```csharp
 public delegate void ForwardOpenHandler(AdapterController adapter, IPAddress ipAddress, bool large);

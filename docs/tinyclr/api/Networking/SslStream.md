@@ -7,7 +7,7 @@ sidebar_label: "SslStream"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking`<br/>**Namespace:** `System.Net.Security`
 
-_No description available._
+Provides a stream used for client-server communication that uses SSL/TLS to secure the connection.
 
 ```csharp
 public class SslStream : NetworkStream
@@ -21,7 +21,7 @@ public class SslStream : NetworkStream
 public SslStream(Socket socket) : base(socket, false)
 ```
 
-_No description available._
+Initializes a new instance over the specified connected socket.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public bool IsServer { get; }
 ```
 
-_No description available._
+Whether this stream is acting as the server side of the connection.
 
 ### Length
 
@@ -39,7 +39,7 @@ _No description available._
 public override long Length { get; }
 ```
 
-_No description available._
+Not supported; always throws NotSupportedException.
 
 ### DataAvailable
 
@@ -47,7 +47,7 @@ _No description available._
 public override bool DataAvailable { get; }
 ```
 
-_No description available._
+Whether decrypted data is available to be read.
 
 ## Methods
 
@@ -57,7 +57,7 @@ _No description available._
 public void AuthenticateAsClient(string targetHost)
 ```
 
-_No description available._
+Performs the client side of the SSL/TLS handshake for the specified host.
 
 ### AuthenticateAsClient(string targetHost, X509Certificate caCertificate)
 
@@ -65,7 +65,7 @@ _No description available._
 public void AuthenticateAsClient(string targetHost, X509Certificate caCertificate)
 ```
 
-_No description available._
+Performs the client side of the handshake, validating against the specified CA certificate.
 
 ### AuthenticateAsClient(string targetHost, X509Certificate caCertificate, X509Certificate clientCertificate)
 
@@ -73,7 +73,7 @@ _No description available._
 public void AuthenticateAsClient(string targetHost, X509Certificate caCertificate, X509Certificate clientCertificate)
 ```
 
-_No description available._
+Performs the client side of the handshake using the specified CA and client certificates.
 
 ### AuthenticateAsClient(string targetHost, X509Certificate caCertificate, X509Certificate clientCertificate, SslProtocols sslProtocols)
 
@@ -81,7 +81,7 @@ _No description available._
 public void AuthenticateAsClient(string targetHost, X509Certificate caCertificate, X509Certificate clientCertificate, SslProtocols sslProtocols)
 ```
 
-_No description available._
+Performs the client side of the handshake using the specified certificates and protocols.
 
 ### AuthenticateAsClient(string targetHost, X509Certificate caCertificate, X509Certificate clientCertificate, SslProtocols sslProtocols, SslVerification sslVerification)
 
@@ -89,7 +89,7 @@ _No description available._
 public void AuthenticateAsClient(string targetHost, X509Certificate caCertificate, X509Certificate clientCertificate, SslProtocols sslProtocols, SslVerification sslVerification)
 ```
 
-_No description available._
+Performs the client side of the handshake using the specified certificates, protocols, and verification mode.
 
 ### AuthenticateAsServer(X509Certificate caCertificate, SslProtocols sslProtocols)
 
@@ -97,7 +97,7 @@ _No description available._
 public void AuthenticateAsServer(X509Certificate caCertificate, SslProtocols sslProtocols)
 ```
 
-_No description available._
+Performs the server side of the SSL/TLS handshake using the specified certificate and protocols.
 
 ### Dispose(bool disposing)
 
@@ -105,7 +105,7 @@ _No description available._
 protected override void Dispose(bool disposing)
 ```
 
-_No description available._
+Releases the resources used by the stream and closes the secure connection.
 
 ### Read(byte[] buffer, int offset, int size)
 
@@ -113,7 +113,7 @@ _No description available._
 public override int Read(byte[] buffer, int offset, int size)
 ```
 
-_No description available._
+Reads decrypted data from the secure stream and returns the number of bytes read.
 
 **Returns** `int`
 
@@ -123,4 +123,4 @@ _No description available._
 public override void Write(byte[] buffer, int offset, int size)
 ```
 
-_No description available._
+Encrypts and writes the specified data to the secure stream.

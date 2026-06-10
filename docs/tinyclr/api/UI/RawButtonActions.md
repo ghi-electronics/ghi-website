@@ -7,7 +7,7 @@ sidebar_label: "RawButtonActions"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Input`
 
-_No description available._
+Describes the raw actions reported for a button.
 
 ```csharp
 public enum RawButtonActions
@@ -17,7 +17,7 @@ public enum RawButtonActions
 
 | Name | Value | Description |
 |---|---|---|
-| `ButtonDown` | `1` |  |
-| `ButtonUp` | `2` |  |
-| `Activate` | `4` |  |
-| `Deactivate` | `8` |  |
+| `ButtonDown` | `1` | The button was pressed down. |
+| `ButtonUp` | `2` | The button was released. |
+| `Activate` | `4` | The button input source became active. |
+| `Deactivate` | `8` | The button input source became inactive. |

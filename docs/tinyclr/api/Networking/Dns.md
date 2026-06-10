@@ -7,7 +7,7 @@ sidebar_label: "Dns"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking`<br/>**Namespace:** `System.Net`
 
-_No description available._
+Provides simple host name resolution functionality.
 
 ```csharp
 public static class Dns
@@ -21,7 +21,7 @@ public static class Dns
 public static string GetHostName()
 ```
 
-_No description available._
+Returns the host name of the local device.
 
 **Returns** `string`
 
@@ -31,7 +31,7 @@ _No description available._
 public static IPAddress[] GetHostAddresses(string hostNameOrAddress)
 ```
 
-_No description available._
+Resolves a host name or IP address to an array of IP addresses.
 
 **Returns** `IPAddress[]`
 
@@ -41,6 +41,6 @@ _No description available._
 public static IPHostEntry GetHostEntry(string hostNameOrAddress)
 ```
 
-_No description available._
+Resolves a host name or IP address to an IPHostEntry containing its addresses.
 
 **Returns** `IPHostEntry`

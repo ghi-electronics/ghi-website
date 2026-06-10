@@ -7,7 +7,7 @@ sidebar_label: "Ftp"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking.Ftp`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Ftp`<br/>**Namespace:** `GHIElectronics.TinyCLR.Networking`
 
-_No description available._
+FTP protocol method names used by the server's command handling.
 
 ```csharp
 public static class Ftp
@@ -21,7 +21,7 @@ public static class Ftp
 public const string ChangeDirectory
 ```
 
-_No description available._
+Represents the FTP CWD protocol method that changes the current directory.
 
 ### RenameFrom
 
@@ -29,7 +29,7 @@ _No description available._
 public const string RenameFrom
 ```
 
-_No description available._
+Identifies the source name of a rename operation (RNFR).
 
 ### RenameTo
 
@@ -37,4 +37,4 @@ _No description available._
 public const string RenameTo
 ```
 
-_No description available._
+Identifies the target name of a rename operation (RNTO).

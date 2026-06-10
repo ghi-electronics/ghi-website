@@ -7,7 +7,7 @@ sidebar_label: "Enumerator"
 
 **NuGet:** `GHIElectronics.TinyCLR.Collections`<br/>**Assembly:** `GHIElectronics.TinyCLR.Collections`<br/>**Namespace:** `System.Collections.Generic`
 
-_No description available._
+Enumerates the elements of a `HashSet{T}`.
 
 ```csharp
 public struct Enumerator : IEnumerator<T>, IEnumerator
@@ -21,7 +21,7 @@ public struct Enumerator : IEnumerator<T>, IEnumerator
 public T Current { get; }
 ```
 
-_No description available._
+Gets the element at the current position of the enumerator.
 
 ## Methods
 
@@ -31,7 +31,7 @@ _No description available._
 public bool MoveNext()
 ```
 
-_No description available._
+Advances the enumerator to the next element of the set.
 
 **Returns** `bool`
 
@@ -41,4 +41,4 @@ _No description available._
 public void Dispose()
 ```
 
-_No description available._
+Releases all resources used by the enumerator.

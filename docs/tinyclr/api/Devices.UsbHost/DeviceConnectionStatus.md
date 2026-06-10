@@ -7,7 +7,7 @@ sidebar_label: "DeviceConnectionStatus"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.UsbHost`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbHost`
 
-_No description available._
+The connection status of a USB device.
 
 ```csharp
 public enum DeviceConnectionStatus
@@ -17,6 +17,6 @@ public enum DeviceConnectionStatus
 
 | Name | Value | Description |
 |---|---|---|
-| `Disconnected` | `0` |  |
-| `Connected` | `1` |  |
-| `Bad` | `2` |  |
+| `Disconnected` | `0` | The device has been disconnected. |
+| `Connected` | `1` | The device has been connected. |
+| `Bad` | `2` | The device was connected but is not functioning correctly. |

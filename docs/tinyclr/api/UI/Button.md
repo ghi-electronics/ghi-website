@@ -7,7 +7,7 @@ sidebar_label: "Button"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+A clickable push button that raises `Click` when activated.
 
 ```csharp
 public class Button : ContentControl, IDisposable
@@ -21,7 +21,7 @@ public class Button : ContentControl, IDisposable
 public Button()
 ```
 
-_No description available._
+Creates a new Button.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public ushort Alpha { get; set; }
 ```
 
-_No description available._
+Opacity (0-255) used when drawing the button image.
 
 ### RadiusBorder
 
@@ -39,7 +39,7 @@ _No description available._
 public int RadiusBorder { get; set; }
 ```
 
-_No description available._
+Corner radius used by the nine-slice button image.
 
 ### IsPressed
 
@@ -47,7 +47,7 @@ _No description available._
 public bool IsPressed { get; }
 ```
 
-_No description available._
+True while the button is held down.
 
 ## Methods
 
@@ -57,7 +57,7 @@ _No description available._
 protected override void OnTouchUp(TouchEventArgs e)
 ```
 
-_No description available._
+Handles touch release; fires Click if the press started on this button.
 
 ### OnTouchDown(TouchEventArgs e)
 
@@ -65,7 +65,7 @@ _No description available._
 protected override void OnTouchDown(TouchEventArgs e)
 ```
 
-_No description available._
+Handles touch press; marks the button as pressed.
 
 ### OnButtonDown(ButtonEventArgs e)
 
@@ -73,7 +73,7 @@ _No description available._
 protected override void OnButtonDown(ButtonEventArgs e)
 ```
 
-An event reporting a button was pressed. _(inherited)_
+Handles the Select hardware button press; marks the button as pressed.
 
 ### OnButtonUp(ButtonEventArgs e)
 
@@ -81,7 +81,7 @@ An event reporting a button was pressed. _(inherited)_
 protected override void OnButtonUp(ButtonEventArgs e)
 ```
 
-An event reporting a button was released. _(inherited)_
+Handles the Select hardware button release; fires Click if it was pressed.
 
 ### OnRender(DrawingContext dc)
 
@@ -89,7 +89,7 @@ An event reporting a button was released. _(inherited)_
 public override void OnRender(DrawingContext dc)
 ```
 
-_No description available._
+Draws the button in its pressed or unpressed state.
 
 ### Dispose()
 
@@ -97,7 +97,7 @@ _No description available._
 public void Dispose()
 ```
 
-_No description available._
+Releases the resources used by the button.
 
 ### Dispose(bool disposing)
 
@@ -105,7 +105,7 @@ _No description available._
 protected virtual void Dispose(bool disposing)
 ```
 
-_No description available._
+Releases the button's bitmap resources and event subscriptions.
 
 ## Events
 
@@ -115,4 +115,4 @@ _No description available._
 public event RoutedEventHandler Click
 ```
 
-_No description available._
+Raised when the button is clicked.

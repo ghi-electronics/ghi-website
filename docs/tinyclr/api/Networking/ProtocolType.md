@@ -7,7 +7,7 @@ sidebar_label: "ProtocolType"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking`<br/>**Namespace:** `System.Net.Sockets`
 
-_No description available._
+Specifies the protocols that the class supports.
 
 ```csharp
 public enum ProtocolType

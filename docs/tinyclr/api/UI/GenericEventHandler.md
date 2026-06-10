@@ -7,7 +7,7 @@ sidebar_label: "GenericEventHandler"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Input`
 
-_No description available._
+The delegate to use for handlers that receive GenericEventArgs.
 
 ```csharp
 public delegate void GenericEventHandler(object sender, GenericEventArgs e);

@@ -17,6 +17,6 @@ public enum ConformanceLevel
 
 | Name | Value | Description |
 |---|---|---|
-| `Auto` | `0` |  |
-| `Fragment` | `1` |  |
-| `Document` | `2` |  |
+| `Auto` | `0` | The conformance level is detected automatically from the input. |
+| `Fragment` | `1` | The input conforms to the rules for a well-formed XML fragment. |
+| `Document` | `2` | The input conforms to the rules for a well-formed XML document. |

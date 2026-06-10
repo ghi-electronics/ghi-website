@@ -7,7 +7,7 @@ sidebar_label: "BitmapImage"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Media.Imaging`
 
-_No description available._
+An image source created from a bitmap.
 
 ```csharp
 public class BitmapImage : BitmapSource
@@ -21,6 +21,6 @@ public class BitmapImage : BitmapSource
 public static BitmapImage FromGraphics(Graphics g)
 ```
 
-_No description available._
+Creates a bitmap image from the given graphics.
 
 **Returns** `BitmapImage`

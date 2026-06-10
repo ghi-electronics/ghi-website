@@ -21,7 +21,7 @@ public class SolidBrush : Brush
 public SolidBrush(Color color)
 ```
 
-_No description available._
+Initializes a new solid brush with the specified fill color.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public Color Color { get; set; }
 ```
 
-_No description available._
+Gets or sets the color used to fill shapes.
 
 ## Methods
 
@@ -41,6 +41,6 @@ _No description available._
 public override object Clone()
 ```
 
-_No description available._
+Creates an exact copy of this solid brush.
 
 **Returns** `object`

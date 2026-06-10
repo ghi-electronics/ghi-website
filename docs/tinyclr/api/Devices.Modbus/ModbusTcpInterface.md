@@ -75,7 +75,7 @@ Gets if there is currently data available on the interface.
 public bool IsSocketConnected { get; set; }
 ```
 
-_No description available._
+Gets or sets whether the socket is connected.
 
 ### IsConnectionOk
 
@@ -83,7 +83,7 @@ _No description available._
 public bool IsConnectionOk { get; }
 ```
 
-Gets if the connection is ok _(inherited)_
+Gets if the connection is ok
 
 ## Methods
 
@@ -129,7 +129,7 @@ Creates a new telegram for a modbus request or response. All data except the fun
 public void PrepareWrite()
 ```
 
-_No description available._
+Prepares the interface for sending a telegram.
 
 ### PrepareRead()
 
@@ -137,7 +137,7 @@ _No description available._
 public void PrepareRead()
 ```
 
-_No description available._
+Prepares the interface for receiving a telegram.
 
 ### SendTelegram(byte[] buffer, short telegramLength)
 

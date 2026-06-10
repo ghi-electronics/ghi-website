@@ -7,7 +7,7 @@ sidebar_label: "Ftp"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking.Ftp`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Ftp`<br/>**Namespace:** `System.Net`
 
-_No description available._
+Represents the types of FTP protocol methods that can be used with an FTP request.
 
 ```csharp
 public static class Ftp
@@ -21,7 +21,7 @@ public static class Ftp
 public const string DeleteFile
 ```
 
-_No description available._
+Represents the FTP DELE protocol method that deletes a file on an FTP server.
 
 ### DownloadFile
 
@@ -29,7 +29,7 @@ _No description available._
 public const string DownloadFile
 ```
 
-_No description available._
+Represents the FTP RETR protocol method that downloads a file from an FTP server.
 
 ### GetFileSize
 
@@ -37,7 +37,7 @@ _No description available._
 public const string GetFileSize
 ```
 
-_No description available._
+Represents the FTP SIZE protocol method that retrieves the size of a file on an FTP server.
 
 ### ListDirectory
 
@@ -45,7 +45,7 @@ _No description available._
 public const string ListDirectory
 ```
 
-_No description available._
+Represents the FTP NLST protocol method that gets a short listing of the files on an FTP server.
 
 ### ListDirectoryDetails
 
@@ -53,7 +53,7 @@ _No description available._
 public const string ListDirectoryDetails
 ```
 
-_No description available._
+Represents the FTP LIST protocol method that gets a detailed listing of the files on an FTP server.
 
 ### MakeDirectory
 
@@ -61,7 +61,7 @@ _No description available._
 public const string MakeDirectory
 ```
 
-_No description available._
+Represents the FTP MKD protocol method that creates a directory on an FTP server.
 
 ### RemoveDirectory
 
@@ -69,7 +69,7 @@ _No description available._
 public const string RemoveDirectory
 ```
 
-_No description available._
+Represents the FTP RMD protocol method that removes a directory.
 
 ### Rename
 
@@ -77,7 +77,7 @@ _No description available._
 public const string Rename
 ```
 
-_No description available._
+Represents the FTP RENAME protocol method that renames a file or directory.
 
 ### UploadFile
 
@@ -85,4 +85,4 @@ _No description available._
 public const string UploadFile
 ```
 
-_No description available._
+Represents the FTP STOR protocol method that uploads a file to an FTP server.

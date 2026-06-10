@@ -7,7 +7,7 @@ sidebar_label: "Mouse"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbClient`
 
-_No description available._
+This device emulates a mouse. You can move the cursor, scroll the wheel, and press buttons.
 
 ```csharp
 public class Mouse : RawDevice

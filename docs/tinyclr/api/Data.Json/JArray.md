@@ -21,7 +21,7 @@ public class JArray : JToken
 public JArray()
 ```
 
-_No description available._
+Initializes a new empty JSON array.
 
 ### JArray(JToken[] values)
 
@@ -29,7 +29,7 @@ _No description available._
 public JArray(JToken[] values)
 ```
 
-_No description available._
+Initializes a new JSON array containing the given elements.
 
 ## Properties
 
@@ -39,7 +39,7 @@ _No description available._
 public int Length { get; }
 ```
 
-_No description available._
+Gets the number of elements in the array.
 
 ### Items
 
@@ -47,7 +47,7 @@ _No description available._
 public JToken[] Items { get; }
 ```
 
-_No description available._
+Gets the array elements.
 
 ### i]
 
@@ -55,7 +55,7 @@ _No description available._
 public JToken this[int i] { get; }
 ```
 
-_No description available._
+Gets the element at the given index.
 
 ## Methods
 
@@ -65,7 +65,7 @@ _No description available._
 public static JArray Serialize(Type type, object oSource, JsonSerializerSettings settings = null)
 ```
 
-_No description available._
+Serializes a .NET array into a JSON array.
 
 **Returns** `JArray`
 
@@ -75,7 +75,7 @@ _No description available._
 public override string ToString()
 ```
 
-_No description available._
+Returns the JSON text for this array.
 
 **Returns** `string`
 
@@ -85,7 +85,7 @@ _No description available._
 public override string ToString(JsonSerializationOptions options)
 ```
 
-_No description available._
+Returns the JSON text for this array using the given formatting options.
 
 **Returns** `string`
 
@@ -95,7 +95,7 @@ _No description available._
 public override int GetBsonSize()
 ```
 
-_No description available._
+Gets the number of bytes this array occupies when encoded as BSON.
 
 **Returns** `int`
 
@@ -105,7 +105,7 @@ _No description available._
 public override int GetBsonSize(string ename)
 ```
 
-_No description available._
+Gets the number of BSON bytes for this array including the given element name.
 
 **Returns** `int`
 
@@ -115,7 +115,7 @@ _No description available._
 public override void ToBson(byte[] buffer, ref int offset)
 ```
 
-_No description available._
+Writes this array to the buffer as BSON, advancing the offset.
 
 ### GetBsonType()
 
@@ -123,6 +123,6 @@ _No description available._
 public override BsonTypes GetBsonType()
 ```
 
-_No description available._
+Gets the BSON type code for an array.
 
 **Returns** `BsonTypes`

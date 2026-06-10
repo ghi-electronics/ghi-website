@@ -7,7 +7,7 @@ sidebar_label: "RadioButtonManager"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+Tracks radio button groups so only one button per group can be selected.
 
 ```csharp
 public static class RadioButtonManager
@@ -21,7 +21,7 @@ public static class RadioButtonManager
 public static string GetValue(string groupName)
 ```
 
-_No description available._
+Returns the value of the currently selected button in the named group, or an empty string if none is selected.
 
 **Returns** `string`
 
@@ -31,6 +31,6 @@ _No description available._
 public static int GetCount(string groupName)
 ```
 
-_No description available._
+Returns the number of buttons in the named group.
 
 **Returns** `int`

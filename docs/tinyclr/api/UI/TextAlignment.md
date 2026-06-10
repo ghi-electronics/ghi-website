@@ -7,7 +7,7 @@ sidebar_label: "TextAlignment"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Media`
 
-_No description available._
+Specifies how text is horizontally aligned.
 
 ```csharp
 public enum TextAlignment
@@ -17,6 +17,6 @@ public enum TextAlignment
 
 | Name | Value | Description |
 |---|---|---|
-| `Left` |  |  |
-| `Center` |  |  |
-| `Right` |  |  |
+| `Left` |  | Text is aligned to the left. |
+| `Center` |  | Text is centered. |
+| `Right` |  | Text is aligned to the right. |

@@ -7,7 +7,7 @@ sidebar_label: "Brush"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Media`
 
-_No description available._
+Base class for objects that paint a region.
 
 ```csharp
 public abstract class Brush
@@ -21,4 +21,4 @@ public abstract class Brush
 public ushort Opacity { get; set; }
 ```
 
-_No description available._
+The opacity of the brush.

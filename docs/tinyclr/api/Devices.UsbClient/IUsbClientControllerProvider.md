@@ -7,7 +7,7 @@ sidebar_label: "IUsbClientControllerProvider"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbClient.Provider`
 
-_No description available._
+Provides the low-level interface for a USB client controller.
 
 ```csharp
 public interface IUsbClientControllerProvider : IDisposable
@@ -21,7 +21,7 @@ public interface IUsbClientControllerProvider : IDisposable
 int WriteBufferSize { get; set; }
 ```
 
-_No description available._
+The size of the write buffer.
 
 ### ReadBufferSize
 
@@ -29,7 +29,7 @@ _No description available._
 int ReadBufferSize { get; set; }
 ```
 
-_No description available._
+The size of the read buffer.
 
 ### DeviceState
 
@@ -37,7 +37,7 @@ _No description available._
 DeviceState DeviceState { get; }
 ```
 
-_No description available._
+The current state of the device.
 
 ## Methods
 
@@ -47,7 +47,7 @@ _No description available._
 int BytesToRead(int streamIndex)
 ```
 
-_No description available._
+The number of bytes available to read on the given stream.
 
 **Returns** `int`
 
@@ -57,7 +57,7 @@ _No description available._
 int BytesToWrite(int streamIndex)
 ```
 
-_No description available._
+The number of bytes that are in the process of being written on the given stream.
 
 **Returns** `int`
 
@@ -67,7 +67,7 @@ _No description available._
 void Enable()
 ```
 
-_No description available._
+Enables the device.
 
 ### Disable()
 
@@ -75,7 +75,7 @@ _No description available._
 void Disable()
 ```
 
-_No description available._
+Disables the device.
 
 ### SetActiveSetting(UsbClientSetting setting)
 
@@ -83,7 +83,7 @@ _No description available._
 void SetActiveSetting(UsbClientSetting setting)
 ```
 
-_No description available._
+Sets the active device setting.
 
 ### SetDeviceDescriptor(Configuration.DeviceDescriptor[] deviceDescriptor)
 
@@ -91,7 +91,7 @@ _No description available._
 void SetDeviceDescriptor(Configuration.DeviceDescriptor[] deviceDescriptor)
 ```
 
-_No description available._
+Sets the device descriptor.
 
 ### SetConfigurationDescriptor(Configuration.ConfigurationDescriptor[] configurationDescriptor)
 
@@ -99,7 +99,7 @@ _No description available._
 void SetConfigurationDescriptor(Configuration.ConfigurationDescriptor[] configurationDescriptor)
 ```
 
-_No description available._
+Sets the configuration descriptor.
 
 ### SetStringDescriptor(Configuration.StringDescriptor[] stringDescriptor, uint index)
 
@@ -107,7 +107,7 @@ _No description available._
 void SetStringDescriptor(Configuration.StringDescriptor[] stringDescriptor, uint index)
 ```
 
-_No description available._
+Sets the string descriptor at the given index.
 
 ### SetGenericDescriptor(Configuration.GenericDescriptor[] genericDescriptor)
 
@@ -115,7 +115,7 @@ _No description available._
 void SetGenericDescriptor(Configuration.GenericDescriptor[] genericDescriptor)
 ```
 
-_No description available._
+Sets the generic descriptor.
 
 ### Read(int streamIndex, byte[] data, int offset, int count)
 
@@ -123,7 +123,7 @@ _No description available._
 int Read(int streamIndex, byte[] data, int offset, int count)
 ```
 
-_No description available._
+Reads data from the given stream.
 
 **Returns** `int`
 
@@ -133,7 +133,7 @@ _No description available._
 int Write(int streamIndex, byte[] data, int offset, int count)
 ```
 
-_No description available._
+Writes data to the given stream.
 
 **Returns** `int`
 
@@ -143,7 +143,7 @@ _No description available._
 int GetControlPacketSize()
 ```
 
-_No description available._
+Gets the maximum control packet size.
 
 **Returns** `int`
 
@@ -153,7 +153,7 @@ _No description available._
 ushort GetEndpointMap()
 ```
 
-_No description available._
+Gets a bitmap of the reserved endpoints.
 
 **Returns** `ushort`
 
@@ -163,7 +163,7 @@ _No description available._
 void ClearReadBuffer(int streamIndex)
 ```
 
-_No description available._
+Clears the read buffer of the given stream.
 
 ### ClearWriteBuffer(int streamIndex)
 
@@ -171,7 +171,7 @@ _No description available._
 void ClearWriteBuffer(int streamIndex)
 ```
 
-_No description available._
+Clears the write buffer of the given stream.
 
 ### Flush(int streamIndex)
 
@@ -179,7 +179,7 @@ _No description available._
 void Flush(int streamIndex)
 ```
 
-_No description available._
+Flushes the write buffer of the given stream.
 
 ## Events
 
@@ -189,7 +189,7 @@ _No description available._
 event DataReceivedEventHandler DataReceived
 ```
 
-_No description available._
+Raised when data is received from the host.
 
 ### DeviceStateChanged
 
@@ -197,4 +197,4 @@ _No description available._
 event DeviceStateChangedEventHandler DeviceStateChanged
 ```
 
-_No description available._
+Raised when the device state changes.

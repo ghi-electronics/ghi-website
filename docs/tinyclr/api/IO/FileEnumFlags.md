@@ -7,7 +7,7 @@ sidebar_label: "FileEnumFlags"
 
 **NuGet:** `GHIElectronics.TinyCLR.IO`<br/>**Assembly:** `GHIElectronics.TinyCLR.IO`<br/>**Namespace:** `System.IO`
 
-_No description available._
+Selects which kinds of entries a file enumeration returns.
 
 ```csharp
 public enum FileEnumFlags
@@ -17,6 +17,6 @@ public enum FileEnumFlags
 
 | Name | Value | Description |
 |---|---|---|
-| `Files` | `0x0001` |  |
-| `Directories` | `0x0002` |  |
-| `FilesAndDirectories` | `Files \| Directories` |  |
+| `Files` | `0x0001` | Enumerate only files. |
+| `Directories` | `0x0002` | Enumerate only directories. |
+| `FilesAndDirectories` | `Files \| Directories` | Enumerate both files and directories. |

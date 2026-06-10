@@ -39,4 +39,4 @@ Gets the HttpListenerResponse object that will be sent to the client in response
 public void Reset()
 ```
 
-_No description available._
+Resets the parsed-request state and the underlying request so the context can be reused.

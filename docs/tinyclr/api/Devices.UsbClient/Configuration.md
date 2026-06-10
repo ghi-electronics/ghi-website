@@ -7,7 +7,7 @@ sidebar_label: "Configuration"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbClient`
 
-_No description available._
+Holds the set of USB descriptors that define a device.
 
 ```csharp
 public class Configuration
@@ -21,4 +21,4 @@ public class Configuration
 public Descriptor[] descriptors
 ```
 
-_No description available._
+All of the descriptors that make up the configuration.

@@ -17,6 +17,6 @@ public enum WhitespaceHandling
 
 | Name | Value | Description |
 |---|---|---|
-| `All` | `0` |  |
-| `Significant` | `1` |  |
-| `None` | `2` |  |
+| `All` | `0` | Return all whitespace and significant whitespace nodes. |
+| `Significant` | `1` | Return only significant whitespace nodes. |
+| `None` | `2` | Return no whitespace nodes. |

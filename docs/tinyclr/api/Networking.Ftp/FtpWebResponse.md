@@ -21,7 +21,7 @@ public class FtpWebResponse : WebResponse
 public override Stream GetResponseStream()
 ```
 
-_No description available._
+Returns the stream used to read the response data.
 
 **Returns** `Stream`
 
@@ -31,4 +31,4 @@ _No description available._
 public override void Close()
 ```
 
-_No description available._
+Closes the response and releases its stream.

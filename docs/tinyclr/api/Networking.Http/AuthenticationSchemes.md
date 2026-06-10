@@ -7,7 +7,7 @@ sidebar_label: "AuthenticationSchemes"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Http`<br/>**Namespace:** `System.Net`
 
-_No description available._
+Specifies the protocols used to authenticate client requests.
 
 ```csharp
 public enum AuthenticationSchemes
@@ -17,10 +17,10 @@ public enum AuthenticationSchemes
 
 | Name | Value | Description |
 |---|---|---|
-| `None` | `0x00000000` |  |
-| `Digest` | `0x00000001` |  |
-| `Negotiate` | `0x00000002` |  |
-| `Ntlm` | `0x00000004` |  |
-| `Basic` | `0x00000008` |  |
-| `Anonymous` | `0x00008000` |  |
-| `IntegratedWindowsAuthentication` | `Negotiate \| Ntlm` |  |
+| `None` | `0x00000000` | No authentication is allowed. |
+| `Digest` | `0x00000001` | Specifies digest authentication. |
+| `Negotiate` | `0x00000002` | Negotiates with the client to determine the authentication scheme. |
+| `Ntlm` | `0x00000004` | Specifies NTLM authentication. |
+| `Basic` | `0x00000008` | Specifies basic authentication. |
+| `Anonymous` | `0x00008000` | Specifies anonymous authentication. |
+| `IntegratedWindowsAuthentication` | `Negotiate \| Ntlm` | Specifies Windows authentication using Negotiate or NTLM. |

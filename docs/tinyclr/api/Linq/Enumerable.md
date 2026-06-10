@@ -21,7 +21,7 @@ public static class Enumerable
 public static IEnumerable<TSource> Where<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
 ```
 
-_No description available._
+Filters a sequence of values based on a predicate.
 
 **Returns** `IEnumerable<TSource>`
 
@@ -31,7 +31,7 @@ _No description available._
 public static IEnumerable<TSource> Where<TSource>(this IEnumerable<TSource> source, Func<TSource, int, bool> predicate)
 ```
 
-_No description available._
+Filters a sequence of values based on a predicate that receives each element's index.
 
 **Returns** `IEnumerable<TSource>`
 
@@ -41,7 +41,7 @@ _No description available._
 public static IEnumerable<TResult> OfType<TResult>(this IEnumerable source)
 ```
 
-_No description available._
+Filters the elements of a sequence based on a specified type.
 
 **Returns** `IEnumerable<TResult>`
 
@@ -51,7 +51,7 @@ _No description available._
 public static IEnumerable<TResult> Cast<TResult>(this IEnumerable source)
 ```
 
-_No description available._
+Casts the elements of a sequence to the specified type.
 
 **Returns** `IEnumerable<TResult>`
 
@@ -61,7 +61,7 @@ _No description available._
 public static IEnumerable<TResult> Select<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
 ```
 
-_No description available._
+Projects each element of a sequence into a new form.
 
 **Returns** `IEnumerable<TResult> Select<TSource,`
 
@@ -71,7 +71,7 @@ _No description available._
 public static IEnumerable<TResult> Select<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, int, TResult> selector)
 ```
 
-_No description available._
+Projects each element of a sequence into a new form by incorporating the element's index.
 
 **Returns** `IEnumerable<TResult> Select<TSource,`
 
@@ -81,7 +81,7 @@ _No description available._
 public static IEnumerable<TResult> SelectMany<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, IEnumerable<TResult>> selector)
 ```
 
-_No description available._
+Projects each element of a sequence to an `IEnumerable{T}` and flattens the results into one sequence.
 
 **Returns** `IEnumerable<TResult> SelectMany<TSource,`
 
@@ -91,7 +91,7 @@ _No description available._
 public static IEnumerable<TSource> Skip<TSource>(this IEnumerable<TSource> source, int count)
 ```
 
-_No description available._
+Bypasses a specified number of elements and returns the remaining elements.
 
 **Returns** `IEnumerable<TSource>`
 
@@ -101,7 +101,7 @@ _No description available._
 public static IEnumerable<TSource> Take<TSource>(this IEnumerable<TSource> source, int count)
 ```
 
-_No description available._
+Returns a specified number of contiguous elements from the start of a sequence.
 
 **Returns** `IEnumerable<TSource>`
 
@@ -111,7 +111,7 @@ _No description available._
 public static IEnumerable<TSource> SkipWhile<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
 ```
 
-_No description available._
+Bypasses elements while a predicate is true and returns the remaining elements.
 
 **Returns** `IEnumerable<TSource>`
 
@@ -121,7 +121,7 @@ _No description available._
 public static IEnumerable<TSource> TakeWhile<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
 ```
 
-_No description available._
+Returns elements from the start of a sequence while a predicate is true.
 
 **Returns** `IEnumerable<TSource>`
 
@@ -131,7 +131,7 @@ _No description available._
 public static IEnumerable<TSource> Distinct<TSource>(this IEnumerable<TSource> source)
 ```
 
-_No description available._
+Returns distinct elements from a sequence using the default equality comparer.
 
 **Returns** `IEnumerable<TSource>`
 
@@ -141,7 +141,7 @@ _No description available._
 public static IEnumerable<TSource> Distinct<TSource>(this IEnumerable<TSource> source, IEqualityComparer<TSource> comparer)
 ```
 
-_No description available._
+Returns distinct elements from a sequence using a specified equality comparer.
 
 **Returns** `IEnumerable<TSource>`
 
@@ -151,7 +151,7 @@ _No description available._
 public static IEnumerable<TSource> Concat<TSource>(this IEnumerable<TSource> first, IEnumerable<TSource> second)
 ```
 
-_No description available._
+Concatenates two sequences.
 
 **Returns** `IEnumerable<TSource>`
 
@@ -161,7 +161,7 @@ _No description available._
 public static IEnumerable<TSource> Reverse<TSource>(this IEnumerable<TSource> source)
 ```
 
-_No description available._
+Inverts the order of the elements in a sequence.
 
 **Returns** `IEnumerable<TSource>`
 
@@ -171,7 +171,7 @@ _No description available._
 public static bool SequenceEqual<TSource>(this IEnumerable<TSource> first, IEnumerable<TSource> second)
 ```
 
-_No description available._
+Determines whether two sequences are equal using the default equality comparer.
 
 **Returns** `bool`
 
@@ -181,7 +181,7 @@ _No description available._
 public static bool SequenceEqual<TSource>(this IEnumerable<TSource> first, IEnumerable<TSource> second, IEqualityComparer<TSource> comparer)
 ```
 
-_No description available._
+Determines whether two sequences are equal using a specified equality comparer.
 
 **Returns** `bool`
 
@@ -191,7 +191,7 @@ _No description available._
 public static bool Any<TSource>(this IEnumerable<TSource> source)
 ```
 
-_No description available._
+Determines whether a sequence contains any elements.
 
 **Returns** `bool`
 
@@ -201,7 +201,7 @@ _No description available._
 public static bool Any<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
 ```
 
-_No description available._
+Determines whether any element of a sequence satisfies a predicate.
 
 **Returns** `bool`
 
@@ -211,7 +211,7 @@ _No description available._
 public static bool All<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
 ```
 
-_No description available._
+Determines whether all elements of a sequence satisfy a predicate.
 
 **Returns** `bool`
 
@@ -221,7 +221,7 @@ _No description available._
 public static bool Contains<TSource>(this IEnumerable<TSource> source, TSource value)
 ```
 
-_No description available._
+Determines whether a sequence contains a specified element using the default equality comparer.
 
 **Returns** `bool`
 
@@ -231,7 +231,7 @@ _No description available._
 public static bool Contains<TSource>(this IEnumerable<TSource> source, TSource value, IEqualityComparer<TSource> comparer)
 ```
 
-_No description available._
+Determines whether a sequence contains a specified element using a specified equality comparer.
 
 **Returns** `bool`
 
@@ -241,7 +241,7 @@ _No description available._
 public static TSource First<TSource>(this IEnumerable<TSource> source)
 ```
 
-_No description available._
+Returns the first element of a sequence, throwing if the sequence is empty.
 
 **Returns** `TSource`
 
@@ -251,7 +251,7 @@ _No description available._
 public static TSource First<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
 ```
 
-_No description available._
+Returns the first element that satisfies a predicate, throwing if none match.
 
 **Returns** `TSource`
 
@@ -261,7 +261,7 @@ _No description available._
 public static TSource FirstOrDefault<TSource>(this IEnumerable<TSource> source)
 ```
 
-_No description available._
+Returns the first element of a sequence, or a default value if the sequence is empty.
 
 **Returns** `TSource`
 
@@ -271,7 +271,7 @@ _No description available._
 public static TSource FirstOrDefault<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
 ```
 
-_No description available._
+Returns the first element that satisfies a predicate, or a default value if none match.
 
 **Returns** `TSource`
 
@@ -281,7 +281,7 @@ _No description available._
 public static TSource Last<TSource>(this IEnumerable<TSource> source)
 ```
 
-_No description available._
+Returns the last element of a sequence, throwing if the sequence is empty.
 
 **Returns** `TSource`
 
@@ -291,7 +291,7 @@ _No description available._
 public static TSource Last<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
 ```
 
-_No description available._
+Returns the last element that satisfies a predicate, throwing if none match.
 
 **Returns** `TSource`
 
@@ -301,7 +301,7 @@ _No description available._
 public static TSource LastOrDefault<TSource>(this IEnumerable<TSource> source)
 ```
 
-_No description available._
+Returns the last element of a sequence, or a default value if the sequence is empty.
 
 **Returns** `TSource`
 
@@ -311,7 +311,7 @@ _No description available._
 public static TSource LastOrDefault<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
 ```
 
-_No description available._
+Returns the last element that satisfies a predicate, or a default value if none match.
 
 **Returns** `TSource`
 
@@ -321,7 +321,7 @@ _No description available._
 public static TSource Single<TSource>(this IEnumerable<TSource> source)
 ```
 
-_No description available._
+Returns the only element of a sequence, throwing if it is empty or has more than one element.
 
 **Returns** `TSource`
 
@@ -331,7 +331,7 @@ _No description available._
 public static TSource Single<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
 ```
 
-_No description available._
+Returns the only element that satisfies a predicate, throwing if none or more than one match.
 
 **Returns** `TSource`
 
@@ -341,7 +341,7 @@ _No description available._
 public static TSource SingleOrDefault<TSource>(this IEnumerable<TSource> source)
 ```
 
-_No description available._
+Returns the only element of a sequence, a default value if empty, or throws if more than one element.
 
 **Returns** `TSource`
 
@@ -351,7 +351,7 @@ _No description available._
 public static TSource SingleOrDefault<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
 ```
 
-_No description available._
+Returns the only element that satisfies a predicate, a default value if none match, or throws if more than one matches.
 
 **Returns** `TSource`
 
@@ -361,7 +361,7 @@ _No description available._
 public static TSource ElementAt<TSource>(this IEnumerable<TSource> source, int index)
 ```
 
-_No description available._
+Returns the element at a specified index in a sequence.
 
 **Returns** `TSource`
 
@@ -371,7 +371,7 @@ _No description available._
 public static TSource ElementAtOrDefault<TSource>(this IEnumerable<TSource> source, int index)
 ```
 
-_No description available._
+Returns the element at a specified index, or a default value if the index is out of range.
 
 **Returns** `TSource`
 
@@ -381,7 +381,7 @@ _No description available._
 public static int Count<TSource>(this IEnumerable<TSource> source)
 ```
 
-_No description available._
+Returns the number of elements in a sequence.
 
 **Returns** `int`
 
@@ -391,7 +391,7 @@ _No description available._
 public static int Count<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
 ```
 
-_No description available._
+Returns the number of elements in a sequence that satisfy a predicate.
 
 **Returns** `int`
 
@@ -401,7 +401,7 @@ _No description available._
 public static long LongCount<TSource>(this IEnumerable<TSource> source)
 ```
 
-_No description available._
+Returns the number of elements in a sequence as a 64-bit integer.
 
 **Returns** `long`
 
@@ -411,7 +411,7 @@ _No description available._
 public static int Sum(this IEnumerable<int> source)
 ```
 
-_No description available._
+Computes the sum of a sequence of 32-bit integers.
 
 **Returns** `int`
 
@@ -421,7 +421,7 @@ _No description available._
 public static int Sum<TSource>(this IEnumerable<TSource> source, Func<TSource, int> selector)
 ```
 
-_No description available._
+Computes the sum of the 32-bit integer values selected from each element.
 
 **Returns** `int`
 
@@ -431,7 +431,7 @@ _No description available._
 public static long Sum(this IEnumerable<long> source)
 ```
 
-_No description available._
+Computes the sum of a sequence of 64-bit integers.
 
 **Returns** `long`
 
@@ -441,7 +441,7 @@ _No description available._
 public static long Sum<TSource>(this IEnumerable<TSource> source, Func<TSource, long> selector)
 ```
 
-_No description available._
+Computes the sum of the 64-bit integer values selected from each element.
 
 **Returns** `long`
 
@@ -451,7 +451,7 @@ _No description available._
 public static double Sum(this IEnumerable<double> source)
 ```
 
-_No description available._
+Computes the sum of a sequence of double-precision values.
 
 **Returns** `double`
 
@@ -461,7 +461,7 @@ _No description available._
 public static double Sum<TSource>(this IEnumerable<TSource> source, Func<TSource, double> selector)
 ```
 
-_No description available._
+Computes the sum of the double-precision values selected from each element.
 
 **Returns** `double`
 
@@ -471,7 +471,7 @@ _No description available._
 public static float Sum(this IEnumerable<float> source)
 ```
 
-_No description available._
+Computes the sum of a sequence of single-precision values.
 
 **Returns** `float`
 
@@ -481,7 +481,7 @@ _No description available._
 public static TSource Min<TSource>(this IEnumerable<TSource> source)
 ```
 
-_No description available._
+Returns the minimum value in a sequence using the default comparer.
 
 **Returns** `TSource`
 
@@ -491,7 +491,7 @@ _No description available._
 public static TResult Min<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
 ```
 
-_No description available._
+Returns the minimum value selected from each element of a sequence.
 
 **Returns** `TResult Min<TSource,`
 
@@ -501,7 +501,7 @@ _No description available._
 public static TSource Max<TSource>(this IEnumerable<TSource> source)
 ```
 
-_No description available._
+Returns the maximum value in a sequence using the default comparer.
 
 **Returns** `TSource`
 
@@ -511,7 +511,7 @@ _No description available._
 public static TResult Max<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
 ```
 
-_No description available._
+Returns the maximum value selected from each element of a sequence.
 
 **Returns** `TResult Max<TSource,`
 
@@ -521,7 +521,7 @@ _No description available._
 public static double Average(this IEnumerable<int> source)
 ```
 
-_No description available._
+Computes the average of a sequence of 32-bit integers.
 
 **Returns** `double`
 
@@ -531,7 +531,7 @@ _No description available._
 public static double Average(this IEnumerable<long> source)
 ```
 
-_No description available._
+Computes the average of a sequence of 64-bit integers.
 
 **Returns** `double`
 
@@ -541,7 +541,7 @@ _No description available._
 public static double Average(this IEnumerable<double> source)
 ```
 
-_No description available._
+Computes the average of a sequence of double-precision values.
 
 **Returns** `double`
 
@@ -551,7 +551,7 @@ _No description available._
 public static TAccumulate Aggregate<TSource, TAccumulate>(this IEnumerable<TSource> source, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func)
 ```
 
-_No description available._
+Applies an accumulator function over a sequence starting from a seed value.
 
 **Returns** `TAccumulate Aggregate<TSource,`
 
@@ -561,7 +561,7 @@ _No description available._
 public static TSource Aggregate<TSource>(this IEnumerable<TSource> source, Func<TSource, TSource, TSource> func)
 ```
 
-_No description available._
+Applies an accumulator function over a sequence using the first element as the seed.
 
 **Returns** `TSource`
 
@@ -571,7 +571,7 @@ _No description available._
 public static IOrderedEnumerable<TSource> OrderBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
 ```
 
-_No description available._
+Sorts the elements of a sequence in ascending order by a key.
 
 **Returns** `IOrderedEnumerable<TSource> OrderBy<TSource,`
 
@@ -581,7 +581,7 @@ _No description available._
 public static IOrderedEnumerable<TSource> OrderBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector, IComparer<TKey> comparer)
 ```
 
-_No description available._
+Sorts the elements of a sequence in ascending order by a key using a specified comparer.
 
 **Returns** `IOrderedEnumerable<TSource> OrderBy<TSource,`
 
@@ -591,7 +591,7 @@ _No description available._
 public static IOrderedEnumerable<TSource> OrderByDescending<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
 ```
 
-_No description available._
+Sorts the elements of a sequence in descending order by a key.
 
 **Returns** `IOrderedEnumerable<TSource> OrderByDescending<TSource,`
 
@@ -601,7 +601,7 @@ _No description available._
 public static IOrderedEnumerable<TSource> OrderByDescending<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector, IComparer<TKey> comparer)
 ```
 
-_No description available._
+Sorts the elements of a sequence in descending order by a key using a specified comparer.
 
 **Returns** `IOrderedEnumerable<TSource> OrderByDescending<TSource,`
 
@@ -611,7 +611,7 @@ _No description available._
 public static IOrderedEnumerable<TSource> ThenBy<TSource, TKey>(this IOrderedEnumerable<TSource> source, Func<TSource, TKey> keySelector)
 ```
 
-_No description available._
+Performs a subsequent ascending sort on an already ordered sequence by a key.
 
 **Returns** `IOrderedEnumerable<TSource> ThenBy<TSource,`
 
@@ -621,7 +621,7 @@ _No description available._
 public static IOrderedEnumerable<TSource> ThenBy<TSource, TKey>(this IOrderedEnumerable<TSource> source, Func<TSource, TKey> keySelector, IComparer<TKey> comparer)
 ```
 
-_No description available._
+Performs a subsequent ascending sort on an already ordered sequence by a key using a specified comparer.
 
 **Returns** `IOrderedEnumerable<TSource> ThenBy<TSource,`
 
@@ -631,7 +631,7 @@ _No description available._
 public static IOrderedEnumerable<TSource> ThenByDescending<TSource, TKey>(this IOrderedEnumerable<TSource> source, Func<TSource, TKey> keySelector)
 ```
 
-_No description available._
+Performs a subsequent descending sort on an already ordered sequence by a key.
 
 **Returns** `IOrderedEnumerable<TSource> ThenByDescending<TSource,`
 
@@ -641,7 +641,7 @@ _No description available._
 public static IOrderedEnumerable<TSource> ThenByDescending<TSource, TKey>(this IOrderedEnumerable<TSource> source, Func<TSource, TKey> keySelector, IComparer<TKey> comparer)
 ```
 
-_No description available._
+Performs a subsequent descending sort on an already ordered sequence by a key using a specified comparer.
 
 **Returns** `IOrderedEnumerable<TSource> ThenByDescending<TSource,`
 
@@ -651,7 +651,7 @@ _No description available._
 public static IEnumerable<IGrouping<TKey, TSource>> GroupBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
 ```
 
-_No description available._
+Groups the elements of a sequence by a key.
 
 **Returns** `IEnumerable<IGrouping<TKey, TSource>> GroupBy<TSource,`
 
@@ -661,7 +661,7 @@ _No description available._
 public static IEnumerable<IGrouping<TKey, TSource>> GroupBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector, IEqualityComparer<TKey> comparer)
 ```
 
-_No description available._
+Groups the elements of a sequence by a key using a specified equality comparer.
 
 **Returns** `IEnumerable<IGrouping<TKey, TSource>> GroupBy<TSource,`
 
@@ -671,7 +671,7 @@ _No description available._
 public static IEnumerable<IGrouping<TKey, TElement>> GroupBy<TSource, TKey, TElement>( this IEnumerable<TSource> source, Func<TSource, TKey> keySelector, Func<TSource, TElement> elementSelector)
 ```
 
-_No description available._
+Groups the elements of a sequence by a key and projects each element with an element selector.
 
 **Returns** `IEnumerable<IGrouping<TKey, TElement>> GroupBy<TSource, TKey,`
 
@@ -681,7 +681,7 @@ _No description available._
 public static IEnumerable<IGrouping<TKey, TElement>> GroupBy<TSource, TKey, TElement>( this IEnumerable<TSource> source, Func<TSource, TKey> keySelector, Func<TSource, TElement> elementSelector, IEqualityComparer<TKey> comparer)
 ```
 
-_No description available._
+Groups the elements of a sequence by a key, projecting each element with an element selector and using a specified equality comparer.
 
 **Returns** `IEnumerable<IGrouping<TKey, TElement>> GroupBy<TSource, TKey,`
 
@@ -691,7 +691,7 @@ _No description available._
 public static TSource[] ToArray<TSource>(this IEnumerable<TSource> source)
 ```
 
-_No description available._
+Creates an array from a sequence.
 
 **Returns** `TSource[]`
 
@@ -701,7 +701,7 @@ _No description available._
 public static List<TSource> ToList<TSource>(this IEnumerable<TSource> source)
 ```
 
-_No description available._
+Creates a `List{T}` from a sequence.
 
 **Returns** `List<TSource>`
 
@@ -711,7 +711,7 @@ _No description available._
 public static Dictionary<TKey, TSource> ToDictionary<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
 ```
 
-_No description available._
+Creates a `Dictionary{TKey,TValue}` from a sequence using a key selector.
 
 **Returns** `Dictionary<TKey, TSource> ToDictionary<TSource,`
 
@@ -721,7 +721,7 @@ _No description available._
 public static Dictionary<TKey, TSource> ToDictionary<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector, IEqualityComparer<TKey> comparer)
 ```
 
-_No description available._
+Creates a `Dictionary{TKey,TValue}` from a sequence using a key selector and a specified equality comparer.
 
 **Returns** `Dictionary<TKey, TSource> ToDictionary<TSource,`
 
@@ -731,7 +731,7 @@ _No description available._
 public static Dictionary<TKey, TElement> ToDictionary<TSource, TKey, TElement>( this IEnumerable<TSource> source, Func<TSource, TKey> keySelector, Func<TSource, TElement> elementSelector)
 ```
 
-_No description available._
+Creates a `Dictionary{TKey,TValue}` from a sequence using key and element selectors.
 
 **Returns** `Dictionary<TKey, TElement> ToDictionary<TSource, TKey,`
 
@@ -741,7 +741,7 @@ _No description available._
 public static Dictionary<TKey, TElement> ToDictionary<TSource, TKey, TElement>( this IEnumerable<TSource> source, Func<TSource, TKey> keySelector, Func<TSource, TElement> elementSelector, IEqualityComparer<TKey> comparer)
 ```
 
-_No description available._
+Creates a `Dictionary{TKey,TValue}` from a sequence using key and element selectors and a specified equality comparer.
 
 **Returns** `Dictionary<TKey, TElement> ToDictionary<TSource, TKey,`
 
@@ -751,7 +751,7 @@ _No description available._
 public static IEnumerable<int> Range(int start, int count)
 ```
 
-_No description available._
+Generates a sequence of consecutive integers starting at a specified value.
 
 **Returns** `IEnumerable<int>`
 
@@ -761,7 +761,7 @@ _No description available._
 public static IEnumerable<TResult> Repeat<TResult>(TResult element, int count)
 ```
 
-_No description available._
+Generates a sequence that contains one repeated value.
 
 **Returns** `IEnumerable<TResult>`
 
@@ -771,6 +771,6 @@ _No description available._
 public static IEnumerable<TResult> Empty<TResult>()
 ```
 
-_No description available._
+Returns an empty sequence of the specified type.
 
 **Returns** `IEnumerable<TResult>`

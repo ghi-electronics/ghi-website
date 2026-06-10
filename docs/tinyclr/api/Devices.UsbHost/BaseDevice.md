@@ -21,7 +21,7 @@ public abstract class BaseDevice : IDisposable
 protected BaseDevice(uint id, byte interfaceIndex, DeviceType type)
 ```
 
-_No description available._
+Creates a new base device and registers it with the USB host controller.
 
 ## Properties
 

@@ -7,7 +7,7 @@ sidebar_label: "ScrollViewer"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+A container that lets a single child be scrolled horizontally and vertically within a smaller viewport.
 
 ```csharp
 public class ScrollViewer : ContentControl
@@ -21,7 +21,7 @@ public class ScrollViewer : ContentControl
 public ScrollViewer()
 ```
 
-_No description available._
+Initializes a new instance of the `ScrollViewer` class.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public int HorizontalOffset { get; set; }
 ```
 
-_No description available._
+The current horizontal scroll offset, clamped to the scrollable range.
 
 ### VerticalOffset
 
@@ -39,7 +39,7 @@ _No description available._
 public int VerticalOffset { get; set; }
 ```
 
-_No description available._
+The current vertical scroll offset, clamped to the scrollable range.
 
 ### ExtentHeight
 
@@ -47,7 +47,7 @@ _No description available._
 public int ExtentHeight { get; }
 ```
 
-_No description available._
+The full height of the scrollable content.
 
 ### ExtentWidth
 
@@ -55,7 +55,7 @@ _No description available._
 public int ExtentWidth { get; }
 ```
 
-_No description available._
+The full width of the scrollable content.
 
 ### LineWidth
 
@@ -63,7 +63,7 @@ _No description available._
 public int LineWidth { get; set; }
 ```
 
-_No description available._
+The horizontal distance scrolled by one line step.
 
 ### LineHeight
 
@@ -71,7 +71,7 @@ _No description available._
 public int LineHeight { get; set; }
 ```
 
-_No description available._
+The vertical distance scrolled by one line step.
 
 ### ScrollingStyle
 
@@ -79,7 +79,7 @@ _No description available._
 public ScrollingStyle ScrollingStyle { get; set; }
 ```
 
-_No description available._
+Whether hardware-button scrolling advances by line or by page.
 
 ## Methods
 
@@ -89,14 +89,7 @@ _No description available._
 protected override void MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
 ```
 
-Measurement override. Implement your size-to-content logic here. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `availableWidth` | `int` | Available size that parent can give to the child. May be MaxValue(when parent wants to measure to content). This is soft constraint. Child can return bigger size to indicate that it wants bigger space and hope that parent can throw in scrolling... |
-| `availableHeight` | `int` |  |
-| `desiredWidth` | `out int` |  |
-| `desiredHeight` | `out int` |  |
+Measures the child against the viewer's alignment and records its extent.
 
 ### ArrangeOverride(int arrangeWidth, int arrangeHeight)
 
@@ -104,12 +97,7 @@ Measurement override. Implement your size-to-content logic here. _(inherited)_
 protected override void ArrangeOverride(int arrangeWidth, int arrangeHeight)
 ```
 
-ArrangeOverride allows for the customization of the final sizing and positioning of children. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `arrangeWidth` | `int` | Final width |
-| `arrangeHeight` | `int` | Final height |
+Positions the child according to the current scroll offsets.
 
 ### LineDown()
 
@@ -117,7 +105,7 @@ ArrangeOverride allows for the customization of the final sizing and positioning
 public void LineDown()
 ```
 
-_No description available._
+Scrolls down by one line.
 
 ### LineLeft()
 
@@ -125,7 +113,7 @@ _No description available._
 public void LineLeft()
 ```
 
-_No description available._
+Scrolls left by one line.
 
 ### LineRight()
 
@@ -133,7 +121,7 @@ _No description available._
 public void LineRight()
 ```
 
-_No description available._
+Scrolls right by one line.
 
 ### LineUp()
 
@@ -141,7 +129,7 @@ _No description available._
 public void LineUp()
 ```
 
-_No description available._
+Scrolls up by one line.
 
 ### PageDown()
 
@@ -149,7 +137,7 @@ _No description available._
 public void PageDown()
 ```
 
-_No description available._
+Scrolls down by one page (the viewport height).
 
 ### PageLeft()
 
@@ -157,7 +145,7 @@ _No description available._
 public void PageLeft()
 ```
 
-_No description available._
+Scrolls left by one page (the viewport width).
 
 ### PageRight()
 
@@ -165,7 +153,7 @@ _No description available._
 public void PageRight()
 ```
 
-_No description available._
+Scrolls right by one page (the viewport width).
 
 ### PageUp()
 
@@ -173,7 +161,7 @@ _No description available._
 public void PageUp()
 ```
 
-_No description available._
+Scrolls up by one page (the viewport height).
 
 ### OnButtonDown(GHIElectronics.TinyCLR.UI.Input.ButtonEventArgs e)
 
@@ -181,7 +169,7 @@ _No description available._
 protected override void OnButtonDown(GHIElectronics.TinyCLR.UI.Input.ButtonEventArgs e)
 ```
 
-An event reporting a button was pressed. _(inherited)_
+Handles directional hardware buttons by scrolling by line or page.
 
 ## Events
 
@@ -191,4 +179,4 @@ An event reporting a button was pressed. _(inherited)_
 public event ScrollChangedEventHandler ScrollChanged
 ```
 
-_No description available._
+Raised when the scroll offset changes.

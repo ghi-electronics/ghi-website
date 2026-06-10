@@ -7,7 +7,7 @@ sidebar_label: "IPAddress"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking`<br/>**Namespace:** `System.Net`
 
-_No description available._
+Provides an internet protocol (IP) address.
 
 ```csharp
 public class IPAddress
@@ -21,7 +21,7 @@ public class IPAddress
 public IPAddress(long newAddress)
 ```
 
-_No description available._
+Initializes a new instance from an address specified as a 32-bit value.
 
 ### IPAddress(byte[] newAddressBytes)
 
@@ -29,7 +29,7 @@ _No description available._
 public IPAddress(byte[] newAddressBytes) : this(((((newAddressBytes[3] << 0x18) | (newAddressBytes[2] << 0x10)) | (newAddressBytes[1] << 0x08)) | newAddressBytes[0]) & ((long)0xFFFFFFFF))
 ```
 
-_No description available._
+Initializes a new instance from an address specified as a byte array.
 
 ## Properties
 
@@ -39,7 +39,7 @@ _No description available._
 public AddressFamily AddressFamily { get; }
 ```
 
-_No description available._
+The address family of the IP address.
 
 ## Methods
 
@@ -49,7 +49,7 @@ _No description available._
 public static readonly IPAddress Any = new IPAddress(0x0000000000000000)
 ```
 
-_No description available._
+An IP address that indicates any available address (0.0.0.0).
 
 **Returns** `IPAddress Any = new`
 
@@ -59,7 +59,7 @@ _No description available._
 public static readonly IPAddress Loopback = new IPAddress(0x000000000100007F)
 ```
 
-_No description available._
+The loopback IP address (127.0.0.1).
 
 **Returns** `IPAddress Loopback = new`
 
@@ -69,7 +69,7 @@ _No description available._
 public static readonly IPAddress Broadcast = new IPAddress(0x00000000FFFFFFFF)
 ```
 
-_No description available._
+The limited broadcast IP address (255.255.255.255).
 
 **Returns** `IPAddress Broadcast = new`
 
@@ -79,7 +79,7 @@ _No description available._
 public override bool Equals(object obj)
 ```
 
-_No description available._
+Determines whether the specified object is equal to this IP address.
 
 **Returns** `bool`
 
@@ -89,7 +89,7 @@ _No description available._
 public byte[] GetAddressBytes()
 ```
 
-_No description available._
+Returns the IP address as a byte array.
 
 **Returns** `byte[]`
 
@@ -99,7 +99,7 @@ _No description available._
 public static bool TryParse(string ipString, out IPAddress address)
 ```
 
-_No description available._
+Attempts to parse a string into an IP address, returning whether it succeeded.
 
 **Returns** `bool`
 
@@ -109,7 +109,7 @@ _No description available._
 public static IPAddress Parse(string ipString)
 ```
 
-_No description available._
+Parses a dotted-quad string into an IP address.
 
 **Returns** `IPAddress`
 
@@ -119,7 +119,7 @@ _No description available._
 public override int GetHashCode()
 ```
 
-_No description available._
+Returns a hash code for this IP address.
 
 **Returns** `int`
 
@@ -129,7 +129,7 @@ _No description available._
 public static bool IsLoopback(IPAddress address)
 ```
 
-_No description available._
+Determines whether the specified IP address is a loopback address.
 
 **Returns** `bool`
 
@@ -139,7 +139,7 @@ _No description available._
 public static short HostToNetworkOrder(short host)
 ```
 
-_No description available._
+Converts a 16-bit value from host byte order to network byte order.
 
 **Returns** `short`
 
@@ -149,7 +149,7 @@ _No description available._
 public static int HostToNetworkOrder(int host)
 ```
 
-_No description available._
+Converts a 32-bit value from host byte order to network byte order.
 
 **Returns** `int`
 
@@ -159,7 +159,7 @@ _No description available._
 public static long HostToNetworkOrder(long host)
 ```
 
-_No description available._
+Converts a 64-bit value from host byte order to network byte order.
 
 **Returns** `long`
 
@@ -169,7 +169,7 @@ _No description available._
 public static short NetworkToHostOrder(short network)
 ```
 
-_No description available._
+Converts a 16-bit value from network byte order to host byte order.
 
 **Returns** `short`
 
@@ -179,7 +179,7 @@ _No description available._
 public static int NetworkToHostOrder(int network)
 ```
 
-_No description available._
+Converts a 32-bit value from network byte order to host byte order.
 
 **Returns** `int`
 
@@ -189,7 +189,7 @@ _No description available._
 public static long NetworkToHostOrder(long network)
 ```
 
-_No description available._
+Converts a 64-bit value from network byte order to host byte order.
 
 **Returns** `long`
 
@@ -199,7 +199,7 @@ _No description available._
 public override string ToString()
 ```
 
-_No description available._
+Returns the IP address as a dotted-quad string.
 
 **Returns** `string`
 
@@ -211,4 +211,4 @@ _No description available._
 public static readonly IPAddress None
 ```
 
-_No description available._
+An IP address that indicates no address.

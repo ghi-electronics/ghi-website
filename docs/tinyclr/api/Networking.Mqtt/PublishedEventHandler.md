@@ -7,7 +7,7 @@ sidebar_label: "PublishedEventHandler"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking.Mqtt`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Mqtt`<br/>**Namespace:** `GHIElectronics.TinyCLR.Networking.Mqtt`
 
-_No description available._
+Handles the result of a publish request.
 
 ```csharp
 public delegate void PublishedEventHandler(object sender, uint packetId, bool published);

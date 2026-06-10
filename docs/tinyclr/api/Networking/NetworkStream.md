@@ -7,7 +7,7 @@ sidebar_label: "NetworkStream"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking`<br/>**Namespace:** `System.Net.Sockets`
 
-_No description available._
+Provides the underlying stream of data for network access.
 
 ```csharp
 public class NetworkStream : Stream
@@ -21,7 +21,7 @@ public class NetworkStream : Stream
 public NetworkStream(Socket socket) : this(socket, false)
 ```
 
-_No description available._
+Creates a new network stream for the specified socket.
 
 ### NetworkStream(Socket socket, bool ownsSocket)
 
@@ -29,7 +29,7 @@ _No description available._
 public NetworkStream(Socket socket, bool ownsSocket)
 ```
 
-_No description available._
+Creates a new network stream for the specified socket, optionally taking ownership of it.
 
 ## Properties
 
@@ -39,7 +39,7 @@ _No description available._
 public override bool CanRead { get; }
 ```
 
-_No description available._
+Whether the stream supports reading.
 
 ### CanSeek
 
@@ -47,7 +47,7 @@ _No description available._
 public override bool CanSeek { get; }
 ```
 
-_No description available._
+Whether the stream supports seeking; always false.
 
 ### CanTimeout
 
@@ -55,7 +55,7 @@ _No description available._
 public override bool CanTimeout { get; }
 ```
 
-_No description available._
+Whether the stream supports timeouts; always true.
 
 ### CanWrite
 
@@ -63,7 +63,7 @@ _No description available._
 public override bool CanWrite { get; }
 ```
 
-_No description available._
+Whether the stream supports writing.
 
 ### ReadTimeout
 
@@ -71,7 +71,7 @@ _No description available._
 public override int ReadTimeout { get; set; }
 ```
 
-_No description available._
+The amount of time, in milliseconds, that a read operation waits before timing out.
 
 ### WriteTimeout
 
@@ -79,7 +79,7 @@ _No description available._
 public override int WriteTimeout { get; set; }
 ```
 
-_No description available._
+The amount of time, in milliseconds, that a write operation waits before timing out.
 
 ### Length
 
@@ -87,7 +87,7 @@ _No description available._
 public override long Length { get; }
 ```
 
-_No description available._
+Not supported; always throws NotSupportedException.
 
 ### Position
 
@@ -95,7 +95,7 @@ _No description available._
 public override long Position { get; set; }
 ```
 
-_No description available._
+Not supported; always throws NotSupportedException.
 
 ### DataAvailable
 
@@ -103,7 +103,7 @@ _No description available._
 public override bool DataAvailable { get; }
 ```
 
-_No description available._
+Whether data is available on the stream to be read.
 
 ## Methods
 
@@ -113,7 +113,7 @@ _No description available._
 public void Close(int timeout)
 ```
 
-_No description available._
+Closes the stream after waiting the specified time for data to be sent.
 
 ### Dispose(bool disposing)
 
@@ -121,7 +121,7 @@ _No description available._
 protected override void Dispose(bool disposing)
 ```
 
-_No description available._
+Releases the resources used by the stream.
 
 ### Flush()
 
@@ -129,7 +129,7 @@ _No description available._
 public override void Flush()
 ```
 
-_No description available._
+Flushes the stream; reserved for future use.
 
 ### Read(byte[] buffer, int offset, int count)
 
@@ -137,7 +137,7 @@ _No description available._
 public override int Read(byte[] buffer, int offset, int count)
 ```
 
-_No description available._
+Reads data from the stream into the buffer and returns the number of bytes read.
 
 **Returns** `int`
 
@@ -147,7 +147,7 @@ _No description available._
 public override long Seek(long offset, SeekOrigin origin)
 ```
 
-_No description available._
+Not supported; always throws NotSupportedException.
 
 **Returns** `long`
 
@@ -157,7 +157,7 @@ _No description available._
 public override void SetLength(long value)
 ```
 
-_No description available._
+Not supported; always throws NotSupportedException.
 
 ### Write(byte[] buffer, int offset, int count)
 
@@ -165,7 +165,7 @@ _No description available._
 public override void Write(byte[] buffer, int offset, int count)
 ```
 
-_No description available._
+Writes data from the buffer to the stream.
 
 ## Fields
 
@@ -175,7 +175,7 @@ _No description available._
 protected int _socketType
 ```
 
-_No description available._
+The type of the underlying socket.
 
 ### _remoteEndPoint
 
@@ -183,7 +183,7 @@ _No description available._
 protected EndPoint _remoteEndPoint
 ```
 
-_No description available._
+The remote endpoint used for datagram sockets.
 
 ### _disposed
 
@@ -191,4 +191,4 @@ _No description available._
 protected bool _disposed
 ```
 
-_No description available._
+Whether the stream has been disposed.

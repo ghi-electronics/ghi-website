@@ -21,7 +21,7 @@ public class NameTable : XmlNameTable
 public NameTable()
 ```
 
-_No description available._
+Initializes a new instance of the `NameTable` class.
 
 ## Methods
 
@@ -31,7 +31,7 @@ _No description available._
 public override string Add(string array)
 ```
 
-_No description available._
+Atomizes the specified string and adds it to the table. _(inherited)_
 
 **Returns** `string`
 
@@ -41,7 +41,7 @@ _No description available._
 public override string Add(char[] array, int offset, int length)
 ```
 
-_No description available._
+Atomizes the specified character range and adds it to the table. _(inherited)_
 
 **Returns** `string`
 
@@ -51,7 +51,7 @@ _No description available._
 public override string Get(string array)
 ```
 
-_No description available._
+Gets the atomized string equal to the specified string, or null if it is not in the table. _(inherited)_
 
 **Returns** `string`
 
@@ -61,6 +61,6 @@ _No description available._
 public override string Get(char[] array, int offset, int length)
 ```
 
-_No description available._
+Gets the atomized string equal to the specified character range, or null if it is not in the table. _(inherited)_
 
 **Returns** `string`

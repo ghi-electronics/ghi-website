@@ -7,7 +7,7 @@ sidebar_label: "UnsubscribedEventHandler"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking.Mqtt`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Mqtt`<br/>**Namespace:** `GHIElectronics.TinyCLR.Networking.Mqtt`
 
-_No description available._
+Handles a completed unsubscribe request.
 
 ```csharp
 public delegate void UnsubscribedEventHandler(object sender, uint packetId);

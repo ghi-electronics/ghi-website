@@ -7,7 +7,7 @@ sidebar_label: "UserAuthenticatorArgs"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking.Ftp`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Ftp`<br/>**Namespace:** `GHIElectronics.TinyCLR.Networking`
 
-_No description available._
+Provides the user name and password for an authentication request and carries back the result.
 
 ```csharp
 public class UserAuthenticatorArgs : EventArgs
@@ -21,7 +21,7 @@ public class UserAuthenticatorArgs : EventArgs
 public UserAuthenticatorArgs(string user, string pass)
 ```
 
-_No description available._
+Creates authentication arguments for the given user name and password.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public UserAuthenticationResult Result { get; set; }
 ```
 
-_No description available._
+Gets or sets the result of the authentication request.
 
 ## Fields
 
@@ -41,7 +41,7 @@ _No description available._
 public string User
 ```
 
-_No description available._
+The user name supplied by the client.
 
 ### Password
 
@@ -49,4 +49,4 @@ _No description available._
 public string Password
 ```
 
-_No description available._
+The password supplied by the client.

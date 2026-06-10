@@ -7,7 +7,7 @@ sidebar_label: "Orientation"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+Specifies whether a control lays out its content horizontally or vertically.
 
 ```csharp
 public enum Orientation
@@ -17,5 +17,5 @@ public enum Orientation
 
 | Name | Value | Description |
 |---|---|---|
-| `Horizontal` |  |  |
-| `Vertical` |  |  |
+| `Horizontal` |  | Content is arranged left to right. |
+| `Vertical` |  | Content is arranged top to bottom. |

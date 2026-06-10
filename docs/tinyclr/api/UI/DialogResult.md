@@ -7,7 +7,7 @@ sidebar_label: "DialogResult"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+Identifies the button the user picked to dismiss the message box.
 
 ```csharp
 public enum DialogResult
@@ -17,7 +17,7 @@ public enum DialogResult
 
 | Name | Value | Description |
 |---|---|---|
-| `OK` | `0` |  |
-| `Cancel` | `1` |  |
-| `Yes` | `2` |  |
-| `No` | `3` |  |
+| `OK` | `0` | The OK button was selected. |
+| `Cancel` | `1` | The Cancel button was selected. |
+| `Yes` | `2` | The Yes button was selected. |
+| `No` | `3` | The No button was selected. |

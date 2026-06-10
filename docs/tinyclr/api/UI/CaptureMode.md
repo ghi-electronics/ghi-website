@@ -7,7 +7,7 @@ sidebar_label: "CaptureMode"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Input`
 
-_No description available._
+Specifies how touch input is captured to an element.
 
 ```csharp
 public enum CaptureMode
@@ -17,6 +17,6 @@ public enum CaptureMode
 
 | Name | Value | Description |
 |---|---|---|
-| `None` |  |  |
-| `Element` |  |  |
-| `SubTree` |  |  |
+| `None` |  | No capture. |
+| `Element` |  | Capture touch input to a single element. |
+| `SubTree` |  | Capture touch input to an element and its subtree. |

@@ -7,7 +7,7 @@ sidebar_label: "JsonSerializerSettings"
 
 **NuGet:** `GHIElectronics.TinyCLR.Data.Json`<br/>**Assembly:** `GHIElectronics.TinyCLR.Data.Json`<br/>**Namespace:** `GHIElectronics.TinyCLR.Data.Json`
 
-_No description available._
+Settings that control how objects are serialized to JSON tokens.
 
 ```csharp
 public class JsonSerializerSettings
@@ -21,4 +21,4 @@ public class JsonSerializerSettings
 public TypeNameHandling TypeNameHandling { get; set; }
 ```
 
-_No description available._
+Gets or sets how type names are emitted for serialized objects.

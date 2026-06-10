@@ -7,7 +7,7 @@ sidebar_label: "RadioButton"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+A selectable button that is mutually exclusive with other buttons sharing its group name.
 
 ```csharp
 public class RadioButton : ContentControl, IDisposable
@@ -21,7 +21,7 @@ public class RadioButton : ContentControl, IDisposable
 public RadioButton() : this(string.Empty)
 ```
 
-_No description available._
+Initializes a new radio button with no group name.
 
 ### RadioButton(string groupName)
 
@@ -29,7 +29,7 @@ _No description available._
 public RadioButton(string groupName) : base()
 ```
 
-_No description available._
+Initializes a new radio button belonging to the given group.
 
 ## Properties
 
@@ -39,7 +39,7 @@ _No description available._
 public string Name { get; set; }
 ```
 
-_No description available._
+The identifying name of this button within its group.
 
 ### Alpha
 
@@ -47,7 +47,7 @@ _No description available._
 public ushort Alpha { get; set; }
 ```
 
-_No description available._
+The opacity applied when rendering the button.
 
 ### RadiusBorder
 
@@ -55,7 +55,7 @@ _No description available._
 public int RadiusBorder { get; set; }
 ```
 
-_No description available._
+Corner radius in pixels for the Scale9-rendered background.
 
 ### ShowBackground
 
@@ -63,7 +63,7 @@ _No description available._
 public bool ShowBackground { get; set; }
 ```
 
-_No description available._
+Whether the bitmap background is drawn behind the button.
 
 ### Value
 
@@ -71,7 +71,7 @@ _No description available._
 public string Value { get; set; }
 ```
 
-_No description available._
+The button's value when checked, or an empty string when unchecked.
 
 ### Checked
 
@@ -79,7 +79,7 @@ _No description available._
 public bool Checked { get; set; }
 ```
 
-_No description available._
+Whether the button is currently selected.
 
 ### GroupName
 
@@ -87,7 +87,7 @@ _No description available._
 public string GroupName { get; set; }
 ```
 
-_No description available._
+The name of the group this button belongs to.
 
 ### OutlineUnselectColor
 
@@ -95,7 +95,7 @@ _No description available._
 public GHIElectronics.TinyCLR.UI.Media.Color OutlineUnselectColor { get; set; }
 ```
 
-_No description available._
+The outline color of the indicator when the button is unchecked.
 
 ### SelectedOutlineColor
 
@@ -103,7 +103,7 @@ _No description available._
 public GHIElectronics.TinyCLR.UI.Media.Color SelectedOutlineColor { get; set; }
 ```
 
-_No description available._
+The outline color of the indicator when the button is checked.
 
 ### SelectedColor
 
@@ -111,7 +111,7 @@ _No description available._
 public GHIElectronics.TinyCLR.UI.Media.Color SelectedColor { get; set; }
 ```
 
-_No description available._
+The fill color of the indicator when the button is checked.
 
 ## Methods
 
@@ -121,7 +121,7 @@ _No description available._
 public override void OnRender(DrawingContext dc)
 ```
 
-_No description available._
+Renders the radio button background and its checked/unchecked indicator.
 
 ### OnTouchUp(TouchEventArgs e)
 
@@ -129,7 +129,7 @@ _No description available._
 protected override void OnTouchUp(TouchEventArgs e)
 ```
 
-_No description available._
+Handles a touch release by clicking and toggling the button.
 
 ### OnTouchDown(TouchEventArgs e)
 
@@ -137,7 +137,7 @@ _No description available._
 protected override void OnTouchDown(TouchEventArgs e)
 ```
 
-_No description available._
+Handles a touch press; the click is performed on release instead.
 
 ### OnButtonUp(ButtonEventArgs e)
 
@@ -145,7 +145,7 @@ _No description available._
 protected override void OnButtonUp(ButtonEventArgs e)
 ```
 
-An event reporting a button was released. _(inherited)_
+Handles the Select hardware button by clicking and toggling the button.
 
 ### Toggle()
 
@@ -153,7 +153,7 @@ An event reporting a button was released. _(inherited)_
 public void Toggle()
 ```
 
-_No description available._
+Toggles the checked state, unselecting any other button in the group.
 
 ### Dispose()
 
@@ -161,7 +161,7 @@ _No description available._
 public void Dispose()
 ```
 
-_No description available._
+Releases the bitmap resources used by the radio button.
 
 ### Dispose(bool disposing)
 
@@ -169,7 +169,7 @@ _No description available._
 protected virtual void Dispose(bool disposing)
 ```
 
-_No description available._
+Releases the bitmap resources used by the radio button.
 
 ## Events
 
@@ -179,4 +179,4 @@ _No description available._
 public event RoutedEventHandler Click
 ```
 
-_No description available._
+Raised when the button is clicked.

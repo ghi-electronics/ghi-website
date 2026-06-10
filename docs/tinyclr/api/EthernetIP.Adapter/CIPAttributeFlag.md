@@ -7,7 +7,7 @@ sidebar_label: "CIPAttributeFlag"
 
 **NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`<br/>**Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`<br/>**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`
 
-_No description available._
+Access and callback flags applied to a CIP attribute.
 
 ```csharp
 public enum CIPAttributeFlag : uint
@@ -17,15 +17,15 @@ public enum CIPAttributeFlag : uint
 
 | Name | Value | Description |
 |---|---|---|
-| `kNotSetOrGetable` | `0x00` |  |
-| `kGetableAll` | `0x01` |  |
-| `kGetableSingle` | `0x02` |  |
-| `kSetable` | `0x04` |  |
-| `kSetAndGetAble` | `0x07` |  |
-| `kGetableSingleAndAll` | `0x03` |  |
-| `kGetableAllDummy` | `0x08` |  |
-| `kPreGetFunc` | `0x10` |  |
-| `kPostGetFunc` | `0x20` |  |
-| `kPreSetFunc` | `0x40` |  |
-| `kPostSetFunc` | `0x80` |  |
-| `kNvDataFunc` | `0x80` |  |
+| `kNotSetOrGetable` | `0x00` | Neither settable nor gettable. |
+| `kGetableAll` | `0x01` | Gettable, also part of the Get Attribute All service. |
+| `kGetableSingle` | `0x02` | Gettable via Get Attribute Single. |
+| `kSetable` | `0x04` | Settable via Set Attribute. |
+| `kSetAndGetAble` | `0x07` | Both settable and gettable. |
+| `kGetableSingleAndAll` | `0x03` | Gettable via both single and all. |
+| `kGetableAllDummy` | `0x08` | Gettable but a dummy attribute. |
+| `kPreGetFunc` | `0x10` | Enable the pre-get callback. |
+| `kPostGetFunc` | `0x20` | Enable the post-get callback. |
+| `kPreSetFunc` | `0x40` | Enable the pre-set callback. |
+| `kPostSetFunc` | `0x80` | Enable the post-set callback. |
+| `kNvDataFunc` | `0x80` | Enable the non-volatile data callback (same value as the post-set callback). |

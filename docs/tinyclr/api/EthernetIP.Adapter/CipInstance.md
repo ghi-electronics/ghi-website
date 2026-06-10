@@ -7,7 +7,7 @@ sidebar_label: "CipInstance"
 
 **NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`<br/>**Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`<br/>**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`
 
-_No description available._
+Represents a single instance of a CIP object class.
 
 ```csharp
 public class CipInstance
@@ -21,4 +21,4 @@ public class CipInstance
 public IntPtr Impl { get; set; }
 ```
 
-_No description available._
+Native handle to the underlying CIP instance.

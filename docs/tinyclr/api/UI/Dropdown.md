@@ -7,7 +7,7 @@ sidebar_label: "Dropdown"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+A collapsible list that shows the selected option and expands on tap.
 
 ```csharp
 public class Dropdown : ListBox, IDisposable
@@ -21,7 +21,7 @@ public class Dropdown : ListBox, IDisposable
 public Dropdown() : base()
 ```
 
-_No description available._
+Creates a new Dropdown.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public ushort Alpha { get; set; }
 ```
 
-_No description available._
+Opacity (0-255) used when drawing the dropdown images.
 
 ### RadiusBorder
 
@@ -39,7 +39,7 @@ _No description available._
 public int RadiusBorder { get; set; }
 ```
 
-_No description available._
+Corner radius used by the nine-slice dropdown images.
 
 ### MaxOpenHeight
 
@@ -55,7 +55,7 @@ Optional cap on the expanded list height. When set to a positive value the open 
 public ArrayList Options { get; set; }
 ```
 
-_No description available._
+The list of selectable options shown when the dropdown is open.
 
 ## Methods
 
@@ -73,7 +73,7 @@ Hardware button support: `HardwareButton.Select` toggles the dropdown open/close
 public override void OnRender(DrawingContext dc)
 ```
 
-_No description available._
+Draws the dropdown's text field and chevron button.
 
 ### Dispose()
 
@@ -81,7 +81,7 @@ _No description available._
 public void Dispose()
 ```
 
-_No description available._
+Releases the resources used by the dropdown.
 
 ### Dispose(bool disposing)
 
@@ -89,4 +89,4 @@ _No description available._
 protected virtual void Dispose(bool disposing)
 ```
 
-_No description available._
+Releases the dropdown's bitmap resources and event subscriptions.

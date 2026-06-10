@@ -7,7 +7,7 @@ sidebar_label: "ListBoxItemHighlightable"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+A list box item that highlights its text and background when selected.
 
 ```csharp
 public class ListBoxItemHighlightable : ListBoxItem
@@ -21,7 +21,7 @@ public class ListBoxItemHighlightable : ListBoxItem
 public ListBoxItemHighlightable(string content, Font font, int margin, Media.Color backgroundSelectedColor, Media.Color foreColorSelectedColor, Media.Color foreColorUnselectColor) : base()
 ```
 
-_No description available._
+Creates a highlightable item with the given text and selected/unselected colors.
 
 ## Methods
 
@@ -31,4 +31,4 @@ _No description available._
 protected internal override void OnIsSelectedChanged(bool isSelected)
 ```
 
-_No description available._
+Updates the background and text color when the selected state changes.

@@ -21,7 +21,7 @@ public class JObject : JToken
 public JProperty this[string name] { get; set; }
 ```
 
-_No description available._
+Gets or sets the property with the given name (case-insensitive).
 
 ### Members
 
@@ -29,7 +29,7 @@ _No description available._
 public ICollection Members { get; }
 ```
 
-_No description available._
+Gets the object's properties in insertion order.
 
 ## Methods
 
@@ -39,7 +39,7 @@ _No description available._
 public bool Contains(string name)
 ```
 
-_No description available._
+Returns whether the object contains a property with the given name.
 
 **Returns** `bool`
 
@@ -49,7 +49,7 @@ _No description available._
 public void Add(string name, JToken value)
 ```
 
-_No description available._
+Adds or replaces a property with the given name and value.
 
 ### Serialize(Type type, object oSource, JsonSerializerSettings settings)
 
@@ -57,7 +57,7 @@ _No description available._
 public static JObject Serialize(Type type, object oSource, JsonSerializerSettings settings = null)
 ```
 
-_No description available._
+Serializes a .NET object's public properties and fields into a JSON object.
 
 **Returns** `JObject`
 
@@ -67,7 +67,7 @@ _No description available._
 public override string ToString()
 ```
 
-_No description available._
+Returns the JSON text for this object.
 
 **Returns** `string`
 
@@ -77,7 +77,7 @@ _No description available._
 public override string ToString(JsonSerializationOptions options)
 ```
 
-_No description available._
+Returns the JSON text for this object using the given formatting options.
 
 **Returns** `string`
 
@@ -87,7 +87,7 @@ _No description available._
 public override int GetBsonSize()
 ```
 
-_No description available._
+Gets the number of bytes this object occupies when encoded as BSON.
 
 **Returns** `int`
 
@@ -97,7 +97,7 @@ _No description available._
 public override int GetBsonSize(string ename)
 ```
 
-_No description available._
+Gets the number of BSON bytes for this object including the given element name.
 
 **Returns** `int`
 
@@ -107,7 +107,7 @@ _No description available._
 public override void ToBson(byte[] buffer, ref int offset)
 ```
 
-_No description available._
+Writes this object to the buffer as BSON, advancing the offset.
 
 ### GetBsonType()
 
@@ -115,6 +115,6 @@ _No description available._
 public override BsonTypes GetBsonType()
 ```
 
-_No description available._
+Gets the BSON type code for a document (object).
 
 **Returns** `BsonTypes`

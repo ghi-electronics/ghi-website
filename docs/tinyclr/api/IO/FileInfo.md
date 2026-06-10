@@ -7,7 +7,7 @@ sidebar_label: "FileInfo"
 
 **NuGet:** `GHIElectronics.TinyCLR.IO`<br/>**Assembly:** `GHIElectronics.TinyCLR.IO`<br/>**Namespace:** `System.IO`
 
-_No description available._
+Provides information about a file and the means to create or delete it.
 
 ```csharp
 public sealed class FileInfo : FileSystemInfo
@@ -21,7 +21,7 @@ public sealed class FileInfo : FileSystemInfo
 public FileInfo(string fileName)
 ```
 
-_No description available._
+Creates a new instance for the file at the given path.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public override string Name { get; }
 ```
 
-_No description available._
+The name of the file or directory. _(inherited)_
 
 ### Length
 
@@ -39,7 +39,7 @@ _No description available._
 public long Length { get; }
 ```
 
-_No description available._
+The size of the file in bytes.
 
 ### DirectoryName
 
@@ -47,7 +47,7 @@ _No description available._
 public string DirectoryName { get; }
 ```
 
-_No description available._
+The full path of the directory that contains the file.
 
 ### Directory
 
@@ -55,7 +55,7 @@ _No description available._
 public DirectoryInfo Directory { get; }
 ```
 
-_No description available._
+The directory that contains the file, or null if there is none.
 
 ### Exists
 
@@ -63,7 +63,7 @@ _No description available._
 public override bool Exists { get; }
 ```
 
-_No description available._
+Whether the file or directory exists. _(inherited)_
 
 ## Methods
 
@@ -73,7 +73,7 @@ _No description available._
 public FileStream Create()
 ```
 
-_No description available._
+Creates the file and returns a stream to it.
 
 **Returns** `FileStream`
 
@@ -83,7 +83,7 @@ _No description available._
 public override void Delete()
 ```
 
-_No description available._
+Deletes the file or directory. _(inherited)_
 
 ### ToString()
 
@@ -91,6 +91,6 @@ _No description available._
 public override string ToString()
 ```
 
-_No description available._
+Returns the full path of the file.
 
 **Returns** `string`

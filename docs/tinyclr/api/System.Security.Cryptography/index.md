@@ -24,7 +24,7 @@ The standard-.NET `System.Security.Cryptography` API for TinyCLR. It ships insid
 | [RandomNumberGenerator](./RandomNumberGenerator.md) | `System.Security.Cryptography` | Cryptographically secure RNG. Create via `Create()`; do not seed manually. |
 | [RSA](./RSA.md) | `System.Security.Cryptography` | Abstract RSA implementation; create concrete instances via `RSACryptoServiceProvider`. |
 | [RSACryptoServiceProvider](./RSACryptoServiceProvider.md) | `System.Security.Cryptography` | Concrete RSA implementation. Construct with the desired key size or with externally supplied `RSAParameters`. |
-| [RSAEncryptionPadding](./RSAEncryptionPadding.md) | `System.Security.Cryptography` |  |
+| [RSAEncryptionPadding](./RSAEncryptionPadding.md) | `System.Security.Cryptography` | Encryption-padding configuration — padding mode plus (for OAEP) the hash algorithm. Matches the .NET Framework type. |
 | [RSASignaturePadding](./RSASignaturePadding.md) | `System.Security.Cryptography` | Signature-padding configuration. Matches the .NET Framework type. |
 | [SHA1](./SHA1.md) | `System.Security.Cryptography` | SHA-1 hash (160-bit). Use `HashAlgorithm.Create()` overloads or instantiate directly. |
 | [SHA256](./SHA256.md) | `System.Security.Cryptography` | SHA-256 hash (256-bit). |
@@ -33,7 +33,7 @@ The standard-.NET `System.Security.Cryptography` API for TinyCLR. It ships insid
 
 | Struct | Namespace | Summary |
 |---|---|---|
-| [HashAlgorithmName](./HashAlgorithmName.md) | `System.Security.Cryptography` |  |
+| [HashAlgorithmName](./HashAlgorithmName.md) | `System.Security.Cryptography` | Well-known hash-algorithm name selector matching .NET Framework's `System.Security.Cryptography.HashAlgorithmName`. |
 | [RSAParameters](./RSAParameters.md) | `System.Security.Cryptography` | RSA key parameters (modulus, exponent, and optional private components) matching the .NET Framework struct. |
 
 ## Enums

@@ -7,7 +7,7 @@ sidebar_label: "ValueChangedEventHandler"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+Represents the method that handles the slider's value-changed event.
 
 ```csharp
 public delegate void ValueChangedEventHandler(object sender, ValueChangedEventArgs args);

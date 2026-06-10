@@ -7,7 +7,7 @@ sidebar_label: "ChartPoint"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+An x/y pixel coordinate used by the chart.
 
 ```csharp
 public class ChartPoint
@@ -21,7 +21,7 @@ public class ChartPoint
 public ChartPoint()
 ```
 
-_No description available._
+Creates a point at the origin.
 
 ### ChartPoint(int ax, int ay)
 
@@ -29,7 +29,7 @@ _No description available._
 public ChartPoint(int ax, int ay)
 ```
 
-_No description available._
+Creates a point at the given coordinates.
 
 ## Properties
 
@@ -39,7 +39,7 @@ _No description available._
 public int X { get; set; }
 ```
 
-_No description available._
+The X coordinate in pixels.
 
 ### Y
 
@@ -47,4 +47,4 @@ _No description available._
 public int Y { get; set; }
 ```
 
-_No description available._
+The Y coordinate in pixels.

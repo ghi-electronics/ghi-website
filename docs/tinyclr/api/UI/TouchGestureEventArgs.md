@@ -7,7 +7,7 @@ sidebar_label: "TouchGestureEventArgs"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Input`
 
-_No description available._
+Contains information about a touch gesture event.
 
 ```csharp
 public class TouchGestureEventArgs : EventArgs
@@ -21,7 +21,7 @@ public class TouchGestureEventArgs : EventArgs
 public double Angle { get; }
 ```
 
-_No description available._
+The gesture angle in degrees, derived from the arguments.
 
 ## Fields
 
@@ -31,7 +31,7 @@ _No description available._
 public readonly DateTime Timestamp
 ```
 
-_No description available._
+The time when the gesture occurred.
 
 ### Gesture
 
@@ -39,7 +39,7 @@ _No description available._
 public TouchGesture Gesture
 ```
 
-_No description available._
+The gesture that was recognized.
 
 ### X
 
@@ -47,7 +47,7 @@ _No description available._
 public int X
 ```
 
-_No description available._
+The x center of the gesture (or start point for single touch).
 
 ### Y
 
@@ -55,7 +55,7 @@ _No description available._
 public int Y
 ```
 
-_No description available._
+The y coordinate of the gesture location.
 
 ### Arguments
 
@@ -63,4 +63,4 @@ _No description available._
 public ushort Arguments
 ```
 
-_No description available._
+Gesture-specific value (e.g. zoom distance or rotation angle).

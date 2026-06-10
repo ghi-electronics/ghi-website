@@ -7,7 +7,7 @@ sidebar_label: "Rectangle"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Shapes`
 
-_No description available._
+Draws a rectangle.
 
 ```csharp
 public class Rectangle : Shape
@@ -21,7 +21,7 @@ public class Rectangle : Shape
 public Rectangle()
 ```
 
-_No description available._
+Creates a rectangle with no size.
 
 ### Rectangle(int width, int height)
 
@@ -29,7 +29,7 @@ _No description available._
 public Rectangle(int width, int height)
 ```
 
-_No description available._
+Creates a rectangle of the given width and height.
 
 ## Methods
 
@@ -39,4 +39,4 @@ _No description available._
 public override void OnRender(Media.DrawingContext dc)
 ```
 
-_No description available._
+Renders the rectangle to the drawing context.

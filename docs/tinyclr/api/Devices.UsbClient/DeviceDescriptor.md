@@ -7,7 +7,7 @@ sidebar_label: "DeviceDescriptor"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbClient`
 
-_No description available._
+The USB device descriptor.
 
 ```csharp
 public class DeviceDescriptor : Descriptor
@@ -21,7 +21,7 @@ public class DeviceDescriptor : Descriptor
 public DeviceDescriptor(ushort Vendor, ushort Product, ushort bcdUsb, ushort bcdDevice) : base(0)
 ```
 
-_No description available._
+Creates a new device descriptor.
 
 ## Fields
 
@@ -31,7 +31,7 @@ _No description available._
 public ushort idVendor
 ```
 
-_No description available._
+The vendor id.
 
 ### idProduct
 
@@ -39,7 +39,7 @@ _No description available._
 public ushort idProduct
 ```
 
-_No description available._
+The product id.
 
 ### bcdDevice
 
@@ -47,7 +47,7 @@ _No description available._
 public ushort bcdDevice
 ```
 
-_No description available._
+The device release number.
 
 ### iManufacturer
 
@@ -55,7 +55,7 @@ _No description available._
 public byte iManufacturer
 ```
 
-_No description available._
+The string index of the manufacturer.
 
 ### iProduct
 
@@ -63,7 +63,7 @@ _No description available._
 public byte iProduct
 ```
 
-_No description available._
+The string index of the product.
 
 ### iSerialNumber
 
@@ -71,7 +71,7 @@ _No description available._
 public byte iSerialNumber
 ```
 
-_No description available._
+The string index of the serial number.
 
 ### bDeviceClass
 
@@ -79,7 +79,7 @@ _No description available._
 public byte bDeviceClass
 ```
 
-_No description available._
+The device class code.
 
 ### bDeviceSubClass
 
@@ -87,7 +87,7 @@ _No description available._
 public byte bDeviceSubClass
 ```
 
-_No description available._
+The device subclass code.
 
 ### bDeviceProtocol
 
@@ -95,7 +95,7 @@ _No description available._
 public byte bDeviceProtocol
 ```
 
-_No description available._
+The device protocol code.
 
 ### bMaxPacketSize0
 
@@ -103,7 +103,7 @@ _No description available._
 public byte bMaxPacketSize0
 ```
 
-_No description available._
+The maximum packet size for endpoint zero.
 
 ### bcdUSB
 
@@ -111,4 +111,4 @@ _No description available._
 public ushort bcdUSB
 ```
 
-_No description available._
+The USB specification release number.

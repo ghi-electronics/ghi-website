@@ -7,7 +7,7 @@ sidebar_label: "InputDeviceType"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Input`
 
-_No description available._
+Identifies the kind of input device.
 
 ```csharp
 public enum InputDeviceType : int
@@ -17,7 +17,7 @@ public enum InputDeviceType : int
 
 | Name | Value | Description |
 |---|---|---|
-| `Button` | `0` |  |
-| `Touch` |  |  |
-| `Generic` |  |  |
-| `Last` |  |  |
+| `Button` | `0` | A button device. |
+| `Touch` |  | A touch device. |
+| `Generic` |  | A generic input device. |
+| `Last` |  | Marks the number of device types. |

@@ -7,7 +7,7 @@ sidebar_label: "Pen"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Media`
 
-_No description available._
+Describes the color and thickness used to draw outlines.
 
 ```csharp
 public class Pen
@@ -21,7 +21,7 @@ public class Pen
 public Pen(Color color) : this(color, 1)
 ```
 
-_No description available._
+Creates a pen of the given color with a thickness of one.
 
 ### Pen(Color color, ushort thickness)
 
@@ -29,7 +29,7 @@ _No description available._
 public Pen(Color color, ushort thickness)
 ```
 
-_No description available._
+Creates a pen of the given color and thickness.
 
 ## Fields
 
@@ -39,7 +39,7 @@ _No description available._
 public Color Color
 ```
 
-_No description available._
+The color of the pen.
 
 ### Thickness
 
@@ -47,4 +47,4 @@ _No description available._
 public ushort Thickness
 ```
 
-_No description available._
+The thickness of the pen in pixels.

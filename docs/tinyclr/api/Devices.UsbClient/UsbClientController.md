@@ -7,7 +7,7 @@ sidebar_label: "UsbClientController"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbClient`
 
-_No description available._
+Provides access to a USB client controller.
 
 ```csharp
 public class UsbClientController : IDisposable
@@ -21,7 +21,7 @@ public class UsbClientController : IDisposable
 public IUsbClientControllerProvider Provider { get; }
 ```
 
-_No description available._
+The underlying provider for the controller.
 
 ## Methods
 
@@ -31,7 +31,7 @@ _No description available._
 public static UsbClientController GetDefault()
 ```
 
-_No description available._
+Gets the default USB client controller.
 
 **Returns** `UsbClientController`
 
@@ -41,7 +41,7 @@ _No description available._
 public static UsbClientController FromName(string name)
 ```
 
-_No description available._
+Gets the USB client controller with the given name.
 
 **Returns** `UsbClientController`
 
@@ -51,7 +51,7 @@ _No description available._
 public static UsbClientController FromProvider(IUsbClientControllerProvider provider)
 ```
 
-_No description available._
+Gets a USB client controller from the given provider.
 
 **Returns** `UsbClientController`
 
@@ -61,4 +61,4 @@ _No description available._
 public void Dispose()
 ```
 
-_No description available._
+Disposes the controller.

@@ -111,7 +111,7 @@ Gets or sets a text description of the HTTP status code that is returned to the 
 public void Detach()
 ```
 
-_No description available._
+Sends the headers if not already sent and marks the response as closed without closing the connection.
 
 ### Close()
 

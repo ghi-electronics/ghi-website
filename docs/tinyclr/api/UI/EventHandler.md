@@ -7,7 +7,7 @@ sidebar_label: "EventHandler"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI`
 
-_No description available._
+Represents a method that handles a general event with no event data.
 
 ```csharp
 public delegate void EventHandler(object sender, EventArgs e);

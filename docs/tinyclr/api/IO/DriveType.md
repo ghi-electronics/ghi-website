@@ -17,10 +17,10 @@ public enum DriveType
 
 | Name | Value | Description |
 |---|---|---|
-| `Unknown` | `0` |  |
-| `NoRootDirectory` | `1` |  |
-| `Removable` | `2` |  |
-| `Fixed` | `3` |  |
-| `Network` | `4` |  |
-| `CDRom` | `5` |  |
-| `Ram` | `6` |  |
+| `Unknown` | `0` | The drive type is unknown. |
+| `NoRootDirectory` | `1` | The drive has no root directory. |
+| `Removable` | `2` | The drive is removable, such as an SD card or USB stick. |
+| `Fixed` | `3` | The drive is a fixed disk. |
+| `Network` | `4` | The drive is a network drive. |
+| `CDRom` | `5` | The drive is an optical disc. |
+| `Ram` | `6` | The drive is a RAM disk. |

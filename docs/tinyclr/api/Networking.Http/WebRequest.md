@@ -105,7 +105,7 @@ When overridden in a descendant class, gets or sets the network proxy to use to 
 public void Dispose()
 ```
 
-_No description available._
+Releases the resources used by the request.
 
 ### Dispose(bool disposing)
 
@@ -113,7 +113,7 @@ _No description available._
 protected virtual void Dispose(bool disposing)
 ```
 
-_No description available._
+Releases the unmanaged resources and optionally the managed resources used by the request.
 
 ### Abort()
 

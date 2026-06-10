@@ -7,7 +7,7 @@ sidebar_label: "InputEventArgs"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Input`
 
-_No description available._
+The InputEventArgs class represents a type of RoutedEventArgs that are relevant to all input events.
 
 ```csharp
 public class InputEventArgs : RoutedEventArgs

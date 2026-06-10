@@ -21,7 +21,7 @@ public class Capture
 public int Length { get; }
 ```
 
-_No description available._
+The length of the captured substring.
 
 ### Value
 
@@ -29,7 +29,7 @@ _No description available._
 public string Value { get; }
 ```
 
-_No description available._
+The captured substring from the input string.
 
 ## Methods
 
@@ -39,6 +39,6 @@ _No description available._
 public override string ToString()
 ```
 
-_No description available._
+Returns the captured substring.
 
 **Returns** `string`

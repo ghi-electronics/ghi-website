@@ -21,4 +21,4 @@ public interface IGrouping<TKey, TElement> : IEnumerable<TElement>
 TKey Key { get; }
 ```
 
-_No description available._
+Gets the key that the elements in this grouping have in common.

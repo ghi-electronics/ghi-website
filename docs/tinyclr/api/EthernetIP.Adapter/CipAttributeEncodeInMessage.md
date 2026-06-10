@@ -7,7 +7,7 @@ sidebar_label: "CipAttributeEncodeInMessage"
 
 **NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`<br/>**Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`<br/>**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`
 
-_No description available._
+Selects the native function used to encode an attribute value into an outgoing message.
 
 ```csharp
 public enum CipAttributeEncodeInMessage : uint
@@ -17,28 +17,28 @@ public enum CipAttributeEncodeInMessage : uint
 
 | Name | Value | Description |
 |---|---|---|
-| `None` | `0` |  |
-| `EncodeCipBool` | `0x01` |  |
-| `EncodeCipByte` | `0x02` |  |
-| `EncodeCipWord` | `0x4` |  |
-| `EncodeCipDword` | `0x8` |  |
-| `EncodeCipLword` | `0x10` |  |
-| `EncodeCipUsint` | `0x20` |  |
-| `EncodeCipUint` | `0x40` |  |
-| `EncodeCipUdint` | `0x80` |  |
-| `EncodeCipUlint` | `0x100` |  |
-| `EncodeCipSint` | `0x200` |  |
-| `EncodeCipInt` | `0x400` |  |
-| `EncodeCipDint` | `0x800` |  |
-| `EncodeCipLint` | `0x1000` |  |
-| `EncodeCipReal` | `0x2000` |  |
-| `EncodeCipLreal` | `0x4000` |  |
-| `EncodeCipShortString` | `0x8000` |  |
-| `EncodeCipString` | `0x10000` |  |
-| `EncodeCipString2` | `0x20000` |  |
-| `EncodeCipStringN` | `0x40000` |  |
-| `EncodeCipStringI` | `0x80000` |  |
-| `EncodeCipByteArray` | `0x100000` |  |
-| `EncodeCipEPath` | `0x2000000` |  |
-| `EncodeEPath` | `0x4000000` |  |
-| `EncodeCipEthernetLinkPhyisicalAddress` | `0x8000000` |  |
+| `None` | `0` | No encode function. |
+| `EncodeCipBool` | `0x01` | Encode a CIP BOOL value. |
+| `EncodeCipByte` | `0x02` | Encode a CIP BYTE value. |
+| `EncodeCipWord` | `0x4` | Encode a CIP WORD value. |
+| `EncodeCipDword` | `0x8` | Encode a CIP DWORD value. |
+| `EncodeCipLword` | `0x10` | Encode a CIP LWORD value. |
+| `EncodeCipUsint` | `0x20` | Encode a CIP USINT value. |
+| `EncodeCipUint` | `0x40` | Encode a CIP UINT value. |
+| `EncodeCipUdint` | `0x80` | Encode a CIP UDINT value. |
+| `EncodeCipUlint` | `0x100` | Encode a CIP ULINT value. |
+| `EncodeCipSint` | `0x200` | Encode a CIP SINT value. |
+| `EncodeCipInt` | `0x400` | Encode a CIP INT value. |
+| `EncodeCipDint` | `0x800` | Encode a CIP DINT value. |
+| `EncodeCipLint` | `0x1000` | Encode a CIP LINT value. |
+| `EncodeCipReal` | `0x2000` | Encode a CIP REAL value. |
+| `EncodeCipLreal` | `0x4000` | Encode a CIP LREAL value. |
+| `EncodeCipShortString` | `0x8000` | Encode a CIP SHORT_STRING value. |
+| `EncodeCipString` | `0x10000` | Encode a CIP STRING value. |
+| `EncodeCipString2` | `0x20000` | Encode a CIP STRING2 value. |
+| `EncodeCipStringN` | `0x40000` | Encode a CIP STRINGN value. |
+| `EncodeCipStringI` | `0x80000` | Encode a CIP STRINGI value. |
+| `EncodeCipByteArray` | `0x100000` | Encode a CIP byte array value. |
+| `EncodeCipEPath` | `0x2000000` | Encode a padded CIP EPATH value. |
+| `EncodeEPath` | `0x4000000` | Encode a packed EPATH value. |
+| `EncodeCipEthernetLinkPhyisicalAddress` | `0x8000000` | Encode an Ethernet Link object physical (MAC) address. |

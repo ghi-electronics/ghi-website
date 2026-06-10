@@ -21,7 +21,7 @@ public sealed class TouchDevice : InputDevice
 public override UIElement Target { get; }
 ```
 
-Returns the element that input from this device is sent to. _(inherited)_
+Returns the element that input from this device is sent to.
 
 ### DeviceType
 
@@ -29,7 +29,7 @@ Returns the element that input from this device is sent to. _(inherited)_
 public override InputManager.InputDeviceType DeviceType { get; }
 ```
 
-_No description available._
+The input device type for this device.
 
 ## Methods
 
@@ -39,4 +39,4 @@ _No description available._
 public void SetTarget(UIElement target)
 ```
 
-_No description available._
+Sets the element that input from this device is sent to.

@@ -7,7 +7,7 @@ sidebar_label: "FtpDefaultListener"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking.Ftp`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Ftp`<br/>**Namespace:** `GHIElectronics.TinyCLR.Networking.Ftp`
 
-_No description available._
+The fallback FTP listener that serves contexts not claimed by any other listener.
 
 ```csharp
 public class FtpDefaultListener : FtpListener
@@ -21,7 +21,7 @@ public class FtpDefaultListener : FtpListener
 public FtpDefaultListener() : base(false)
 ```
 
-_No description available._
+Creates the default listener that is not registered with the listener manager.
 
 ## Methods
 
@@ -31,7 +31,7 @@ _No description available._
 public override void Start()
 ```
 
-Start the listener _(inherited)_
+Starts the listener at the root prefix and launches its worker thread.
 
 ### Stop()
 
@@ -39,7 +39,7 @@ Start the listener _(inherited)_
 public override void Stop()
 ```
 
-Stop the listener _(inherited)_
+Stops the listener and shuts down its worker thread.
 
 ### Run()
 
@@ -47,4 +47,4 @@ Stop the listener _(inherited)_
 protected virtual void Run()
 ```
 
-_No description available._
+Worker loop that serves directory listing and navigation requests.

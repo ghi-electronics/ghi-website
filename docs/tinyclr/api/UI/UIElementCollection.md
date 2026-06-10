@@ -21,7 +21,7 @@ public class UIElementCollection : ICollection
 public UIElementCollection(UIElement owner)
 ```
 
-_No description available._
+Initializes a new collection owned by the specified element.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public virtual int Count { get; }
 ```
 
-_No description available._
+Gets the number of elements in the collection.
 
 ### IsSynchronized
 
@@ -39,7 +39,7 @@ _No description available._
 public virtual bool IsSynchronized { get; }
 ```
 
-_No description available._
+Gets a value indicating whether access to the collection is thread-safe.
 
 ### SyncRoot
 
@@ -47,7 +47,7 @@ _No description available._
 public virtual object SyncRoot { get; }
 ```
 
-_No description available._
+Gets an object that can be used to synchronize access to the collection.
 
 ### Capacity
 

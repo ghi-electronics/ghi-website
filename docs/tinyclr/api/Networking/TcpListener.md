@@ -7,7 +7,7 @@ sidebar_label: "TcpListener"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking`<br/>**Namespace:** `System.Net.Sockets`
 
-_No description available._
+Listens for connections from TCP network clients.
 
 ```csharp
 public class TcpListener
@@ -21,7 +21,7 @@ public class TcpListener
 public TcpListener(IPEndPoint localEP)
 ```
 
-_No description available._
+Initializes a new instance that listens on the specified local endpoint.
 
 ### TcpListener(IPAddress localaddr, int port)
 
@@ -29,7 +29,7 @@ _No description available._
 public TcpListener(IPAddress localaddr, int port) : this(new IPEndPoint(localaddr, port))
 ```
 
-_No description available._
+Initializes a new instance that listens on the specified local address and port.
 
 ## Properties
 
@@ -39,7 +39,7 @@ _No description available._
 public Socket Server { get; }
 ```
 
-_No description available._
+The underlying socket used by the listener.
 
 ### Active
 
@@ -47,7 +47,7 @@ _No description available._
 protected bool Active { get; }
 ```
 
-_No description available._
+Whether the listener is actively listening for connections.
 
 ### LocalEndpoint
 
@@ -55,7 +55,7 @@ _No description available._
 public EndPoint LocalEndpoint { get; }
 ```
 
-_No description available._
+The local endpoint the listener is bound to.
 
 ## Methods
 
@@ -65,7 +65,7 @@ _No description available._
 public void Start()
 ```
 
-_No description available._
+Starts listening for incoming connection requests.
 
 ### Start(int backlog)
 
@@ -73,7 +73,7 @@ _No description available._
 public void Start(int backlog)
 ```
 
-_No description available._
+Starts listening with the specified maximum length of the pending connection queue.
 
 ### Stop()
 
@@ -81,7 +81,7 @@ _No description available._
 public void Stop()
 ```
 
-_No description available._
+Stops listening for incoming connection requests.
 
 ### Pending()
 
@@ -89,7 +89,7 @@ _No description available._
 public bool Pending()
 ```
 
-_No description available._
+Determines whether a connection request is pending.
 
 **Returns** `bool`
 
@@ -99,7 +99,7 @@ _No description available._
 public Socket AcceptSocket()
 ```
 
-_No description available._
+Accepts a pending connection request and returns a Socket.
 
 **Returns** `Socket`
 
@@ -109,7 +109,7 @@ _No description available._
 public TcpClient AcceptTcpClient()
 ```
 
-_No description available._
+Accepts a pending connection request and returns a TcpClient.
 
 **Returns** `TcpClient`
 
@@ -119,6 +119,6 @@ _No description available._
 public static TcpListener Create(int port)
 ```
 
-_No description available._
+Creates a listener that listens on any local interface using the specified port.
 
 **Returns** `TcpListener`

@@ -7,7 +7,7 @@ sidebar_label: "Shape"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Shapes`
 
-_No description available._
+Base class for elements that draw a shape.
 
 ```csharp
 public abstract class Shape : UIElement
@@ -21,7 +21,7 @@ public abstract class Shape : UIElement
 public Media.Brush Fill { get; set; }
 ```
 
-_No description available._
+The brush used to fill the shape.
 
 ### Stroke
 
@@ -29,4 +29,4 @@ _No description available._
 public Media.Pen Stroke { get; set; }
 ```
 
-_No description available._
+The pen used to draw the outline of the shape.

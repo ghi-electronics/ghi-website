@@ -201,7 +201,7 @@ Parse Scheme-specific part of uri for host, port and absolute path Briefed synta
 protected void Split(string sUri, int iStart, out string sAuthority, out string sPath, bool bReplaceEmptyPath)
 ```
 
-_No description available._
+Splits the scheme-specific part into its authority and path portions.
 
 ### IsIPv4(String host)
 
@@ -223,7 +223,7 @@ Returns if host name is IP adress 4 bytes. Like 192.1.1.1
 protected bool IsIPv6(string host)
 ```
 
-_No description available._
+Returns whether the specified host is an IPv6 address enclosed in brackets.
 
 **Returns** `bool`
 
@@ -257,7 +257,7 @@ Parses relative Uri into variables.
 public override int GetHashCode()
 ```
 
-_No description available._
+Returns the hash code for this URI.
 
 **Returns** `int`
 
@@ -267,7 +267,7 @@ _No description available._
 public override bool Equals(object o)
 ```
 
-_No description available._
+Returns true if the object is an equal URI.
 
 **Returns** `bool`
 
@@ -277,7 +277,7 @@ _No description available._
 public static bool operator ==(Uri lhs, Uri rhs)
 ```
 
-_No description available._
+Determines whether two URIs are equal.
 
 **Returns** `bool operator`
 
@@ -287,7 +287,7 @@ _No description available._
 public static bool operator !=(Uri lhs, Uri rhs)
 ```
 
-_No description available._
+Determines whether two URIs are not equal.
 
 **Returns** `bool operator`
 

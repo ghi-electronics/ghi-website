@@ -7,7 +7,7 @@ sidebar_label: "MulticastOption"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking`<br/>**Namespace:** `System.Net.Sockets`
 
-_No description available._
+Contains IP address values for setting IP multicast options.
 
 ```csharp
 public class MulticastOption
@@ -21,7 +21,7 @@ public class MulticastOption
 public MulticastOption(IPAddress group, IPAddress mcint)
 ```
 
-_No description available._
+Initializes a new instance for the specified multicast group and local address.
 
 ### MulticastOption(IPAddress group)
 
@@ -29,7 +29,7 @@ _No description available._
 public MulticastOption(IPAddress group)
 ```
 
-_No description available._
+Initializes a new instance for the specified multicast group using the default local address.
 
 ## Properties
 
@@ -39,7 +39,7 @@ _No description available._
 public IPAddress Group { get; set; }
 ```
 
-_No description available._
+The IP address of the multicast group.
 
 ### LocalAddress
 
@@ -47,7 +47,7 @@ _No description available._
 public IPAddress LocalAddress { get; set; }
 ```
 
-_No description available._
+The local address associated with the multicast group.
 
 ### InterfaceIndex
 
@@ -55,7 +55,7 @@ _No description available._
 public int InterfaceIndex { get; set; }
 ```
 
-_No description available._
+The index of the local network interface to use for the multicast group.
 
 ## Methods
 
@@ -65,6 +65,6 @@ _No description available._
 public byte[] ToBytes()
 ```
 
-_No description available._
+Returns the multicast group and local addresses as a byte array.
 
 **Returns** `byte[]`

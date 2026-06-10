@@ -7,7 +7,7 @@ sidebar_label: "UsbHostController"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.UsbHost`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbHost`
 
-_No description available._
+Represents the USB host controller used to manage connected USB devices.
 
 ```csharp
 public class UsbHostController : IDisposable
@@ -21,7 +21,7 @@ public class UsbHostController : IDisposable
 public IUsbHostControllerProvider Provider { get; }
 ```
 
-_No description available._
+The underlying provider that implements the host controller.
 
 ## Methods
 
@@ -31,7 +31,7 @@ _No description available._
 public static UsbHostController GetDefault()
 ```
 
-_No description available._
+Gets the default USB host controller for the system.
 
 **Returns** `UsbHostController`
 
@@ -41,7 +41,7 @@ _No description available._
 public static UsbHostController FromName(string name)
 ```
 
-_No description available._
+Gets the USB host controller with the given name.
 
 **Returns** `UsbHostController`
 
@@ -51,7 +51,7 @@ _No description available._
 public static UsbHostController FromProvider(IUsbHostControllerProvider provider)
 ```
 
-_No description available._
+Gets a USB host controller backed by the given provider.
 
 **Returns** `UsbHostController`
 
@@ -61,7 +61,7 @@ _No description available._
 public void Dispose()
 ```
 
-_No description available._
+Disposes the controller and its provider.
 
 ### Enable()
 
@@ -69,7 +69,7 @@ _No description available._
 public void Enable()
 ```
 
-_No description available._
+Enables the controller so devices can be detected.
 
 ### Disable()
 
@@ -77,7 +77,7 @@ _No description available._
 public void Disable()
 ```
 
-_No description available._
+Disables the controller and stops detecting devices.
 
 ### GetConnectedDevices()
 
@@ -85,7 +85,7 @@ _No description available._
 public static BaseDevice[] GetConnectedDevices()
 ```
 
-_No description available._
+Gets the currently connected devices, or null if the controller is not enabled.
 
 **Returns** `BaseDevice[]`
 
@@ -97,4 +97,4 @@ _No description available._
 public event OnConnectionChanged OnConnectionChangedEvent
 ```
 
-_No description available._
+The event fired when a device's connection status changes.

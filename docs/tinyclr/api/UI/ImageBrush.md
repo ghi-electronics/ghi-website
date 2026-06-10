@@ -7,7 +7,7 @@ sidebar_label: "ImageBrush"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Media`
 
-_No description available._
+A brush that paints a region with an image.
 
 ```csharp
 public sealed class ImageBrush : Brush
@@ -21,7 +21,7 @@ public sealed class ImageBrush : Brush
 public ImageBrush(ImageSource imagesource)
 ```
 
-_No description available._
+Creates a brush that paints with the given image.
 
 ## Fields
 
@@ -31,7 +31,7 @@ _No description available._
 public ImageSource ImageSource
 ```
 
-_No description available._
+The image painted by the brush.
 
 ### Stretch
 
@@ -39,4 +39,4 @@ _No description available._
 public Stretch Stretch
 ```
 
-_No description available._
+How the image is stretched to fill the region.

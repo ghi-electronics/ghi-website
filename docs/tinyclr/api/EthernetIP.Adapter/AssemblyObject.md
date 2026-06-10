@@ -7,7 +7,7 @@ sidebar_label: "AssemblyObject"
 
 **NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`<br/>**Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`<br/>**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`
 
-_No description available._
+Describes a CIP Assembly (Class 4) instance that a scanner can read or write.
 
 ```csharp
 public class AssemblyObject
@@ -21,7 +21,7 @@ public class AssemblyObject
 public AssemblyObject(int instanceId, byte[] data, ushort size)
 ```
 
-_No description available._
+Creates an assembly object with the given instance ID, data buffer, and size.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public IntPtr Impl { get; set; }
 ```
 
-_No description available._
+Native handle to the underlying assembly object.
 
 ### InstanceId
 
@@ -39,7 +39,7 @@ _No description available._
 public int InstanceId { get; }
 ```
 
-_No description available._
+The CIP instance ID of this assembly.
 
 ### Data
 
@@ -47,7 +47,7 @@ _No description available._
 public byte[] Data { get; }
 ```
 
-_No description available._
+The data buffer backing this assembly's contents.
 
 ### Size
 
@@ -55,4 +55,4 @@ _No description available._
 public ushort Size { get; }
 ```
 
-_No description available._
+The size of the assembly data in bytes.

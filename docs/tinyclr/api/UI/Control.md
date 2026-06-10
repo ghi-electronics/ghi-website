@@ -7,7 +7,7 @@ sidebar_label: "Control"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+Base class for focusable UI controls with background, foreground and font.
 
 ```csharp
 public class Control : UIElement
@@ -53,7 +53,7 @@ Optional data context for lightweight binding (e.g. `TextBox.SetTextBinding`).
 public Media.Brush Background { get; set; }
 ```
 
-_No description available._
+The brush used to paint the control's background.
 
 ### Font
 
@@ -61,7 +61,7 @@ _No description available._
 public System.Drawing.Font Font { get; set; }
 ```
 
-_No description available._
+The font used by the control's text.
 
 ### Foreground
 
@@ -69,7 +69,7 @@ _No description available._
 public Media.Brush Foreground { get; set; }
 ```
 
-_No description available._
+The brush used to paint the control's foreground content.
 
 ## Methods
 
@@ -79,7 +79,7 @@ _No description available._
 public override void OnRender(DrawingContext dc)
 ```
 
-_No description available._
+Draws the background and, when focused, the focus rectangle.
 
 ### SolidColorBrush( Colors.Black)
 
@@ -87,7 +87,7 @@ _No description available._
 protected internal Media.Brush _foreground = new SolidColorBrush(Colors.Black)
 ```
 
-_No description available._
+Backing field for the control's foreground brush.
 
 **Returns** `Media.Brush _foreground = new`
 
@@ -99,7 +99,7 @@ _No description available._
 protected internal Media.Brush _background
 ```
 
-_No description available._
+Backing field for the control's background brush.
 
 ### _font
 
@@ -107,4 +107,4 @@ _No description available._
 protected internal System.Drawing.Font _font
 ```
 
-_No description available._
+Backing field for the control's font.

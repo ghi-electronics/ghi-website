@@ -21,7 +21,7 @@ public class DrawingContext : DispatcherObject, IDisposable
 public int Width { get; }
 ```
 
-_No description available._
+The width of the drawing surface in pixels.
 
 ### Height
 
@@ -29,7 +29,7 @@ _No description available._
 public int Height { get; }
 ```
 
-_No description available._
+The height of the drawing surface in pixels.
 
 ## Methods
 
@@ -39,7 +39,7 @@ _No description available._
 public void Translate(int dx, int dy)
 ```
 
-_No description available._
+Offsets the origin of subsequent drawing operations.
 
 ### GetTranslation(out int x, out int y)
 
@@ -47,7 +47,7 @@ _No description available._
 public void GetTranslation(out int x, out int y)
 ```
 
-_No description available._
+Gets the current drawing origin offset.
 
 ### Clear()
 
@@ -55,7 +55,7 @@ _No description available._
 public void Clear()
 ```
 
-_No description available._
+Clears the drawing surface.
 
 ### DrawPolygon(Brush brush, Pen pen, int[] pts)
 
@@ -63,7 +63,7 @@ _No description available._
 public void DrawPolygon(Brush brush, Pen pen, int[] pts)
 ```
 
-_No description available._
+Draws a polygon defined by the given points.
 
 ### SetPixel(Color color, int x, int y)
 
@@ -71,7 +71,7 @@ _No description available._
 public void SetPixel(Color color, int x, int y)
 ```
 
-_No description available._
+Sets a single pixel to the given color.
 
 ### DrawLine(Pen pen, int x0, int y0, int x1, int y1)
 
@@ -79,7 +79,7 @@ _No description available._
 public void DrawLine(Pen pen, int x0, int y0, int x1, int y1)
 ```
 
-_No description available._
+Draws a line between two points.
 
 ### DrawEllipse(Brush brush, Pen pen, int x, int y, int xRadius, int yRadius)
 
@@ -87,7 +87,7 @@ _No description available._
 public void DrawEllipse(Brush brush, Pen pen, int x, int y, int xRadius, int yRadius)
 ```
 
-_No description available._
+Draws an ellipse with the given fill and outline.
 
 ### DrawImage(ImageSource source, int x, int y)
 
@@ -95,7 +95,7 @@ _No description available._
 public void DrawImage(ImageSource source, int x, int y)
 ```
 
-_No description available._
+Draws an image at the given position.
 
 ### DrawImage(ImageSource source, int destinationX, int destinationY, int sourceX, int sourceY, int sourceWidth, int sourceHeight)
 
@@ -103,7 +103,7 @@ _No description available._
 public void DrawImage(ImageSource source, int destinationX, int destinationY, int sourceX, int sourceY, int sourceWidth, int sourceHeight)
 ```
 
-_No description available._
+Draws a region of an image at the given position.
 
 ### BlendImage(ImageSource source, int destinationX, int destinationY, int sourceX, int sourceY, int sourceWidth, int sourceHeight, ushort opacity)
 
@@ -111,7 +111,7 @@ _No description available._
 public void BlendImage(ImageSource source, int destinationX, int destinationY, int sourceX, int sourceY, int sourceWidth, int sourceHeight, ushort opacity)
 ```
 
-_No description available._
+Draws a region of an image blended with the given opacity.
 
 ### RotateImage(int angle, int destinationX, int destinationY, ImageSource bitmap, int sourceX, int sourceY, int sourceWidth, int sourceHeight, ushort opacity)
 
@@ -119,7 +119,7 @@ _No description available._
 public void RotateImage(int angle, int destinationX, int destinationY, ImageSource bitmap, int sourceX, int sourceY, int sourceWidth, int sourceHeight, ushort opacity)
 ```
 
-_No description available._
+Draws a region of an image rotated by the given angle.
 
 ### StretchImage(int xDst, int yDst, int widthDst, int heightDst, ImageSource bitmap, int xSrc, int ySrc, int widthSrc, int heightSrc, ushort opacity)
 
@@ -127,7 +127,7 @@ _No description available._
 public void StretchImage(int xDst, int yDst, int widthDst, int heightDst, ImageSource bitmap, int xSrc, int ySrc, int widthSrc, int heightSrc, ushort opacity)
 ```
 
-_No description available._
+Draws a region of an image stretched to the given size.
 
 ### TileImage(int xDst, int yDst, ImageSource bitmap, int width, int height, ushort opacity)
 
@@ -135,7 +135,7 @@ _No description available._
 public void TileImage(int xDst, int yDst, ImageSource bitmap, int width, int height, ushort opacity)
 ```
 
-_No description available._
+Draws an image tiled across the given area.
 
 ### Scale9Image(int xDst, int yDst, int widthDst, int heightDst, ImageSource bitmap, int leftBorder, int topBorder, int rightBorder, int bottomBorder, ushort opacity)
 
@@ -143,7 +143,7 @@ _No description available._
 public void Scale9Image(int xDst, int yDst, int widthDst, int heightDst, ImageSource bitmap, int leftBorder, int topBorder, int rightBorder, int bottomBorder, ushort opacity)
 ```
 
-_No description available._
+Draws an image using nine-slice scaling with the given borders.
 
 ### DrawText(string text, System.Drawing.Font font, Color color, int x, int y)
 
@@ -151,7 +151,7 @@ _No description available._
 public void DrawText(string text, System.Drawing.Font font, Color color, int x, int y)
 ```
 
-_No description available._
+Draws text at the given position.
 
 ### DrawText(ref string text, System.Drawing.Font font, Color color, int x, int y, int width, int height, TextAlignment alignment, TextTrimming trimming)
 
@@ -159,7 +159,7 @@ _No description available._
 public bool DrawText(ref string text, System.Drawing.Font font, Color color, int x, int y, int width, int height, TextAlignment alignment, TextTrimming trimming)
 ```
 
-_No description available._
+Draws text within a rectangle using the given alignment and trimming.
 
 **Returns** `bool`
 
@@ -169,7 +169,7 @@ _No description available._
 public void GetClippingRectangle(out int x, out int y, out int width, out int height)
 ```
 
-_No description available._
+Gets the current clipping rectangle.
 
 ### PushClippingRectangle(int x, int y, int width, int height)
 
@@ -177,7 +177,7 @@ _No description available._
 public void PushClippingRectangle(int x, int y, int width, int height)
 ```
 
-_No description available._
+Pushes a clipping rectangle onto the clip stack.
 
 ### PopClippingRectangle()
 
@@ -185,7 +185,7 @@ _No description available._
 public void PopClippingRectangle()
 ```
 
-_No description available._
+Pops the most recently pushed clipping rectangle.
 
 ### DrawRectangle(Brush brush, Pen pen, int x, int y, int width, int height)
 
@@ -193,7 +193,7 @@ _No description available._
 public void DrawRectangle(Brush brush, Pen pen, int x, int y, int width, int height)
 ```
 
-_No description available._
+Draws a rectangle with the given fill and outline.
 
 ### Dispose()
 
@@ -201,7 +201,7 @@ _No description available._
 public void Dispose()
 ```
 
-_No description available._
+Releases the resources used by the drawing context.
 
 ### Dispose(bool disposing)
 
@@ -209,4 +209,4 @@ _No description available._
 protected virtual void Dispose(bool disposing)
 ```
 
-_No description available._
+Releases the resources used by the drawing context.

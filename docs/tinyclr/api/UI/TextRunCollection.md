@@ -7,7 +7,7 @@ sidebar_label: "TextRunCollection"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+An ordered collection of `TextRun` items belonging to a `TextFlow`.
 
 ```csharp
 public class TextRunCollection : ICollection
@@ -21,7 +21,7 @@ public class TextRunCollection : ICollection
 public int Count { get; }
 ```
 
-_No description available._
+The number of runs in the collection.
 
 ### index]
 
@@ -29,7 +29,7 @@ _No description available._
 public TextRun this[int index] { get; set; }
 ```
 
-_No description available._
+Gets or sets the run at the given index.
 
 ### SyncRoot
 
@@ -37,7 +37,7 @@ _No description available._
 public object SyncRoot { get; }
 ```
 
-_No description available._
+Always null; the collection does not expose a synchronization root.
 
 ## Methods
 
@@ -47,7 +47,7 @@ _No description available._
 public int Add(string text, System.Drawing.Font font, Color foreColor)
 ```
 
-_No description available._
+Creates a run from the given text, font, and color and adds it, returning its index.
 
 **Returns** `int`
 
@@ -57,7 +57,7 @@ _No description available._
 public int Add(TextRun textRun)
 ```
 
-_No description available._
+Adds an existing run to the collection and returns its index.
 
 **Returns** `int`
 
@@ -67,7 +67,7 @@ _No description available._
 public void Clear()
 ```
 
-_No description available._
+Removes all runs from the collection.
 
 ### Contains(TextRun run)
 
@@ -75,7 +75,7 @@ _No description available._
 public bool Contains(TextRun run)
 ```
 
-_No description available._
+Returns whether the given run is in the collection.
 
 **Returns** `bool`
 
@@ -85,7 +85,7 @@ _No description available._
 public int IndexOf(TextRun run)
 ```
 
-_No description available._
+Returns the index of the given run, or -1 if it is not present.
 
 **Returns** `int`
 
@@ -95,7 +95,7 @@ _No description available._
 public void Insert(int index, TextRun run)
 ```
 
-_No description available._
+Inserts a run at the given index.
 
 ### Remove(TextRun run)
 
@@ -103,7 +103,7 @@ _No description available._
 public void Remove(TextRun run)
 ```
 
-_No description available._
+Removes the given run from the collection.
 
 ### RemoveAt(int index)
 
@@ -111,7 +111,7 @@ _No description available._
 public void RemoveAt(int index)
 ```
 
-_No description available._
+Removes the run at the given index.
 
 ### CopyTo(Array array, int index)
 
@@ -119,4 +119,4 @@ _No description available._
 public void CopyTo(Array array, int index)
 ```
 
-_No description available._
+Copies the runs to the given array starting at the specified index.

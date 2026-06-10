@@ -7,7 +7,7 @@ sidebar_label: "TcpIpInterfaceObject"
 
 **NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Scanner.ObjectLibrary`
 
-_No description available._
+Provides explicit-message access to the TCP/IP Interface Object (Class Code 0xF5) on the target.
 
 ```csharp
 public class TcpIpInterfaceObject

@@ -7,7 +7,7 @@ sidebar_label: "GenericEvents"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Input`
 
-_No description available._
+Defines the routed events raised by the generic input device.
 
 ```csharp
 public sealed class GenericEvents
@@ -21,6 +21,6 @@ public sealed class GenericEvents
 public static readonly RoutedEvent GenericStandardEvent = new RoutedEvent( , RoutingStrategy.Tunnel, typeof(GenericEventArgs))
 ```
 
-_No description available._
+A routed event raised for a standard generic input event.
 
 **Returns** `RoutedEvent GenericStandardEvent = new`

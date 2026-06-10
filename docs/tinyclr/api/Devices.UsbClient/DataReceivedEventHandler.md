@@ -7,7 +7,7 @@ sidebar_label: "DataReceivedEventHandler"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbClient`
 
-_No description available._
+Represents the method that handles a data received event.
 
 ```csharp
 public delegate void DataReceivedEventHandler(RawDevice sender, uint count);

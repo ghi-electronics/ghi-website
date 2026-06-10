@@ -7,7 +7,7 @@ sidebar_label: "TouchGesture"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Input`
 
-_No description available._
+Identifies a touch gesture.
 
 ```csharp
 public enum TouchGesture : uint
@@ -17,22 +17,22 @@ public enum TouchGesture : uint
 
 | Name | Value | Description |
 |---|---|---|
-| `NoGesture` | `0` |  |
-| `Begin` | `1` |  |
-| `End` | `2` |  |
-| `Right` | `3` |  |
-| `UpRight` | `4` |  |
-| `Up` | `5` |  |
-| `UpLeft` | `6` |  |
-| `Left` | `7` |  |
-| `DownLeft` | `8` |  |
-| `Down` | `9` |  |
-| `DownRight` | `10` |  |
-| `Tap` | `11` |  |
-| `DoubleTap` | `12` |  |
-| `Zoom` | `114` |  |
-| `Pan` | `115` |  |
-| `Rotate` | `116` |  |
-| `TwoFingerTap` | `117` |  |
-| `Rollover` | `118` |  |
-| `UserDefined` | `200` |  |
+| `NoGesture` | `0` | No gesture, or an unknown gesture. |
+| `Begin` | `1` | The beginning of a gesture sequence. |
+| `End` | `2` | The end of a gesture sequence. |
+| `Right` | `3` | A swipe to the right. |
+| `UpRight` | `4` | A swipe up and to the right. |
+| `Up` | `5` | A swipe upward. |
+| `UpLeft` | `6` | A swipe up and to the left. |
+| `Left` | `7` | A swipe to the left. |
+| `DownLeft` | `8` | A swipe down and to the left. |
+| `Down` | `9` | A swipe downward. |
+| `DownRight` | `10` | A swipe down and to the right. |
+| `Tap` | `11` | A tap. |
+| `DoubleTap` | `12` | A double tap. |
+| `Zoom` | `114` | A pinch (zoom) gesture. |
+| `Pan` | `115` | A pan (scroll) gesture. |
+| `Rotate` | `116` | A rotate gesture. |
+| `TwoFingerTap` | `117` | A two-finger tap. |
+| `Rollover` | `118` | A press-and-tap (rollover) gesture. |
+| `UserDefined` | `200` | A user-defined gesture. |

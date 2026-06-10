@@ -21,7 +21,7 @@ public sealed class Pen : MarshalByRefObject, ICloneable, IDisposable
 public Pen(Color color) : this(color, 1.0f)
 ```
 
-_No description available._
+Initializes a new pen of width 1 with the specified color.
 
 ### Pen(Brush brush)
 
@@ -29,7 +29,7 @@ _No description available._
 public Pen(Brush brush) : this(brush, 1.0f)
 ```
 
-_No description available._
+Initializes a new pen of width 1 with the specified brush.
 
 ### Pen(Color color, float width)
 
@@ -37,7 +37,7 @@ _No description available._
 public Pen(Color color, float width)
 ```
 
-_No description available._
+Initializes a new pen with the specified color and width.
 
 ### Pen(Brush brush, float width)
 
@@ -45,7 +45,7 @@ _No description available._
 public Pen(Brush brush, float width)
 ```
 
-_No description available._
+Initializes a new pen with the specified brush and width.
 
 ## Properties
 
@@ -55,7 +55,7 @@ _No description available._
 public float Width { get; set; }
 ```
 
-_No description available._
+Gets or sets the width of this pen in pixels.
 
 ### Color
 
@@ -63,7 +63,7 @@ _No description available._
 public Color Color { get; set; }
 ```
 
-_No description available._
+Gets or sets the color of this pen.
 
 ### PenType
 
@@ -71,7 +71,7 @@ _No description available._
 public PenType PenType { get; }
 ```
 
-_No description available._
+Gets the style of this pen.
 
 ### Brush
 
@@ -79,7 +79,7 @@ _No description available._
 public Brush Brush { get; set; }
 ```
 
-_No description available._
+Gets or sets the brush used by this pen; only a solid brush is supported.
 
 ## Methods
 
@@ -89,7 +89,7 @@ _No description available._
 public void Dispose()
 ```
 
-_No description available._
+Releases the resources used by this pen.
 
 ### Clone()
 
@@ -97,6 +97,6 @@ _No description available._
 public object Clone()
 ```
 
-_No description available._
+Creates an exact copy of this pen.
 
 **Returns** `object`

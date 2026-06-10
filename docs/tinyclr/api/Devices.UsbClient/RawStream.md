@@ -21,7 +21,7 @@ public class RawStream : Stream
 public RawStream(int streamIndex, RawDevice parent)
 ```
 
-_No description available._
+Creates a new raw stream.
 
 ## Properties
 

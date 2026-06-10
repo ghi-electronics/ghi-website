@@ -21,7 +21,7 @@ public abstract class XmlReader : IDisposable
 public abstract XmlNodeType NodeType { get; }
 ```
 
-_No description available._
+The type of the current node.
 
 ### LocalName
 
@@ -29,7 +29,7 @@ _No description available._
 public abstract string LocalName { get; }
 ```
 
-_No description available._
+The local name of the current node.
 
 ### NamespaceURI
 
@@ -37,7 +37,7 @@ _No description available._
 public abstract string NamespaceURI { get; }
 ```
 
-_No description available._
+The namespace URI of the current node.
 
 ### Prefix
 
@@ -45,7 +45,7 @@ _No description available._
 public abstract string Prefix { get; }
 ```
 
-_No description available._
+The namespace prefix of the current node.
 
 ### HasValue
 
@@ -53,7 +53,7 @@ _No description available._
 public abstract bool HasValue { get; }
 ```
 
-_No description available._
+Indicates whether the current node has a value.
 
 ### Value
 
@@ -61,7 +61,7 @@ _No description available._
 public abstract string Value { get; }
 ```
 
-_No description available._
+The text value of the current node.
 
 ### Depth
 
@@ -69,7 +69,7 @@ _No description available._
 public abstract int Depth { get; }
 ```
 
-_No description available._
+The depth of the current node in the element tree.
 
 ### BaseURI
 
@@ -77,7 +77,7 @@ _No description available._
 public abstract string BaseURI { get; }
 ```
 
-_No description available._
+The base URI of the current node.
 
 ### IsEmptyElement
 
@@ -85,7 +85,7 @@ _No description available._
 public abstract bool IsEmptyElement { get; }
 ```
 
-_No description available._
+Indicates whether the current element is empty.
 
 ### AttributeCount
 
@@ -93,7 +93,7 @@ _No description available._
 public abstract int AttributeCount { get; }
 ```
 
-_No description available._
+The number of attributes on the current node.
 
 ### EOF
 
@@ -101,7 +101,7 @@ _No description available._
 public abstract bool EOF { get; }
 ```
 
-_No description available._
+Indicates whether the reader is positioned at the end of the stream.
 
 ### ReadState
 
@@ -109,7 +109,7 @@ _No description available._
 public abstract ReadState ReadState { get; }
 ```
 
-_No description available._
+The current state of the reader.
 
 ### Name
 
@@ -117,7 +117,7 @@ _No description available._
 public virtual string Name { get; }
 ```
 
-_No description available._
+The qualified name of the current node.
 
 ### HasAttributes
 
@@ -125,7 +125,7 @@ _No description available._
 public virtual bool HasAttributes { get; }
 ```
 
-_No description available._
+Indicates whether the current node has any attributes.
 
 ## Methods
 
@@ -135,7 +135,7 @@ _No description available._
 public abstract string GetAttribute(string name)
 ```
 
-_No description available._
+Gets the value of the attribute with the specified name.
 
 **Returns** `string`
 
@@ -145,7 +145,7 @@ _No description available._
 public abstract string GetAttribute(string name, string namespaceURI)
 ```
 
-_No description available._
+Gets the value of the attribute with the specified local name and namespace URI.
 
 **Returns** `string`
 
@@ -155,7 +155,7 @@ _No description available._
 public abstract string GetAttribute(int i)
 ```
 
-_No description available._
+Gets the value of the attribute at the specified index.
 
 **Returns** `string`
 
@@ -165,7 +165,7 @@ _No description available._
 public abstract bool MoveToAttribute(string name)
 ```
 
-_No description available._
+Moves to the attribute with the specified name.
 
 **Returns** `bool`
 
@@ -175,7 +175,7 @@ _No description available._
 public abstract bool MoveToAttribute(string name, string ns)
 ```
 
-_No description available._
+Moves to the attribute with the specified local name and namespace URI.
 
 **Returns** `bool`
 
@@ -185,7 +185,7 @@ _No description available._
 public abstract bool MoveToFirstAttribute()
 ```
 
-_No description available._
+Moves to the first attribute of the current node.
 
 **Returns** `bool`
 
@@ -195,7 +195,7 @@ _No description available._
 public abstract bool MoveToNextAttribute()
 ```
 
-_No description available._
+Moves to the next attribute of the current node.
 
 **Returns** `bool`
 
@@ -205,7 +205,7 @@ _No description available._
 public abstract bool MoveToElement()
 ```
 
-_No description available._
+Moves to the element that contains the current attribute node.
 
 **Returns** `bool`
 
@@ -215,7 +215,7 @@ _No description available._
 public abstract bool ReadAttributeValue()
 ```
 
-_No description available._
+Parses the attribute value into one or more Text, EntityReference, or EndEntity nodes.
 
 **Returns** `bool`
 
@@ -225,7 +225,7 @@ _No description available._
 public abstract bool Read()
 ```
 
-_No description available._
+Reads the next node from the stream.
 
 **Returns** `bool`
 
@@ -235,7 +235,7 @@ _No description available._
 public abstract void Close()
 ```
 
-_No description available._
+Closes the reader and the underlying stream.
 
 ### LookupNamespace(string prefix)
 
@@ -243,7 +243,7 @@ _No description available._
 public abstract string LookupNamespace(string prefix)
 ```
 
-_No description available._
+Resolves a namespace prefix in the scope of the current node.
 
 **Returns** `string`
 
@@ -253,7 +253,7 @@ _No description available._
 public abstract void ResolveEntity()
 ```
 
-_No description available._
+Resolves the entity reference for EntityReference nodes.
 
 ### Skip()
 
@@ -261,7 +261,7 @@ _No description available._
 public virtual void Skip()
 ```
 
-_No description available._
+Skips the children of the current node.
 
 ### ReadString()
 
@@ -269,7 +269,7 @@ _No description available._
 public virtual string ReadString()
 ```
 
-_No description available._
+Reads the contents of the current text or element node as a string.
 
 **Returns** `string`
 
@@ -279,7 +279,7 @@ _No description available._
 public virtual bool IsStartElement()
 ```
 
-_No description available._
+Indicates whether the current content node is a start tag.
 
 **Returns** `bool`
 
@@ -289,7 +289,7 @@ _No description available._
 public virtual bool IsStartElement(string name)
 ```
 
-_No description available._
+Indicates whether the current content node is a start tag with the specified name.
 
 **Returns** `bool`
 
@@ -299,7 +299,7 @@ _No description available._
 public virtual XmlNodeType MoveToContent()
 ```
 
-_No description available._
+Advances past non-content nodes to the next content node and returns its type.
 
 **Returns** `XmlNodeType`
 
@@ -309,7 +309,7 @@ _No description available._
 public virtual void ReadStartElement()
 ```
 
-_No description available._
+Verifies the current content node is a start tag and advances the reader past it.
 
 ### ReadStartElement(string name)
 
@@ -317,7 +317,7 @@ _No description available._
 public virtual void ReadStartElement(string name)
 ```
 
-_No description available._
+Verifies the current content node is a start tag with the specified name and advances the reader past it.
 
 ### ReadEndElement()
 
@@ -325,7 +325,7 @@ _No description available._
 public virtual void ReadEndElement()
 ```
 
-_No description available._
+Verifies the current content node is an end tag and advances the reader past it.
 
 ### ReadElementString()
 
@@ -333,7 +333,7 @@ _No description available._
 public virtual string ReadElementString()
 ```
 
-_No description available._
+Reads a text-only element and returns its content as a string.
 
 **Returns** `string`
 
@@ -343,7 +343,7 @@ _No description available._
 public virtual void Dispose()
 ```
 
-_No description available._
+Releases the resources used by the reader.
 
 ### Create(Stream input)
 
@@ -351,7 +351,7 @@ _No description available._
 public static XmlReader Create(Stream input)
 ```
 
-_No description available._
+Creates a new reader over the specified stream.
 
 **Returns** `XmlReader`
 
@@ -361,7 +361,7 @@ _No description available._
 public static XmlReader Create(Stream input, XmlReaderSettings settings)
 ```
 
-_No description available._
+Creates a new reader over the specified stream using the specified settings.
 
 **Returns** `XmlReader`
 
@@ -371,7 +371,7 @@ _No description available._
 public static XmlReader Create(Stream input, XmlReaderSettings settings, string baseUri)
 ```
 
-_No description available._
+Creates a new reader over the specified stream using the specified settings and base URI.
 
 **Returns** `XmlReader`
 
@@ -381,7 +381,7 @@ _No description available._
 public static bool IsName(string str)
 ```
 
-_No description available._
+Indicates whether the specified string is a valid XML name.
 
 **Returns** `bool`
 
@@ -391,6 +391,6 @@ _No description available._
 public static bool IsNameToken(string str)
 ```
 
-_No description available._
+Indicates whether the specified string is a valid XML name token.
 
 **Returns** `bool`

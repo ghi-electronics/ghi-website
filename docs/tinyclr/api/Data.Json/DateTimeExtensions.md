@@ -7,7 +7,7 @@ sidebar_label: "DateTimeExtensions"
 
 **NuGet:** `GHIElectronics.TinyCLR.Data.Json`<br/>**Assembly:** `GHIElectronics.TinyCLR.Data.Json`<br/>**Namespace:** `GHIElectronics.TinyCLR.Data.Json`
 
-_No description available._
+Helpers for converting dates between common JSON and calendar string formats.
 
 ```csharp
 public static class DateTimeExtensions
@@ -21,7 +21,7 @@ public static class DateTimeExtensions
 public static DateTime FromiCalendar(string iCalendar)
 ```
 
-_No description available._
+Parses a date from an iCalendar date-time string.
 
 **Returns** `DateTime`
 
@@ -31,7 +31,7 @@ _No description available._
 public static DateTime FromIso8601(string date)
 ```
 
-_No description available._
+Parses a date from an ISO 8601 date-time string.
 
 **Returns** `DateTime`
 
@@ -41,7 +41,7 @@ _No description available._
 public static string ToIso8601(DateTime dt)
 ```
 
-_No description available._
+Formats a date as an ISO 8601 UTC date-time string.
 
 **Returns** `string`
 
@@ -51,7 +51,7 @@ _No description available._
 public static string ToASPNetAjax(DateTime dt)
 ```
 
-_No description available._
+Formats a date as an ASP.NET Ajax \/Date(ticks)\/ string.
 
 **Returns** `string`
 
@@ -61,6 +61,6 @@ _No description available._
 public static DateTime FromASPNetAjax(string ajax)
 ```
 
-_No description available._
+Parses a date from an ASP.NET Ajax \/Date(ticks)\/ string.
 
 **Returns** `DateTime`

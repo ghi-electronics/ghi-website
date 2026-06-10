@@ -74,7 +74,7 @@ Creates a new telegram for a modbus request or response. All data except the fun
 void PrepareWrite()
 ```
 
-_No description available._
+Prepares the interface for sending a telegram.
 
 ### PrepareRead()
 
@@ -82,7 +82,7 @@ _No description available._
 void PrepareRead()
 ```
 
-_No description available._
+Prepares the interface for receiving a telegram.
 
 ### SendTelegram(byte[] buffer, short telegramLength)
 

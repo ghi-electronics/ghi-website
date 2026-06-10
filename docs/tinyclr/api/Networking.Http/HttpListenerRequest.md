@@ -167,4 +167,4 @@ Gets the natural languages that are preferred for the response.
 public void Reset()
 ```
 
-_No description available._
+Clears the request headers and content length so the instance can be reused.

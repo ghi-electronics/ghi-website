@@ -93,7 +93,7 @@ Stops the timer.
 public virtual void Close()
 ```
 
-_No description available._
+Stops the timer and releases its resources.
 
 ### Dispose()
 
@@ -101,7 +101,7 @@ _No description available._
 public void Dispose()
 ```
 
-_No description available._
+Releases all resources used by the timer.
 
 ### Dispose(bool disposing)
 
@@ -109,7 +109,7 @@ _No description available._
 protected virtual void Dispose(bool disposing)
 ```
 
-_No description available._
+Releases the resources used by the timer.
 
 ## Events
 

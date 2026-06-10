@@ -21,7 +21,7 @@ public sealed class DriveInfo
 public DriveInfo(string driveName)
 ```
 
-_No description available._
+Creates a new instance for the registered drive with the given root name.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public string Name { get; }
 ```
 
-_No description available._
+The root name of the drive.
 
 ### RootDirectory
 
@@ -39,7 +39,7 @@ _No description available._
 public DirectoryInfo RootDirectory { get; }
 ```
 
-_No description available._
+The root directory of the drive.
 
 ### DriveType
 
@@ -47,7 +47,7 @@ _No description available._
 public DriveType DriveType { get; }
 ```
 
-_No description available._
+The type of the drive.
 
 ### DriveFormat
 
@@ -55,7 +55,7 @@ _No description available._
 public string DriveFormat { get; }
 ```
 
-_No description available._
+The name of the file system format on the drive.
 
 ### IsReady
 
@@ -63,7 +63,7 @@ _No description available._
 public bool IsReady { get; }
 ```
 
-_No description available._
+Whether the drive is ready for access.
 
 ### AvailableFreeSpace
 
@@ -71,7 +71,7 @@ _No description available._
 public long AvailableFreeSpace { get; }
 ```
 
-_No description available._
+The amount of free space available on the drive in bytes.
 
 ### TotalFreeSpace
 
@@ -79,7 +79,7 @@ _No description available._
 public long TotalFreeSpace { get; }
 ```
 
-_No description available._
+The total free space on the drive in bytes.
 
 ### TotalSize
 
@@ -87,7 +87,7 @@ _No description available._
 public long TotalSize { get; }
 ```
 
-_No description available._
+The total size of the drive in bytes.
 
 ### VolumeLabel
 
@@ -95,7 +95,7 @@ _No description available._
 public string VolumeLabel { get; }
 ```
 
-_No description available._
+The volume label of the drive.
 
 ## Methods
 
@@ -105,7 +105,7 @@ _No description available._
 public static DriveInfo[] GetDrives()
 ```
 
-_No description available._
+Returns information about all mounted drives.
 
 **Returns** `DriveInfo[]`
 
@@ -115,7 +115,7 @@ _No description available._
 public static IDriveProvider RegisterDriveProvider(IDriveProvider provider)
 ```
 
-_No description available._
+Assigns the next free root name to the provider and registers it as a drive.
 
 **Returns** `IDriveProvider`
 
@@ -125,4 +125,4 @@ _No description available._
 public static void DeregisterDriveProvider(IDriveProvider provider)
 ```
 
-_No description available._
+Unregisters the provider and frees its root name.

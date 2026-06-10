@@ -21,7 +21,7 @@ public class Crc16
 public Crc16()
 ```
 
-_No description available._
+Creates a new CRC-16 calculator.
 
 ## Methods
 
@@ -31,7 +31,7 @@ _No description available._
 public ushort ComputeHash(byte[] data)
 ```
 
-_No description available._
+Computes the 16-bit CRC over the entire buffer with a zero seed.
 
 **Returns** `ushort`
 
@@ -41,7 +41,7 @@ _No description available._
 public ushort ComputeHash(byte[] data, int offset, int count)
 ```
 
-_No description available._
+Computes the 16-bit CRC over a range of the buffer with a zero seed.
 
 **Returns** `ushort`
 
@@ -51,6 +51,6 @@ _No description available._
 public ushort ComputeHash(byte[] data, int offset, int count, ushort seed)
 ```
 
-_No description available._
+Computes the 16-bit CRC over a range of the buffer using the given seed.
 
 **Returns** `ushort`

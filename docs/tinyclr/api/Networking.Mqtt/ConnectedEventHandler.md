@@ -7,7 +7,7 @@ sidebar_label: "ConnectedEventHandler"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking.Mqtt`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Mqtt`<br/>**Namespace:** `GHIElectronics.TinyCLR.Networking.Mqtt`
 
-_No description available._
+Handles a change in the connection state with the broker.
 
 ```csharp
 public delegate void ConnectedEventHandler(object sender);

@@ -21,7 +21,7 @@ public class Image : UIElement
 public Stretch Stretch { get; set; }
 ```
 
-_No description available._
+How the image is scaled to fill the control.
 
 ### Source
 
@@ -29,7 +29,7 @@ _No description available._
 public ImageSource Source { get; set; }
 ```
 
-_No description available._
+The image to display.
 
 ## Methods
 
@@ -39,14 +39,7 @@ _No description available._
 protected override void MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
 ```
 
-Measurement override. Implement your size-to-content logic here. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `availableWidth` | `int` | Available size that parent can give to the child. May be MaxValue(when parent wants to measure to content). This is soft constraint. Child can return bigger size to indicate that it wants bigger space and hope that parent can throw in scrolling... |
-| `availableHeight` | `int` |  |
-| `desiredWidth` | `out int` |  |
-| `desiredHeight` | `out int` |  |
+Measures the desired size based on the image and stretch mode.
 
 ### OnRender(DrawingContext dc)
 
@@ -54,4 +47,4 @@ Measurement override. Implement your size-to-content logic here. _(inherited)_
 public override void OnRender(DrawingContext dc)
 ```
 
-_No description available._
+Draws the image using the current stretch mode.

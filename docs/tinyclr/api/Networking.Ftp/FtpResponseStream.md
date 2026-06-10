@@ -21,7 +21,7 @@ public class FtpResponseStream : Stream
 public FtpResponseStream(FtpListenerResponse responese)
 ```
 
-_No description available._
+Creates a response stream associated with the given response.
 
 ### FtpResponseStream(FtpListenerResponse responese, Stream stream)
 
@@ -29,7 +29,7 @@ _No description available._
 public FtpResponseStream(FtpListenerResponse responese, Stream stream) : this(responese)
 ```
 
-_No description available._
+Creates a response stream that reads from or writes to the given underlying stream.
 
 ## Properties
 
@@ -39,7 +39,7 @@ _No description available._
 public override bool CanRead { get; }
 ```
 
-_No description available._
+Gets a value indicating whether the stream supports reading; always false.
 
 ### CanSeek
 
@@ -47,7 +47,7 @@ _No description available._
 public override bool CanSeek { get; }
 ```
 
-_No description available._
+Gets a value indicating whether the stream supports seeking; always false.
 
 ### CanWrite
 
@@ -55,7 +55,7 @@ _No description available._
 public override bool CanWrite { get; }
 ```
 
-_No description available._
+Gets a value indicating whether the stream supports writing; always true.
 
 ### Length
 
@@ -63,7 +63,7 @@ _No description available._
 public override long Length { get; }
 ```
 
-_No description available._
+Gets the number of bytes currently held in the internal buffer.
 
 ### Position
 
@@ -71,7 +71,7 @@ _No description available._
 public override long Position { get; set; }
 ```
 
-_No description available._
+Getting or setting the position is not supported by this stream.
 
 ## Methods
 
@@ -81,7 +81,7 @@ _No description available._
 public override void Flush()
 ```
 
-_No description available._
+Flushes the stream; this implementation does nothing.
 
 ### Close()
 
@@ -89,7 +89,7 @@ _No description available._
 public override void Close()
 ```
 
-_No description available._
+Closes the stream and sends the pending FTP response.
 
 ### Read(byte[] buffer, int offset, int count)
 
@@ -97,7 +97,7 @@ _No description available._
 public override int Read(byte[] buffer, int offset, int count)
 ```
 
-_No description available._
+Reading bytes from this stream is not supported.
 
 **Returns** `int`
 
@@ -107,7 +107,7 @@ _No description available._
 public override long Seek(long offset, SeekOrigin origin)
 ```
 
-_No description available._
+Seeking is not supported by this stream.
 
 **Returns** `long`
 
@@ -117,7 +117,7 @@ _No description available._
 public override void SetLength(long value)
 ```
 
-_No description available._
+Setting the length is not supported by this stream.
 
 ### Write(byte[] buffer, int offset, int count)
 
@@ -125,7 +125,7 @@ _No description available._
 public override void Write(byte[] buffer, int offset, int count)
 ```
 
-_No description available._
+Writing a byte buffer is not supported by this stream.
 
 ### Write(string s)
 

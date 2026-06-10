@@ -21,7 +21,7 @@ public class SocketAddress
 public ushort SIN_family
 ```
 
-_No description available._
+The socket address family (big-endian, typically 2 for AF_INET).
 
 ### SIN_port
 
@@ -29,7 +29,7 @@ _No description available._
 public ushort SIN_port
 ```
 
-_No description available._
+The socket port number (big-endian).
 
 ### SIN_Address
 
@@ -37,7 +37,7 @@ _No description available._
 public uint SIN_Address
 ```
 
-_No description available._
+The 32-bit IPv4 address (big-endian).
 
 ### SIN_Zero
 
@@ -45,4 +45,4 @@ _No description available._
 public byte[] SIN_Zero
 ```
 
-_No description available._
+Reserved padding, must be zero.

@@ -21,7 +21,7 @@ public class JValue : JToken
 public JValue()
 ```
 
-_No description available._
+Initializes a new JSON value holding null.
 
 ### JValue(object value)
 
@@ -29,7 +29,7 @@ _No description available._
 public JValue(object value)
 ```
 
-_No description available._
+Initializes a new JSON value wrapping the given primitive value.
 
 ## Properties
 
@@ -39,7 +39,7 @@ _No description available._
 public object Value { get; set; }
 ```
 
-_No description available._
+Gets or sets the underlying primitive value.
 
 ## Methods
 
@@ -49,7 +49,7 @@ _No description available._
 public static JValue Serialize(Type type, object oValue)
 ```
 
-_No description available._
+Wraps a primitive value in a JSON value.
 
 **Returns** `JValue`
 
@@ -59,7 +59,7 @@ _No description available._
 public override string ToString()
 ```
 
-_No description available._
+Returns the JSON text for this value.
 
 **Returns** `string`
 
@@ -69,7 +69,7 @@ _No description available._
 public override string ToString(JsonSerializationOptions options)
 ```
 
-_No description available._
+Returns the JSON text for this value using the given formatting options.
 
 **Returns** `string`
 
@@ -79,7 +79,7 @@ _No description available._
 public override int GetBsonSize()
 ```
 
-_No description available._
+Gets the number of bytes this value occupies when encoded as BSON.
 
 **Returns** `int`
 
@@ -89,7 +89,7 @@ _No description available._
 public override int GetBsonSize(string ename)
 ```
 
-_No description available._
+Gets the number of BSON bytes for this value including the given element name.
 
 **Returns** `int`
 
@@ -99,7 +99,7 @@ _No description available._
 public override void ToBson(byte[] buffer, ref int offset)
 ```
 
-_No description available._
+Writes this value to the buffer as BSON, advancing the offset.
 
 ### GetBsonType()
 
@@ -107,6 +107,6 @@ _No description available._
 public override BsonTypes GetBsonType()
 ```
 
-_No description available._
+Gets the BSON type code matching the underlying value's type.
 
 **Returns** `BsonTypes`

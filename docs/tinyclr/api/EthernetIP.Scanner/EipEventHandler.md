@@ -7,7 +7,7 @@ sidebar_label: "EipEventHandler"
 
 **NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`
 
-_No description available._
+Handler for scanner lifecycle events (connection established/lost, RPI violated).
 
 ```csharp
 public delegate void EipEventHandler(object sender, EventArgs e);

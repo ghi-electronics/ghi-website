@@ -21,4 +21,4 @@ public interface INotifyBindablePropertyChanged
 event BindablePropertyChangedEventHandler BindablePropertyChanged
 ```
 
-_No description available._
+Occurs when a bound property value changes.

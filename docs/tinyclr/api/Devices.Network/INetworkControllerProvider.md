@@ -21,7 +21,7 @@ public interface INetworkControllerProvider : IDisposable, INetworkProvider
 NetworkInterfaceType InterfaceType { get; }
 ```
 
-_No description available._
+Transport type of the interface — Ethernet, WiFi, or PPP.
 
 ### CommunicationInterface
 
@@ -29,7 +29,7 @@ _No description available._
 NetworkCommunicationInterface CommunicationInterface { get; }
 ```
 
-_No description available._
+Physical bus carrying the interface — built-in MAC, SPI, or UART.
 
 ## Methods
 
@@ -39,7 +39,7 @@ _No description available._
 void Enable()
 ```
 
-_No description available._
+Brings the interface up.
 
 ### Disable()
 
@@ -47,7 +47,7 @@ _No description available._
 void Disable()
 ```
 
-_No description available._
+Brings the interface down.
 
 ### Suspend()
 
@@ -55,7 +55,7 @@ _No description available._
 void Suspend()
 ```
 
-_No description available._
+Suspends the interface to a low-power state.
 
 ### Resume()
 
@@ -63,7 +63,7 @@ _No description available._
 void Resume()
 ```
 
-_No description available._
+Resumes a suspended interface.
 
 ### GetLinkConnected()
 
@@ -71,7 +71,7 @@ _No description available._
 bool GetLinkConnected()
 ```
 
-_No description available._
+Returns true when the physical link is up.
 
 **Returns** `bool`
 
@@ -81,7 +81,7 @@ _No description available._
 bool GetAccessPointClientLinkConnect(WiFiNetworkInterfaceSettings settings)
 ```
 
-_No description available._
+Returns true when a station is connected to this access point.
 
 **Returns** `bool`
 
@@ -91,7 +91,7 @@ _No description available._
 NetworkIPProperties GetIPProperties()
 ```
 
-_No description available._
+Returns the current IP address, subnet, gateway, and DNS servers.
 
 **Returns** `NetworkIPProperties`
 
@@ -101,7 +101,7 @@ _No description available._
 NetworkInterfaceProperties GetInterfaceProperties()
 ```
 
-_No description available._
+Returns interface-specific properties such as the MAC address.
 
 **Returns** `NetworkInterfaceProperties`
 
@@ -111,7 +111,7 @@ _No description available._
 void SetInterfaceSettings(NetworkInterfaceSettings settings)
 ```
 
-_No description available._
+Applies the interface settings (IP address, DHCP, DNS).
 
 ### SetCommunicationInterfaceSettings(NetworkCommunicationInterfaceSettings settings)
 
@@ -119,7 +119,7 @@ _No description available._
 void SetCommunicationInterfaceSettings(NetworkCommunicationInterfaceSettings settings)
 ```
 
-_No description available._
+Applies the underlying physical-bus settings.
 
 ## Events
 
@@ -129,7 +129,7 @@ _No description available._
 event NetworkLinkConnectedChangedEventHandler NetworkLinkConnectedChanged
 ```
 
-_No description available._
+Raised when the physical link goes up or down.
 
 ### NetworkAddressChanged
 
@@ -137,4 +137,4 @@ _No description available._
 event NetworkAddressChangedEventHandler NetworkAddressChanged
 ```
 
-_No description available._
+Raised when the IP address, gateway, or DNS servers change.

@@ -7,7 +7,7 @@ sidebar_label: "JsonSerializationOptions"
 
 **NuGet:** `GHIElectronics.TinyCLR.Data.Json`<br/>**Assembly:** `GHIElectronics.TinyCLR.Data.Json`<br/>**Namespace:** `GHIElectronics.TinyCLR.Data.Json`
 
-_No description available._
+Options that control how JSON text is formatted during serialization.
 
 ```csharp
 public class JsonSerializationOptions
@@ -21,4 +21,4 @@ public class JsonSerializationOptions
 public bool Indented { get; set; }
 ```
 
-_No description available._
+Gets or sets whether the JSON output is indented and line-wrapped.

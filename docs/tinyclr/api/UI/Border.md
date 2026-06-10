@@ -7,7 +7,7 @@ sidebar_label: "Border"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+Draws a border around its single child element.
 
 ```csharp
 public class Border : ContentControl
@@ -21,7 +21,7 @@ public class Border : ContentControl
 public Border()
 ```
 
-_No description available._
+Creates a new Border with a black, one-pixel border.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public Media.Brush BorderBrush { get; set; }
 ```
 
-_No description available._
+The brush used to paint the border.
 
 ## Methods
 
@@ -41,7 +41,7 @@ _No description available._
 public void GetBorderThickness(out int left, out int top, out int right, out int bottom)
 ```
 
-_No description available._
+Gets the border thickness on each side, in pixels.
 
 ### SetBorderThickness(int length)
 
@@ -49,7 +49,7 @@ _No description available._
 public void SetBorderThickness(int length)
 ```
 
-_No description available._
+Sets a uniform border thickness on all sides.
 
 ### SetBorderThickness(int left, int top, int right, int bottom)
 
@@ -57,7 +57,7 @@ _No description available._
 public void SetBorderThickness(int left, int top, int right, int bottom)
 ```
 
-_No description available._
+Sets the border thickness for each side individually.
 
 ### ArrangeOverride(int arrangeWidth, int arrangeHeight)
 
@@ -65,12 +65,7 @@ _No description available._
 protected override void ArrangeOverride(int arrangeWidth, int arrangeHeight)
 ```
 
-ArrangeOverride allows for the customization of the final sizing and positioning of children. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `arrangeWidth` | `int` | Final width |
-| `arrangeHeight` | `int` | Final height |
+Arranges the child inside the border.
 
 ### MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
 
@@ -78,14 +73,7 @@ ArrangeOverride allows for the customization of the final sizing and positioning
 protected override void MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
 ```
 
-Measurement override. Implement your size-to-content logic here. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `availableWidth` | `int` | Available size that parent can give to the child. May be MaxValue(when parent wants to measure to content). This is soft constraint. Child can return bigger size to indicate that it wants bigger space and hope that parent can throw in scrolling... |
-| `availableHeight` | `int` |  |
-| `desiredWidth` | `out int` |  |
-| `desiredHeight` | `out int` |  |
+Measures the child plus the border thickness.
 
 ### OnRender(DrawingContext dc)
 
@@ -93,4 +81,4 @@ Measurement override. Implement your size-to-content logic here. _(inherited)_
 public override void OnRender(DrawingContext dc)
 ```
 
-_No description available._
+Draws the border and background.

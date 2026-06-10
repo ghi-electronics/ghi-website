@@ -7,7 +7,7 @@ sidebar_label: "ProgressBar"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+A bar control that visually fills to indicate progress toward a maximum value.
 
 ```csharp
 public class ProgressBar : Image, IDisposable
@@ -21,7 +21,7 @@ public class ProgressBar : Image, IDisposable
 public ProgressBar() : base()
 ```
 
-_No description available._
+Initializes a new instance of the `ProgressBar` class.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public Direction Direction { get; set; }
 ```
 
-_No description available._
+The direction in which the fill grows.
 
 ### MaxValue
 
@@ -39,7 +39,7 @@ _No description available._
 public int MaxValue { get; set; }
 ```
 
-_No description available._
+The value at which the bar is considered completely full.
 
 ### Value
 
@@ -47,7 +47,7 @@ _No description available._
 public int Value { get; set; }
 ```
 
-_No description available._
+The current progress value.
 
 ### Alpha
 
@@ -55,7 +55,7 @@ _No description available._
 public ushort Alpha { get; set; }
 ```
 
-_No description available._
+The opacity applied when rendering the bar.
 
 ### RadiusBorder
 
@@ -81,7 +81,7 @@ Legacy alias for `RadiusBorder`. Will be removed.
 public override void OnRender(DrawingContext dc)
 ```
 
-_No description available._
+Renders the progress bar background and its proportional fill.
 
 ### Dispose()
 
@@ -89,7 +89,7 @@ _No description available._
 public void Dispose()
 ```
 
-_No description available._
+Releases the bitmap resources used by the progress bar.
 
 ### Dispose(bool disposing)
 
@@ -97,4 +97,4 @@ _No description available._
 protected virtual void Dispose(bool disposing)
 ```
 
-_No description available._
+Releases the bitmap resources used by the progress bar.

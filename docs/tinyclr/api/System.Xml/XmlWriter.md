@@ -21,7 +21,7 @@ public abstract class XmlWriter : IDisposable
 public abstract void WriteStartDocument()
 ```
 
-_No description available._
+Writes the XML declaration.
 
 ### WriteStartDocument(bool standalone)
 
@@ -29,7 +29,7 @@ _No description available._
 public abstract void WriteStartDocument(bool standalone)
 ```
 
-_No description available._
+Writes the XML declaration with the specified standalone attribute.
 
 ### WriteEndDocument()
 
@@ -37,7 +37,7 @@ _No description available._
 public abstract void WriteEndDocument()
 ```
 
-_No description available._
+Closes any open elements and the document.
 
 ### WriteStartElement(string localName)
 
@@ -45,7 +45,7 @@ _No description available._
 public abstract void WriteStartElement(string localName)
 ```
 
-_No description available._
+Writes a start tag with the specified local name.
 
 ### WriteStartElement(string localName, string ns)
 
@@ -53,7 +53,7 @@ _No description available._
 public abstract void WriteStartElement(string localName, string ns)
 ```
 
-_No description available._
+Writes a start tag with the specified local name and namespace URI.
 
 ### WriteStartElement(string prefix, string localName, string ns)
 
@@ -61,7 +61,7 @@ _No description available._
 public abstract void WriteStartElement(string prefix, string localName, string ns)
 ```
 
-_No description available._
+Writes a start tag with the specified prefix, local name, and namespace URI.
 
 ### WriteEndElement()
 
@@ -69,7 +69,7 @@ _No description available._
 public abstract void WriteEndElement()
 ```
 
-_No description available._
+Closes the most recently opened element.
 
 ### WriteFullEndElement()
 
@@ -77,7 +77,7 @@ _No description available._
 public abstract void WriteFullEndElement()
 ```
 
-_No description available._
+Closes the most recently opened element, always writing a full end tag.
 
 ### WriteAttributeString(string localName, string value)
 
@@ -85,7 +85,7 @@ _No description available._
 public abstract void WriteAttributeString(string localName, string value)
 ```
 
-_No description available._
+Writes an attribute with the specified local name and value.
 
 ### WriteAttributeString(string localName, string ns, string value)
 
@@ -93,7 +93,7 @@ _No description available._
 public abstract void WriteAttributeString(string localName, string ns, string value)
 ```
 
-_No description available._
+Writes an attribute with the specified local name, namespace URI, and value.
 
 ### WriteAttributeString(string prefix, string localName, string ns, string value)
 
@@ -101,7 +101,7 @@ _No description available._
 public abstract void WriteAttributeString(string prefix, string localName, string ns, string value)
 ```
 
-_No description available._
+Writes an attribute with the specified prefix, local name, namespace URI, and value.
 
 ### WriteString(string text)
 
@@ -109,7 +109,7 @@ _No description available._
 public abstract void WriteString(string text)
 ```
 
-_No description available._
+Writes the specified text content.
 
 ### WriteRaw(string data)
 
@@ -117,7 +117,7 @@ _No description available._
 public abstract void WriteRaw(string data)
 ```
 
-_No description available._
+Writes the specified markup verbatim without escaping.
 
 ### WriteCData(string text)
 
@@ -125,7 +125,7 @@ _No description available._
 public abstract void WriteCData(string text)
 ```
 
-_No description available._
+Writes the specified text inside a CDATA section.
 
 ### WriteComment(string text)
 
@@ -133,7 +133,7 @@ _No description available._
 public abstract void WriteComment(string text)
 ```
 
-_No description available._
+Writes the specified text inside a comment.
 
 ### WriteProcessingInstruction(string name, string text)
 
@@ -141,7 +141,7 @@ _No description available._
 public abstract void WriteProcessingInstruction(string name, string text)
 ```
 
-_No description available._
+Writes a processing instruction with the specified name and text.
 
 ### Flush()
 
@@ -149,7 +149,7 @@ _No description available._
 public abstract void Flush()
 ```
 
-_No description available._
+Flushes buffered output to the underlying stream.
 
 ### Close()
 
@@ -157,7 +157,7 @@ _No description available._
 public abstract void Close()
 ```
 
-_No description available._
+Closes the writer and flushes any buffered output.
 
 ### LookupPrefix(string ns)
 
@@ -165,7 +165,7 @@ _No description available._
 public abstract string LookupPrefix(string ns)
 ```
 
-_No description available._
+Returns the closest prefix in scope for the specified namespace URI.
 
 **Returns** `string`
 
@@ -175,7 +175,7 @@ _No description available._
 public void WriteElementString(string localName, string value)
 ```
 
-_No description available._
+Writes an element with the specified local name and text content.
 
 ### Dispose()
 
@@ -183,7 +183,7 @@ _No description available._
 public virtual void Dispose()
 ```
 
-_No description available._
+Releases the resources used by the writer.
 
 ### Create(Stream output)
 
@@ -191,6 +191,6 @@ _No description available._
 public static XmlWriter Create(Stream output)
 ```
 
-_No description available._
+Creates a new writer over the specified stream.
 
 **Returns** `XmlWriter`

@@ -21,7 +21,7 @@ public class MqttClientSetting
 public string BrokerName { get; set; }
 ```
 
-_No description available._
+The host name or address of the MQTT broker.
 
 ### BrokerPort
 
@@ -29,7 +29,7 @@ _No description available._
 public int BrokerPort { get; set; }
 ```
 
-_No description available._
+The TCP port of the MQTT broker.
 
 ### CaCertificate
 
@@ -37,7 +37,7 @@ _No description available._
 public X509Certificate CaCertificate { get; set; }
 ```
 
-_No description available._
+The certificate authority certificate used to validate the broker.
 
 ### ClientCertificate
 
@@ -45,7 +45,7 @@ _No description available._
 public X509Certificate ClientCertificate { get; set; }
 ```
 
-_No description available._
+The client certificate presented to the broker for mutual TLS.
 
 ### SslProtocol
 
@@ -53,4 +53,4 @@ _No description available._
 public SslProtocols SslProtocol { get; set; }
 ```
 
-_No description available._
+The TLS protocol to use, or None for an unencrypted connection.

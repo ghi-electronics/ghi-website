@@ -17,13 +17,13 @@ public enum RegexOptions
 
 | Name | Value | Description |
 |---|---|---|
-| `Compiled` | `8` |  |
-| `CultureInvariant` | `0x200` |  |
-| `ECMAScript` | `0x100` |  |
-| `ExplicitCapture` | `4` |  |
-| `IgnoreCase` | `1` |  |
-| `IgnorePatternWhitespace` | `0x20` |  |
-| `Multiline` | `2` |  |
-| `None` | `0` |  |
-| `Singleline` | `0x10` |  |
-| `Timed` | `0x400` |  |
+| `Compiled` | `8` | Compile the regular expression to a program for faster execution. |
+| `CultureInvariant` | `0x200` | Ignore cultural differences in language when matching. |
+| `ECMAScript` | `0x100` | Enable ECMAScript-compliant behavior for the expression. |
+| `ExplicitCapture` | `4` | Capture only explicitly named or numbered groups. |
+| `IgnoreCase` | `1` | Match without regard to case. |
+| `IgnorePatternWhitespace` | `0x20` | Ignore unescaped whitespace in the pattern. |
+| `Multiline` | `2` | Treat ^ and $ as matching at the start and end of any line. |
+| `None` | `0` | Use the default options. |
+| `Singleline` | `0x10` | Make the period (.) match every character, including newlines. |
+| `Timed` | `0x400` | Time the match and throw if it exceeds the allowed number of ticks. |

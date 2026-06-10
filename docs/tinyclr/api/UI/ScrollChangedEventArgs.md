@@ -7,7 +7,7 @@ sidebar_label: "ScrollChangedEventArgs"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+Provides data for the scroll-changed event, describing the new offsets and how far they moved.
 
 ```csharp
 public class ScrollChangedEventArgs : EventArgs
@@ -21,7 +21,7 @@ public class ScrollChangedEventArgs : EventArgs
 public ScrollChangedEventArgs(int offsetX, int offsetY, int offsetChangeX, int offsetChangeY)
 ```
 
-_No description available._
+Initializes a new instance of the `ScrollChangedEventArgs` class.
 
 ## Fields
 
@@ -31,7 +31,7 @@ _No description available._
 public readonly int HorizontalChange
 ```
 
-_No description available._
+The amount the horizontal offset changed since the last event.
 
 ### HorizontalOffset
 
@@ -39,7 +39,7 @@ _No description available._
 public readonly int HorizontalOffset
 ```
 
-_No description available._
+The current horizontal scroll offset.
 
 ### VerticalChange
 
@@ -47,7 +47,7 @@ _No description available._
 public readonly int VerticalChange
 ```
 
-_No description available._
+The amount the vertical offset changed since the last event.
 
 ### VerticalOffset
 
@@ -55,4 +55,4 @@ _No description available._
 public readonly int VerticalOffset
 ```
 
-_No description available._
+The current vertical scroll offset.

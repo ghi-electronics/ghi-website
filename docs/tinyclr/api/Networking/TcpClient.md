@@ -7,7 +7,7 @@ sidebar_label: "TcpClient"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking`<br/>**Namespace:** `System.Net.Sockets`
 
-_No description available._
+Provides client connections for TCP network services.
 
 ```csharp
 public class TcpClient : IDisposable
@@ -21,7 +21,7 @@ public class TcpClient : IDisposable
 public TcpClient() : this(AddressFamily.Unknown)
 ```
 
-_No description available._
+Initializes a new instance with the default address family.
 
 ### TcpClient(AddressFamily family)
 
@@ -29,7 +29,7 @@ _No description available._
 public TcpClient(AddressFamily family)
 ```
 
-_No description available._
+Initializes a new instance using the specified address family.
 
 ### TcpClient(IPEndPoint localEP)
 
@@ -37,7 +37,7 @@ _No description available._
 public TcpClient(IPEndPoint localEP)
 ```
 
-_No description available._
+Initializes a new instance and binds it to the specified local endpoint.
 
 ### TcpClient(string hostname, int port)
 
@@ -45,7 +45,7 @@ _No description available._
 public TcpClient(string hostname, int port) : this(AddressFamily.Unknown)
 ```
 
-_No description available._
+Initializes a new instance and connects to the specified host and port.
 
 ## Properties
 
@@ -55,7 +55,7 @@ _No description available._
 protected bool Active { get; set; }
 ```
 
-_No description available._
+Whether a connection has been established.
 
 ### Available
 
@@ -63,7 +63,7 @@ _No description available._
 public int Available { get; }
 ```
 
-_No description available._
+The number of bytes available to be read from the connection.
 
 ### Client
 
@@ -71,7 +71,7 @@ _No description available._
 public Socket Client { get; set; }
 ```
 
-_No description available._
+The underlying socket used by the client.
 
 ### Connected
 
@@ -79,7 +79,7 @@ _No description available._
 public bool Connected { get; }
 ```
 
-_No description available._
+Whether the client is connected to a remote host.
 
 ### ReceiveBufferSize
 
@@ -87,7 +87,7 @@ _No description available._
 public int ReceiveBufferSize { get; set; }
 ```
 
-_No description available._
+The size, in bytes, of the receive buffer.
 
 ### SendBufferSize
 
@@ -95,7 +95,7 @@ _No description available._
 public int SendBufferSize { get; set; }
 ```
 
-_No description available._
+The size, in bytes, of the send buffer.
 
 ### ReceiveTimeout
 
@@ -103,7 +103,7 @@ _No description available._
 public int ReceiveTimeout { get; set; }
 ```
 
-_No description available._
+The amount of time, in milliseconds, that a receive operation waits before timing out.
 
 ### SendTimeout
 
@@ -111,7 +111,7 @@ _No description available._
 public int SendTimeout { get; set; }
 ```
 
-_No description available._
+The amount of time, in milliseconds, that a send operation waits before timing out.
 
 ## Methods
 
@@ -121,7 +121,7 @@ _No description available._
 public void Connect(string hostname, int port)
 ```
 
-_No description available._
+Connects the client to the specified host and port.
 
 ### Connect(IPAddress address, int port)
 
@@ -129,7 +129,7 @@ _No description available._
 public void Connect(IPAddress address, int port)
 ```
 
-_No description available._
+Connects the client to the specified IP address and port.
 
 ### Connect(IPEndPoint remoteEP)
 
@@ -137,7 +137,7 @@ _No description available._
 public void Connect(IPEndPoint remoteEP)
 ```
 
-_No description available._
+Connects the client to the specified remote endpoint.
 
 ### Connect(IPAddress[] ipAddresses, int port)
 
@@ -145,7 +145,7 @@ _No description available._
 public void Connect(IPAddress[] ipAddresses, int port)
 ```
 
-_No description available._
+Connects the client to the first of the specified IP addresses on the given port.
 
 ### GetStream()
 
@@ -153,7 +153,7 @@ _No description available._
 public NetworkStream GetStream()
 ```
 
-_No description available._
+Returns the network stream used to send and receive data.
 
 **Returns** `NetworkStream`
 
@@ -163,7 +163,7 @@ _No description available._
 public void Close()
 ```
 
-_No description available._
+Closes the client and releases its resources.
 
 ### Dispose(bool disposing)
 
@@ -171,7 +171,7 @@ _No description available._
 protected virtual void Dispose(bool disposing)
 ```
 
-_No description available._
+Releases the resources used by the client.
 
 ### Dispose()
 
@@ -179,4 +179,4 @@ _No description available._
 public void Dispose()
 ```
 
-_No description available._
+Releases the resources used by the client.

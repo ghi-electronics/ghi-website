@@ -7,7 +7,7 @@ sidebar_label: "AddressFamily"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking`<br/>**Namespace:** `System.Net.Sockets`
 
-_No description available._
+Specifies the address families that an instance of the class can use.
 
 ```csharp
 public enum AddressFamily

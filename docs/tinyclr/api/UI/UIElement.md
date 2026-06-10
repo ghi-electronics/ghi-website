@@ -7,7 +7,7 @@ sidebar_label: "UIElement"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI`
 
-_No description available._
+The base class for all visual elements that participate in layout, rendering, and input.
 
 ```csharp
 public abstract class UIElement : DispatcherObject
@@ -21,7 +21,7 @@ public abstract class UIElement : DispatcherObject
 protected UIElement()
 ```
 
-_No description available._
+Initializes a new instance of the `UIElement` class.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public int ActualWidth { get; }
 ```
 
-_No description available._
+Gets the rendered width of this element.
 
 ### ActualHeight
 
@@ -39,7 +39,7 @@ _No description available._
 public int ActualHeight { get; }
 ```
 
-_No description available._
+Gets the rendered height of this element.
 
 ### Height
 
@@ -47,7 +47,7 @@ _No description available._
 public int Height { get; set; }
 ```
 
-_No description available._
+Gets or sets the requested height of this element.
 
 ### Width
 
@@ -55,7 +55,7 @@ _No description available._
 public int Width { get; set; }
 ```
 
-_No description available._
+Gets or sets the requested width of this element.
 
 ### LogicalChildren
 
@@ -63,7 +63,7 @@ _No description available._
 protected internal UIElementCollection LogicalChildren { get; }
 ```
 
-_No description available._
+Gets the collection of child elements of this element.
 
 ### IsFocused
 
@@ -95,7 +95,7 @@ Determines if the RenderSize and position of child elements is valid.
 public UIElement Parent { get; }
 ```
 
-_No description available._
+Gets the parent of this element, or null if it has none.
 
 ### RootUIElement
 
@@ -103,7 +103,7 @@ _No description available._
 public UIElement RootUIElement { get; }
 ```
 
-_No description available._
+Gets the topmost ancestor of this element in the visual tree.
 
 ### HorizontalAlignment
 
@@ -111,7 +111,7 @@ _No description available._
 public HorizontalAlignment HorizontalAlignment { get; set; }
 ```
 
-_No description available._
+Gets or sets how this element is horizontally aligned within its parent.
 
 ### VerticalAlignment
 
@@ -119,7 +119,7 @@ _No description available._
 public VerticalAlignment VerticalAlignment { get; set; }
 ```
 
-_No description available._
+Gets or sets how this element is vertically aligned within its parent.
 
 ### Visibility
 
@@ -145,6 +145,14 @@ public bool IsEnabled { get; set; }
 
 Fetches the value of the IsEnabled property
 
+### InstanceEventHandlersStore
+
+```csharp
+protected Hashtable InstanceEventHandlersStore { get; }
+```
+
+Ensure the store has been created.
+
 ## Methods
 
 ### OnGenericEvent(GenericEventArgs e)
@@ -153,7 +161,7 @@ Fetches the value of the IsEnabled property
 protected virtual void OnGenericEvent(GenericEventArgs e)
 ```
 
-_No description available._
+Handles a generic input event and dispatches touch gestures to the gesture overrides.
 
 ### OnTouchDown(TouchEventArgs e)
 
@@ -161,7 +169,7 @@ _No description available._
 protected virtual void OnTouchDown(TouchEventArgs e)
 ```
 
-_No description available._
+Raises the `TouchDown` event.
 
 ### OnTouchUp(TouchEventArgs e)
 
@@ -169,7 +177,7 @@ _No description available._
 protected virtual void OnTouchUp(TouchEventArgs e)
 ```
 
-_No description available._
+Raises the `TouchUp` event.
 
 ### OnTouchMove(TouchEventArgs e)
 
@@ -177,7 +185,7 @@ _No description available._
 protected virtual void OnTouchMove(TouchEventArgs e)
 ```
 
-_No description available._
+Raises the `TouchMove` event.
 
 ### OnTouchGestureStarted(TouchGestureEventArgs e)
 
@@ -185,7 +193,7 @@ _No description available._
 protected virtual void OnTouchGestureStarted(TouchGestureEventArgs e)
 ```
 
-_No description available._
+Raises the `TouchGestureStart` event.
 
 ### OnTouchGestureChanged(TouchGestureEventArgs e)
 
@@ -193,7 +201,7 @@ _No description available._
 protected virtual void OnTouchGestureChanged(TouchGestureEventArgs e)
 ```
 
-_No description available._
+Raises the `TouchGestureChanged` event.
 
 ### OnTouchGestureEnded(TouchGestureEventArgs e)
 
@@ -201,7 +209,7 @@ _No description available._
 protected virtual void OnTouchGestureEnded(TouchGestureEventArgs e)
 ```
 
-_No description available._
+Raises the `TouchGestureEnd` event.
 
 ### OnPreviewButtonDown(ButtonEventArgs e)
 
@@ -257,7 +265,7 @@ An event announcing that the buttons is no longer focused on this element
 public void GetDesiredSize(out int width, out int height)
 ```
 
-_No description available._
+Gets the size this element computed it needs during the measure pass.
 
 ### GetMargin(out int left, out int top, out int right, out int bottom)
 
@@ -265,7 +273,7 @@ _No description available._
 public void GetMargin(out int left, out int top, out int right, out int bottom)
 ```
 
-_No description available._
+Gets the margin (outer spacing) around this element.
 
 ### SetMargin(int length)
 
@@ -273,7 +281,7 @@ _No description available._
 public void SetMargin(int length)
 ```
 
-_No description available._
+Sets a uniform margin on all four sides of this element.
 
 ### SetMargin(int left, int top, int right, int bottom)
 
@@ -281,7 +289,7 @@ _No description available._
 public void SetMargin(int left, int top, int right, int bottom)
 ```
 
-_No description available._
+Sets the margin (outer spacing) on each side of this element.
 
 ### IsHeightSet(out int height)
 
@@ -289,7 +297,7 @@ _No description available._
 protected internal bool IsHeightSet(out int height)
 ```
 
-_No description available._
+Gets the requested height if one was assigned; otherwise returns false.
 
 **Returns** `bool`
 
@@ -299,7 +307,7 @@ _No description available._
 protected internal bool IsWidthSet(out int width)
 ```
 
-_No description available._
+Gets the requested width if one was assigned; otherwise returns false.
 
 **Returns** `bool`
 
@@ -309,7 +317,7 @@ _No description available._
 public void GetLayoutOffset(out int x, out int y)
 ```
 
-_No description available._
+Gets the offset of this element relative to its parent's coordinate space.
 
 ### GetRenderSize(out int width, out int height)
 
@@ -317,7 +325,7 @@ _No description available._
 public void GetRenderSize(out int width, out int height)
 ```
 
-_No description available._
+Gets the final rendered size of this element.
 
 ### OnChildrenChanged(UIElement added, UIElement removed, int indexAffected)
 
@@ -346,7 +354,14 @@ Updates DesiredSize of the UIElement. Must be called by parents from their Measu
 public void Arrange(int finalRectX, int finalRectY, int finalRectWidth, int finalRectHeight)
 ```
 
-_No description available._
+Parents or system call this method to arrange the internals of children on a second pass of layout update.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `finalRectX` | `int` | This is the final X location that parent or system wants this UIElement to assume. |
+| `finalRectY` | `int` | This is the final Y location that parent or system wants this UIElement to assume. |
+| `finalRectWidth` | `int` | This is the Width that parent or system wants this UIElement to assume. |
+| `finalRectHeight` | `int` | This is the height that parent or system wants this UIElement to assume. |
 
 ### MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
 
@@ -390,7 +405,7 @@ Call this method to ensure that the whoel subtree of elements that includes this
 public UIElement ChildElementFromPoint(int x, int y)
 ```
 
-_No description available._
+Given x, y co-ordinates of the parent UIElement, find the child control that is directly underneath that point. If there are multiple such controls, the one that was created/inserted into the list last wins. This is because we don't have explicit z-ordering right now.
 
 **Returns** `UIElement`
 
@@ -400,7 +415,7 @@ _No description available._
 public void GetUnclippedSize(out int width, out int height)
 ```
 
-_No description available._
+Gets the desired size of this element before it was clipped to the available size.
 
 ### ContainsPoint(int x, int y)
 
@@ -408,7 +423,7 @@ _No description available._
 public bool ContainsPoint(int x, int y)
 ```
 
-_No description available._
+Determines whether the given point lies within this element's bounds.
 
 **Returns** `bool`
 
@@ -418,7 +433,7 @@ _No description available._
 public UIElement GetPointerTarget(int x, int y)
 ```
 
-_No description available._
+Returns the deepest visible descendant that contains the given point.
 
 **Returns** `UIElement`
 
@@ -436,7 +451,7 @@ We are deviating little from their desktop counter parts, mostly for simplicity 
 public void PointToClient(ref int x, ref int y)
 ```
 
-_No description available._
+Converts a point from screen coordinates to this element's coordinate space.
 
 ### InvalidateMeasure()
 
@@ -468,7 +483,7 @@ Notification that is called by Measure of a child when it ends up with different
 public virtual void OnRender(DrawingContext dc)
 ```
 
-_No description available._
+Draws the content of this element. Override to provide custom rendering.
 
 ### RenderRecursive(DrawingContext dc)
 
@@ -476,7 +491,7 @@ _No description available._
 protected internal virtual void RenderRecursive(DrawingContext dc)
 ```
 
-_No description available._
+Renders this element and recursively renders its visible children.
 
 ### InvalidateRect(int x, int y, int w, int h)
 
@@ -484,7 +499,7 @@ _No description available._
 public void InvalidateRect(int x, int y, int w, int h)
 ```
 
-_No description available._
+Marks the given rectangle of this element as needing to be redrawn.
 
 ### Invalidate()
 
@@ -492,7 +507,19 @@ _No description available._
 public void Invalidate()
 ```
 
-_No description available._
+Marks the entire element as needing to be redrawn.
+
+### RaiseEvent(RoutedEventArgs args)
+
+```csharp
+public void RaiseEvent(RoutedEventArgs args)
+```
+
+Raise the events specified by `RoutedEventArgs.RoutedEvent`
+
+| Parameter | Type | Description |
+|---|---|---|
+| `args` | `RoutedEventArgs` | `RoutedEventArgs` for the event to be raised |
 
 ### AddToEventRoute(EventRoute route, RoutedEventArgs args)
 
@@ -500,7 +527,7 @@ _No description available._
 public void AddToEventRoute(EventRoute route, RoutedEventArgs args)
 ```
 
-_No description available._
+Add the event handlers for this element to the route.
 
 ### AddHandler(RoutedEvent routedEvent, RoutedEventHandler handler, bool handledEventsToo)
 
@@ -516,17 +543,15 @@ Adds a routed event handler for the particular `RoutedEvent`
 | `handler` | `RoutedEventHandler` | The handler that will be invoked on this object when the RoutedEvent is raised |
 | `handledEventsToo` | `bool` | Flag indicating whether or not the listener wants to hear about events that have already been handled |
 
-### PrintSize(int x, int y)
+## Events
+
+### TouchDown
 
 ```csharp
-public static string PrintSize(int x, int y)
+public event TouchEventHandler TouchDown
 ```
 
-_No description available._
-
-**Returns** `string`
-
-## Events
+Occurs when a touch contact is pressed on this element.
 
 ### TouchUp
 
@@ -534,7 +559,7 @@ _No description available._
 public event TouchEventHandler TouchUp
 ```
 
-_No description available._
+Occurs when a touch contact is released from this element.
 
 ### TouchMove
 
@@ -542,7 +567,7 @@ _No description available._
 public event TouchEventHandler TouchMove
 ```
 
-_No description available._
+Occurs when a touch contact moves over this element.
 
 ### TouchGestureStart
 
@@ -550,7 +575,7 @@ _No description available._
 public event TouchGestureEventHandler TouchGestureStart
 ```
 
-_No description available._
+Occurs when a touch gesture begins on this element.
 
 ### TouchGestureChanged
 
@@ -558,7 +583,7 @@ _No description available._
 public event TouchGestureEventHandler TouchGestureChanged
 ```
 
-_No description available._
+Occurs when an in-progress touch gesture changes.
 
 ### TouchGestureEnd
 
@@ -566,7 +591,7 @@ _No description available._
 public event TouchGestureEventHandler TouchGestureEnd
 ```
 
-_No description available._
+Occurs when a touch gesture ends on this element.
 
 ### IsVisibleChanged
 
@@ -574,7 +599,7 @@ _No description available._
 public event PropertyChangedEventHandler IsVisibleChanged
 ```
 
-_No description available._
+Occurs when the effective visibility of this element changes.
 
 ### IsEnabledChanged
 
@@ -582,7 +607,7 @@ _No description available._
 public event PropertyChangedEventHandler IsEnabledChanged
 ```
 
-_No description available._
+Occurs when the effective enabled state of this element changes.
 
 ## Fields
 
@@ -592,7 +617,7 @@ _No description available._
 protected HorizontalAlignment _horizontalAlignment
 ```
 
-_No description available._
+The horizontal alignment of this element within its parent.
 
 ### _verticalAlignment
 
@@ -600,4 +625,4 @@ _No description available._
 protected VerticalAlignment _verticalAlignment
 ```
 
-_No description available._
+The vertical alignment of this element within its parent.

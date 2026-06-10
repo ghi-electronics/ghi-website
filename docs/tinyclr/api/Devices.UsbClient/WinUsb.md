@@ -7,7 +7,7 @@ sidebar_label: "WinUsb"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbClient`
 
-_No description available._
+This device emulates a WinUsb device for vendor-specific bulk communication with a host.
 
 ```csharp
 public class WinUsb : RawDevice
@@ -44,7 +44,7 @@ Creates a new WinUsb interface.
 public WinUsbStream Stream { get; }
 ```
 
-_No description available._
+The stream for the WinUsb connection.
 
 ## Methods
 
@@ -71,4 +71,4 @@ Creates a new instance of a CDC stream.
 public event DataReceivedEventHandler DataReceived
 ```
 
-_No description available._
+Raised when data is received from the host.

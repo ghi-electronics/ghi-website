@@ -7,7 +7,7 @@ sidebar_label: "ConfigurationDescriptor"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbClient`
 
-_No description available._
+A USB configuration descriptor.
 
 ```csharp
 public class ConfigurationDescriptor : Descriptor
@@ -21,7 +21,7 @@ public class ConfigurationDescriptor : Descriptor
 public ConfigurationDescriptor(ushort MaxPower_mA, UsbInterface[] Interfaces) : base(0)
 ```
 
-_No description available._
+Creates a new configuration descriptor.
 
 ## Fields
 
@@ -31,7 +31,7 @@ _No description available._
 public const byte ATTRIB_Base
 ```
 
-_No description available._
+The base configuration attribute.
 
 ### ATTRIB_SelfPowered
 
@@ -39,7 +39,7 @@ _No description available._
 public const byte ATTRIB_SelfPowered
 ```
 
-_No description available._
+Attribute marking the device as self powered.
 
 ### ATTRIB_RemoteWakeup
 
@@ -47,7 +47,7 @@ _No description available._
 public const byte ATTRIB_RemoteWakeup
 ```
 
-_No description available._
+Attribute marking the device as supporting remote wakeup.
 
 ### interfaces
 
@@ -55,7 +55,7 @@ _No description available._
 public UsbInterface[] interfaces
 ```
 
-_No description available._
+The interfaces belonging to this configuration.
 
 ### iConfiguration
 
@@ -63,7 +63,7 @@ _No description available._
 public byte iConfiguration
 ```
 
-_No description available._
+The string index of the configuration.
 
 ### bmAttributes
 
@@ -71,7 +71,7 @@ _No description available._
 public byte bmAttributes
 ```
 
-_No description available._
+The configuration attributes.
 
 ### bMaxPower
 
@@ -79,4 +79,4 @@ _No description available._
 public byte bMaxPower
 ```
 
-_No description available._
+The maximum power the configuration uses, in 2 mA units.

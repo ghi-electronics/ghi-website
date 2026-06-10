@@ -7,7 +7,7 @@ sidebar_label: "Line"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Shapes`
 
-_No description available._
+Draws a straight line.
 
 ```csharp
 public class Line : Shape
@@ -21,7 +21,7 @@ public class Line : Shape
 public Line() : this(0, 0)
 ```
 
-_No description available._
+Creates a line with no length.
 
 ### Line(int dx, int dy)
 
@@ -29,7 +29,7 @@ _No description available._
 public Line(int dx, int dy)
 ```
 
-_No description available._
+Creates a line spanning the given horizontal and vertical extents.
 
 ## Properties
 
@@ -39,7 +39,7 @@ _No description available._
 public Direction Direction { get; set; }
 ```
 
-_No description available._
+The direction in which the line is drawn.
 
 ## Methods
 
@@ -49,4 +49,4 @@ _No description available._
 public override void OnRender(Media.DrawingContext dc)
 ```
 
-_No description available._
+Renders the line to the drawing context.

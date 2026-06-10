@@ -7,7 +7,7 @@ sidebar_label: "SerializationCtx"
 
 **NuGet:** `GHIElectronics.TinyCLR.Data.Json`<br/>**Assembly:** `GHIElectronics.TinyCLR.Data.Json`<br/>**Namespace:** `GHIElectronics.TinyCLR.Data.Json`
 
-_No description available._
+Holds the formatting options and indentation state for one serialization pass.
 
 ```csharp
 public class SerializationCtx
@@ -21,7 +21,7 @@ public class SerializationCtx
 public SerializationCtx(JsonSerializationOptions options)
 ```
 
-_No description available._
+Initializes a new serialization context with the given options.
 
 ## Fields
 
@@ -31,7 +31,7 @@ _No description available._
 public readonly JsonSerializationOptions options
 ```
 
-_No description available._
+The formatting options in effect for this serialization pass.
 
 ### IndentLevel
 
@@ -39,4 +39,4 @@ _No description available._
 public int IndentLevel
 ```
 
-_No description available._
+The current indentation nesting level.

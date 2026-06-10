@@ -7,7 +7,7 @@ sidebar_label: "GenericDescriptor"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbClient`
 
-_No description available._
+A generic descriptor returned in response to a control request.
 
 ```csharp
 public class GenericDescriptor : Descriptor
@@ -21,7 +21,7 @@ public class GenericDescriptor : Descriptor
 public GenericDescriptor(byte RequestType, ushort Value, byte[] Payload) : base(0)
 ```
 
-_No description available._
+Creates a new generic descriptor.
 
 ## Fields
 
@@ -31,7 +31,7 @@ _No description available._
 public const byte REQUEST_OUT
 ```
 
-_No description available._
+Request direction marking an out (host to device) transfer.
 
 ### REQUEST_IN
 
@@ -39,7 +39,7 @@ _No description available._
 public const byte REQUEST_IN
 ```
 
-_No description available._
+Request direction marking an in (device to host) transfer.
 
 ### REQUEST_Standard
 
@@ -47,7 +47,7 @@ _No description available._
 public const byte REQUEST_Standard
 ```
 
-_No description available._
+Standard request type.
 
 ### REQUEST_Class
 
@@ -55,7 +55,7 @@ _No description available._
 public const byte REQUEST_Class
 ```
 
-_No description available._
+Class request type.
 
 ### REQUEST_Vendor
 
@@ -63,7 +63,7 @@ _No description available._
 public const byte REQUEST_Vendor
 ```
 
-_No description available._
+Vendor request type.
 
 ### REQUEST_Device
 
@@ -71,7 +71,7 @@ _No description available._
 public const byte REQUEST_Device
 ```
 
-_No description available._
+Request recipient is the device.
 
 ### REQUEST_Interface
 
@@ -79,7 +79,7 @@ _No description available._
 public const byte REQUEST_Interface
 ```
 
-_No description available._
+Request recipient is an interface.
 
 ### REQUEST_Endpoint
 
@@ -87,7 +87,7 @@ _No description available._
 public const byte REQUEST_Endpoint
 ```
 
-_No description available._
+Request recipient is an endpoint.
 
 ### REQUEST_Other
 
@@ -95,7 +95,7 @@ _No description available._
 public const byte REQUEST_Other
 ```
 
-_No description available._
+Request recipient is another element.
 
 ### bmRequestType
 
@@ -103,7 +103,7 @@ _No description available._
 public byte bmRequestType
 ```
 
-_No description available._
+The request type.
 
 ### bRequest
 
@@ -111,7 +111,7 @@ _No description available._
 public byte bRequest
 ```
 
-_No description available._
+The request code.
 
 ### wValue
 
@@ -119,7 +119,7 @@ _No description available._
 public ushort wValue
 ```
 
-_No description available._
+The request value.
 
 ### wIndex
 
@@ -127,7 +127,7 @@ _No description available._
 public ushort wIndex
 ```
 
-_No description available._
+The request index.
 
 ### payload
 
@@ -135,4 +135,4 @@ _No description available._
 public byte[] payload
 ```
 
-_No description available._
+The descriptor data returned for the request.

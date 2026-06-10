@@ -21,7 +21,7 @@ public class XmlReaderSettings
 public XmlReaderSettings()
 ```
 
-_No description available._
+Initializes a new instance of the `XmlReaderSettings` class.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public XmlNameTable NameTable { get; set; }
 ```
 
-_No description available._
+The name table used by the reader. Not wrapped; always returns null.
 
 ### LineNumberOffset
 
@@ -39,7 +39,7 @@ _No description available._
 public int LineNumberOffset { get; set; }
 ```
 
-_No description available._
+The starting line number reported by the reader.
 
 ### LinePositionOffset
 
@@ -47,7 +47,7 @@ _No description available._
 public int LinePositionOffset { get; set; }
 ```
 
-_No description available._
+The starting line position reported by the reader.
 
 ### ConformanceLevel
 
@@ -55,7 +55,7 @@ _No description available._
 public ConformanceLevel ConformanceLevel { get; set; }
 ```
 
-_No description available._
+The level of conformance the reader enforces.
 
 ### CheckCharacters
 
@@ -63,7 +63,7 @@ _No description available._
 public bool CheckCharacters { get; set; }
 ```
 
-_No description available._
+Indicates whether the reader checks that characters are legal XML.
 
 ### ValidationType
 
@@ -71,7 +71,7 @@ _No description available._
 public ValidationType ValidationType { get; set; }
 ```
 
-_No description available._
+The type of validation the reader performs.
 
 ### IgnoreWhitespace
 
@@ -79,7 +79,7 @@ _No description available._
 public bool IgnoreWhitespace { get; set; }
 ```
 
-_No description available._
+Indicates whether to ignore insignificant whitespace.
 
 ### IgnoreProcessingInstructions
 
@@ -87,7 +87,7 @@ _No description available._
 public bool IgnoreProcessingInstructions { get; set; }
 ```
 
-_No description available._
+Indicates whether to ignore processing instructions.
 
 ### IgnoreComments
 
@@ -95,7 +95,7 @@ _No description available._
 public bool IgnoreComments { get; set; }
 ```
 
-_No description available._
+Indicates whether to ignore comments.
 
 ### CloseInput
 
@@ -103,7 +103,7 @@ _No description available._
 public bool CloseInput { get; set; }
 ```
 
-_No description available._
+Indicates whether to close the underlying input when the reader is closed.
 
 ## Methods
 
@@ -113,7 +113,7 @@ _No description available._
 public void Reset()
 ```
 
-_No description available._
+Resets the settings to their default values.
 
 ### Clone()
 
@@ -121,6 +121,6 @@ _No description available._
 public XmlReaderSettings Clone()
 ```
 
-_No description available._
+Returns a copy of this settings object.
 
 **Returns** `XmlReaderSettings`

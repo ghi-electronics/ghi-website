@@ -7,7 +7,7 @@ sidebar_label: "SelectMode"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking`<br/>**Namespace:** `System.Net.Sockets`
 
-_No description available._
+Specifies the mode for polling the status of a socket.
 
 ```csharp
 public enum SelectMode
@@ -17,6 +17,6 @@ public enum SelectMode
 
 | Name | Value | Description |
 |---|---|---|
-| `SelectRead` | `0` |  |
-| `SelectWrite` | `1` |  |
-| `SelectError` | `2` |  |
+| `SelectRead` | `0` | Poll the read status of a socket. |
+| `SelectWrite` | `1` | Poll the write status of a socket. |
+| `SelectError` | `2` | Poll the error status of a socket. |

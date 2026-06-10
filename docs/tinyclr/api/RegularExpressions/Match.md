@@ -21,7 +21,7 @@ public class Match : Group
 public virtual GroupCollection Groups { get; }
 ```
 
-_No description available._
+The collection of groups matched by the regular expression.
 
 ## Methods
 
@@ -31,7 +31,7 @@ _No description available._
 public Match NextMatch()
 ```
 
-_No description available._
+Returns a new match starting at the position where the previous match ended.
 
 **Returns** `Match`
 
@@ -41,7 +41,7 @@ _No description available._
 public virtual string Result(string replacement)
 ```
 
-_No description available._
+Returns the expansion of the specified replacement pattern for this match.
 
 **Returns** `string`
 
@@ -51,6 +51,6 @@ _No description available._
 public static Match Synchronized(Match inner)
 ```
 
-_No description available._
+Returns a thread-safe wrapper around the specified match.
 
 **Returns** `Match`

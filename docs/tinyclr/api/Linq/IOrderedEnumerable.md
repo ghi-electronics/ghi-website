@@ -21,6 +21,6 @@ public interface IOrderedEnumerable<TElement> : IEnumerable<TElement>
 IOrderedEnumerable<TElement> CreateOrderedEnumerable<TKey>( Func<TElement, TKey> keySelector, IComparer<TKey> comparer, bool descending)
 ```
 
-_No description available._
+Performs a subsequent ordering on the elements by a key, used to implement ThenBy and ThenByDescending.
 
 **Returns** `IOrderedEnumerable<TElement>`

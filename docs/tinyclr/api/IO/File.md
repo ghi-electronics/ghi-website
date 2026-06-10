@@ -7,7 +7,7 @@ sidebar_label: "File"
 
 **NuGet:** `GHIElectronics.TinyCLR.IO`<br/>**Assembly:** `GHIElectronics.TinyCLR.IO`<br/>**Namespace:** `System.IO`
 
-_No description available._
+Static helpers for file management — copy, move, delete, exists, open. Mirrors the .NET BCL `System.IO.File` API for the file-system mount points registered via `GHIElectronics.TinyCLR.IO.FileSystem`.
 
 ```csharp
 public static class File
@@ -21,7 +21,7 @@ public static class File
 public static void Copy(string sourceFileName, string destFileName)
 ```
 
-_No description available._
+Copies a file to a new path; throws if the destination already exists.
 
 ### Copy(string sourceFileName, string destFileName, bool overwrite)
 
@@ -29,7 +29,7 @@ _No description available._
 public static void Copy(string sourceFileName, string destFileName, bool overwrite)
 ```
 
-_No description available._
+Copies a file to a new path, optionally overwriting an existing destination.
 
 ### Create(string path)
 
@@ -37,7 +37,7 @@ _No description available._
 public static FileStream Create(string path)
 ```
 
-_No description available._
+Creates or overwrites a file and returns a read/write stream to it.
 
 **Returns** `FileStream`
 
@@ -47,7 +47,7 @@ _No description available._
 public static FileStream Create(string path, int bufferSize)
 ```
 
-_No description available._
+Creates or overwrites a file with the given buffer size and returns a read/write stream to it.
 
 **Returns** `FileStream`
 
@@ -57,7 +57,7 @@ _No description available._
 public static void Delete(string path)
 ```
 
-_No description available._
+Deletes the file at the path; succeeds silently if it does not exist.
 
 ### Exists(string path)
 
@@ -65,7 +65,7 @@ _No description available._
 public static bool Exists(string path)
 ```
 
-_No description available._
+Returns whether a file exists at the path.
 
 **Returns** `bool`
 
@@ -75,7 +75,7 @@ _No description available._
 public static FileStream Open(string path, FileMode mode)
 ```
 
-_No description available._
+Opens a file with the given mode and returns a stream to it.
 
 **Returns** `FileStream`
 
@@ -85,7 +85,7 @@ _No description available._
 public static FileStream Open(string path, FileMode mode, FileAccess access)
 ```
 
-_No description available._
+Opens a file with the given mode and access and returns a stream to it.
 
 **Returns** `FileStream`
 
@@ -95,7 +95,7 @@ _No description available._
 public static FileStream Open(string path, FileMode mode, FileAccess access, FileShare share)
 ```
 
-_No description available._
+Opens a file with the given mode, access, and sharing and returns a stream to it.
 
 **Returns** `FileStream`
 
@@ -105,7 +105,7 @@ _No description available._
 public static FileAttributes GetAttributes(string path)
 ```
 
-_No description available._
+Returns the attributes of the file at the path.
 
 **Returns** `FileAttributes`
 
@@ -115,7 +115,7 @@ _No description available._
 public static void SetAttributes(string path, FileAttributes fileAttributes)
 ```
 
-_No description available._
+Sets the attributes of the file at the path.
 
 ### OpenRead(string path)
 
@@ -123,7 +123,7 @@ _No description available._
 public static FileStream OpenRead(string path)
 ```
 
-_No description available._
+Opens an existing file for reading and returns a stream to it.
 
 **Returns** `FileStream`
 
@@ -133,7 +133,7 @@ _No description available._
 public static FileStream OpenWrite(string path)
 ```
 
-_No description available._
+Opens or creates a file for writing and returns a stream to it.
 
 **Returns** `FileStream`
 
@@ -143,7 +143,7 @@ _No description available._
 public static byte[] ReadAllBytes(string path)
 ```
 
-_No description available._
+Reads the entire contents of a file into a byte array.
 
 **Returns** `byte[]`
 
@@ -153,7 +153,7 @@ _No description available._
 public static void WriteAllBytes(string path, byte[] bytes)
 ```
 
-_No description available._
+Creates or overwrites a file and writes the byte array to it.
 
 ### Move(string sourceFileName, string destFileName)
 
@@ -161,4 +161,4 @@ _No description available._
 public static void Move(string sourceFileName, string destFileName)
 ```
 
-_No description available._
+Moves a file to a new location and name.

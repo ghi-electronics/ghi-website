@@ -7,7 +7,7 @@ sidebar_label: "TextWriter"
 
 **NuGet:** `GHIElectronics.TinyCLR.IO`<br/>**Assembly:** `GHIElectronics.TinyCLR.IO`<br/>**Namespace:** `System.IO`
 
-_No description available._
+Base class for writing a sequential series of characters.
 
 ```csharp
 public abstract class TextWriter : MarshalByRefObject, IDisposable
@@ -21,7 +21,7 @@ public abstract class TextWriter : MarshalByRefObject, IDisposable
 protected char[] CoreNewLine { }
 ```
 
-_No description available._
+The characters written for a line terminator.
 
 ### Encoding
 
@@ -29,7 +29,7 @@ _No description available._
 public abstract Encoding Encoding { get; }
 ```
 
-_No description available._
+The character encoding the writer uses.
 
 ### NewLine
 
@@ -37,7 +37,7 @@ _No description available._
 public virtual string NewLine { get; set; }
 ```
 
-_No description available._
+The line terminator string used by the writer.
 
 ## Methods
 
@@ -47,7 +47,7 @@ _No description available._
 public virtual void Close()
 ```
 
-_No description available._
+Closes the writer and releases its resources.
 
 ### Dispose()
 
@@ -55,7 +55,7 @@ _No description available._
 public void Dispose()
 ```
 
-_No description available._
+Releases the resources used by the writer.
 
 ### Dispose(bool disposing)
 
@@ -63,7 +63,7 @@ _No description available._
 protected virtual void Dispose(bool disposing)
 ```
 
-_No description available._
+Releases the resources used by the writer.
 
 ### Flush()
 
@@ -71,7 +71,7 @@ _No description available._
 public virtual void Flush()
 ```
 
-_No description available._
+Flushes any buffered data to the underlying store.
 
 ### Write(char value)
 
@@ -79,7 +79,7 @@ _No description available._
 public virtual void Write(char value)
 ```
 
-_No description available._
+Writes a character.
 
 ### Write(char[] buffer)
 
@@ -87,7 +87,7 @@ _No description available._
 public virtual void Write(char[] buffer)
 ```
 
-_No description available._
+Writes a character array.
 
 ### Write(char[] buffer, int index, int count)
 
@@ -95,7 +95,7 @@ _No description available._
 public virtual void Write(char[] buffer, int index, int count)
 ```
 
-_No description available._
+Writes a range of characters from an array.
 
 ### Write(bool value)
 
@@ -103,7 +103,7 @@ _No description available._
 public virtual void Write(bool value)
 ```
 
-_No description available._
+Writes the text representation of a boolean value.
 
 ### Write(int value)
 
@@ -111,7 +111,7 @@ _No description available._
 public virtual void Write(int value)
 ```
 
-_No description available._
+Writes the text representation of an integer.
 
 ### Write(uint value)
 
@@ -119,7 +119,7 @@ _No description available._
 public virtual void Write(uint value)
 ```
 
-_No description available._
+Writes the text representation of an unsigned integer.
 
 ### Write(long value)
 
@@ -127,7 +127,7 @@ _No description available._
 public virtual void Write(long value)
 ```
 
-_No description available._
+Writes the text representation of a long integer.
 
 ### Write(ulong value)
 
@@ -135,7 +135,7 @@ _No description available._
 public virtual void Write(ulong value)
 ```
 
-_No description available._
+Writes the text representation of an unsigned long integer.
 
 ### Write(float value)
 
@@ -143,7 +143,7 @@ _No description available._
 public virtual void Write(float value)
 ```
 
-_No description available._
+Writes the text representation of a single-precision number.
 
 ### Write(double value)
 
@@ -151,7 +151,7 @@ _No description available._
 public virtual void Write(double value)
 ```
 
-_No description available._
+Writes the text representation of a double-precision number.
 
 ### Write(string value)
 
@@ -159,7 +159,7 @@ _No description available._
 public virtual void Write(string value)
 ```
 
-_No description available._
+Writes a string.
 
 ### Write(object value)
 
@@ -167,7 +167,7 @@ _No description available._
 public virtual void Write(object value)
 ```
 
-_No description available._
+Writes the text representation of an object.
 
 ### WriteLine()
 
@@ -175,7 +175,7 @@ _No description available._
 public virtual void WriteLine()
 ```
 
-_No description available._
+Writes a line terminator.
 
 ### WriteLine(char value)
 
@@ -183,7 +183,7 @@ _No description available._
 public virtual void WriteLine(char value)
 ```
 
-_No description available._
+Writes a character followed by a line terminator.
 
 ### WriteLine(char[] buffer)
 
@@ -191,7 +191,7 @@ _No description available._
 public virtual void WriteLine(char[] buffer)
 ```
 
-_No description available._
+Writes a character array followed by a line terminator.
 
 ### WriteLine(char[] buffer, int index, int count)
 
@@ -199,7 +199,7 @@ _No description available._
 public virtual void WriteLine(char[] buffer, int index, int count)
 ```
 
-_No description available._
+Writes a range of characters followed by a line terminator.
 
 ### WriteLine(bool value)
 
@@ -207,7 +207,7 @@ _No description available._
 public virtual void WriteLine(bool value)
 ```
 
-_No description available._
+Writes a boolean value followed by a line terminator.
 
 ### WriteLine(int value)
 
@@ -215,7 +215,7 @@ _No description available._
 public virtual void WriteLine(int value)
 ```
 
-_No description available._
+Writes an integer followed by a line terminator.
 
 ### WriteLine(uint value)
 
@@ -223,7 +223,7 @@ _No description available._
 public virtual void WriteLine(uint value)
 ```
 
-_No description available._
+Writes an unsigned integer followed by a line terminator.
 
 ### WriteLine(long value)
 
@@ -231,7 +231,7 @@ _No description available._
 public virtual void WriteLine(long value)
 ```
 
-_No description available._
+Writes a long integer followed by a line terminator.
 
 ### WriteLine(ulong value)
 
@@ -239,7 +239,7 @@ _No description available._
 public virtual void WriteLine(ulong value)
 ```
 
-_No description available._
+Writes an unsigned long integer followed by a line terminator.
 
 ### WriteLine(float value)
 
@@ -247,7 +247,7 @@ _No description available._
 public virtual void WriteLine(float value)
 ```
 
-_No description available._
+Writes a single-precision number followed by a line terminator.
 
 ### WriteLine(double value)
 
@@ -255,7 +255,7 @@ _No description available._
 public virtual void WriteLine(double value)
 ```
 
-_No description available._
+Writes a double-precision number followed by a line terminator.
 
 ### WriteLine(string value)
 
@@ -263,7 +263,7 @@ _No description available._
 public virtual void WriteLine(string value)
 ```
 
-_No description available._
+Writes a string followed by a line terminator.
 
 ### WriteLine(object value)
 
@@ -271,4 +271,4 @@ _No description available._
 public virtual void WriteLine(object value)
 ```
 
-_No description available._
+Writes the text representation of an object followed by a line terminator.

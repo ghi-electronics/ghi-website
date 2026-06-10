@@ -21,7 +21,7 @@ public class CdcStream : RawDevice.RawStream
 public override bool DataAvailable { get; }
 ```
 
-_No description available._
+Whether or not there is data available to read.
 
 ## Methods
 

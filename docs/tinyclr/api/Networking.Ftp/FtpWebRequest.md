@@ -61,7 +61,7 @@ Set ftp mode
 public NetworkCredential Credentials { get; set; }
 ```
 
-_No description available._
+Gets or sets the credentials used to authenticate with the FTP server.
 
 ### Method
 
@@ -69,7 +69,7 @@ _No description available._
 public override string Method { get; set; }
 ```
 
-_No description available._
+Gets or sets the FTP command (method) to send to the server.
 
 ### RequestUri
 

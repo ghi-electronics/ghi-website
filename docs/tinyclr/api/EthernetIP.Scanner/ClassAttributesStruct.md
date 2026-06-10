@@ -7,7 +7,7 @@ sidebar_label: "ClassAttributesStruct"
 
 **NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Scanner.ObjectLibrary`
 
-_No description available._
+Holds the class-level attributes of the Identity Object.
 
 ```csharp
 public struct ClassAttributesStruct
@@ -21,7 +21,7 @@ public struct ClassAttributesStruct
 public ushort Revision
 ```
 
-_No description available._
+The object class revision.
 
 ### MaxInstance
 
@@ -29,7 +29,7 @@ _No description available._
 public ushort MaxInstance
 ```
 
-_No description available._
+The highest instance number created.
 
 ### MaxIDNumberOfClassAttributes
 
@@ -37,7 +37,7 @@ _No description available._
 public ushort MaxIDNumberOfClassAttributes
 ```
 
-_No description available._
+The highest class-attribute ID implemented.
 
 ### MaxIDNumberOfInstanceAttributes
 
@@ -45,4 +45,4 @@ _No description available._
 public ushort MaxIDNumberOfInstanceAttributes
 ```
 
-_No description available._
+The highest instance-attribute ID implemented.

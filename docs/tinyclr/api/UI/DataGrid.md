@@ -216,7 +216,7 @@ Touch senstitive.
 public void Dispose()
 ```
 
-_No description available._
+Releases the resources used by the DataGrid.
 
 ### Dispose(bool disposing)
 
@@ -224,7 +224,7 @@ _No description available._
 protected virtual void Dispose(bool disposing)
 ```
 
-_No description available._
+Releases the DataGrid's bitmap and icon resources.
 
 ### TriggerTapCellEvent(object sender, TapCellEventArgs args)
 

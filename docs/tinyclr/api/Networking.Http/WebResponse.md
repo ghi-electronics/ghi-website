@@ -83,7 +83,7 @@ When overridden by a descendant class, closes the response stream.
 public void Dispose()
 ```
 
-_No description available._
+Releases the resources used by the response.
 
 ### Dispose(bool disposing)
 
@@ -91,4 +91,4 @@ _No description available._
 protected virtual void Dispose(bool disposing)
 ```
 
-_No description available._
+Releases the unmanaged resources and optionally the managed resources used by the response.

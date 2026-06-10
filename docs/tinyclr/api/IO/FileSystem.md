@@ -21,7 +21,7 @@ public static class FileSystem
 public static IDriveProvider Mount(IntPtr hdc)
 ```
 
-_No description available._
+Mounts the file system on the storage controller handle and returns its drive provider.
 
 **Returns** `IDriveProvider`
 
@@ -31,7 +31,7 @@ _No description available._
 public static bool Unmount(IntPtr hdc)
 ```
 
-_No description available._
+Unmounts the file system on the storage controller handle.
 
 **Returns** `bool`
 
@@ -41,7 +41,7 @@ _No description available._
 public static void Flush(IntPtr hdc)
 ```
 
-_No description available._
+Flushes all pending writes for the file system on the storage controller handle.
 
 ### Format(IntPtr hdc, string volume, uint parameter, byte forceSize)
 
@@ -49,6 +49,6 @@ _No description available._
 public static bool Format(IntPtr hdc, string volume = null, uint parameter = 0, byte forceSize = 0)
 ```
 
-_No description available._
+Formats the volume on the storage controller handle, optionally over only part of the volume.
 
 **Returns** `bool`

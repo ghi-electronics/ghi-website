@@ -7,7 +7,7 @@ sidebar_label: "Color"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Media`
 
-_No description available._
+Represents an ARGB color.
 
 ```csharp
 public struct Color
@@ -21,7 +21,7 @@ public struct Color
 public byte A { get; set; }
 ```
 
-_No description available._
+The alpha (opacity) component of the color.
 
 ### R
 
@@ -29,7 +29,7 @@ _No description available._
 public byte R { get; set; }
 ```
 
-_No description available._
+The red component of the color.
 
 ### G
 
@@ -37,7 +37,7 @@ _No description available._
 public byte G { get; set; }
 ```
 
-_No description available._
+The green component of the color.
 
 ### B
 
@@ -45,7 +45,7 @@ _No description available._
 public byte B { get; set; }
 ```
 
-_No description available._
+The blue component of the color.
 
 ## Methods
 
@@ -55,7 +55,7 @@ _No description available._
 public static Color FromArgb(byte a, byte r, byte g, byte b)
 ```
 
-_No description available._
+Creates a color from alpha, red, green and blue components.
 
 **Returns** `Color`
 
@@ -65,6 +65,6 @@ _No description available._
 public static Color FromRgb(byte r, byte g, byte b)
 ```
 
-_No description available._
+Creates an opaque color from red, green and blue components.
 
 **Returns** `Color`

@@ -7,7 +7,7 @@ sidebar_label: "IFileStream"
 
 **NuGet:** `GHIElectronics.TinyCLR.IO`<br/>**Assembly:** `GHIElectronics.TinyCLR.IO`<br/>**Namespace:** `GHIElectronics.TinyCLR.IO`
 
-_No description available._
+A low-level file stream supplied by a drive provider.
 
 ```csharp
 public interface IFileStream
@@ -21,7 +21,7 @@ public interface IFileStream
 bool CanWrite { get; }
 ```
 
-_No description available._
+Whether the stream supports writing.
 
 ### CanRead
 
@@ -29,7 +29,7 @@ _No description available._
 bool CanRead { get; }
 ```
 
-_No description available._
+Whether the stream supports reading.
 
 ### CanSeek
 
@@ -37,7 +37,7 @@ _No description available._
 bool CanSeek { get; }
 ```
 
-_No description available._
+Whether the stream supports seeking.
 
 ### Length
 
@@ -45,7 +45,7 @@ _No description available._
 long Length { get; set; }
 ```
 
-_No description available._
+The length of the stream in bytes.
 
 ## Methods
 
@@ -55,7 +55,7 @@ _No description available._
 int Read(byte[] buffer, int offset, int count, TimeSpan timeout)
 ```
 
-_No description available._
+Reads up to count bytes into the buffer, returning the number read.
 
 **Returns** `int`
 
@@ -65,7 +65,7 @@ _No description available._
 int Write(byte[] buffer, int offset, int count, TimeSpan timeout)
 ```
 
-_No description available._
+Writes count bytes from the buffer, returning the number written.
 
 **Returns** `int`
 
@@ -75,7 +75,7 @@ _No description available._
 long Seek(long offset, SeekOrigin origin)
 ```
 
-_No description available._
+Moves the stream position relative to the given origin and returns the new position.
 
 **Returns** `long`
 
@@ -85,7 +85,7 @@ _No description available._
 void Flush()
 ```
 
-_No description available._
+Flushes any buffered data to the underlying store.
 
 ### Close()
 
@@ -93,4 +93,4 @@ _No description available._
 void Close()
 ```
 
-_No description available._
+Closes the stream.

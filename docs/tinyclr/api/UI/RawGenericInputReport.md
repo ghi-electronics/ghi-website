@@ -34,7 +34,7 @@ Constructs an instance of the RawKeyboardInputReport class.
 public RawGenericInputReport(PresentationSource inputSource, GenericEvent genericEvent, UIElement destTarget) : base(inputSource, genericEvent.Time)
 ```
 
-_No description available._
+Constructs an instance of the RawGenericInputReport class targeting a specific element.
 
 ## Fields
 
@@ -44,7 +44,7 @@ _No description available._
 public readonly UIElement Target
 ```
 
-_No description available._
+Read-only access to the element this report is directed at, or null.
 
 ### InternalEvent
 
@@ -52,4 +52,4 @@ _No description available._
 public readonly GenericEvent InternalEvent
 ```
 
-_No description available._
+Read-only access to the underlying generic event.

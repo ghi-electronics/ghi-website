@@ -29,7 +29,7 @@ Return the input manager associated with the current context.
 public ButtonDevice ButtonDevice { get; }
 ```
 
-_No description available._
+The primary button device for this input manager.
 
 ### TouchDevice
 
@@ -37,7 +37,7 @@ _No description available._
 public TouchDevice TouchDevice { get; }
 ```
 
-_No description available._
+The primary touch device for this input manager.
 
 ### GenericDevice
 
@@ -45,7 +45,7 @@ _No description available._
 public GenericDevice GenericDevice { get; }
 ```
 
-_No description available._
+The primary generic input device for this input manager.
 
 ### InputProviders
 
@@ -117,4 +117,4 @@ Synchronously processes the specified input.
 public DeviceEvents[] InputDeviceEvents
 ```
 
-_No description available._
+The per-device input processing events, indexed by input device type.

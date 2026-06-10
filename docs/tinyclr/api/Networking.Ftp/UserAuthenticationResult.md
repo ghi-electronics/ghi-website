@@ -17,7 +17,7 @@ public enum UserAuthenticationResult
 
 | Name | Value | Description |
 |---|---|---|
-| `Unspecified` | `0` |  |
-| `Approved` | `1` |  |
-| `Denied` | `2` |  |
-| `Conflicting` | `3` |  |
+| `Unspecified` | `0` | No authentication decision has been made. |
+| `Approved` | `1` | The user is allowed to log in. |
+| `Denied` | `2` | The user is rejected. |
+| `Conflicting` | `3` | Conflicting decisions were set by multiple handlers. |

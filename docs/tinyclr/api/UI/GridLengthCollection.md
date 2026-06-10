@@ -21,7 +21,7 @@ public sealed class GridLengthCollection
 public int Count { get; }
 ```
 
-_No description available._
+Number of definitions in the collection.
 
 ### index]
 
@@ -29,7 +29,7 @@ _No description available._
 public GridLength this[int index] { get; set; }
 ```
 
-_No description available._
+Gets or sets the definition at the given index.
 
 ## Methods
 
@@ -39,7 +39,7 @@ _No description available._
 public void Add(GridLength item)
 ```
 
-_No description available._
+Adds a definition to the collection.
 
 ### Clear()
 
@@ -47,7 +47,7 @@ _No description available._
 public void Clear()
 ```
 
-_No description available._
+Removes all definitions from the collection.
 
 ### Insert(int index, GridLength item)
 
@@ -55,7 +55,7 @@ _No description available._
 public void Insert(int index, GridLength item)
 ```
 
-_No description available._
+Inserts a definition at the given index.
 
 ### RemoveAt(int index)
 
@@ -63,4 +63,4 @@ _No description available._
 public void RemoveAt(int index)
 ```
 
-_No description available._
+Removes the definition at the given index.

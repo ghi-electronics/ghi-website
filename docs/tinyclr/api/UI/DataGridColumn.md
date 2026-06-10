@@ -21,7 +21,7 @@ public class DataGridColumn
 public DataGridColumn(string label, int width)
 ```
 
-_No description available._
+Creates a new column with the given label and pixel width.
 
 ## Properties
 

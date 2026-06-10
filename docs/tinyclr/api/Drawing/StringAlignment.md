@@ -7,7 +7,7 @@ sidebar_label: "StringAlignment"
 
 **NuGet:** `GHIElectronics.TinyCLR.Drawing`<br/>**Assembly:** `GHIElectronics.TinyCLR.Drawing`<br/>**Namespace:** `System.Drawing`
 
-_No description available._
+Specifies how text is aligned within its layout rectangle.
 
 ```csharp
 public enum StringAlignment
@@ -17,6 +17,6 @@ public enum StringAlignment
 
 | Name | Value | Description |
 |---|---|---|
-| `Near` | `0` |  |
-| `Center` | `1` |  |
-| `Far` | `2` |  |
+| `Near` | `0` | Text is aligned near the layout origin (left or top). |
+| `Center` | `1` | Text is centered within the layout rectangle. |
+| `Far` | `2` | Text is aligned far from the layout origin (right or bottom). |

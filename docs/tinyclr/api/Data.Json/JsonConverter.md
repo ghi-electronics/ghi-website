@@ -21,7 +21,7 @@ public static class JsonConverter
 public static object SyncObj = new object()
 ```
 
-_No description available._
+Lock object guarding access to the shared serialization context.
 
 **Returns** `object SyncObj = new`
 
@@ -31,7 +31,7 @@ _No description available._
 public static JToken Serialize(object oSource, JsonSerializerSettings settings = null)
 ```
 
-_No description available._
+Serializes an object into a JSON token tree.
 
 **Returns** `JToken`
 
@@ -41,7 +41,7 @@ _No description available._
 public static object DeserializeObject(string sourceString, Type type, InstanceFactory factory = null)
 ```
 
-_No description available._
+Parses JSON text and populates a new instance of the given type.
 
 **Returns** `object`
 
@@ -51,7 +51,7 @@ _No description available._
 public static object DeserializeObject(Stream stream, Type type, InstanceFactory factory = null)
 ```
 
-_No description available._
+Parses JSON from a stream and populates a new instance of the given type.
 
 **Returns** `object`
 
@@ -61,7 +61,7 @@ _No description available._
 public static object DeserializeObject(StreamReader sr, Type type, InstanceFactory factory = null)
 ```
 
-_No description available._
+Parses JSON from a reader and populates a new instance of the given type.
 
 **Returns** `object`
 
@@ -71,7 +71,7 @@ _No description available._
 public static JToken Deserialize(string sourceString)
 ```
 
-_No description available._
+Parses JSON text into a token tree.
 
 **Returns** `JToken`
 
@@ -81,7 +81,7 @@ _No description available._
 public static JToken Deserialize(Stream sourceStream)
 ```
 
-_No description available._
+Parses JSON from a stream into a token tree.
 
 **Returns** `JToken`
 
@@ -91,7 +91,7 @@ _No description available._
 public static JToken Deserialize(StreamReader sourceReader)
 ```
 
-_No description available._
+Parses JSON from a reader into a token tree.
 
 **Returns** `JToken`
 
@@ -101,7 +101,7 @@ _No description available._
 public static JToken FromBson(byte[] buffer, InstanceFactory factory = null)
 ```
 
-_No description available._
+Decodes a BSON byte buffer into a JSON token tree.
 
 **Returns** `JToken`
 
@@ -111,7 +111,7 @@ _No description available._
 public static object FromBson(byte[] buffer, Type resultType, InstanceFactory factory = null)
 ```
 
-_No description available._
+Decodes a BSON byte buffer and populates a new instance of the given type.
 
 **Returns** `object`
 
@@ -123,4 +123,4 @@ _No description available._
 public static SerializationCtx SerializationContext
 ```
 
-_No description available._
+The serialization context shared across the current serialization pass.

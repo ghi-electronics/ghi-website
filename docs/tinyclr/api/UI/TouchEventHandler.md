@@ -7,7 +7,7 @@ sidebar_label: "TouchEventHandler"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Input`
 
-_No description available._
+The delegate to use for handlers that receive TouchEventArgs.
 
 ```csharp
 public delegate void TouchEventHandler(object sender, TouchEventArgs e);

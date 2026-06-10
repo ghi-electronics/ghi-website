@@ -21,7 +21,7 @@ public class Mqtt
 public Mqtt(MqttClientSetting setting)
 ```
 
-_No description available._
+Creates a new MQTT client using the given transport settings.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public bool IsConnected { get; set; }
 ```
 
-_No description available._
+Gets whether the client is currently connected to the broker.
 
 ### ClientId
 
@@ -39,7 +39,7 @@ _No description available._
 public string ClientId { get; }
 ```
 
-_No description available._
+Gets the client identifier of the current connection.
 
 ### ClientSetting
 
@@ -47,7 +47,7 @@ _No description available._
 public MqttClientSetting ClientSetting { get; }
 ```
 
-_No description available._
+Gets the transport-level settings the client was created with.
 
 ### ConnectionSetting
 
@@ -55,7 +55,7 @@ _No description available._
 public MqttConnectionSetting ConnectionSetting { get; set; }
 ```
 
-_No description available._
+Gets the per-session settings used for the current connection.
 
 ## Methods
 
@@ -65,7 +65,7 @@ _No description available._
 public ConnectReturnCode Connect(MqttConnectionSetting setting)
 ```
 
-_No description available._
+Connects to the broker using the given session settings and returns the broker's response code.
 
 **Returns** `ConnectReturnCode`
 
@@ -75,7 +75,7 @@ _No description available._
 public void Disconnect()
 ```
 
-_No description available._
+Sends a disconnect request to the broker and closes the connection.
 
 ### Subscribe(string[] topics, QoSLevel[] qosLevels, ushort packetId)
 
@@ -83,7 +83,7 @@ _No description available._
 public void Subscribe(string[] topics, QoSLevel[] qosLevels, ushort packetId)
 ```
 
-_No description available._
+Subscribes to the given topics at the specified quality-of-service levels.
 
 ### Unsubscribe(string[] topics, ushort packetId)
 
@@ -91,7 +91,7 @@ _No description available._
 public void Unsubscribe(string[] topics, ushort packetId)
 ```
 
-_No description available._
+Unsubscribes from the given topics.
 
 ### Publish(string topic, byte[] data, QoSLevel qosLevel, bool retain, ushort packetId)
 
@@ -99,7 +99,7 @@ _No description available._
 public void Publish(string topic, byte[] data, QoSLevel qosLevel, bool retain, ushort packetId)
 ```
 
-_No description available._
+Publishes a message to a topic at the specified quality-of-service level.
 
 ## Events
 
@@ -109,7 +109,7 @@ _No description available._
 public event PublishReceivedEventHandler PublishReceivedChanged
 ```
 
-_No description available._
+Raised when a message is received on a subscribed topic.
 
 ### PublishedChanged
 
@@ -117,7 +117,7 @@ _No description available._
 public event PublishedEventHandler PublishedChanged
 ```
 
-_No description available._
+Raised when a published message is acknowledged.
 
 ### SubscribedChanged
 
@@ -125,7 +125,7 @@ _No description available._
 public event SubscribedEventHandler SubscribedChanged
 ```
 
-_No description available._
+Raised when a subscribe request is acknowledged.
 
 ### UnsubscribedChanged
 
@@ -133,7 +133,7 @@ _No description available._
 public event UnsubscribedEventHandler UnsubscribedChanged
 ```
 
-_No description available._
+Raised when an unsubscribe request is acknowledged.
 
 ### ConnectedChanged
 
@@ -141,4 +141,4 @@ _No description available._
 public event ConnectedEventHandler ConnectedChanged
 ```
 
-_No description available._
+Raised when the connection to the broker is established or closed.

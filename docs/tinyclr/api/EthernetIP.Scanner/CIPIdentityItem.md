@@ -21,7 +21,7 @@ public class CIPIdentityItem
 public SocketAddress SocketAddress = new SocketAddress()
 ```
 
-_No description available._
+The device's socket address (IP, port, family).
 
 **Returns** `SocketAddress SocketAddress = new`
 
@@ -31,7 +31,7 @@ _No description available._
 public static CIPIdentityItem GetCIPIdentityItem(int startingbyte, byte[] receivedData)
 ```
 
-_No description available._
+Parses a CIP Identity item from a received ListIdentity response buffer.
 
 **Returns** `CIPIdentityItem`
 
@@ -53,7 +53,7 @@ Converts an IP-Address in UIint32 Format (Received by Device)
 public ushort ItemTypeCode
 ```
 
-_No description available._
+Code indicating the item type of CIP Identity (0x0C).
 
 ### ItemLength
 
@@ -61,7 +61,7 @@ _No description available._
 public ushort ItemLength
 ```
 
-_No description available._
+Number of bytes in the item that follow (varies with the product name length).
 
 ### EncapsulationProtocolVersion
 
@@ -69,7 +69,7 @@ _No description available._
 public ushort EncapsulationProtocolVersion
 ```
 
-_No description available._
+Encapsulation protocol version supported by the device.
 
 ### VendorID1
 
@@ -77,7 +77,7 @@ _No description available._
 public ushort VendorID1
 ```
 
-_No description available._
+The device manufacturer's CIP vendor ID.
 
 ### DeviceType1
 
@@ -85,7 +85,7 @@ _No description available._
 public ushort DeviceType1
 ```
 
-_No description available._
+The CIP device type of the product.
 
 ### ProductCode1
 
@@ -93,7 +93,7 @@ _No description available._
 public ushort ProductCode1
 ```
 
-_No description available._
+The product code assigned with respect to the device type.
 
 ### Revision1
 
@@ -101,7 +101,7 @@ _No description available._
 public byte[] Revision1
 ```
 
-_No description available._
+The device revision (major, minor).
 
 ### Status1
 
@@ -109,7 +109,7 @@ _No description available._
 public ushort Status1
 ```
 
-_No description available._
+The current status word of the device.
 
 ### SerialNumber1
 
@@ -117,7 +117,7 @@ _No description available._
 public uint SerialNumber1
 ```
 
-_No description available._
+The device's serial number.
 
 ### ProductNameLength
 
@@ -125,7 +125,7 @@ _No description available._
 public byte ProductNameLength
 ```
 
-_No description available._
+The length in bytes of the product name string.
 
 ### ProductName1
 
@@ -133,7 +133,7 @@ _No description available._
 public string ProductName1
 ```
 
-_No description available._
+The human-readable product name of the device.
 
 ### State1
 
@@ -141,4 +141,4 @@ _No description available._
 public byte State1
 ```
 
-_No description available._
+The current operational state of the device.

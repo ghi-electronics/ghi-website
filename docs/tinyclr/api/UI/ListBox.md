@@ -7,7 +7,7 @@ sidebar_label: "ListBox"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+A scrollable list of selectable items.
 
 ```csharp
 public class ListBox : ContentControl
@@ -21,7 +21,7 @@ public class ListBox : ContentControl
 public ListBox()
 ```
 
-_No description available._
+Creates a new ListBox.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public ListBoxItemCollection Items { get; }
 ```
 
-_No description available._
+The collection of items in the list.
 
 ### SelectedIndex
 
@@ -39,7 +39,7 @@ _No description available._
 public int SelectedIndex { get; set; }
 ```
 
-_No description available._
+Index of the selected item, or -1 if none is selected.
 
 ### SelectedItem
 
@@ -47,7 +47,7 @@ _No description available._
 public ListBoxItem SelectedItem { get; set; }
 ```
 
-_No description available._
+The currently selected item, or null if none is selected.
 
 ### HorizontalOffset
 
@@ -97,7 +97,7 @@ The scrolling style.
 public void ScrollIntoView(ListBoxItem item)
 ```
 
-_No description available._
+Scrolls the list so the given item is visible.
 
 ### OnButtonDown(GHIElectronics.TinyCLR.UI.Input.ButtonEventArgs e)
 
@@ -105,7 +105,7 @@ _No description available._
 protected override void OnButtonDown(GHIElectronics.TinyCLR.UI.Input.ButtonEventArgs e)
 ```
 
-An event reporting a button was pressed. _(inherited)_
+Handles Up/Down navigation and Select activation via hardware buttons.
 
 ## Events
 
@@ -123,7 +123,7 @@ Fires when the user commits the current selection — either by tapping a ListBo
 public event SelectionChangedEventHandler SelectionChanged
 ```
 
-_No description available._
+Raised when the selected item changes.
 
 ### ScrollChanged
 

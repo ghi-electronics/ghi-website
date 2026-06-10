@@ -7,7 +7,7 @@ sidebar_label: "BitmapImageType"
 
 **NuGet:** `GHIElectronics.TinyCLR.Drawing`<br/>**Assembly:** `GHIElectronics.TinyCLR.Drawing`<br/>**Namespace:** `System.Drawing`
 
-_No description available._
+Identifies the encoded format of bitmap data.
 
 ```csharp
 public enum BitmapImageType : byte
@@ -17,7 +17,7 @@ public enum BitmapImageType : byte
 
 | Name | Value | Description |
 |---|---|---|
-| `TinyCLRBitmap` | `0` |  |
-| `Gif` | `1` |  |
-| `Jpeg` | `2` |  |
-| `Bmp` | `3` |  |
+| `TinyCLRBitmap` | `0` | The native TinyCLR bitmap format. |
+| `Gif` | `1` | The GIF image format. |
+| `Jpeg` | `2` | The JPEG image format. |
+| `Bmp` | `3` | The Windows .bmp format. |

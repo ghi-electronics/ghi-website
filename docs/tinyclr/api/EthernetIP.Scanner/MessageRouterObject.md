@@ -7,7 +7,7 @@ sidebar_label: "MessageRouterObject"
 
 **NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Scanner.ObjectLibrary`
 
-_No description available._
+Provides explicit-message access to the Message Router Object (Class Code 0x02) on the target.
 
 ```csharp
 public class MessageRouterObject

@@ -7,7 +7,7 @@ sidebar_label: "BindingErrorEventHandler"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+Handles a binding error reported by a control.
 
 ```csharp
 public delegate void BindingErrorEventHandler(object sender, BindingErrorEventArgs e);

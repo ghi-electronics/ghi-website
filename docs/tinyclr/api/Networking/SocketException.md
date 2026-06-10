@@ -7,7 +7,7 @@ sidebar_label: "SocketException"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking`<br/>**Namespace:** `System.Net.Sockets`
 
-_No description available._
+The exception that is thrown when a socket error occurs.
 
 ```csharp
 public class SocketException : Exception
@@ -21,7 +21,7 @@ public class SocketException : Exception
 public SocketException() : this((int)SocketError.SocketError)
 ```
 
-_No description available._
+Initializes a new instance with a generic socket error.
 
 ### SocketException(SocketError errorCode)
 
@@ -29,7 +29,7 @@ _No description available._
 public SocketException(SocketError errorCode) : this((int)errorCode)
 ```
 
-_No description available._
+Initializes a new instance with the specified socket error.
 
 ### SocketException(int errorCode)
 
@@ -37,7 +37,7 @@ _No description available._
 public SocketException(int errorCode)
 ```
 
-_No description available._
+Initializes a new instance with the specified error code.
 
 ## Properties
 
@@ -47,7 +47,7 @@ _No description available._
 public SocketError SocketErrorCode { get; }
 ```
 
-_No description available._
+The error associated with this exception as a strongly-typed value.
 
 ### ErrorCode
 
@@ -55,7 +55,7 @@ _No description available._
 public int ErrorCode { get; }
 ```
 
-_No description available._
+The numeric error code associated with this exception.
 
 ### Message
 
@@ -63,4 +63,4 @@ _No description available._
 public override string Message { get; }
 ```
 
-_No description available._
+A message that describes the socket error.

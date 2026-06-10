@@ -21,7 +21,7 @@ public struct InterfaceStatus
 public bool NotConfigured
 ```
 
-_No description available._
+The interface configuration has not been set.
 
 ### ValidConfiguration
 
@@ -29,7 +29,7 @@ _No description available._
 public bool ValidConfiguration
 ```
 
-_No description available._
+The interface holds a valid (e.g. BootP/DHCP) configuration.
 
 ### ValidManualConfiguration
 
@@ -37,7 +37,7 @@ _No description available._
 public bool ValidManualConfiguration
 ```
 
-_No description available._
+The interface holds a valid manually-entered configuration.
 
 ### McastPending
 
@@ -45,4 +45,4 @@ _No description available._
 public bool McastPending
 ```
 
-_No description available._
+A multicast address reconfiguration is pending.

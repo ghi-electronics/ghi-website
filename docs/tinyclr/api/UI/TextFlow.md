@@ -7,7 +7,7 @@ sidebar_label: "TextFlow"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+An element that lays out and scrolls a collection of styled text runs across multiple wrapped lines.
 
 ```csharp
 public class TextFlow : UIElement
@@ -21,7 +21,7 @@ public class TextFlow : UIElement
 public TextFlow()
 ```
 
-_No description available._
+Initializes a new instance of the `TextFlow` class.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public ScrollingStyle ScrollingStyle { get; set; }
 ```
 
-_No description available._
+Whether hardware-button scrolling advances by line or by page.
 
 ### TextAlignment
 
@@ -39,7 +39,7 @@ _No description available._
 public TextAlignment TextAlignment { get; set; }
 ```
 
-_No description available._
+The horizontal alignment of each line of text.
 
 ### TopLine
 
@@ -47,7 +47,7 @@ _No description available._
 public int TopLine { get; set; }
 ```
 
-_No description available._
+The index of the first line currently displayed at the top.
 
 ### LineCount
 
@@ -55,7 +55,7 @@ _No description available._
 public int LineCount { get; }
 ```
 
-_No description available._
+The total number of wrapped lines after the last measure.
 
 ## Methods
 
@@ -65,14 +65,7 @@ _No description available._
 protected override void MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
 ```
 
-Measurement override. Implement your size-to-content logic here. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `availableWidth` | `int` | Available size that parent can give to the child. May be MaxValue(when parent wants to measure to content). This is soft constraint. Child can return bigger size to indicate that it wants bigger space and hope that parent can throw in scrolling... |
-| `availableHeight` | `int` |  |
-| `desiredWidth` | `out int` |  |
-| `desiredHeight` | `out int` |  |
+Wraps the text runs into lines and measures the total height required.
 
 ### OnButtonDown(GHIElectronics.TinyCLR.UI.Input.ButtonEventArgs e)
 
@@ -80,7 +73,7 @@ Measurement override. Implement your size-to-content logic here. _(inherited)_
 protected override void OnButtonDown(GHIElectronics.TinyCLR.UI.Input.ButtonEventArgs e)
 ```
 
-An event reporting a button was pressed. _(inherited)_
+Handles the Up/Down hardware buttons to scroll the text by line or page.
 
 ### OnRender(Media.DrawingContext dc)
 
@@ -88,7 +81,7 @@ An event reporting a button was pressed. _(inherited)_
 public override void OnRender(Media.DrawingContext dc)
 ```
 
-_No description available._
+Draws the visible wrapped lines starting from the current top line.
 
 ## Fields
 
@@ -98,4 +91,4 @@ _No description available._
 public TextRunCollection TextRuns
 ```
 
-_No description available._
+The collection of text runs displayed by this element.

@@ -7,7 +7,7 @@ sidebar_label: "ChartMode"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+How the chart series is drawn.
 
 ```csharp
 public enum ChartMode
@@ -17,5 +17,5 @@ public enum ChartMode
 
 | Name | Value | Description |
 |---|---|---|
-| `LineMode` |  |  |
-| `RectangleMode` |  |  |
+| `LineMode` |  | Draws the series as a connected line. |
+| `RectangleMode` |  | Draws the series as vertical bars. |

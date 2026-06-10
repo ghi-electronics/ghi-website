@@ -82,7 +82,7 @@ Gets the status description returned with the response.
 ### ProtocolVersion
 
 ```csharp
-public Version ProtocolVersion { get; set; }
+public Version ProtocolVersion { get; }
 ```
 
 Gets the version of the HTTP protocol that is used in the response.

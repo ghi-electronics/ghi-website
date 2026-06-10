@@ -7,7 +7,7 @@ sidebar_label: "Colors"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Media`
 
-_No description available._
+Provides a set of predefined colors.
 
 ```csharp
 public sealed class Colors
@@ -21,7 +21,7 @@ public sealed class Colors
 public static Color Transparent { get; }
 ```
 
-_No description available._
+A fully transparent color.
 
 ### Black
 
@@ -29,7 +29,7 @@ _No description available._
 public static Color Black { get; }
 ```
 
-_No description available._
+The color black.
 
 ### White
 
@@ -37,7 +37,7 @@ _No description available._
 public static Color White { get; }
 ```
 
-_No description available._
+The color white.
 
 ### Gray
 
@@ -45,7 +45,7 @@ _No description available._
 public static Color Gray { get; }
 ```
 
-_No description available._
+The color gray.
 
 ### Red
 
@@ -53,7 +53,7 @@ _No description available._
 public static Color Red { get; }
 ```
 
-_No description available._
+The color red.
 
 ### Green
 
@@ -61,7 +61,7 @@ _No description available._
 public static Color Green { get; }
 ```
 
-_No description available._
+The color green.
 
 ### Blue
 
@@ -69,7 +69,7 @@ _No description available._
 public static Color Blue { get; }
 ```
 
-_No description available._
+The color blue.
 
 ### Yellow
 
@@ -77,7 +77,7 @@ _No description available._
 public static Color Yellow { get; }
 ```
 
-_No description available._
+The color yellow.
 
 ### Purple
 
@@ -85,7 +85,7 @@ _No description available._
 public static Color Purple { get; }
 ```
 
-_No description available._
+The color purple.
 
 ### Teal
 
@@ -93,7 +93,7 @@ _No description available._
 public static Color Teal { get; }
 ```
 
-_No description available._
+The color teal.
 
 ### CornflowerBlue
 
@@ -109,4 +109,4 @@ Default focus ring / accent (PC-style highlight).
 public static Color LightGray { get; }
 ```
 
-_No description available._
+The color light gray.

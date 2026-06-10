@@ -7,7 +7,7 @@ sidebar_label: "SocketFlags"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking`<br/>**Namespace:** `System.Net.Sockets`
 
-_No description available._
+Provides constant values for socket messages.
 
 ```csharp
 public enum SocketFlags
@@ -17,13 +17,13 @@ public enum SocketFlags
 
 | Name | Value | Description |
 |---|---|---|
-| `None` | `0x0000` |  |
-| `OutOfBand` | `0x0001` |  |
-| `Peek` | `0x0002` |  |
-| `DontRoute` | `0x0004` |  |
-| `MaxIOVectorLength` | `0x0010` |  |
-| `Truncated` | `0x0100` |  |
-| `ControlDataTruncated` | `0x0200` |  |
-| `Broadcast` | `0x0400` |  |
-| `Multicast` | `0x0800` |  |
-| `Partial` | `0x8000` |  |
+| `None` | `0x0000` | Use no flags for this call. |
+| `OutOfBand` | `0x0001` | Process out-of-band data. |
+| `Peek` | `0x0002` | Peek at incoming message. |
+| `DontRoute` | `0x0004` | Send without using routing tables. |
+| `MaxIOVectorLength` | `0x0010` | The maximum number of buffers that can be used in a single send or receive call. |
+| `Truncated` | `0x0100` | Partial send or recv for message. |
+| `ControlDataTruncated` | `0x0200` | The control (ancillary) data was truncated. |
+| `Broadcast` | `0x0400` | The message was sent or received as a broadcast. |
+| `Multicast` | `0x0800` | The message was sent or received as a multicast. |
+| `Partial` | `0x8000` | A partial message was sent or received. |

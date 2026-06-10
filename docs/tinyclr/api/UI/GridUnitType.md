@@ -7,7 +7,7 @@ sidebar_label: "GridUnitType"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+How a grid row or column is sized.
 
 ```csharp
 public enum GridUnitType
@@ -17,6 +17,6 @@ public enum GridUnitType
 
 | Name | Value | Description |
 |---|---|---|
-| `Auto` |  |  |
-| `Pixel` |  |  |
-| `Star` |  |  |
+| `Auto` |  | Sized to fit its content. |
+| `Pixel` |  | Sized to a fixed number of pixels. |
+| `Star` |  | Sized as a weighted share of the remaining space. |

@@ -31,7 +31,7 @@ Optional default font. Set this once at startup so callers don't have to pass a 
 public static DialogResult Show(string message, string caption, MessageBoxButtons buttons)
 ```
 
-_No description available._
+Shows a modal message box using `DefaultFont` and returns the button the user picked.
 
 **Returns** `DialogResult`
 
@@ -41,7 +41,7 @@ _No description available._
 public static DialogResult Show(string message, string caption, MessageBoxButtons buttons, Font font)
 ```
 
-_No description available._
+Shows a modal message box with the given font and returns the button the user picked.
 
 **Returns** `DialogResult`
 
@@ -51,6 +51,6 @@ _No description available._
 public static DialogResult Show(UIElement owner, string message, string caption, MessageBoxButtons buttons, Font font)
 ```
 
-_No description available._
+Shows a modal message box hosted under the given owner and returns the button the user picked.
 
 **Returns** `DialogResult`

@@ -7,7 +7,7 @@ sidebar_label: "FtpMemoryListener"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking.Ftp`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Ftp`<br/>**Namespace:** `GHIElectronics.TinyCLR.Networking.Ftp`
 
-_No description available._
+An FTP listener that serves a fixed in-memory set of files and an activity log.
 
 ```csharp
 public sealed class FtpMemoryListener : FtpListener
@@ -21,7 +21,7 @@ public sealed class FtpMemoryListener : FtpListener
 public FtpMemoryListener() : base(true)
 ```
 
-_No description available._
+Creates the in-memory listener registered with the listener manager.
 
 ## Methods
 
@@ -31,7 +31,7 @@ _No description available._
 public override void Start()
 ```
 
-Start the listener _(inherited)_
+Starts the listener and its worker thread.
 
 ### AddFile(FileInfo info)
 
@@ -39,4 +39,4 @@ Start the listener _(inherited)_
 public void AddFile(FileInfo info)
 ```
 
-_No description available._
+Adds a file to the set served by this listener.

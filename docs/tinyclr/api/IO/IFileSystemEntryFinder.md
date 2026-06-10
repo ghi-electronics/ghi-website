@@ -7,7 +7,7 @@ sidebar_label: "IFileSystemEntryFinder"
 
 **NuGet:** `GHIElectronics.TinyCLR.IO`<br/>**Assembly:** `GHIElectronics.TinyCLR.IO`<br/>**Namespace:** `GHIElectronics.TinyCLR.IO`
 
-_No description available._
+Iterates over the entries returned by a drive provider's search.
 
 ```csharp
 public interface IFileSystemEntryFinder
@@ -21,7 +21,7 @@ public interface IFileSystemEntryFinder
 FileSystemEntry GetNext()
 ```
 
-_No description available._
+Returns the next entry, or null when there are no more.
 
 **Returns** `FileSystemEntry`
 
@@ -31,4 +31,4 @@ _No description available._
 void Close()
 ```
 
-_No description available._
+Closes the finder and releases its resources.

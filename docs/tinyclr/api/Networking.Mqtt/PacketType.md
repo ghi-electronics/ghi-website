@@ -7,7 +7,7 @@ sidebar_label: "PacketType"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking.Mqtt`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Mqtt`<br/>**Namespace:** `GHIElectronics.TinyCLR.Networking.Mqtt`
 
-_No description available._
+Identifies the type of an MQTT control packet.
 
 ```csharp
 public enum PacketType
@@ -17,17 +17,17 @@ public enum PacketType
 
 | Name | Value | Description |
 |---|---|---|
-| `Connect` | `1` |  |
-| `ConnAck` | `2` |  |
-| `Publish` | `3` |  |
-| `PubAck` | `4` |  |
-| `Pubrec` | `5` |  |
-| `Pubrel` | `6` |  |
-| `PubComp` | `7` |  |
-| `Subscribe` | `8` |  |
-| `Suback` | `9` |  |
-| `Unsubscribe` | `10` |  |
-| `Unsuback` | `11` |  |
-| `PingReq` | `12` |  |
-| `PingResp` | `13` |  |
-| `Disconnect` | `14` |  |
+| `Connect` | `1` | Client request to connect to the broker. |
+| `ConnAck` | `2` | Broker acknowledgement of a connect request. |
+| `Publish` | `3` | Message published to a topic. |
+| `PubAck` | `4` | Acknowledgement of a QoS 1 publish. |
+| `Pubrec` | `5` | First QoS 2 publish acknowledgement (publish received). |
+| `Pubrel` | `6` | Second QoS 2 publish acknowledgement (publish release). |
+| `PubComp` | `7` | Final QoS 2 publish acknowledgement (publish complete). |
+| `Subscribe` | `8` | Client request to subscribe to one or more topics. |
+| `Suback` | `9` | Broker acknowledgement of a subscribe request. |
+| `Unsubscribe` | `10` | Client request to unsubscribe from one or more topics. |
+| `Unsuback` | `11` | Broker acknowledgement of an unsubscribe request. |
+| `PingReq` | `12` | Keep-alive ping request sent to the broker. |
+| `PingResp` | `13` | Keep-alive ping response from the broker. |
+| `Disconnect` | `14` | Client notification that it is disconnecting. |

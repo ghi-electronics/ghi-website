@@ -21,7 +21,7 @@ public struct RectangleF
 public RectangleF(float x, float y, float width, float height)
 ```
 
-_No description available._
+Initializes a new rectangle with the given location and size.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public float X { get; set; }
 ```
 
-_No description available._
+Gets or sets the x-coordinate of the upper-left corner.
 
 ### Y
 
@@ -39,7 +39,7 @@ _No description available._
 public float Y { get; set; }
 ```
 
-_No description available._
+Gets or sets the y-coordinate of the upper-left corner.
 
 ### Width
 
@@ -47,7 +47,7 @@ _No description available._
 public float Width { get; set; }
 ```
 
-_No description available._
+Gets or sets the width of the rectangle.
 
 ### Height
 
@@ -55,4 +55,4 @@ _No description available._
 public float Height { get; set; }
 ```
 
-_No description available._
+Gets or sets the height of the rectangle.

@@ -21,7 +21,7 @@ public static class Theme
 public static Color WindowBackground { get; set; }
 ```
 
-_No description available._
+The default background color for windows.
 
 ### ControlSurface
 
@@ -29,7 +29,7 @@ _No description available._
 public static Color ControlSurface { get; set; }
 ```
 
-_No description available._
+The default fill color for control surfaces.
 
 ### TextBoxFill
 
@@ -37,7 +37,7 @@ _No description available._
 public static Color TextBoxFill { get; set; }
 ```
 
-_No description available._
+The default fill color for text boxes.
 
 ### TextPrimary
 
@@ -45,7 +45,7 @@ _No description available._
 public static Color TextPrimary { get; set; }
 ```
 
-_No description available._
+The default color for primary text.
 
 ### Border
 
@@ -53,7 +53,7 @@ _No description available._
 public static Color Border { get; set; }
 ```
 
-_No description available._
+The default color for borders.
 
 ### FocusRing
 
@@ -61,7 +61,7 @@ _No description available._
 public static Color FocusRing { get; set; }
 ```
 
-_No description available._
+The default color for the focus ring drawn around focused controls.
 
 ### SelectionHighlight
 
@@ -69,7 +69,7 @@ _No description available._
 public static Color SelectionHighlight { get; set; }
 ```
 
-_No description available._
+The default color used to highlight selected content.
 
 ### DefaultAlpha
 
@@ -95,7 +95,7 @@ Default corner radius (in pixels) for Scale9Image-rendered surfaces.
 public static readonly SolidColorBrush WindowBackgroundBrush = new SolidColorBrush(Colors.White)
 ```
 
-_No description available._
+The shared brush for window backgrounds.
 
 **Returns** `SolidColorBrush WindowBackgroundBrush = new`
 
@@ -105,7 +105,7 @@ _No description available._
 public static readonly SolidColorBrush ControlSurfaceBrush = new SolidColorBrush(Colors.LightGray)
 ```
 
-_No description available._
+The shared brush for control surfaces.
 
 **Returns** `SolidColorBrush ControlSurfaceBrush = new`
 
@@ -115,7 +115,7 @@ _No description available._
 public static readonly SolidColorBrush TextBoxFillBrush = new SolidColorBrush(Colors.White)
 ```
 
-_No description available._
+The shared brush for text box fills.
 
 **Returns** `SolidColorBrush TextBoxFillBrush = new`
 
@@ -125,7 +125,7 @@ _No description available._
 public static readonly SolidColorBrush TextPrimaryBrush = new SolidColorBrush(Colors.Black)
 ```
 
-_No description available._
+The shared brush for primary text.
 
 **Returns** `SolidColorBrush TextPrimaryBrush = new`
 
@@ -135,7 +135,7 @@ _No description available._
 public static readonly SolidColorBrush SelectionBrush = new SolidColorBrush(Colors.Teal)
 ```
 
-_No description available._
+The shared brush used to highlight selected content.
 
 **Returns** `SolidColorBrush SelectionBrush = new`
 

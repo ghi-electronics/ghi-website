@@ -21,7 +21,7 @@ public abstract class Image : MarshalByRefObject, ICloneable, IDisposable
 public int Width { get; }
 ```
 
-_No description available._
+Gets the width of this image in pixels.
 
 ### Height
 
@@ -29,7 +29,7 @@ _No description available._
 public int Height { get; }
 ```
 
-_No description available._
+Gets the height of this image in pixels.
 
 ## Methods
 
@@ -39,7 +39,7 @@ _No description available._
 public object Clone()
 ```
 
-_No description available._
+Creates a copy of this image.
 
 **Returns** `object`
 
@@ -49,7 +49,7 @@ _No description available._
 public static Image FromStream(Stream stream)
 ```
 
-_No description available._
+Creates an image from data in the given stream.
 
 **Returns** `Image`
 
@@ -59,7 +59,7 @@ _No description available._
 public void Save(Stream stream, ImageFormat format)
 ```
 
-_No description available._
+Saves this image to the given stream in the specified format (only RawBitmap and Bmp are supported).
 
 ### Dispose(bool disposing)
 
@@ -67,7 +67,7 @@ _No description available._
 protected virtual void Dispose(bool disposing)
 ```
 
-_No description available._
+Releases the resources used by this image.
 
 ### Dispose()
 
@@ -75,7 +75,7 @@ _No description available._
 public void Dispose()
 ```
 
-_No description available._
+Releases the resources used by this image.
 
 ### SetPixel(int x, int y, Color color)
 
@@ -83,7 +83,7 @@ _No description available._
 public virtual void SetPixel(int x, int y, Color color)
 ```
 
-_No description available._
+Sets the color of the pixel at the given coordinates.
 
 ### GetPixel(int x, int y)
 
@@ -91,7 +91,7 @@ _No description available._
 public virtual Color GetPixel(int x, int y)
 ```
 
-_No description available._
+Gets the color of the pixel at the given coordinates.
 
 **Returns** `Color`
 
@@ -101,7 +101,7 @@ _No description available._
 public byte[] GetBitmap()
 ```
 
-_No description available._
+Gets the raw pixel data of this image.
 
 **Returns** `byte[]`
 
@@ -111,7 +111,7 @@ _No description available._
 public byte[] GetBitmap(int x, int y, int width, int height)
 ```
 
-_No description available._
+Gets the raw pixel data for a rectangular region of this image.
 
 **Returns** `byte[]`
 
@@ -121,4 +121,4 @@ _No description available._
 public void MakeTransparent(Color color)
 ```
 
-_No description available._
+Makes the given color transparent in this image.

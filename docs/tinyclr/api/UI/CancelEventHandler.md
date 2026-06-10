@@ -7,7 +7,7 @@ sidebar_label: "CancelEventHandler"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI`
 
-_No description available._
+Represents a method that handles a cancelable event.
 
 ```csharp
 public delegate void CancelEventHandler(object sender, CancelEventArgs e);

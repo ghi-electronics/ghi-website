@@ -21,7 +21,7 @@ public class UserInfo
 public string UserName { get; set; }
 ```
 
-_No description available._
+The authenticated user's name.
 
 ### PassWord
 
@@ -29,4 +29,4 @@ _No description available._
 public string PassWord { get; set; }
 ```
 
-_No description available._
+The authenticated user's password.

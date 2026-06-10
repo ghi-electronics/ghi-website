@@ -7,7 +7,7 @@ sidebar_label: "FileAttributes"
 
 **NuGet:** `GHIElectronics.TinyCLR.IO`<br/>**Assembly:** `GHIElectronics.TinyCLR.IO`<br/>**Namespace:** `System.IO`
 
-_No description available._
+Attributes that can be set on a file or directory.
 
 ```csharp
 public enum FileAttributes
@@ -17,9 +17,9 @@ public enum FileAttributes
 
 | Name | Value | Description |
 |---|---|---|
-| `ReadOnly` | `0x1` |  |
-| `Hidden` | `0x2` |  |
-| `System` | `0x4` |  |
-| `Directory` | `0x10` |  |
-| `Archive` | `0x20` |  |
-| `Normal` | `0x80` |  |
+| `ReadOnly` | `0x1` | The file or directory is read-only. |
+| `Hidden` | `0x2` | The file or directory is hidden. |
+| `System` | `0x4` | The file or directory is part of the operating system. |
+| `Directory` | `0x10` | The entry is a directory. |
+| `Archive` | `0x20` | The file is marked for backup or removal. |
+| `Normal` | `0x80` | The file has no other attributes set. |

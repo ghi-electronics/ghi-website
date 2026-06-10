@@ -21,7 +21,7 @@ public sealed class Directory
 public static string[] GetLogicalDrives()
 ```
 
-_No description available._
+Returns the names of all mounted logical drives.
 
 **Returns** `string[]`
 
@@ -31,7 +31,7 @@ _No description available._
 public static DirectoryInfo CreateDirectory(string path)
 ```
 
-_No description available._
+Creates the directory at the path, including any missing parents, and returns it.
 
 **Returns** `DirectoryInfo`
 
@@ -41,7 +41,7 @@ _No description available._
 public static bool Exists(string path)
 ```
 
-_No description available._
+Returns whether the directory at the path exists.
 
 **Returns** `bool`
 
@@ -51,7 +51,7 @@ _No description available._
 public static IEnumerable EnumerateFiles(string path)
 ```
 
-_No description available._
+Returns an enumerable over the file names in the directory.
 
 **Returns** `IEnumerable`
 
@@ -61,7 +61,7 @@ _No description available._
 public static IEnumerable EnumerateDirectories(string path)
 ```
 
-_No description available._
+Returns an enumerable over the subdirectory names in the directory.
 
 **Returns** `IEnumerable`
 
@@ -71,7 +71,7 @@ _No description available._
 public static IEnumerable EnumerateFileSystemEntries(string path)
 ```
 
-_No description available._
+Returns an enumerable over the file and subdirectory names in the directory.
 
 **Returns** `IEnumerable`
 
@@ -81,7 +81,7 @@ _No description available._
 public static string[] GetFiles(string path)
 ```
 
-_No description available._
+Returns the names of the files in the directory.
 
 **Returns** `string[]`
 
@@ -91,7 +91,7 @@ _No description available._
 public static string[] GetDirectories(string path)
 ```
 
-_No description available._
+Returns the names of the subdirectories in the directory.
 
 **Returns** `string[]`
 
@@ -101,7 +101,7 @@ _No description available._
 public static string GetCurrentDirectory()
 ```
 
-_No description available._
+Returns the application's current working directory.
 
 **Returns** `string`
 
@@ -111,7 +111,7 @@ _No description available._
 public static void SetCurrentDirectory(string path)
 ```
 
-_No description available._
+Sets the application's current working directory.
 
 ### Move(string sourceDirName, string destDirName)
 
@@ -119,7 +119,7 @@ _No description available._
 public static void Move(string sourceDirName, string destDirName)
 ```
 
-_No description available._
+Moves a directory and its contents to a new location.
 
 ### Delete(string path)
 
@@ -127,7 +127,7 @@ _No description available._
 public static void Delete(string path)
 ```
 
-_No description available._
+Deletes the empty directory at the path.
 
 ### Delete(string path, bool recursive)
 
@@ -135,4 +135,4 @@ _No description available._
 public static void Delete(string path, bool recursive)
 ```
 
-_No description available._
+Deletes the directory at the path, optionally including its contents.

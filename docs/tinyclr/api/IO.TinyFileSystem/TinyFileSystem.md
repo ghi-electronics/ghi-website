@@ -13,7 +13,27 @@ Tiny File System provides a basic file system which can be overlayed on any devi
 public class TinyFileSystem : IDisposable
 ```
 
+## Constructors
+
+### TinyFileSystem(IStorageControllerProvider storageProvider, uint clusterSize)
+
+```csharp
+public TinyFileSystem(IStorageControllerProvider storageProvider, uint clusterSize)
+```
+
+Creates an instance of TinyFileSystem.
+
 ## Methods
+
+### CheckIfFormatted()
+
+```csharp
+public bool CheckIfFormatted()
+```
+
+Scan the flash module to verify that it is formatted.
+
+**Returns** `bool` — true if formatted else false.
 
 ### Mount()
 
@@ -204,7 +224,7 @@ Get the current statistics of the file system.
 protected void Dispose(bool disposing)
 ```
 
-_No description available._
+Releases the underlying block driver when `disposing` is true.
 
 ### Dispose()
 
@@ -212,4 +232,4 @@ _No description available._
 public void Dispose()
 ```
 
-_No description available._
+Releases all resources used by the file system.

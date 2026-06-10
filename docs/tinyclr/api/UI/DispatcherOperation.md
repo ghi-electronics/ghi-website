@@ -47,9 +47,9 @@ Returns the result of the operation if it has completed.
 public DispatcherOperationStatus Wait()
 ```
 
-_No description available._
+Waits for this operation to complete.
 
-**Returns** `DispatcherOperationStatus`
+**Returns** `DispatcherOperationStatus` — The status of the operation. To obtain the return value of the invoked delegate, use the the Result property.
 
 ### Wait(TimeSpan timeout)
 

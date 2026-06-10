@@ -34,6 +34,56 @@ function parseArgs(argv) {
 //    Output is the same length & line layout as the source; `///` doc-comment
 //    lines are collected separately (keyed by the line they document).
 // ---------------------------------------------------------------------------
+// Preprocessor: blank out code in inactive #if/#elif/#else regions so the docs
+// match the shipped device Release assembly (e.g. #if ENABLE_MANAGED_GRAPHIC and
+// #if DEBUG are dropped, while #if !DESKTOP stays active). Directive lines are
+// blanked too. Line positions are preserved (blank to spaces, keep newlines) so
+// downstream line lookups stay valid. Undefined symbols evaluate to false.
+const PP_DEFINED = new Set(['TRACE']);
+
+function ppEval(expr, defined) {
+  const toks = expr.match(/[A-Za-z_][A-Za-z0-9_]*|&&|\|\||[!()]/g) || [];
+  let pos = 0;
+  const peek = () => toks[pos];
+  const next = () => toks[pos++];
+  function parseOr() { let v = parseAnd(); while (peek() === '||') { next(); v = parseAnd() || v; } return v; }
+  function parseAnd() { let v = parseUnary(); while (peek() === '&&') { next(); v = parseUnary() && v; } return v; }
+  function parseUnary() { if (peek() === '!') { next(); return !parseUnary(); } return parsePrimary(); }
+  function parsePrimary() {
+    const t = next();
+    if (t === '(') { const v = parseOr(); if (peek() === ')') next(); return v; }
+    if (t === 'true') return true;
+    if (t === 'false' || t === undefined) return false;
+    return defined.has(t);
+  }
+  return !!parseOr();
+}
+
+function preprocess(src, defined) {
+  if (src.indexOf('#if') === -1) return src;
+  const lines = src.split('\n');
+  const stack = []; // { active, taken, parentActive }
+  const cur = () => stack.length ? stack[stack.length - 1].active : true;
+  for (let i = 0; i < lines.length; i++) {
+    const ln = lines[i];
+    // No `$` anchor: lines may keep a trailing `\r` (CRLF), which `.`/`$` won't span.
+    const m = /^\s*#\s*(if|elif|else|endif|define|undef|region|endregion|pragma|error|warning|line|nullable)\b(.*)/.exec(ln);
+    if (m) {
+      const dir = m[1], arg = (m[2] || '').replace(/\/\/.*$/, '').trim();
+      if (dir === 'if') { const pa = cur(); const c = pa && ppEval(arg, defined); stack.push({ active: c, taken: c, parentActive: pa }); }
+      else if (dir === 'elif') { const t = stack[stack.length - 1]; if (t) { const c = t.parentActive && !t.taken && ppEval(arg, defined); t.active = c; if (c) t.taken = true; } }
+      else if (dir === 'else') { const t = stack[stack.length - 1]; if (t) { t.active = t.parentActive && !t.taken; t.taken = true; } }
+      else if (dir === 'endif') { stack.pop(); }
+      else if (dir === 'define') { if (cur()) defined.add(arg.split(/\s/)[0]); }
+      else if (dir === 'undef') { if (cur()) defined.delete(arg.split(/\s/)[0]); }
+      lines[i] = ' '.repeat(ln.length);
+      continue;
+    }
+    if (!cur()) lines[i] = ' '.repeat(ln.length);
+  }
+  return lines.join('\n');
+}
+
 function cleanAndCollectDocs(src) {
   const out = Buffer.from(src, 'utf8').toString('utf8').split('');
   const n = src.length;
@@ -47,10 +97,15 @@ function cleanAndCollectDocs(src) {
     // comments
     if (c === '/' && d === '/') {
       let j = src.indexOf('\n', i); if (j === -1) j = n;
-      const isDoc = src[i + 2] === '/' && src[i + 3] !== '/';
+      // Only a leading `///` (first non-whitespace on its line) is a doc comment.
+      // A `///` trailing after code on the same line is just a comment (Roslyn
+      // ignores it too) and must not merge into the preceding doc block.
+      let ls = i; while (ls > 0 && src[ls - 1] !== '\n') ls--;
+      const atLineStart = !/\S/.test(src.slice(ls, i));
+      const isDoc = src[i + 2] === '/' && src[i + 3] !== '/' && atLineStart;
       if (isDoc) {
         const line = lineOf(src, i);
-        docLines.push({ line, text: src.slice(i + 3, j).replace(/\r$/, '') });
+        docLines.push({ line, text: src.slice(i + 3, j).replace(/\r$/, ''), end: j });
       }
       blank(i, j); i = j; continue;
     }
@@ -67,13 +122,20 @@ function cleanAndCollectDocs(src) {
   }
 
   // Fold consecutive doc lines into blocks; map block -> first code line after it.
+  // Key to the next line that actually holds code, skipping blank lines AND
+  // blanked-out non-doc comment lines (e.g. NETMF-style `// Summary:` blocks that
+  // sit between a `///` comment and its declaration — Roslyn still attaches the
+  // doc to the declaration, so the rendered docs must match that).
   const docByLine = new Map();
   let b = 0;
   while (b < docLines.length) {
     let e = b;
     while (e + 1 < docLines.length && docLines[e + 1].line === docLines[e].line + 1) e++;
     const text = docLines.slice(b, e + 1).map(x => x.text).join('\n');
-    docByLine.set(docLines[e].line + 1, text);
+    let p = docLines[e].end;            // index just past the last `///` line
+    while (p < n && (out[p] === ' ' || out[p] === '\t' || out[p] === '\r' || out[p] === '\n')) p++;
+    const targetLine = p < n ? lineOf(src, p) : docLines[e].line + 1;
+    docByLine.set(targetLine, text);
     b = e + 1;
   }
   return { code: out.join(''), docByLine };
@@ -249,13 +311,21 @@ function parseDoc(text) {
   if (!text) return null;
   const inheritdoc = /<inheritdoc\s*\/?>/.test(text);
   const summaryM = /<summary>([\s\S]*?)<\/summary>/.exec(text);
+  let summary = summaryM ? cleanInline(summaryM[1]) : '';
+  // Fall back to NETMF-style <devdoc> when there's no <summary>, but ignore the
+  // boilerplate "[To be supplied.]" placeholder that litters those comments.
+  if (!summary) {
+    const dd = /<devdoc>([\s\S]*?)<\/devdoc>/.exec(text);
+    if (dd) summary = cleanInline(dd[1]);
+  }
+  if (/^\[\s*to be supplied\.?\s*\]$/i.test(summary.trim())) summary = '';
   const returnsM = /<returns>([\s\S]*?)<\/returns>/.exec(text);
   const params = {};
   for (const m of text.matchAll(/<param\s+name\s*=\s*"([^"]+)"\s*>([\s\S]*?)<\/param>/g))
     params[m[1]] = cleanInline(m[2]);
   return {
     inheritdoc,
-    summary: summaryM ? cleanInline(summaryM[1]) : '',
+    summary,
     returns: returnsM ? cleanInline(returnsM[1]) : '',
     params,
   };
@@ -919,7 +989,7 @@ async function main() {
     const assembly = proj;
     const files = await findCsFiles(path.join(libsRoot, proj));
     for (const f of files) {
-      const src = await fs.readFile(f, 'utf8');
+      const src = preprocess(await fs.readFile(f, 'utf8'), new Set(PP_DEFINED));
       try { parseFile(src, assembly, model); }
       catch (err) { console.warn(`[api] parse warning in ${path.relative(libsRoot, f)}: ${err.message}`); }
     }

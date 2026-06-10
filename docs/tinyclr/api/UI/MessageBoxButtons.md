@@ -7,7 +7,7 @@ sidebar_label: "MessageBoxButtons"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+Specifies which buttons are shown on the message box.
 
 ```csharp
 public enum MessageBoxButtons
@@ -17,7 +17,7 @@ public enum MessageBoxButtons
 
 | Name | Value | Description |
 |---|---|---|
-| `OK` | `0` |  |
-| `Cancel` | `1` |  |
-| `OKCancel` | `2` |  |
-| `YesNo` | `3` |  |
+| `OK` | `0` | A single OK button. |
+| `Cancel` | `1` | A single Cancel button. |
+| `OKCancel` | `2` | OK and Cancel buttons. |
+| `YesNo` | `3` | Yes and No buttons. |

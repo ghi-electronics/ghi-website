@@ -7,7 +7,7 @@ sidebar_label: "Polygon"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Shapes`
 
-_No description available._
+Draws a polygon defined by a set of points.
 
 ```csharp
 public class Polygon : Shape
@@ -21,7 +21,7 @@ public class Polygon : Shape
 public Polygon()
 ```
 
-_No description available._
+Creates an empty polygon.
 
 ### Polygon(int[] pts)
 
@@ -29,7 +29,7 @@ _No description available._
 public Polygon(int[] pts)
 ```
 
-_No description available._
+Creates a polygon from the given points.
 
 ## Properties
 
@@ -39,7 +39,7 @@ _No description available._
 public int[] Points { get; set; }
 ```
 
-_No description available._
+The points that define the polygon as alternating x and y coordinates.
 
 ## Methods
 
@@ -49,4 +49,4 @@ _No description available._
 public override void OnRender(Media.DrawingContext dc)
 ```
 
-_No description available._
+Renders the polygon to the drawing context.

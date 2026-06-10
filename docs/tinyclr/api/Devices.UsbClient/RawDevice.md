@@ -116,7 +116,7 @@ The serial number of the device.
 public DeviceState DeviceState { get; }
 ```
 
-_No description available._
+The current state of the device.
 
 ## Methods
 
@@ -175,7 +175,7 @@ Adds an interface to the device.
 public virtual void Enable()
 ```
 
-_No description available._
+Enables the device so the host can communicate with it.
 
 ### Disable()
 
@@ -183,7 +183,7 @@ _No description available._
 public virtual void Disable()
 ```
 
-_No description available._
+Disables the device.
 
 ### Dispose()
 
@@ -191,7 +191,7 @@ _No description available._
 public void Dispose()
 ```
 
-_No description available._
+Disposes the device.
 
 ### CreateStream(int writeEndpoint, int readEndpoint)
 
@@ -214,7 +214,7 @@ Creates a steam for reading and writing to the device.
 public void SetInterfaceMap(byte interfaceIndex, byte data1, byte data2, byte data3)
 ```
 
-_No description available._
+Maps additional data to the given interface index.
 
 ### CreateStream(int index, RawDevice parent)
 
@@ -239,7 +239,7 @@ Creates a new instance of the stream type for this device type.
 public event DeviceStateChangedEventHandler DeviceStateChanged
 ```
 
-_No description available._
+Raised when the device state changes.
 
 ## Fields
 
@@ -249,7 +249,7 @@ _No description available._
 public const ushort MAX_POWER
 ```
 
-_No description available._
+The default maximum power, in 2 mA units.
 
 ### GHI_VID
 
@@ -257,4 +257,4 @@ _No description available._
 public const ushort GHI_VID
 ```
 
-_No description available._
+The GHI Electronics vendor id.

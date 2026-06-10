@@ -21,7 +21,7 @@ public sealed class NetworkControllerApiWrapper : INetworkControllerProvider
 public NetworkControllerApiWrapper(NativeApi api)
 ```
 
-_No description available._
+Creates a wrapper bound to the given native network API.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public NativeApi Api { get; }
 ```
 
-_No description available._
+The native API this wrapper is bound to.
 
 ### InterfaceType
 
@@ -39,7 +39,7 @@ _No description available._
 public extern NetworkInterfaceType InterfaceType { get; }
 ```
 
-_No description available._
+Transport type of the interface — Ethernet, WiFi, or PPP. _(inherited)_
 
 ### CommunicationInterface
 
@@ -47,7 +47,7 @@ _No description available._
 public extern NetworkCommunicationInterface CommunicationInterface { get; }
 ```
 
-_No description available._
+Physical bus carrying the interface — built-in MAC, SPI, or UART. _(inherited)_
 
 ## Methods
 
@@ -57,7 +57,7 @@ _No description available._
 public void Dispose()
 ```
 
-_No description available._
+Releases the native network controller.
 
 ### SetNetworkLinkConnectedChangedEventEnabled(bool enabled)
 
@@ -65,7 +65,7 @@ _No description available._
 public extern void SetNetworkLinkConnectedChangedEventEnabled(bool enabled)
 ```
 
-_No description available._
+Enables or disables native delivery of link-connected-changed events.
 
 ### SetNetworkAddressChangedEventEnabled(bool enabled)
 
@@ -73,7 +73,7 @@ _No description available._
 public extern void SetNetworkAddressChangedEventEnabled(bool enabled)
 ```
 
-_No description available._
+Enables or disables native delivery of address-changed events.
 
 ### Enable()
 
@@ -81,7 +81,7 @@ _No description available._
 public extern void Enable()
 ```
 
-_No description available._
+Brings the interface up. _(inherited)_
 
 ### EnableAsync()
 
@@ -89,7 +89,7 @@ _No description available._
 public extern void EnableAsync()
 ```
 
-_No description available._
+Non-blocking variant of `Enable` that brings the interface up on a background native task.
 
 ### Disable()
 
@@ -97,7 +97,7 @@ _No description available._
 public extern void Disable()
 ```
 
-_No description available._
+Brings the interface down. _(inherited)_
 
 ### Suspend()
 
@@ -105,7 +105,7 @@ _No description available._
 public extern void Suspend()
 ```
 
-_No description available._
+Suspends the interface to a low-power state. _(inherited)_
 
 ### Resume()
 
@@ -113,7 +113,7 @@ _No description available._
 public extern void Resume()
 ```
 
-_No description available._
+Resumes a suspended interface. _(inherited)_
 
 ### SetAsDefault()
 
@@ -121,7 +121,7 @@ _No description available._
 public extern void SetAsDefault()
 ```
 
-_No description available._
+Promotes this controller's interface to lwIP's default route at the firmware level.
 
 ### SetInterfaceSettings(NetworkInterfaceSettings settings)
 
@@ -129,7 +129,7 @@ _No description available._
 public void SetInterfaceSettings(NetworkInterfaceSettings settings)
 ```
 
-_No description available._
+Applies the interface settings (IP address, DHCP, DNS). _(inherited)_
 
 ### SetCommunicationInterfaceSettings(NetworkCommunicationInterfaceSettings settings)
 
@@ -137,7 +137,7 @@ _No description available._
 public void SetCommunicationInterfaceSettings(NetworkCommunicationInterfaceSettings settings)
 ```
 
-_No description available._
+Applies the underlying physical-bus settings. _(inherited)_
 
 ### GetLinkConnected()
 
@@ -145,7 +145,7 @@ _No description available._
 public extern bool GetLinkConnected()
 ```
 
-_No description available._
+Returns true when the physical link is up.
 
 **Returns** `bool`
 
@@ -155,7 +155,7 @@ _No description available._
 public extern NetworkIPProperties GetIPProperties()
 ```
 
-_No description available._
+Returns the current IP address, subnet, gateway, and DNS servers.
 
 **Returns** `NetworkIPProperties`
 
@@ -165,7 +165,7 @@ _No description available._
 public extern NetworkInterfaceProperties GetInterfaceProperties()
 ```
 
-_No description available._
+Returns interface-specific properties such as the MAC address.
 
 **Returns** `NetworkInterfaceProperties`
 
@@ -175,7 +175,7 @@ _No description available._
 public extern int Create(AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType)
 ```
 
-_No description available._
+Creates a native socket and returns its handle.
 
 **Returns** `int`
 
@@ -185,7 +185,7 @@ _No description available._
 public extern void Close(int socket)
 ```
 
-_No description available._
+Closes the given socket.
 
 ### Bind(int socket, SocketAddress address)
 
@@ -193,7 +193,7 @@ _No description available._
 public extern void Bind(int socket, SocketAddress address)
 ```
 
-_No description available._
+Binds the socket to a local address.
 
 ### Listen(int socket, int backlog)
 
@@ -201,7 +201,7 @@ _No description available._
 public extern void Listen(int socket, int backlog)
 ```
 
-_No description available._
+Places the socket into the listening state with the given backlog.
 
 ### Accept(int socket)
 
@@ -209,7 +209,7 @@ _No description available._
 public extern int Accept(int socket)
 ```
 
-_No description available._
+Accepts a pending connection and returns the new socket handle.
 
 **Returns** `int`
 
@@ -219,7 +219,7 @@ _No description available._
 public extern void Connect(int socket, SocketAddress address)
 ```
 
-_No description available._
+Connects the socket to a remote address.
 
 ### Available(int socket)
 
@@ -227,7 +227,7 @@ _No description available._
 public extern int Available(int socket)
 ```
 
-_No description available._
+Returns the number of bytes available to read on the socket.
 
 **Returns** `int`
 
@@ -237,7 +237,7 @@ _No description available._
 public extern bool Poll(int socket, int microSeconds, SelectMode mode)
 ```
 
-_No description available._
+Polls the socket for the given mode within the timeout.
 
 **Returns** `bool`
 
@@ -247,7 +247,7 @@ _No description available._
 public extern int Send(int socket, byte[] buffer, int offset, int count, SocketFlags flags)
 ```
 
-_No description available._
+Sends data on a connected socket and returns the number of bytes sent.
 
 **Returns** `int`
 
@@ -257,7 +257,7 @@ _No description available._
 public extern int Receive(int socket, byte[] buffer, int offset, int count, SocketFlags flags)
 ```
 
-_No description available._
+Receives data on a connected socket and returns the number of bytes read.
 
 **Returns** `int`
 
@@ -267,7 +267,7 @@ _No description available._
 public extern int SendTo(int socket, byte[] buffer, int offset, int count, SocketFlags flags, SocketAddress address)
 ```
 
-_No description available._
+Sends data to a specific address and returns the number of bytes sent.
 
 **Returns** `int`
 
@@ -277,7 +277,7 @@ _No description available._
 public extern int ReceiveFrom(int socket, byte[] buffer, int offset, int count, SocketFlags flags, ref SocketAddress address)
 ```
 
-_No description available._
+Receives data and reports the sender address; returns the number of bytes read.
 
 **Returns** `int`
 
@@ -287,7 +287,7 @@ _No description available._
 public extern void GetRemoteAddress(int socket, out SocketAddress address)
 ```
 
-_No description available._
+Gets the remote address of a connected socket.
 
 ### GetLocalAddress(int socket, out SocketAddress address)
 
@@ -295,7 +295,7 @@ _No description available._
 public extern void GetLocalAddress(int socket, out SocketAddress address)
 ```
 
-_No description available._
+Gets the local address bound to the socket.
 
 ### GetOption(int socket, SocketOptionLevel optionLevel, SocketOptionName optionName, byte[] optionValue)
 
@@ -303,7 +303,7 @@ _No description available._
 public extern void GetOption(int socket, SocketOptionLevel optionLevel, SocketOptionName optionName, byte[] optionValue)
 ```
 
-_No description available._
+Reads a socket option value.
 
 ### SetOption(int socket, SocketOptionLevel optionLevel, SocketOptionName optionName, byte[] optionValue)
 
@@ -311,7 +311,7 @@ _No description available._
 public extern void SetOption(int socket, SocketOptionLevel optionLevel, SocketOptionName optionName, byte[] optionValue)
 ```
 
-_No description available._
+Writes a socket option value.
 
 ### AuthenticateAsClient(int socketHandle, string targetHost, X509Certificate caCertificate, X509Certificate clientCertificate, SslProtocols sslProtocols, SslVerification sslVerification)
 
@@ -319,7 +319,7 @@ _No description available._
 public extern int AuthenticateAsClient(int socketHandle, string targetHost, X509Certificate caCertificate, X509Certificate clientCertificate, SslProtocols sslProtocols, SslVerification sslVerification)
 ```
 
-_No description available._
+Performs a TLS client handshake on the socket and returns the secure handle.
 
 **Returns** `int`
 
@@ -329,7 +329,7 @@ _No description available._
 public extern int AuthenticateAsServer(int socketHandle, X509Certificate certificate, SslProtocols sslProtocols)
 ```
 
-_No description available._
+Performs a TLS server handshake on the socket and returns the secure handle.
 
 **Returns** `int`
 
@@ -339,7 +339,7 @@ _No description available._
 public extern int SecureRead(int handle, byte[] buffer, int offset, int count)
 ```
 
-_No description available._
+Reads decrypted data from a secured connection.
 
 **Returns** `int`
 
@@ -349,7 +349,7 @@ _No description available._
 public extern int SecureWrite(int handle, byte[] buffer, int offset, int count)
 ```
 
-_No description available._
+Writes data to a secured connection, encrypting it.
 
 **Returns** `int`
 
@@ -359,7 +359,7 @@ _No description available._
 public extern void GetHostByName(string name, out string canonicalName, out SocketAddress[] addresses)
 ```
 
-_No description available._
+Resolves a host name to its canonical name and addresses via DNS.
 
 ### GetAccessPointClientLinkConnect(WiFiNetworkInterfaceSettings settings)
 
@@ -367,7 +367,7 @@ _No description available._
 public extern bool GetAccessPointClientLinkConnect(WiFiNetworkInterfaceSettings settings)
 ```
 
-_No description available._
+Returns true when a station is connected to this access point.
 
 **Returns** `bool`
 
@@ -377,7 +377,7 @@ _No description available._
 public extern void Shutdown(int socket, SocketShutdown how)
 ```
 
-_No description available._
+Half-closes the socket in the given direction (lwIP shutdown).
 
 ## Events
 
@@ -387,7 +387,7 @@ _No description available._
 public event NetworkLinkConnectedChangedEventHandler NetworkLinkConnectedChanged
 ```
 
-_No description available._
+Raised when the physical link goes up or down. _(inherited)_
 
 ### NetworkAddressChanged
 
@@ -395,4 +395,4 @@ _No description available._
 public event NetworkAddressChangedEventHandler NetworkAddressChanged
 ```
 
-_No description available._
+Raised when the IP address, gateway, or DNS servers change. _(inherited)_

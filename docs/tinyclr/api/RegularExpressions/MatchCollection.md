@@ -7,7 +7,7 @@ sidebar_label: "MatchCollection"
 
 **NuGet:** `GHIElectronics.TinyCLR.RegularExpressions`<br/>**Assembly:** `GHIElectronics.TinyCLR.RegularExpressions`<br/>**Namespace:** `System.Text.RegularExpressions`
 
-_No description available._
+Represents the set of successful matches found by iteratively applying a regular expression pattern to the input string.
 
 ```csharp
 public class MatchCollection : ICollection, IEnumerable
@@ -55,6 +55,6 @@ Gets an object that can be used to synchronize access to the collection.
 public IEnumerator GetEnumerator()
 ```
 
-_No description available._
+Returns an enumerator that iterates through the collection.
 
 **Returns** `IEnumerator`

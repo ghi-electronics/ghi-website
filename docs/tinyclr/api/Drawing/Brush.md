@@ -21,7 +21,7 @@ public abstract class Brush : MarshalByRefObject, ICloneable, IDisposable
 public abstract object Clone()
 ```
 
-_No description available._
+Creates an exact copy of this brush.
 
 **Returns** `object`
 
@@ -31,7 +31,7 @@ _No description available._
 public void Dispose()
 ```
 
-_No description available._
+Releases the resources used by this brush.
 
 ### Dispose(bool disposing)
 
@@ -39,4 +39,4 @@ _No description available._
 protected virtual void Dispose(bool disposing)
 ```
 
-_No description available._
+Releases the resources used by this brush.

@@ -21,7 +21,7 @@ public interface ISet<T> : ICollection<T>
 new bool Add(T item)
 ```
 
-_No description available._
+Adds an element to the set and returns whether it was newly added.
 
 **Returns** `bool`
 
@@ -31,7 +31,7 @@ _No description available._
 void UnionWith(IEnumerable<T> other)
 ```
 
-_No description available._
+Modifies the set to contain all elements that are present in itself, the specified collection, or both.
 
 ### IntersectWith(IEnumerable&lt;T> other)
 
@@ -39,7 +39,7 @@ _No description available._
 void IntersectWith(IEnumerable<T> other)
 ```
 
-_No description available._
+Modifies the set to contain only elements that are also present in the specified collection.
 
 ### ExceptWith(IEnumerable&lt;T> other)
 
@@ -47,7 +47,7 @@ _No description available._
 void ExceptWith(IEnumerable<T> other)
 ```
 
-_No description available._
+Removes all elements in the specified collection from the set.
 
 ### SymmetricExceptWith(IEnumerable&lt;T> other)
 
@@ -55,7 +55,7 @@ _No description available._
 void SymmetricExceptWith(IEnumerable<T> other)
 ```
 
-_No description available._
+Modifies the set to contain only elements that are present either in itself or in the specified collection, but not both.
 
 ### IsSubsetOf(IEnumerable&lt;T> other)
 
@@ -63,7 +63,7 @@ _No description available._
 bool IsSubsetOf(IEnumerable<T> other)
 ```
 
-_No description available._
+Determines whether the set is a subset of the specified collection.
 
 **Returns** `bool`
 
@@ -73,7 +73,7 @@ _No description available._
 bool IsSupersetOf(IEnumerable<T> other)
 ```
 
-_No description available._
+Determines whether the set is a superset of the specified collection.
 
 **Returns** `bool`
 
@@ -83,7 +83,7 @@ _No description available._
 bool IsProperSupersetOf(IEnumerable<T> other)
 ```
 
-_No description available._
+Determines whether the set is a proper superset of the specified collection.
 
 **Returns** `bool`
 
@@ -93,7 +93,7 @@ _No description available._
 bool IsProperSubsetOf(IEnumerable<T> other)
 ```
 
-_No description available._
+Determines whether the set is a proper subset of the specified collection.
 
 **Returns** `bool`
 
@@ -103,7 +103,7 @@ _No description available._
 bool Overlaps(IEnumerable<T> other)
 ```
 
-_No description available._
+Determines whether the set and the specified collection share any common elements.
 
 **Returns** `bool`
 
@@ -113,6 +113,6 @@ _No description available._
 bool SetEquals(IEnumerable<T> other)
 ```
 
-_No description available._
+Determines whether the set and the specified collection contain the same elements.
 
 **Returns** `bool`

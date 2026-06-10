@@ -7,7 +7,7 @@ sidebar_label: "ImplicitDataReceivedHandler"
 
 **NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`
 
-_No description available._
+Handler for `ImplicitDataReceived`; receives a race-free snapshot of each Class-1 payload.
 
 ```csharp
 public delegate void ImplicitDataReceivedHandler(ScannerController scanner, byte[] snapshot);

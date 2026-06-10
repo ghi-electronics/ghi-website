@@ -7,7 +7,7 @@ sidebar_label: "RgbFormat"
 
 **NuGet:** `GHIElectronics.TinyCLR.Drawing`<br/>**Assembly:** `GHIElectronics.TinyCLR.Drawing`<br/>**Namespace:** `System.Drawing`
 
-_No description available._
+Specifies the channel ordering of color data.
 
 ```csharp
 public enum RgbFormat
@@ -17,7 +17,7 @@ public enum RgbFormat
 
 | Name | Value | Description |
 |---|---|---|
-| `Rgb` | `0` |  |
-| `Bgr` | `1` |  |
-| `Grg` | `2` |  |
-| `Rbg` | `3` |  |
+| `Rgb` | `0` | Red, green, blue order. |
+| `Bgr` | `1` | Blue, green, red order. |
+| `Grg` | `2` | Green, red, green order. |
+| `Rbg` | `3` | Red, blue, green order. |

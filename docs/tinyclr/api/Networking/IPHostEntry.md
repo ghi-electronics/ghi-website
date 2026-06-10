@@ -7,7 +7,7 @@ sidebar_label: "IPHostEntry"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking`<br/>**Namespace:** `System.Net`
 
-_No description available._
+Holds the host name, aliases, and IP addresses associated with a host.
 
 ```csharp
 public class IPHostEntry
@@ -21,7 +21,7 @@ public class IPHostEntry
 public string HostName { get; set; }
 ```
 
-_No description available._
+The DNS name of the host.
 
 ### AddressList
 
@@ -29,7 +29,7 @@ _No description available._
 public IPAddress[] AddressList { get; set; }
 ```
 
-_No description available._
+The list of IP addresses associated with the host.
 
 ### Aliases
 
@@ -37,4 +37,4 @@ _No description available._
 public string[] Aliases { get; set; }
 ```
 
-_No description available._
+The list of aliases associated with the host.

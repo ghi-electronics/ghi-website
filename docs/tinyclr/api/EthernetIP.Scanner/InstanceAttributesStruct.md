@@ -7,7 +7,7 @@ sidebar_label: "InstanceAttributesStruct"
 
 **NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Scanner.ObjectLibrary`
 
-_No description available._
+Holds the instance-level attributes of the Identity Object.
 
 ```csharp
 public struct InstanceAttributesStruct
@@ -21,7 +21,7 @@ public struct InstanceAttributesStruct
 public ushort VendorID
 ```
 
-_No description available._
+The device manufacturer's vendor ID.
 
 ### DeviceType
 
@@ -29,7 +29,7 @@ _No description available._
 public ushort DeviceType
 ```
 
-_No description available._
+The CIP device type.
 
 ### ProductCode
 
@@ -37,7 +37,7 @@ _No description available._
 public ushort ProductCode
 ```
 
-_No description available._
+The product code.
 
 ### Revision
 
@@ -45,7 +45,7 @@ _No description available._
 public Revison Revision
 ```
 
-_No description available._
+The device revision (major, minor).
 
 ### Status
 
@@ -53,7 +53,7 @@ _No description available._
 public ushort Status
 ```
 
-_No description available._
+The current device status word.
 
 ### SerialNumber
 
@@ -61,7 +61,7 @@ _No description available._
 public uint SerialNumber
 ```
 
-_No description available._
+The device serial number.
 
 ### ProductName
 
@@ -69,4 +69,4 @@ _No description available._
 public string ProductName
 ```
 
-_No description available._
+The human-readable product name.

@@ -7,7 +7,7 @@ sidebar_label: "HardwareButton"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Input`
 
-_No description available._
+Identifies a hardware button.
 
 ```csharp
 public enum HardwareButton
@@ -17,11 +17,11 @@ public enum HardwareButton
 
 | Name | Value | Description |
 |---|---|---|
-| `None` |  |  |
-| `Down` |  |  |
-| `Up` |  |  |
-| `Left` |  |  |
-| `Right` |  |  |
-| `Select` |  |  |
-| `Back` |  |  |
-| `Home` |  |  |
+| `None` |  | No button. |
+| `Down` |  | The down button. |
+| `Up` |  | The up button. |
+| `Left` |  | The left button. |
+| `Right` |  | The right button. |
+| `Select` |  | The select button. |
+| `Back` |  | The back button. |
+| `Home` |  | The home button. |

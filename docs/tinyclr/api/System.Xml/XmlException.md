@@ -21,7 +21,7 @@ public class XmlException : Exception
 public XmlException() : base()
 ```
 
-_No description available._
+Initializes a new instance of the `XmlException` class.
 
 ### XmlException(string message)
 
@@ -29,7 +29,7 @@ _No description available._
 public XmlException(string message) : base(message)
 ```
 
-_No description available._
+Initializes a new instance of the `XmlException` class with the specified message.
 
 ### XmlException(string message, Exception innerException)
 
@@ -37,7 +37,7 @@ _No description available._
 public XmlException(string message, Exception innerException) : base(message, innerException)
 ```
 
-_No description available._
+Initializes a new instance of the `XmlException` class with the specified message and inner exception.
 
 ### XmlException(string message, Exception innerException, int lineNumber, int linePosition)
 
@@ -45,7 +45,7 @@ _No description available._
 public XmlException(string message, Exception innerException, int lineNumber, int linePosition) : base(message, innerException)
 ```
 
-_No description available._
+Initializes a new instance of the `XmlException` class with the specified message, inner exception, and line information.
 
 ## Properties
 
@@ -55,7 +55,7 @@ _No description available._
 public int LineNumber { get; }
 ```
 
-_No description available._
+The line number where the error occurred.
 
 ### LinePosition
 
@@ -63,4 +63,4 @@ _No description available._
 public int LinePosition { get; }
 ```
 
-_No description available._
+The line position where the error occurred.

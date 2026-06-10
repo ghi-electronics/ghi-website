@@ -7,7 +7,7 @@ sidebar_label: "Canvas"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+Panel that positions children by explicit left/top/right/bottom anchors.
 
 ```csharp
 public class Canvas : Panel
@@ -21,7 +21,7 @@ public class Canvas : Panel
 public Canvas()
 ```
 
-_No description available._
+Creates a new Canvas.
 
 ## Methods
 
@@ -31,7 +31,7 @@ _No description available._
 public static int GetBottom(UIElement e)
 ```
 
-_No description available._
+Gets the distance between the element's bottom edge and the canvas bottom.
 
 **Returns** `int`
 
@@ -41,7 +41,7 @@ _No description available._
 public static void SetBottom(UIElement e, int bottom)
 ```
 
-_No description available._
+Sets the distance between the element's bottom edge and the canvas bottom.
 
 ### GetLeft(UIElement e)
 
@@ -49,7 +49,7 @@ _No description available._
 public static int GetLeft(UIElement e)
 ```
 
-_No description available._
+Gets the distance between the element's left edge and the canvas left.
 
 **Returns** `int`
 
@@ -59,7 +59,7 @@ _No description available._
 public static void SetLeft(UIElement e, int left)
 ```
 
-_No description available._
+Sets the distance between the element's left edge and the canvas left.
 
 ### GetRight(UIElement e)
 
@@ -67,7 +67,7 @@ _No description available._
 public static int GetRight(UIElement e)
 ```
 
-_No description available._
+Gets the distance between the element's right edge and the canvas right.
 
 **Returns** `int`
 
@@ -77,7 +77,7 @@ _No description available._
 public static void SetRight(UIElement e, int right)
 ```
 
-_No description available._
+Sets the distance between the element's right edge and the canvas right.
 
 ### GetTop(UIElement e)
 
@@ -85,7 +85,7 @@ _No description available._
 public static int GetTop(UIElement e)
 ```
 
-_No description available._
+Gets the distance between the element's top edge and the canvas top.
 
 **Returns** `int`
 
@@ -95,7 +95,7 @@ _No description available._
 public static void SetTop(UIElement e, int top)
 ```
 
-_No description available._
+Sets the distance between the element's top edge and the canvas top.
 
 ### ArrangeOverride(int arrangeWidth, int arrangeHeight)
 
@@ -103,12 +103,7 @@ _No description available._
 protected override void ArrangeOverride(int arrangeWidth, int arrangeHeight)
 ```
 
-ArrangeOverride allows for the customization of the final sizing and positioning of children. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `arrangeWidth` | `int` | Final width |
-| `arrangeHeight` | `int` | Final height |
+Arranges children according to their canvas anchors.
 
 ### MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
 
@@ -116,11 +111,4 @@ ArrangeOverride allows for the customization of the final sizing and positioning
 protected override void MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
 ```
 
-Measurement override. Implement your size-to-content logic here. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `availableWidth` | `int` | Available size that parent can give to the child. May be MaxValue(when parent wants to measure to content). This is soft constraint. Child can return bigger size to indicate that it wants bigger space and hope that parent can throw in scrolling... |
-| `availableHeight` | `int` |  |
-| `desiredWidth` | `out int` |  |
-| `desiredHeight` | `out int` |  |
+Measures each child with unconstrained space.

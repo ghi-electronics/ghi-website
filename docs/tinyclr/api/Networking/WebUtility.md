@@ -7,7 +7,7 @@ sidebar_label: "WebUtility"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking`<br/>**Namespace:** `System.Net`
 
-_No description available._
+Provides methods for encoding and decoding URLs and HTML text.
 
 ```csharp
 public static class WebUtility
@@ -21,7 +21,7 @@ public static class WebUtility
 public static string UrlEncode(string value)
 ```
 
-_No description available._
+URL-encodes the specified string.
 
 **Returns** `string`
 
@@ -31,7 +31,7 @@ _No description available._
 public static string UrlDecode(string encodedValue)
 ```
 
-_No description available._
+Decodes a URL-encoded string.
 
 **Returns** `string`
 
@@ -41,7 +41,7 @@ _No description available._
 public static string HtmlEncode(string value)
 ```
 
-_No description available._
+HTML-encodes the specified string.
 
 **Returns** `string`
 
@@ -51,6 +51,6 @@ _No description available._
 public static string HtmlDecode(string value)
 ```
 
-_No description available._
+Decodes an HTML-encoded string.
 
 **Returns** `string`

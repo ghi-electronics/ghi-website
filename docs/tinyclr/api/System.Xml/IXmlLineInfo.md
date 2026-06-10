@@ -7,7 +7,7 @@ sidebar_label: "IXmlLineInfo"
 
 **NuGet:** `GHIElectronics.TinyCLR.System.Xml`<br/>**Assembly:** `GHIElectronics.TinyCLR.System.Xml`<br/>**Namespace:** `System.Xml`
 
-_No description available._
+Provides line and position information for the current node.
 
 ```csharp
 public interface IXmlLineInfo
@@ -21,7 +21,7 @@ public interface IXmlLineInfo
 int LineNumber { get; }
 ```
 
-_No description available._
+Gets the line number of the current node.
 
 ### LinePosition
 
@@ -29,7 +29,7 @@ _No description available._
 int LinePosition { get; }
 ```
 
-_No description available._
+Gets the line position of the current node.
 
 ## Methods
 
@@ -39,6 +39,6 @@ _No description available._
 bool HasLineInfo()
 ```
 
-_No description available._
+Gets a value indicating whether line information is available.
 
 **Returns** `bool`

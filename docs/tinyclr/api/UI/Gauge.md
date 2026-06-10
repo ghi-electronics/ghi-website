@@ -21,7 +21,7 @@ public class Gauge : Image, IDisposable
 public Gauge(int side) : base()
 ```
 
-_No description available._
+Creates a new square Gauge with the given side length in pixels.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public Font Font { get; set; }
 ```
 
-_No description available._
+Font used for the dial labels and digital readout.
 
 ### EnableDigitalNumber
 
@@ -39,7 +39,7 @@ _No description available._
 public bool EnableDigitalNumber { get; set; }
 ```
 
-_No description available._
+When true, a seven-segment digital value is shown below the dial.
 
 ### EnableThreshold
 
@@ -47,7 +47,7 @@ _No description available._
 public bool EnableThreshold { get; set; }
 ```
 
-_No description available._
+When true, the threshold arc around the recommended value is drawn.
 
 ### BackColor
 
@@ -55,7 +55,7 @@ _No description available._
 public MediaColor BackColor { get; set; }
 ```
 
-_No description available._
+Background color behind the dial.
 
 ### DialColor
 
@@ -63,7 +63,7 @@ _No description available._
 public MediaColor DialColor { get; set; }
 ```
 
-_No description available._
+Color of the dial face.
 
 ### ForeColor
 
@@ -71,7 +71,7 @@ _No description available._
 public MediaColor ForeColor { get; set; }
 ```
 
-_No description available._
+Color of the tick marks, labels and dial text.
 
 ### MinValue
 
@@ -79,7 +79,7 @@ _No description available._
 public float MinValue { get; set; }
 ```
 
-_No description available._
+Smallest value on the dial.
 
 ### MaxValue
 
@@ -87,7 +87,7 @@ _No description available._
 public float MaxValue { get; set; }
 ```
 
-_No description available._
+Largest value on the dial.
 
 ### ThresholdPercent
 
@@ -103,7 +103,7 @@ Threshold area around the recommended value, 1–99%.
 public float RecommendedValue { get; set; }
 ```
 
-_No description available._
+Value the threshold arc is centered on.
 
 ### Value
 
@@ -127,7 +127,7 @@ Glossiness strength 0..100 (mapped to 0..220 alpha internally).
 public int NoOfDivisions { get; set; }
 ```
 
-_No description available._
+Number of major tick divisions on the dial (2-24).
 
 ### NoOfSubDivisions
 
@@ -135,7 +135,7 @@ _No description available._
 public int NoOfSubDivisions { get; set; }
 ```
 
-_No description available._
+Number of minor tick marks between major divisions (1-10).
 
 ### DialText
 
@@ -143,7 +143,7 @@ _No description available._
 public string DialText { get; set; }
 ```
 
-_No description available._
+Label text drawn on the dial face.
 
 ### EnableTransparentBackground
 
@@ -161,7 +161,7 @@ When true, the dial face is overlapped by a slightly larger ellipse in the back 
 public void Dispose()
 ```
 
-_No description available._
+Releases the resources used by the gauge.
 
 ### Dispose(bool disposing)
 
@@ -169,7 +169,7 @@ _No description available._
 protected virtual void Dispose(bool disposing)
 ```
 
-_No description available._
+Releases the gauge's cached drawing surfaces.
 
 ### OnRender(DrawingContext dc)
 
@@ -177,4 +177,4 @@ _No description available._
 public override void OnRender(DrawingContext dc)
 ```
 
-_No description available._
+Draws the dial face and pointer needle.

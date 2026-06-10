@@ -7,7 +7,7 @@ sidebar_label: "CipAttribute"
 
 **NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`<br/>**Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`<br/>**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`
 
-_No description available._
+Represents a single attribute of a CIP object instance.
 
 ```csharp
 public class CipAttribute
@@ -21,4 +21,4 @@ public class CipAttribute
 public IntPtr Impl { get; set; }
 ```
 
-_No description available._
+Native handle to the underlying CIP attribute.

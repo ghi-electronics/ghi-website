@@ -7,7 +7,7 @@ sidebar_label: "TouchInput"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Input`
 
-_No description available._
+Represents a single touch point.
 
 ```csharp
 public class TouchInput
@@ -21,7 +21,7 @@ public class TouchInput
 public int X
 ```
 
-_No description available._
+The x coordinate of the touch point.
 
 ### Y
 
@@ -29,4 +29,4 @@ _No description available._
 public int Y
 ```
 
-_No description available._
+The y coordinate of the touch point.

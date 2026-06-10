@@ -7,7 +7,7 @@ sidebar_label: "StringDescriptor"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbClient`
 
-_No description available._
+A USB string descriptor.
 
 ```csharp
 public class StringDescriptor : Descriptor
@@ -21,7 +21,7 @@ public class StringDescriptor : Descriptor
 public StringDescriptor(byte index, string theString) : base(index)
 ```
 
-_No description available._
+Creates a new string descriptor.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public byte bIndex { get; }
 ```
 
-_No description available._
+The index of the string descriptor.
 
 ## Fields
 
@@ -41,4 +41,4 @@ _No description available._
 public string sString
 ```
 
-_No description available._
+The string value.

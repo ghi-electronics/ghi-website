@@ -21,7 +21,7 @@ public class Chart : Image, IDisposable
 public Chart(int width, int height)
 ```
 
-_No description available._
+Creates a new Chart with the given pixel size.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public int DivisionAxisX { get; set; }
 ```
 
-_No description available._
+Spacing factor between labeled divisions on the X axis.
 
 ### DivisionAxisY
 
@@ -39,7 +39,7 @@ _No description available._
 public int DivisionAxisY { get; set; }
 ```
 
-_No description available._
+Spacing factor between labeled divisions on the Y axis.
 
 ### Font
 
@@ -47,7 +47,7 @@ _No description available._
 public Font Font { get; set; }
 ```
 
-_No description available._
+Font used for chart text.
 
 ### AxisPen
 
@@ -55,7 +55,7 @@ _No description available._
 public Media.Pen AxisPen { get; set; }
 ```
 
-_No description available._
+Pen used to draw the axes.
 
 ### ChartPen
 
@@ -63,7 +63,7 @@ _No description available._
 public Media.Pen ChartPen { get; set; }
 ```
 
-_No description available._
+Pen used to draw the chart series.
 
 ### EllipseColor
 
@@ -71,7 +71,7 @@ _No description available._
 public Media.SolidColorBrush EllipseColor { get; set; }
 ```
 
-_No description available._
+Brush used to fill the data point markers.
 
 ### DivisionColor
 
@@ -79,7 +79,7 @@ _No description available._
 public Media.SolidColorBrush DivisionColor { get; set; }
 ```
 
-_No description available._
+Brush used to draw the axis division markers.
 
 ### TextColor
 
@@ -87,7 +87,7 @@ _No description available._
 public Media.SolidColorBrush TextColor { get; set; }
 ```
 
-_No description available._
+Brush used to draw chart text.
 
 ### BackgroundColor
 
@@ -95,7 +95,7 @@ _No description available._
 public Media.SolidColorBrush BackgroundColor { get; set; }
 ```
 
-_No description available._
+Brush used to fill the chart background.
 
 ### RadiusPoint
 
@@ -103,7 +103,7 @@ _No description available._
 public int RadiusPoint { get; set; }
 ```
 
-_No description available._
+Radius in pixels of the data point markers.
 
 ### ChartTitle
 
@@ -111,7 +111,7 @@ _No description available._
 public string ChartTitle { get; set; }
 ```
 
-_No description available._
+Title text shown above the chart.
 
 ### Items
 
@@ -119,7 +119,7 @@ _No description available._
 public ArrayList Items { get; set; }
 ```
 
-_No description available._
+The data points to plot.
 
 ### Mode
 
@@ -127,7 +127,7 @@ _No description available._
 public ChartMode Mode { get; set; }
 ```
 
-_No description available._
+Whether the series is drawn as a line or as bars.
 
 ## Methods
 
@@ -145,7 +145,7 @@ Marks the cached chart surface stale. Call after mutating `Items` or any styling
 public override void OnRender(DrawingContext dc)
 ```
 
-_No description available._
+Draws the cached chart surface.
 
 ### Dispose()
 
@@ -153,7 +153,7 @@ _No description available._
 public void Dispose()
 ```
 
-_No description available._
+Releases the resources used by the chart.
 
 ### Dispose(bool disposing)
 
@@ -161,4 +161,4 @@ _No description available._
 protected virtual void Dispose(bool disposing)
 ```
 
-_No description available._
+Releases the cached chart bitmap.

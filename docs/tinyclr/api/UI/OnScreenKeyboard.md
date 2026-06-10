@@ -7,7 +7,7 @@ sidebar_label: "OnScreenKeyboard"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI`
 
-_No description available._
+An on-screen software keyboard window used to enter text into a text box.
 
 ```csharp
 public class OnScreenKeyboard : Window
@@ -21,4 +21,4 @@ public class OnScreenKeyboard : Window
 public static new Font Font { get; set; }
 ```
 
-_No description available._
+Gets or sets the font used for the keyboard's text input field.

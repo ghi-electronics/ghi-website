@@ -7,7 +7,7 @@ sidebar_label: "ObjectListStruct"
 
 **NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Scanner.ObjectLibrary`
 
-_No description available._
+Holds the list of object classes supported by the target's Message Router.
 
 ```csharp
 public struct ObjectListStruct
@@ -21,7 +21,7 @@ public struct ObjectListStruct
 public ushort Number
 ```
 
-_No description available._
+The number of class codes in the list.
 
 ### Classes
 
@@ -29,4 +29,4 @@ _No description available._
 public ushort[] Classes
 ```
 
-_No description available._
+The supported object class codes.

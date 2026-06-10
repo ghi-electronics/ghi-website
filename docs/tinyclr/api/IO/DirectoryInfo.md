@@ -7,7 +7,7 @@ sidebar_label: "DirectoryInfo"
 
 **NuGet:** `GHIElectronics.TinyCLR.IO`<br/>**Assembly:** `GHIElectronics.TinyCLR.IO`<br/>**Namespace:** `System.IO`
 
-_No description available._
+Provides information about a directory and the means to create or delete it.
 
 ```csharp
 public sealed class DirectoryInfo : FileSystemInfo
@@ -21,7 +21,7 @@ public sealed class DirectoryInfo : FileSystemInfo
 public DirectoryInfo(string path)
 ```
 
-_No description available._
+Creates a new instance for the directory at the given path.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public override string Name { get; }
 ```
 
-_No description available._
+The name of the file or directory. _(inherited)_
 
 ### Parent
 
@@ -39,7 +39,7 @@ _No description available._
 public DirectoryInfo Parent { get; }
 ```
 
-_No description available._
+The parent directory, or null if this is a root.
 
 ### Exists
 
@@ -47,7 +47,7 @@ _No description available._
 public override bool Exists { get; }
 ```
 
-_No description available._
+Whether the file or directory exists. _(inherited)_
 
 ### Root
 
@@ -55,7 +55,7 @@ _No description available._
 public DirectoryInfo Root { get; }
 ```
 
-_No description available._
+The root portion of the directory's path.
 
 ## Methods
 
@@ -65,7 +65,7 @@ _No description available._
 public DirectoryInfo CreateSubdirectory(string path)
 ```
 
-_No description available._
+Creates a subdirectory under this directory and returns it.
 
 **Returns** `DirectoryInfo`
 
@@ -75,7 +75,7 @@ _No description available._
 public void Create()
 ```
 
-_No description available._
+Creates the directory.
 
 ### GetFiles()
 
@@ -83,7 +83,7 @@ _No description available._
 public FileInfo[] GetFiles()
 ```
 
-_No description available._
+Returns the files contained in the directory.
 
 **Returns** `FileInfo[]`
 
@@ -93,7 +93,7 @@ _No description available._
 public DirectoryInfo[] GetDirectories()
 ```
 
-_No description available._
+Returns the subdirectories contained in the directory.
 
 **Returns** `DirectoryInfo[]`
 
@@ -103,7 +103,7 @@ _No description available._
 public void MoveTo(string destDirName)
 ```
 
-_No description available._
+Moves the directory and its contents to a new path.
 
 ### Delete()
 
@@ -111,7 +111,7 @@ _No description available._
 public override void Delete()
 ```
 
-_No description available._
+Deletes the file or directory. _(inherited)_
 
 ### Delete(bool recursive)
 
@@ -119,7 +119,7 @@ _No description available._
 public void Delete(bool recursive)
 ```
 
-_No description available._
+Deletes the directory, optionally including its contents.
 
 ### ToString()
 
@@ -127,6 +127,6 @@ _No description available._
 public override string ToString()
 ```
 
-_No description available._
+Returns the full path of the directory.
 
 **Returns** `string`

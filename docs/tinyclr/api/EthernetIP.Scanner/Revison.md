@@ -7,7 +7,7 @@ sidebar_label: "Revison"
 
 **NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Scanner.ObjectLibrary`
 
-_No description available._
+Holds a device revision as a major and minor number.
 
 ```csharp
 public struct Revison
@@ -21,7 +21,7 @@ public struct Revison
 public ushort MajorRevision
 ```
 
-_No description available._
+The major revision number.
 
 ### MinorRevision
 
@@ -29,4 +29,4 @@ _No description available._
 public ushort MinorRevision
 ```
 
-_No description available._
+The minor revision number.

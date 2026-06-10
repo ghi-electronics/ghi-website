@@ -7,7 +7,7 @@ sidebar_label: "SubscribedEventHandler"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking.Mqtt`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Mqtt`<br/>**Namespace:** `GHIElectronics.TinyCLR.Networking.Mqtt`
 
-_No description available._
+Handles a completed subscribe request and the granted quality-of-service levels.
 
 ```csharp
 public delegate void SubscribedEventHandler(object sender, uint packetId, QoSLevel[] grantedQoSLevels);

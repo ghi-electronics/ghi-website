@@ -353,7 +353,7 @@ Opens a Class-1 implicit connection, choosing between regular Forward Open (serv
 public void LargeForwardOpen()
 ```
 
-_No description available._
+Opens a Class-1 implicit connection using Large Forward Open (service 0x5B), for payloads larger than ~500 bytes.
 
 ### Detect_O_T_Length()
 

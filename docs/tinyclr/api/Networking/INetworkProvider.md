@@ -7,7 +7,7 @@ sidebar_label: "INetworkProvider"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking`<br/>**Namespace:** `GHIElectronics.TinyCLR.Networking`
 
-_No description available._
+Defines the low-level operations a network stack must implement to back sockets.
 
 ```csharp
 public interface INetworkProvider
@@ -21,7 +21,7 @@ public interface INetworkProvider
 int Create(AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType)
 ```
 
-_No description available._
+Creates a new socket and returns its handle.
 
 **Returns** `int`
 
@@ -31,7 +31,7 @@ _No description available._
 void Close(int socket)
 ```
 
-_No description available._
+Closes the specified socket.
 
 ### Shutdown(int socket, SocketShutdown how)
 
@@ -39,7 +39,7 @@ _No description available._
 void Shutdown(int socket, SocketShutdown how)
 ```
 
-_No description available._
+Disables send and/or receive operations on the socket.
 
 ### Bind(int socket, SocketAddress address)
 
@@ -47,7 +47,7 @@ _No description available._
 void Bind(int socket, SocketAddress address)
 ```
 
-_No description available._
+Binds the socket to the specified local address.
 
 ### Listen(int socket, int backlog)
 
@@ -55,7 +55,7 @@ _No description available._
 void Listen(int socket, int backlog)
 ```
 
-_No description available._
+Places the socket in a listening state with the specified backlog.
 
 ### Accept(int socket)
 
@@ -63,7 +63,7 @@ _No description available._
 int Accept(int socket)
 ```
 
-_No description available._
+Accepts a pending connection and returns the new socket handle.
 
 **Returns** `int`
 
@@ -73,7 +73,7 @@ _No description available._
 void Connect(int socket, SocketAddress address)
 ```
 
-_No description available._
+Connects the socket to the specified remote address.
 
 ### Available(int socket)
 
@@ -81,7 +81,7 @@ _No description available._
 int Available(int socket)
 ```
 
-_No description available._
+Returns the number of bytes available to read from the socket.
 
 **Returns** `int`
 
@@ -91,7 +91,7 @@ _No description available._
 bool Poll(int socket, int microSeconds, SelectMode mode)
 ```
 
-_No description available._
+Polls the socket for the specified status within the given timeout.
 
 **Returns** `bool`
 
@@ -101,7 +101,7 @@ _No description available._
 int Send(int socket, byte[] buffer, int offset, int count, SocketFlags flags)
 ```
 
-_No description available._
+Sends data on a connected socket and returns the number of bytes sent.
 
 **Returns** `int`
 
@@ -111,7 +111,7 @@ _No description available._
 int Receive(int socket, byte[] buffer, int offset, int count, SocketFlags flags)
 ```
 
-_No description available._
+Receives data from a connected socket and returns the number of bytes read.
 
 **Returns** `int`
 
@@ -121,7 +121,7 @@ _No description available._
 int SendTo(int socket, byte[] buffer, int offset, int count, SocketFlags flags, SocketAddress address)
 ```
 
-_No description available._
+Sends data to the specified address and returns the number of bytes sent.
 
 **Returns** `int`
 
@@ -131,7 +131,7 @@ _No description available._
 int ReceiveFrom(int socket, byte[] buffer, int offset, int count, SocketFlags flags, ref SocketAddress address)
 ```
 
-_No description available._
+Receives data and reports the sender's address, returning the number of bytes read.
 
 **Returns** `int`
 
@@ -141,7 +141,7 @@ _No description available._
 void GetRemoteAddress(int socket, out SocketAddress address)
 ```
 
-_No description available._
+Gets the remote address the socket is connected to.
 
 ### GetLocalAddress(int socket, out SocketAddress address)
 
@@ -149,7 +149,7 @@ _No description available._
 void GetLocalAddress(int socket, out SocketAddress address)
 ```
 
-_No description available._
+Gets the local address the socket is bound to.
 
 ### GetOption(int socket, SocketOptionLevel optionLevel, SocketOptionName optionName, byte[] optionValue)
 
@@ -157,7 +157,7 @@ _No description available._
 void GetOption(int socket, SocketOptionLevel optionLevel, SocketOptionName optionName, byte[] optionValue)
 ```
 
-_No description available._
+Reads the value of the specified socket option.
 
 ### SetOption(int socket, SocketOptionLevel optionLevel, SocketOptionName optionName, byte[] optionValue)
 
@@ -165,7 +165,7 @@ _No description available._
 void SetOption(int socket, SocketOptionLevel optionLevel, SocketOptionName optionName, byte[] optionValue)
 ```
 
-_No description available._
+Sets the value of the specified socket option.
 
 ### AuthenticateAsClient(int socketHandle, string targetHost, X509Certificate caCertificate, X509Certificate clientCertificate, SslProtocols sslProtocols, SslVerification sslVerification)
 
@@ -173,7 +173,7 @@ _No description available._
 int AuthenticateAsClient(int socketHandle, string targetHost, X509Certificate caCertificate, X509Certificate clientCertificate, SslProtocols sslProtocols, SslVerification sslVerification)
 ```
 
-_No description available._
+Performs the client side of an SSL/TLS handshake on the socket.
 
 **Returns** `int`
 
@@ -183,7 +183,7 @@ _No description available._
 int AuthenticateAsServer(int socketHandle, X509Certificate certificate, SslProtocols sslProtocols)
 ```
 
-_No description available._
+Performs the server side of an SSL/TLS handshake on the socket.
 
 **Returns** `int`
 
@@ -193,7 +193,7 @@ _No description available._
 int SecureRead(int handle, byte[] buffer, int offset, int count)
 ```
 
-_No description available._
+Reads decrypted data from a secured socket.
 
 **Returns** `int`
 
@@ -203,7 +203,7 @@ _No description available._
 int SecureWrite(int handle, byte[] buffer, int offset, int count)
 ```
 
-_No description available._
+Writes data to be encrypted on a secured socket.
 
 **Returns** `int`
 
@@ -213,4 +213,4 @@ _No description available._
 void GetHostByName(string name, out string canonicalName, out SocketAddress[] addresses)
 ```
 
-_No description available._
+Resolves a host name to its canonical name and addresses.

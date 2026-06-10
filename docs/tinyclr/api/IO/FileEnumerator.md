@@ -7,7 +7,7 @@ sidebar_label: "FileEnumerator"
 
 **NuGet:** `GHIElectronics.TinyCLR.IO`<br/>**Assembly:** `GHIElectronics.TinyCLR.IO`<br/>**Namespace:** `System.IO`
 
-_No description available._
+Provides an enumerable over the entries of a directory.
 
 ```csharp
 public class FileEnumerator : IEnumerable
@@ -21,4 +21,4 @@ public class FileEnumerator : IEnumerable
 public FileEnumerator(string path, FileEnumFlags flags)
 ```
 
-_No description available._
+Creates an enumerable over the entries matching the given flags under the path.

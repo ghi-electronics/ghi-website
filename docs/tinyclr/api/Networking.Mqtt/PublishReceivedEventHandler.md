@@ -7,7 +7,7 @@ sidebar_label: "PublishReceivedEventHandler"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking.Mqtt`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Mqtt`<br/>**Namespace:** `GHIElectronics.TinyCLR.Networking.Mqtt`
 
-_No description available._
+Handles a message received on a subscribed topic.
 
 ```csharp
 public delegate void PublishReceivedEventHandler(object sender, string topic, byte[] data, bool duplicate, QoSLevel qosLevel, bool retain);

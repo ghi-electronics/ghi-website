@@ -47,7 +47,7 @@ Unregisters this input provider.
 protected virtual void Dispose(bool disposing)
 ```
 
-_No description available._
+Unregisters this input provider and releases its resources.
 
 ### ReportInput(InputDevice device, InputReport inputReport)
 
@@ -55,6 +55,6 @@ _No description available._
 public bool ReportInput(InputDevice device, InputReport inputReport)
 ```
 
-_No description available._
+Reports input to the input manager.
 
-**Returns** `bool`
+**Returns** `bool` — Whether or not any event generated as a consequence of this event was handled.

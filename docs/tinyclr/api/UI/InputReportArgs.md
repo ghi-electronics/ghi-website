@@ -21,7 +21,7 @@ public class InputReportArgs
 public InputReportArgs(object dev, object report)
 ```
 
-_No description available._
+Constructs an instance of the InputReportArgs class.
 
 ## Fields
 
@@ -31,7 +31,7 @@ _No description available._
 public readonly InputDevice Device
 ```
 
-_No description available._
+Read-only access to the input device that reported the input.
 
 ### Report
 
@@ -39,4 +39,4 @@ _No description available._
 public readonly InputReport Report
 ```
 
-_No description available._
+Read-only access to the input report.

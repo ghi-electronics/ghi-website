@@ -7,7 +7,7 @@ sidebar_label: "StackPanel"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+A panel that stacks its children in a single row or column.
 
 ```csharp
 public class StackPanel : Panel
@@ -21,7 +21,7 @@ public class StackPanel : Panel
 public StackPanel() : this(Orientation.Vertical)
 ```
 
-_No description available._
+Initializes a new stack panel that stacks children vertically.
 
 ### StackPanel(Orientation orientation)
 
@@ -29,7 +29,7 @@ _No description available._
 public StackPanel(Orientation orientation)
 ```
 
-_No description available._
+Initializes a new stack panel with the given stacking orientation.
 
 ## Properties
 
@@ -39,7 +39,7 @@ _No description available._
 public Orientation Orientation { get; set; }
 ```
 
-_No description available._
+The direction in which children are stacked.
 
 ## Methods
 
@@ -49,14 +49,7 @@ _No description available._
 protected override void MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
 ```
 
-Measurement override. Implement your size-to-content logic here. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `availableWidth` | `int` | Available size that parent can give to the child. May be MaxValue(when parent wants to measure to content). This is soft constraint. Child can return bigger size to indicate that it wants bigger space and hope that parent can throw in scrolling... |
-| `availableHeight` | `int` |  |
-| `desiredWidth` | `out int` |  |
-| `desiredHeight` | `out int` |  |
+Measures the panel as the sum of child sizes along the stacking axis.
 
 ### ArrangeOverride(int arrangeWidth, int arrangeHeight)
 
@@ -64,9 +57,4 @@ Measurement override. Implement your size-to-content logic here. _(inherited)_
 protected override void ArrangeOverride(int arrangeWidth, int arrangeHeight)
 ```
 
-ArrangeOverride allows for the customization of the final sizing and positioning of children. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `arrangeWidth` | `int` | Final width |
-| `arrangeHeight` | `int` | Final height |
+Positions children one after another along the stacking axis.

@@ -21,7 +21,7 @@ public struct SizeF
 public SizeF(SizeF size)
 ```
 
-_No description available._
+Initializes a new size as a copy of an existing size.
 
 ### SizeF(float width, float height)
 
@@ -29,7 +29,7 @@ _No description available._
 public SizeF(float width, float height)
 ```
 
-_No description available._
+Initializes a new size with the given width and height.
 
 ## Properties
 
@@ -39,7 +39,7 @@ _No description available._
 public bool IsEmpty { get; }
 ```
 
-_No description available._
+Gets a value indicating whether both width and height are zero.
 
 ### Width
 
@@ -47,7 +47,7 @@ _No description available._
 public float Width { get; set; }
 ```
 
-_No description available._
+Gets or sets the width.
 
 ### Height
 
@@ -55,7 +55,7 @@ _No description available._
 public float Height { get; set; }
 ```
 
-_No description available._
+Gets or sets the height.
 
 ## Methods
 
@@ -65,6 +65,6 @@ _No description available._
 public static readonly SizeF Empty = new SizeF()
 ```
 
-_No description available._
+Represents a size with zero width and height.
 
 **Returns** `SizeF Empty = new`

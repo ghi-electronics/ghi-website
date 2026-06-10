@@ -21,7 +21,7 @@ public class Graphics : MarshalByRefObject, IDisposable
 public int Width { get; }
 ```
 
-_No description available._
+Gets the width of the drawing surface in pixels.
 
 ### Height
 
@@ -29,7 +29,7 @@ _No description available._
 public int Height { get; }
 ```
 
-_No description available._
+Gets the height of the drawing surface in pixels.
 
 ### PageUnit
 
@@ -37,7 +37,7 @@ _No description available._
 public GraphicsUnit PageUnit { get; }
 ```
 
-_No description available._
+Gets the unit of measure for this surface, which is always pixels.
 
 ## Methods
 
@@ -47,7 +47,7 @@ _No description available._
 public uint GetPixel(int x, int y)
 ```
 
-_No description available._
+Gets the ARGB color of the pixel at the given coordinates.
 
 **Returns** `uint`
 
@@ -57,7 +57,7 @@ _No description available._
 public void SetPixel(int x, int y, Color color)
 ```
 
-_No description available._
+Sets the color of the pixel at the given coordinates.
 
 ### GetBitmap()
 
@@ -65,7 +65,7 @@ _No description available._
 public byte[] GetBitmap()
 ```
 
-_No description available._
+Gets the raw pixel data of the drawing surface.
 
 **Returns** `byte[]`
 
@@ -75,7 +75,7 @@ _No description available._
 public byte[] GetBitmap(int x, int y, int width, int height)
 ```
 
-_No description available._
+Gets the raw pixel data for a rectangular region of the drawing surface.
 
 **Returns** `byte[]`
 
@@ -85,7 +85,7 @@ _No description available._
 public void Dispose()
 ```
 
-_No description available._
+Releases the resources used by this drawing surface.
 
 ### MeasureString(string text, Font font)
 
@@ -93,7 +93,7 @@ _No description available._
 public SizeF MeasureString(string text, Font font)
 ```
 
-_No description available._
+Measures the pixel size needed to render the given text in the given font.
 
 **Returns** `SizeF`
 
@@ -103,7 +103,7 @@ _No description available._
 public SizeF MeasureString(string text, Font font, SizeF layoutArea, StringFormat stringFormat)
 ```
 
-_No description available._
+Measures the pixel size needed to render the given text within a layout area using the given format.
 
 **Returns** `SizeF`
 
@@ -113,7 +113,7 @@ _No description available._
 public void Clear()
 ```
 
-_No description available._
+Clears the entire drawing surface to its default color.
 
 ### FromHdc(IntPtr hdc)
 
@@ -121,7 +121,7 @@ _No description available._
 public static Graphics FromHdc(IntPtr hdc)
 ```
 
-_No description available._
+Creates a drawing surface for the display referenced by the given device context handle.
 
 **Returns** `Graphics`
 
@@ -131,7 +131,7 @@ _No description available._
 public static Graphics FromImage(Image image)
 ```
 
-_No description available._
+Gets the drawing surface backing the given image.
 
 **Returns** `Graphics`
 
@@ -141,7 +141,7 @@ _No description available._
 public void Flush()
 ```
 
-_No description available._
+Pushes the contents of the drawing surface to the display.
 
 ### DrawImage(Image image, int x, int y, Rectangle srcRect, GraphicsUnit srcUnit)
 
@@ -149,7 +149,7 @@ _No description available._
 public void DrawImage(Image image, int x, int y, Rectangle srcRect, GraphicsUnit srcUnit)
 ```
 
-_No description available._
+Draws a portion of an image at the specified location.
 
 ### DrawImage(Image image, int x, int y, int width, int height)
 
@@ -157,7 +157,7 @@ _No description available._
 public void DrawImage(Image image, int x, int y, int width, int height)
 ```
 
-_No description available._
+Draws an image at the specified location, scaled to the given size.
 
 ### DrawImage(Image image, int x, int y)
 
@@ -165,7 +165,7 @@ _No description available._
 public void DrawImage(Image image, int x, int y)
 ```
 
-_No description available._
+Draws an image at the specified location using its original size.
 
 ### DrawImage(Image image, Rectangle destRect, Rectangle srcRect, GraphicsUnit srcUnit)
 
@@ -173,7 +173,7 @@ _No description available._
 public void DrawImage(Image image, Rectangle destRect, Rectangle srcRect, GraphicsUnit srcUnit)
 ```
 
-_No description available._
+Draws a portion of an image into the destination rectangle, scaling as needed.
 
 ### DrawLine(Pen pen, int x1, int y1, int x2, int y2)
 
@@ -181,7 +181,7 @@ _No description available._
 public void DrawLine(Pen pen, int x1, int y1, int x2, int y2)
 ```
 
-_No description available._
+Draws a line between two points using the given pen.
 
 ### DrawString(string s, Font font, Brush brush, float x, float y)
 
@@ -189,7 +189,7 @@ _No description available._
 public void DrawString(string s, Font font, Brush brush, float x, float y)
 ```
 
-_No description available._
+Draws text at the given location using the specified font and brush.
 
 ### DrawString(string s, Font font, Brush brush, RectangleF layoutRectangle)
 
@@ -197,7 +197,7 @@ _No description available._
 public void DrawString(string s, Font font, Brush brush, RectangleF layoutRectangle)
 ```
 
-_No description available._
+Draws text wrapped within the given layout rectangle.
 
 ### DrawString(string s, Font font, Brush brush, RectangleF layoutRectangle, StringFormat format)
 
@@ -205,7 +205,7 @@ _No description available._
 public void DrawString(string s, Font font, Brush brush, RectangleF layoutRectangle, StringFormat format)
 ```
 
-_No description available._
+Draws text within the given layout rectangle using the specified format.
 
 ### DrawEllipse(Pen pen, int x, int y, int width, int height)
 
@@ -213,7 +213,7 @@ _No description available._
 public void DrawEllipse(Pen pen, int x, int y, int width, int height)
 ```
 
-_No description available._
+Draws the outline of an ellipse bounded by the given rectangle using the specified pen.
 
 ### DrawRectangle(Pen pen, int x, int y, int width, int height)
 
@@ -221,7 +221,7 @@ _No description available._
 public void DrawRectangle(Pen pen, int x, int y, int width, int height)
 ```
 
-_No description available._
+Draws the outline of a rectangle using the specified pen.
 
 ### FillEllipse(Brush brush, int x, int y, int width, int height)
 
@@ -229,7 +229,7 @@ _No description available._
 public void FillEllipse(Brush brush, int x, int y, int width, int height)
 ```
 
-_No description available._
+Fills the interior of an ellipse bounded by the given rectangle using the specified brush.
 
 ### FillRectangle(Brush brush, int x, int y, int width, int height)
 
@@ -237,7 +237,7 @@ _No description available._
 public void FillRectangle(Brush brush, int x, int y, int width, int height)
 ```
 
-_No description available._
+Fills the interior of a rectangle using the specified brush.
 
 ### DrawImage(int xDst, int yDst, Image image, int xSrc, int ySrc, int width, int height, ushort opacity)
 
@@ -245,7 +245,7 @@ _No description available._
 public void DrawImage(int xDst, int yDst, Image image, int xSrc, int ySrc, int width, int height, ushort opacity)
 ```
 
-_No description available._
+Draws a region of an image at the destination location with the given opacity.
 
 ### Flush(int x, int y, int width, int height)
 
@@ -253,7 +253,7 @@ _No description available._
 public void Flush(int x, int y, int width, int height)
 ```
 
-_No description available._
+Pushes a rectangular region of the drawing surface to the display.
 
 ### SetClippingRectangle(int x, int y, int width, int height)
 
@@ -261,7 +261,7 @@ _No description available._
 public void SetClippingRectangle(int x, int y, int width, int height)
 ```
 
-_No description available._
+Restricts drawing to the given rectangular region.
 
 ### DrawTextInRect(string text, int x, int y, int width, int height, DrawTextAlignment dtFlags, Color color, Font font)
 
@@ -269,7 +269,7 @@ _No description available._
 public void DrawTextInRect(string text, int x, int y, int width, int height, DrawTextAlignment dtFlags, Color color, Font font)
 ```
 
-_No description available._
+Draws text within the given rectangle using the specified alignment flags.
 
 ### DrawTextInRect(ref string text, ref int xRelStart, ref int yRelStart, int x, int y, int width, int height, DrawTextAlignment dtFlags, Color color, Font font)
 
@@ -277,7 +277,7 @@ _No description available._
 public bool DrawTextInRect(ref string text, ref int xRelStart, ref int yRelStart, int x, int y, int width, int height, DrawTextAlignment dtFlags, Color color, Font font)
 ```
 
-_No description available._
+Draws text within the given rectangle, updating the relative start position, and returns whether more text remains.
 
 **Returns** `bool`
 
@@ -287,7 +287,7 @@ _No description available._
 public void RotateImage(int angle, int xDst, int yDst, Image image, int xSrc, int ySrc, int width, int height, ushort opacity)
 ```
 
-_No description available._
+Draws a region of an image rotated by the given angle at the destination location.
 
 ### MakeTransparent(Color color)
 
@@ -295,7 +295,7 @@ _No description available._
 public void MakeTransparent(Color color)
 ```
 
-_No description available._
+Makes the given color transparent on the drawing surface.
 
 ### StretchImage(int xDst, int yDst, int widthDst, int heightDst, Image image, int xSrc, int ySrc, int widthSrc, int heightSrc, ushort opacity)
 
@@ -303,7 +303,7 @@ _No description available._
 public void StretchImage(int xDst, int yDst, int widthDst, int heightDst, Image image, int xSrc, int ySrc, int widthSrc, int heightSrc, ushort opacity)
 ```
 
-_No description available._
+Draws a region of an image scaled to fill the destination rectangle.
 
 ### TileImage(int xDst, int yDst, Image image, int width, int height, ushort opacity)
 
@@ -311,7 +311,7 @@ _No description available._
 public void TileImage(int xDst, int yDst, Image image, int width, int height, ushort opacity)
 ```
 
-_No description available._
+Tiles an image to fill the given area at the destination location.
 
 ### Scale9Image(int xDst, int yDst, int widthDst, int heightDst, Image image, int leftBorder, int topBorder, int rightBorder, int bottomBorder, ushort opacity)
 
@@ -319,7 +319,7 @@ _No description available._
 public void Scale9Image(int xDst, int yDst, int widthDst, int heightDst, Image image, int leftBorder, int topBorder, int rightBorder, int bottomBorder, ushort opacity)
 ```
 
-_No description available._
+Draws an image using nine-slice scaling so its borders are not stretched.
 
 ## Events
 
@@ -329,4 +329,4 @@ _No description available._
 static public event OnFlushHandler OnFlushEvent
 ```
 
-_No description available._
+Occurs when the drawing surface is flushed.

@@ -7,7 +7,7 @@ sidebar_label: "ImageSource"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Media`
 
-_No description available._
+Base class for an image that can be drawn.
 
 ```csharp
 public abstract class ImageSource
@@ -21,7 +21,7 @@ public abstract class ImageSource
 protected ImageSource(Graphics g)
 ```
 
-_No description available._
+Creates an image source backed by the given graphics.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public virtual int Width { get; }
 ```
 
-_No description available._
+The width of the image in pixels.
 
 ### Height
 
@@ -39,4 +39,4 @@ _No description available._
 public virtual int Height { get; }
 ```
 
-_No description available._
+The height of the image in pixels.

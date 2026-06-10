@@ -7,7 +7,7 @@ sidebar_label: "InputProvider"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Input`
 
-_No description available._
+Feeds button, touch and focus-navigation input into the input manager.
 
 ```csharp
 public sealed class InputProvider
@@ -21,7 +21,7 @@ public sealed class InputProvider
 public InputProvider(Application a)
 ```
 
-_No description available._
+Constructs an instance of the InputProvider class for the given application.
 
 ## Methods
 
@@ -31,7 +31,7 @@ _No description available._
 public void RaiseButton(HardwareButton button, bool state, DateTime time)
 ```
 
-_No description available._
+Reports a button press or release to the input manager.
 
 ### RaiseTouch(int x, int y, TouchMessages which, DateTime time)
 
@@ -39,7 +39,7 @@ _No description available._
 public void RaiseTouch(int x, int y, TouchMessages which, DateTime time)
 ```
 
-_No description available._
+Reports a touch event at the given position to the input manager.
 
 ### RaiseFocusNavigation(bool forward)
 

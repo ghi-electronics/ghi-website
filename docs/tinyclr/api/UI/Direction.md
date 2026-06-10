@@ -7,7 +7,7 @@ sidebar_label: "Direction"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+Specifies the direction in which a progress bar fills.
 
 ```csharp
 public enum Direction
@@ -17,7 +17,7 @@ public enum Direction
 
 | Name | Value | Description |
 |---|---|---|
-| `Left` |  |  |
-| `Right` |  |  |
-| `Up` |  |  |
-| `Down` |  |  |
+| `Left` |  | Fills from right to left. |
+| `Right` |  | Fills from left to right. |
+| `Up` |  | Fills from bottom to top. |
+| `Down` |  | Fills from top to bottom. |

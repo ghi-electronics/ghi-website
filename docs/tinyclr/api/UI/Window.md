@@ -7,7 +7,7 @@ sidebar_label: "Window"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI`
 
-_No description available._
+Represents a top-level window that hosts content and is managed by the window manager.
 
 ```csharp
 public class Window : ContentControl
@@ -29,7 +29,7 @@ Position for Top of the host window
 public int Left { get; set; }
 ```
 
-_No description available._
+Gets or sets the position of the left edge of the window.
 
 ### Topmost
 

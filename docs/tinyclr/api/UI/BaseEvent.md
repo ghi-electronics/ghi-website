@@ -7,7 +7,7 @@ sidebar_label: "BaseEvent"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Input`
 
-_No description available._
+Base class for raw input events reported to the input system.
 
 ```csharp
 public class BaseEvent
@@ -21,7 +21,7 @@ public class BaseEvent
 public ushort Source
 ```
 
-_No description available._
+The identifier of the source that produced the event.
 
 ### EventMessage
 
@@ -29,4 +29,4 @@ _No description available._
 public byte EventMessage
 ```
 
-_No description available._
+The message code describing the event.

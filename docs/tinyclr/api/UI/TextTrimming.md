@@ -7,7 +7,7 @@ sidebar_label: "TextTrimming"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Media`
 
-_No description available._
+Specifies how text is trimmed when it overflows its region.
 
 ```csharp
 public enum TextTrimming
@@ -17,6 +17,6 @@ public enum TextTrimming
 
 | Name | Value | Description |
 |---|---|---|
-| `CharacterEllipsis` |  |  |
-| `None` |  |  |
-| `WordEllipsis` |  |  |
+| `CharacterEllipsis` |  | Text is trimmed at a character boundary with an ellipsis. |
+| `None` |  | Text is not trimmed. |
+| `WordEllipsis` |  | Text is trimmed at a word boundary with an ellipsis. |

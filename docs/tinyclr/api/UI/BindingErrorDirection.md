@@ -7,7 +7,7 @@ sidebar_label: "BindingErrorDirection"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+Direction of a binding operation that failed.
 
 ```csharp
 public enum BindingErrorDirection

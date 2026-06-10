@@ -7,7 +7,7 @@ sidebar_label: "NativeApiType"
 
 **NuGet:** `GHIElectronics.TinyCLR.Native`<br/>**Assembly:** `GHIElectronics.TinyCLR.Native`<br/>**Namespace:** `GHIElectronics.TinyCLR.Native`
 
-_No description available._
+Identifies a category of native API. Each managed library (Gpio, Spi, …) uses its own value to look up a matching native implementation via `NativeApi.Find(string, NativeApiType)`.
 
 ```csharp
 public enum NativeApiType : uint

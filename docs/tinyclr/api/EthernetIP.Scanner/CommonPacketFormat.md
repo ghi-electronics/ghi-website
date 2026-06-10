@@ -7,7 +7,7 @@ sidebar_label: "CommonPacketFormat"
 
 **NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`
 
-_No description available._
+Represents the EtherNet/IP Common Packet Format used to wrap CIP request/response data.
 
 ```csharp
 public class CommonPacketFormat
@@ -21,7 +21,7 @@ public class CommonPacketFormat
 public ArrayList Data = new ArrayList()
 ```
 
-_No description available._
+The CIP payload bytes carried in the data item.
 
 **Returns** `ArrayList Data = new`
 
@@ -31,7 +31,7 @@ _No description available._
 public byte[] Tobytes()
 ```
 
-_No description available._
+Serializes this common packet format (including the optional socket address item) to a byte array.
 
 **Returns** `byte[]`
 
@@ -43,7 +43,7 @@ _No description available._
 public ushort ItemCount
 ```
 
-_No description available._
+The number of items in the packet (2, or 3 when a socket address item is present).
 
 ### AddressItem
 
@@ -51,7 +51,7 @@ _No description available._
 public ushort AddressItem
 ```
 
-_No description available._
+The address item type code (0x0000 = NULL, used for UCMM messages).
 
 ### AddressLength
 
@@ -59,7 +59,7 @@ _No description available._
 public ushort AddressLength
 ```
 
-_No description available._
+The byte length of the address item.
 
 ### DataItem
 
@@ -67,7 +67,7 @@ _No description available._
 public ushort DataItem
 ```
 
-_No description available._
+The data item type code (0xB2 = unconnected data item).
 
 ### DataLength
 
@@ -75,7 +75,7 @@ _No description available._
 public ushort DataLength
 ```
 
-_No description available._
+The byte length of the data item.
 
 ### SockaddrInfoItem_O_T
 
@@ -83,7 +83,7 @@ _No description available._
 public ushort SockaddrInfoItem_O_T
 ```
 
-_No description available._
+The socket-address-info item type code (0x8000 for O->T, 0x8001 for T->O).
 
 ### SockaddrInfoLength
 
@@ -91,7 +91,7 @@ _No description available._
 public ushort SockaddrInfoLength
 ```
 
-_No description available._
+The byte length of the socket-address-info item.
 
 ### SocketaddrInfo_O_T
 
@@ -99,4 +99,4 @@ _No description available._
 public SocketAddress SocketaddrInfo_O_T
 ```
 
-_No description available._
+The optional socket address info item; null when not included.

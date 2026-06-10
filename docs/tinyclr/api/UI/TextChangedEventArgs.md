@@ -7,7 +7,7 @@ sidebar_label: "TextChangedEventArgs"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+Provides data for the text-changed event.
 
 ```csharp
 public class TextChangedEventArgs : RoutedEventArgs
@@ -21,4 +21,4 @@ public class TextChangedEventArgs : RoutedEventArgs
 public TextChangedEventArgs(RoutedEvent routedEvent, object source) : base(routedEvent, source)
 ```
 
-_No description available._
+Initializes a new instance of the `TextChangedEventArgs` class.

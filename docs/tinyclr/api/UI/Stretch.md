@@ -7,7 +7,7 @@ sidebar_label: "Stretch"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Media`
 
-_No description available._
+Specifies how content is stretched to fill a region.
 
 ```csharp
 public enum Stretch
@@ -17,7 +17,7 @@ public enum Stretch
 
 | Name | Value | Description |
 |---|---|---|
-| `None` |  |  |
-| `Fill` |  |  |
-| `Uniform` |  |  |
-| `UniformToFill` |  |  |
+| `None` |  | The content is drawn at its original size without stretching. |
+| `Fill` |  | The content is stretched to fill the region exactly. |
+| `Uniform` |  | The content is scaled uniformly to fit within the region. |
+| `UniformToFill` |  | The content is scaled uniformly to completely fill the region. |

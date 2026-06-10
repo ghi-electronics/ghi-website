@@ -21,7 +21,7 @@ public sealed class BindingErrorEventArgs
 public BindingErrorEventArgs(BindingErrorDirection direction, string propertyName, Exception exception)
 ```
 
-_No description available._
+Creates a new BindingErrorEventArgs.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public BindingErrorDirection Direction { get; }
 ```
 
-_No description available._
+Whether the failure was a read (pull) or write (push).
 
 ### PropertyName
 
@@ -39,7 +39,7 @@ _No description available._
 public string PropertyName { get; }
 ```
 
-_No description available._
+Name of the bound property that failed.
 
 ### Exception
 
@@ -47,4 +47,4 @@ _No description available._
 public Exception Exception { get; }
 ```
 
-_No description available._
+The exception that caused the binding to fail.

@@ -7,7 +7,7 @@ sidebar_label: "ValueChangedEventArgs"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+Provides data for the slider's value-changed event.
 
 ```csharp
 public sealed class ValueChangedEventArgs : EventArgs
@@ -21,7 +21,7 @@ public sealed class ValueChangedEventArgs : EventArgs
 public ValueChangedEventArgs(double value)
 ```
 
-_No description available._
+Initializes a new instance of the `ValueChangedEventArgs` class.
 
 ## Properties
 
@@ -31,4 +31,4 @@ _No description available._
 public double Value { get; }
 ```
 
-_No description available._
+The new slider value.

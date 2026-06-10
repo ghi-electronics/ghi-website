@@ -7,7 +7,7 @@ sidebar_label: "TouchEvents"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Input`
 
-_No description available._
+Defines the routed events raised for touch input.
 
 ```csharp
 public sealed class TouchEvents
@@ -21,7 +21,7 @@ public sealed class TouchEvents
 public static readonly RoutedEvent TouchDownEvent = new RoutedEvent( , RoutingStrategy.Bubble, typeof(TouchEventArgs))
 ```
 
-_No description available._
+A routed event raised when a touch press occurs.
 
 **Returns** `RoutedEvent TouchDownEvent = new`
 
@@ -31,7 +31,7 @@ _No description available._
 public static readonly RoutedEvent TouchMoveEvent = new RoutedEvent( , RoutingStrategy.Bubble, typeof(TouchEventArgs))
 ```
 
-_No description available._
+A routed event raised when a touch point moves.
 
 **Returns** `RoutedEvent TouchMoveEvent = new`
 
@@ -41,6 +41,6 @@ _No description available._
 public static readonly RoutedEvent TouchUpEvent = new RoutedEvent( , RoutingStrategy.Bubble, typeof(TouchEventArgs))
 ```
 
-_No description available._
+A routed event raised when a touch release occurs.
 
 **Returns** `RoutedEvent TouchUpEvent = new`

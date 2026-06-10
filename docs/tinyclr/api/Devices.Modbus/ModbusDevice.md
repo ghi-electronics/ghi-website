@@ -66,7 +66,7 @@ Gets if the interface message polling is running.
 public byte[] Buffer1 { get; set; }
 ```
 
-_No description available._
+Gets or sets the internal telegram buffer.
 
 ### Buffer2
 
@@ -74,7 +74,7 @@ _No description available._
 public byte[] Buffer2 { get; set; }
 ```
 
-_No description available._
+Gets or sets the internal telegram buffer.
 
 ## Methods
 

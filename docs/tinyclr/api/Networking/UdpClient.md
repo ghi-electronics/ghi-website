@@ -7,7 +7,7 @@ sidebar_label: "UdpClient"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking`<br/>**Namespace:** `System.Net.Sockets`
 
-_No description available._
+Provides User Datagram Protocol (UDP) network services.
 
 ```csharp
 public class UdpClient : IDisposable
@@ -21,7 +21,7 @@ public class UdpClient : IDisposable
 public UdpClient() : this(AddressFamily.InterNetwork)
 ```
 
-_No description available._
+Initializes a new instance using the default address family.
 
 ### UdpClient(AddressFamily family)
 
@@ -29,7 +29,7 @@ _No description available._
 public UdpClient(AddressFamily family)
 ```
 
-_No description available._
+Initializes a new instance using the specified address family.
 
 ### UdpClient(int port)
 
@@ -37,7 +37,7 @@ _No description available._
 public UdpClient(int port) : this(port, AddressFamily.InterNetwork)
 ```
 
-_No description available._
+Initializes a new instance bound to the specified local port.
 
 ### UdpClient(int port, AddressFamily family)
 
@@ -45,7 +45,7 @@ _No description available._
 public UdpClient(int port, AddressFamily family)
 ```
 
-_No description available._
+Initializes a new instance bound to the specified local port and address family.
 
 ### UdpClient(IPEndPoint localEP)
 
@@ -53,7 +53,7 @@ _No description available._
 public UdpClient(IPEndPoint localEP)
 ```
 
-_No description available._
+Initializes a new instance bound to the specified local endpoint.
 
 ### UdpClient(string hostname, int port)
 
@@ -61,7 +61,7 @@ _No description available._
 public UdpClient(string hostname, int port)
 ```
 
-_No description available._
+Initializes a new instance and connects to the specified host and port.
 
 ## Properties
 
@@ -71,7 +71,7 @@ _No description available._
 protected bool Active { get; set; }
 ```
 
-_No description available._
+Whether a default remote host has been established.
 
 ### Available
 
@@ -79,7 +79,7 @@ _No description available._
 public int Available { get; }
 ```
 
-_No description available._
+The number of bytes available to be read.
 
 ### Client
 
@@ -87,7 +87,7 @@ _No description available._
 public Socket Client { get; set; }
 ```
 
-_No description available._
+The underlying socket used by the client.
 
 ## Methods
 
@@ -97,7 +97,7 @@ _No description available._
 public void Dispose()
 ```
 
-_No description available._
+Releases the resources used by the client.
 
 ### Dispose(bool disposing)
 
@@ -105,7 +105,7 @@ _No description available._
 protected virtual void Dispose(bool disposing)
 ```
 
-_No description available._
+Releases the resources used by the client.
 
 ### BeginSend(byte[] datagram, int bytes)
 
@@ -113,7 +113,7 @@ _No description available._
 public int BeginSend(byte[] datagram, int bytes)
 ```
 
-_No description available._
+Sends a datagram on the connected socket and returns the number of bytes sent.
 
 **Returns** `int`
 
@@ -123,7 +123,7 @@ _No description available._
 public int BeginSend(byte[] datagram, int bytes, string hostname, int port)
 ```
 
-_No description available._
+Sends a datagram to the specified host and port and returns the number of bytes sent.
 
 **Returns** `int`
 
@@ -133,7 +133,7 @@ _No description available._
 public int BeginSend(byte[] datagram, int bytes, IPEndPoint endPoint)
 ```
 
-_No description available._
+Sends a datagram to the specified endpoint and returns the number of bytes sent.
 
 **Returns** `int`
 
@@ -143,7 +143,7 @@ _No description available._
 public int EndSend(IAsyncResult asyncResult)
 ```
 
-_No description available._
+Not implemented; always throws NotImplementedException.
 
 **Returns** `int`
 
@@ -153,7 +153,7 @@ _No description available._
 public int BeginReceive(int port)
 ```
 
-_No description available._
+Receives a datagram into the internal buffer and returns the number of bytes read.
 
 **Returns** `int`
 
@@ -163,7 +163,7 @@ _No description available._
 public byte[] EndReceive(IAsyncResult asyncResult, ref IPEndPoint remoteEP)
 ```
 
-_No description available._
+Returns the buffer holding the data received by a previous BeginReceive call.
 
 **Returns** `byte[]`
 
@@ -173,7 +173,7 @@ _No description available._
 public void JoinMulticastGroup(IPAddress multicastAddr)
 ```
 
-_No description available._
+Joins the specified multicast group.
 
 ### Close()
 
@@ -181,7 +181,7 @@ _No description available._
 public void Close()
 ```
 
-_No description available._
+Closes the client and releases its resources.
 
 ### Connect(string hostname, int port)
 
@@ -189,7 +189,7 @@ _No description available._
 public void Connect(string hostname, int port)
 ```
 
-_No description available._
+Establishes a default remote host using the specified host name and port.
 
 ### Connect(IPAddress addr, int port)
 
@@ -197,7 +197,7 @@ _No description available._
 public void Connect(IPAddress addr, int port)
 ```
 
-_No description available._
+Establishes a default remote host using the specified IP address and port.
 
 ### Connect(IPEndPoint endPoint)
 
@@ -205,7 +205,7 @@ _No description available._
 public void Connect(IPEndPoint endPoint)
 ```
 
-_No description available._
+Establishes a default remote host using the specified endpoint.
 
 ### Receive(ref IPEndPoint remoteEP)
 
@@ -213,7 +213,7 @@ _No description available._
 public byte[] Receive(ref IPEndPoint remoteEP)
 ```
 
-_No description available._
+Receives a datagram and returns its data, reporting the sender's endpoint.
 
 **Returns** `byte[]`
 
@@ -223,7 +223,7 @@ _No description available._
 public int Send(byte[] dgram, int bytes, IPEndPoint endPoint)
 ```
 
-_No description available._
+Sends the specified number of bytes of a datagram to the given endpoint.
 
 **Returns** `int`
 
@@ -248,7 +248,7 @@ Sends a UDP datagram to the host at the specified remote endpoint.
 public int Send(byte[] dgram, int bytes, string hostname, int port)
 ```
 
-_No description available._
+Sends the specified number of bytes of a datagram to the given host and port.
 
 **Returns** `int`
 
@@ -274,7 +274,7 @@ Sends a UDP datagram to a specified port on a specified remote host.
 public int Send(byte[] dgram, int bytes)
 ```
 
-_No description available._
+Sends the specified number of bytes of a datagram to the connected remote host.
 
 **Returns** `int`
 

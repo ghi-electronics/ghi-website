@@ -21,7 +21,7 @@ public class Bitmap : Image
 public Bitmap(int width, int height)
 ```
 
-_No description available._
+Initializes a new blank bitmap of the given pixel size.
 
 ### Bitmap(byte[] data, int width, int height)
 
@@ -29,7 +29,7 @@ _No description available._
 public Bitmap(byte[] data, int width, int height)
 ```
 
-_No description available._
+Initializes a new bitmap from raw pixel data of the given pixel size.
 
 ### Bitmap(Stream stream)
 
@@ -37,7 +37,7 @@ _No description available._
 public Bitmap(Stream stream)
 ```
 
-_No description available._
+Initializes a new bitmap by decoding image data from the given stream.
 
 ### Bitmap(byte[] buffer, BitmapImageType type)
 
@@ -45,7 +45,7 @@ _No description available._
 public Bitmap(byte[] buffer, BitmapImageType type)
 ```
 
-_No description available._
+Initializes a new bitmap by decoding image data of the given type.
 
 ### Bitmap(byte[] buffer, int offset, int count, BitmapImageType type)
 
@@ -53,7 +53,7 @@ _No description available._
 public Bitmap(byte[] buffer, int offset, int count, BitmapImageType type)
 ```
 
-_No description available._
+Initializes a new bitmap by decoding a range of image data of the given type.
 
 ## Methods
 
@@ -63,7 +63,7 @@ _No description available._
 public override void SetPixel(int x, int y, Color color)
 ```
 
-_No description available._
+Sets the color of the pixel at the given coordinates.
 
 ### GetPixel(int x, int y)
 
@@ -71,6 +71,6 @@ _No description available._
 public override Color GetPixel(int x, int y)
 ```
 
-_No description available._
+Gets the color of the pixel at the given coordinates.
 
 **Returns** `Color`

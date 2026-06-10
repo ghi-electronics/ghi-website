@@ -7,7 +7,7 @@ sidebar_label: "Ellipse"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Shapes`
 
-_No description available._
+Draws an ellipse.
 
 ```csharp
 public class Ellipse : Shape
@@ -21,7 +21,7 @@ public class Ellipse : Shape
 public Ellipse(int xRadius, int yRadius)
 ```
 
-_No description available._
+Creates an ellipse with the given horizontal and vertical radii.
 
 ## Methods
 
@@ -31,4 +31,4 @@ _No description available._
 public override void OnRender(Media.DrawingContext dc)
 ```
 
-_No description available._
+Renders the ellipse to the drawing context.

@@ -7,7 +7,7 @@ sidebar_label: "CheckBox"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+A two-state check box that toggles when clicked.
 
 ```csharp
 public class CheckBox : ContentControl, IDisposable
@@ -21,7 +21,7 @@ public class CheckBox : ContentControl, IDisposable
 public CheckBox() : base()
 ```
 
-_No description available._
+Creates a new CheckBox.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public string Name { get; set; }
 ```
 
-_No description available._
+Optional name identifying the check box.
 
 ### Alpha
 
@@ -39,7 +39,7 @@ _No description available._
 public ushort Alpha { get; set; }
 ```
 
-_No description available._
+Opacity (0-255) used when drawing the check box image.
 
 ### RadiusBorder
 
@@ -47,7 +47,7 @@ _No description available._
 public ushort RadiusBorder { get; set; }
 ```
 
-_No description available._
+Corner radius used by the nine-slice check box image.
 
 ### IsChecked
 
@@ -55,7 +55,7 @@ _No description available._
 public bool IsChecked { get; set; }
 ```
 
-_No description available._
+Whether the check box is currently checked.
 
 ## Methods
 
@@ -65,7 +65,7 @@ _No description available._
 public override void OnRender(DrawingContext dc)
 ```
 
-_No description available._
+Draws the check box in its checked or unchecked state.
 
 ### OnTouchUp(TouchEventArgs e)
 
@@ -73,7 +73,7 @@ _No description available._
 protected override void OnTouchUp(TouchEventArgs e)
 ```
 
-_No description available._
+Handles touch release; toggles the check box.
 
 ### OnTouchDown(TouchEventArgs e)
 
@@ -81,7 +81,7 @@ _No description available._
 protected override void OnTouchDown(TouchEventArgs e)
 ```
 
-_No description available._
+Handles touch press. Toggling is deferred to touch release.
 
 ### OnButtonUp(ButtonEventArgs e)
 
@@ -89,7 +89,7 @@ _No description available._
 protected override void OnButtonUp(ButtonEventArgs e)
 ```
 
-An event reporting a button was released. _(inherited)_
+Handles the Select hardware button release; toggles the check box.
 
 ### Dispose()
 
@@ -97,7 +97,7 @@ An event reporting a button was released. _(inherited)_
 public void Dispose()
 ```
 
-_No description available._
+Releases the resources used by the check box.
 
 ### Dispose(bool disposing)
 
@@ -105,7 +105,7 @@ _No description available._
 protected virtual void Dispose(bool disposing)
 ```
 
-_No description available._
+Releases the check box's bitmap resources.
 
 ## Events
 
@@ -115,7 +115,7 @@ _No description available._
 public event RoutedEventHandler Click
 ```
 
-_No description available._
+Raised when the check box is clicked.
 
 ### Checked
 
@@ -123,7 +123,7 @@ _No description available._
 public event RoutedEventHandler Checked
 ```
 
-_No description available._
+Raised when the check box becomes checked.
 
 ### Unchecked
 
@@ -131,4 +131,4 @@ _No description available._
 public event RoutedEventHandler Unchecked
 ```
 
-_No description available._
+Raised when the check box becomes unchecked.

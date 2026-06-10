@@ -7,7 +7,7 @@ sidebar_label: "TextReader"
 
 **NuGet:** `GHIElectronics.TinyCLR.IO`<br/>**Assembly:** `GHIElectronics.TinyCLR.IO`<br/>**Namespace:** `System.IO`
 
-_No description available._
+Base class for reading a sequential series of characters.
 
 ```csharp
 public abstract class TextReader : MarshalByRefObject, IDisposable
@@ -21,7 +21,7 @@ public abstract class TextReader : MarshalByRefObject, IDisposable
 protected TextReader()
 ```
 
-_No description available._
+Initializes the reader.
 
 ## Methods
 
@@ -31,7 +31,7 @@ _No description available._
 public virtual void Close()
 ```
 
-_No description available._
+Closes the reader and releases its resources.
 
 ### Dispose()
 
@@ -39,7 +39,7 @@ _No description available._
 public void Dispose()
 ```
 
-_No description available._
+Releases the resources used by the reader.
 
 ### Dispose(bool disposing)
 
@@ -47,7 +47,7 @@ _No description available._
 protected virtual void Dispose(bool disposing)
 ```
 
-_No description available._
+Releases the resources used by the reader.
 
 ### Peek()
 
@@ -55,7 +55,7 @@ _No description available._
 public virtual int Peek()
 ```
 
-_No description available._
+Returns the next character without consuming it, or -1 at end of stream.
 
 **Returns** `int`
 
@@ -65,7 +65,7 @@ _No description available._
 public virtual int Read()
 ```
 
-_No description available._
+Reads and consumes the next character, or returns -1 at end of stream.
 
 **Returns** `int`
 
@@ -75,7 +75,7 @@ _No description available._
 public virtual int Read(char[] buffer, int index, int count)
 ```
 
-_No description available._
+Reads up to count characters into the buffer, returning the number read.
 
 **Returns** `int`
 
@@ -85,7 +85,7 @@ _No description available._
 public virtual int ReadBlock(char[] buffer, int index, int count)
 ```
 
-_No description available._
+Reads count characters into the buffer, blocking until they are available or the stream ends.
 
 **Returns** `int`
 
@@ -95,7 +95,7 @@ _No description available._
 public virtual string ReadToEnd()
 ```
 
-_No description available._
+Reads all remaining characters and returns them as a string.
 
 **Returns** `string`
 
@@ -105,6 +105,6 @@ _No description available._
 public virtual string ReadLine()
 ```
 
-_No description available._
+Reads a line of characters and returns it, or null at end of stream.
 
 **Returns** `string`

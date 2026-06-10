@@ -21,7 +21,7 @@ public struct InterfaceCapabilityFlags
 public bool BootPClient
 ```
 
-_No description available._
+The interface supports BootP client configuration.
 
 ### DNSClient
 
@@ -29,7 +29,7 @@ _No description available._
 public bool DNSClient
 ```
 
-_No description available._
+The interface supports DNS client resolution.
 
 ### DHCPClient
 
@@ -37,7 +37,7 @@ _No description available._
 public bool DHCPClient
 ```
 
-_No description available._
+The interface supports DHCP client configuration.
 
 ### DHCP_DNSUpdate
 
@@ -45,7 +45,7 @@ _No description available._
 public bool DHCP_DNSUpdate
 ```
 
-_No description available._
+The interface supports DHCP-DNS updates.
 
 ### ConfigurationSettable
 
@@ -53,4 +53,4 @@ _No description available._
 public bool ConfigurationSettable
 ```
 
-_No description available._
+The interface configuration can be set via this object.

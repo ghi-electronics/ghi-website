@@ -7,7 +7,7 @@ sidebar_label: "MqttPacket"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking.Mqtt`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Mqtt`<br/>**Namespace:** `GHIElectronics.TinyCLR.Networking.Mqtt`
 
-_No description available._
+Represents a single MQTT control packet and encodes it to bytes for sending.
 
 ```csharp
 public sealed class MqttPacket
@@ -21,7 +21,7 @@ public sealed class MqttPacket
 public byte[] Payload { get; set; }
 ```
 
-_No description available._
+The message payload carried by the packet.
 
 ### PacketId
 
@@ -29,7 +29,7 @@ _No description available._
 public uint PacketId { get; set; }
 ```
 
-_No description available._
+The packet identifier used to correlate acknowledgements.
 
 ### IsPublished
 
@@ -37,4 +37,4 @@ _No description available._
 public bool IsPublished { get; set; }
 ```
 
-_No description available._
+Indicates whether this packet represents an outbound published message.

@@ -7,7 +7,7 @@ sidebar_label: "Direction"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Shapes`
 
-_No description available._
+Specifies the direction in which a line is drawn.
 
 ```csharp
 public enum Direction
@@ -17,5 +17,5 @@ public enum Direction
 
 | Name | Value | Description |
 |---|---|---|
-| `TopToBottom` |  |  |
-| `BottomToTop` |  |  |
+| `TopToBottom` |  | The line is drawn from the top-left to the bottom-right. |
+| `BottomToTop` |  | The line is drawn from the bottom-left to the top-right. |

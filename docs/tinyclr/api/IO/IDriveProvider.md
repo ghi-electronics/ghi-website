@@ -7,7 +7,7 @@ sidebar_label: "IDriveProvider"
 
 **NuGet:** `GHIElectronics.TinyCLR.IO`<br/>**Assembly:** `GHIElectronics.TinyCLR.IO`<br/>**Namespace:** `GHIElectronics.TinyCLR.IO`
 
-_No description available._
+Backing store for a mounted drive that the IO library calls into.
 
 ```csharp
 public interface IDriveProvider
@@ -21,7 +21,7 @@ public interface IDriveProvider
 DriveType DriveType { get; }
 ```
 
-_No description available._
+The type of the drive.
 
 ### DriveFormat
 
@@ -29,7 +29,7 @@ _No description available._
 string DriveFormat { get; }
 ```
 
-_No description available._
+The name of the file system format on the drive.
 
 ### IsReady
 
@@ -37,7 +37,7 @@ _No description available._
 bool IsReady { get; }
 ```
 
-_No description available._
+Whether the drive is ready for access.
 
 ### AvailableFreeSpace
 
@@ -45,7 +45,7 @@ _No description available._
 long AvailableFreeSpace { get; }
 ```
 
-_No description available._
+The amount of free space available on the drive in bytes.
 
 ### TotalFreeSpace
 
@@ -53,7 +53,7 @@ _No description available._
 long TotalFreeSpace { get; }
 ```
 
-_No description available._
+The total free space on the drive in bytes.
 
 ### TotalSize
 
@@ -61,7 +61,7 @@ _No description available._
 long TotalSize { get; }
 ```
 
-_No description available._
+The total size of the drive in bytes.
 
 ### VolumeLabel
 
@@ -69,7 +69,7 @@ _No description available._
 string VolumeLabel { get; }
 ```
 
-_No description available._
+The volume label of the drive.
 
 ### Name
 
@@ -77,7 +77,7 @@ _No description available._
 string Name { get; }
 ```
 
-_No description available._
+The root name assigned to the drive.
 
 ## Methods
 
@@ -87,7 +87,7 @@ _No description available._
 IFileSystemEntryFinder Find(string path, string searchPattern)
 ```
 
-_No description available._
+Returns a finder for the entries under the path that match the search pattern.
 
 **Returns** `IFileSystemEntryFinder`
 
@@ -97,7 +97,7 @@ _No description available._
 FileSystemEntry GetFileSystemEntry(string path)
 ```
 
-_No description available._
+Returns metadata for the entry at the path, or null if it does not exist.
 
 **Returns** `FileSystemEntry`
 
@@ -107,7 +107,7 @@ _No description available._
 IFileStream OpenFile(string path, int bufferSize)
 ```
 
-_No description available._
+Opens the file at the path and returns a stream to it.
 
 **Returns** `IFileStream`
 
@@ -117,7 +117,7 @@ _No description available._
 void Delete(string path)
 ```
 
-_No description available._
+Deletes the file or directory at the path.
 
 ### Move(string source, string destination)
 
@@ -125,7 +125,7 @@ _No description available._
 bool Move(string source, string destination)
 ```
 
-_No description available._
+Moves an entry from the source path to the destination path.
 
 **Returns** `bool`
 
@@ -135,7 +135,7 @@ _No description available._
 void CreateDirectory(string path)
 ```
 
-_No description available._
+Creates a directory at the path.
 
 ### GetAttributes(string path)
 
@@ -143,7 +143,7 @@ _No description available._
 FileAttributes GetAttributes(string path)
 ```
 
-_No description available._
+Returns the attributes of the entry at the path.
 
 **Returns** `FileAttributes`
 
@@ -153,7 +153,7 @@ _No description available._
 void SetAttributes(string path, FileAttributes attributes)
 ```
 
-_No description available._
+Sets the attributes of the entry at the path.
 
 ### Initialize(string name)
 
@@ -161,4 +161,4 @@ _No description available._
 void Initialize(string name)
 ```
 
-_No description available._
+Initializes the provider with the given root name.

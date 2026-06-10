@@ -7,7 +7,7 @@ sidebar_label: "ScrollingStyle"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+Specifies how a control advances its content when scrolling.
 
 ```csharp
 public enum ScrollingStyle
@@ -17,7 +17,7 @@ public enum ScrollingStyle
 
 | Name | Value | Description |
 |---|---|---|
-| `First` |  |  |
-| `LineByLine` | `First` |  |
-| `PageByPage` |  |  |
-| `Last` | `PageByPage` |  |
+| `First` |  | The first defined scrolling style. |
+| `LineByLine` | `First` | Scrolls one line at a time. |
+| `PageByPage` |  | Scrolls one page at a time. |
+| `Last` | `PageByPage` | The last defined scrolling style. |

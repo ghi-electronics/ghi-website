@@ -19,7 +19,7 @@ sidebar_label: Overview
 | [CursorMovedEventArgs](./CursorMovedEventArgs.md) | `GHIElectronics.TinyCLR.Devices.UsbHost` | The events args for the CursorMoved event. |
 | [CursorMovedEventArgs](./CursorMovedEventArgs_2.md) | `GHIElectronics.TinyCLR.Devices.UsbHost` | The events args for the CursorMoved event. |
 | [Device](./Device.md) | `GHIElectronics.TinyCLR.Devices.UsbHost.Descriptors` | Device descriptor. |
-| [DeviceConnectionEventArgs](./DeviceConnectionEventArgs.md) | `GHIElectronics.TinyCLR.Devices.UsbHost` |  |
+| [DeviceConnectionEventArgs](./DeviceConnectionEventArgs.md) | `GHIElectronics.TinyCLR.Devices.UsbHost` | The event arguments for a device connection change. |
 | [Endpoint](./Endpoint.md) | `GHIElectronics.TinyCLR.Devices.UsbHost.Descriptors` | Endpoint descriptor. |
 | [Format](./Format.md) | `GHIElectronics.TinyCLR.Devices.UsbHost` | A camera-supported video format / resolution combination. |
 | [HatSwitchPressedEventArgs](./HatSwitchPressedEventArgs.md) | `GHIElectronics.TinyCLR.Devices.UsbHost` | The events args for the HatSwitchPressed event. |
@@ -30,8 +30,8 @@ sidebar_label: Overview
 | [Mouse](./Mouse.md) | `GHIElectronics.TinyCLR.Devices.UsbHost` | Allows a usb device to be used a mouse. |
 | [Pipe](./Pipe.md) | `GHIElectronics.TinyCLR.Devices.UsbHost` | A USB communication pipe. |
 | [RawDevice](./RawDevice.md) | `GHIElectronics.TinyCLR.Devices.UsbHost` | Provides low level access functionalities for the connected USB device. This is useful if there is not already a predefined driver for that device. |
-| [UsbHostController](./UsbHostController.md) | `GHIElectronics.TinyCLR.Devices.UsbHost` |  |
-| [UsbHostControllerApiWrapper](./UsbHostControllerApiWrapper.md) | `GHIElectronics.TinyCLR.Devices.UsbHost.Provider` |  |
+| [UsbHostController](./UsbHostController.md) | `GHIElectronics.TinyCLR.Devices.UsbHost` | Represents the USB host controller used to manage connected USB devices. |
+| [UsbHostControllerApiWrapper](./UsbHostControllerApiWrapper.md) | `GHIElectronics.TinyCLR.Devices.UsbHost.Provider` | The native API wrapper that implements the USB host controller provider. |
 | [Webcam](./Webcam.md) | `GHIElectronics.TinyCLR.Devices.UsbHost` | Allows a USB webcam (UVC class, YUY2 uncompressed) to be used. |
 | [WheelMovedEventArgs](./WheelMovedEventArgs.md) | `GHIElectronics.TinyCLR.Devices.UsbHost` | The events args for the WheelMoved event. |
 
@@ -39,14 +39,14 @@ sidebar_label: Overview
 
 | Interface | Namespace | Summary |
 |---|---|---|
-| [IUsbHostControllerProvider](./IUsbHostControllerProvider.md) | `GHIElectronics.TinyCLR.Devices.UsbHost.Provider` |  |
+| [IUsbHostControllerProvider](./IUsbHostControllerProvider.md) | `GHIElectronics.TinyCLR.Devices.UsbHost.Provider` | Provides the underlying implementation for a USB host controller. |
 
 ## Enums
 
 | Enum | Namespace | Summary |
 |---|---|---|
 | [DescriptorType](./DescriptorType.md) | `GHIElectronics.TinyCLR.Devices.UsbHost.Descriptors` | The possible types of descriptors. |
-| [DeviceConnectionStatus](./DeviceConnectionStatus.md) | `GHIElectronics.TinyCLR.Devices.UsbHost` |  |
+| [DeviceConnectionStatus](./DeviceConnectionStatus.md) | `GHIElectronics.TinyCLR.Devices.UsbHost` | The connection status of a USB device. |
 | [DeviceType](./DeviceType.md) | `GHIElectronics.TinyCLR.Devices.UsbHost` | Possible device types. |
 | [FormatKind](./FormatKind.md) | `GHIElectronics.TinyCLR.Devices.UsbHost` | The on-the-wire pixel encoding for a UVC stream. |
 
@@ -59,5 +59,5 @@ sidebar_label: Overview
 | [DisconnectedEventHandler](./DisconnectedEventHandler.md) | `GHIElectronics.TinyCLR.Devices.UsbHost` | The event handler type for when the device disconnects. |
 | [FrameAvailableEventHandler](./FrameAvailableEventHandler.md) | `GHIElectronics.TinyCLR.Devices.UsbHost` | Delegate fired when a new frame is ready. |
 | [HatSwitchPressedEventHandler](./HatSwitchPressedEventHandler.md) | `GHIElectronics.TinyCLR.Devices.UsbHost` | The delegate for when the joystick's hat switch is pressed. |
-| [OnConnectionChanged](./OnConnectionChanged.md) | `GHIElectronics.TinyCLR.Devices.UsbHost` |  |
+| [OnConnectionChanged](./OnConnectionChanged.md) | `GHIElectronics.TinyCLR.Devices.UsbHost` | The delegate for when a device's connection status changes. |
 | [WheelMovedEventHandler](./WheelMovedEventHandler.md) | `GHIElectronics.TinyCLR.Devices.UsbHost` | The delegate for when the mouse's wheel moves. |

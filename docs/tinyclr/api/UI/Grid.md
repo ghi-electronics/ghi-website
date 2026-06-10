@@ -21,7 +21,7 @@ public class Grid : Panel
 public Grid()
 ```
 
-_No description available._
+Creates a new Grid.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public GridLengthCollection RowDefinitions { get; }
 ```
 
-_No description available._
+The row size definitions.
 
 ### ColumnDefinitions
 
@@ -39,7 +39,7 @@ _No description available._
 public GridLengthCollection ColumnDefinitions { get; }
 ```
 
-_No description available._
+The column size definitions.
 
 ## Methods
 
@@ -49,7 +49,7 @@ _No description available._
 public static int GetRow(UIElement e)
 ```
 
-_No description available._
+Gets the grid row assigned to an element.
 
 **Returns** `int`
 
@@ -59,7 +59,7 @@ _No description available._
 public static void SetRow(UIElement e, int row)
 ```
 
-_No description available._
+Assigns an element to a grid row.
 
 ### GetColumn(UIElement e)
 
@@ -67,7 +67,7 @@ _No description available._
 public static int GetColumn(UIElement e)
 ```
 
-_No description available._
+Gets the grid column assigned to an element.
 
 **Returns** `int`
 
@@ -77,7 +77,7 @@ _No description available._
 public static void SetColumn(UIElement e, int column)
 ```
 
-_No description available._
+Assigns an element to a grid column.
 
 ### MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
 
@@ -85,14 +85,7 @@ _No description available._
 protected override void MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
 ```
 
-Measurement override. Implement your size-to-content logic here. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `availableWidth` | `int` | Available size that parent can give to the child. May be MaxValue(when parent wants to measure to content). This is soft constraint. Child can return bigger size to indicate that it wants bigger space and hope that parent can throw in scrolling... |
-| `availableHeight` | `int` |  |
-| `desiredWidth` | `out int` |  |
-| `desiredHeight` | `out int` |  |
+Measures children and computes row and column sizes.
 
 ### ArrangeOverride(int arrangeWidth, int arrangeHeight)
 
@@ -100,9 +93,4 @@ Measurement override. Implement your size-to-content logic here. _(inherited)_
 protected override void ArrangeOverride(int arrangeWidth, int arrangeHeight)
 ```
 
-ArrangeOverride allows for the customization of the final sizing and positioning of children. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `arrangeWidth` | `int` | Final width |
-| `arrangeHeight` | `int` | Final height |
+Positions each child within its assigned cell.

@@ -7,7 +7,7 @@ sidebar_label: "ListBoxItem"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+A single selectable item within a `ListBox`.
 
 ```csharp
 public class ListBoxItem : ContentControl
@@ -21,7 +21,7 @@ public class ListBoxItem : ContentControl
 public bool IsSelected { get; }
 ```
 
-_No description available._
+True when this item is the list's selected item.
 
 ### IsSelectable
 
@@ -29,7 +29,7 @@ _No description available._
 public bool IsSelectable { get; set; }
 ```
 
-_No description available._
+Whether this item can be selected.
 
 ## Methods
 
@@ -39,7 +39,7 @@ _No description available._
 protected internal virtual void OnIsSelectedChanged(bool isSelected)
 ```
 
-_No description available._
+Called when this item's selected state changes.
 
 ### OnTouchUp(TouchEventArgs e)
 
@@ -47,4 +47,4 @@ _No description available._
 protected override void OnTouchUp(TouchEventArgs e)
 ```
 
-_No description available._
+Handles touch release; selects this item and raises the list's Click.

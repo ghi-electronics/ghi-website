@@ -7,7 +7,7 @@ sidebar_label: "RegisterSessionHandler"
 
 **NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`<br/>**Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`<br/>**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`
 
-_No description available._
+Handles a scanner registering or unregistering an encapsulation session.
 
 ```csharp
 public delegate void RegisterSessionHandler(AdapterController adapter, IPAddress ipAddress);

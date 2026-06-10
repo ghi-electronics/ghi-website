@@ -21,7 +21,7 @@ public class FtpListenerRequest
 public string Method { get; }
 ```
 
-_No description available._
+The FTP method of this request.
 
 ### QueryString
 

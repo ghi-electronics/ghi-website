@@ -21,7 +21,7 @@ public struct NetworkInterfaceConfiguration
 public uint IPAddress
 ```
 
-_No description available._
+The interface IP address.
 
 ### NetworkMask
 
@@ -29,7 +29,7 @@ _No description available._
 public uint NetworkMask
 ```
 
-_No description available._
+The subnet mask.
 
 ### GatewayAddress
 
@@ -37,7 +37,7 @@ _No description available._
 public uint GatewayAddress
 ```
 
-_No description available._
+The default gateway address.
 
 ### NameServer
 
@@ -45,7 +45,7 @@ _No description available._
 public uint NameServer
 ```
 
-_No description available._
+The primary DNS server address.
 
 ### NameServer2
 
@@ -53,7 +53,7 @@ _No description available._
 public uint NameServer2
 ```
 
-_No description available._
+The secondary DNS server address.
 
 ### DomainName
 
@@ -61,4 +61,4 @@ _No description available._
 public string DomainName
 ```
 
-_No description available._
+The domain name.

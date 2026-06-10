@@ -7,7 +7,7 @@ sidebar_label: "ClassId"
 
 **NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`<br/>**Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`<br/>**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`
 
-_No description available._
+Standard CIP object class codes.
 
 ```csharp
 public enum ClassId : int
@@ -17,14 +17,14 @@ public enum ClassId : int
 
 | Name | Value | Description |
 |---|---|---|
-| `Identity` | `0x01` |  |
-| `MessageRouter` | `0x02` |  |
-| `DeviceNet` | `0x03` |  |
-| `Assembly` | `0x04` |  |
-| `Connection` | `0x05` |  |
-| `ConnectionManager` | `0x06` |  |
-| `Dlr` | `0x47` |  |
-| `QoS` | `0x48` |  |
-| `Port` | `0xF4` |  |
-| `TcpIpInterface` | `0xF5` |  |
-| `EthernetLink` | `0xF6` |  |
+| `Identity` | `0x01` | Identity object. |
+| `MessageRouter` | `0x02` | Message Router object. |
+| `DeviceNet` | `0x03` | DeviceNet object. |
+| `Assembly` | `0x04` | Assembly object. |
+| `Connection` | `0x05` | Connection object. |
+| `ConnectionManager` | `0x06` | Connection Manager object. |
+| `Dlr` | `0x47` | Device Level Ring (DLR) object. |
+| `QoS` | `0x48` | Quality of Service (QoS) object. |
+| `Port` | `0xF4` | Port object. |
+| `TcpIpInterface` | `0xF5` | TCP/IP Interface object. |
+| `EthernetLink` | `0xF6` | Ethernet Link object. |

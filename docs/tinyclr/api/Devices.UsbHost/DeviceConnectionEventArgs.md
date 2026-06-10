@@ -7,7 +7,7 @@ sidebar_label: "DeviceConnectionEventArgs"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.UsbHost`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbHost`
 
-_No description available._
+The event arguments for a device connection change.
 
 ```csharp
 public class DeviceConnectionEventArgs : EventArgs
@@ -69,4 +69,4 @@ The device's USB port number.
 public DeviceConnectionStatus DeviceStatus { get; }
 ```
 
-_No description available._
+The device's connection status.

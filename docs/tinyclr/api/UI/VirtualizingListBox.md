@@ -21,7 +21,7 @@ public class VirtualizingListBox : Control, IDisposable
 public VirtualizingListBox()
 ```
 
-_No description available._
+Initializes a new instance of the `VirtualizingListBox` class.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public IList ItemsSource { get; set; }
 ```
 
-_No description available._
+The list of items shown in the list box; each item is displayed via its `ToString()`.
 
 ### ItemHeight
 
@@ -47,7 +47,7 @@ Fixed row height in pixels (all rows use this for virtualization math).
 public int SelectedIndex { get; set; }
 ```
 
-_No description available._
+The index of the currently selected item, or -1 if none is selected.
 
 ### HorizontalOffset
 
@@ -55,7 +55,7 @@ _No description available._
 public int HorizontalOffset { get; set; }
 ```
 
-_No description available._
+The current horizontal scroll offset of the list.
 
 ### VerticalOffset
 
@@ -63,7 +63,7 @@ _No description available._
 public int VerticalOffset { get; set; }
 ```
 
-_No description available._
+The current vertical scroll offset of the list.
 
 ## Methods
 
@@ -73,14 +73,7 @@ _No description available._
 protected override void MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
 ```
 
-Measurement override. Implement your size-to-content logic here. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `availableWidth` | `int` | Available size that parent can give to the child. May be MaxValue(when parent wants to measure to content). This is soft constraint. Child can return bigger size to indicate that it wants bigger space and hope that parent can throw in scrolling... |
-| `availableHeight` | `int` |  |
-| `desiredWidth` | `out int` |  |
-| `desiredHeight` | `out int` |  |
+Measures the inner scroll viewer to determine the desired size.
 
 ### ArrangeOverride(int arrangeWidth, int arrangeHeight)
 
@@ -88,12 +81,7 @@ Measurement override. Implement your size-to-content logic here. _(inherited)_
 protected override void ArrangeOverride(int arrangeWidth, int arrangeHeight)
 ```
 
-ArrangeOverride allows for the customization of the final sizing and positioning of children. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `arrangeWidth` | `int` | Final width |
-| `arrangeHeight` | `int` | Final height |
+Arranges the inner scroll viewer to fill the list box.
 
 ### Dispose()
 
@@ -101,7 +89,7 @@ ArrangeOverride allows for the customization of the final sizing and positioning
 public void Dispose()
 ```
 
-_No description available._
+Detaches the list box's event handlers for deterministic teardown.
 
 ### Dispose(bool disposing)
 
@@ -109,7 +97,7 @@ _No description available._
 protected virtual void Dispose(bool disposing)
 ```
 
-_No description available._
+Detaches the list box's event handlers for deterministic teardown.
 
 ## Events
 
@@ -119,4 +107,4 @@ _No description available._
 public event SelectionChangedEventHandler SelectionChanged
 ```
 
-_No description available._
+Raised when the selected item changes.

@@ -21,7 +21,7 @@ public class SQLiteDatabase : IDisposable
 public SQLiteDatabase(string file)
 ```
 
-_No description available._
+Opens or creates a file-backed SQLite database at the given path.
 
 ## Methods
 
@@ -31,7 +31,7 @@ _No description available._
 public void Dispose()
 ```
 
-_No description available._
+Closes the database and releases its native resources.
 
 ### ExecuteNonQuery(string query)
 
@@ -39,7 +39,7 @@ _No description available._
 public void ExecuteNonQuery(string query)
 ```
 
-_No description available._
+Executes a SQL statement that does not return a result set, such as an INSERT or UPDATE.
 
 ### ExecuteQuery(string query)
 
@@ -47,7 +47,7 @@ _No description available._
 public ResultSet ExecuteQuery(string query)
 ```
 
-_No description available._
+Executes a SQL query and returns the result set.
 
 **Returns** `ResultSet`
 
@@ -57,4 +57,4 @@ _No description available._
 protected virtual void Dispose(bool disposing)
 ```
 
-_No description available._
+Closes the underlying database; releases resources when disposing.

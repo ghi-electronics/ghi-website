@@ -17,6 +17,6 @@ public enum XmlSpace
 
 | Name | Value | Description |
 |---|---|---|
-| `None` | `0` |  |
-| `Default` | `1` |  |
-| `Preserve` | `2` |  |
+| `None` | `0` | No xml:space scope is in effect. |
+| `Default` | `1` | The xml:space scope equals "default". |
+| `Preserve` | `2` | The xml:space scope equals "preserve". |

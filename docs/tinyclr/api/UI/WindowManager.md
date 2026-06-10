@@ -7,7 +7,7 @@ sidebar_label: "WindowManager"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI`
 
-_No description available._
+The root container that hosts all windows and drives rendering for a display.
 
 ```csharp
 public class WindowManager : Controls.Canvas
@@ -21,7 +21,7 @@ public class WindowManager : Controls.Canvas
 public DisplayController DisplayController { get; }
 ```
 
-_No description available._
+Gets the display controller this window manager renders to.
 
 ## Methods
 
@@ -31,7 +31,7 @@ _No description available._
 protected override void MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
 ```
 
-_No description available._
+Measures the window manager to the size of the active display configuration.
 
 ### OnChildrenChanged(UIElement added, UIElement removed, int indexAffected)
 
@@ -39,7 +39,7 @@ _No description available._
 protected internal override void OnChildrenChanged(UIElement added, UIElement removed, int indexAffected)
 ```
 
-_No description available._
+Updates focus and touch capture when a window is added to or removed from the manager.
 
 ### RenderRecursive(DrawingContext dc)
 
@@ -47,7 +47,7 @@ _No description available._
 protected internal override void RenderRecursive(DrawingContext dc)
 ```
 
-_No description available._
+Renders the window tree and then raises the `PostRender` event.
 
 ## Events
 
@@ -57,7 +57,7 @@ _No description available._
 public event PostRenderEventHandler PostRender
 ```
 
-_No description available._
+Occurs after the window tree has been rendered, allowing custom overlay drawing.
 
 ## Fields
 
@@ -67,4 +67,4 @@ _No description available._
 public static WindowManager Instance
 ```
 
-_No description available._
+The singleton window manager instance for the application.

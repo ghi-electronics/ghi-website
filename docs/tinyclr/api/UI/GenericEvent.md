@@ -7,7 +7,7 @@ sidebar_label: "GenericEvent"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Input`
 
-_No description available._
+Represents a generic input event with category, data and position.
 
 ```csharp
 public class GenericEvent : BaseEvent
@@ -21,7 +21,7 @@ public class GenericEvent : BaseEvent
 public byte EventCategory
 ```
 
-_No description available._
+The category of the event.
 
 ### EventData
 
@@ -29,7 +29,7 @@ _No description available._
 public uint EventData
 ```
 
-_No description available._
+The data payload associated with the event.
 
 ### X
 
@@ -37,7 +37,7 @@ _No description available._
 public int X
 ```
 
-_No description available._
+The x coordinate associated with the event.
 
 ### Y
 
@@ -45,7 +45,7 @@ _No description available._
 public int Y
 ```
 
-_No description available._
+The y coordinate associated with the event.
 
 ### Time
 
@@ -53,4 +53,4 @@ _No description available._
 public DateTime Time
 ```
 
-_No description available._
+The time when the event occurred.

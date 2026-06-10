@@ -17,8 +17,8 @@ public enum ValidationType
 
 | Name | Value | Description |
 |---|---|---|
-| `None` | `0` |  |
-| `Auto` | `1` |  |
-| `DTD` | `2` |  |
-| `XDR` | `3` |  |
-| `Schema` | `4` |  |
+| `None` | `0` | No validation is performed. |
+| `Auto` | `1` | The validation type is detected automatically. |
+| `DTD` | `2` | Validate according to a DTD. |
+| `XDR` | `3` | Validate according to XML-Data Reduced (XDR) schemas. |
+| `Schema` | `4` | Validate according to XSD schemas. |

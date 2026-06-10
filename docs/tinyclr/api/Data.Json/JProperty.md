@@ -21,7 +21,7 @@ public class JProperty : JToken
 public JProperty()
 ```
 
-_No description available._
+Initializes a new empty property.
 
 ### JProperty(string name, JToken value)
 
@@ -29,7 +29,7 @@ _No description available._
 public JProperty(string name, JToken value)
 ```
 
-_No description available._
+Initializes a new property with the given name and value.
 
 ## Properties
 
@@ -39,7 +39,7 @@ _No description available._
 public string Name { get; set; }
 ```
 
-_No description available._
+Gets or sets the property name.
 
 ### Value
 
@@ -47,7 +47,7 @@ _No description available._
 public JToken Value { get; set; }
 ```
 
-_No description available._
+Gets or sets the property value.
 
 ## Methods
 
@@ -57,7 +57,7 @@ _No description available._
 public override string ToString()
 ```
 
-_No description available._
+Returns the JSON text for this property.
 
 **Returns** `string`
 
@@ -67,7 +67,7 @@ _No description available._
 public override string ToString(JsonSerializationOptions options)
 ```
 
-_No description available._
+Returns the JSON text for this property using the given formatting options.
 
 **Returns** `string`
 
@@ -77,7 +77,7 @@ _No description available._
 public override int GetBsonSize()
 ```
 
-_No description available._
+Gets the number of bytes the property value occupies when encoded as BSON.
 
 **Returns** `int`
 
@@ -87,7 +87,7 @@ _No description available._
 public override int GetBsonSize(string ename)
 ```
 
-_No description available._
+Gets the number of BSON bytes for this property including the given element name.
 
 **Returns** `int`
 
@@ -97,7 +97,7 @@ _No description available._
 public override void ToBson(byte[] buffer, ref int offset)
 ```
 
-_No description available._
+Writes the property value to the buffer as BSON, advancing the offset.
 
 ### GetBsonType()
 
@@ -105,6 +105,6 @@ _No description available._
 public override BsonTypes GetBsonType()
 ```
 
-_No description available._
+Gets the BSON type code of the property value.
 
 **Returns** `BsonTypes`

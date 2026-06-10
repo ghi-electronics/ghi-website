@@ -7,7 +7,7 @@ sidebar_label: "Encapsulation"
 
 **NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`
 
-_No description available._
+Represents an EtherNet/IP encapsulation packet header plus its command-specific data.
 
 ```csharp
 public class Encapsulation
@@ -21,7 +21,7 @@ public class Encapsulation
 public CommandsEnum Command { get; set; }
 ```
 
-_No description available._
+The encapsulation command for this packet.
 
 ### Length
 
@@ -29,7 +29,7 @@ _No description available._
 public ushort Length { get; set; }
 ```
 
-_No description available._
+The byte length of the command-specific data that follows the header.
 
 ### SessionHandle
 
@@ -37,7 +37,7 @@ _No description available._
 public uint SessionHandle { get; set; }
 ```
 
-_No description available._
+The session handle assigned by the target after RegisterSession.
 
 ### Status
 
@@ -45,7 +45,7 @@ _No description available._
 public StatusEnum Status { get; }
 ```
 
-_No description available._
+The encapsulation status returned by the target.
 
 ## Methods
 
@@ -55,7 +55,7 @@ _No description available._
 public ArrayList CommandSpecificData = new ArrayList()
 ```
 
-_No description available._
+The command-specific data bytes appended after the 24-byte header.
 
 **Returns** `ArrayList CommandSpecificData = new`
 
@@ -65,6 +65,6 @@ _No description available._
 public byte[] Tobytes()
 ```
 
-_No description available._
+Serializes this encapsulation packet (24-byte header plus command-specific data) to a byte array.
 
 **Returns** `byte[]`

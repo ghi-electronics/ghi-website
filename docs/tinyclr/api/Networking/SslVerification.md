@@ -7,7 +7,7 @@ sidebar_label: "SslVerification"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking`<br/>**Namespace:** `System.Security.Authentication`
 
-_No description available._
+Specifies how the remote certificate is verified during the SSL handshake.
 
 ```csharp
 public enum SslVerification
@@ -17,7 +17,7 @@ public enum SslVerification
 
 | Name | Value | Description |
 |---|---|---|
-| `None` | `0` |  |
-| `Optional` | `1` |  |
-| `Required` | `2` |  |
-| `VerifyOnce` | `3` |  |
+| `None` | `0` | No certificate verification is performed. |
+| `Optional` | `1` | Certificate verification is optional. |
+| `Required` | `2` | Certificate verification is required. |
+| `VerifyOnce` | `3` | The certificate is verified only once. |

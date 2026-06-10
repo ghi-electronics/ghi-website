@@ -7,7 +7,7 @@ sidebar_label: "VerticalAlignment"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI`
 
-_No description available._
+Describes how a child element is vertically positioned or stretched within its parent.
 
 ```csharp
 public enum VerticalAlignment
@@ -17,7 +17,7 @@ public enum VerticalAlignment
 
 | Name | Value | Description |
 |---|---|---|
-| `Top` |  |  |
-| `Center` |  |  |
-| `Bottom` |  |  |
-| `Stretch` |  |  |
+| `Top` |  | Aligns the element to the top of the parent's layout slot. |
+| `Center` |  | Centers the element vertically within the parent's layout slot. |
+| `Bottom` |  | Aligns the element to the bottom of the parent's layout slot. |
+| `Stretch` |  | Stretches the element to fill the parent's layout slot vertically. |

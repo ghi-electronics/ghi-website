@@ -7,7 +7,7 @@ sidebar_label: "PostRenderEventHandler"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI`
 
-_No description available._
+Represents a method that performs custom drawing after the window tree has been rendered.
 
 ```csharp
 public delegate void PostRenderEventHandler(DrawingContext dc);

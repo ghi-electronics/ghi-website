@@ -7,7 +7,7 @@ sidebar_label: "SelectionChangedEventArgs"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+Provides data for the selection-changed event, identifying the previous and new selected indexes.
 
 ```csharp
 public class SelectionChangedEventArgs : EventArgs
@@ -21,7 +21,7 @@ public class SelectionChangedEventArgs : EventArgs
 public SelectionChangedEventArgs(int previousIndex, int newIndex)
 ```
 
-_No description available._
+Initializes a new instance of the `SelectionChangedEventArgs` class.
 
 ## Fields
 
@@ -31,7 +31,7 @@ _No description available._
 public readonly int PreviousSelectedIndex
 ```
 
-_No description available._
+The index that was selected before the change.
 
 ### SelectedIndex
 
@@ -39,4 +39,4 @@ _No description available._
 public readonly int SelectedIndex
 ```
 
-_No description available._
+The index that is selected after the change.

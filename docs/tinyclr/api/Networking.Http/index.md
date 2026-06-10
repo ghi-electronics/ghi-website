@@ -37,7 +37,7 @@ sidebar_label: Overview
 
 | Enum | Namespace | Summary |
 |---|---|---|
-| [AuthenticationSchemes](./AuthenticationSchemes.md) | `System.Net` |  |
+| [AuthenticationSchemes](./AuthenticationSchemes.md) | `System.Net` | Specifies the protocols used to authenticate client requests. |
 | [AuthenticationType](./AuthenticationType.md) | `System.Net` | Network authentication type. Currently supports: Basic Authentication Microsoft Live Id Delegate Authentication |
 | [Flags](./Flags.md) | `System` | Defines flags kept in m_Flags variable. |
 | [HttpStatusCode](./HttpStatusCode.md) | `System.Net` | Contains the values of status codes defined for HTTP. |

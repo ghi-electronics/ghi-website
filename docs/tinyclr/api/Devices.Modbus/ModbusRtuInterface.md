@@ -101,7 +101,7 @@ Creates a new telegram for a modbus request or response. All data except the fun
 public void PrepareWrite()
 ```
 
-_No description available._
+Prepares the interface for sending a telegram.
 
 ### PrepareRead()
 
@@ -109,7 +109,7 @@ _No description available._
 public void PrepareRead()
 ```
 
-_No description available._
+Prepares the interface for receiving a telegram.
 
 ### SendTelegram(byte[] buffer, short telegramLength)
 
@@ -178,4 +178,4 @@ Removes all data from the input interface.
 public bool isOpen
 ```
 
-_No description available._
+Indicates whether the interface is currently open.

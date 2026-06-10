@@ -7,7 +7,7 @@ sidebar_label: "UsbClientControllerApiWrapper"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbClient.Provider`
 
-_No description available._
+The native implementation of a USB client controller provider.
 
 ```csharp
 public class UsbClientControllerApiWrapper : IUsbClientControllerProvider
@@ -21,7 +21,7 @@ public class UsbClientControllerApiWrapper : IUsbClientControllerProvider
 public UsbClientControllerApiWrapper(NativeApi api)
 ```
 
-_No description available._
+Creates a new provider for the given native API.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public NativeApi Api { get; }
 ```
 
-_No description available._
+The native API backing this provider.
 
 ### DeviceState
 
@@ -39,7 +39,7 @@ _No description available._
 public DeviceState DeviceState { get; }
 ```
 
-_No description available._
+The current state of the device. _(inherited)_
 
 ### WriteBufferSize
 
@@ -47,7 +47,7 @@ _No description available._
 public extern int WriteBufferSize { get; set; }
 ```
 
-_No description available._
+The size of the write buffer. _(inherited)_
 
 ### ReadBufferSize
 
@@ -55,7 +55,7 @@ _No description available._
 public extern int ReadBufferSize { get; set; }
 ```
 
-_No description available._
+The size of the read buffer. _(inherited)_
 
 ## Methods
 
@@ -65,7 +65,7 @@ _No description available._
 public void Dispose()
 ```
 
-_No description available._
+Disposes the provider.
 
 ### Dispose(bool disposing)
 
@@ -73,7 +73,7 @@ _No description available._
 protected virtual void Dispose(bool disposing)
 ```
 
-_No description available._
+Disposes the provider.
 
 ### BytesToRead(int streamIndex)
 
@@ -81,7 +81,7 @@ _No description available._
 public int BytesToRead(int streamIndex)
 ```
 
-_No description available._
+The number of bytes available to read on the given stream. _(inherited)_
 
 **Returns** `int`
 
@@ -91,7 +91,7 @@ _No description available._
 public int BytesToWrite(int streamIndex)
 ```
 
-_No description available._
+The number of bytes that are in the process of being written on the given stream. _(inherited)_
 
 **Returns** `int`
 
@@ -101,7 +101,7 @@ _No description available._
 public extern void Enable()
 ```
 
-_No description available._
+Enables the device. _(inherited)_
 
 ### Disable()
 
@@ -109,7 +109,7 @@ _No description available._
 public extern void Disable()
 ```
 
-_No description available._
+Disables the device. _(inherited)_
 
 ### SetActiveSetting(UsbClientSetting setting)
 
@@ -117,7 +117,7 @@ _No description available._
 public extern void SetActiveSetting(UsbClientSetting setting)
 ```
 
-_No description available._
+Sets the active device setting. _(inherited)_
 
 ### Read(int streamIndex, byte[] data, int offset, int count)
 
@@ -125,7 +125,7 @@ _No description available._
 public extern int Read(int streamIndex, byte[] data, int offset, int count)
 ```
 
-_No description available._
+Reads data from the given stream. _(inherited)_
 
 **Returns** `int`
 
@@ -135,7 +135,7 @@ _No description available._
 public extern int Write(int streamIndex, byte[] data, int offset, int count)
 ```
 
-_No description available._
+Writes data to the given stream. _(inherited)_
 
 **Returns** `int`
 
@@ -145,7 +145,7 @@ _No description available._
 public extern void Flush(int streamIndex)
 ```
 
-_No description available._
+Flushes the write buffer of the given stream. _(inherited)_
 
 ### ClearReadBuffer(int streamIndex)
 
@@ -153,7 +153,7 @@ _No description available._
 public extern void ClearReadBuffer(int streamIndex)
 ```
 
-_No description available._
+Clears the read buffer of the given stream. _(inherited)_
 
 ### ClearWriteBuffer(int streamIndex)
 
@@ -161,7 +161,7 @@ _No description available._
 public extern void ClearWriteBuffer(int streamIndex)
 ```
 
-_No description available._
+Clears the write buffer of the given stream. _(inherited)_
 
 ### GetControlPacketSize()
 
@@ -169,7 +169,7 @@ _No description available._
 public extern int GetControlPacketSize()
 ```
 
-_No description available._
+Gets the maximum control packet size. _(inherited)_
 
 **Returns** `int`
 
@@ -179,7 +179,7 @@ _No description available._
 public extern ushort GetEndpointMap()
 ```
 
-_No description available._
+Gets a bitmap of the reserved endpoints. _(inherited)_
 
 **Returns** `ushort`
 
@@ -189,7 +189,7 @@ _No description available._
 public extern void SetDeviceDescriptor(Configuration.DeviceDescriptor[] deviceDescriptor)
 ```
 
-_No description available._
+Sets the device descriptor. _(inherited)_
 
 ### SetConfigurationDescriptor(Configuration.ConfigurationDescriptor[] configurationDescriptor)
 
@@ -197,7 +197,7 @@ _No description available._
 public extern void SetConfigurationDescriptor(Configuration.ConfigurationDescriptor[] configurationDescriptor)
 ```
 
-_No description available._
+Sets the configuration descriptor. _(inherited)_
 
 ### SetStringDescriptor(Configuration.StringDescriptor[] stringDescriptor, uint index)
 
@@ -205,7 +205,7 @@ _No description available._
 public extern void SetStringDescriptor(Configuration.StringDescriptor[] stringDescriptor, uint index)
 ```
 
-_No description available._
+Sets the string descriptor at the given index. _(inherited)_
 
 ### SetGenericDescriptor(Configuration.GenericDescriptor[] genericDescriptor)
 
@@ -213,7 +213,7 @@ _No description available._
 public extern void SetGenericDescriptor(Configuration.GenericDescriptor[] genericDescriptor)
 ```
 
-_No description available._
+Sets the generic descriptor. _(inherited)_
 
 ## Events
 
@@ -223,7 +223,7 @@ _No description available._
 public event DataReceivedEventHandler DataReceived
 ```
 
-_No description available._
+Raised when data is received from the host.
 
 ### DeviceStateChanged
 
@@ -231,4 +231,4 @@ _No description available._
 public event DeviceStateChangedEventHandler DeviceStateChanged
 ```
 
-_No description available._
+Raised when the device state changes.

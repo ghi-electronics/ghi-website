@@ -7,7 +7,7 @@ sidebar_label: "StringFormat"
 
 **NuGet:** `GHIElectronics.TinyCLR.Drawing`<br/>**Assembly:** `GHIElectronics.TinyCLR.Drawing`<br/>**Namespace:** `System.Drawing`
 
-_No description available._
+Encapsulates text layout information such as alignment, trimming, and format flags.
 
 ```csharp
 public sealed class StringFormat
@@ -21,7 +21,7 @@ public sealed class StringFormat
 public StringAlignment Alignment { get; set; }
 ```
 
-_No description available._
+Gets or sets the horizontal alignment of the text.
 
 ### Trimming
 
@@ -29,7 +29,7 @@ _No description available._
 public StringTrimming Trimming { get; set; }
 ```
 
-_No description available._
+Gets or sets how text is trimmed when it does not fit.
 
 ### FormatFlags
 
@@ -37,4 +37,4 @@ _No description available._
 public StringFormatFlags FormatFlags { get; set; }
 ```
 
-_No description available._
+Gets or sets the flags that control text layout and rendering.

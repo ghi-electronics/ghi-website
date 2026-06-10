@@ -21,7 +21,7 @@ public class FtpListener : IDisposable
 public FtpListener() : this(true)
 ```
 
-_No description available._
+Creates an FTP listener registered with the listener manager.
 
 ## Properties
 
@@ -49,7 +49,7 @@ Flag indicates whether the listener is listening to contexts or not
 protected AutoResetEvent m_ContextQueueLock = new AutoResetEvent(false)
 ```
 
-_No description available._
+Synchronization event signaled when a context is added to the queue.
 
 **Returns** `AutoResetEvent m_ContextQueueLock = new`
 
@@ -87,7 +87,7 @@ Get the oldest context from the context queue the method would be block until th
 public static event UserAuthenticator AuthenticationEvent
 ```
 
-_No description available._
+Raised to authenticate a user logging in to the FTP server.
 
 ## Fields
 
@@ -97,7 +97,7 @@ _No description available._
 protected Queue m_ContextQueue
 ```
 
-_No description available._
+Queue of pending contexts waiting to be served by this listener.
 
 ### m_Prefixes
 
@@ -105,4 +105,4 @@ _No description available._
 protected ArrayList m_Prefixes
 ```
 
-_No description available._
+List of path prefixes this listener handles.

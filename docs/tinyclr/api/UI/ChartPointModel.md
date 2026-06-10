@@ -7,7 +7,7 @@ sidebar_label: "ChartPointModel"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+Pairs a plotted point with its source value.
 
 ```csharp
 public class ChartPointModel
@@ -21,7 +21,7 @@ public class ChartPointModel
 public ChartPoint Point { get; set; }
 ```
 
-_No description available._
+The point's pixel location.
 
 ### Value
 
@@ -29,4 +29,4 @@ _No description available._
 public double Value { get; set; }
 ```
 
-_No description available._
+The value the point represents.

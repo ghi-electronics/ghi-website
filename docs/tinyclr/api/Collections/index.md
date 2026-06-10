@@ -16,7 +16,7 @@ sidebar_label: Overview
 
 | Struct | Namespace | Summary |
 |---|---|---|
-| [Enumerator](./Enumerator.md) | `System.Collections.Generic` |  |
+| [Enumerator](./Enumerator.md) | `System.Collections.Generic` | Enumerates the elements of a `HashSet{T}`. |
 
 ## Interfaces
 

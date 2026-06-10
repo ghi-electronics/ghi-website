@@ -7,7 +7,7 @@ sidebar_label: "PenType"
 
 **NuGet:** `GHIElectronics.TinyCLR.Drawing`<br/>**Assembly:** `GHIElectronics.TinyCLR.Drawing`<br/>**Namespace:** `System.Drawing.Drawing2D`
 
-_No description available._
+Specifies the type of fill a pen uses.
 
 ```csharp
 public enum PenType
@@ -17,4 +17,4 @@ public enum PenType
 
 | Name | Value | Description |
 |---|---|---|
-| `SolidColor` |  |  |
+| `SolidColor` |  | The pen draws using a single solid color. |

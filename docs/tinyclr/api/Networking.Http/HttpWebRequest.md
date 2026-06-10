@@ -291,7 +291,7 @@ Cancels a request to an Internet resource. Closes any open request/response stre
 public void Reset()
 ```
 
-_No description available._
+Clears the sent state, content length, write mode, and headers so the instance can be reused.
 
 ### AddRange(int from, int to)
 

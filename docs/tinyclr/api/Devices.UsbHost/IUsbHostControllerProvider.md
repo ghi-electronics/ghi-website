@@ -7,7 +7,7 @@ sidebar_label: "IUsbHostControllerProvider"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.UsbHost`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbHost.Provider`
 
-_No description available._
+Provides the underlying implementation for a USB host controller.
 
 ```csharp
 public interface IUsbHostControllerProvider : IDisposable
@@ -21,7 +21,7 @@ public interface IUsbHostControllerProvider : IDisposable
 void Enable()
 ```
 
-_No description available._
+Enables the controller.
 
 ### Disable()
 
@@ -29,7 +29,7 @@ _No description available._
 void Disable()
 ```
 
-_No description available._
+Disables the controller.
 
 ## Events
 
@@ -39,4 +39,4 @@ _No description available._
 event OnConnectionChanged OnConnectionChangedEvent
 ```
 
-_No description available._
+The event fired when a device's connection status changes.

@@ -7,7 +7,7 @@ sidebar_label: "GenericEventArgs"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Input`
 
-_No description available._
+Contains information about a generic input event.
 
 ```csharp
 public class GenericEventArgs : InputEventArgs
@@ -21,7 +21,7 @@ public class GenericEventArgs : InputEventArgs
 public GenericEventArgs(InputDevice inputDevice, GenericEvent genericEvent) : base(inputDevice, genericEvent.Time)
 ```
 
-_No description available._
+Constructs an instance of the GenericEventArgs class.
 
 ## Fields
 
@@ -31,4 +31,4 @@ _No description available._
 public readonly GenericEvent InternalEvent
 ```
 
-_No description available._
+Read-only access to the underlying generic event.

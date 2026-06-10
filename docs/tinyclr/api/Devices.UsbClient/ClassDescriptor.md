@@ -7,7 +7,7 @@ sidebar_label: "ClassDescriptor"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbClient`
 
-_No description available._
+A class-specific descriptor.
 
 ```csharp
 public class ClassDescriptor
@@ -21,7 +21,7 @@ public class ClassDescriptor
 public ClassDescriptor(byte DescriptorType, byte[] Payload)
 ```
 
-_No description available._
+Creates a new class descriptor.
 
 ## Fields
 
@@ -31,4 +31,4 @@ _No description available._
 public byte bDescriptorType
 ```
 
-_No description available._
+The descriptor type.

@@ -7,7 +7,7 @@ sidebar_label: "GroupCollection"
 
 **NuGet:** `GHIElectronics.TinyCLR.RegularExpressions`<br/>**Assembly:** `GHIElectronics.TinyCLR.RegularExpressions`<br/>**Namespace:** `System.Text.RegularExpressions`
 
-_No description available._
+Represents the set of capturing groups matched by a regular expression.
 
 ```csharp
 public class GroupCollection : ICollection, IEnumerable
@@ -21,7 +21,7 @@ public class GroupCollection : ICollection, IEnumerable
 public int Count { get; }
 ```
 
-_No description available._
+The number of groups in the collection.
 
 ### IsReadOnly
 
@@ -29,7 +29,7 @@ _No description available._
 public bool IsReadOnly { get; }
 ```
 
-_No description available._
+Gets a value indicating whether the collection is read-only.
 
 ### IsSynchronized
 
@@ -37,7 +37,7 @@ _No description available._
 public bool IsSynchronized { get; }
 ```
 
-_No description available._
+Gets a value indicating whether access to the collection is synchronized (thread-safe).
 
 ### groupnum]
 
@@ -45,7 +45,7 @@ _No description available._
 public Group this[int groupnum] { get; }
 ```
 
-_No description available._
+Gets the group at the specified index in the collection.
 
 ### groupname]
 
@@ -53,7 +53,7 @@ _No description available._
 public Group this[string groupname] { get; }
 ```
 
-_No description available._
+Gets the group with the specified name.
 
 ### SyncRoot
 
@@ -61,7 +61,7 @@ _No description available._
 public object SyncRoot { get; }
 ```
 
-_No description available._
+An object that can be used to synchronize access to the collection.
 
 ## Methods
 
@@ -71,7 +71,7 @@ _No description available._
 public void CopyTo(Array array, int arrayIndex)
 ```
 
-_No description available._
+Copies all the elements of the collection to the given array starting at the given index.
 
 ### GetEnumerator()
 
@@ -79,6 +79,6 @@ _No description available._
 public IEnumerator GetEnumerator()
 ```
 
-_No description available._
+Returns an enumerator that iterates through the collection.
 
 **Returns** `IEnumerator`

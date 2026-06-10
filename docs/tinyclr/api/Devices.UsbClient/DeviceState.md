@@ -7,7 +7,7 @@ sidebar_label: "DeviceState"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbClient`
 
-_No description available._
+The possible states of a USB device.
 
 ```csharp
 public enum DeviceState
@@ -17,10 +17,10 @@ public enum DeviceState
 
 | Name | Value | Description |
 |---|---|---|
-| `Detached` | `0` |  |
-| `Attached` | `1` |  |
-| `Powered` | `2` |  |
-| `Default` | `3` |  |
-| `Address` | `4` |  |
-| `Configured` | `5` |  |
-| `Suspended` | `6` |  |
+| `Detached` | `0` | The device is detached from the host. |
+| `Attached` | `1` | The device is attached to the host. |
+| `Powered` | `2` | The device is powered. |
+| `Default` | `3` | The device is in the default state. |
+| `Address` | `4` | The device has been assigned an address. |
+| `Configured` | `5` | The device is configured and ready for use. |
+| `Suspended` | `6` | The device is suspended. |

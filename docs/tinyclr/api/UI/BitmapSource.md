@@ -7,7 +7,7 @@ sidebar_label: "BitmapSource"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Media.Imaging`
 
-_No description available._
+Base class for image sources backed by a bitmap.
 
 ```csharp
 public abstract class BitmapSource : ImageSource
@@ -21,4 +21,4 @@ public abstract class BitmapSource : ImageSource
 protected BitmapSource(Graphics g) : base(g)
 ```
 
-_No description available._
+Creates a bitmap source backed by the given graphics.

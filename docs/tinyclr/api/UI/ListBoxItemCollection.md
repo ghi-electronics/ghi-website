@@ -7,7 +7,7 @@ sidebar_label: "ListBoxItemCollection"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+The collection of items belonging to a `ListBox`.
 
 ```csharp
 public class ListBoxItemCollection : ICollection
@@ -21,7 +21,7 @@ public class ListBoxItemCollection : ICollection
 public ListBoxItemCollection(ListBox listBox, UIElementCollection items)
 ```
 
-_No description available._
+Creates a collection backed by the given list box and element collection.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public ListBoxItem this[int index] { get; set; }
 ```
 
-_No description available._
+Gets or sets the item at the given index.
 
 ### Count
 
@@ -39,7 +39,7 @@ _No description available._
 public int Count { get; }
 ```
 
-_No description available._
+Number of items in the collection.
 
 ### IsSynchronized
 
@@ -47,7 +47,7 @@ _No description available._
 public bool IsSynchronized { get; }
 ```
 
-_No description available._
+Whether access to the collection is synchronized.
 
 ### SyncRoot
 
@@ -55,7 +55,7 @@ _No description available._
 public object SyncRoot { get; }
 ```
 
-_No description available._
+Object used to synchronize access to the collection.
 
 ## Methods
 
@@ -65,7 +65,7 @@ _No description available._
 public int Add(ListBoxItem item)
 ```
 
-_No description available._
+Adds an item to the list and returns its index.
 
 **Returns** `int`
 
@@ -75,7 +75,7 @@ _No description available._
 public int Add(UIElement element)
 ```
 
-_No description available._
+Wraps an element in a new ListBoxItem, adds it, and returns its index.
 
 **Returns** `int`
 
@@ -85,7 +85,7 @@ _No description available._
 public void Clear()
 ```
 
-_No description available._
+Removes all items from the list.
 
 ### Contains(ListBoxItem item)
 
@@ -93,7 +93,7 @@ _No description available._
 public bool Contains(ListBoxItem item)
 ```
 
-_No description available._
+Returns true if the list contains the given item.
 
 **Returns** `bool`
 
@@ -103,7 +103,7 @@ _No description available._
 public int IndexOf(ListBoxItem item)
 ```
 
-_No description available._
+Returns the index of the given item, or -1 if not found.
 
 **Returns** `int`
 
@@ -113,7 +113,7 @@ _No description available._
 public void Insert(int index, ListBoxItem item)
 ```
 
-_No description available._
+Inserts an item at the given index.
 
 ### Remove(ListBoxItem item)
 
@@ -121,7 +121,7 @@ _No description available._
 public void Remove(ListBoxItem item)
 ```
 
-_No description available._
+Removes the given item from the list.
 
 ### RemoveAt(int index)
 
@@ -129,4 +129,4 @@ _No description available._
 public void RemoveAt(int index)
 ```
 
-_No description available._
+Removes the item at the given index.

@@ -7,7 +7,7 @@ sidebar_label: "ReplaceOptions"
 
 **NuGet:** `GHIElectronics.TinyCLR.RegularExpressions`<br/>**Assembly:** `GHIElectronics.TinyCLR.RegularExpressions`<br/>**Namespace:** `System.Text.RegularExpressions`
 
-_No description available._
+Options that control how a replacement is applied to matches.
 
 ```csharp
 public enum ReplaceOptions
@@ -17,6 +17,6 @@ public enum ReplaceOptions
 
 | Name | Value | Description |
 |---|---|---|
-| `ReplaceAll` | `0x0000` |  |
-| `ReplaceFirst` | `0x0001` |  |
-| `ReplaceBackrefrences` | `0x0002` |  |
+| `ReplaceAll` | `0x0000` | Replace all occurrences of the regular expression. |
+| `ReplaceFirst` | `0x0001` | Replace only the first occurrence of the regular expression. |
+| `ReplaceBackrefrences` | `0x0002` | Process backreferences in the replacement string. |

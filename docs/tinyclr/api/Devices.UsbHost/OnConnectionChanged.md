@@ -7,7 +7,7 @@ sidebar_label: "OnConnectionChanged"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.UsbHost`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbHost`
 
-_No description available._
+The delegate for when a device's connection status changes.
 
 ```csharp
 public delegate void OnConnectionChanged(UsbHostController sender, DeviceConnectionEventArgs e);

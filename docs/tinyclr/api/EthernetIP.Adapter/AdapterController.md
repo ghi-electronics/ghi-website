@@ -41,7 +41,7 @@ Construct the adapter. Identity values are set on the underlying CIP Identity ob
 public void AddCipClass(CIPClass cipClass)
 ```
 
-_No description available._
+Registers a CIP object class with the adapter, creating it on the native stack.
 
 ### AddAssemblyObject(AssemblyObject asmObject)
 
@@ -92,7 +92,7 @@ Register a Listen Only connection point — a secondary scanner subscribes to th
 public void InsertService(CIPClass cipClass, CIPServiceCode serviceCode, CIPServiceCode handlerCode, string serviceName)
 ```
 
-_No description available._
+Adds a service to a CIP class, binding the given handler to the service slot.
 
 ### InsertAttribute(CipInstance cipInstance, ushort attributeNumber, CIPDataType cipType, CipAttributeEncodeInMessage encodeFunctionCode, CipAttributeDecodeFromMessage decodeFunctionCode, byte[] data, CIPAttributeFlag cipFlags)
 
@@ -100,7 +100,7 @@ _No description available._
 public void InsertAttribute(CipInstance cipInstance, ushort attributeNumber, CIPDataType cipType, CipAttributeEncodeInMessage encodeFunctionCode, CipAttributeDecodeFromMessage decodeFunctionCode, byte[] data, CIPAttributeFlag cipFlags)
 ```
 
-_No description available._
+Adds an attribute to a CIP instance, with its data type, encode/decode functions, data, and access flags.
 
 ### CreateAssemblyClass(int numberClassAttributes, uint highestClassAttributeNumber, int numberClassServices, int numberInstanceAttributes, uint highestInstanceAttributeNumber, int numberInstanceServices, uint numberInstances, string name, ushort revision)
 
@@ -108,7 +108,7 @@ _No description available._
 public CIPClass CreateAssemblyClass(int numberClassAttributes, uint highestClassAttributeNumber, int numberClassServices, int numberInstanceAttributes, uint highestInstanceAttributeNumber, int numberInstanceServices, uint numberInstances, string name, ushort revision)
 ```
 
-_No description available._
+Creates and registers the Assembly (Class 4) object class with the given attribute/service counts.
 
 **Returns** `CIPClass`
 
@@ -142,7 +142,7 @@ Tear down all native state cleanly: signals `g_end_stack=1`, polls up to 1 s for
 public void AddCipInstance(CIPClass cipClass, uint instanceId)
 ```
 
-_No description available._
+Adds a single instance with the given instance ID to a CIP class.
 
 ### AddCipInstances(CIPClass cipClass, uint instanceId)
 
@@ -150,7 +150,7 @@ _No description available._
 public void AddCipInstances(CIPClass cipClass, uint instanceId)
 ```
 
-_No description available._
+Adds the configured number of instances starting at the given instance ID to a CIP class.
 
 ### AllocateAttributeMasks(CIPClass targetClass)
 
@@ -158,7 +158,7 @@ _No description available._
 public void AllocateAttributeMasks(CIPClass targetClass)
 ```
 
-_No description available._
+Allocates the get/set attribute bit masks for the given CIP class.
 
 ### CalculateIndex(ushort attributeNumber)
 
@@ -166,7 +166,7 @@ _No description available._
 public void CalculateIndex(ushort attributeNumber)
 ```
 
-_No description available._
+Calculates the internal index for the given attribute number.
 
 ### GetCipAttribute(CipInstance cipInstance, ushort attributeNumber)
 
@@ -174,7 +174,7 @@ _No description available._
 public CipAttribute GetCipAttribute(CipInstance cipInstance, ushort attributeNumber)
 ```
 
-_No description available._
+Gets the attribute with the given number from a CIP instance.
 
 **Returns** `CipAttribute`
 
@@ -184,7 +184,7 @@ _No description available._
 public CIPClass GetCipClass(ushort classId)
 ```
 
-_No description available._
+Gets the registered CIP class with the given class ID.
 
 **Returns** `CIPClass`
 
@@ -194,7 +194,7 @@ _No description available._
 public CipInstance GetCipInstance(CIPClass cipClass, uint instanceNumber)
 ```
 
-_No description available._
+Gets the instance with the given number from a CIP class, or null if it does not exist.
 
 **Returns** `CipInstance`
 

@@ -39,4 +39,4 @@ Returns the element that input from this device is sent to.
 public abstract InputManager.InputDeviceType DeviceType { get; }
 ```
 
-_No description available._
+The input device type for this device.

@@ -7,7 +7,7 @@ sidebar_label: "Priority"
 
 **NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`
 
-_No description available._
+The transport priority for one direction of a Class-1 implicit connection.
 
 ```csharp
 public enum Priority : byte
@@ -17,7 +17,7 @@ public enum Priority : byte
 
 | Name | Value | Description |
 |---|---|---|
-| `Low` | `0` |  |
-| `High` | `1` |  |
-| `Scheduled` | `2` |  |
-| `Urgent` | `3` |  |
+| `Low` | `0` | Low priority. |
+| `High` | `1` | High priority. |
+| `Scheduled` | `2` | Scheduled priority. |
+| `Urgent` | `3` | Urgent priority. |

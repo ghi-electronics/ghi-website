@@ -7,7 +7,7 @@ sidebar_label: "UsbInterface"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbClient`
 
-_No description available._
+A USB interface descriptor.
 
 ```csharp
 public class UsbInterface
@@ -21,7 +21,7 @@ public class UsbInterface
 public UsbInterface(byte InterfaceNumber, Endpoint[] Endpoints)
 ```
 
-_No description available._
+Creates a new interface descriptor.
 
 ## Fields
 
@@ -31,7 +31,7 @@ _No description available._
 public byte bInterfaceNumber
 ```
 
-_No description available._
+The interface number.
 
 ### endpoints
 
@@ -39,7 +39,7 @@ _No description available._
 public Endpoint[] endpoints
 ```
 
-_No description available._
+The endpoints belonging to this interface.
 
 ### classDescriptors
 
@@ -47,7 +47,7 @@ _No description available._
 public ClassDescriptor[] classDescriptors
 ```
 
-_No description available._
+The class-specific descriptors for this interface.
 
 ### bInterfaceClass
 
@@ -55,7 +55,7 @@ _No description available._
 public byte bInterfaceClass
 ```
 
-_No description available._
+The interface class code.
 
 ### bInterfaceSubClass
 
@@ -63,7 +63,7 @@ _No description available._
 public byte bInterfaceSubClass
 ```
 
-_No description available._
+The interface subclass code.
 
 ### bInterfaceProtocol
 
@@ -71,7 +71,7 @@ _No description available._
 public byte bInterfaceProtocol
 ```
 
-_No description available._
+The interface protocol code.
 
 ### iInterface
 
@@ -79,4 +79,4 @@ _No description available._
 public byte iInterface
 ```
 
-_No description available._
+The string index of the interface.

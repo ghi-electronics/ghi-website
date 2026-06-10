@@ -7,7 +7,7 @@ sidebar_label: "BeforeAssemblyDataSendHandler"
 
 **NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`<br/>**Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`<br/>**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`
 
-_No description available._
+Handles the moment just before assembly data is sent from an assembly instance.
 
 ```csharp
 public delegate void BeforeAssemblyDataSendHandler(AdapterController adapter, ushort instanceNumber);

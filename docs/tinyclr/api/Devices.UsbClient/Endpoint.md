@@ -7,7 +7,7 @@ sidebar_label: "Endpoint"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbClient`
 
-_No description available._
+A USB endpoint descriptor.
 
 ```csharp
 public class Endpoint
@@ -21,7 +21,7 @@ public class Endpoint
 public Endpoint(byte EndpointAddress, byte Attributes)
 ```
 
-_No description available._
+Creates a new endpoint descriptor.
 
 ## Fields
 
@@ -31,7 +31,7 @@ _No description available._
 public const byte ATTRIB_Read
 ```
 
-_No description available._
+Attribute marking the endpoint as a read endpoint.
 
 ### ATTRIB_Write
 
@@ -39,7 +39,7 @@ _No description available._
 public const byte ATTRIB_Write
 ```
 
-_No description available._
+Attribute marking the endpoint as a write endpoint.
 
 ### ATTRIB_Isochronous
 
@@ -47,7 +47,7 @@ _No description available._
 public const byte ATTRIB_Isochronous
 ```
 
-_No description available._
+Attribute for an isochronous transfer type.
 
 ### ATTRIB_Bulk
 
@@ -55,7 +55,7 @@ _No description available._
 public const byte ATTRIB_Bulk
 ```
 
-_No description available._
+Attribute for a bulk transfer type.
 
 ### ATTRIB_Interrupt
 
@@ -63,7 +63,7 @@ _No description available._
 public const byte ATTRIB_Interrupt
 ```
 
-_No description available._
+Attribute for an interrupt transfer type.
 
 ### ATTRIB_NoSynch
 
@@ -71,7 +71,7 @@ _No description available._
 public const byte ATTRIB_NoSynch
 ```
 
-_No description available._
+Attribute for no synchronization.
 
 ### ATTRIB_Asynch
 
@@ -79,7 +79,7 @@ _No description available._
 public const byte ATTRIB_Asynch
 ```
 
-_No description available._
+Attribute for asynchronous synchronization.
 
 ### ATTRIB_Adaptive
 
@@ -87,7 +87,7 @@ _No description available._
 public const byte ATTRIB_Adaptive
 ```
 
-_No description available._
+Attribute for adaptive synchronization.
 
 ### ATTRIB_Synchronous
 
@@ -95,7 +95,7 @@ _No description available._
 public const byte ATTRIB_Synchronous
 ```
 
-_No description available._
+Attribute for synchronous synchronization.
 
 ### ATTRIB_Data
 
@@ -103,7 +103,7 @@ _No description available._
 public const byte ATTRIB_Data
 ```
 
-_No description available._
+Attribute for a data usage type.
 
 ### ATTRIB_Feedback
 
@@ -111,7 +111,7 @@ _No description available._
 public const byte ATTRIB_Feedback
 ```
 
-_No description available._
+Attribute for a feedback usage type.
 
 ### ATTRIB_Implicit
 
@@ -119,7 +119,7 @@ _No description available._
 public const byte ATTRIB_Implicit
 ```
 
-_No description available._
+Attribute for an implicit feedback data usage type.
 
 ### bEndpointAddress
 
@@ -127,7 +127,7 @@ _No description available._
 public byte bEndpointAddress
 ```
 
-_No description available._
+The address of the endpoint.
 
 ### bmAttributes
 
@@ -135,7 +135,7 @@ _No description available._
 public byte bmAttributes
 ```
 
-_No description available._
+The endpoint attributes.
 
 ### wMaxPacketSize
 
@@ -143,7 +143,7 @@ _No description available._
 public ushort wMaxPacketSize
 ```
 
-_No description available._
+The maximum packet size for the endpoint.
 
 ### bInterval
 
@@ -151,4 +151,4 @@ _No description available._
 public byte bInterval
 ```
 
-_No description available._
+The polling interval for the endpoint.

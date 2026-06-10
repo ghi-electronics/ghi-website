@@ -7,7 +7,7 @@ sidebar_label: "TouchCapture"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Input`
 
-_No description available._
+Provides methods for capturing touch input to an element.
 
 ```csharp
 public static class TouchCapture
@@ -21,7 +21,7 @@ public static class TouchCapture
 public static UIElement Captured { get; }
 ```
 
-_No description available._
+Returns the element that currently has touch capture, or null.
 
 ## Methods
 
@@ -31,7 +31,7 @@ _No description available._
 public static bool Capture(UIElement element)
 ```
 
-_No description available._
+Captures touch input to the specified element.
 
 **Returns** `bool`
 
@@ -41,6 +41,6 @@ _No description available._
 public static bool Capture(UIElement element, CaptureMode mode)
 ```
 
-_No description available._
+Captures touch input to the specified element using the given capture mode.
 
 **Returns** `bool`

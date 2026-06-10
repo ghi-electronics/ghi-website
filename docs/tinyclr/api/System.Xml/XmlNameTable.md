@@ -21,7 +21,7 @@ public abstract class XmlNameTable
 public abstract string Add(string array)
 ```
 
-_No description available._
+Atomizes the specified string and adds it to the table.
 
 **Returns** `string`
 
@@ -31,7 +31,7 @@ _No description available._
 public abstract string Add(char[] array, int offset, int length)
 ```
 
-_No description available._
+Atomizes the specified character range and adds it to the table.
 
 **Returns** `string`
 
@@ -41,7 +41,7 @@ _No description available._
 public abstract string Get(string array)
 ```
 
-_No description available._
+Gets the atomized string equal to the specified string, or null if it is not in the table.
 
 **Returns** `string`
 
@@ -51,6 +51,6 @@ _No description available._
 public abstract string Get(char[] array, int offset, int length)
 ```
 
-_No description available._
+Gets the atomized string equal to the specified character range, or null if it is not in the table.
 
 **Returns** `string`

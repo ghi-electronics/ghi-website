@@ -7,7 +7,7 @@ sidebar_label: "UsbClientSetting"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.UsbClient`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbClient`
 
-_No description available._
+The settings used to configure a USB client device.
 
 ```csharp
 public class UsbClientSetting
@@ -21,7 +21,7 @@ public class UsbClientSetting
 public UsbClientMode Mode { get; set; }
 ```
 
-_No description available._
+The type of device to emulate.
 
 ### ManufactureName
 
@@ -29,7 +29,7 @@ _No description available._
 public string ManufactureName { get; set; }
 ```
 
-_No description available._
+The manufacturer name.
 
 ### ProductName
 
@@ -37,7 +37,7 @@ _No description available._
 public string ProductName { get; set; }
 ```
 
-_No description available._
+The product name.
 
 ### SerialNumber
 
@@ -45,7 +45,7 @@ _No description available._
 public string SerialNumber { get; set; }
 ```
 
-_No description available._
+The serial number.
 
 ### Guid
 
@@ -53,7 +53,7 @@ _No description available._
 public string Guid { get; set; }
 ```
 
-_No description available._
+The interface GUID, used by WinUsb devices.
 
 ### ProductId
 
@@ -61,7 +61,7 @@ _No description available._
 public ushort ProductId { get; set; }
 ```
 
-_No description available._
+The product id.
 
 ### VendorId
 
@@ -69,7 +69,7 @@ _No description available._
 public ushort VendorId { get; set; }
 ```
 
-_No description available._
+The vendor id.
 
 ### BcdUsb
 
@@ -77,7 +77,7 @@ _No description available._
 public ushort BcdUsb { get; set; }
 ```
 
-_No description available._
+The USB specification release number.
 
 ### BcdDevice
 
@@ -85,7 +85,7 @@ _No description available._
 public ushort BcdDevice { get; set; }
 ```
 
-_No description available._
+The device release number.
 
 ### MaxPower
 
@@ -93,7 +93,7 @@ _No description available._
 public ushort MaxPower { get; set; }
 ```
 
-_No description available._
+The maximum power the device uses, in 2 mA units.
 
 ### InterfaceName
 
@@ -101,4 +101,4 @@ _No description available._
 public string InterfaceName { get; set; }
 ```
 
-_No description available._
+The interface name.

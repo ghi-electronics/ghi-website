@@ -7,7 +7,7 @@ sidebar_label: "TextRun"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+A run of text sharing a single font and color, used as a building block by `TextFlow`.
 
 ```csharp
 public class TextRun
@@ -21,7 +21,7 @@ public class TextRun
 public TextRun(string text, System.Drawing.Font font, Color foreColor)
 ```
 
-_No description available._
+Initializes a new text run with the given text, font, and color.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public static TextRun EndOfLine { get; }
 ```
 
-_No description available._
+Gets a special run that marks the end of a line, forcing a line break.
 
 ## Methods
 
@@ -41,7 +41,7 @@ _No description available._
 public void GetSize(out int width, out int height)
 ```
 
-_No description available._
+Returns the pixel width and height of this run, computing and caching it on first use.
 
 ## Fields
 
@@ -51,7 +51,7 @@ _No description available._
 public readonly string Text
 ```
 
-_No description available._
+The text of this run.
 
 ### Font
 
@@ -59,7 +59,7 @@ _No description available._
 public readonly System.Drawing.Font Font
 ```
 
-_No description available._
+The font used to draw this run.
 
 ### ForeColor
 
@@ -67,7 +67,7 @@ _No description available._
 public readonly Color ForeColor
 ```
 
-_No description available._
+The color used to draw this run.
 
 ### _width
 
@@ -75,7 +75,7 @@ _No description available._
 protected int _width
 ```
 
-_No description available._
+The cached pixel width of this run.
 
 ### _height
 
@@ -83,4 +83,4 @@ _No description available._
 protected int _height
 ```
 
-_No description available._
+The cached pixel height of this run.

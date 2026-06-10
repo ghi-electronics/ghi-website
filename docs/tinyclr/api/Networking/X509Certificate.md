@@ -7,7 +7,7 @@ sidebar_label: "X509Certificate"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking`<br/>**Namespace:** `System.Security.Cryptography.X509Certificates`
 
-_No description available._
+Represents an X.509 certificate.
 
 ```csharp
 public class X509Certificate
@@ -21,7 +21,7 @@ public class X509Certificate
 public X509Certificate(byte[] certificate)
 ```
 
-_No description available._
+Initializes a new certificate from the specified raw certificate data.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public byte[] PrivateKey { get; set; }
 ```
 
-_No description available._
+The private key associated with the certificate.
 
 ### Password
 
@@ -39,7 +39,7 @@ _No description available._
 public string Password { get; set; }
 ```
 
-_No description available._
+The password used to access the certificate's private key.
 
 ## Methods
 
@@ -49,6 +49,6 @@ _No description available._
 public byte[] GetRawCertData()
 ```
 
-_No description available._
+Returns the raw data of the certificate.
 
 **Returns** `byte[]`

@@ -7,7 +7,7 @@ sidebar_label: "TextBox"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+An editable single-line text field that opens the on-screen keyboard when activated.
 
 ```csharp
 public class TextBox : Control
@@ -21,7 +21,7 @@ public class TextBox : Control
 public TextBox()
 ```
 
-_No description available._
+Initializes a new instance of the `TextBox` class.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public TextAlignment TextAlign { get; set; }
 ```
 
-_No description available._
+The horizontal alignment of the displayed text.
 
 ### PasswordChar
 
@@ -39,7 +39,7 @@ _No description available._
 public char PasswordChar { get; set; }
 ```
 
-_No description available._
+When set, the character displayed in place of each typed character to mask input.
 
 ### Text
 
@@ -47,7 +47,7 @@ _No description available._
 public string Text { get; set; }
 ```
 
-_No description available._
+The current text of the field.
 
 ### BorderColor
 
@@ -55,7 +55,7 @@ _No description available._
 public Color BorderColor { get; set; }
 ```
 
-_No description available._
+The color of the border drawn around the field.
 
 ### BorderThickness
 
@@ -63,7 +63,7 @@ _No description available._
 public ushort BorderThickness { get; set; }
 ```
 
-_No description available._
+The thickness in pixels of the border drawn around the field.
 
 ### PaddingX
 
@@ -71,7 +71,7 @@ _No description available._
 public ushort PaddingX { get; set; }
 ```
 
-_No description available._
+The horizontal padding in pixels between the border and the text.
 
 ### PaddingY
 
@@ -79,7 +79,7 @@ _No description available._
 public ushort PaddingY { get; set; }
 ```
 
-_No description available._
+The vertical padding in pixels between the border and the text.
 
 ## Methods
 
@@ -97,7 +97,7 @@ One-way or two-way bind `Text` to a CLR property on `source` using reflection. F
 public void ClearTextBinding()
 ```
 
-_No description available._
+Removes any binding previously set with `SetTextBinding`.
 
 ### OnTouchUp(TouchEventArgs e)
 
@@ -105,7 +105,7 @@ _No description available._
 protected override void OnTouchUp(TouchEventArgs e)
 ```
 
-_No description available._
+Opens the on-screen keyboard when the field is tapped.
 
 ### OnButtonDown(ButtonEventArgs e)
 
@@ -121,14 +121,7 @@ Hardware button support: `HardwareButton.Select` opens the on-screen keyboard, m
 protected override void MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
 ```
 
-Measurement override. Implement your size-to-content logic here. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `availableWidth` | `int` | Available size that parent can give to the child. May be MaxValue(when parent wants to measure to content). This is soft constraint. Child can return bigger size to indicate that it wants bigger space and hope that parent can throw in scrolling... |
-| `availableHeight` | `int` |  |
-| `desiredWidth` | `out int` |  |
-| `desiredHeight` | `out int` |  |
+Measures the size needed for the text plus padding and border.
 
 ### ArrangeOverride(int arrangeWidth, int arrangeHeight)
 
@@ -136,12 +129,7 @@ Measurement override. Implement your size-to-content logic here. _(inherited)_
 protected override void ArrangeOverride(int arrangeWidth, int arrangeHeight)
 ```
 
-ArrangeOverride allows for the customization of the final sizing and positioning of children. _(inherited)_
-
-| Parameter | Type | Description |
-|---|---|---|
-| `arrangeWidth` | `int` | Final width |
-| `arrangeHeight` | `int` | Final height |
+Records the arranged size of the field.
 
 ### OnRender(DrawingContext dc)
 
@@ -149,7 +137,7 @@ ArrangeOverride allows for the customization of the final sizing and positioning
 public override void OnRender(DrawingContext dc)
 ```
 
-_No description available._
+Draws the field's border and text (masked when `PasswordChar` is set).
 
 ## Events
 
@@ -159,7 +147,7 @@ _No description available._
 public event TextChangedEventHandler TextChanged
 ```
 
-_No description available._
+Raised when the text changes.
 
 ### BindingError
 

@@ -32,7 +32,7 @@ sidebar_label: Overview
 | Enum | Namespace | Summary |
 |---|---|---|
 | [DebugInterface](./DebugInterface.md) | `GHIElectronics.TinyCLR.Native` | Transport used by the debugger to attach to the device. |
-| [NativeApiType](./NativeApiType.md) | `GHIElectronics.TinyCLR.Native` |  |
+| [NativeApiType](./NativeApiType.md) | `GHIElectronics.TinyCLR.Native` | Identifies a category of native API. Each managed library (Gpio, Spi, …) uses its own value to look up a matching native implementation via `NativeApi.Find(string, NativeApiType)`. |
 | [ResetSource](./ResetSource.md) | `GHIElectronics.TinyCLR.Native` | Reasons reported by `Power.GetResetSource`. |
 | [SystemClock](./SystemClock.md) | `GHIElectronics.TinyCLR.Native` | Core-clock profile. |
 | [UnmanagedBufferLocation](./UnmanagedBufferLocation.md) | `GHIElectronics.TinyCLR.Native` | Which heap an `UnmanagedBuffer` draws from. |

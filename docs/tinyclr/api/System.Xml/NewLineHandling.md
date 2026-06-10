@@ -17,6 +17,6 @@ public enum NewLineHandling
 
 | Name | Value | Description |
 |---|---|---|
-| `Replace` | `0` |  |
-| `Entitize` | `1` |  |
-| `None` | `2` |  |
+| `Replace` | `0` | Replace new line characters with the configured new line string. |
+| `Entitize` | `1` | Replace new line characters with character entities. |
+| `None` | `2` | Leave new line characters unchanged. |

@@ -7,7 +7,7 @@ sidebar_label: "NotifyClassHandler"
 
 **NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`<br/>**Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`<br/>**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`
 
-_No description available._
+Handles notification that a scanner accessed a CIP class, instance, and attribute.
 
 ```csharp
 public delegate void NotifyClassHandler(AdapterController adapter, uint classCode, ushort instanceNumber, ushort attributeNumber, IPAddress ipAddress);

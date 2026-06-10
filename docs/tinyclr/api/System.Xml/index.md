@@ -21,7 +21,7 @@ sidebar_label: Overview
 
 | Interface | Namespace | Summary |
 |---|---|---|
-| [IXmlLineInfo](./IXmlLineInfo.md) | `System.Xml` |  |
+| [IXmlLineInfo](./IXmlLineInfo.md) | `System.Xml` | Provides line and position information for the current node. |
 
 ## Enums
 

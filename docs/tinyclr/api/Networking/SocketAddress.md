@@ -7,7 +7,7 @@ sidebar_label: "SocketAddress"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking`<br/>**Namespace:** `System.Net`
 
-_No description available._
+Stores serialized information from an endpoint.
 
 ```csharp
 public class SocketAddress
@@ -21,7 +21,7 @@ public class SocketAddress
 public SocketAddress(AddressFamily family, int size)
 ```
 
-_No description available._
+Initializes a new instance for the given address family and buffer size.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public AddressFamily Family { get; }
 ```
 
-_No description available._
+The address family of the socket address.
 
 ### Size
 
@@ -39,7 +39,7 @@ _No description available._
 public int Size { get; }
 ```
 
-_No description available._
+The size, in bytes, of the underlying buffer.
 
 ### offset]
 
@@ -47,7 +47,7 @@ _No description available._
 public byte this[int offset] { get; set; }
 ```
 
-_No description available._
+Gets or sets the byte at the specified offset in the buffer.
 
 ## Methods
 
@@ -57,7 +57,7 @@ _No description available._
 public override bool Equals(object comparand)
 ```
 
-_No description available._
+Determines whether the specified object is equal to this socket address.
 
 **Returns** `bool`
 
@@ -67,7 +67,7 @@ _No description available._
 public override int GetHashCode()
 ```
 
-_No description available._
+Returns a hash code for this socket address.
 
 **Returns** `int`
 
@@ -77,6 +77,6 @@ _No description available._
 public override string ToString()
 ```
 
-_No description available._
+Returns a string representation of the socket address.
 
 **Returns** `string`

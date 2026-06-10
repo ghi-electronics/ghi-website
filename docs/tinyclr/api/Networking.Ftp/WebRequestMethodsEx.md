@@ -7,7 +7,7 @@ sidebar_label: "WebRequestMethodsEx"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking.Ftp`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking.Ftp`<br/>**Namespace:** `GHIElectronics.TinyCLR.Networking`
 
-_No description available._
+Additional FTP protocol method names used internally by the server.
 
 ```csharp
 public static class WebRequestMethodsEx

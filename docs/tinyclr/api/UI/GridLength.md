@@ -7,7 +7,7 @@ sidebar_label: "GridLength"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-_No description available._
+Size of a grid row or column.
 
 ```csharp
 public struct GridLength
@@ -21,7 +21,7 @@ public struct GridLength
 public static GridLength Auto()
 ```
 
-_No description available._
+Creates an auto-sized length.
 
 **Returns** `GridLength`
 
@@ -31,7 +31,7 @@ _No description available._
 public static GridLength Pixel(int pixels)
 ```
 
-_No description available._
+Creates a fixed pixel-sized length.
 
 **Returns** `GridLength`
 
@@ -41,7 +41,7 @@ _No description available._
 public static GridLength Star(int weight = 1)
 ```
 
-_No description available._
+Creates a star-sized length with the given weight.
 
 **Returns** `GridLength`
 
@@ -53,7 +53,7 @@ _No description available._
 public GridUnitType Unit
 ```
 
-_No description available._
+The sizing mode for this length.
 
 ### Value
 

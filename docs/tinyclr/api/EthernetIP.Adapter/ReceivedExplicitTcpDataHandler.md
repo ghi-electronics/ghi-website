@@ -7,7 +7,7 @@ sidebar_label: "ReceivedExplicitTcpDataHandler"
 
 **NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`<br/>**Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`<br/>**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Adapter`
 
-_No description available._
+Handles an explicit TCP encapsulation command received from a scanner.
 
 ```csharp
 public delegate void ReceivedExplicitTcpDataHandler(AdapterController adapter, ushort commandCode, IPAddress ipAddress);

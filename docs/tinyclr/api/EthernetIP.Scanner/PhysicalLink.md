@@ -21,7 +21,7 @@ public struct PhysicalLink
 public ushort PathSize
 ```
 
-_No description available._
+The size of the path, in 16-bit words.
 
 ### Path
 
@@ -29,4 +29,4 @@ _No description available._
 public byte[] Path
 ```
 
-_No description available._
+The encoded EPATH to the physical link object.

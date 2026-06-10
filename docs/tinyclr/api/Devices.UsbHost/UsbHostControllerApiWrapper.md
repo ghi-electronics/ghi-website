@@ -7,7 +7,7 @@ sidebar_label: "UsbHostControllerApiWrapper"
 
 **NuGet:** `GHIElectronics.TinyCLR.Devices.UsbHost`<br/>**Assembly:** `GHIElectronics.TinyCLR.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.TinyCLR.Devices.UsbHost.Provider`
 
-_No description available._
+The native API wrapper that implements the USB host controller provider.
 
 ```csharp
 public sealed class UsbHostControllerApiWrapper : IUsbHostControllerProvider
@@ -21,7 +21,7 @@ public sealed class UsbHostControllerApiWrapper : IUsbHostControllerProvider
 public UsbHostControllerApiWrapper(NativeApi api)
 ```
 
-_No description available._
+Creates a new wrapper around the given native API.
 
 ## Properties
 
@@ -31,7 +31,7 @@ _No description available._
 public NativeApi Api { get; }
 ```
 
-_No description available._
+The native API backing this provider.
 
 ## Methods
 
@@ -41,7 +41,7 @@ _No description available._
 public void Dispose()
 ```
 
-_No description available._
+Releases the native API and disposes the provider.
 
 ### Enable()
 
@@ -49,7 +49,7 @@ _No description available._
 public extern void Enable()
 ```
 
-_No description available._
+Enables the controller. _(inherited)_
 
 ### Disable()
 
@@ -57,7 +57,7 @@ _No description available._
 public extern void Disable()
 ```
 
-_No description available._
+Disables the controller. _(inherited)_
 
 ## Events
 
@@ -67,4 +67,4 @@ _No description available._
 public event OnConnectionChanged OnConnectionChangedEvent
 ```
 
-_No description available._
+The event fired when a device's connection status changes.

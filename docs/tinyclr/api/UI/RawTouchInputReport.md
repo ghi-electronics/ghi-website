@@ -36,7 +36,7 @@ Constructs an instance of the RawKeyboardInputReport class.
 public RawTouchInputReport(PresentationSource inputSource, DateTime timestamp, byte eventMessage, TouchInput[] touches, UIElement destTarget) : base(inputSource, timestamp)
 ```
 
-_No description available._
+Constructs an instance of the RawTouchInputReport class targeting a specific element.
 
 ## Fields
 
@@ -46,7 +46,7 @@ _No description available._
 public readonly UIElement Target
 ```
 
-_No description available._
+Read-only access to the element this report is directed at, or null.
 
 ### EventMessage
 
@@ -54,7 +54,7 @@ _No description available._
 public readonly byte EventMessage
 ```
 
-_No description available._
+Read-only access to the touch message code.
 
 ### Touches
 
@@ -62,4 +62,4 @@ _No description available._
 public readonly TouchInput[] Touches
 ```
 
-_No description available._
+Read-only access to the touch points reported.

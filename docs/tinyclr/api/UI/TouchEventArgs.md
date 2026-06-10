@@ -7,7 +7,7 @@ sidebar_label: "TouchEventArgs"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Input`
 
-_No description available._
+Contains information about a touch input event.
 
 ```csharp
 public class TouchEventArgs : InputEventArgs
@@ -21,7 +21,7 @@ public class TouchEventArgs : InputEventArgs
 public TouchEventArgs(InputDevice inputDevice, DateTime timestamp, TouchInput[] touches) : base(inputDevice, timestamp)
 ```
 
-_No description available._
+Constructs an instance of the TouchEventArgs class.
 
 ## Methods
 
@@ -31,7 +31,7 @@ _No description available._
 public void GetPosition(UIElement relativeTo, int touchIndex, out int x, out int y)
 ```
 
-_No description available._
+Gets the position of a touch point relative to the specified element.
 
 ## Fields
 
@@ -41,4 +41,4 @@ _No description available._
 public TouchInput[] Touches
 ```
 
-_No description available._
+The touch points associated with this event.

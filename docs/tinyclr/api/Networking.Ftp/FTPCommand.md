@@ -21,7 +21,7 @@ public class FTPCommand
 public FTPCommand(string name, string content)
 ```
 
-_No description available._
+Creates an FTP command from a name and its content.
 
 ## Fields
 
@@ -31,7 +31,7 @@ _No description available._
 public string CommandName
 ```
 
-_No description available._
+The FTP command name (upper-cased).
 
 ### CommandContent
 
@@ -39,4 +39,4 @@ _No description available._
 public string CommandContent
 ```
 
-_No description available._
+The argument text that follows the command name.

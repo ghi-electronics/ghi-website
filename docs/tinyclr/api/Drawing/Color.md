@@ -21,7 +21,7 @@ public struct Color
 public static Color Transparent { get; }
 ```
 
-_No description available._
+Gets a fully transparent color.
 
 ### Black
 
@@ -29,7 +29,7 @@ _No description available._
 public static Color Black { get; }
 ```
 
-_No description available._
+Gets the color black.
 
 ### White
 
@@ -37,7 +37,7 @@ _No description available._
 public static Color White { get; }
 ```
 
-_No description available._
+Gets the color white.
 
 ### Gray
 
@@ -45,7 +45,7 @@ _No description available._
 public static Color Gray { get; }
 ```
 
-_No description available._
+Gets the color gray.
 
 ### Red
 
@@ -53,7 +53,7 @@ _No description available._
 public static Color Red { get; }
 ```
 
-_No description available._
+Gets the color red.
 
 ### Green
 
@@ -61,7 +61,7 @@ _No description available._
 public static Color Green { get; }
 ```
 
-_No description available._
+Gets the color green.
 
 ### Blue
 
@@ -69,7 +69,7 @@ _No description available._
 public static Color Blue { get; }
 ```
 
-_No description available._
+Gets the color blue.
 
 ### Yellow
 
@@ -77,7 +77,7 @@ _No description available._
 public static Color Yellow { get; }
 ```
 
-_No description available._
+Gets the color yellow.
 
 ### Purple
 
@@ -85,7 +85,7 @@ _No description available._
 public static Color Purple { get; }
 ```
 
-_No description available._
+Gets the color purple.
 
 ### Teal
 
@@ -93,7 +93,7 @@ _No description available._
 public static Color Teal { get; }
 ```
 
-_No description available._
+Gets the color teal.
 
 ### R
 
@@ -101,7 +101,7 @@ _No description available._
 public byte R { get; }
 ```
 
-_No description available._
+Gets the red component of this color.
 
 ### G
 
@@ -109,7 +109,7 @@ _No description available._
 public byte G { get; }
 ```
 
-_No description available._
+Gets the green component of this color.
 
 ### B
 
@@ -117,7 +117,7 @@ _No description available._
 public byte B { get; }
 ```
 
-_No description available._
+Gets the blue component of this color.
 
 ### A
 
@@ -125,7 +125,7 @@ _No description available._
 public byte A { get; }
 ```
 
-_No description available._
+Gets the alpha component of this color.
 
 ### IsEmpty
 
@@ -133,7 +133,7 @@ _No description available._
 public bool IsEmpty { get; }
 ```
 
-_No description available._
+Gets a value indicating whether this color is empty.
 
 ### Name
 
@@ -141,7 +141,7 @@ _No description available._
 public string Name { get; }
 ```
 
-_No description available._
+Gets the hexadecimal string representation of this color's value.
 
 ## Methods
 
@@ -151,7 +151,7 @@ _No description available._
 public static readonly Color Empty = new Color()
 ```
 
-_No description available._
+Represents a color that is null or uninitialized.
 
 **Returns** `Color Empty = new`
 
@@ -161,7 +161,7 @@ _No description available._
 public static Color FromArgb(int argb)
 ```
 
-_No description available._
+Creates a color from a 32-bit ARGB value.
 
 **Returns** `Color`
 
@@ -171,7 +171,7 @@ _No description available._
 public static Color FromArgb(int red, int green, int blue)
 ```
 
-_No description available._
+Creates an opaque color from the given red, green, and blue components.
 
 **Returns** `Color`
 
@@ -181,7 +181,7 @@ _No description available._
 public static Color FromArgb(int alpha, int red, int green, int blue)
 ```
 
-_No description available._
+Creates a color from the given alpha, red, green, and blue components.
 
 **Returns** `Color`
 
@@ -191,7 +191,7 @@ _No description available._
 public static Color FromArgb(int alpha, Color baseColor)
 ```
 
-_No description available._
+Creates a color from an existing color with the given alpha value.
 
 **Returns** `Color`
 
@@ -201,7 +201,7 @@ _No description available._
 public float GetBrightness()
 ```
 
-_No description available._
+Gets the brightness (lightness) of this color as a value from 0 to 1.
 
 **Returns** `float`
 
@@ -211,7 +211,7 @@ _No description available._
 public float GetHue()
 ```
 
-_No description available._
+Gets the hue of this color in degrees (0 to 360).
 
 **Returns** `float`
 
@@ -221,7 +221,7 @@ _No description available._
 public float GetSaturation()
 ```
 
-_No description available._
+Gets the saturation of this color as a value from 0 to 1.
 
 **Returns** `float`
 
@@ -231,7 +231,7 @@ _No description available._
 public int ToArgb()
 ```
 
-_No description available._
+Gets the 32-bit ARGB value of this color.
 
 **Returns** `int`
 
@@ -241,7 +241,7 @@ _No description available._
 public override string ToString()
 ```
 
-_No description available._
+Returns a string describing this color's ARGB components.
 
 **Returns** `string`
 
@@ -251,7 +251,7 @@ _No description available._
 public static bool operator ==(Color left, Color right)
 ```
 
-_No description available._
+Determines whether two colors have the same ARGB value.
 
 **Returns** `bool operator`
 
@@ -261,7 +261,7 @@ _No description available._
 public static bool operator !=(Color left, Color right)
 ```
 
-_No description available._
+Determines whether two colors have different ARGB values.
 
 **Returns** `bool operator`
 
@@ -271,7 +271,7 @@ _No description available._
 public override int GetHashCode()
 ```
 
-_No description available._
+Returns a hash code for this color.
 
 **Returns** `int`
 
@@ -281,7 +281,7 @@ _No description available._
 public override bool Equals(object obj)
 ```
 
-_No description available._
+Determines whether the specified object is a color with the same ARGB value.
 
 **Returns** `bool`
 
@@ -291,7 +291,7 @@ _No description available._
 public static void Convert(byte[] inArray, byte[] outArray, ColorFormat colorFormat)
 ```
 
-_No description available._
+Converts color data from one format to another.
 
 ### Convert(byte[] inArray, byte[] outArray, ColorFormat colorFormat, RgbFormat rgbFormat)
 
@@ -299,7 +299,7 @@ _No description available._
 public static void Convert(byte[] inArray, byte[] outArray, ColorFormat colorFormat, RgbFormat rgbFormat)
 ```
 
-_No description available._
+Converts color data using the specified color and channel formats.
 
 ### Convert(byte[] inArray, byte[] outArray, ColorFormat colorFormat, RgbFormat rgbFormat, byte alpha)
 
@@ -307,7 +307,7 @@ _No description available._
 public static void Convert(byte[] inArray, byte[] outArray, ColorFormat colorFormat, RgbFormat rgbFormat, byte alpha)
 ```
 
-_No description available._
+Converts color data using the specified formats and alpha value.
 
 ### Convert(byte[] inArray, byte[] outArray, ColorFormat colorFormat, RgbFormat rgbFormat, byte alpha, byte[] colorTable)
 
@@ -315,7 +315,7 @@ _No description available._
 public static void Convert(byte[] inArray, byte[] outArray, ColorFormat colorFormat, RgbFormat rgbFormat, byte alpha, byte[] colorTable)
 ```
 
-_No description available._
+Converts color data using the specified formats, alpha value, and color table.
 
 ### ConvertTo1Bpp(byte[] inArray, byte[] outArray, uint width)
 
@@ -323,7 +323,7 @@ _No description available._
 public static void ConvertTo1Bpp(byte[] inArray, byte[] outArray, uint width)
 ```
 
-_No description available._
+Converts color data to a 1-bit-per-pixel monochrome representation.
 
 ### ConvertTo1Bpp(byte[] inArray, byte[] outArray, uint width, BitFormat bitFormat)
 
@@ -331,4 +331,4 @@ _No description available._
 public static void ConvertTo1Bpp(byte[] inArray, byte[] outArray, uint width, BitFormat bitFormat)
 ```
 
-_No description available._
+Converts color data to a 1-bit-per-pixel monochrome representation using the given bit format.

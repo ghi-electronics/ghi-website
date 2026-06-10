@@ -7,7 +7,7 @@ sidebar_label: "DeviceEvents"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Input`
 
-_No description available._
+Exposes the pre- and post-processing events for a single input device.
 
 ```csharp
 public class DeviceEvents : DispatcherObject

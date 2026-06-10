@@ -7,7 +7,7 @@ sidebar_label: "Group"
 
 **NuGet:** `GHIElectronics.TinyCLR.RegularExpressions`<br/>**Assembly:** `GHIElectronics.TinyCLR.RegularExpressions`<br/>**Namespace:** `System.Text.RegularExpressions`
 
-_No description available._
+Represents the results from a single capturing group.
 
 ```csharp
 public class Group : Capture
@@ -31,6 +31,6 @@ Gets a value indicating whether the match was successful.
 public static Group Synchronized(Group inner)
 ```
 
-_No description available._
+Returns a thread-safe wrapper around the specified group.
 
 **Returns** `Group`

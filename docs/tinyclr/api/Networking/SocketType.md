@@ -7,7 +7,7 @@ sidebar_label: "SocketType"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking`<br/>**Namespace:** `System.Net.Sockets`
 
-_No description available._
+Specifies the type of socket an instance of the class represents.
 
 ```csharp
 public enum SocketType

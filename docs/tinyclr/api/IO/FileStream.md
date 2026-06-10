@@ -21,7 +21,7 @@ public class FileStream : Stream
 public FileStream(string path, FileMode mode) : this(path, mode, (mode == FileMode.Append ? FileAccess.Write : FileAccess.ReadWrite), FileShare.Read, FileStream.BufferSizeDefault)
 ```
 
-_No description available._
+Opens the file at the path with the given mode.
 
 ### FileStream(string path, FileMode mode, FileAccess access)
 
@@ -29,7 +29,7 @@ _No description available._
 public FileStream(string path, FileMode mode, FileAccess access) : this(path, mode, access, FileShare.Read, FileStream.BufferSizeDefault)
 ```
 
-_No description available._
+Opens the file at the path with the given mode and access.
 
 ### FileStream(string path, FileMode mode, FileAccess access, FileShare share)
 
@@ -37,7 +37,7 @@ _No description available._
 public FileStream(string path, FileMode mode, FileAccess access, FileShare share) : this(path, mode, access, share, FileStream.BufferSizeDefault)
 ```
 
-_No description available._
+Opens the file at the path with the given mode, access, and sharing.
 
 ### FileStream(string path, FileMode mode, FileAccess access, FileShare share, int bufferSize)
 
@@ -45,7 +45,7 @@ _No description available._
 public FileStream(string path, FileMode mode, FileAccess access, FileShare share, int bufferSize)
 ```
 
-_No description available._
+Opens the file at the path with the given mode, access, sharing, and buffer size.
 
 ## Properties
 
@@ -55,7 +55,7 @@ _No description available._
 public override bool CanRead { get; }
 ```
 
-_No description available._
+Whether the stream supports reading.
 
 ### CanWrite
 
@@ -63,7 +63,7 @@ _No description available._
 public override bool CanWrite { get; }
 ```
 
-_No description available._
+Whether the stream supports writing.
 
 ### CanSeek
 
@@ -71,7 +71,7 @@ _No description available._
 public override bool CanSeek { get; }
 ```
 
-_No description available._
+Whether the stream supports seeking.
 
 ### IsAsync
 
@@ -79,7 +79,7 @@ _No description available._
 public virtual bool IsAsync { get; }
 ```
 
-_No description available._
+Whether the stream operates asynchronously; always false.
 
 ### Length
 
@@ -87,7 +87,7 @@ _No description available._
 public override long Length { get; }
 ```
 
-_No description available._
+The length of the file in bytes.
 
 ### Name
 
@@ -95,7 +95,7 @@ _No description available._
 public string Name { get; }
 ```
 
-_No description available._
+The full path of the file the stream was opened on.
 
 ### Position
 
@@ -103,7 +103,7 @@ _No description available._
 public override long Position { get; set; }
 ```
 
-_No description available._
+The current byte position within the file.
 
 ## Methods
 
@@ -113,7 +113,7 @@ _No description available._
 protected override void Dispose(bool disposing)
 ```
 
-_No description available._
+Closes the file and releases the stream's resources.
 
 ### Flush()
 
@@ -121,7 +121,7 @@ _No description available._
 public override void Flush()
 ```
 
-_No description available._
+Flushes buffered data to the file.
 
 ### SetLength(long value)
 
@@ -129,7 +129,7 @@ _No description available._
 public override void SetLength(long value)
 ```
 
-_No description available._
+Sets the length of the file.
 
 ### Read(byte[] buffer, int offset, int count)
 
@@ -137,7 +137,7 @@ _No description available._
 public override int Read(byte[] buffer, int offset, int count)
 ```
 
-_No description available._
+Reads bytes from the file into the buffer.
 
 **Returns** `int`
 
@@ -147,7 +147,7 @@ _No description available._
 public override long Seek(long offset, SeekOrigin origin)
 ```
 
-_No description available._
+Moves the file position.
 
 **Returns** `long`
 
@@ -157,4 +157,4 @@ _No description available._
 public override void Write(byte[] buffer, int offset, int count)
 ```
 
-_No description available._
+Writes bytes from the buffer to the file.

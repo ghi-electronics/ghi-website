@@ -7,7 +7,7 @@ sidebar_label: "UdpState"
 
 **NuGet:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Assembly:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`<br/>**Namespace:** `GHIElectronics.TinyCLR.EthernetIP.Scanner`
 
-_No description available._
+Holds the UDP client and endpoint used by an asynchronous receive operation.
 
 ```csharp
 public class UdpState
@@ -21,7 +21,7 @@ public class UdpState
 public System.Net.IPEndPoint e
 ```
 
-_No description available._
+The remote endpoint associated with the UDP operation.
 
 ### u
 
@@ -29,4 +29,4 @@ _No description available._
 public UdpClient u
 ```
 
-_No description available._
+The UDP client used to send or receive.

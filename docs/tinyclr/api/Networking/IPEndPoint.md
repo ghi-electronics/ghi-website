@@ -7,7 +7,7 @@ sidebar_label: "IPEndPoint"
 
 **NuGet:** `GHIElectronics.TinyCLR.Networking`<br/>**Assembly:** `GHIElectronics.TinyCLR.Networking`<br/>**Namespace:** `System.Net`
 
-_No description available._
+Represents a network endpoint as an IP address and a port number.
 
 ```csharp
 public class IPEndPoint : EndPoint
@@ -21,7 +21,7 @@ public class IPEndPoint : EndPoint
 public IPEndPoint(long address, int port)
 ```
 
-_No description available._
+Initializes a new instance with the specified address and port.
 
 ### IPEndPoint(IPAddress address, int port)
 
@@ -29,7 +29,7 @@ _No description available._
 public IPEndPoint(IPAddress address, int port)
 ```
 
-_No description available._
+Initializes a new instance with the specified address and port.
 
 ## Properties
 
@@ -39,7 +39,7 @@ _No description available._
 public override AddressFamily AddressFamily { get; }
 ```
 
-_No description available._
+The address family to which the endpoint belongs. _(inherited)_
 
 ### Address
 
@@ -47,7 +47,7 @@ _No description available._
 public IPAddress Address { get; set; }
 ```
 
-_No description available._
+The IP address of the endpoint.
 
 ### Port
 
@@ -55,7 +55,7 @@ _No description available._
 public int Port { get; set; }
 ```
 
-_No description available._
+The port number of the endpoint.
 
 ## Methods
 
@@ -65,7 +65,7 @@ _No description available._
 public override SocketAddress Serialize()
 ```
 
-_No description available._
+Serializes endpoint information into a SocketAddress instance. _(inherited)_
 
 **Returns** `SocketAddress`
 
@@ -75,7 +75,7 @@ _No description available._
 public override EndPoint Create(SocketAddress socketAddress)
 ```
 
-_No description available._
+Creates an endpoint from a socket address. _(inherited)_
 
 **Returns** `EndPoint`
 
@@ -85,7 +85,7 @@ _No description available._
 public override string ToString()
 ```
 
-_No description available._
+Returns the endpoint as an "address:port" string.
 
 **Returns** `string`
 
@@ -95,7 +95,7 @@ _No description available._
 public override bool Equals(object obj)
 ```
 
-_No description available._
+Determines whether the specified object is equal to this endpoint.
 
 **Returns** `bool`
 
@@ -105,7 +105,7 @@ _No description available._
 public override int GetHashCode()
 ```
 
-_No description available._
+Returns a hash code for this endpoint.
 
 **Returns** `int`
 
@@ -115,7 +115,7 @@ _No description available._
 public static IPEndPoint Parse(string s)
 ```
 
-_No description available._
+Parses an "address:port" string into an IP endpoint.
 
 **Returns** `IPEndPoint`
 
@@ -125,7 +125,7 @@ _No description available._
 public static bool TryParse(string s, out IPEndPoint result)
 ```
 
-_No description available._
+Attempts to parse an "address:port" string into an IP endpoint, returning whether it succeeded.
 
 **Returns** `bool`
 
@@ -137,7 +137,7 @@ _No description available._
 public const int MinPort
 ```
 
-_No description available._
+The minimum value that can be assigned to the Port property.
 
 ### MaxPort
 
@@ -145,4 +145,4 @@ _No description available._
 public const int MaxPort
 ```
 
-_No description available._
+The maximum value that can be assigned to the Port property.
