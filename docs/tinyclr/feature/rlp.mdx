@@ -1,11 +1,11 @@
 ---
-title: Runtime Loadable Procedures (RLP)
-sidebar_label: Runtime Loadable Procedures (RLP)
+title: Runtime Loadable Procedures
+sidebar_label: Runtime Loadable Procedures
 ---
 
-**Runtime Loadable Procedures (RLP)** let you call **native ARM C/C++ code** from your C# app — loaded onto the device **at runtime**, with no firmware rebuild. You compile your C into a small **ELF** file, get it onto the device (SD card, USB drive, or embedded resource), then look functions up by name and call them from managed code.
+**Runtime Loadable Procedures (RLP)** call **native ARM C/C++ code** from a C# app — loaded onto the device **at runtime**, with no firmware rebuild. The C is compiled into a small **ELF** file, placed on the device (SD card, USB drive, or embedded resource), then functions are looked up by name and called from managed code.
 
-Reach for RLP when you need raw speed or low-level work the managed APIs don't cover:
+Use RLP for raw speed or low-level work the managed APIs don't cover:
 
 - **Fast math & scanning** — tight compute loops (DSP, CRC, image/pixel processing, fast sensor sampling) run in native ARM, far faster than the interpreted C# loop.
 - **Direct GPIO access** — read, write, and toggle pins (with microsecond delays) from native code.
@@ -17,16 +17,16 @@ Reach for RLP when you need raw speed or low-level work the managed APIs don't c
 NuGet package: **`GHIElectronics.TinyCLR.RuntimeLoadableProcedures`**.
 
 :::info
-RLP is designed for **computation and GPIO** — fast native loops plus the GPIO, timing, task, and event helpers shown below. If you instead need to read or write a specific peripheral register directly from C#, see [Marshal](marshal.mdx).
+RLP is designed for **computation and GPIO** — fast native loops plus the GPIO, timing, task, and event helpers shown below. To read or write a specific peripheral register directly from C# instead, see [Marshal](marshal.mdx).
 :::
 
-## The easiest way to start: the project template
+## RLP project template
 
 The TinyCLR SDK ships a **TinyCLR RLP Application** project template. In Visual Studio, choose **File → New → Project**, search for "RLP", and pick it:
 
 ![Selecting the TinyCLR RLP Application template in Visual Studio's New Project dialog](/img/docs/rlp-new-project.png)
 
-It's a complete, working solution — **seven ready-to-run examples** so you can see the whole feature without writing anything first:
+It's a complete, working solution — **seven ready-to-run examples** that show the whole feature without writing any code first:
 
 | Example | What it shows |
 |---|---|
@@ -40,20 +40,20 @@ It's a complete, working solution — **seven ready-to-run examples** so you can
 
 The template targets the **SC20260 Dev Board** by default (LED `PH11`, button input `PD7`, LED output `PB0`). For another SC20xxx board, edit the pin constants at the top of `Program.cs`.
 
-## The workflow
+## Workflow
 
-1. **Write your C** in `rlp_src/template_src.c`.
-2. **Double-click `rlp_src/build.bat`** to compile it into `rlp_src/app.elf`. *(Requires the Arm GNU toolchain `arm-none-eabi-gcc` 8.3.1 or newer at `C:\gcc`; edit `GCC_ROOT` in the script if yours is installed elsewhere.)*
+1. **Write the C** in `rlp_src/template_src.c`.
+2. **Double-click `rlp_src/build.bat`** to compile it into `rlp_src/app.elf`. *(Requires the Arm GNU toolchain `arm-none-eabi-gcc` 8.3.1 or newer at `C:\gcc`; edit `GCC_ROOT` in the script if the toolchain is installed elsewhere.)*
 3. **Get `app.elf` onto the device** — copy it to an SD card, drop it on the device's USB drive, or embed it as a resource (see [Loading the ELF](#loading-the-elf)).
 4. **Deploy the C# app** with **F5**.
 
 :::tip
-**Changing only the C/C++ code? You don't need to rebuild the C# project.** Just re-run `build.bat` to regenerate `app.elf`, then reload it onto the device — copy the new file to the SD card, drop it on the USB drive, or rebuild if it's an embedded resource. The C# app reads the fresh ELF at startup.
+**Changing only the C/C++ code? No need to rebuild the C# project.** Just re-run `build.bat` to regenerate `app.elf`, then reload it onto the device — copy the new file to the SD card, drop it on the USB drive, or rebuild if it's an embedded resource. The C# app reads the fresh ELF at startup.
 :::
 
 ## How it works
 
-The ELF is just a `byte[]`. Hand the bytes to `ElfImage`, which loads the code and data into device memory and lets you find exported functions by name:
+The ELF is just a `byte[]`. Hand the bytes to `ElfImage`, which loads the code and data into device memory and exposes exported functions by name:
 
 ```csharp
 using GHIElectronics.TinyCLR.RuntimeLoadableProcedures;
@@ -70,7 +70,7 @@ sum.Dispose();
 image.Dispose();                         // unload when done
 ```
 
-On the C side, every exported function has the same shape: it takes `void** args` (one slot per argument you pass from C#) and returns an `int`. Mark each export with `RLP_EXPORT` so the linker keeps it:
+On the C side, every exported function has the same shape: it takes `void** args` (one slot per argument passed from C#) and returns an `int`. Mark each export with `RLP_EXPORT` so the linker keeps it:
 
 ```c
 #include "RLP.h"
@@ -90,7 +90,7 @@ RLP_EXPORT int Sum(void** args) {
 
 The C snippets below are from the template's `rlp_src/template_src.c`; the C# is from `Program.cs`.
 
-### Speed: native vs C#
+### Speed
 
 The headline reason to use RLP. The same loop, run in interpreted C# and in native RLP, timed:
 
@@ -125,7 +125,7 @@ speed.Dispose();
 Debug.WriteLine("C#: " + csMs + " ms, RLP: " + rlpMs + " ms");   // RLP is many times faster
 ```
 
-### Access GPIO
+### GPIO
 
 Open a pin, toggle it with a microsecond delay between transitions, then release it — all in native code:
 
@@ -159,7 +159,7 @@ toggle.Dispose();
 
 Make sure C# isn't already holding the pin — `Dispose()` the managed `GpioPin` first so the native code can open it.
 
-### Lookup tables and persistent state
+### Tables & state
 
 `const` data lands in `.rodata`; static variables land in `.bss` (zeroed by `InitializeBssRegion()`). Both survive across calls:
 
@@ -194,7 +194,7 @@ lookup.Dispose();
 count.Dispose();
 ```
 
-### Periodic background task
+### Background task
 
 Schedule a native callback that runs on its own. C# gets back an opaque **handle** and is free to do other work while the task fires:
 
@@ -247,7 +247,7 @@ start.Dispose();
 stop.Dispose();
 ```
 
-### Send events back to C#
+### Events to C#
 
 Native code can push events up to a managed handler with `RLP_PostManagedEvent`. The handler runs on a managed thread (never in interrupt context):
 
@@ -314,13 +314,13 @@ stop.Dispose();
 
 ## Loading the ELF
 
-`app.elf` is just bytes — the device doesn't care where they come from. The template's `LoadAppElf()` helper shows three options; pick the one that fits your hardware:
+`app.elf` is just bytes — the device doesn't care where they come from. The template's `LoadAppElf()` helper shows three options; pick the one that fits the hardware:
 
 - **(A) SD card** *(default)* — copy `app.elf` to the card root, insert it, and read it with `File.ReadAllBytes`.
-- **(B) USB mass storage** — plug the device into your PC; it appears as a removable drive. Drop `app.elf` on it, mount `UsbHostMassStorage` on the device, and read the file.
-- **(C) Embedded resource** — add `app.elf` to the project as a binary resource and load it with `Resources.GetBytes(...)`. No removable media required; the ELF ships inside your app.
+- **(B) USB mass storage** — plug the device into a PC; it appears as a removable drive. Drop `app.elf` on it, mount `UsbHostMassStorage` on the device, and read the file.
+- **(C) Embedded resource** — add `app.elf` to the project as a binary resource and load it with `Resources.GetBytes(...)`. No removable media required; the ELF ships inside the app.
 
-Options (A) and (B) mean **you can update the native code without rebuilding the C# app** — just replace the ELF file.
+Options (A) and (B) allow **updating the native code without rebuilding the C# app** — just replace the ELF file.
 
 ```csharp
 // (A) SD card
@@ -330,7 +330,7 @@ byte[] elfBytes = File.ReadAllBytes(new DriveInfo(drive.Name).Name + "app.elf");
 ```
 
 :::warning
-**RLP is an advanced, native-code feature.** Your C runs directly on the CPU, so bugs in your logic — bad pointers, infinite loops, and the like — can hang the device. Keep RLP functions small and focused, and validate the arguments coming from C#.
+**RLP is an advanced, native-code feature.** The C runs directly on the CPU, so bugs in the logic — bad pointers, infinite loops, and the like — can hang the device. Keep RLP functions small and focused, and validate the arguments coming from C#.
 :::
 
 ## API reference

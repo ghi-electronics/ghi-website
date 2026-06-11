@@ -1,0 +1,130 @@
+---
+title: Tasks & Async
+sidebar_label: Tasks & Async
+---
+
+TinyCLR supports `System.Threading.Tasks` — `Task`, `Task<T>`, `Task.Run`, `Task.Delay`, `Task.WhenAll`/`WhenAny`, cooperative cancellation, and `async`/`await`. Use it to run work in the background and coordinate it without managing raw threads yourself.
+
+These types live in the core runtime (**`GHIElectronics.TinyCLR.Core`**); add `using System.Threading.Tasks;`. For raw `Thread` control, see [Multithreading](multithreading.mdx).
+
+## Background work
+
+`Task.Run` starts a delegate on a background thread and returns a `Task` to track it:
+
+```csharp
+using System.Threading.Tasks;
+using System.Diagnostics;
+
+// Fire off background work, then wait for it.
+var t = Task.Run(() => {
+    // ... do work ...
+});
+t.Wait();                          // block until it finishes
+Debug.WriteLine(t.IsCompleted);    // True
+
+// Task.Run<T> produces a result — read it with .Result.
+var calc = Task.Run<int>(() => 7 * 6);
+Debug.WriteLine(calc.Result);      // 42  (.Result blocks until the result is ready)
+```
+
+`Wait()` also takes a timeout: `t.Wait(100)` returns `false` if the task hasn't finished within 100 ms.
+
+## async / await
+
+An `async` method can `await` inside it. The compiler builds the usual state machine:
+
+```csharp
+static async Task<int> ComputeAsync() {
+    await Task.Delay(50);          // awaiting a non-generic Task works
+    return 21;
+}
+
+var t = ComputeAsync();
+t.Wait();
+Debug.WriteLine(t.Result);         // 21
+```
+
+:::warning
+**Avoid using `await` on a generic `Task<T>` for now.** Awaiting `Task.Run<int>(...)` directly doesn't work. Instead, start the work, `await` a **non-generic** task, then read `.Result`:
+
+```csharp
+static async Task<int> WorkAsync() {
+    var worker = Task.Run<int>(() => 42);   // start it
+    await Task.Delay(0);                     // OK: awaiting a non-generic Task
+    int value = worker.Result;               // read the result instead of awaiting
+    return value * value;
+}
+```
+
+Awaiting a non-generic `Task` (such as `await Task.Delay(...)`) works normally — this only affects `await`-ing a `Task<T>`. See [Limitations](/docs/tinyclr/limitations).
+:::
+
+## Multiple tasks
+
+`Task.WhenAll` waits for every task; `Task.WhenAny` completes as soon as the first one does:
+
+```csharp
+using System.Threading;
+
+// Wait for all of them.
+var a = Task.Run(() => Thread.Sleep(50));
+var b = Task.Run(() => Thread.Sleep(80));
+Task.WhenAll(a, b).Wait();
+
+// Collect results from several Task<int> workers.
+var t1 = Task.Run<int>(() => 10);
+var t2 = Task.Run<int>(() => 20);
+var t3 = Task.Run<int>(() => 30);
+var all = Task.WhenAll<int>(t1, t2, t3);
+all.Wait();
+Debug.WriteLine(all.Result[0] + all.Result[1] + all.Result[2]);   // 60 (results in input order)
+
+// React to whichever finishes first.
+var first = Task.WhenAny(Task.Run(() => Thread.Sleep(30)),
+                         Task.Run(() => Thread.Sleep(300)));
+first.Wait();
+```
+
+## Cancellation
+
+`CancellationTokenSource` signals cancellation; the worker polls the token and bows out cooperatively:
+
+```csharp
+using System.Threading;
+using System.Threading.Tasks;
+
+var cts = new CancellationTokenSource();
+cts.CancelAfter(1000);             // auto-cancel after 1 s (or call cts.Cancel() yourself)
+
+var work = Task.Run(() => {
+    while (!cts.Token.IsCancellationRequested) {
+        // ... do a chunk of work ...
+        Thread.Sleep(50);
+    }
+    cts.Token.ThrowIfCancellationRequested();   // surfaces as OperationCanceledException
+}, cts.Token);
+
+// Task.Delay honors a token too — it returns early when cancelled.
+Task.Delay(5000, cts.Token);
+
+cts.Dispose();
+```
+
+After cancellation, the task's `IsCanceled` is `true`.
+
+## Exceptions
+
+An exception thrown inside a task faults it. `Wait()` and `.Result` rethrow it wrapped in an `AggregateException` — inspect `InnerException` for the original:
+
+```csharp
+try {
+    Task.Run(() => throw new InvalidOperationException("boom")).Wait();
+}
+catch (AggregateException ex) {
+    Debug.WriteLine(ex.InnerException.Message);   // boom
+}
+```
+
+## API reference
+
+`Task`, `Task<T>`, `CancellationToken`, and `CancellationTokenSource` ship in the core runtime (**`GHIElectronics.TinyCLR.Core`**) under `System.Threading.Tasks` and `System.Threading`.

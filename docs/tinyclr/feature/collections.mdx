@@ -2,17 +2,120 @@
 title: Collections
 ---
 
-TinyCLR includes the same core collection types as full .NET: **`Array`** (fixed size), **`ArrayList`** (dynamic), **`Hashtable`** (key/value lookup), **`Stack`** (LIFO), and **`Queue`** (FIFO). They live in `System.Collections` and behave the same as their desktop counterparts.
+TinyCLR ships both the **generic collections** from modern .NET (`List<T>`, `Dictionary<TKey, TValue>`, `HashSet<T>`) and the classic **non-generic** types (`ArrayList`, `Hashtable`, `Stack`, `Queue`). Prefer the generic ones in new code — they provide compile-time type safety and avoid the boxing overhead of object-based storage.
 
-:::tip
-**Generic collections** (`List<T>`, `Dictionary<TKey, TValue>`, `Stack<T>`, `Queue<T>`) are available in **TinyCLR v3**, alongside the legacy non-generic types documented below. Generic collections give you compile-time type safety and avoid the boxing overhead of object-based storage.
+For the full API surface, see [Microsoft's collections documentation](https://learn.microsoft.com/dotnet/standard/collections/) — the API matches the subset TinyCLR ships. A few less-common members are not included; see [Limitations](/docs/tinyclr/limitations).
+
+## Generic collections
+
+`List<T>`, `Dictionary<TKey, TValue>`, and `HashSet<T>` live in `System.Collections.Generic`.
+
+### List&lt;T&gt;
+
+A dynamic, type-safe array — add, index, insert, remove, search, and sort:
+
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+
+var readings = new List<int>();
+readings.Add(10);
+readings.Add(20);
+readings.Add(30);
+
+Debug.WriteLine("Count: " + readings.Count);   // 3
+Debug.WriteLine("First: " + readings[0]);       // 10 (indexer get)
+readings[1] = 99;                               // indexer set
+
+readings.Insert(1, 15);                         // → 10, 15, 99, 30
+readings.Remove(99);                            // remove first matching value
+readings.RemoveAt(0);                           // remove by index
+
+if (readings.Contains(30))
+    Debug.WriteLine("Index of 30: " + readings.IndexOf(30));
+
+readings.Sort();                                // ascending
+readings.Sort((a, b) => b - a);                 // custom comparison: descending
+
+var firstBig = readings.Find(x => x > 20);      // first element matching a predicate
+
+foreach (var v in readings)
+    Debug.WriteLine(v);
+```
+
+`List<T>` also supports `FindAll`, `FindIndex`, `Exists`, `TrueForAll`, `Reverse`, `ToArray`, and `Clear`.
+
+### Dictionary&lt;TKey, TValue&gt;
+
+Fast key/value lookup. Keys are unique:
+
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+
+var pinFunctions = new Dictionary<string, int>();
+pinFunctions.Add("LED", 11);
+pinFunctions["BUTTON"] = 7;                      // indexer-set adds the key if missing
+
+Debug.WriteLine("LED pin: " + pinFunctions["LED"]);   // 11
+
+// TryGetValue avoids an exception when the key might be missing.
+if (pinFunctions.TryGetValue("BUTTON", out var btn))
+    Debug.WriteLine("Button pin: " + btn);
+
+if (pinFunctions.ContainsKey("LED"))
+    pinFunctions.Remove("LED");
+
+foreach (var kv in pinFunctions)
+    Debug.WriteLine(kv.Key + " = " + kv.Value);
+```
+
+:::note
+- `Add` throws if the key already exists; the indexer (`d[key] = value`) overwrites instead.
+- Reading a missing key with the indexer throws `KeyNotFoundException` — use `TryGetValue` (or `ContainsKey`) when the key may be absent.
+- **Enumeration order is not guaranteed.** Don't rely on entries coming back in insertion order.
 :::
 
-For the full collection API surface, see [Microsoft's collections documentation](https://learn.microsoft.com/dotnet/standard/collections/) — the API matches.
+### HashSet&lt;T&gt;
 
-## ArrayList
+A set of unique values, with fast membership tests and the standard set operations:
 
-`ArrayList` is a dynamic-size array. Unlike a fixed-size `Array`, it grows automatically as you add items. Use `.Add` to append, `.RemoveAt(index)` or `.Remove(item)` to remove, `.Clear` to empty.
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+
+var seen = new HashSet<int>();
+Debug.WriteLine(seen.Add(1));        // True  — added
+Debug.WriteLine(seen.Add(1));        // False — already present
+seen.Add(2);
+seen.Add(3);
+
+Debug.WriteLine("Contains 2: " + seen.Contains(2));   // True
+Debug.WriteLine("Count: " + seen.Count);              // 3
+
+// Set algebra against another set.
+var other = new HashSet<int>();
+other.Add(3);
+other.Add(4);
+
+seen.UnionWith(other);               // seen → {1, 2, 3, 4}
+seen.IntersectWith(other);           // keep only shared → {3, 4}
+Debug.WriteLine("Overlaps: " + seen.Overlaps(other));
+```
+
+`HashSet<T>` also has `ExceptWith`, `SymmetricExceptWith`, `IsSubsetOf`/`IsSupersetOf`, `SetEquals`, and `RemoveWhere`. Like `Dictionary`, **enumeration order is not guaranteed.**
+
+:::tip
+Generic collections nest freely — `Dictionary<int, List<string>>`, `List<List<int>>`, and so on all work.
+:::
+
+## Legacy collections
+
+The classic `System.Collections` types are still available and behave the same as on desktop .NET. They store `object`, so values are boxed and must be cast on the way out.
+
+### ArrayList
+
+`ArrayList` is a dynamic-size array. Unlike a fixed-size `Array`, it grows automatically as items are added. Use `.Add` to append, `.RemoveAt(index)` or `.Remove(item)` to remove, `.Clear` to empty.
 
 ```csharp
 using System;
@@ -40,7 +143,7 @@ foreach (RmaRecord r in rmaList) {
 
 **Capacity vs Count** — `Count` is how many items are actually in the list; `Capacity` is the underlying allocation, which grows as items are added.
 
-## Hashtable
+### Hashtable
 
 `Hashtable` stores key/value pairs and looks up values by key in roughly constant time. Keys must be unique (adding a duplicate throws). Values can repeat freely.
 
@@ -68,10 +171,10 @@ foreach (DictionaryEntry entry in processorPin) {
 ```
 
 :::note
-Enumeration order is **not deterministic** — it depends on the hash function and the internal layout. Don't rely on the order matching the order you inserted entries.
+Enumeration order is **not deterministic** — it depends on the hash function and the internal layout. Don't rely on the order matching the insertion order.
 :::
 
-## Stack
+### Stack
 
 Stacks are **LIFO** (last in, first out): the last item pushed is the first one popped. Useful for undo histories, parser state, and depth-first traversal.
 
@@ -93,7 +196,7 @@ foreach (var item in devices)
     Debug.WriteLine("  " + item);
 ```
 
-## Queue
+### Queue
 
 Queues are **FIFO** (first in, first out): the order items were added is the order they come out. Useful for work backlogs, message buffers, and breadth-first traversal.
 
@@ -120,4 +223,6 @@ foreach (var item in work)
 
 | Namespace | Description |
 |---|---|
-| [GHIElectronics.TinyCLR.Collections](/docs/tinyclr/api/GHIElectronics.TinyCLR.Collections/) | Generic and non-generic collection classes |
+| [GHIElectronics.TinyCLR.Collections](/docs/tinyclr/api/GHIElectronics.TinyCLR.Collections/) | `HashSet<T>` / `ISet<T>` |
+
+`List<T>`, `Dictionary<TKey, TValue>`, and the non-generic `System.Collections` types ship in the core runtime (**`GHIElectronics.TinyCLR.Core`**).

@@ -1,0 +1,69 @@
+---
+title: Tuples
+---
+
+TinyCLR supports `Tuple` and `ValueTuple` — a quick way to group a few values without declaring a class, including tuple deconstruction. They live in the core runtime (**`GHIElectronics.TinyCLR.Core`**).
+
+- **`Tuple`** is a reference type (class). Its `Item1`, `Item2`, … are read-only.
+- **`ValueTuple`** is a value type (struct). Its items are mutable fields, and it's the type that deconstructs with `var (a, b) = …`.
+
+Both compare by **value** (two tuples with equal items are equal) and support **1 to 7 elements**.
+
+## Tuple
+
+```csharp
+using System;
+using System.Diagnostics;
+
+var t = Tuple.Create(42, "answer");          // Tuple<int, string>
+Debug.WriteLine(t.Item1 + " = " + t.Item2);  // 42 = answer
+
+// Equal by value, so they also work as dictionary keys.
+var a = Tuple.Create("x", 1);
+var b = Tuple.Create("x", 1);
+Debug.WriteLine(a.Equals(b));                // True
+```
+
+A handy use is returning more than one value from a method:
+
+```csharp
+static Tuple<int, int> DivRem(int dividend, int divisor) =>
+    Tuple.Create(dividend / divisor, dividend % divisor);
+
+var dr = DivRem(17, 5);
+Debug.WriteLine(dr.Item1 + " remainder " + dr.Item2);   // 3 remainder 2
+```
+
+Because tuples compare by value, one can serve as a `Dictionary` key:
+
+```csharp
+using System.Collections.Generic;
+
+var grid = new Dictionary<Tuple<int, int>, string>();
+grid[Tuple.Create(1, 2)] = "cell-1-2";
+Debug.WriteLine(grid[Tuple.Create(1, 2)]);   // cell-1-2 (a fresh, equal tuple matches)
+```
+
+## ValueTuple
+
+`ValueTuple` is a lightweight struct that pulls apart into separate variables:
+
+```csharp
+var vt = ValueTuple.Create("hello", 5);
+var (greeting, length) = vt;                 // deconstruction
+Debug.WriteLine(greeting + " / " + length);  // hello / 5
+```
+
+This shines for methods that return a couple of related values — the caller deconstructs the result inline:
+
+```csharp
+static ValueTuple<int, string> StatusAndMessage(int code) =>
+    ValueTuple.Create(code, code == 200 ? "OK" : "Error");
+
+var (code, message) = StatusAndMessage(200);
+Debug.WriteLine(code + " " + message);       // 200 OK
+```
+
+:::note
+Tuples support **1 to 7 elements**. The 8-or-more element nested ("TRest") form is not included — see [Limitations](/docs/tinyclr/limitations). For more than seven values, use a small class or `struct`.
+:::
