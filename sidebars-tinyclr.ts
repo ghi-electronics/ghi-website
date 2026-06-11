@@ -139,6 +139,7 @@ const sidebars: SidebarsConfig = {
           collapsed: true,
           items: [
             'feature/debugging',
+            'feature/desktop-mode',
             'feature/memory',
             'feature/unmanaged-heap',
             'feature/marshal',
