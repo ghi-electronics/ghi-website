@@ -1,0 +1,74 @@
+---
+title: Migrating from v2
+---
+
+TinyCLR v3 is mostly backwards-compatible at the library API level — **the bulk of v2 application code compiles unchanged**. The differences are in the project/solution tooling and in optional new features you can opt into when you're ready.
+
+## The short version
+
+For most projects:
+
+1. **Create a new TinyCLR Application** in Visual Studio.
+2. **Add your existing `.cs` files** to the new solution.
+3. **Install the same NuGet packages** you were using in v2 (search `tinyclr` in the package manager).
+4. Build, deploy, done.
+
+The reason for starting fresh instead of opening the v2 solution is that the **project and solution system has been updated** in v3 — adding a new project type, refreshed NuGet references, and an updated deployment workflow. Old `.csproj` files often work after editing, but creating fresh from the template is faster and avoids subtle template/version mismatches.
+
+## What's new in v3
+
+- **Modern C# features** — `async`/`await`, top-level statements, generics (`List<T>`, `Dictionary<TKey, TValue>`, `Stack<T>`, `Queue<T>`)
+- **Standard .NET IoT APIs** for peripherals (GPIO, PWM, SPI, I²C, UART) alongside the original TinyCLR APIs — see [Two APIs side-by-side](#two-apis-side-by-side) below
+- **Visual Studio 2026** is the supported IDE (replacing 2022 from v2)
+- **Updated project/solution system** with the changes above
+
+The full list of changes between releases is in the [release notes](release-notes.mdx).
+
+## Two APIs side-by-side
+
+For each of these peripherals, **v3 adds the standard `System.Device.*` (.NET IoT) API** as an alternative to the original `GHIElectronics.TinyCLR.Devices.*` API:
+
+| Peripheral | Original TinyCLR API | New .NET IoT API |
+|---|---|---|
+| GPIO   | `GHIElectronics.TinyCLR.Devices.Gpio` | `System.Device.Gpio` |
+| PWM    | `GHIElectronics.TinyCLR.Devices.Pwm`  | `System.Device.Pwm`  |
+| SPI    | `GHIElectronics.TinyCLR.Devices.Spi`  | `System.Device.Spi`  |
+| I²C    | `GHIElectronics.TinyCLR.Devices.I2c`  | `System.Device.I2c`  |
+| UART   | `GHIElectronics.TinyCLR.Devices.Uart` | `System.IO.Ports.SerialPort` |
+
+**Both APIs ship in the same NuGet package** — install one and you have both. You can mix them freely in the same application.
+
+**Which one to use:**
+
+- **Keep using the original API** if you're porting v2 code as-is. Nothing to change.
+- **Adopt the new .NET IoT API** for new code, or when you want portability with desktop .NET IoT applications.
+
+The feature pages cover both APIs side-by-side in tabbed examples — see [GPIO](feature/gpio.mdx), [PWM](feature/pwm.mdx), [SPI](feature/spi.mdx), [I²C](feature/i2c.mdx), and [UART](feature/uart.mdx).
+
+## Step-by-step: bringing a v2 project to v3
+
+1. **Install TinyCLR v3** — Visual Studio extension and matching firmware. See [Getting Started](getting-started.mdx) for the current installer links.
+2. **Update the firmware** on your device to a matching v3 version using [TinyCLR Config](tinyclr-config.mdx).
+3. **Create a new TinyCLR Application** in Visual Studio (`File → New → Project → C# → TinyCLR`).
+4. **Copy your `.cs` source files** from the v2 project into the new project's folder, then add them to the project via `Project → Add → Existing Item…`. Don't copy `.csproj` or solution files — let the new template own those.
+5. **Reinstall the NuGet packages** your code uses (`GHIElectronics.TinyCLR.Devices.Gpio`, `.Pins`, networking packages, drivers, etc.). The package names didn't change; just install the v3 versions.
+6. **Build and deploy.** Most code will compile and run; fix any compilation warnings about deprecated members as they appear.
+
+## When code doesn't compile
+
+If a v2 method or property doesn't exist in v3, the typical resolution is one of:
+
+- A namespace moved — adjust the `using` directive
+- A method was renamed for consistency with .NET conventions — the new name is usually obvious from IntelliSense
+- A method was replaced by the equivalent standard .NET IoT API — see [Two APIs side-by-side](#two-apis-side-by-side)
+
+The [release notes](release-notes.mdx) call out the changes for each release.
+
+## What didn't change
+
+- **The NuGet package names** — same as v2 (`GHIElectronics.TinyCLR.X`)
+- **The original `GHIElectronics.TinyCLR.Devices.*` APIs** — your v2 GPIO/PWM/SPI/I²C/UART code keeps working
+- **The deployment workflow** — same `F5` to deploy and debug
+- **The [bootloader](bootloader.mdx) protocol** — devices flashed in v2 can be updated to v3 firmware via TinyCLR Config
+
+Most upgrades take less time than reading this page.
