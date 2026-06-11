@@ -1,12 +1,115 @@
 ---
-title: Regular Expressions
+title: LINQ & Regular Expressions
+sidebar_label: LINQ & Regex
 ---
+
+TinyCLR includes **LINQ** for querying in-memory collections and the **`Regex`** engine for pattern matching on text — two of the most-used data-processing features from full .NET.
+
+## LINQ
+
+LINQ-to-Objects brings declarative querying — filtering, projection, ordering, grouping, and aggregation — to any `IEnumerable<T>`. Queries compose into readable chains, and most of the standard operators are available.
+
+NuGet package: **`GHIElectronics.TinyCLR.Linq`** (the operators live in `System.Linq`).
+
+### Filtering and projecting
+
+`Where` keeps the elements that match a predicate; `Select` transforms each element. They compose into a single pass:
+
+```csharp
+using System.Linq;
+using System.Diagnostics;
+
+int[] ints = { 5, 2, 8, 2, 1, 7, 3 };
+
+// Keep values greater than 2, then double them.
+var result = ints.Where(i => i > 2).Select(i => i * 2);
+
+foreach (var n in result)
+    Debug.WriteLine(n.ToString());
+```
+
+Output:
+
+```
+10
+16
+14
+6
+```
+
+### Ordering and grouping
+
+`OrderBy`/`OrderByDescending` (with `ThenBy`/`ThenByDescending` for tie-breaks) sort a sequence, and `GroupBy` buckets elements by a key:
+
+```csharp
+using System.Linq;
+using System.Diagnostics;
+
+var people = new Person[] {
+    new Person { Name = "A", Age = 30, Dept = "X" },
+    new Person { Name = "B", Age = 20, Dept = "Y" },
+    new Person { Name = "C", Age = 30, Dept = "X" },
+};
+
+// Sort by department, then by age within each department.
+var ordered = people.OrderBy(p => p.Dept).ThenBy(p => p.Age);
+
+// Count members in each department.
+foreach (var group in people.GroupBy(p => p.Dept))
+    Debug.WriteLine(group.Key + ": " + group.Count());
+
+// class Person { public string Name; public int Age; public string Dept; }
+```
+
+Output:
+
+```
+X: 2
+Y: 1
+```
+
+### Aggregating
+
+The aggregate operators reduce a sequence to a single value, and `Any`/`All` test a condition across it:
+
+```csharp
+using System.Linq;
+
+int[] ints = { 5, 2, 8, 2, 1, 7, 3 };
+
+int total   = ints.Sum();             // 28
+int count   = ints.Count(i => i > 2); // 4
+int min     = ints.Min();             // 1
+int max     = ints.Max();             // 8
+double avg  = ints.Average();         // 4.0
+
+bool anyBig = ints.Any(i => i > 5);   // true
+bool allPos = ints.All(i => i >= 0);  // true
+```
+
+### Generating and converting
+
+`Enumerable.Range` produces a sequence, and `ToArray`/`ToList`/`ToDictionary` materialize a query's results:
+
+```csharp
+using System.Linq;
+
+// 0..9, keep the even numbers, collect into an array.
+int[] evens = Enumerable.Range(0, 10).Where(n => n % 2 == 0).ToArray();
+// evens == { 0, 2, 4, 6, 8 }
+```
+
+:::note
+LINQ is **LINQ-to-Objects** only — `Join`/`GroupJoin`, the set operators (`Union`/`Intersect`/`Except`), `Zip`, and `DefaultIfEmpty` are not included, and there is no `IQueryable`/PLINQ. See [Limitations](../limitations.mdx).
+:::
+
+## Regular Expressions
 
 TinyCLR supports the standard `System.Text.RegularExpressions.Regex` class for pattern matching, extraction, and replacement in strings — useful for parsing structured text like sensor output, log lines, or configuration values.
 
 NuGet package: **`GHIElectronics.TinyCLR.Core`** (Regex lives in `System.Text.RegularExpressions`).
 
-## Matching
+### Matching
 
 The example below finds every word that starts with the letter **M** in a comma-separated list of names.
 
@@ -33,7 +136,7 @@ Meachel
 Mickey
 ```
 
-## Replacing
+### Replacing
 
 `Regex.Replace` swaps every match for a replacement string — useful for sanitizing input, normalizing whitespace, or rewriting tokens:
 
@@ -45,7 +148,7 @@ var result = Regex.Replace(input, @"Order#\d+", "<order>");
 // result == "<order> <order>"
 ```
 
-## Splitting
+### Splitting
 
 `Regex.Split` breaks a string at every match of the pattern, returning the pieces between matches:
 
@@ -64,4 +167,5 @@ This is handy for parsing CSV-style input where the delimiter has variable surro
 
 | Namespace | Description |
 |---|---|
+| [GHIElectronics.TinyCLR.Linq](/docs/tinyclr/api/GHIElectronics.TinyCLR.Linq/) | LINQ-to-Objects query operators |
 | [GHIElectronics.TinyCLR.RegularExpressions](/docs/tinyclr/api/GHIElectronics.TinyCLR.RegularExpressions/) | Regular expression engine classes |
