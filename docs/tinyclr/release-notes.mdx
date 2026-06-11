@@ -13,7 +13,7 @@ members. It also adds native RLP support, USB hub and webcam support,
 multi-interface non-blocking networking, an updated Visual Studio extension for
 VS2022/VS2026, and a new Visual Studio Code extension.
 
-### TinyCLR-Libraries
+### Libraries
 
 New features
 
@@ -46,16 +46,7 @@ Fixes
 - Reworked the cryptography library.
 - Separated the socket send and receive timeouts so that setting one no longer blocks the other.
 
-Known issues
-
-- **Task**: `await Task<T>` (awaiting a generic task) is not supported yet. Start the task and read `.Result` instead. Awaiting a non-generic `Task` (for example `await Task.Delay(...)` or `await Task.WhenAll(Task[])`) works.
-- **Generic**: the generic collections and interfaces provided are supported; some advanced generic scenarios are not — notably a generic type boxed across an `async`/`await` suspension (this is the root of the `Task<T>` await limitation above).
-- **Linq**: LINQ-to-Objects only. `Join`/`GroupJoin`, the set operators (`Union`/`Intersect`/`Except`), `Zip`, and `DefaultIfEmpty` are not included, and there is no `IQueryable`/PLINQ.
-- **Tuple**: `Tuple` and `ValueTuple` are supported for 1–7 elements, including tuple literals and deconstruction. The 8-or-more element nested ("TRest") form is not included.
-- **List**: common `List<T>` operations are supported (indexer, `Add`/`Insert`/`Remove`/`Sort`/`Find`/`BinarySearch`, etc.). Less-common members such as `AsReadOnly` and `Slice` are not included.
-- **Dictionary**: common `Dictionary<TKey, TValue>` operations are supported (indexer, `Add`/`Remove`/`TryGetValue`/`Keys`/`Values`). Enumeration order is not guaranteed and serialization is not included.
-
-### TinyCLR-Firmware
+### Firmware
 
 New features
 
@@ -89,7 +80,7 @@ Known issues
 - SC13xxx: System crash when use Dictionary if memory is low.
 - SC20xxx: Webcam reconnect fails after disconnect when connected through a hub.
 
-### TinyCLR-SDK (Visual Studio extension)
+### Visual Studio Extension
 
 New features
 
@@ -107,7 +98,7 @@ Known issues
 - Users need to run **Run Custom Tool** on the resource to (re)generate the `GetBytes()` / `GetBitmap()` accessors.
 - Desktop mode does not support `Debug.WriteLine`; use `Console.WriteLine` instead.
 
-### TinyCLR-Config
+### TinyCLR Config
 
 New features
 
