@@ -360,6 +360,65 @@ Everything you'd expect from .NET. Click any feature to jump to its docs.
 <div className="section-tinted">
 
 <div className="section-tinted__intro">
+  <span className="eyebrow">When C# isn't fast enough</span>
+  <h2>Drop in native ARM code — called from C#</h2>
+  <p><strong>Runtime Loadable Procedures (RLP)</strong> are the embedded equivalent of calling a <strong>native DLL from desktop .NET</strong> — you keep writing your application in C#, and drop into compiled native code for the parts that need raw speed. The native code loads as an ELF blob at runtime, with no firmware rebuild required.</p>
+</div>
+
+<div className="feature-grid feature-grid--four">
+  <div className="feature-card">
+    <div className="feature-card__icon">⚡</div>
+    <div className="feature-card__title">Native ARM speed</div>
+    <div className="feature-card__body">Hot loops run as compiled ARM code — DSP, image scanning, CRC. Many times faster than the C# loop.</div>
+  </div>
+  <div className="feature-card">
+    <div className="feature-card__icon">📡</div>
+    <div className="feature-card__title">GPIO at microsecond latency</div>
+    <div className="feature-card__body">Read, write, and toggle pins from native code with microsecond delays. Handle pin-change interrupts entirely in C.</div>
+  </div>
+  <div className="feature-card">
+    <div className="feature-card__icon">🔄</div>
+    <div className="feature-card__title">No firmware rebuild</div>
+    <div className="feature-card__body">Compile the C separately and load the ELF from SD card, USB, or an embedded resource. Update native code without rebuilding the C# app.</div>
+  </div>
+  <div className="feature-card">
+    <div className="feature-card__icon">🎁</div>
+    <div className="feature-card__title">Template + 7 examples</div>
+    <div className="feature-card__body">A Visual Studio project template ships with seven ready-to-run examples — speed, math, GPIO toggle, lookup tables, background tasks, events, interrupts. Try it in minutes.</div>
+  </div>
+</div>
+
+<div style={{textAlign: 'center', marginTop: '1.5rem'}}>
+  <a href="/docs/tinyclr/feature/rlp" className="btn-primary">Learn about RLP →</a>
+</div>
+
+</div>
+
+## Built for the products that ship
+
+<p className="lead-text">From self-service kiosks to fleet diagnostics, TinyCLR lives inside the products real businesses rely on every day. See real applications in our <a href="/showcase/">showcase →</a></p>
+
+<div className="industries-marquee">
+  <div className="industries-track">
+    {[...industries, ...industries].map((it, i) => {
+      const clone = i >= industries.length;
+      return (
+        <div
+          className="industry-card"
+          key={`${clone ? 'clone' : 'orig'}-${i}`}
+          aria-hidden={clone || undefined}
+        >
+          <img src={`/img/${it.img}`} alt={clone ? '' : it.name} />
+          <div className="industry-card__name">{it.name}</div>
+        </div>
+      );
+    })}
+  </div>
+</div>
+
+<div className="section-tinted">
+
+<div className="section-tinted__intro">
   <span className="eyebrow">Under one roof</span>
   <h2>From your C# code to a shipped product</h2>
   <p>Whatever depth of help you need. Buy SITCore off the shelf and ship — or bring in our engineers and our manufacturing line as far as it makes sense for your project.</p>
@@ -385,28 +444,6 @@ Everything you'd expect from .NET. Click any feature to jump to its docs.
   </div>
 </div>
 
-</div>
-
-## Built for the products that ship
-
-<p className="lead-text">From self-service kiosks to fleet diagnostics, TinyCLR lives inside the products real businesses rely on every day. See real applications in our <a href="/showcase/">showcase →</a></p>
-
-<div className="industries-marquee">
-  <div className="industries-track">
-    {[...industries, ...industries].map((it, i) => {
-      const clone = i >= industries.length;
-      return (
-        <div
-          className="industry-card"
-          key={`${clone ? 'clone' : 'orig'}-${i}`}
-          aria-hidden={clone || undefined}
-        >
-          <img src={`/img/${it.img}`} alt={clone ? '' : it.name} />
-          <div className="industry-card__name">{it.name}</div>
-        </div>
-      );
-    })}
-  </div>
 </div>
 
 
