@@ -1,0 +1,29 @@
+---
+slug: /drivers
+title: Extended Features
+---
+
+# Extended Features
+
+The pages in this section cover **driver libraries** that extend TinyCLR with support for specific chips, peripherals, and protocols — character LCDs, OLED panels, capacitive touch controllers, camera modules, LED strips, motor drivers, sensors, and more. They ship as NuGet packages under the **`GHIElectronics.TinyCLR.Drivers.*`** namespace, and the source lives in the open-source [TinyCLR-Drivers repository](https://github.com/ghi-electronics/TinyCLR-Drivers) on GitHub.
+
+Unlike the [core features](features.mdx), which are part of the TinyCLR runtime itself, extended-feature libraries are **opt-in** — you only pay the binary cost when you add the NuGet package, and you can fork or modify any driver from the GitHub source if your hardware needs a tweak.
+
+There are also community-provided libraries scattered around the web — for example, the [MBN-TinyCLR](https://github.com/MBNSoftware/MBN-TinyCLR) collection — that aren't maintained by GHI Electronics but follow the same NuGet/source pattern.
+
+## Categories
+
+- **[Display drivers](displays.mdx)** — ST7735, ST7789, ERC12864, ILI9341, SSD1306, SSD1351
+- **[Codec drivers](codec.mdx)** — VS1053B (MP3 decoder), WAV playback, MJPEG video
+- **[Imaging drivers](imaging.mdx)** — Ov9655 camera
+- **[Connectivity drivers](connectivity.mdx)** — Microchip WINC15x0 WiFi utilities
+- **[Sensor drivers](sensor.mdx)** — Resistive Touch, FT5xx6 / GSL1680, LIS2HH12, MSGEQ7
+- **[LED drivers](led.mdx)** — WS2812 (NeoPixel), APA102C (DotStar), LPD8806, LED matrices
+- **[Motor drivers](motor.mdx)** — Servos
+- **[I/O control drivers](io-control.mdx)** — PCA9685, CD4017B, SNx4HC595, Rotary encoder
+- **[Memory drivers](memory.mdx)** — AT25M02 SPI EEPROM
+- **[Software utility drivers](software-utility.mdx)** — BasicGraphics, ManagedFileSystem, Azure SAS, Infrared, BasicNet/W5500, GPS parser, QR codes
+
+## Contributing a driver
+
+The TinyCLR-Drivers repo accepts pull requests. If you've written a driver for a chip that GHI Electronics doesn't currently support, the maintainers welcome contributions back — see the [repo's README](https://github.com/ghi-electronics/TinyCLR-Drivers) for the contribution guidelines.

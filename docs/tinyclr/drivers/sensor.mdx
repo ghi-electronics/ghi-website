@@ -1,0 +1,46 @@
+---
+title: Sensor Drivers
+---
+
+Drivers for input sensors — touch panels, accelerometers, audio analyzers, and similar.
+
+## Resistive touch
+
+A driver that uses **2 analog pins + 2 digital pins** to read a display's resistive touch panel. Less accurate than dedicated capacitive controllers, but very low cost. See [Touch Screen → Resistive](../feature/touch-screen.mdx#resistive) for the full example.
+
+NuGet package: **`GHIElectronics.TinyCLR.Drivers.Touch.ResistiveTouch`**.
+
+## FT5xx6 and GSL1680
+
+![GSL1680](/img/docs/drivers/GSL1680.png)
+
+Common **capacitive touch controller** chips used in display modules — the **FocalTech FT5xx6** and the **Silead GSL1680**. Both report touch positions in display pixels (no calibration step needed) and support multi-touch. See [Touch Screen → Capacitive](../feature/touch-screen.mdx#capacitive) for the full example.
+
+NuGet packages: **`GHIElectronics.TinyCLR.Drivers.FocalTech.FT5xx6`** or **`GHIElectronics.TinyCLR.Drivers.GSL1680`**.
+
+## LIS2HH12
+
+![LIS2HH12](/img/docs/drivers/LIS2HH12.png)
+
+A **3-axis accelerometer** from STMicroelectronics. The driver is set to ±2g by default; output values range from −1024 to 1024.
+
+NuGet package: **`GHIElectronics.TinyCLR.Drivers.STMicroelectronics.LIS2HH12`**.
+
+```csharp
+var lis2hh12 = new LIS2HH12Controller(I2cController.FromName(FEZBit.I2cBus.Accelerometer));
+
+while (true) {
+    Debug.WriteLine("X = " + lis2hh12.X);
+    Debug.WriteLine("Y = " + lis2hh12.Y);
+    Debug.WriteLine("Z = " + lis2hh12.Z);
+    Thread.Sleep(500);
+}
+```
+
+## MSGEQ7
+
+![MSGEQ7](/img/docs/drivers/MSGEQ7.png)
+
+A 7-band **audio spectrum analyzer** equalizer filter chip. Useful for sound-reactive lighting and VU meters.
+
+NuGet package: **`GHIElectronics.TinyCLR.Drivers.MixedSignalIntegrated.MSGEQ7`**.
