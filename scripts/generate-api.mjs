@@ -917,15 +917,18 @@ async function findCsFiles(dir) {
 // compat shims that ship inside a parent NuGet and have no nuspec of their own.
 // Both sources live in TinyCLR-Libraries (edit there, not here).
 async function readPackageDescription(libsRoot, asm) {
+  // Strip the repetitive trailing "for TinyCLR." that every nuspec description carries —
+  // it reads as noise when all packages are listed together on the API overview table.
+  const trim = (s) => s.replace(/\s*for TinyCLR\.?\s*$/i, '').trim();
   try {
     const nuspec = await fs.readFile(path.join(libsRoot, asm, asm + '.nuspec'), 'utf8');
     const m = nuspec.match(/<description>([\s\S]*?)<\/description>/i);
-    if (m && m[1].trim()) return m[1].trim();
+    if (m && m[1].trim()) return trim(m[1].trim());
   } catch { /* no nuspec for this package */ }
   try {
     const info = await fs.readFile(path.join(libsRoot, asm, 'Properties', 'AssemblyInfo.cs'), 'utf8');
     const m = info.match(/AssemblyDescription\("([^"]*)"\)/);
-    if (m && m[1].trim()) return m[1].trim();
+    if (m && m[1].trim()) return trim(m[1].trim());
   } catch { /* no AssemblyInfo */ }
   return '';
 }
