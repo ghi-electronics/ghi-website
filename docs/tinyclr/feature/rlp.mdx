@@ -1,9 +1,12 @@
 ---
-title: Runtime Loadable Procedures
+title: Runtime Loadable Procedures (RLP)
 sidebar_label: RLP
+description: Call native ARM C/C++ code from C# on a microcontroller — the embedded equivalent of calling a native DLL from desktop .NET. Load compiled native code at runtime as an ELF blob, with no firmware rebuild. Ideal for DSP, tight compute loops, and microsecond-precision GPIO.
 ---
 
 **Runtime Loadable Procedures (RLP)** call **native ARM C/C++ code** from a C# app — loaded onto the device **at runtime**, with no firmware rebuild. The C is compiled into a small **ELF** file, placed on the device (SD card, USB drive, or embedded resource), then functions are looked up by name and called from managed code.
+
+Think of it as the embedded equivalent of **calling a native DLL from desktop .NET** — application logic stays in convenient, safe C#, and the parts that need raw speed drop into compiled native code.
 
 Use RLP for raw speed or low-level work the managed APIs don't cover:
 
