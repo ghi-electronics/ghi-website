@@ -209,6 +209,7 @@ const sidebars: SidebarsConfig = {
     'resources',
     'limitations',
     'migration',
+    'faq',
   ],
 };
 

@@ -77,6 +77,54 @@ const config: Config = {
         crossorigin: 'anonymous',
       },
     },
+    {
+      tagName: 'script',
+      attributes: {
+        type: 'application/ld+json',
+      },
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: 'GHI Electronics',
+        legalName: 'GHI Electronics, LLC',
+        url: 'https://www.ghielectronics.com',
+        logo: 'https://www.ghielectronics.com/img/ghi-logo.png',
+        description:
+          'GHI Electronics builds TinyCLR — a royalty-free .NET runtime for embedded products — running on the SITCore family of secure ARM microcontrollers. Customers write C# in Visual Studio or VS Code and deploy across chipsets, modules, single-board computers, and dev boards designed and manufactured in the USA.',
+        foundingDate: '2004',
+        address: {
+          '@type': 'PostalAddress',
+          addressCountry: 'US',
+          addressRegion: 'MI',
+        },
+        sameAs: [
+          'https://github.com/ghi-electronics',
+          'https://www.facebook.com/ghielec/',
+          'https://www.twitter.com/GHIElectronics',
+          'https://www.linkedin.com/company/ghielectronics/',
+          'https://www.youtube.com/@GHIElectronics',
+          'https://www.instagram.com/ghielectronics/',
+        ],
+      }),
+    },
+    {
+      tagName: 'script',
+      attributes: {
+        type: 'application/ld+json',
+      },
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: 'GHI Electronics',
+        url: 'https://www.ghielectronics.com',
+        description:
+          'Build embedded products in C# and .NET on ARM microcontrollers. TinyCLR runtime, SITCore secure hardware, royalty-free, designed and manufactured in the USA.',
+        publisher: {
+          '@type': 'Organization',
+          name: 'GHI Electronics',
+        },
+      }),
+    },
   ],
 
   stylesheets: [

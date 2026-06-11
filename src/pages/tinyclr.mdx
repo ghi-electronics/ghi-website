@@ -4,8 +4,47 @@ description: TinyCLR is GHI Electronics' royalty-free .NET runtime for embedded 
 hide_table_of_contents: true
 ---
 
+import Head from '@docusaurus/Head';
 import SitcoreNav from '@site/src/components/SitcoreNav';
 import YouTubeFacade from '@site/src/components/YouTubeFacade';
+
+export const tinyclrSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'TinyCLR',
+  alternateName: 'TinyCLR OS',
+  applicationCategory: 'DeveloperApplication',
+  applicationSubCategory: 'Embedded Runtime',
+  operatingSystem: 'Embedded ARM (SITCore)',
+  description:
+    'TinyCLR is a royalty-free .NET runtime for embedded products. Write C# in Visual Studio or VS Code, debug over USB with real breakpoints, and run modern .NET (generics, async/await, C# 11) on ARM microcontrollers. Supports the standard .NET IoT APIs (System.Device.Gpio, Pwm, Spi, I2c) alongside the original TinyCLR APIs. Includes RLP for calling native C/C++ code at runtime.',
+  url: 'https://www.ghielectronics.com/tinyclr/',
+  publisher: {
+    '@type': 'Organization',
+    name: 'GHI Electronics',
+    url: 'https://www.ghielectronics.com',
+  },
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+    availability: 'https://schema.org/InStock',
+    description: 'Royalty-free for SITCore customers',
+  },
+  featureList: [
+    'C# and .NET on ARM microcontrollers',
+    'Visual Studio and VS Code support',
+    'Step debugging over USB',
+    'Generics, async/await, C# 11',
+    'Standard .NET IoT APIs (System.Device.*)',
+    'Runtime Loadable Procedures (RLP) — native C/C++ from C#',
+    'Desktop Mode — test non-hardware code on PC',
+    'TLS 1.2, Secure Boot, IP Protection, Encrypted In-Field Updates',
+    'Native graphics, displays, touch screens',
+    'WiFi, Ethernet, cellular, MQTT, FTP, HTTP, HTTPS',
+    'Azure, AWS cloud SDKs',
+  ],
+};
 
 export const industries = [
   {img: 'industry-kiosks.jpg', name: 'Self-Service Kiosks'},
@@ -15,6 +54,10 @@ export const industries = [
   {img: 'industry-warehouse.jpg', name: 'Plant & Warehouse'},
   {img: 'industry-parking.jpg', name: 'Parking & Traffic'},
 ];
+
+<Head>
+  <script type="application/ld+json">{JSON.stringify(tinyclrSchema)}</script>
+</Head>
 
 <SitcoreNav />
 

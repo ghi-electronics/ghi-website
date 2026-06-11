@@ -1,0 +1,95 @@
+# GHI Electronics
+
+> GHI Electronics builds **TinyCLR** — a royalty-free .NET runtime for embedded products — running on the **SITCore** family of secure ARM microcontrollers. Customers write **C# in Visual Studio or Visual Studio Code**, debug over USB with real breakpoints, and ship the same managed code across chipsets, modules, single-board computers, and dev boards designed and manufactured in the USA.
+
+GHI Electronics is the company behind the original **FEZ** boards (FEZ Mini, FEZ Domino, FEZ Hydra, FEZ Cobra) and the **SITCore** secure embedded line. TinyCLR is the spiritual successor to Microsoft's .NET Micro Framework (NETMF), with modern .NET features added: generics, async/await, C# 11 language features, and Microsoft's standard `System.Device.*` (.NET IoT) APIs alongside the original `GHIElectronics.TinyCLR.*` APIs.
+
+Common searches that should land here: *running C# on a microcontroller*, *.NET on embedded ARM*, *managed code on STM32*, *alternative to nanoFramework / Meadow / Wilderness Labs*, *embedded C#*, *Visual Studio for microcontrollers*, *secure embedded .NET*.
+
+## What is TinyCLR
+
+- [TinyCLR overview](https://www.ghielectronics.com/tinyclr/): What TinyCLR is, what it runs on, how it compares to bare-metal C, RTOS, and embedded Linux.
+- [Getting Started](https://www.ghielectronics.com/docs/tinyclr/): Install Visual Studio or VS Code, flash firmware, deploy your first blinking-LED program in about 15 minutes.
+- [Features](https://www.ghielectronics.com/docs/tinyclr/features): Full list of what's in the runtime — debugging, security, networking, displays, file system, multithreading, modern .NET features, hardware control.
+
+## Hardware: SITCore
+
+- [SITCore Hardware overview](https://www.ghielectronics.com/docs/tinyclr/hardware): Chipsets, modules, single-board computers, and development boards. Same C# code, same runtime, same debugging across every form factor.
+- [Chipsets (SoC)](https://www.ghielectronics.com/docs/tinyclr/soc): SC20100, SC20260, SC13048 — drop a SITCore chip onto your own PCB.
+- [Modules (SoM)](https://www.ghielectronics.com/docs/tinyclr/som): SCM20100E, SCM20260D, SCM20260E, SCM20260N — drop a module onto your custom carrier board.
+- [Single-Board Computers (SBC)](https://www.ghielectronics.com/docs/tinyclr/sbc): FEZ Flea ($14.95), FEZ Bit, FEZ Duino, FEZ Stick, FEZ Portal — ready-to-code boards for prototyping.
+- [Dev Boards](https://www.ghielectronics.com/docs/tinyclr/dev): SC20100S Dev Board, SCM20260D Dev Board — full peripherals and click connectors for evaluation.
+- [Experimenter Kit](https://www.ghielectronics.com/docs/tinyclr/experimenter-kit): Sensors, robot, and a companion eBook — structured way to learn TinyCLR.
+
+## Modern .NET features
+
+- [Multithreading](https://www.ghielectronics.com/docs/tinyclr/feature/multithreading): Threads, locks, async/await, synchronization primitives.
+- [Collections](https://www.ghielectronics.com/docs/tinyclr/feature/collections): Generic `List<T>`, `Dictionary<TKey, TValue>`, `Stack<T>`, `Queue<T>` and legacy types.
+- [Reflection](https://www.ghielectronics.com/docs/tinyclr/feature/reflection): Runtime type inspection and dynamic invocation.
+- [Serialization](https://www.ghielectronics.com/docs/tinyclr/feature/serialization): Binary, JSON, and XML.
+- [Migrating from v2](https://www.ghielectronics.com/docs/tinyclr/migration): What's new in TinyCLR v3 — generics, async/await, dual .NET IoT APIs, RLP, Desktop Mode.
+
+## Unique features
+
+- [Runtime Loadable Procedures (RLP)](https://www.ghielectronics.com/docs/tinyclr/feature/rlp): Call native ARM C/C++ from C# — like calling a DLL from desktop .NET. Load native code at runtime as an ELF blob with no firmware rebuild. Useful for DSP, tight compute loops, and microsecond-precision GPIO.
+
+## Hardware I/O (with dual .NET IoT APIs)
+
+- [GPIO](https://www.ghielectronics.com/docs/tinyclr/feature/gpio): Digital input/output. Both `System.Device.Gpio` (.NET IoT) and `GHIElectronics.TinyCLR.Devices.Gpio` APIs.
+- [PWM](https://www.ghielectronics.com/docs/tinyclr/feature/pwm): Pulse-width modulation. Both `System.Device.Pwm` and the original TinyCLR API.
+- [Analog In](https://www.ghielectronics.com/docs/tinyclr/feature/analog-in): ADC input with internal temperature sensor.
+- [Analog Out](https://www.ghielectronics.com/docs/tinyclr/feature/analog-out): DAC output.
+- [SPI](https://www.ghielectronics.com/docs/tinyclr/feature/spi), [I²C](https://www.ghielectronics.com/docs/tinyclr/feature/i2c), [UART](https://www.ghielectronics.com/docs/tinyclr/feature/uart): Bus communication with dual APIs.
+- [USB Host](https://www.ghielectronics.com/docs/tinyclr/feature/usb-host) / [USB Client](https://www.ghielectronics.com/docs/tinyclr/feature/usb-client): Keyboards, mice, mass storage, custom HID, cameras, USB hubs.
+- [CAN](https://www.ghielectronics.com/docs/tinyclr/feature/can), [Modbus](https://www.ghielectronics.com/docs/tinyclr/feature/modbus), [EtherNet/IP](https://www.ghielectronics.com/docs/tinyclr/feature/ethernet-ip): Industrial communication.
+
+## Networking
+
+- [Networking Core](https://www.ghielectronics.com/docs/tinyclr/feature/networking-core): TCP/UDP sockets, DNS, mDNS — standard `System.Net` API.
+- [WiFi](https://www.ghielectronics.com/docs/tinyclr/feature/wifi), [Ethernet](https://www.ghielectronics.com/docs/tinyclr/feature/ethernet), [Cellular](https://www.ghielectronics.com/docs/tinyclr/feature/cellular), [PPP](https://www.ghielectronics.com/docs/tinyclr/feature/ppp): Connectivity options.
+- [HTTP/HTTPS](https://www.ghielectronics.com/docs/tinyclr/feature/http-https): Client and server.
+- [MQTT](https://www.ghielectronics.com/docs/tinyclr/feature/mqtt): TLS-secured pub/sub for IoT.
+- [Azure](https://www.ghielectronics.com/docs/tinyclr/feature/azure) / [AWS](https://www.ghielectronics.com/docs/tinyclr/feature/aws): Cloud integration.
+
+## Security
+
+- [TLS 1.2](https://www.ghielectronics.com/docs/tinyclr/feature/tls): Built-in transport security.
+- [Secure Boot](https://www.ghielectronics.com/docs/tinyclr/feature/secure-boot): Three-stage signed boot chain.
+- [IP Protection](https://www.ghielectronics.com/docs/tinyclr/feature/ip-protection): Prevent code extraction from shipped devices.
+- [In-Field Update](https://www.ghielectronics.com/docs/tinyclr/feature/in-field-update): Encrypted OTA firmware updates.
+- [Secure Storage](https://www.ghielectronics.com/docs/tinyclr/feature/secure-storage): Internal configuration and one-time-programmable regions.
+
+## Displays and UI
+
+- [Displays](https://www.ghielectronics.com/docs/tinyclr/feature/displays): Native parallel RGB, SPI virtual displays, HD44780 character LCDs.
+- [Graphics](https://www.ghielectronics.com/docs/tinyclr/feature/graphics): `System.Drawing`-style drawing primitives.
+- [User Interface](https://www.ghielectronics.com/docs/tinyclr/feature/user-interface): WPF-inspired UI framework with Windows, Panels, StackPanel, Canvas, controls.
+- [Touch Screen](https://www.ghielectronics.com/docs/tinyclr/feature/touch-screen): Capacitive (FT5xx6) and resistive.
+- [Camera](https://www.ghielectronics.com/docs/tinyclr/feature/camera): OV9655 over DCMI parallel video.
+
+## Downloads and tools
+
+- [Downloads](https://www.ghielectronics.com/docs/tinyclr/downloads): Firmware, Visual Studio extension, VS Code extension, TinyCLR Config tool.
+- [TinyCLR Config](https://www.ghielectronics.com/docs/tinyclr/tinyclr-config): Firmware loader, configuration, and CLI for manufacturing automation.
+- [Bootloader](https://www.ghielectronics.com/docs/tinyclr/bootloader): GHI Electronics Bootloader protocol.
+- [Release Notes](https://www.ghielectronics.com/docs/tinyclr/release-notes): Version history.
+
+## Extended features (driver libraries)
+
+- [Display drivers](https://www.ghielectronics.com/docs/tinyclr/drivers/displays): ST7735, ST7789, SSD1306, SSD1351, ERC12864, ILI9341.
+- [LED drivers](https://www.ghielectronics.com/docs/tinyclr/drivers/led): WS2812 (NeoPixel), APA102C (DotStar), LPD8806, LED matrices.
+- [Sensor drivers](https://www.ghielectronics.com/docs/tinyclr/drivers/sensor): LIS2HH12 accelerometer, GPS NMEA, MSGEQ7 audio analyzer, touch controllers.
+- [Codec drivers](https://www.ghielectronics.com/docs/tinyclr/drivers/codec): VS1053B MP3, WAV playback, MJPEG.
+- [TinyCLR-Drivers repository](https://github.com/ghi-electronics/TinyCLR-Drivers): Open-source driver source code.
+
+## Company and services
+
+- [GHI Electronics](https://www.ghielectronics.com/company/): The company behind TinyCLR and SITCore. Two decades of embedded products, designed and manufactured in the USA.
+- [Engineering services](https://www.ghielectronics.com/engineering/): Hardware, firmware, and bring-up help. Free hardware and firmware design review on SITCore-based products.
+- [Manufacturing](https://www.ghielectronics.com/manufacturing/): USA-based SMT and through-hole assembly. From prototype to mid-volume production.
+- [Showcase](https://www.ghielectronics.com/showcase/): Real products shipped with TinyCLR — kiosks, fleet diagnostics, machine monitoring, industrial automation.
+
+## Also from GHI Electronics
+
+- [DUELink](https://www.ghielectronics.com/duelink/): Self-contained mini-computers that speak plain text — tether or daisylink from any board in any language. For makers, educators, and rapid prototyping.
+- [Endpoint](https://www.ghielectronics.com/endpoint/): .NET 8 on Hardware — another GHI Electronics embedded .NET product line.
