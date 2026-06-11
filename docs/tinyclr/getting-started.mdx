@@ -10,7 +10,7 @@ Set up the TinyCLR programming environment, install the firmware on a SITCore de
 
 ## What is TinyCLR?
 
-TinyCLR is a .NET runtime for embedded products from GHI Electronics. You write C# in Visual Studio, deploy and debug over USB, and the same code runs across every [SITCore hardware](hardware.mdx) form factor — chipsets, modules, single-board computers, and dev boards. No JTAG, no external programmer, no separate toolchain.
+TinyCLR is a .NET runtime for embedded products from GHI Electronics. You write C# in **Visual Studio** or **Visual Studio Code**, deploy and debug over USB, and the same code runs across every [SITCore hardware](hardware.mdx) form factor — chipsets, modules, single-board computers, and dev boards. No JTAG, no external programmer, no separate toolchain.
 
 Out of the box: modern C# (generics, async/await, top-level statements), step debugging in Visual Studio, full peripheral coverage (GPIO, SPI, I²C, UART, networking, displays, file system), security (TLS, secure boot, IP protection, encrypted firmware updates), and cloud SDKs for Azure and AWS. Browse the full [features list](features.mdx) for the deep dive.
 
@@ -19,7 +19,9 @@ TinyCLR is royalty-free for SITCore customers.
 ## What you'll need
 
 - A **SITCore board** — [chipset](soc.mdx), [module](som.mdx), [SBC](sbc.mdx), or [Dev Board](dev.mdx). For a fun, structured way to learn, the [Experimenter Kit](experimenter-kit.mdx) bundles a FEZ Bit with sensors, a robot, and a companion eBook.
-- A Windows PC with **Visual Studio 2026** (the free Community Edition works)
+- A development PC with one of:
+  - **Visual Studio 2026** — any edition works, including the free **Community Edition**
+  - **Visual Studio Code** with the TinyCLR extension
 - A USB cable
 
 No JTAG probe, no external programmer, no separate toolchain.
@@ -30,6 +32,10 @@ TinyCLR runs on the SITCore family — chipsets, modules, single-board computers
 
 ## Set up your development machine
 
+TinyCLR supports both **Visual Studio** and **Visual Studio Code** through dedicated extensions. The walkthrough below shows Visual Studio; the VS Code workflow runs the same steps through the extension's command palette.
+
+### Visual Studio
+
 1. **Install Visual Studio 2026.** Any edition works, including the free [Community Edition](https://www.visualstudio.com/downloads/). During install, check the **.NET desktop development** workload.
 
 2. **Install the TinyCLR Project System extension.** In Visual Studio, go to `Extensions` → `Manage Extensions`. Select `Online` in the left panel, search for `tinyclr`, and install **TinyCLR Project System**. Restart Visual Studio to finish installation.
@@ -39,6 +45,14 @@ TinyCLR runs on the SITCore family — chipsets, modules, single-board computers
    :::note
    Pre-release versions of the Project System aren't published to the Visual Studio Marketplace. Download them directly from the [Downloads](downloads.mdx) page.
    :::
+
+### Visual Studio Code
+
+1. **Install [Visual Studio Code](https://code.visualstudio.com/)** if you don't already have it.
+
+2. **Install the TinyCLR extension.** Download the latest TinyCLR Code extension `.vsix` from the [Downloads](downloads.mdx) page, then in VS Code open the Extensions view, click the `…` menu, and choose **Install from VSIX…**.
+
+3. The extension adds TinyCLR commands to the Command Palette (`Ctrl+Shift+P`) for creating projects, building, deploying, and debugging — equivalent to the Visual Studio workflow below.
 
 ## How a SITCore board starts up
 
@@ -72,7 +86,7 @@ For manual firmware updates without TinyCLR Config, see the [GHI Electronics Boo
 
 ## Start a new project
 
-Let's blink an LED on a SITCore board.
+Let's blink an LED on a SITCore board. The walkthrough below uses Visual Studio for the screenshots; in **VS Code**, run the equivalent **TinyCLR: New Project** command from the Command Palette (`Ctrl+Shift+P`) and skip to step 5.
 
 1. Open Visual Studio and select **Create a new project**.
 
