@@ -1,0 +1,117 @@
+---
+title: Generics
+---
+
+TinyCLR supports C# generics: generic classes, generic methods, type constraints, generic interfaces, and the generic delegate types (`Func<>`, `Action<>`, `Predicate<T>`, `Comparison<T>`). Write type-safe, reusable code once and use it with any type — no boxing, checked at compile time.
+
+The generic collections (`List<T>`, `Dictionary<TKey, TValue>`, `HashSet<T>`) are built on this; see [Collections](collections.mdx).
+
+## Generic classes
+
+A class with one or more type parameters. The same class works with any type arguments:
+
+```csharp
+using System.Diagnostics;
+
+public sealed class Pair<TKey, TValue> {
+    public TKey Key { get; }
+    public TValue Value { get; }
+    public Pair(TKey key, TValue value) { this.Key = key; this.Value = value; }
+}
+
+var answer = new Pair<string, int>("answer", 42);
+Debug.WriteLine(answer.Key + " = " + answer.Value);   // answer = 42
+
+var pin = new Pair<int, string>(7, "PB7");            // same class, different type args
+```
+
+## Generic methods
+
+A method can have its own type parameters, usually inferred from the arguments:
+
+```csharp
+static void Swap<T>(ref T a, ref T b) {
+    var t = a; a = b; b = t;
+}
+
+int x = 1, y = 2;
+Swap(ref x, ref y);              // inferred as Swap<int>;  x = 2, y = 1
+
+var first = "hello";
+var second = "world";
+Swap(ref first, ref second);    // inferred as Swap<string>
+```
+
+## Constraints
+
+A `where` clause restricts the type argument so specific operations are available on it:
+
+```csharp
+// T must implement IComparable, so CompareTo is available.
+static T Max<T>(T a, T b) where T : IComparable => a.CompareTo(b) >= 0 ? a : b;
+
+Debug.WriteLine(Max(3, 7));               // 7
+Debug.WriteLine(Max("apple", "pear"));    // pear
+
+// T must be a reference type — null is a valid value.
+static bool IsNull<T>(T value) where T : class => value == null;
+
+// T must have a public parameterless constructor.
+static T MakeNew<T>() where T : new() => new T();
+```
+
+Constraints can be combined (for example `where T : class, IComparable`).
+
+## Generic interfaces
+
+Interfaces can be generic too, and a generic class can implement them:
+
+```csharp
+using System.Collections.Generic;
+
+public interface IRepository<T> {
+    void Save(T item);
+    T Load(int index);
+    int Count { get; }
+}
+
+public sealed class InMemoryRepository<T> : IRepository<T> {
+    private readonly List<T> store = new List<T>();
+    public void Save(T item) => this.store.Add(item);
+    public T Load(int index) => this.store[index];
+    public int Count => this.store.Count;
+}
+
+IRepository<Pair<string, int>> repo = new InMemoryRepository<Pair<string, int>>();
+repo.Save(new Pair<string, int>("LED", 11));
+Debug.WriteLine("Stored: " + repo.Count);
+```
+
+## Generic delegates
+
+The built-in generic delegates cover most "pass a function" needs:
+
+```csharp
+Func<int, int> square = x => x * x;
+Debug.WriteLine(square(5));                       // 25
+
+Func<int, int, int> add = (a, b) => a + b;        // two inputs, one result
+Predicate<string> nonEmpty = s => s != null && s.Length > 0;
+Action<int> log = v => Debug.WriteLine("got " + v);
+Comparison<int> descending = (a, b) => b - a;     // e.g. for List<T>.Sort
+
+Debug.WriteLine(nonEmpty("hi"));                  // True
+log(square(4));                                   // got 16
+```
+
+A common pattern is a generic **factory delegate** — let the caller decide how to build a `T` instead of requiring a `new()` constraint:
+
+```csharp
+static T Build<T>(Func<T> factory) => factory();
+
+var widget = Build(() => new Pair<string, int>("built", 99));
+```
+
+:::note
+Some advanced generic scenarios aren't supported — see [Limitations](/docs/tinyclr/limitations). Most notably, a generic value boxed across an `async`/`await` suspension is the reason a generic `Task<T>` can't be awaited yet (see [Tasks & Async](tasks.mdx)).
+:::
