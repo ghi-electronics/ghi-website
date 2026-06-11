@@ -2,9 +2,9 @@
 title: Graphics
 ---
 
-TinyCLR's graphics stack provides the standard drawing primitives — shapes, text, bitmaps, color management, clipping — over either a **native display** (parallel RGB driven directly from the chip's DMA) or a **virtual display** (you supply the transport, like SPI or networking).
+TinyCLR's graphics stack provides the standard drawing primitives — shapes, text, bitmaps, color management, clipping — on top of a configured display. This page covers the drawing API; for setting up the display itself (parallel RGB timing, SPI controllers, etc.), see [Displays](displays.mdx).
 
-NuGet package: **`GHIElectronics.TinyCLR.Drawing`** for the core graphics API. Display drivers and bus drivers (Display, GPIO, SPI, I²C, Pins) are added per use case.
+NuGet package: **`GHIElectronics.TinyCLR.Drawing`**. Add the display-specific packages from [Displays](displays.mdx) for the underlying panel.
 
 ## Drawing primitives
 
@@ -30,53 +30,24 @@ The core shapes use `Graphics` methods with `Pen` and `Brush` arguments:
 
 ## BasicGraphics
 
-**`BasicGraphics`** is a simpler driver that runs on **every device**, including small chips without native display support. Use it when full `Graphics` is overkill or unavailable. The current source lives in the [TinyCLR-Drivers repository](https://github.com/ghi-electronics/TinyCLR-Drivers).
+**`BasicGraphics`** is a simpler driver that runs on **every device**, including small chips without native display support. Use it when full `Graphics` is overkill or unavailable. See [Extended Features → BasicGraphics](../drivers/software-utility.mdx#basic-graphics) for the full reference.
 
-## Native displays
+## Getting a `Graphics` surface
 
-Parallel RGB displays are driven by the chip's DMA — pixels flow to the panel continuously and automatically without consuming CPU time. The example below targets the **SCM20260D Dev Board** with the **4.3" parallel display**.
+How you get a drawing surface depends on the underlying display:
 
-NuGet packages: **`GHIElectronics.TinyCLR.Devices.Display`**, **`GHIElectronics.TinyCLR.Devices.Gpio`**, **`GHIElectronics.TinyCLR.Drawing`**, **`GHIElectronics.TinyCLR.Pins`**.
+- **Native (parallel RGB) displays** — `Graphics.FromHdc(displayController.Hdc)`. Pixels are written into the DMA-refreshed framebuffer; the display updates continuously.
+- **Virtual (SPI / I²C / network) displays** — `Graphics.FromImage(new Bitmap(width, height))`. You draw into a RAM bitmap, and `Graphics.OnFlushEvent` fires with the pixel data when you call `Flush()`. Wire that event to your display driver's `DrawBuffer` method.
+
+The example below targets the [SCM20260D 4.3" native display setup](displays.mdx#native-displays) — once `displayController` is configured and enabled, the drawing code is the same regardless of which panel is underneath.
 
 ```csharp
-using GHIElectronics.TinyCLR.Devices.Display;
-using GHIElectronics.TinyCLR.Devices.Gpio;
-using GHIElectronics.TinyCLR.Pins;
 using System.Drawing;
-
-var backlight = GpioController.GetDefault().OpenPin(SC20260.GpioPin.PA15);
-backlight.SetDriveMode(GpioPinDriveMode.Output);
-backlight.Write(GpioPinValue.High);
-
-var displayController = DisplayController.GetDefault();
-
-// 4.3" panel timing — see panel datasheet for the exact values.
-displayController.SetConfiguration(new ParallelDisplayControllerSettings {
-    Width = 480,
-    Height = 272,
-    DataFormat = DisplayDataFormat.Rgb565,
-    Orientation = DisplayOrientation.Degrees0,
-    PixelClockRate = 10_000_000,
-    PixelPolarity = false,
-    DataEnablePolarity = false,
-    DataEnableIsFixed = false,
-    HorizontalFrontPorch = 2,
-    HorizontalBackPorch = 2,
-    HorizontalSyncPulseWidth = 41,
-    HorizontalSyncPolarity = false,
-    VerticalFrontPorch = 2,
-    VerticalBackPorch = 2,
-    VerticalSyncPulseWidth = 10,
-    VerticalSyncPolarity = false,
-});
-
-// Enable() turns on the display I/O and starts the automatic refresh.
-displayController.Enable();
 
 var screen = Graphics.FromHdc(displayController.Hdc);
 
 var image = Resources.GetBitmap(Resources.BitmapResources.smallJpegBackground);
-var font = Resources.GetFont(Resources.FontResources.small);
+var font  = Resources.GetFont(Resources.FontResources.small);
 
 screen.Clear();
 
@@ -86,8 +57,8 @@ screen.FillEllipse(new SolidBrush(Color.FromArgb(128,   0, 255,   0)), 120, 0, 2
 
 screen.DrawImage(image, 216, 122);
 
-screen.DrawRectangle(new Pen(Color.Yellow),     10, 150, 140, 100);
-screen.DrawEllipse(new Pen(Color.Purple),      170, 150, 140, 100);
+screen.DrawRectangle(new Pen(Color.Yellow),      10, 150, 140, 100);
+screen.DrawEllipse(new Pen(Color.Purple),       170, 150, 140, 100);
 screen.FillRectangle(new SolidBrush(Color.Teal), 330, 150, 140, 100);
 
 screen.DrawLine(new Pen(Color.White), 10, 271, 470, 271);
@@ -98,98 +69,7 @@ screen.DrawString("Hello world!", font, new SolidBrush(Color.Blue), 210, 255);
 screen.Flush();
 ```
 
-### 7" display configuration
-
-Same code, different timing — replace the `SetConfiguration` block with:
-
-```csharp
-displayController.SetConfiguration(new ParallelDisplayControllerSettings {
-    Width = 800,
-    Height = 480,
-    DataFormat = DisplayDataFormat.Rgb565,
-    Orientation = DisplayOrientation.Degrees0,
-    PixelClockRate = 24_000_000,
-    PixelPolarity = false,
-    DataEnablePolarity = false,
-    DataEnableIsFixed = false,
-    HorizontalFrontPorch = 16,
-    HorizontalBackPorch = 46,
-    HorizontalSyncPulseWidth = 1,
-    HorizontalSyncPolarity = false,
-    VerticalFrontPorch = 7,
-    VerticalBackPorch = 23,
-    VerticalSyncPulseWidth = 1,
-    VerticalSyncPolarity = false,
-});
-```
-
-## Virtual displays
-
-Virtual displays render into a RAM bitmap; when `Flush` is called, an event fires with the pixel data to push to the destination — useful for **SPI displays**, **VNC**, or any other transport that isn't direct parallel RGB.
-
-The example below drives an **ST7735 SPI display** on an SC20100S Dev Board.
-
-NuGet packages: **`GHIElectronics.TinyCLR.Devices.Spi`**, **`GHIElectronics.TinyCLR.Drivers.Sitronix.ST7735`**, plus the same `Drawing`, `Gpio`, and `Pins` packages from the native example.
-
-```csharp
-using GHIElectronics.TinyCLR.Devices.Gpio;
-using GHIElectronics.TinyCLR.Devices.Spi;
-using GHIElectronics.TinyCLR.Drivers.Sitronix.ST7735;
-using GHIElectronics.TinyCLR.Pins;
-using System.Drawing;
-using System.Threading;
-
-const int SCREEN_WIDTH = 160;
-const int SCREEN_HEIGHT = 128;
-
-var spi = SpiController.FromName(SC20100.SpiBus.Spi4);
-var gpio = GpioController.GetDefault();
-
-var st7735 = new ST7735Controller(
-    spi.GetDevice(ST7735Controller.GetConnectionSettings(SpiChipSelectType.Gpio, gpio.OpenPin(SC20100.GpioPin.PD10))),  // CS
-    gpio.OpenPin(SC20100.GpioPin.PC4),       // RS
-    gpio.OpenPin(SC20100.GpioPin.PE15)       // RESET
-);
-
-var backlight = gpio.OpenPin(SC20100.GpioPin.PA15);
-backlight.SetDriveMode(GpioPinDriveMode.Output);
-backlight.Write(GpioPinValue.High);
-
-st7735.SetDataAccessControl(true, true, false, false);
-st7735.SetDrawWindow(0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1);
-st7735.Enable();
-
-// Wire the flush event to push the RAM bitmap out over SPI.
-Graphics.OnFlushEvent += (sender, data, x, y, width, height, originalWidth) => {
-    st7735.DrawBuffer(data);
-};
-
-// Draw into a RAM bitmap.
-var screen = Graphics.FromImage(new Bitmap(SCREEN_WIDTH, SCREEN_HEIGHT));
-
-var image = Resources.GetBitmap(Resources.BitmapResources.smallJpegBackground);
-var font = Resources.GetFont(Resources.FontResources.small);
-
-screen.Clear();
-
-screen.FillEllipse(new SolidBrush(Color.FromArgb(255, 255,   0,   0)),  0, 0, 80, 64);
-screen.FillEllipse(new SolidBrush(Color.FromArgb(255,   0,   0, 255)), 80, 0, 80, 64);
-screen.FillEllipse(new SolidBrush(Color.FromArgb(128,   0, 255,   0)), 40, 0, 80, 64);
-
-screen.DrawImage(image, 56, 50);
-
-screen.DrawRectangle(new Pen(Color.Yellow),     10, 80, 40, 25);
-screen.DrawEllipse(new Pen(Color.Purple),       60, 80, 40, 25);
-screen.FillRectangle(new SolidBrush(Color.Teal), 110, 80, 40, 25);
-
-screen.DrawLine(new Pen(Color.White), 10, 127, 150, 127);
-screen.SetPixel(80, 92, Color.White);
-
-screen.DrawString("Hello world!", font, new SolidBrush(Color.Blue), 50, 110);
-
-screen.Flush();
-Thread.Sleep(Timeout.Infinite);
-```
+For a **virtual display**, swap the first line for `Graphics.FromImage(new Bitmap(SCREEN_WIDTH, SCREEN_HEIGHT))` and wire `Graphics.OnFlushEvent` to push the rendered bitmap to the SPI driver — see [Displays → Virtual displays](displays.mdx#virtual-displays) for the controller setup.
 
 ## Auto-scaling to the display
 
@@ -218,11 +98,11 @@ Array.Copy2D(screen.GetBitmap(), cropped, x: 5, y: 5, width: 80, height: 80, scr
 
 ## See also
 
+- **[Displays](displays.mdx)** — panel setup (parallel, SPI, character)
 - **[Image Decoders](image-decoders.mdx)** — JPG, GIF, BMP loading and saving
 - **[Font Support](font-support.mdx)** — converting and using fonts
 - **[Encoding & Decoding](encoding-decoding.mdx#color-space-conversion)** — converting between color spaces (5:6:5 ↔ 8:8:8 etc.)
 - **[VNC](vnc.mdx)** — remote framebuffer output as a virtual-display destination
-
 
 ## API reference
 
