@@ -23,6 +23,14 @@ public static string DeviceName { get; }
 
 The device's friendly name (settable via `SetDeviceName`).
 
+### DeviceFamily
+
+```csharp
+public static string DeviceFamily { get; }
+```
+
+The MCU family of the running device (e.g. "STM32H7", "STM32L4"). Supplied by the board/firmware layer; not user-settable.
+
 ### ManufacturerName
 
 ```csharp
