@@ -65,29 +65,35 @@ New features
 - Added USB host hub support (cascaded hubs and multiple USB mass-storage sticks) and USB webcam capture (DCMI + DMA).
 - Added multiple simultaneous network interfaces, non-blocking network bring-up (`EnableAsync`), non-blocking DNS, socket `Shutdown`, and TCP listener support.
 - Added a hardware RNG source for the network security stack.
-- Reworked low-power / sleep handling.
 - Added firmware support for reading and setting the RTC (exposed through the TinyCLR-Config CLI).
 
-Fixes
+Fixes & improvements
 
 - Fixed several floating-point / number-to-string formatting issues (G-format rounding, exponent, precision, and trailing zeros).
-- Fixed CAN: classic (non-FD) operation when no data bit-rate is set, a continuous CAN error condition.
-- Reworked networking.
-- Improved I2C and optimized the STM32L4 drivers.
+- Fixed CAN: classic (non-FD) operation failed when no data bit-rate is set.
 - Fixed mass-storage (MSC) read/write and mount-after-format.
-- Fixed USB webcam disconnect handling and a crash with faulty cameras.
-- Fixed a GPIO interrupt issue.
-- Reworked EtherNet/IP (board-to-board Class-1 I/O).
+- Fixed DigitalSignal capture crashed with at 2.5MHz .
 - Fixed inconsistent comparison of simple value types.
 - Fixed SD card read/write disabling global interrupts (IRQs).
 - Fixed SD card mounting.
+- Reworked networking.
+- Reworked low-power / sleep handling.
+- Reworked EtherNet/IP (board-to-board Class-1 I/O).
+- Improved I2C (Master and Client modes).
 - The deploy error now reports which assembly exceeds the maximum size.
+
+
+Known issues
+
+- SC13xxx: System crash when use Dictionary if memory is low.
+- SC20xxx: Webcam reconnect fails after disconnect when connected through a hub.
 
 ### TinyCLR-SDK (Visual Studio extension)
 
 New features
 
-- Added support for 64-bit Visual Studio 2022 and VS2026; the Desktop target now uses .NET Framework 4.8.
+- Added Dual mode: a TinyCLR project can run in both device and Desktop mode (.NET Framework 4.8).
+- Added support for 64-bit Visual Studio 2022 and VS2026
 - Added support for connecting to multiple devices / ports.
 
 Fixes
