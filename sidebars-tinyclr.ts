@@ -142,6 +142,7 @@ const sidebars: SidebarsConfig = {
             'feature/memory',
             'feature/unmanaged-heap',
             'feature/marshal',
+            'feature/rlp',
             'feature/application-domain',
           ],
         },
