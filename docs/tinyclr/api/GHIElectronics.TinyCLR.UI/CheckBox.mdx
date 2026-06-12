@@ -1,0 +1,134 @@
+---
+title: "CheckBox Class"
+sidebar_label: "CheckBox"
+---
+
+# CheckBox Class
+
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
+
+A two-state check box that toggles when clicked.
+
+```csharp
+public class CheckBox : ContentControl, IDisposable
+```
+
+## Constructors
+
+### CheckBox()
+
+```csharp
+public CheckBox() : base()
+```
+
+Creates a new CheckBox.
+
+## Properties
+
+### Name
+
+```csharp
+public string Name { get; set; }
+```
+
+Optional name identifying the check box.
+
+### Alpha
+
+```csharp
+public ushort Alpha { get; set; }
+```
+
+Opacity (0-255) used when drawing the check box image.
+
+### RadiusBorder
+
+```csharp
+public ushort RadiusBorder { get; set; }
+```
+
+Corner radius used by the nine-slice check box image.
+
+### IsChecked
+
+```csharp
+public bool IsChecked { get; set; }
+```
+
+Whether the check box is currently checked.
+
+## Methods
+
+### OnRender(DrawingContext dc)
+
+```csharp
+public override void OnRender(DrawingContext dc)
+```
+
+Draws the check box in its checked or unchecked state.
+
+### OnTouchUp(TouchEventArgs e)
+
+```csharp
+protected override void OnTouchUp(TouchEventArgs e)
+```
+
+Handles touch release; toggles the check box.
+
+### OnTouchDown(TouchEventArgs e)
+
+```csharp
+protected override void OnTouchDown(TouchEventArgs e)
+```
+
+Handles touch press. Toggling is deferred to touch release.
+
+### OnButtonUp(ButtonEventArgs e)
+
+```csharp
+protected override void OnButtonUp(ButtonEventArgs e)
+```
+
+Handles the Select hardware button release; toggles the check box.
+
+### Dispose()
+
+```csharp
+public void Dispose()
+```
+
+Releases the resources used by the check box.
+
+### Dispose(bool disposing)
+
+```csharp
+protected virtual void Dispose(bool disposing)
+```
+
+Releases the check box's bitmap resources.
+
+## Events
+
+### Click
+
+```csharp
+public event RoutedEventHandler Click
+```
+
+Raised when the check box is clicked.
+
+### Checked
+
+```csharp
+public event RoutedEventHandler Checked
+```
+
+Raised when the check box becomes checked.
+
+### Unchecked
+
+```csharp
+public event RoutedEventHandler Unchecked
+```
+
+Raised when the check box becomes unchecked.

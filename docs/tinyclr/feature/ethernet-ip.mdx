@@ -27,19 +27,20 @@ A Scanner connects to one or more Adapters and exchanges messages with them. Thr
 Broadcast a discovery request and enumerate all Adapters that respond.
 
 ```csharp
-using GHIElectronics.TinyCLR.EthernetIP.Scanner;
 using System;
 using System.Diagnostics;
+using GHIElectronics.TinyCLR.Devices.Network;
+using GHIElectronics.TinyCLR.EthernetIP.Scanner;
 
 var eipClient = new ScannerController();
-var devices = eipClient.ListIdentity(networkController, TimeSpan.FromSeconds(5));
+var devices = eipClient.ListIdentity(NetworkController, TimeSpan.FromSeconds(5));
 
-if (devices == null) {
+if (devices == null){
     Debug.WriteLine("No device found");
     return;
 }
 
-for (int i = 0; i < devices.Length; i++) {
+for (int i = 0; i < devices.Length; i++){
     Debug.WriteLine("EtherNet/IP device found:");
     Debug.WriteLine("  Product:     " + devices[i].ProductName1);
     Debug.WriteLine("  IP:          " + Encapsulation.CIPIdentityItem.GetIPAddress(devices[i].SocketAddress.SIN_Address));
@@ -146,16 +147,16 @@ An Adapter publishes a CIP (Common Industrial Protocol) object model and waits f
 ### Top-level setup
 
 ```csharp
-using GHIElectronics.TinyCLR.EthernetIP.Adapter;
 using System.Net;
 using System.Threading;
+using GHIElectronics.TinyCLR.EthernetIP.Adapter;
 
-public static void DoInitAdapter() {
+void DoInitAdapter(){
     var adapter = new AdapterController(
-        deviceName:         "GHI Adapter",
-        deviceVendorID:     3,
-        deviceType:         12,
-        deviceProductCode:  65001,
+        deviceName: "GHI Adapter",
+        deviceVendorID: 3,
+        deviceType: 12,
+        deviceProductCode: 65001,
         deviceSerialNumber: 87654321,
         deviceMajorRevision: 4,
         deviceMinorRevision: 3
@@ -165,15 +166,15 @@ public static void DoInitAdapter() {
 
     // Define the Assembly class — covers the Input, Output, Config, and Heartbeat instances.
     adapter.CreateAssemblyClass(
-        numberClassAttributes:           0,
-        highestClassAttributeNumber:     7,
-        numberClassServices:             1,
-        numberInstanceAttributes:        2,
-        highestInstanceAttributeNumber:  4,
-        numberInstanceServices:          2,
-        numberInstances:                 0,
-        name:                            "assembly",
-        revision:                        2
+        numberClassAttributes: 0,
+        highestClassAttributeNumber: 7,
+        numberClassServices: 1,
+        numberInstanceAttributes: 2,
+        highestInstanceAttributeNumber: 4,
+        numberInstanceServices: 2,
+        numberInstances: 0,
+        name: "assembly",
+        revision: 2
     );
 
     MessageRouterInit(adapter);
@@ -181,15 +182,15 @@ public static void DoInitAdapter() {
     ConnectionManagerInit(adapter);
 
     // Assembly buffers — Input (T→O), Output (O→T), Config, Explicit.
-    var inputBuffer    = new byte[T_O_IODataSize];
-    var outputBuffer   = new byte[O_T_IODataSize];
-    var configBuffer   = new byte[Config_DataSize];
+    var inputBuffer = new byte[T_O_IODataSize];
+    var outputBuffer = new byte[O_T_IODataSize];
+    var configBuffer = new byte[Config_DataSize];
     var explicitBuffer = new byte[ExplicitMessage_DataSize];
 
-    adapter.AddAssemblyObject(new AssemblyObject(DEMO_APP_INPUT_ASSEMBLY_NUM,  inputBuffer,  (ushort)inputBuffer.Length));
+    adapter.AddAssemblyObject(new AssemblyObject(DEMO_APP_INPUT_ASSEMBLY_NUM, inputBuffer, (ushort)inputBuffer.Length));
     adapter.AddAssemblyObject(new AssemblyObject(DEMO_APP_OUTPUT_ASSEMBLY_NUM, outputBuffer, (ushort)outputBuffer.Length));
     adapter.AddAssemblyObject(new AssemblyObject(DEMO_APP_CONFIG_ASSEMBLY_NUM, configBuffer, (ushort)configBuffer.Length));
-    adapter.AddAssemblyObject(new AssemblyObject(DEMO_APP_HEARTBEAT_INPUT_ONLY_ASSEMBLY_NUM,  null, 0));
+    adapter.AddAssemblyObject(new AssemblyObject(DEMO_APP_HEARTBEAT_INPUT_ONLY_ASSEMBLY_NUM, null, 0));
     adapter.AddAssemblyObject(new AssemblyObject(DEMO_APP_HEARTBEAT_LISTEN_ONLY_ASSEMBLY_NUM, null, 0));
     adapter.AddAssemblyObject(new AssemblyObject(DEMO_APP_EXPLICIT_ASSEMBLY_NUM, explicitBuffer, (ushort)explicitBuffer.Length));
 
@@ -199,10 +200,10 @@ public static void DoInitAdapter() {
     adapter.ConfigureListenOnlyConnectionPoint(0, DEMO_APP_HEARTBEAT_LISTEN_ONLY_ASSEMBLY_NUM, DEMO_APP_INPUT_ASSEMBLY_NUM, DEMO_APP_CONFIG_ASSEMBLY_NUM);
 
     // Hook lifecycle events.
-    adapter.RegisterSessionDetected   += Adapter_RegisterSessionDetected;
+    adapter.RegisterSessionDetected += Adapter_RegisterSessionDetected;
     adapter.UnregisterSessionDetected += Adapter_UnregisterSessionDetected;
-    adapter.ForwardOpenDetected       += Adapter_ForwardOpenDetected;
-    adapter.ForwardCloseDetected      += Adapter_ForwardCloseDetected;
+    adapter.ForwardOpenDetected += Adapter_ForwardOpenDetected;
+    adapter.ForwardCloseDetected += Adapter_ForwardCloseDetected;
 
     adapter.Enable();
 
@@ -215,7 +216,7 @@ public static void DoInitAdapter() {
 The Identity object reports the device's vendor, type, product code, revision, status, serial number, and product name to Scanners during enumeration.
 
 ```csharp
-static void IdentityInit(AdapterController adapter) {
+void IdentityInit(AdapterController adapter) {
     var identityClass = new CIPClass(
         AdapterController.ClassId.Identity,
         numberClassAttributes:           0,
@@ -261,7 +262,7 @@ static void IdentityInit(AdapterController adapter) {
 ### Message router
 
 ```csharp
-static void MessageRouterInit(AdapterController adapter) {
+void MessageRouterInit(AdapterController adapter) {
     var messageRouterClass = new CIPClass(
         AdapterController.ClassId.MessageRouter,
         numberClassAttributes:           7,
@@ -283,7 +284,7 @@ static void MessageRouterInit(AdapterController adapter) {
 ### Connection manager
 
 ```csharp
-static void ConnectionManagerInit(AdapterController adapter) {
+void ConnectionManagerInit(AdapterController adapter) {
     var connectionManagerClass = new CIPClass(
         AdapterController.ClassId.ConnectionManager,
         numberClassAttributes:           0,
@@ -348,32 +349,40 @@ adapter.BeforeAssemblyDataSend    += Adapter_BeforeAssemblyDataSend;
 Sample implementations:
 
 ```csharp
-static void Adapter_RegisterSessionDetected(AdapterController adapter, IPAddress ip)
+void Adapter_RegisterSessionDetected(AdapterController adapter, IPAddress ip)
     => Debug.WriteLine("RegisterSession from " + ip);
 
-static void Adapter_UnregisterSessionDetected(AdapterController adapter, IPAddress ip)
+void Adapter_UnregisterSessionDetected(AdapterController adapter, IPAddress ip)
     => Debug.WriteLine("UnregisterSession from " + ip);
 
-static void Adapter_ForwardOpenDetected(AdapterController adapter, IPAddress ip, bool large)
+void Adapter_ForwardOpenDetected(AdapterController adapter, IPAddress ip, bool large)
     => Debug.WriteLine("ForwardOpen from " + ip + " (large=" + large + ")");
 
-static void Adapter_ForwardCloseDetected(AdapterController adapter, IPAddress ip)
+void Adapter_ForwardCloseDetected(AdapterController adapter, IPAddress ip)
     => Debug.WriteLine("ForwardClose from " + ip);
 
-static void Adapter_BeforeAssemblyDataSend(AdapterController adapter, ushort instanceNumber)
+void Adapter_BeforeAssemblyDataSend(AdapterController adapter, ushort instanceNumber)
     => Debug.WriteLine("Before send: instance=" + instanceNumber);
 
-static void Adapter_AfterAssemblyDataReceived(AdapterController adapter, ushort instanceNumber)
+void Adapter_AfterAssemblyDataReceived(AdapterController adapter, ushort instanceNumber)
     => Debug.WriteLine("After receive: instance=" + instanceNumber);
 
-static void Adapter_NotifyClass(AdapterController adapter, uint classCode, ushort instanceNumber, ushort attributeNumber, IPAddress ip) {
+void Adapter_NotifyClass(AdapterController adapter, uint classCode, ushort instanceNumber, ushort attributeNumber, IPAddress ip) {
     Debug.WriteLine("NotifyClass: class=" + classCode + " instance=" + instanceNumber
                   + " attribute=" + attributeNumber + " from=" + ip);
 }
 
-static void Adapter_ReceivedExplicitTcpData(AdapterController adapter, ushort commandCode, IPAddress ip)
+void Adapter_ReceivedExplicitTcpData(AdapterController adapter, ushort commandCode, IPAddress ip)
     => Debug.WriteLine("TCP: command=" + commandCode + " from=" + ip);
 
-static void Adapter_ReceivedExplicitUdpData(AdapterController adapter, ushort commandCode, IPAddress ip, bool unicast)
+void Adapter_ReceivedExplicitUdpData(AdapterController adapter, ushort commandCode, IPAddress ip, bool unicast)
     => Debug.WriteLine("UDP: command=" + commandCode + " from=" + ip + " unicast=" + unicast);
 ```
+
+
+## API reference
+
+| Namespace | Description |
+|---|---|
+| [GHIElectronics.TinyCLR.EthernetIP.Scanner](/docs/tinyclr/api/GHIElectronics.TinyCLR.EthernetIP.Scanner/) | EtherNet/IP scanner (master) classes |
+| [GHIElectronics.TinyCLR.EthernetIP.Adapter](/docs/tinyclr/api/GHIElectronics.TinyCLR.EthernetIP.Adapter/) | EtherNet/IP adapter (slave) classes |

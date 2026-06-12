@@ -4,7 +4,7 @@ title: User Interface
 
 The **`GHIElectronics.TinyCLR.UI`** library provides a **WPF-inspired** UI framework — windows, panels, layouts, controls, an event-driven dispatcher, and styling via brushes. If you've written Windows Presentation Foundation code, the patterns will feel familiar.
 
-NuGet packages: **`GHIElectronics.TinyCLR.UI`** and **`GHIElectronics.TinyCLR.UI.Media`** for the framework; whichever **display** and **bus** packages your panel needs ([Graphics → Native displays](graphics.mdx#native-displays) or [Virtual displays](graphics.mdx#virtual-displays)).
+NuGet packages: **`GHIElectronics.TinyCLR.UI`** and **`GHIElectronics.TinyCLR.UI.Media`** for the framework; whichever **display** and **bus** packages your panel needs ([Displays → Native](displays.mdx#native-displays) or [Virtual](displays.mdx#virtual-displays)).
 
 ## Application skeleton
 
@@ -88,9 +88,9 @@ class Program : Application {
 }
 ```
 
-For a **7" display**, use width 800 × height 480 and the timing values from [Graphics → 7" display configuration](graphics.mdx#7-display-configuration).
+For a **7" display**, use width 800 × height 480 and the timing values from [Displays → 7" display configuration](displays.mdx#7-display-configuration).
 
-For an **SPI virtual display** (like the **ST7735** on the SC20100S Dev Board), the `Application` is constructed with explicit width/height instead of a `DisplayController`, and you route flush events to the SPI driver. See [Graphics → Virtual displays](graphics.mdx#virtual-displays) for the SPI display setup; the UI portion becomes:
+For an **SPI virtual display** (like the **ST7735** on the SC20100S Dev Board), the `Application` is constructed with explicit width/height instead of a `DisplayController`, and you route flush events to the SPI driver. See [Displays → Virtual displays](displays.mdx#virtual-displays) for the SPI display setup; the UI portion becomes:
 
 ```csharp
 class Program : Application {
@@ -485,3 +485,11 @@ void ShowConfirmation(int counter) {
     mainStackPanel.Invalidate();
 }
 ```
+
+
+## API reference
+
+| Namespace | Description |
+|---|---|
+| [GHIElectronics.TinyCLR.UI](/docs/tinyclr/api/GHIElectronics.TinyCLR.UI/) | TinyCLR UI framework (windows, controls, events) |
+| [GHIElectronics.TinyCLR.Devices.Display](/docs/tinyclr/api/GHIElectronics.TinyCLR.Devices.Display/) | Display controller for rendering UI output |

@@ -1,0 +1,50 @@
+---
+title: I/O Control Drivers
+---
+
+I/O control drivers extend the available pin count or interpret input signals — port expanders, shift registers, decade counters, and rotary encoders.
+
+## PCA9685
+
+![PCA9685](/img/docs/drivers/PCA9685.png)
+
+**16-channel PWM / servo driver** that talks to the SITCore over I²C. Useful when you need more PWM channels than the chip provides natively, or when driving banks of servos and RGB LEDs.
+
+NuGet package: **`GHIElectronics.TinyCLR.Drivers.Nxp.PCA9685`**.
+
+## CD4017B
+
+![CD4017B](/img/docs/drivers/CD4017B.png)
+
+CMOS **decade counter**. Good for scanning a matrix of LEDs or buttons — one count input drives ten outputs in sequence.
+
+NuGet package: **`GHIElectronics.TinyCLR.Drivers.TexasInstruments.CD4017B`**.
+
+## SNx4HC595
+
+![SNx4HC595](/img/docs/drivers/SNx4HC595.png)
+
+**Shift register** that takes serial data (from SPI or bit-banged GPIO) and produces 8 parallel outputs. Common pattern: drive 8 LEDs from a single SPI bus.
+
+NuGet package: **`GHIElectronics.TinyCLR.Drivers.TexasInstruments.SNx4HC595`**.
+
+## Rotary encoder
+
+![Rotary encoder](/img/docs/drivers/Rotary.png)
+
+**Rotary encoder** — an electro-mechanical device that turns angular shaft position into digital pulses. Reads from two GPIO pins.
+
+NuGet package: **`GHIElectronics.TinyCLR.Drivers.Encoder`**.
+
+```csharp
+var gpio = GpioController.GetDefault();
+
+var pinA = gpio.OpenPin(SC20100.GpioPin.PC0);
+var pinB = gpio.OpenPin(SC20100.GpioPin.PE5);
+
+var encoder = new EncoderController(pinA, pinB);
+
+encoder.OnCounterChangedEvent += counter => Debug.WriteLine("Counter = " + counter);
+
+Thread.Sleep(Timeout.Infinite);
+```

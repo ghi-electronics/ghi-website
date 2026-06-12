@@ -1,0 +1,114 @@
+---
+title: LED Drivers
+---
+
+Drivers for individually-addressable RGB LEDs and LED matrices.
+
+## LED matrices
+
+![LED matrix](/img/docs/drivers/led-matrices.png)
+
+You can wrap any of the per-LED drivers below into a 2D matrix abstraction and combine it with [`BasicGraphics`](software-utility.mdx#basic-graphics) to get a small "display" with shape and text drawing primitives.
+
+NuGet packages: **`GHIElectronics.TinyCLR.Drivers.Worldsemi.WS2812`** and **`GHIElectronics.TinyCLR.Drivers.BasicGraphics`**.
+
+The example below builds a WS2812-backed matrix and uses `BasicGraphics.DrawString` to scroll a counter:
+
+```csharp
+class LedMatrix : BasicGraphics {
+    private uint row, column;
+    private WS2812Controller leds;
+
+    public LedMatrix(GpioPin pin, uint column, uint row) {
+        this.row = row;
+        this.column = column;
+        this.leds = new WS2812Controller(pin, this.row * this.column, WS2812Controller.DataFormat.rgb565);
+
+        Clear();
+    }
+
+    public override void Clear() => leds.Clear();
+
+    public override void SetPixel(int x, int y, uint color) {
+        if (x < 0 || x >= this.column) return;
+        if (y < 0 || y >= this.row) return;
+
+        // Even columns are wired upside down on typical matrices — flip Y.
+        if ((x & 0x01) != 0)
+            y = (int)(this.row - 1 - y);
+
+        var index = x * this.row + y;
+        leds.SetColor((int)index, (byte)(color >> 16), (byte)(color >> 8), (byte)(color >> 0));
+    }
+
+    public void Flush() => leds.Flush();
+}
+```
+
+```csharp
+var pin = GpioController.GetDefault().OpenPin(SC20100.GpioPin.PC6);
+var screen = new LedMatrix(pin, column: 8, row: 32);
+
+var col = LedMatrix.ColorFromRgb(0, 20, 50);
+
+var c = 0;
+while (true) {
+    screen.Clear();
+    screen.DrawString(c++.ToString(), col, 0, 0);
+    screen.Flush();
+    Thread.Sleep(10);
+}
+```
+
+## WS2812
+
+![WS2812](/img/docs/drivers/WS2812.jpg)
+
+The **WS2812** (commonly called **NeoPixel**) is the most popular individually-addressable RGB LED. Single-wire serial protocol with strict timing — TinyCLR's driver implements it natively for accurate pulse widths. Supports **565** and **888** color formats.
+
+NuGet package: **`GHIElectronics.TinyCLR.Drivers.Worldsemi.WS2812`**.
+
+```csharp
+const int NUM_LED = 4;
+var pin = GpioController.GetDefault().OpenPin(SC20260.GpioPin.PA0);
+var leds = new WS2812Controller(pin, NUM_LED, WS2812Controller.DataFormat.rgb888);
+
+leds.SetColor(0, 0xFF, 0,    0   );  // Red
+leds.SetColor(1, 0,    0xFF, 0   );  // Green
+leds.SetColor(2, 0,    0,    0xFF);  // Blue
+leds.SetColor(3, 0xFF, 0xFF, 0xFF);  // White
+
+leds.Flush();
+```
+
+## APA102C
+
+![APA102C](/img/docs/drivers/APA102C.png)
+
+The **APA102C** (DotStar) is similar to the WS2812 but uses standard **3-wire SPI** instead of a single-wire proprietary protocol — easier timing, more compatible with standard SPI peripherals.
+
+NuGet package: **`GHIElectronics.TinyCLR.Drivers.ShijiLighting.APA102C`**.
+
+```csharp
+const int NUMOFLED = 8;
+var spi = SpiController.FromName(SC20100.SpiBus.Spi4);
+var led = new APA102CCController(spi, NUMOFLED);
+
+led.SetColor(1, 255, 0, 0);     // Second LED → red.
+led.Flush();
+```
+
+## LPD8806
+
+The **LPD8806** is another SPI-based RGB LED strip controller — older than the APA102C, similar API.
+
+NuGet package: **`GHIElectronics.TinyCLR.Drivers.GreeledElectronics.LPD8806`**.
+
+```csharp
+const int NUMOFLED = 8;
+var spi = SpiController.FromName(SC20100.SpiBus.Spi4);
+var led = new LPD8806Controller(spi, NUMOFLED);
+
+led.SetColor(1, 255, 0, 0);     // Second LED → red.
+led.Flush();
+```

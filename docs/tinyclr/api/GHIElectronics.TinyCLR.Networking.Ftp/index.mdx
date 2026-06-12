@@ -1,0 +1,45 @@
+---
+title: "GHIElectronics.TinyCLR.Networking.Ftp"
+hide_title: true
+sidebar_label: Overview
+---
+
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Networking.Ftp</h1>
+
+**NuGet:** `GHIElectronics.TinyCLR.Networking.Ftp`
+
+## Classes
+
+| Class | Namespace | Summary |
+|---|---|---|
+| [Ftp](./Ftp.mdx) | `System.Net` | Represents the types of FTP protocol methods that can be used with an FTP request. |
+| [Ftp](./Ftp_2.mdx) | `GHIElectronics.TinyCLR.Networking` | FTP protocol method names used by the server's command handling. |
+| [FTPCommand](./FTPCommand.mdx) | `System.Net` | Ftp command class |
+| [FtpDefaultListener](./FtpDefaultListener.mdx) | `GHIElectronics.TinyCLR.Networking.Ftp` | The fallback FTP listener that serves contexts not claimed by any other listener. |
+| [FtpFilesystemListener](./FtpFilesystemListener.mdx) | `GHIElectronics.TinyCLR.Networking.Ftp` | An FTP listener that serves files from a real filesystem directory under a virtual root. |
+| [FtpListener](./FtpListener.mdx) | `GHIElectronics.TinyCLR.Networking` | The base class for all Ftp listeners implemented all basic functionalities like context queue management, authentication events |
+| [FtpListenerContext](./FtpListenerContext.mdx) | `GHIElectronics.TinyCLR.Networking` | A Context containing an ftp request and a response scratch that should be completed by listeners |
+| [FtpListenerRequest](./FtpListenerRequest.mdx) | `GHIElectronics.TinyCLR.Networking` | The ftp request |
+| [FtpListenerResponse](./FtpListenerResponse.mdx) | `GHIElectronics.TinyCLR.Networking` | The ftp response |
+| [FtpMemoryListener](./FtpMemoryListener.mdx) | `GHIElectronics.TinyCLR.Networking.Ftp` | An FTP listener that serves a fixed in-memory set of files and an activity log. |
+| [FtpResponseStream](./FtpResponseStream.mdx) | `GHIElectronics.TinyCLR.Networking` | A virtual stream to do the read / write job from / to sockets |
+| [FtpWebRequest](./FtpWebRequest.mdx) | `System.Net` | FtpWebRequest - first implement Active mode |
+| [FtpWebResponse](./FtpWebResponse.mdx) | `System.Net` | Only contains a stream to write data |
+| [PrefixList](./PrefixList.mdx) | `GHIElectronics.TinyCLR.Networking` | A list to store prefixes |
+| [UserAuthenticatorArgs](./UserAuthenticatorArgs.mdx) | `GHIElectronics.TinyCLR.Networking` | Provides the user name and password for an authentication request and carries back the result. |
+| [UserInfo](./UserInfo.mdx) | `GHIElectronics.TinyCLR.Networking.Ftp` | User information containing username and password |
+| [WebRequestMethods](./WebRequestMethods.mdx) | `System.Net` | Container for the FTP protocol method names that can be used with a web request. |
+| [WebRequestMethodsEx](./WebRequestMethodsEx.mdx) | `GHIElectronics.TinyCLR.Networking` | Additional FTP protocol method names used internally by the server. |
+
+## Enums
+
+| Enum | Namespace | Summary |
+|---|---|---|
+| [FtpStatusCode](./FtpStatusCode.mdx) | `System.Net` | Specifies the status codes returned for a File Transfer Protocol (FTP) operation. |
+| [UserAuthenticationResult](./UserAuthenticationResult.mdx) | `GHIElectronics.TinyCLR.Networking` | User anthentication result |
+
+## Delegates
+
+| Delegate | Namespace | Summary |
+|---|---|---|
+| [UserAuthenticator](./UserAuthenticator.mdx) | `GHIElectronics.TinyCLR.Networking` | Represents the method that handles user authentication for the FTP server. |

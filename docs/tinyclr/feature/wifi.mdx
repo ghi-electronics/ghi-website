@@ -31,20 +31,20 @@ The MAC address can be overridden through the WiFi settings, but the factory-ass
 :::
 
 ```csharp
+using System;
+using System.Diagnostics;
+using System.Threading;
 using GHIElectronics.TinyCLR.Devices.Gpio;
 using GHIElectronics.TinyCLR.Devices.Network;
 using GHIElectronics.TinyCLR.Devices.Spi;
 using GHIElectronics.TinyCLR.Pins;
-using System;
-using System.Diagnostics;
-using System.Threading;
 
-var enablePinNumber = SC20260.GpioPin.PA8;
-var chipSelectPinNumber = SC20260.GpioPin.PA6;
-var irqPinNumber = SC20260.GpioPin.PF10;
-var resetPinNumber = SC20260.GpioPin.PC3;
-var spiControllerName = SC20260.SpiBus.Spi3;
-var gpioControllerName = SC20260.GpioPin.Id;
+var enablePinNumber = FEZBit.GpioPin.WiFiEnable;
+var chipSelectPinNumber = FEZBit.GpioPin.WiFiChipselect;
+var irqPinNumber = FEZBit.GpioPin.WiFiInterrupt;
+var resetPinNumber = FEZBit.GpioPin.WiFiReset;
+var spiControllerName = FEZBit.SpiBus.WiFi;
+var gpioControllerName = SC20100.GpioPin.Id;
 
 // Power the WiFi module.
 var enablePin = GpioController.GetDefault().OpenPin(enablePinNumber);
@@ -54,7 +54,7 @@ enablePin.Write(GpioPinValue.High);
 // SPI line settings for talking to the WiFi module.
 var chipSelect = GpioController.GetDefault().OpenPin(chipSelectPinNumber);
 
-var spiSettings = new SpiConnectionSettings() {
+var spiSettings = new SpiConnectionSettings(){
     ChipSelectLine = chipSelect,
     ClockFrequency = 4_000_000,
     Mode = SpiMode.Mode0,
@@ -64,7 +64,7 @@ var spiSettings = new SpiConnectionSettings() {
 };
 
 // Communication interface settings — SPI plus the IRQ and Reset pins.
-var netInterfaceSettings = new SpiNetworkCommunicationInterfaceSettings {
+var netInterfaceSettings = new SpiNetworkCommunicationInterfaceSettings{
     SpiApiName = spiControllerName,
     SpiSettings = spiSettings,
     GpioApiName = gpioControllerName,
@@ -78,7 +78,7 @@ var netInterfaceSettings = new SpiNetworkCommunicationInterfaceSettings {
 };
 
 // WiFi credentials and DHCP.
-var wifiSettings = new WiFiNetworkInterfaceSettings() {
+var wifiSettings = new WiFiNetworkInterfaceSettings(){
     Ssid = "Your SSID",
     Password = "Your Password",
     DhcpEnable = true,
@@ -99,11 +99,11 @@ networkController.Enable();
 // Network is ready — keep the main thread alive.
 Thread.Sleep(Timeout.Infinite);
 
-void NetworkController_NetworkLinkConnectedChanged(NetworkController sender, NetworkLinkConnectedChangedEventArgs e) {
+void NetworkController_NetworkLinkConnectedChanged(NetworkController sender, NetworkLinkConnectedChangedEventArgs e){
     Debug.WriteLine(e.Connected ? "Link connected" : "Link disconnected");
 }
 
-void NetworkController_NetworkAddressChanged(NetworkController sender, NetworkAddressChangedEventArgs e) {
+void NetworkController_NetworkAddressChanged(NetworkController sender, NetworkAddressChangedEventArgs e){
     var ipProperties = sender.GetIPProperties();
     var address = ipProperties.Address.GetAddressBytes();
     Debug.WriteLine("IP: " + address[0] + "." + address[1] + "." + address[2] + "." + address[3]);
@@ -119,9 +119,9 @@ The **`Winc15x0Interface`** class (in the `GHIElectronics.TinyCLR.Drivers.Microc
 :::
 
 ```csharp
-using GHIElectronics.TinyCLR.Drivers.Microchip.Winc15x0;
 using System;
 using System.Diagnostics;
+using GHIElectronics.TinyCLR.Drivers.Microchip.Winc15x0;
 
 // Scan for nearby access points.
 string[] ssidList = Winc15x0Interface.Scan();
@@ -167,3 +167,10 @@ Winc15x0Interface.RemoveMulticastMacAddress(new byte[] { 0x01, 0x00, 0x5e, 0x7f,
 ```
 
 NuGet package needed for multicast: **`GHIElectronics.TinyCLR.Drivers.Microchip.Winc15x0`**.
+
+
+## API reference
+
+| Namespace | Description |
+|---|---|
+| [GHIElectronics.TinyCLR.Devices.Network](/docs/tinyclr/api/GHIElectronics.TinyCLR.Devices.Network/) | Network interface controller for WiFi |

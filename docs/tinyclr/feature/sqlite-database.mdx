@@ -17,11 +17,11 @@ TinyCLR's SQLite is a **trimmed subset** of the full engine. Several commands an
 The example below creates an in-memory database, builds a table, inserts a few rows, runs three queries, and prints the results.
 
 ```csharp
-using GHIElectronics.TinyCLR.Data.SQLite;
 using System.Collections;
 using System.Diagnostics;
+using GHIElectronics.TinyCLR.Data.SQLite;
 
-using (var db = new SQLiteDatabase()) {
+using (var db = new SQLiteDatabase()){
     db.ExecuteNonQuery("CREATE TABLE Test (Var1 TEXT, Var2 INTEGER, Var3 DOUBLE);");
 
     db.ExecuteNonQuery("INSERT INTO Test (Var1, Var2, Var3) VALUES ('Hello, World!', 25, 3.14);");
@@ -38,10 +38,10 @@ using (var db = new SQLiteDatabase()) {
     PrintResult(db.ExecuteQuery("SELECT Var1, Var2, Var3 FROM Test WHERE Var2 BETWEEN 24 AND 26;"));
 }
 
-static void PrintResult(ResultSet result) {
+static void PrintResult(ResultSet result){
     Debug.WriteLine(result.RowCount + " row(s), " + result.ColumnCount + " column(s)");
 
-    foreach (ArrayList row in result.Data) {
+    foreach (ArrayList row in result.Data){
         var line = "";
         foreach (object value in row)
             line += value.ToString() + " ";
@@ -103,3 +103,10 @@ To keep the binary size manageable, TinyCLR's SQLite drops a number of commands 
 ## More information
 
 The official SQLite documentation at [sqlite.org](https://www.sqlite.org/) covers the SQL syntax, data types, and engine behavior — all of which apply to TinyCLR's port except where noted above.
+
+
+## API reference
+
+| Namespace | Description |
+|---|---|
+| [GHIElectronics.TinyCLR.Data.SQLite](/docs/tinyclr/api/GHIElectronics.TinyCLR.Data.SQLite/) | SQLite database engine classes |

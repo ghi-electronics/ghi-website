@@ -46,6 +46,7 @@ The easiest way to test UART hardware is a **loopback test** — connect the TXD
 <TabItem value="netio" label="System.IO.Ports API" default>
 
 ```csharp
+using System.Diagnostics;
 using System.IO.Ports;
 using System.Text;
 using System.Threading;
@@ -54,14 +55,14 @@ using GHIElectronics.TinyCLR.Pins;
 var txBuffer = new byte[] { 0x41, 0x42, 0x43, 0x44, 0x45, 0x46 };   // A B C D E F
 var rxBuffer = new byte[txBuffer.Length];
 
-var serial = new SerialPort(SC20100.UartPort.Uart7, 115200, Parity.None, 8, StopBits.One);
+var serial = new SerialPort(FEZBit.UartPort.Uart6, 115200, Parity.None, 8, StopBits.One);
 serial.Handshake = Handshake.None;
 serial.Open();
 
 serial.Write(txBuffer, 0, txBuffer.Length);
 
-while (true) {
-    if (serial.BytesToRead > 0) {
+while (true){
+    if (serial.BytesToRead > 0){
         var bytesReceived = serial.Read(rxBuffer, 0, serial.BytesToRead);
         Debug.WriteLine(Encoding.UTF8.GetString(rxBuffer, 0, bytesReceived));
     }
@@ -73,17 +74,18 @@ while (true) {
 <TabItem value="tinyclr" label="TinyCLR API">
 
 ```csharp
-using GHIElectronics.TinyCLR.Devices.Uart;
-using GHIElectronics.TinyCLR.Pins;
+using System.Diagnostics;
 using System.Text;
 using System.Threading;
+using GHIElectronics.TinyCLR.Devices.Uart;
+using GHIElectronics.TinyCLR.Pins;
 
 var txBuffer = new byte[] { 0x41, 0x42, 0x43, 0x44, 0x45, 0x46 };   // A B C D E F
 var rxBuffer = new byte[txBuffer.Length];
 
-var myUart = UartController.FromName(SC20100.UartPort.Uart7);
+var myUart = UartController.FromName(FEZBit.UartPort.Uart6);
 
-var uartSetting = new UartSetting() {
+var uartSetting = new UartSetting(){
     BaudRate = 115200,
     DataBits = 8,
     Parity = UartParity.None,
@@ -95,8 +97,8 @@ myUart.SetActiveSettings(uartSetting);
 myUart.Enable();
 myUart.Write(txBuffer, 0, txBuffer.Length);
 
-while (true) {
-    if (myUart.BytesToRead > 0) {
+while (true){
+    if (myUart.BytesToRead > 0){
         var bytesReceived = myUart.Read(rxBuffer, 0, myUart.BytesToRead);
         Debug.WriteLine(Encoding.UTF8.GetString(rxBuffer, 0, bytesReceived));
     }
@@ -150,19 +152,19 @@ The previous transmission must finish before starting a new transmission that in
 :::
 
 ```csharp
+using System;
+using System.Threading;
 using GHIElectronics.TinyCLR.Devices.Gpio;
 using GHIElectronics.TinyCLR.Devices.Uart;
 using GHIElectronics.TinyCLR.Pins;
-using System;
-using System.Threading;
 
-GpioPin dmxEnablePin = GpioController.GetDefault().OpenPin(SC20100.GpioPin.PA1);
+GpioPin dmxEnablePin = GpioController.GetDefault().OpenPin(FEZBit.GpioPin.P0);
 dmxEnablePin.SetDriveMode(GpioPinDriveMode.Output);
 dmxEnablePin.Write(GpioPinValue.High);
 
-var uart = UartController.FromName(SC20100.UartPort.Uart5);
+var uart = UartController.FromName(FEZBit.UartPort.Uart6);
 
-uart.SetActiveSettings(new UartSetting {
+uart.SetActiveSettings(new UartSetting{
     DataBits = 8,
     StopBits = UartStopBitCount.Two,
     BaudRate = 250000,
@@ -186,12 +188,13 @@ Both APIs expose event-driven reception so you don't have to poll `BytesToRead`.
 <TabItem value="netio" label="System.IO.Ports API" default>
 
 ```csharp
+using System.Diagnostics;
 using System.IO.Ports;
 using System.Text;
 using System.Threading;
 using GHIElectronics.TinyCLR.Pins;
 
-var serial = new SerialPort(SC20100.UartPort.Uart7, 115200, Parity.None, 8, StopBits.One);
+var serial = new SerialPort(FEZBit.UartPort.Uart6, 115200, Parity.None, 8, StopBits.One);
 serial.Handshake = Handshake.None;
 serial.Open();
 
@@ -203,7 +206,7 @@ serial.Write(new byte[] { 0x41, 0x42 }, 0, 2);
 
 Thread.Sleep(Timeout.Infinite);
 
-void Serial_DataReceived(object sender, SerialDataReceivedEventArgs e) {
+void Serial_DataReceived(object sender, SerialDataReceivedEventArgs e){
     var port = (SerialPort)sender;
     var rxBuffer = new byte[port.BytesToRead];
     var bytesReceived = port.Read(rxBuffer, 0, rxBuffer.Length);
@@ -221,17 +224,18 @@ The TinyCLR UART exposes three events:
 - `ClearToSendChanged` — CTS line transitioned (when hardware handshaking is in use)
 
 ```csharp
-using GHIElectronics.TinyCLR.Devices.Uart;
-using GHIElectronics.TinyCLR.Pins;
+using System.Diagnostics;
 using System.Text;
 using System.Threading;
+using GHIElectronics.TinyCLR.Devices.Uart;
+using GHIElectronics.TinyCLR.Pins;
 
 var txBuffer = new byte[] { 0x41, 0x42, 0x43, 0x44, 0x45, 0x46 };
 var rxBuffer = new byte[txBuffer.Length];
 
-var myUart = UartController.FromName(SC20100.UartPort.Uart7);
+var myUart = UartController.FromName(FEZBit.UartPort.Uart6);
 
-myUart.SetActiveSettings(new UartSetting() {
+myUart.SetActiveSettings(new UartSetting(){
     BaudRate = 115200,
     DataBits = 8,
     Parity = UartParity.None,
@@ -244,7 +248,7 @@ myUart.DataReceived += MyUart_DataReceived;
 myUart.Write(txBuffer, 0, txBuffer.Length);
 Thread.Sleep(Timeout.Infinite);
 
-void MyUart_DataReceived(UartController sender, DataReceivedEventArgs e) {
+void MyUart_DataReceived(UartController sender, DataReceivedEventArgs e){
     var bytesReceived = sender.Read(rxBuffer, 0, e.Count);
     Debug.WriteLine(Encoding.UTF8.GetString(rxBuffer, 0, bytesReceived));
 }
@@ -252,3 +256,11 @@ void MyUart_DataReceived(UartController sender, DataReceivedEventArgs e) {
 
 </TabItem>
 </Tabs>
+
+
+## API reference
+
+| Namespace | Description |
+|---|---|
+| [GHIElectronics.TinyCLR.Devices.Uart](/docs/tinyclr/api/GHIElectronics.TinyCLR.Devices.Uart/) | TinyCLR UART controller and stream classes |
+| [System.IO.Ports](/docs/tinyclr/api/System.IO.Ports/) | .NET standard serial port API (included in the same NuGet) |

@@ -16,15 +16,16 @@ Modbus RTU is asynchronous serial Modbus that uses **RS-485** as its physical la
 The example below targets the **SC20100S Dev Board** with UART5 wired to an RS-485 transceiver. The board acts as the **master** and reads one holding register from a slave at address 10.
 
 ```csharp
-using GHIElectronics.TinyCLR.Devices.Modbus;
-using GHIElectronics.TinyCLR.Devices.Uart;
-using GHIElectronics.TinyCLR.Pins;
 using System.Diagnostics;
 using System.Threading;
+using GHIElectronics.TinyCLR.Devices.Modbus;
+using GHIElectronics.TinyCLR.Devices.Modbus.Interface;
+using GHIElectronics.TinyCLR.Devices.Uart;
+using GHIElectronics.TinyCLR.Pins;
 
-var serial = UartController.FromName(SC20100.UartPort.Uart5);
+var serial = UartController.FromName(FEZBit.UartPort.Uart6);
 
-var uartSetting = new UartSetting() {
+var uartSetting = new UartSetting(){
     BaudRate = 19200,
     DataBits = 8,
     Parity = UartParity.None,
@@ -41,23 +42,22 @@ var mbMaster = new ModbusMaster(mbInterface);
 ushort[] reply = null;
 int count = 0;
 
-while (count < 5) {
+while (count < 5){
     var mbTimeout = false;
 
-    try {
+    try{
         // ReadHoldingRegisters(slaveAddress, startAddress, count, timeoutMs)
         reply = mbMaster.ReadHoldingRegisters(10, 0, 1, 3333);
         count++;
     }
-    catch (System.Exception) {
+    catch (System.Exception){
         Debug.WriteLine("Modbus timeout");
         mbTimeout = true;
     }
 
-    if (!mbTimeout) {
+    if (!mbTimeout){
         Debug.WriteLine("Modbus: " + reply[0].ToString());
     }
-
     Thread.Sleep(1000);
 }
 ```
@@ -71,21 +71,22 @@ The example below sets up the SITCore device as a **Modbus slave** (server) list
 First, derive a class from `ModbusDevice` and override the request handlers — at minimum `OnGetDeviceIdentification` and whichever read/write methods your slave should support:
 
 ```csharp
-using GHIElectronics.TinyCLR.Devices.Modbus;
 using System.Diagnostics;
+using GHIElectronics.TinyCLR.Devices.Modbus;
 
-public class MyModbusSlave : ModbusDevice {
+public class MyModbusSlave : ModbusDevice{
     public MyModbusSlave(byte deviceAddress, object syncObject = null)
         : base(deviceAddress, syncObject) { }
 
-    protected override string OnGetDeviceIdentification(ModbusObjectId objectId) {
-        switch (objectId) {
-            case ModbusObjectId.VendorName:          return "GHI Electronics";
-            case ModbusObjectId.ProductCode:         return "101";
-            case ModbusObjectId.MajorMinorRevision:  return "1.0";
-            case ModbusObjectId.VendorUrl:           return "ghielectronics.com";
-            case ModbusObjectId.ProductName:         return "SITCore";
-            case ModbusObjectId.ModelName:           return "SCM20260D";
+    protected override string OnGetDeviceIdentification(ModbusObjectId objectId){
+        switch (objectId)
+        {
+            case ModbusObjectId.VendorName: return "GHI Electronics";
+            case ModbusObjectId.ProductCode: return "101";
+            case ModbusObjectId.MajorMinorRevision: return "1.0";
+            case ModbusObjectId.VendorUrl: return "ghielectronics.com";
+            case ModbusObjectId.ProductName: return "SITCore";
+            case ModbusObjectId.ModelName: return "SC20100S";
             case ModbusObjectId.UserApplicationName: return "Modbus Slave Test";
         }
         return null;
@@ -93,34 +94,34 @@ public class MyModbusSlave : ModbusDevice {
 
     protected override ModbusConformityLevel GetConformityLevel() => ModbusConformityLevel.Regular;
 
-    protected override ModbusErrorCode OnReadCoils(bool isBroadcast, ushort startAddress, ushort coilCount, byte[] coils) {
-        try {
-            for (int n = 0; n < coilCount; ++n) {
+    protected override ModbusErrorCode OnReadCoils(bool isBroadcast, ushort startAddress, ushort coilCount, byte[] coils){
+        try{
+            for (int n = 0; n < coilCount; ++n)
+            {
                 coils[n] = 1;
             }
             Debug.WriteLine("Master read coils");
             return ModbusErrorCode.NoError;
         }
-        catch {
+        catch{
             Debug.WriteLine("Error in OnReadCoils");
             return base.OnReadCoils(isBroadcast, startAddress, coilCount, coils);
         }
     }
 
-    protected override ModbusErrorCode OnReadHoldingRegisters(bool isBroadcast, ushort startAddress, ushort[] registers) {
-        try {
-            for (int n = 0; n < registers.Length; ++n) {
+    protected override ModbusErrorCode OnReadHoldingRegisters(bool isBroadcast, ushort startAddress, ushort[] registers){
+        try{
+            for (int n = 0; n < registers.Length; ++n){
                 registers[n] = 65530;       // Test value.
             }
             Debug.WriteLine("Master read holding registers - " + registers[0].ToString());
             return ModbusErrorCode.NoError;
         }
-        catch {
+        catch{
             Debug.WriteLine("Error in OnReadHoldingRegisters");
             return base.OnReadHoldingRegisters(isBroadcast, startAddress, registers);
         }
     }
-
     // Override other On<ModbusFunction> methods here as needed —
     // OnWriteCoils, OnWriteHoldingRegisters, OnReadInputRegisters, etc.
 }
@@ -138,3 +139,10 @@ modbusDevice.Start();
 ```
 
 The listener accepts up to **5 concurrent client connections** and drops idle connections after **1 second** of inactivity. Adjust those values to match the deployment.
+
+
+## API reference
+
+| Namespace | Description |
+|---|---|
+| [GHIElectronics.TinyCLR.Devices.Modbus](/docs/tinyclr/api/GHIElectronics.TinyCLR.Devices.Modbus/) | Modbus RTU master and slave classes |

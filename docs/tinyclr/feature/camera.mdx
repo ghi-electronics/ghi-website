@@ -10,7 +10,7 @@ NuGet packages: **`GHIElectronics.TinyCLR.Devices.I2c`** for the configuration b
 
 The example below targets the **SCM20260D Dev Board** with the **4.3" parallel display** and an **OmniVision OV9655** camera. It configures the camera for VGA (640×480), captures frames in a loop, and pushes each one to the display via `DrawBuffer`.
 
-The display setup is the same as on the [Graphics → Native displays](graphics.mdx#native-displays) page — only the camera-specific code is shown below.
+The display setup is the same as on the [Displays → Native displays](displays.mdx#native-displays) page — only the camera-specific code is shown below.
 
 ```csharp
 using GHIElectronics.TinyCLR.Devices.Display;
@@ -62,3 +62,10 @@ camera.FrameReceived += (data, size) => {
 ```
 
 The frame format depends on what you configured the camera for — see your camera's driver and datasheet for the layout.
+
+
+## API reference
+
+| Namespace | Description |
+|---|---|
+| [GHIElectronics.TinyCLR.Devices.Camera](/docs/tinyclr/api/GHIElectronics.TinyCLR.Devices.Camera/) | Camera controller classes |

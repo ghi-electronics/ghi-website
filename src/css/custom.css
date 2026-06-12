@@ -2219,3 +2219,39 @@ a.pillar-card:hover::after {
     height: 280px;
   }
 }
+
+/* TinyCLR API reference: package page heading ("<package> NuGet").
+   Sized/weighted like the Microsoft .NET API docs heading (clean sans, ~30px,
+   semibold) rather than Docusaurus's oversized display-font H1, so long package
+   names fit on one line. Emitted by scripts/generate-api.mjs as
+   <h1 className="api-package-heading">. */
+.api-package-heading {
+  font-family: var(--ifm-font-family-base);
+  font-size: 1.85rem;
+  font-weight: 600;
+  line-height: 1.25;
+  margin-bottom: 0.6rem;
+}
+
+/* ---- Docs section headers ------------------------------------------------
+   The branded "## Section" divider (brand-blue title + accent underline) that
+   began on the generated API type pages (Constructors / Properties / Methods /
+   Events …) is applied to EVERY second-level heading across the docs, so feature
+   and guide pages read with the same clear section breaks. Scoped to the docs
+   content wrapper (.theme-doc-markdown) — this covers both the /docs/tinyclr/*
+   and /docs/endpoint/* instances while leaving the blog and marketing pages
+   untouched. H2 only — the page title (H1) and sub-items (H3) keep their normal
+   styling; headings stay real markdown headings, so the right-side TOC and
+   anchor links are unaffected. ---------------------------------------------- */
+.theme-doc-markdown h2 {
+  margin-top: 3rem;                 /* breathing room above each section */
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--ghi-accent, #ffaa55);  /* brand accent, not red */
+  color: var(--ifm-color-primary);  /* tint the section title in brand blue */
+}
+
+/* First section shouldn't push down as hard (it follows the page intro or, on
+   API type pages, the class-signature block). */
+.theme-doc-markdown h2:first-of-type {
+  margin-top: 2rem;
+}

@@ -11,9 +11,9 @@ NuGet packages: **`GHIElectronics.TinyCLR.Devices.Network`** for the network con
 The example below connects to `bing.com` and reads `robots.txt`. An active network connection (Ethernet, WiFi, cellular) must be up before the request runs.
 
 ```csharp
-using GHIElectronics.TinyCLR.Networking.Http;
 using System;
 using System.Diagnostics;
+using System.Net;
 using System.Text;
 
 var url = "http://www.bing.com/robots.txt";
@@ -22,14 +22,14 @@ int read = 0;
 int total = 0;
 byte[] result = new byte[512];
 
-try {
-    using (var req = HttpWebRequest.Create(url) as HttpWebRequest) {
+try{
+    using (var req = HttpWebRequest.Create(url) as HttpWebRequest){
         req.KeepAlive = false;
         req.ReadWriteTimeout = 2000;
 
         using (var res = req.GetResponse() as HttpWebResponse)
-        using (var stream = res.GetResponseStream()) {
-            do {
+        using (var stream = res.GetResponseStream()){
+            do{
                 read = stream.Read(result, 0, result.Length);
                 total += read;
 
@@ -41,7 +41,7 @@ try {
         }
     }
 }
-catch (Exception ex) {
+catch (Exception ex){
     Debug.WriteLine("HTTP request failed: " + ex.Message);
 }
 ```
@@ -55,8 +55,8 @@ The client device (phone, PC, etc.) must be on the **same local network** as the
 :::
 
 ```csharp
-using GHIElectronics.TinyCLR.Networking.Http;
 using System.Diagnostics;
+using System.Net;
 using System.Text;
 
 var listener = new HttpListener("http", 80);
@@ -65,7 +65,7 @@ Debug.WriteLine("Listening...");
 
 var clientRequestCount = 0;
 
-while (true) {
+while (true){
     // GetContext blocks until a request arrives.
     var context = listener.GetContext();
     var response = context.Response;
@@ -95,3 +95,10 @@ var url = "https://www.bing.com/robots.txt";
 ```
 
 HTTPS is also the underlying transport used by the cloud SDKs — see [Azure](azure.mdx) and [AWS](aws.mdx) for higher-level integrations.
+
+
+## API reference
+
+| Namespace | Description |
+|---|---|
+| [GHIElectronics.TinyCLR.Networking.Http](/docs/tinyclr/api/GHIElectronics.TinyCLR.Networking.Http/) | HTTP/HTTPS client classes |

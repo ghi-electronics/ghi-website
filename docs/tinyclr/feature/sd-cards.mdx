@@ -13,7 +13,7 @@ using GHIElectronics.TinyCLR.Devices.Storage;
 using GHIElectronics.TinyCLR.IO;
 using GHIElectronics.TinyCLR.Pins;
 
-var sd = StorageController.FromName(SC20100.StorageController.SdCard);
+var sd = StorageController.FromName(FEZBit.StorageController.SdCard);
 var drive = FileSystem.Mount(sd.Hdc);
 ```
 
@@ -26,6 +26,7 @@ See the [File System page](file-system.mdx#reading-and-writing-files) for a comp
 ```csharp
 using System.IO;
 using System.Text;
+using GHIElectronics.TinyCLR.IO;
 
 var file = new FileStream(drive.Name + "log.txt", FileMode.OpenOrCreate);
 file.Write(Encoding.UTF8.GetBytes("hello"), 0, 5);
@@ -61,3 +62,11 @@ Marshal.WriteInt32((IntPtr)SD_CLOCK_ADDRESS_REG, clockDivider);
 ```
 
 Use this only if you're seeing read/write errors that go away at lower clock speeds. Most boards run reliably at the default and don't need tuning.
+
+
+## API reference
+
+| Namespace | Description |
+|---|---|
+| [GHIElectronics.TinyCLR.Devices.Storage](/docs/tinyclr/api/GHIElectronics.TinyCLR.Devices.Storage/) | Storage controller for mounting SD cards |
+| [GHIElectronics.TinyCLR.IO](/docs/tinyclr/api/GHIElectronics.TinyCLR.IO/) | File system I/O classes |

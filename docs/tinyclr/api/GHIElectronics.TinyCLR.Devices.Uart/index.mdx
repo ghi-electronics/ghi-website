@@ -1,0 +1,48 @@
+---
+title: "GHIElectronics.TinyCLR.Devices.Uart"
+hide_title: true
+sidebar_label: Overview
+---
+
+<h1 className="api-package-heading">GHIElectronics.TinyCLR.Devices.Uart</h1>
+
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Uart`
+
+:::tip
+This NuGet also includes the standard, .NET-compatible **[`System.IO.Ports`](../System.IO.Ports/index.mdx)** API.
+:::
+
+## Classes
+
+| Class | Namespace | Summary |
+|---|---|---|
+| [BreakDetectedEventArgs](./BreakDetectedEventArgs.mdx) | `GHIElectronics.TinyCLR.Devices.Uart` | Arguments for break-condition events (reserved; not raised by the standard controller). |
+| [ClearToSendChangedEventArgs](./ClearToSendChangedEventArgs.mdx) | `GHIElectronics.TinyCLR.Devices.Uart` | Arguments for `UartController.ClearToSendChanged`. |
+| [DataReceivedEventArgs](./DataReceivedEventArgs.mdx) | `GHIElectronics.TinyCLR.Devices.Uart` | Arguments for `UartController.DataReceived`. |
+| [ErrorReceivedEventArgs](./ErrorReceivedEventArgs.mdx) | `GHIElectronics.TinyCLR.Devices.Uart` | Arguments for `UartController.ErrorReceived`. |
+| [UartController](./UartController.mdx) | `GHIElectronics.TinyCLR.Devices.Uart` | Represents a UART (serial) port. Configure via `SetActiveSettings(UartSetting)`, then `Enable` the port and exchange bytes through `Read(byte[])` / `Write(byte[])`. Subscribe to `DataReceived` for event-driven receive instead of polling `BytesToRead`. |
+| [UartControllerApiWrapper](./UartControllerApiWrapper.mdx) | `GHIElectronics.TinyCLR.Devices.Uart.Provider` | Concrete `IUartControllerProvider` backed by the native TinyCLR UART HAL. |
+| [UartSetting](./UartSetting.mdx) | `GHIElectronics.TinyCLR.Devices.Uart` | Aggregate configuration for a UART port — passed to `UartController.SetActiveSettings(UartSetting)`. |
+
+## Interfaces
+
+| Interface | Namespace | Summary |
+|---|---|---|
+| [IUartControllerProvider](./IUartControllerProvider.mdx) | `GHIElectronics.TinyCLR.Devices.Uart.Provider` | Provider contract for a UART controller. |
+
+## Enums
+
+| Enum | Namespace | Summary |
+|---|---|---|
+| [UartError](./UartError.mdx) | `GHIElectronics.TinyCLR.Devices.Uart` | Categories of error reported via `UartController.ErrorReceived`. |
+| [UartHandshake](./UartHandshake.mdx) | `GHIElectronics.TinyCLR.Devices.Uart` | Flow-control policy. |
+| [UartParity](./UartParity.mdx) | `GHIElectronics.TinyCLR.Devices.Uart` | Parity bit policy for a UART frame. |
+| [UartStopBitCount](./UartStopBitCount.mdx) | `GHIElectronics.TinyCLR.Devices.Uart` | Number of stop bits per frame. |
+
+## Delegates
+
+| Delegate | Namespace | Summary |
+|---|---|---|
+| [ClearToSendChangedEventHandler](./ClearToSendChangedEventHandler.mdx) | `GHIElectronics.TinyCLR.Devices.Uart` | Handler signature for `UartController.ClearToSendChanged`. |
+| [DataReceivedEventHandler](./DataReceivedEventHandler.mdx) | `GHIElectronics.TinyCLR.Devices.Uart` | Handler signature for `UartController.DataReceived`. |
+| [ErrorReceivedEventHandler](./ErrorReceivedEventHandler.mdx) | `GHIElectronics.TinyCLR.Devices.Uart` | Handler signature for `UartController.ErrorReceived`. |

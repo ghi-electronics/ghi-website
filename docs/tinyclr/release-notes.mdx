@@ -4,13 +4,126 @@ title: Release Notes
 
 ![TinyCLR Logo](/img/docs/tinyclr-logo.png)
 
+## 3.0.0.2000 (2026-06-12) Prerelease
+
+TinyCLR OS 3.0 is a major release. The headline change is broad runtime and library support for modern C#: generics and generic collections, `Task`/async,
+`Tuple`/`ValueTuple`, LINQ, ranges and indices, `record` types, and `required` members. It also adds native RLP support, USB hub and webcam support,
+multi-interface non-blocking networking, an updated Visual Studio extension for VS2022/VS2026, and a new Visual Studio Code extension.
+
+### Libraries
+
+New features
+
+- `System.Collections.Generic`: `List<T>`, `Dictionary<TKey, TValue>`, the generic interfaces (`IList<T>`, `IDictionary<,>`, `IEnumerable<T>`, `ICollection<T>`, …), and `Comparer<T>`/`EqualityComparer<T>`.
+- `System.Threading.Tasks`: `Task`, `Task<T>`, `Task.Run`, `Task.Delay`, `Task.WhenAll`, `Task.WhenAny`, and `async`/`await` support.
+- cooperative cancellation: `CancellationToken`, `CancellationTokenSource`, and `OperationCanceledException`.
+- `System.Tuple` and `System.ValueTuple`, including tuple literals and deconstruction.
+- `System.Linq` (LINQ-to-Objects).
+- `System.Index` and `System.Range`, enabling from-end indexing and slicing (for example `array[^1]` and `array[1..3]`).
+- the generic delegates `Func<>`, `Predicate<T>`, `Comparison<T>`, and `Converter<T>`, plus the generic interfaces `IEquatable<T>` and `IComparable<T>`.
+- the support types behind modern C#: init-only setters and `record` types (`IsExternalInit`), `required` members, `[ModuleInitializer]`, and `[CallerArgumentExpression]`.
+- `Activator.CreateInstance<T>()`.
+- `HashSet<T>`.
+- `System.Console`.
+- `System.Device.Gpio`, `System.Device.I2c`, `System.Device.Pwm`, `System.Device.Spi`, `System.IO.Ports`, `System.Security.Cryptography`, `System.Xml`
+- desktop/dual-mode companion assemblies (GPIO, SPI, I2C, PWM, UART, ADC, SerialPort, Network, Cryptography, …) for PC-side build and test.
+- USB host webcam support.
+- `GpioController.WaitForEvent` and `StringBuilder.AppendFormat`.
+- XML documentation for the TinyCLR APIs — IntelliSense tooltips and summaries now appear in the editor.
+
+Fixes
+
+- Fixed `TimeSpan.FromXxx` / `TimeSpan.TotalMilliseconds` returning negative values.
+- Fixed `DateTime` subtraction returning a negative elapsed time.
+- Fixed a crash involving `double.PositiveInfinity` / `double.NegativeInfinity`.
+- Fixed FTP and HTTP server exceptions, and reworked MQTT.
+- Fixed UI touch-event routing and improved scroll/redraw performance.
+- `IsDriveModeSupported` no longer requires a pin.
+- Tweak UI.
+- Reworked the cryptography library.
+- Separated the socket send and receive timeouts so that setting one no longer blocks the other.
+
+### Firmware
+
+New features
+
+- RLP (native runtime-loadable procedures) support.
+- the CLR runtime support behind the new library features: generics and generic collections (`List`, `Dictionary`), `Tuple`/`ValueTuple`, LINQ, and `Task`/async, with improved boxing, unboxing, and generic type handling.
+- a native Task controller for background and driver work.
+- C# 11 language support.
+- USB host hub support (cascaded hubs and multiple USB mass-storage sticks) and USB webcam capture (DCMI + DMA).
+- multiple simultaneous network interfaces, non-blocking network bring-up (`EnableAsync`), non-blocking DNS, socket `Shutdown`, and TCP listener support.
+- a hardware RNG source for the network security stack.
+- firmware support for reading and setting the RTC (exposed through the TinyCLR-Config CLI).
+
+Fixes & improvements
+
+- Fixed several floating-point / number-to-string formatting issues (G-format rounding, exponent, precision, and trailing zeros).
+- Fixed CAN: classic (non-FD) operation failed when no data bit-rate is set.
+- Fixed mass-storage (MSC) read/write and mount-after-format.
+- Fixed DigitalSignal capture crashed with at 2.5MHz .
+- Fixed inconsistent comparison of simple value types.
+- Fixed SD card read/write disabling global interrupts (IRQs).
+- Fixed SD card mounting.
+- Reworked networking.
+- Reworked low-power / sleep handling.
+- Reworked EtherNet/IP (board-to-board Class-1 I/O).
+- Improved I2C (Master and Client modes).
+- The deploy error now reports which assembly exceeds the maximum size.
+
+
+Known issues
+
+- SC13xxx: System crash when use Dictionary if memory is low.
+- SC20xxx: Webcam reconnect fails after disconnect when connected through a hub.
+
+### Visual Studio Extension
+
+New features
+
+- Dual mode: A TinyCLR project can run in both device and Desktop mode (.NET Framework 4.8).
+- support for connecting to multiple devices / ports.
+
+Fixes
+
+- Visual Studio no longer deadlocks or blocks when a device flash fails.
+- A "PNG is not supported" error message is displayed when a PNG resource is detected.
+
+Known issues
+
+- Users need to add the GHIElectronics.TinyCLR.Drawing NuGet package when adding a bitmap or image resource (if it has not already been added to the project).
+- Users need to run **Run Custom Tool** on the resource to (re)generate the `GetBytes()` / `GetBitmap()` accessors.
+- Desktop mode does not support `Debug.WriteLine`; use `Console.WriteLine` instead.
+
+### TinyCLR Config
+
+New features
+
+- a command-line (CLI) mode for scripted/headless device operations.
+- export/generation of `.tca` configuration archive files.
+- support for connecting to and managing multiple devices.
+- get/set of the real-time clock (RTC) through the CLI.
+
+Fixes & improvements
+
+- Auto-scales the UI by font and fixed the layout across different screen resolutions.
+- No longer crashes when the selected COM port is already held by another application.
+
+Known issues
+
+- CLI: `reboot` need to called twice to reset the device
+
+### Visual Studio Code extension
+
+- Feature parity with the Visual Studio extension.
+
+
 ## 2.4.1.1000 (2026-03-25) RTW
 
 ### Firmware
 
 - Fixed multiple issues in floating-point string formatting (rounding, exponent, precision) 
 
----
 
 
 ## 2.4.0.1000 (2026-03-16) RTW
@@ -24,4 +137,3 @@ title: Release Notes
 
 ### Libraries
 - HTTPS server now supports TLS 1.2
-

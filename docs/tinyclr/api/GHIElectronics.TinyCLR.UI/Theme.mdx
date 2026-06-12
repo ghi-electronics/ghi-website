@@ -1,0 +1,148 @@
+---
+title: "Theme Class"
+sidebar_label: "Theme"
+---
+
+# Theme Class
+
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI`
+
+Central palette for TinyCLR.UI. Brushes are shared instances; change `WindowBackground` etc. then replace the corresponding brush field if you need live updates.
+
+```csharp
+public static class Theme
+```
+
+## Properties
+
+### WindowBackground
+
+```csharp
+public static Color WindowBackground { get; set; }
+```
+
+The default background color for windows.
+
+### ControlSurface
+
+```csharp
+public static Color ControlSurface { get; set; }
+```
+
+The default fill color for control surfaces.
+
+### TextBoxFill
+
+```csharp
+public static Color TextBoxFill { get; set; }
+```
+
+The default fill color for text boxes.
+
+### TextPrimary
+
+```csharp
+public static Color TextPrimary { get; set; }
+```
+
+The default color for primary text.
+
+### Border
+
+```csharp
+public static Color Border { get; set; }
+```
+
+The default color for borders.
+
+### FocusRing
+
+```csharp
+public static Color FocusRing { get; set; }
+```
+
+The default color for the focus ring drawn around focused controls.
+
+### SelectionHighlight
+
+```csharp
+public static Color SelectionHighlight { get; set; }
+```
+
+The default color used to highlight selected content.
+
+### DefaultAlpha
+
+```csharp
+public static ushort DefaultAlpha { get; set; }
+```
+
+Default Scale9Image alpha for surface-rendered controls (Button, CheckBox, RadioButton, ProgressBar, Dropdown, Slider). ~78% opacity.
+
+### DefaultRadiusBorder
+
+```csharp
+public static int DefaultRadiusBorder { get; set; }
+```
+
+Default corner radius (in pixels) for Scale9Image-rendered surfaces.
+
+## Methods
+
+### SolidColorBrush( Colors.White)
+
+```csharp
+public static readonly SolidColorBrush WindowBackgroundBrush = new SolidColorBrush(Colors.White)
+```
+
+The shared brush for window backgrounds.
+
+**Returns** `SolidColorBrush WindowBackgroundBrush = new`
+
+### SolidColorBrush( Colors.LightGray)
+
+```csharp
+public static readonly SolidColorBrush ControlSurfaceBrush = new SolidColorBrush(Colors.LightGray)
+```
+
+The shared brush for control surfaces.
+
+**Returns** `SolidColorBrush ControlSurfaceBrush = new`
+
+### SolidColorBrush( Colors.White)
+
+```csharp
+public static readonly SolidColorBrush TextBoxFillBrush = new SolidColorBrush(Colors.White)
+```
+
+The shared brush for text box fills.
+
+**Returns** `SolidColorBrush TextBoxFillBrush = new`
+
+### SolidColorBrush( Colors.Black)
+
+```csharp
+public static readonly SolidColorBrush TextPrimaryBrush = new SolidColorBrush(Colors.Black)
+```
+
+The shared brush for primary text.
+
+**Returns** `SolidColorBrush TextPrimaryBrush = new`
+
+### SolidColorBrush( Colors.Teal)
+
+```csharp
+public static readonly SolidColorBrush SelectionBrush = new SolidColorBrush(Colors.Teal)
+```
+
+The shared brush used to highlight selected content.
+
+**Returns** `SolidColorBrush SelectionBrush = new`
+
+### RefreshBrushesFromColors()
+
+```csharp
+public static void RefreshBrushesFromColors()
+```
+
+Call after mutating color fields if you need brushes to match.

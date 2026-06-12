@@ -13,118 +13,121 @@ NuGet packages: **`GHIElectronics.TinyCLR.Devices.Network`**, **`GHIElectronics.
 The example below targets the **LTE IoT 2 click** module on an SCM20260D Dev Board. The same code has been tested with the **SIMCOM SIM900** and **NimbeLink Skywire** cellular modems.
 
 ```csharp
+using System.Text;
+using System.Threading;
 using GHIElectronics.TinyCLR.Devices.Gpio;
 using GHIElectronics.TinyCLR.Devices.Network;
 using GHIElectronics.TinyCLR.Devices.Uart;
 using GHIElectronics.TinyCLR.Pins;
 using System.Diagnostics;
-using System.Net;
-using System.Text;
-using System.Threading;
 
-class Program {
-    static bool linkReady = false;
+bool linkReady = false;
+  
+// Reset the modem.
+var reset = GpioController.GetDefault().OpenPin(SC20260.GpioPin.PI8);
+reset.SetDriveMode(GpioPinDriveMode.Output);
 
-    static void Main() {
-        // Reset the modem.
-        var reset = GpioController.GetDefault().OpenPin(SC20260.GpioPin.PI8);
-        reset.SetDriveMode(GpioPinDriveMode.Output);
+reset.Write(GpioPinValue.High);
+Thread.Sleep(200);
+reset.Write(GpioPinValue.Low);
+Thread.Sleep(7000);                                 // Wait for the modem to initialize.
 
-        reset.Write(GpioPinValue.High);
-        Thread.Sleep(200);
-        reset.Write(GpioPinValue.Low);
-        Thread.Sleep(7000);                                 // Wait for the modem to initialize.
+InitSimCard();
+StartPpp();
 
-        InitSimCard();
-        StartPpp();
-    }
+void InitSimCard(){
+    var serial = UartController.FromName(SC20260.UartPort.Uart8);
+    var uartSetting = new UartSetting(){
+        BaudRate = 115200,
+        DataBits = 8,
+        Parity = UartParity.None,
+        StopBits = UartStopBitCount.One,
+        Handshaking = UartHandshake.None,
+    };
+    serial.SetActiveSettings(uartSetting);
+    serial.Enable();
 
-    static void InitSimCard() {
-        var serial = UartController.FromName(SC20260.UartPort.Uart8);
-        serial.SetActiveSettings(115200, 8, UartParity.None, UartStopBitCount.One, UartHandshake.None);
-        serial.Enable();
+    while (!SendAT(serial, "AT")) { }
 
-        while (!SendAT(serial, "AT")) { }
+    // Define PDP contexts for several carriers.
+    SendAT(serial, "AT+CGDCONT=1,\"IP\",\"h2g2\"");                         // Google Fi
+    SendAT(serial, "AT+CGDCONT=2,\"IP\",\"telargo.t-mobile.com\"");         // T-Mobile
+    SendAT(serial, "AT+CGDCONT=3,\"IP\",\"fast.t-mobile.com\"");            // T-Mobile
+    SendAT(serial, "AT+CGDCONT=4,\"IPV4V6\",\"NIMBLINK.GW12.VZWENTP\"");    // NimbeLink
 
-        // Define PDP contexts for several carriers.
-        SendAT(serial, "AT+CGDCONT=1,\"IP\",\"h2g2\"");                         // Google Fi
-        SendAT(serial, "AT+CGDCONT=2,\"IP\",\"telargo.t-mobile.com\"");         // T-Mobile
-        SendAT(serial, "AT+CGDCONT=3,\"IP\",\"fast.t-mobile.com\"");            // T-Mobile
-        SendAT(serial, "AT+CGDCONT=4,\"IPV4V6\",\"NIMBLINK.GW12.VZWENTP\"");    // NimbeLink
+    // Dial out. The "1" matches PDP context 1 (Google Fi) defined above.
+    SendAT(serial, "ATDT*99***1#");
 
-        // Dial out. The "1" matches PDP context 1 (Google Fi) defined above.
-        SendAT(serial, "ATDT*99***1#");
+    Debug.WriteLine("Ready to start PPP");
+}
 
-        Debug.WriteLine("Ready to start PPP");
-    }
+void StartPpp(){
+    var networkController = NetworkController.FromName(SC20260.NetworkController.Ppp);
 
-    static void StartPpp() {
-        var networkController = NetworkController.FromName(SC20260.NetworkController.Ppp);
+    var networkInterfaceSetting = new PppNetworkInterfaceSettings(){
+        AuthenticationType = PppAuthenticationType.Pap,
+        Username = "",
+        Password = "",
+    };
 
-        var networkInterfaceSetting = new PppNetworkInterfaceSettings() {
-            AuthenticationType = PppAuthenticationType.Pap,
-            Username = "",
-            Password = "",
-        };
+    var networkCommunicationInterfaceSettings = new UartNetworkCommunicationInterfaceSettings(){
+        ApiName = SC20260.UartPort.Uart8,
+        BaudRate = 115200,
+        DataBits = 8,
+        Parity = UartParity.None,
+        StopBits = UartStopBitCount.One,
+        Handshaking = UartHandshake.None,
+    };
 
-        var networkCommunicationInterfaceSettings = new UartNetworkCommunicationInterfaceSettings() {
-            ApiName = SC20260.UartPort.Uart8,
-            BaudRate = 115200,
-            DataBits = 8,
-            Parity = UartParity.None,
-            StopBits = UartStopBitCount.One,
-            Handshaking = UartHandshake.None,
-        };
+    networkController.SetInterfaceSettings(networkInterfaceSetting);
+    networkController.SetCommunicationInterfaceSettings(networkCommunicationInterfaceSettings);
+    networkController.SetAsDefaultController();
 
-        networkController.SetInterfaceSettings(networkInterfaceSetting);
-        networkController.SetCommunicationInterfaceSettings(networkCommunicationInterfaceSettings);
-        networkController.SetAsDefaultController();
+    networkController.NetworkAddressChanged += NetworkController_NetworkAddressChanged;
+    networkController.NetworkLinkConnectedChanged += NetworkController_NetworkLinkConnectedChanged;
 
-        networkController.NetworkAddressChanged += NetworkController_NetworkAddressChanged;
-        networkController.NetworkLinkConnectedChanged += NetworkController_NetworkLinkConnectedChanged;
+    networkController.Enable();
 
-        networkController.Enable();
+    while (!linkReady) { }
+    // Network is now ready to use.
+}
 
-        while (!linkReady) { }
-        // Network is now ready to use.
-    }
+void NetworkController_NetworkLinkConnectedChanged(NetworkController sender, NetworkLinkConnectedChangedEventArgs e){
+    Debug.WriteLine(e.Connected ? "Link connected" : "Link disconnected");
+}
 
-    private static void NetworkController_NetworkLinkConnectedChanged(NetworkController sender, NetworkLinkConnectedChangedEventArgs e) {
-        Debug.WriteLine(e.Connected ? "Link connected" : "Link disconnected");
-    }
+void NetworkController_NetworkAddressChanged(NetworkController sender, NetworkAddressChangedEventArgs e){
+    var ipProperties = sender.GetIPProperties();
+    var address = ipProperties.Address.GetAddressBytes();
 
-    private static void NetworkController_NetworkAddressChanged(NetworkController sender, NetworkAddressChangedEventArgs e) {
-        var ipProperties = sender.GetIPProperties();
-        var address = ipProperties.Address.GetAddressBytes();
+    Debug.WriteLine("IP: " + address[0] + "." + address[1] + "." + address[2] + "." + address[3]);
 
-        Debug.WriteLine("IP: " + address[0] + "." + address[1] + "." + address[2] + "." + address[3]);
+    linkReady = address[0] != 0;
+}
 
-        linkReady = address[0] != 0;
-    }
+bool SendAT(UartController port, string command){
+    command += "\r";
 
-    static bool SendAT(UartController port, string command) {
-        command += "\r";
+    var sendBuffer = Encoding.UTF8.GetBytes(command);
+    var readBuffer = new byte[256];
+    var read = 0;
+    var count = 10;
 
-        var sendBuffer = Encoding.UTF8.GetBytes(command);
-        var readBuffer = new byte[256];
-        var read = 0;
-        var count = 10;
+    port.Write(sendBuffer, 0, sendBuffer.Length);
 
-        port.Write(sendBuffer, 0, sendBuffer.Length);
+    while (count-- > 0){
+        Thread.Sleep(100);
+        read += port.Read(readBuffer, read, readBuffer.Length - read);
 
-        while (count-- > 0) {
-            Thread.Sleep(100);
-            read += port.Read(readBuffer, read, readBuffer.Length - read);
+        var response = new string(Encoding.UTF8.GetChars(readBuffer, 0, read));
 
-            var response = new string(Encoding.UTF8.GetChars(readBuffer, 0, read));
-
-            if (response.IndexOf("OK") != -1 || response.IndexOf("CONNECT") != -1) {
-                Debug.WriteLine(" " + response);
-                return true;
-            }
+        if (response.IndexOf("OK") != -1 || response.IndexOf("CONNECT") != -1)
+        {
+            Debug.WriteLine(" " + response);
+            return true;
         }
-        return false;
     }
+    return false;
 }
 ```
 
@@ -171,3 +174,11 @@ The `SendAT` helper used here is the same one defined in the [main example above
 ## Security
 
 PPP over a cellular link is encrypted end-to-end by TinyCLR — TLS and other crypto run on the SITCore processor *before* data hits the UART going to the modem. See the [Cellular page → Security](cellular.mdx#security) for the full explanation.
+
+
+## API reference
+
+| Namespace | Description |
+|---|---|
+| [GHIElectronics.TinyCLR.Devices.Network](/docs/tinyclr/api/GHIElectronics.TinyCLR.Devices.Network/) | Network interface controller (PPP configuration) |
+| [GHIElectronics.TinyCLR.Devices.Uart](/docs/tinyclr/api/GHIElectronics.TinyCLR.Devices.Uart/) | UART controller (underlying PPP transport) |

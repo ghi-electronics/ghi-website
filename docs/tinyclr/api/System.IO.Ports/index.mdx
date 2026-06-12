@@ -1,0 +1,41 @@
+---
+title: "System.IO.Ports"
+hide_title: true
+sidebar_label: Overview
+---
+
+<h1 className="api-package-heading">System.IO.Ports</h1>
+
+**NuGet:** `GHIElectronics.TinyCLR.Devices.Uart`
+
+:::info
+The standard, .NET-compatible `System.IO.Ports` API for TinyCLR. It ships inside the **[GHIElectronics.TinyCLR.Devices.Uart](../GHIElectronics.TinyCLR.Devices.Uart/index.mdx)** NuGet — there is no separate package to install.
+:::
+
+## Classes
+
+| Class | Namespace | Summary |
+|---|---|---|
+| [SerialDataReceivedEventArgs](./SerialDataReceivedEventArgs.mdx) | `System.IO.Ports` | Arguments for the data-received event. |
+| [SerialErrorReceivedEventArgs](./SerialErrorReceivedEventArgs.mdx) | `System.IO.Ports` | Arguments for the error-received event. |
+| [SerialPinChangedEventArgs](./SerialPinChangedEventArgs.mdx) | `System.IO.Ports` | Arguments for the pin-changed event. |
+| [SerialPort](./SerialPort.mdx) | `System.IO.Ports` | .NET-style serial port. Same surface as `System.IO.Ports.SerialPort`; internally routes through TinyCLR's `GHIElectronics.TinyCLR.Devices.Uart.UartController`. |
+
+## Enums
+
+| Enum | Namespace | Summary |
+|---|---|---|
+| [Handshake](./Handshake.mdx) | `System.IO.Ports` | Flow-control method. |
+| [Parity](./Parity.mdx) | `System.IO.Ports` | Parity-checking scheme. |
+| [SerialData](./SerialData.mdx) | `System.IO.Ports` | Type of data received on the serial port. |
+| [SerialError](./SerialError.mdx) | `System.IO.Ports` | Errors that can occur on the serial port. |
+| [SerialPin](./SerialPin.mdx) | `System.IO.Ports` | Serial control-pin changes that can raise the pin-changed event. |
+| [StopBits](./StopBits.mdx) | `System.IO.Ports` | Number of stop bits per frame. |
+
+## Delegates
+
+| Delegate | Namespace | Summary |
+|---|---|---|
+| [SerialDataReceivedEventHandler](./SerialDataReceivedEventHandler.mdx) | `System.IO.Ports` | Handler for the `SerialPort.DataReceived` event. |
+| [SerialErrorReceivedEventHandler](./SerialErrorReceivedEventHandler.mdx) | `System.IO.Ports` | Handler for the `SerialPort.ErrorReceived` event. |
+| [SerialPinChangedEventHandler](./SerialPinChangedEventHandler.mdx) | `System.IO.Ports` | Handler for the `SerialPort.PinChanged` event. |

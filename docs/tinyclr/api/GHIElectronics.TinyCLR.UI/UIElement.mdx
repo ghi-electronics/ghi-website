@@ -1,0 +1,628 @@
+---
+title: "UIElement Class"
+sidebar_label: "UIElement"
+---
+
+# UIElement Class
+
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI`
+
+The base class for all visual elements that participate in layout, rendering, and input.
+
+```csharp
+public abstract class UIElement : DispatcherObject
+```
+
+## Constructors
+
+### UIElement()
+
+```csharp
+protected UIElement()
+```
+
+Initializes a new instance of the `UIElement` class.
+
+## Properties
+
+### ActualWidth
+
+```csharp
+public int ActualWidth { get; }
+```
+
+Gets the rendered width of this element.
+
+### ActualHeight
+
+```csharp
+public int ActualHeight { get; }
+```
+
+Gets the rendered height of this element.
+
+### Height
+
+```csharp
+public int Height { get; set; }
+```
+
+Gets or sets the requested height of this element.
+
+### Width
+
+```csharp
+public int Width { get; set; }
+```
+
+Gets or sets the requested width of this element.
+
+### LogicalChildren
+
+```csharp
+protected internal UIElementCollection LogicalChildren { get; }
+```
+
+Gets the collection of child elements of this element.
+
+### IsFocused
+
+```csharp
+public bool IsFocused { get; }
+```
+
+A property indicating if the button is focused on this element or not.
+
+### IsMeasureValid
+
+```csharp
+public bool IsMeasureValid { get; }
+```
+
+Determines if the DesiredSize is valid.
+
+### IsArrangeValid
+
+```csharp
+public bool IsArrangeValid { get; }
+```
+
+Determines if the RenderSize and position of child elements is valid.
+
+### Parent
+
+```csharp
+public UIElement Parent { get; }
+```
+
+Gets the parent of this element, or null if it has none.
+
+### RootUIElement
+
+```csharp
+public UIElement RootUIElement { get; }
+```
+
+Gets the topmost ancestor of this element in the visual tree.
+
+### HorizontalAlignment
+
+```csharp
+public HorizontalAlignment HorizontalAlignment { get; set; }
+```
+
+Gets or sets how this element is horizontally aligned within its parent.
+
+### VerticalAlignment
+
+```csharp
+public VerticalAlignment VerticalAlignment { get; set; }
+```
+
+Gets or sets how this element is vertically aligned within its parent.
+
+### Visibility
+
+```csharp
+public Visibility Visibility { get; set; }
+```
+
+Visibility accessor
+
+### IsVisible
+
+```csharp
+public bool IsVisible { get; }
+```
+
+A property indicating if this element is Visible or not.
+
+### IsEnabled
+
+```csharp
+public bool IsEnabled { get; set; }
+```
+
+Fetches the value of the IsEnabled property
+
+### InstanceEventHandlersStore
+
+```csharp
+protected Hashtable InstanceEventHandlersStore { get; }
+```
+
+Ensure the store has been created.
+
+## Methods
+
+### OnGenericEvent(GenericEventArgs e)
+
+```csharp
+protected virtual void OnGenericEvent(GenericEventArgs e)
+```
+
+Handles a generic input event and dispatches touch gestures to the gesture overrides.
+
+### OnTouchDown(TouchEventArgs e)
+
+```csharp
+protected virtual void OnTouchDown(TouchEventArgs e)
+```
+
+Raises the `TouchDown` event.
+
+### OnTouchUp(TouchEventArgs e)
+
+```csharp
+protected virtual void OnTouchUp(TouchEventArgs e)
+```
+
+Raises the `TouchUp` event.
+
+### OnTouchMove(TouchEventArgs e)
+
+```csharp
+protected virtual void OnTouchMove(TouchEventArgs e)
+```
+
+Raises the `TouchMove` event.
+
+### OnTouchGestureStarted(TouchGestureEventArgs e)
+
+```csharp
+protected virtual void OnTouchGestureStarted(TouchGestureEventArgs e)
+```
+
+Raises the `TouchGestureStart` event.
+
+### OnTouchGestureChanged(TouchGestureEventArgs e)
+
+```csharp
+protected virtual void OnTouchGestureChanged(TouchGestureEventArgs e)
+```
+
+Raises the `TouchGestureChanged` event.
+
+### OnTouchGestureEnded(TouchGestureEventArgs e)
+
+```csharp
+protected virtual void OnTouchGestureEnded(TouchGestureEventArgs e)
+```
+
+Raises the `TouchGestureEnd` event.
+
+### OnPreviewButtonDown(ButtonEventArgs e)
+
+```csharp
+protected virtual void OnPreviewButtonDown(ButtonEventArgs e)
+```
+
+An event reporting a button was pressed.
+
+### OnButtonDown(ButtonEventArgs e)
+
+```csharp
+protected virtual void OnButtonDown(ButtonEventArgs e)
+```
+
+An event reporting a button was pressed.
+
+### OnPreviewButtonUp(ButtonEventArgs e)
+
+```csharp
+protected virtual void OnPreviewButtonUp(ButtonEventArgs e)
+```
+
+An event reporting a button was released.
+
+### OnButtonUp(ButtonEventArgs e)
+
+```csharp
+protected virtual void OnButtonUp(ButtonEventArgs e)
+```
+
+An event reporting a button was released.
+
+### OnGotFocus(FocusChangedEventArgs e)
+
+```csharp
+protected virtual void OnGotFocus(FocusChangedEventArgs e)
+```
+
+An event announcing that the buttons are focused on this element.
+
+### OnLostFocus(FocusChangedEventArgs e)
+
+```csharp
+protected virtual void OnLostFocus(FocusChangedEventArgs e)
+```
+
+An event announcing that the buttons is no longer focused on this element
+
+### GetDesiredSize(out int width, out int height)
+
+```csharp
+public void GetDesiredSize(out int width, out int height)
+```
+
+Gets the size this element computed it needs during the measure pass.
+
+### GetMargin(out int left, out int top, out int right, out int bottom)
+
+```csharp
+public void GetMargin(out int left, out int top, out int right, out int bottom)
+```
+
+Gets the margin (outer spacing) around this element.
+
+### SetMargin(int length)
+
+```csharp
+public void SetMargin(int length)
+```
+
+Sets a uniform margin on all four sides of this element.
+
+### SetMargin(int left, int top, int right, int bottom)
+
+```csharp
+public void SetMargin(int left, int top, int right, int bottom)
+```
+
+Sets the margin (outer spacing) on each side of this element.
+
+### IsHeightSet(out int height)
+
+```csharp
+protected internal bool IsHeightSet(out int height)
+```
+
+Gets the requested height if one was assigned; otherwise returns false.
+
+**Returns** `bool`
+
+### IsWidthSet(out int width)
+
+```csharp
+protected internal bool IsWidthSet(out int width)
+```
+
+Gets the requested width if one was assigned; otherwise returns false.
+
+**Returns** `bool`
+
+### GetLayoutOffset(out int x, out int y)
+
+```csharp
+public void GetLayoutOffset(out int x, out int y)
+```
+
+Gets the offset of this element relative to its parent's coordinate space.
+
+### GetRenderSize(out int width, out int height)
+
+```csharp
+public void GetRenderSize(out int width, out int height)
+```
+
+Gets the final rendered size of this element.
+
+### OnChildrenChanged(UIElement added, UIElement removed, int indexAffected)
+
+```csharp
+protected internal virtual void OnChildrenChanged( UIElement added, UIElement removed, int indexAffected)
+```
+
+OnChildrenChanged is called when the UIElementCollection of the UIElement is edited.
+
+### Measure(int availableWidth, int availableHeight)
+
+```csharp
+public void Measure(int availableWidth, int availableHeight)
+```
+
+Updates DesiredSize of the UIElement. Must be called by parents from their MeasureOverride, to form recursive update. This is first pass of layout update.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `availableWidth` | `int` | Available width that parent can give to the child. May be MaxValue (when parent wants to measure to content). This is soft constraint. Child can return bigger size to indicate that it wants bigger space and hope that parent can throw in scrolling... |
+| `availableHeight` | `int` | Available height that parent can give to the child. May be MaxValue (when parent wants to measure to content). This is soft constraint. Child can return bigger size to indicate that it wants bigger space and hope that parent can throw in scrolling... |
+
+### Arrange(int finalRectX, int finalRectY, int finalRectWidth, int finalRectHeight)
+
+```csharp
+public void Arrange(int finalRectX, int finalRectY, int finalRectWidth, int finalRectHeight)
+```
+
+Parents or system call this method to arrange the internals of children on a second pass of layout update.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `finalRectX` | `int` | This is the final X location that parent or system wants this UIElement to assume. |
+| `finalRectY` | `int` | This is the final Y location that parent or system wants this UIElement to assume. |
+| `finalRectWidth` | `int` | This is the Width that parent or system wants this UIElement to assume. |
+| `finalRectHeight` | `int` | This is the height that parent or system wants this UIElement to assume. |
+
+### MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
+
+```csharp
+protected virtual void MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
+```
+
+Measurement override. Implement your size-to-content logic here.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `availableWidth` | `int` | Available size that parent can give to the child. May be MaxValue(when parent wants to measure to content). This is soft constraint. Child can return bigger size to indicate that it wants bigger space and hope that parent can throw in scrolling... |
+| `availableHeight` | `int` |  |
+| `desiredWidth` | `out int` |  |
+| `desiredHeight` | `out int` |  |
+
+### ArrangeOverride(int arrangeWidth, int arrangeHeight)
+
+```csharp
+protected virtual void ArrangeOverride(int arrangeWidth, int arrangeHeight)
+```
+
+ArrangeOverride allows for the customization of the final sizing and positioning of children.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `arrangeWidth` | `int` | Final width |
+| `arrangeHeight` | `int` | Final height |
+
+### UpdateLayout()
+
+```csharp
+public void UpdateLayout()
+```
+
+Call this method to ensure that the whoel subtree of elements that includes this UIElement is properly updated.
+
+### ChildElementFromPoint(int x, int y)
+
+```csharp
+public UIElement ChildElementFromPoint(int x, int y)
+```
+
+Given x, y co-ordinates of the parent UIElement, find the child control that is directly underneath that point. If there are multiple such controls, the one that was created/inserted into the list last wins. This is because we don't have explicit z-ordering right now.
+
+**Returns** `UIElement`
+
+### GetUnclippedSize(out int width, out int height)
+
+```csharp
+public void GetUnclippedSize(out int width, out int height)
+```
+
+Gets the desired size of this element before it was clipped to the available size.
+
+### ContainsPoint(int x, int y)
+
+```csharp
+public bool ContainsPoint(int x, int y)
+```
+
+Determines whether the given point lies within this element's bounds.
+
+**Returns** `bool`
+
+### GetPointerTarget(int x, int y)
+
+```csharp
+public UIElement GetPointerTarget(int x, int y)
+```
+
+Returns the deepest visible descendant that contains the given point.
+
+**Returns** `UIElement`
+
+### PointToScreen(ref int x, ref int y)
+
+```csharp
+public void PointToScreen(ref int x, ref int y)
+```
+
+We are deviating little from their desktop counter parts, mostly for simplicity and perf.
+
+### PointToClient(ref int x, ref int y)
+
+```csharp
+public void PointToClient(ref int x, ref int y)
+```
+
+Converts a point from screen coordinates to this element's coordinate space.
+
+### InvalidateMeasure()
+
+```csharp
+public void InvalidateMeasure()
+```
+
+Invalidates the measurement state for the UIElement. This has the effect of also invalidating the arrange state for the UIElement. The UIElement will be queued for an update layout that will occur asynchronously.
+
+### InvalidateArrange()
+
+```csharp
+public void InvalidateArrange()
+```
+
+Invalidates the arrange state for the UIElement. The UIElement will be queued for an update layout that will occur asynchronously. MeasureOverride will not be called unless InvalidateMeasure is also called - or that something else caused the measure state to be invalidated.
+
+### OnChildDesiredSizeChanged(UIElement child)
+
+```csharp
+protected virtual void OnChildDesiredSizeChanged(UIElement child)
+```
+
+Notification that is called by Measure of a child when it ends up with different desired size for the child.
+
+### OnRender(DrawingContext dc)
+
+```csharp
+public virtual void OnRender(DrawingContext dc)
+```
+
+Draws the content of this element. Override to provide custom rendering.
+
+### RenderRecursive(DrawingContext dc)
+
+```csharp
+protected internal virtual void RenderRecursive(DrawingContext dc)
+```
+
+Renders this element and recursively renders its visible children.
+
+### InvalidateRect(int x, int y, int w, int h)
+
+```csharp
+public void InvalidateRect(int x, int y, int w, int h)
+```
+
+Marks the given rectangle of this element as needing to be redrawn.
+
+### Invalidate()
+
+```csharp
+public void Invalidate()
+```
+
+Marks the entire element as needing to be redrawn.
+
+### RaiseEvent(RoutedEventArgs args)
+
+```csharp
+public void RaiseEvent(RoutedEventArgs args)
+```
+
+Raise the events specified by `RoutedEventArgs.RoutedEvent`
+
+| Parameter | Type | Description |
+|---|---|---|
+| `args` | `RoutedEventArgs` | `RoutedEventArgs` for the event to be raised |
+
+### AddToEventRoute(EventRoute route, RoutedEventArgs args)
+
+```csharp
+public void AddToEventRoute(EventRoute route, RoutedEventArgs args)
+```
+
+Add the event handlers for this element to the route.
+
+### AddHandler(RoutedEvent routedEvent, RoutedEventHandler handler, bool handledEventsToo)
+
+```csharp
+public void AddHandler( RoutedEvent routedEvent, RoutedEventHandler handler, bool handledEventsToo)
+```
+
+Adds a routed event handler for the particular `RoutedEvent`
+
+| Parameter | Type | Description |
+|---|---|---|
+| `routedEvent` | `RoutedEvent` | `RoutedEvent` for which the handler is attached |
+| `handler` | `RoutedEventHandler` | The handler that will be invoked on this object when the RoutedEvent is raised |
+| `handledEventsToo` | `bool` | Flag indicating whether or not the listener wants to hear about events that have already been handled |
+
+## Events
+
+### TouchDown
+
+```csharp
+public event TouchEventHandler TouchDown
+```
+
+Occurs when a touch contact is pressed on this element.
+
+### TouchUp
+
+```csharp
+public event TouchEventHandler TouchUp
+```
+
+Occurs when a touch contact is released from this element.
+
+### TouchMove
+
+```csharp
+public event TouchEventHandler TouchMove
+```
+
+Occurs when a touch contact moves over this element.
+
+### TouchGestureStart
+
+```csharp
+public event TouchGestureEventHandler TouchGestureStart
+```
+
+Occurs when a touch gesture begins on this element.
+
+### TouchGestureChanged
+
+```csharp
+public event TouchGestureEventHandler TouchGestureChanged
+```
+
+Occurs when an in-progress touch gesture changes.
+
+### TouchGestureEnd
+
+```csharp
+public event TouchGestureEventHandler TouchGestureEnd
+```
+
+Occurs when a touch gesture ends on this element.
+
+### IsVisibleChanged
+
+```csharp
+public event PropertyChangedEventHandler IsVisibleChanged
+```
+
+Occurs when the effective visibility of this element changes.
+
+### IsEnabledChanged
+
+```csharp
+public event PropertyChangedEventHandler IsEnabledChanged
+```
+
+Occurs when the effective enabled state of this element changes.
+
+## Fields
+
+### _horizontalAlignment
+
+```csharp
+protected HorizontalAlignment _horizontalAlignment
+```
+
+The horizontal alignment of this element within its parent.
+
+### _verticalAlignment
+
+```csharp
+protected VerticalAlignment _verticalAlignment
+```
+
+The vertical alignment of this element within its parent.

@@ -50,17 +50,17 @@ You can also read the clock speed at runtime via the `SourceClock` property on t
 The example below sets up CAN at 1 megabaud, applies a few filters (covered in the next section), and sends a 6-byte message when the LDR button is pressed. Received messages are printed.
 
 ```csharp
-using GHIElectronics.TinyCLR.Devices.Can;
-using GHIElectronics.TinyCLR.Devices.Gpio;
-using GHIElectronics.TinyCLR.Pins;
 using System;
 using System.Diagnostics;
 using System.Threading;
+using GHIElectronics.TinyCLR.Devices.Can;
+using GHIElectronics.TinyCLR.Devices.Gpio;
+using GHIElectronics.TinyCLR.Pins;
 
-var ldrButton = GpioController.GetDefault().OpenPin(SC20100.GpioPin.PE3);
+var ldrButton = GpioController.GetDefault().OpenPin(FEZBit.GpioPin.ButtonLeft);
 ldrButton.SetDriveMode(GpioPinDriveMode.InputPullUp);
 
-var can = CanController.FromName(SC20100.CanBus.Can1);
+var can = CanController.FromName(FEZBit.CanBus.Can1);
 
 // 1 Mbaud nominal bit timing.
 can.SetNominalBitTiming(new CanBitTiming(
@@ -70,7 +70,7 @@ can.SetNominalBitTiming(new CanBitTiming(
     synchronizationJumpWidth: 1,
     useMultiBitSampling: false));
 
-var message = new CanMessage() {
+var message = new CanMessage(){
     Data = new byte[] { 0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x2E, 0x20, 0x20 },
     ArbitrationId = 0x11,
     Length = 6,
@@ -97,14 +97,14 @@ can.ErrorReceived += Can_ErrorReceived;
 
 can.Enable();
 
-while (true) {
+while (true){
     if (ldrButton.Read() == GpioPinValue.Low)
         can.WriteMessage(message);
 
     Thread.Sleep(100);
 }
 
-void Can_MessageReceived(CanController sender, MessageReceivedEventArgs e) {
+void Can_MessageReceived(CanController sender, MessageReceivedEventArgs e){
     sender.ReadMessage(out var message);
 
     Debug.WriteLine("Arbitration ID: 0x" + message.ArbitrationId.ToString("X8"));
@@ -188,3 +188,10 @@ var message = new CanMessage() {
     BitRateSwitch = true,
 };
 ```
+
+
+## API reference
+
+| Namespace | Description |
+|---|---|
+| [GHIElectronics.TinyCLR.Devices.Can](/docs/tinyclr/api/GHIElectronics.TinyCLR.Devices.Can/) | CAN bus controller and message classes |

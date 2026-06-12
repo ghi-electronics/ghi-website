@@ -1,0 +1,63 @@
+---
+title: Display Drivers
+---
+
+Display-specific drivers in the **`GHIElectronics.TinyCLR.Drivers.*`** namespace extend TinyCLR's [graphics engine](../feature/graphics.mdx) and [low-level display support](../feature/displays.mdx) with ready-made drivers for common panels.
+
+For devices with internal graphics support, see the [Displays → Virtual displays](../feature/displays.mdx#virtual-displays) page — it shows the full pattern for using the display drivers below. Just swap in the display controller you need.
+
+For devices without internal native graphics, use [`BasicGraphics`](software-utility.mdx#basic-graphics) instead.
+
+Displays that support **16BPP 5:6:5** (TinyCLR's native pixel format) get a `DrawBuffer` method. Displays with other formats (like 1BPP) get `DrawBufferNative` — convert the TinyCLR native format to whatever the display expects using the helpers documented in [Encoding & Decoding → Color space conversion](../feature/encoding-decoding.mdx#color-space-conversion).
+
+:::tip
+`BasicGraphics` supports 1BPP natively. For basic monochrome displays, it saves memory and skips the 16BPP → 1BPP conversion step.
+:::
+
+## ST7735
+
+![ST7735](/img/docs/drivers/ST7735.png)
+
+An SPI color display controller, typically **160×128 pixels**.
+
+NuGet package: **`GHIElectronics.TinyCLR.Drivers.Sitronix.ST7735`**.
+
+## ST7789
+
+![ST7789](/img/docs/drivers/ST7789.png)
+
+An SPI color display controller, typically **240×240 pixels**.
+
+NuGet package: **`GHIElectronics.TinyCLR.Drivers.Sitronix.ST7789`**.
+
+## ERC12864
+
+![ERC12864](/img/docs/drivers/ERC12864.png)
+
+An SPI-based monochrome display controller, typically **128×64 pixels**.
+
+NuGet package: **`GHIElectronics.TinyCLR.Drivers.EastRising.ERC12864`**.
+
+## ILI9341
+
+![ILI9341](/img/docs/drivers/ILI9341.png)
+
+An SPI color display controller, typically **320×240 pixels**.
+
+NuGet package: **`GHIElectronics.TinyCLR.Drivers.HiLetgo.ILI9341`**.
+
+## SSD1306
+
+![SSD1306](/img/docs/drivers/SSD1306.png)
+
+An I²C monochrome OLED display controller, typically **128×64 pixels**.
+
+NuGet package: **`GHIElectronics.TinyCLR.Drivers.SolomonSystech.SSD1306`**.
+
+## SSD1351
+
+![SSD1351](/img/docs/drivers/SSD1351.png)
+
+An I²C color display controller, typically **128×128 pixels**.
+
+NuGet package: **`GHIElectronics.TinyCLR.Drivers.SolomonSystech.SSD1351`**.

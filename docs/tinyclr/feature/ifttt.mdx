@@ -38,28 +38,29 @@ The IFTTT console UI changes periodically — for current step-by-step setup, fo
 Once the applet is wired up, all the device has to do is send an HTTPS GET to the webhook URL when its condition fires.
 
 ```csharp
-using GHIElectronics.TinyCLR.Networking.Http;
 using System;
 using System.Diagnostics;
-using System.IO;
+using System.Net;
 
 const string iftttKey = "Paste_Your_IFTTT_Webhooks_Key";
 const string eventName = "button_press";
 
 var url = "https://maker.ifttt.com/trigger/" + eventName + "/with/key/" + iftttKey;
 
-try {
-    using (var req = HttpWebRequest.Create(url) as HttpWebRequest) {
+try{
+    using (var req = HttpWebRequest.Create(url) as HttpWebRequest)
+    {
         req.KeepAlive = false;
         req.ReadWriteTimeout = 5000;
         req.Method = "GET";
 
-        using (var res = req.GetResponse() as HttpWebResponse) {
+        using (var res = req.GetResponse() as HttpWebResponse)
+        {
             Debug.WriteLine("IFTTT trigger fired: " + res.StatusCode);
         }
     }
 }
-catch (Exception ex) {
+catch (Exception ex){
     Debug.WriteLine("IFTTT trigger failed: " + ex.Message);
 }
 ```
@@ -98,3 +99,10 @@ while (true) {
     Thread.Sleep(1000);
 }
 ```
+
+
+## API reference
+
+| Namespace | Description |
+|---|---|
+| [GHIElectronics.TinyCLR.Networking.Http](/docs/tinyclr/api/GHIElectronics.TinyCLR.Networking.Http/) | HTTP client classes (used for IFTTT webhooks) |

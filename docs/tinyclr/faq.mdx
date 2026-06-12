@@ -1,0 +1,275 @@
+---
+title: Frequently Asked Questions
+description: Common questions about TinyCLR and SITCore — running C# on a microcontroller, IoT development, real-time behavior, comparisons with C/C++ and other embedded .NET platforms.
+---
+
+import Head from '@docusaurus/Head';
+
+export const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What is TinyCLR?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'TinyCLR is a royalty-free .NET runtime for embedded products from GHI Electronics. It runs on the SITCore family of secure ARM microcontrollers. Developers write C# in Visual Studio or Visual Studio Code, debug over USB with real breakpoints, and the same managed code runs across every SITCore form factor — chipsets, modules, single-board computers, and dev boards.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is SITCore?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'SITCore is a family of secure ARM microcontrollers from GHI Electronics, designed and manufactured in the USA. It comes in chipsets (SoC), modules (SoM), single-board computers (SBC), and development boards. All run TinyCLR, GHI\'s .NET runtime for embedded products.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I run C# on a microcontroller?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. TinyCLR is a full .NET runtime that runs C# directly on ARM microcontrollers in the SITCore family. You write C# in Visual Studio or VS Code, deploy over USB, debug with real breakpoints, and get garbage collection, threading, exceptions, and the .NET base class library — on hardware that costs as little as $14.95.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do I need a Windows PC to develop TinyCLR applications?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. TinyCLR development requires Windows. Both the Visual Studio workflow and the Visual Studio Code workflow depend on Windows-only deployment tooling — macOS and Linux are not supported for now.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is TinyCLR real-time?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'TinyCLR is not a real-time operating system. It uses threads, events, and a garbage collector. For timing-critical operations (microsecond GPIO toggling, DSP, tight compute loops) use Runtime Loadable Procedures (RLP) to drop into native C/C++ code that runs without the managed runtime overhead.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is the managed code compiled? Is C# slow on TinyCLR?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'C# is compiled to CIL (Common Intermediate Language) by the C# compiler, the same as desktop .NET. TinyCLR interprets the CIL on the device. Most runtime functionality (file I/O, networking, drivers) is implemented in native code, so typically only about 10% of an application is interpreted while 90% runs as native code. For tight compute loops where the interpreter overhead matters, RLP lets you drop into compiled native C.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How is TinyCLR different from .NET nanoFramework or Meadow?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'All three run .NET-style C# on microcontrollers. TinyCLR\'s differentiators are: secure boot and IP protection built into the runtime, encrypted in-field updates, native ARM C/C++ via RLP, Desktop Mode for PC-side testing, and tightly-integrated security features (TLS, secure storage). SITCore hardware is designed and manufactured in the USA by GHI Electronics, who also provide engineering services and manufacturing.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'I program in C/C++. Why would I use TinyCLR instead?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'C and C++ remain the standard for low-level embedded work, and TinyCLR itself is written in them. The TinyCLR pitch is productivity: you get high-level libraries (networking, TLS, displays, file system, cryptography), step debugging in Visual Studio, garbage collection, runtime bounds checking, and modern language features. For the parts that need raw native speed, RLP lets you drop into C/C++ — you keep C# for the application and use C for the hot path.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'I\'m a PC or mobile developer. How do I start with embedded hardware?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'If you know C# and Visual Studio, you already know the language and toolchain. The SITCore Experimenter Kit is the recommended starting point — it bundles a FEZ Bit with sensors, a robot, and a companion eBook that walks through structured hands-on experiments. For a less-structured first try, the FEZ Flea is the cheapest entry at $14.95 — plug it into USB and you\'re running.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Why use SITCore over a generic STM32 or Arduino board?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Generic boards give you the hardware but require you to assemble the software stack yourself. SITCore comes with TinyCLR pre-loaded, secure boot, IP protection, encrypted updates, a comprehensive .NET library ecosystem, Visual Studio integration, and USA-based engineering support from the people who designed the chips. For commercial products especially, the bundled security and manufacturing scalability are why teams pick SITCore.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can GHI Electronics port TinyCLR to my hardware?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes, custom porting is possible. For most projects, GHI recommends starting with off-the-shelf SITCore hardware to reduce risk and time-to-market — but if your project requires a specific chip family or custom hardware, the engineering services team can help.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How does TinyCLR support IoT designs?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'TinyCLR includes the full networking stack — TCP/UDP sockets, DNS, HTTP/HTTPS client and server, MQTT (TLS-secured), FTP, WiFi, Ethernet, and cellular — plus Azure and AWS cloud SDKs out of the box. Commercial-grade TLS 1.2 runs inside the secure SITCore processor so private keys never leave the chip. Multi-network-interface support in v3 lets a single device use WiFi, Ethernet, and cellular concurrently.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What about TinyCLR for education?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Students learn industry-relevant skills — C# is one of the most popular professional languages, Visual Studio is the most widely-used IDE in the .NET ecosystem, and embedded systems are a fast-growing field. The SITCore Experimenter Kit is designed for new learners and works equally well for C# professionals new to hardware.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What languages are supported on TinyCLR?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'In theory, any .NET language that compiles to CIL can run on TinyCLR. In practice, C# is the officially-supported language and what every example in the documentation uses. C# 11 language features (top-level statements, target-typed new, file-scoped namespaces, etc.) are supported in v3. For performance-critical native code, RLP supports C and C++ directly.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Why should I as a manager pick TinyCLR for our product?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Faster time-to-market — any C# developer on your team can start coding for hardware immediately, no separate embedded specialist required. Lower development cost — Visual Studio is free, the runtime is royalty-free for SITCore customers, and the bundled security stack saves you from rolling your own. Lower risk — SITCore is a proven platform shipped by commercial customers across kiosks, fleet diagnostics, industrial automation, and IoT. And US-based engineering support means the people who designed it are the people who answer when you have questions.',
+      },
+    },
+  ],
+};
+
+<Head>
+  <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+</Head>
+
+# Frequently Asked Questions
+
+Common questions about TinyCLR, SITCore, and running C# on embedded hardware. Don't see your question? Ask on the [forums](https://forums.ghielectronics.com/) or [contact us](https://www.ghielectronics.com/contact/).
+
+<details>
+<summary>What is TinyCLR?</summary>
+
+**TinyCLR** is a royalty-free **.NET runtime for embedded products** from GHI Electronics. It runs on the SITCore family of secure ARM microcontrollers. Developers write **C# in Visual Studio or Visual Studio Code**, debug over USB with real breakpoints, and the same managed code runs across every SITCore form factor — chipsets, modules, single-board computers, and dev boards.
+
+</details>
+
+<details>
+<summary>What is SITCore?</summary>
+
+**SITCore** is a family of secure ARM microcontrollers from GHI Electronics, designed and manufactured in the USA. It comes in **chipsets** (SoC), **modules** (SoM), **single-board computers** (SBC), and **development boards** — all running TinyCLR.
+
+</details>
+
+<details>
+<summary>Can I run C# on a microcontroller?</summary>
+
+Yes. TinyCLR is a full .NET runtime that runs C# directly on ARM microcontrollers in the SITCore family. You write C# in Visual Studio or VS Code, deploy over USB, debug with real breakpoints, and get garbage collection, threading, exceptions, and the .NET base class library — on hardware that costs as little as **$14.95** ([FEZ Flea](sbc.mdx)).
+
+</details>
+
+<details>
+<summary>Do I need a Windows PC to develop TinyCLR applications?</summary>
+
+**Yes — TinyCLR development requires Windows.** Both the Visual Studio workflow and the VS Code workflow depend on Windows-only deployment tooling; macOS and Linux are not supported for now.
+
+</details>
+
+<details>
+<summary>Is TinyCLR real-time?</summary>
+
+TinyCLR is **not a real-time operating system**. It uses threads, events, and a garbage collector. For timing-critical operations (microsecond GPIO toggling, DSP, tight compute loops), use [Runtime Loadable Procedures (RLP)](feature/rlp.mdx) to drop into native C/C++ code that runs without the managed runtime overhead.
+
+</details>
+
+<details>
+<summary>Is the managed code compiled? Is C# slow on TinyCLR?</summary>
+
+C# is compiled to **CIL** (Common Intermediate Language) by the C# compiler — the same as desktop .NET. TinyCLR interprets the CIL on the device. Most runtime functionality (file I/O, networking, drivers, graphics) is implemented in native code, so **typically only about 10% of an application is interpreted while 90% runs as native code**. For tight compute loops where the interpreter overhead matters, [RLP](feature/rlp.mdx) lets you drop into compiled native C.
+
+</details>
+
+<details>
+<summary>How is TinyCLR different from .NET nanoFramework or Meadow?</summary>
+
+All three run .NET-style C# on microcontrollers. TinyCLR's differentiators:
+
+- **Secure boot and [IP protection](feature/ip-protection.mdx)** built into the runtime
+- **Encrypted [in-field updates](feature/in-field-update.mdx)** — OTA firmware updates with cryptographic verification
+- **Native ARM C/C++ via [RLP](feature/rlp.mdx)** — drop into compiled native code without leaving the C# workflow
+- **Desktop Mode** — test non-hardware code on PC before deploying to the device
+- **Tightly-integrated security** (TLS 1.2, [secure storage](feature/secure-storage.mdx), one-time-programmable regions)
+- **SITCore hardware** is designed and manufactured in the USA by GHI Electronics, who also provide engineering services and manufacturing
+
+</details>
+
+<details>
+<summary>I program in C/C++. Why would I use TinyCLR instead?</summary>
+
+C and C++ remain the standard for low-level embedded work, and TinyCLR itself is written in them. The TinyCLR pitch is **productivity**: you get high-level libraries (networking, TLS, displays, file system, cryptography), step debugging in Visual Studio, garbage collection, runtime bounds checking, and modern language features.
+
+For the parts that need raw native speed, **[RLP](feature/rlp.mdx) lets you drop into C/C++** — you keep C# for the application and use C for the hot path. Think of it as the embedded equivalent of calling a native DLL from desktop .NET.
+
+</details>
+
+<details>
+<summary>I'm a PC or mobile developer. How do I start with embedded hardware?</summary>
+
+If you know C# and Visual Studio, you already know the language and toolchain. Two paths in:
+
+- **[Experimenter Kit](experimenter-kit.mdx)** — bundles a FEZ Bit with sensors, a robot, and a companion eBook that walks through structured hands-on experiments. Recommended for learning.
+- **[FEZ Flea](sbc.mdx)** — cheapest entry at $14.95. Plug into USB and you're running.
+
+</details>
+
+<details>
+<summary>Why use SITCore over a generic STM32 or Arduino board?</summary>
+
+Generic boards give you the hardware but require you to assemble the software stack yourself. SITCore comes with:
+
+- **TinyCLR pre-loaded** — Visual Studio integration works out of the box
+- **Secure boot, IP protection, encrypted updates** built into the runtime
+- **A comprehensive .NET library ecosystem** — displays, networking, file system, cryptography
+- **USA-based engineering support** from the people who designed the chips
+
+For commercial products especially, the bundled security and manufacturing scalability are why teams pick SITCore.
+
+</details>
+
+<details>
+<summary>Can GHI Electronics port TinyCLR to my hardware?</summary>
+
+Yes, custom porting is possible. For most projects, GHI recommends starting with **off-the-shelf SITCore hardware** to reduce risk and time-to-market — but if your project requires a specific chip family or custom hardware, the [engineering services](https://www.ghielectronics.com/engineering/) team can help.
+
+</details>
+
+<details>
+<summary>How does TinyCLR support IoT designs?</summary>
+
+TinyCLR includes the full networking stack:
+
+- **TCP/UDP sockets**, DNS, HTTP/HTTPS client and server
+- **[MQTT](feature/mqtt.mdx)** (TLS-secured), **FTP** (added in v3)
+- **[WiFi](feature/wifi.mdx)**, **[Ethernet](feature/ethernet.mdx)**, **[cellular](feature/cellular.mdx)**
+- **[Azure](feature/azure.mdx)** and **[AWS](feature/aws.mdx)** cloud SDKs
+- **Commercial-grade [TLS 1.2](feature/tls.mdx)** running inside the secure SITCore processor so private keys never leave the chip
+- **Multi-network-interface support** in v3 — a single device can use WiFi, Ethernet, and cellular concurrently
+
+</details>
+
+<details>
+<summary>What about TinyCLR for education?</summary>
+
+Students learn industry-relevant skills — C# is one of the most popular professional languages, Visual Studio is the most widely-used IDE in the .NET ecosystem, and embedded systems are a fast-growing field. The **[SITCore Experimenter Kit](experimenter-kit.mdx)** is designed for new learners and works equally well for C# professionals new to hardware.
+
+</details>
+
+<details>
+<summary>What languages are supported on TinyCLR?</summary>
+
+In theory, **any .NET language that compiles to CIL** can run on TinyCLR. In practice, **C# is the officially-supported language** and what every example in the documentation uses. **C# 11 language features** (top-level statements, target-typed new, file-scoped namespaces, etc.) are supported in v3. For performance-critical native code, [RLP](feature/rlp.mdx) supports **C and C++** directly.
+
+</details>
+
+<details>
+<summary>Why should I as a manager pick TinyCLR for our product?</summary>
+
+- **Faster time-to-market** — any C# developer on your team can start coding for hardware immediately, no separate embedded specialist required
+- **Lower development cost** — Visual Studio is free (Community Edition), the runtime is royalty-free for SITCore customers, and the bundled security stack saves you from rolling your own
+- **Lower risk** — SITCore is a proven platform shipped by commercial customers across kiosks, fleet diagnostics, industrial automation, and IoT
+- **US-based engineering support** — the people who designed the platform are the people who answer when you have questions
+
+</details>

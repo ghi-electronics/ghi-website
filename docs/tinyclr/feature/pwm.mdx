@@ -43,8 +43,7 @@ using System.Threading;
 using System.Device.Pwm;
 using GHIElectronics.TinyCLR.Pins;
 
-// FEZBit.Timer.Pwm.Controller1 → chip 0
-using PwmChannel led = PwmChannel.Create(0, FEZBit.Timer.Pwm.Controller1.Led, 10000, 0.5);
+using PwmChannel led = PwmChannel.Create(FEZBit.SpiBus.Chip0, FEZBit.Timer.Pwm.Controller1.Led, 10000, 0.5);
 
 double duty = 0.5, speed = 0.01;
 
@@ -283,3 +282,11 @@ servo.Set(180.0);   // 180 degrees
 Thread.Sleep(4000);
 }
 ```
+
+
+## API reference
+
+| Namespace | Description |
+|---|---|
+| [GHIElectronics.TinyCLR.Devices.Pwm](/docs/tinyclr/api/GHIElectronics.TinyCLR.Devices.Pwm/) | TinyCLR PWM controller and channel classes |
+| [System.Device.Pwm](/docs/tinyclr/api/System.Device.Pwm/) | .NET IoT standard PWM API (included in the same NuGet) |

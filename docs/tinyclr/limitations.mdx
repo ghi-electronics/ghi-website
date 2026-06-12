@@ -7,3 +7,13 @@ TinyCLR is built for small, secure, embedded products. To keep performance high 
 1. **Multidimensional arrays are not supported.** Use jagged arrays instead — `[1][1]` rather than `[1,1]`.
 2. **Each assembly is limited to 64 KB.** For larger codebases, split your solution into multiple assemblies — better maintainability too. Resource files are not subject to this limit, so large lookup tables and binary objects should be included as resources.
 3. **A maximum of 64 assemblies can be loaded at once.**
+4. **`await Task<T>` (awaiting a generic task) is not supported.** Start the task and read `.Result` instead. Awaiting a non-generic `Task` (for example `await Task.Delay(...)` or `await Task.WhenAll(Task[])`) works.
+5. **Some advanced generic scenarios are not supported.** The generic collections and interfaces provided work, but a generic type boxed across an `async`/`await` suspension does not — this is the root of the `Task<T>` await limitation above.
+6. **LINQ is LINQ-to-Objects only.** `Join`/`GroupJoin`, the set operators (`Union`/`Intersect`/`Except`), `Zip`, and `DefaultIfEmpty` are not included, and there is no `IQueryable`/PLINQ.
+7. **`Tuple` and `ValueTuple` support 1–7 elements.** Tuple literals and deconstruction are included; the 8-or-more element nested ("TRest") form is not.
+8. **`List<T>` provides only common operations.** The indexer and `Add`/`Insert`/`Remove`/`Sort`/`Find`/`BinarySearch` (etc.) are supported; less-common members such as `AsReadOnly` and `Slice` are not included.
+9. **`Dictionary<TKey, TValue>` provides only common operations.** The indexer and `Add`/`Remove`/`TryGetValue`/`Keys`/`Values` are supported; enumeration order is not guaranteed and serialization is not included.
+10. **C# 12 is supported, with these limitations:**
+    - **Inline arrays are not supported.** The `[InlineArray]` struct attribute is not available.
+    - **Collection expressions can't target `Span<T>` or custom collection builders.** `[1, 2, 3]` works for arrays and `List<T>`, but not for `Span<T>`/`ReadOnlySpan<T>` or types that use `[CollectionBuilder]`.
+    - **UTF-8 string literals (`"…"u8`) are not supported.** They produce a `ReadOnlySpan<byte>`, which TinyCLR does not include.

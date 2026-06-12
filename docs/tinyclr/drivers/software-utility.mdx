@@ -1,0 +1,220 @@
+---
+title: Software Utility Drivers
+---
+
+Pure-software drivers and helper libraries — no specific chip required. Includes networking helpers, graphics for chips without native display support, file systems, IR decoding, GPS parsing, and more.
+
+## Azure SAS
+
+Generates **Shared Access Signatures** (SAS tokens) used to authenticate with Azure IoT Hub. See the [Microsoft Azure](../feature/azure.mdx) page for the full setup.
+
+NuGet package: **`GHIElectronics.TinyCLR.Drivers.Azure.SAS`**.
+
+## Basic Graphics
+
+`BasicGraphics` is a simpler graphics driver that runs on **every device**, including small chips without native display support. It provides `SetPixel`, `DrawLine`, `DrawRectangle`, `DrawCircle`, `DrawString`, and `DrawCharacter`, plus a tiny 5px font via `DrawTinyCharacter` and `DrawTinyString`.
+
+NuGet package: **`GHIElectronics.TinyCLR.Drivers.BasicGraphics`**.
+
+:::tip
+**`DrawCharacter` vs `DrawTinyCharacter`**:
+
+- `DrawCharacter` accepts a scaling factor to enlarge the font; `DrawTinyCharacter` doesn't.
+- Both only set pixels by default (don't clear blanks). `DrawTinyCharacter` has a `clear` option to set blanks to 0 (black).
+:::
+
+There are two ways to use BasicGraphics:
+
+### Option 1: Override `SetPixel` and `Clear`
+
+You control where pixels go — directly to the display, into your own buffer, or anywhere else. BasicGraphics doesn't allocate any memory.
+
+```csharp
+public class BasicGraphicsImp : BasicGraphics {
+    public override void SetPixel(int x, int y, uint color) {
+        // Buffer pixels or send directly to the display.
+    }
+
+    public override void Clear() {
+        // Optional — clear your buffer if you're using one.
+    }
+
+    public void Flush() {
+        // Send your buffer to the display, for example:
+        lcd.DrawBufferNative(this.buffer);
+    }
+}
+```
+
+Then use it:
+
+```csharp
+var basicGfx = new BasicGraphicsImp();
+var colorBlue  = BasicGraphics.ColorFromRgb(0,   0,   255);
+var colorGreen = BasicGraphics.ColorFromRgb(0,   255, 0  );
+var colorRed   = BasicGraphics.ColorFromRgb(255, 0,   0  );
+
+basicGfx.Clear();
+
+basicGfx.DrawString("TinyCLR OS!", colorGreen, 15, 15, 2, 1);
+basicGfx.DrawString("SITCore",     colorBlue,  35, 40, 2, 2);
+basicGfx.DrawString("SC13xxx",     colorRed,   35, 60, 2, 2);
+
+var color = new Random();
+for (var i = 20; i < 140; i++)
+    basicGfx.DrawCircle((uint)color.Next(), i, 100, 15);
+
+basicGfx.Flush();
+```
+
+### Option 2: Let BasicGraphics manage the buffer
+
+The simpler path — BasicGraphics allocates the video buffer and handles pixel storage for you. Choose 16BPP 5:6:5 or 1BPP.
+
+```csharp
+var basicGfx = new BasicGraphics(160, 128, ColorFormat.Rgb565);
+
+basicGfx.Clear();
+basicGfx.DrawString("TinyCLR OS!", colorGreen, 15, 15, 2, 1);
+basicGfx.DrawString("SITCore",     colorBlue,  35, 40, 2, 2);
+
+// Send the buffer to the display using your display driver.
+MyDisplaySendBuffer(basicGfx.Buffer);
+```
+
+## Managed File System
+
+A full **FAT file system** implementation in pure C# with built-in **SPI SD card** support — useful on systems without native file system support, or when you specifically want to drive an SD card over SPI rather than the native SDMMC interface.
+
+NuGet package: **`GHIElectronics.TinyCLR.Drivers.ManagedFileSystem`**.
+
+```csharp
+var dataWrite = new byte[] { 6, 7, 8, 9, 10 };
+var dataRead = new byte[dataWrite.Length];
+
+var spi = SpiController.FromName(SC13048.SpiBus.Spi1);
+var chipSelect = GpioController.GetDefault().OpenPin(SC13048.GpioPin.PB2);
+
+var managedFS = new ManagedFileSystem(spi, chipSelect);
+managedFS.Mount();
+
+Debug.WriteLine("Volume:     " + managedFS.VolumeLabel);
+Debug.WriteLine("Total size: " + managedFS.TotalSize);
+Debug.WriteLine("Free:       " + managedFS.TotalFreeSpace);
+
+managedFS.CreateDirectory(@"\TEST1");
+
+var fileWrite = managedFS.OpenFile(@"\TEST1\TEST2.txt", FileMode.Write | FileMode.CreateAlways);
+managedFS.WriteFile(fileWrite, dataWrite, 0, (uint)dataWrite.Length);
+managedFS.FlushFile(fileWrite);
+managedFS.CloseFile(fileWrite);
+
+var fileRead = managedFS.OpenFile(@"\TEST1\TEST2.txt", FileMode.Read);
+managedFS.ReadFile(fileRead, dataRead, 0, (uint)dataRead.Length);
+managedFS.CloseFile(fileRead);
+```
+
+## Infrared
+
+Decoder for infrared remote-control signals. The included driver supports the **NEC** protocol — a very common standard that sends an 8-bit address and 8-bit command on every key press, with a separate repeat signal while a key is held.
+
+NuGet package: **`GHIElectronics.TinyCLR.Drivers.Infrared`**.
+
+```csharp
+var receivePin = GpioController.GetDefault().OpenPin(SC20260.GpioPin.PH6);
+var ir = new NecIRDecoder(receivePin);
+
+ir.OnDataReceivedEvent += (address, command) => {
+    // New key press received.
+};
+
+ir.OnRepeatEvent += () => {
+    // Key held down — repeat event.
+};
+```
+
+## Basic Network
+
+Pure-C# TCP/IP stack that works with the **Wiznet W5500** Ethernet module — gives networking to chips like the SC13048 that don't have a built-in TCP/IP stack.
+
+NuGet packages: **`GHIElectronics.TinyCLR.Drivers.BasicNet`**, **`GHIElectronics.TinyCLR.Drivers.BasicNet.Sockets`**, **`GHIElectronics.TinyCLR.Drivers.WIZnet.W5500`**.
+
+```csharp
+var cs        = GpioController.GetDefault().OpenPin(SC13048.GpioPin.PB2);
+var reset     = GpioController.GetDefault().OpenPin(SC13048.GpioPin.PB15);
+var interrupt = GpioController.GetDefault().OpenPin(SC13048.GpioPin.PA0);
+
+var spi = SpiController.FromName(SC13048.SpiBus.Spi1);
+var networkController = new W5500Controller(spi, cs, reset, interrupt);
+
+var isReady = false;
+networkController.NetworkAddressChanged += (a, b) => {
+    var bytes = networkController.Address.GetAddressBytes();
+    isReady = bytes[0] != 0 && bytes[1] != 0;
+};
+
+var networkSettings = new NetworkInterfaceSettings {
+    Address = new IPAddress(new byte[] { 192, 168, 0, 200 }),
+    SubnetMask = new IPAddress(new byte[] { 255, 255, 255, 0 }),
+    GatewayAddress = new IPAddress(new byte[] { 192, 168, 0, 1 }),
+    DnsAddresses = new[] {
+        new IPAddress(new byte[] { 75, 75, 75, 75 }),
+        new IPAddress(new byte[] { 75, 75, 75, 76 }),
+    },
+    MacAddress = new byte[] { 0x00, 0x04, 0x00, 0x00, 0x00, 0x00 },     // Set to a valid, unique MAC.
+    DhcpEnable = false,
+    DynamicDnsEnable = false,
+};
+
+networkController.SetInterfaceSettings(networkSettings);
+networkController.Enable();
+
+while (!isReady) ;      // Wait for a valid IP address.
+
+var dns = new Dns(networkController);
+var host = dns.GetHostEntry("www.example.com");
+var ep = new IPEndPoint(host.AddressList[0], 80);
+
+var socket = new Socket(networkController, AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+socket.Connect(ep);
+
+socket.Send(Encoding.UTF8.GetBytes("GET / HTTP/1.1\r\nHost: www.example.com\r\nConnection: close\r\n\r\n"));
+
+var received = socket.Receive(SocketFlags.None);
+if (received.Length > 0)
+    Debug.WriteLine("Received:\r\n" + new string(Encoding.UTF8.GetChars(received)));
+```
+
+## QR Code Generator
+
+Converts a string into a QR-code image bitmap that can be drawn to a display.
+
+No NuGet package — the source is in the [`Barcode` folder](https://github.com/ghi-electronics/TinyCLR-Drivers/tree/dev/Barcode) of the TinyCLR-Drivers repo. Drop the source into your project to use it.
+
+## GPS Parser
+
+Parses standard **NMEA** sentences from a GPS module's UART output. Run the parser in a background thread; the parsed values become available on the parser class for the main thread to consume.
+
+```csharp
+// Background thread: read NMEA strings from the UART and feed them to the parser.
+// Strings start with '$' and end with carriage return.
+new Thread(() => {
+    while (true) {
+        Parser.Parse(Encoding.UTF8.GetBytes("NMEA string from UART"));
+        Thread.Sleep(1);
+    }
+}).Start();
+
+// Main thread: read parsed sentence data when valid.
+while (true) {
+    if (Parser.RMCSentence.DataStatus == Parser.DataStatus.Valid) {
+        // Read position, time, speed from Parser.RMCSentence.
+    }
+
+    if (Parser.GLLSentence.DataStatus == Parser.DataStatus.Valid) {
+        // Read position from Parser.GLLSentence.
+    }
+
+    Thread.Sleep(1);
+}
+```

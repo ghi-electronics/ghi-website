@@ -16,9 +16,9 @@ Acts as a USB mouse, with both **absolute** and **relative** cursor modes.
 - **Absolute mode** — `MoveCursor(x, y)` sets the cursor to that coordinate from the top-left corner of the screen.
 
 ```csharp
-using GHIElectronics.TinyCLR.Devices.UsbClient;
 using System;
 using System.Threading;
+using GHIElectronics.TinyCLR.Devices.UsbClient;
 
 var usbclientController = UsbClientController.GetDefault();
 var absolutePosition = true;
@@ -48,8 +48,8 @@ void UsbClientDeviceStateChanged(RawDevice sender, DeviceState state) {
 Acts as a USB keyboard. Each key supports `Press`, `Release`, and `Stroke` (a `Press` followed by a `Release`).
 
 ```csharp
-using GHIElectronics.TinyCLR.Devices.UsbClient;
 using System.Threading;
+using GHIElectronics.TinyCLR.Devices.UsbClient;
 
 var usbClientSetting = new UsbClientSetting() {
     ManufactureName = "Manufacture_Name",
@@ -129,7 +129,7 @@ using GHIElectronics.TinyCLR.Devices.UsbClient;
 using GHIElectronics.TinyCLR.Pins;
 using System.Diagnostics;
 
-var sd = StorageController.FromName(SC20100.StorageController.SdCard);
+var sd = StorageController.FromName(FEZBit.StorageController.SdCard);
 
 var usbclientController = UsbClientController.GetDefault();
 var usbclient_masstorage = new MassStorage(usbclientController);
@@ -240,3 +240,10 @@ For serial-style two-way communication with a connected PC (the device shows up 
 ## USB Raw
 
 For advanced cases — any USB device class not provided as a built-in driver — you can build a fully custom USB device with **USB Raw**. The built-in mouse driver inside [GHIElectronics.TinyCLR.Devices.UsbClient](https://github.com/ghi-electronics/TinyCLR-Libraries) is a good reference implementation.
+
+
+## API reference
+
+| Namespace | Description |
+|---|---|
+| [GHIElectronics.TinyCLR.Devices.UsbClient](/docs/tinyclr/api/GHIElectronics.TinyCLR.Devices.UsbClient/) | USB device (client) profile classes |
