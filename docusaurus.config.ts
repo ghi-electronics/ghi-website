@@ -165,20 +165,7 @@ const config: Config = {
       'classic',
       {
         docs: false,
-        blog: {
-          routeBasePath: 'press',
-          blogTitle: 'Press',
-          blogDescription: 'News and announcements from GHI Electronics',
-          showReadingTime: false,
-          blogSidebarTitle: 'Recent posts',
-          blogSidebarCount: 10,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          onInlineTags: 'warn',
-          onUntruncatedBlogPosts: 'warn',
-        },
+        blog: false,
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -200,11 +187,6 @@ const config: Config = {
     docs: {
       sidebar: {
         hideable: true,
-      },
-    },
-    blog: {
-      sidebar: {
-        groupByYear: false,
       },
     },
     navbar: {
@@ -247,7 +229,7 @@ const config: Config = {
           label: 'Company',
           position: 'left',
           items: [
-            {label: 'Press', to: '/press/'},
+            {label: 'News', to: '/news/'},
             {label: 'Distributors', to: '/distributors/'},
             {label: 'Social Responsibility', to: '/social-responsibility/'},
             {label: 'About Us', to: '/company/'},
@@ -278,7 +260,7 @@ const config: Config = {
           title: 'Company',
           items: [
             {label: 'About Us', to: '/company/'},
-            {label: 'Press', to: '/press/'},
+            {label: 'News', to: '/news/'},
             {label: 'Contact Us', to: '/contact/'},
             {label: 'Developers', to: '/developers/'},
             {label: 'Policies', to: '/policies/'},
