@@ -6,6 +6,8 @@
     "docusaurus": "docusaurus",
     "gen-api": "node scripts/generate-api.mjs",
     "start": "docusaurus start",
+    "start:proxy": "concurrently \"npm run proxy\" \"npm run start\"",
+    "proxy": "node proxy-server.js",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
@@ -30,6 +32,9 @@
     "@docusaurus/tsconfig": "3.10.1",
     "@docusaurus/types": "3.10.1",
     "@types/react": "^19.0.0",
+    "concurrently": "^8.2.2",
+    "express": "^4.21.2",
+    "http-proxy-middleware": "^2.0.6",
     "typescript": "~6.0.2"
   },
   "browserslist": {
