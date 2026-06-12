@@ -4,35 +4,32 @@ title: Release Notes
 
 ![TinyCLR Logo](/img/docs/tinyclr-logo.png)
 
-## 3.0.0.1000 (Prerelease)
+## 3.0.0.1000 (2026-06-12) Prerelease
 
-TinyCLR OS 3.0 is a major release. The headline change is broad runtime and
-library support for modern C#: generics and generic collections, `Task`/async,
-`Tuple`/`ValueTuple`, LINQ, ranges and indices, `record` types, and `required`
-members. It also adds native RLP support, USB hub and webcam support,
-multi-interface non-blocking networking, an updated Visual Studio extension for
-VS2022/VS2026, and a new Visual Studio Code extension.
+TinyCLR OS 3.0 is a major release. The headline change is broad runtime and library support for modern C#: generics and generic collections, `Task`/async,
+`Tuple`/`ValueTuple`, LINQ, ranges and indices, `record` types, and `required` members. It also adds native RLP support, USB hub and webcam support,
+multi-interface non-blocking networking, an updated Visual Studio extension for VS2022/VS2026, and a new Visual Studio Code extension.
 
 ### Libraries
 
 New features
 
-- Added `System.Collections.Generic`: `List<T>`, `Dictionary<TKey, TValue>`, the generic interfaces (`IList<T>`, `IDictionary<,>`, `IEnumerable<T>`, `ICollection<T>`, …), and `Comparer<T>`/`EqualityComparer<T>`.
-- Added `System.Threading.Tasks`: `Task`, `Task<T>`, `Task.Run`, `Task.Delay`, `Task.WhenAll`, `Task.WhenAny`, and `async`/`await` support.
-- Added cooperative cancellation: `CancellationToken`, `CancellationTokenSource`, and `OperationCanceledException`.
-- Added `System.Tuple` and `System.ValueTuple`, including tuple literals and deconstruction.
-- Added `System.Linq` (LINQ-to-Objects).
-- Added `System.Index` and `System.Range`, enabling from-end indexing and slicing (for example `array[^1]` and `array[1..3]`).
-- Added the generic delegates `Func<>`, `Predicate<T>`, `Comparison<T>`, and `Converter<T>`, plus the generic interfaces `IEquatable<T>` and `IComparable<T>`.
-- Added the support types behind modern C#: init-only setters and `record` types (`IsExternalInit`), `required` members, `[ModuleInitializer]`, and `[CallerArgumentExpression]`.
-- Added `Activator.CreateInstance<T>()`.
-- Added `HashSet<T>`.
-- Added `System.Console`.
-- Added `System.Device.Gpio`, `System.Device.I2c`, `System.Device.Pwm`, `System.Device.Spi`, `System.IO.Ports`, `System.Security.Cryptography`, `System.Xml`
-- Added desktop/dual-mode companion assemblies (GPIO, SPI, I2C, PWM, UART, ADC, SerialPort, Network, Cryptography, …) for PC-side build and test.
-- Added USB host webcam support.
-- Added `GpioController.WaitForEvent` and `StringBuilder.AppendFormat`.
-- Added XML documentation for the TinyCLR APIs — IntelliSense tooltips and summaries now appear in the editor.
+- `System.Collections.Generic`: `List<T>`, `Dictionary<TKey, TValue>`, the generic interfaces (`IList<T>`, `IDictionary<,>`, `IEnumerable<T>`, `ICollection<T>`, …), and `Comparer<T>`/`EqualityComparer<T>`.
+- `System.Threading.Tasks`: `Task`, `Task<T>`, `Task.Run`, `Task.Delay`, `Task.WhenAll`, `Task.WhenAny`, and `async`/`await` support.
+- cooperative cancellation: `CancellationToken`, `CancellationTokenSource`, and `OperationCanceledException`.
+- `System.Tuple` and `System.ValueTuple`, including tuple literals and deconstruction.
+- `System.Linq` (LINQ-to-Objects).
+- `System.Index` and `System.Range`, enabling from-end indexing and slicing (for example `array[^1]` and `array[1..3]`).
+- the generic delegates `Func<>`, `Predicate<T>`, `Comparison<T>`, and `Converter<T>`, plus the generic interfaces `IEquatable<T>` and `IComparable<T>`.
+- the support types behind modern C#: init-only setters and `record` types (`IsExternalInit`), `required` members, `[ModuleInitializer]`, and `[CallerArgumentExpression]`.
+- `Activator.CreateInstance<T>()`.
+- `HashSet<T>`.
+- `System.Console`.
+- `System.Device.Gpio`, `System.Device.I2c`, `System.Device.Pwm`, `System.Device.Spi`, `System.IO.Ports`, `System.Security.Cryptography`, `System.Xml`
+- desktop/dual-mode companion assemblies (GPIO, SPI, I2C, PWM, UART, ADC, SerialPort, Network, Cryptography, …) for PC-side build and test.
+- USB host webcam support.
+- `GpioController.WaitForEvent` and `StringBuilder.AppendFormat`.
+- XML documentation for the TinyCLR APIs — IntelliSense tooltips and summaries now appear in the editor.
 
 Fixes
 
@@ -50,14 +47,14 @@ Fixes
 
 New features
 
-- Added RLP (native runtime-loadable procedures) support.
-- Added the CLR runtime support behind the new library features: generics and generic collections (`List`, `Dictionary`), `Tuple`/`ValueTuple`, LINQ, and `Task`/async, with improved boxing, unboxing, and generic type handling.
-- Added a native Task controller for background and driver work.
-- Added C# 11 language support.
-- Added USB host hub support (cascaded hubs and multiple USB mass-storage sticks) and USB webcam capture (DCMI + DMA).
-- Added multiple simultaneous network interfaces, non-blocking network bring-up (`EnableAsync`), non-blocking DNS, socket `Shutdown`, and TCP listener support.
-- Added a hardware RNG source for the network security stack.
-- Added firmware support for reading and setting the RTC (exposed through the TinyCLR-Config CLI).
+- RLP (native runtime-loadable procedures) support.
+- the CLR runtime support behind the new library features: generics and generic collections (`List`, `Dictionary`), `Tuple`/`ValueTuple`, LINQ, and `Task`/async, with improved boxing, unboxing, and generic type handling.
+- a native Task controller for background and driver work.
+- C# 11 language support.
+- USB host hub support (cascaded hubs and multiple USB mass-storage sticks) and USB webcam capture (DCMI + DMA).
+- multiple simultaneous network interfaces, non-blocking network bring-up (`EnableAsync`), non-blocking DNS, socket `Shutdown`, and TCP listener support.
+- a hardware RNG source for the network security stack.
+- firmware support for reading and setting the RTC (exposed through the TinyCLR-Config CLI).
 
 Fixes & improvements
 
@@ -84,8 +81,8 @@ Known issues
 
 New features
 
-- Added Dual mode: A TinyCLR project can run in both device and Desktop mode (.NET Framework 4.8).
-- Added support for connecting to multiple devices / ports.
+- Dual mode: A TinyCLR project can run in both device and Desktop mode (.NET Framework 4.8).
+- support for connecting to multiple devices / ports.
 
 Fixes
 
@@ -102,10 +99,10 @@ Known issues
 
 New features
 
-- Added a command-line (CLI) mode for scripted/headless device operations.
-- Added export/generation of `.tca` configuration archive files.
-- Added support for connecting to and managing multiple devices.
-- Added get/set of the real-time clock (RTC) through the CLI.
+- a command-line (CLI) mode for scripted/headless device operations.
+- export/generation of `.tca` configuration archive files.
+- support for connecting to and managing multiple devices.
+- get/set of the real-time clock (RTC) through the CLI.
 
 Fixes & improvements
 
@@ -120,9 +117,6 @@ Known issues
 
 - Feature parity with the Visual Studio extension.
 
-Known issues
-
-- The Watch window is not yet supported.
 
 ## 2.4.1.1000 (2026-03-25) RTW
 
@@ -130,7 +124,6 @@ Known issues
 
 - Fixed multiple issues in floating-point string formatting (rounding, exponent, precision) 
 
----
 
 
 ## 2.4.0.1000 (2026-03-16) RTW

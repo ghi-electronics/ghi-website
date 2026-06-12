@@ -10,29 +10,29 @@ import TabItem from '@theme/TabItem';
 
 # Getting Started with TinyCLR
 
-Set up the TinyCLR programming environment, install the firmware on a SITCore device, and deploy your first program — a blinking LED. About 15 minutes start to finish.
+Install the dev tools, flash firmware to a SITCore board, and deploy your first blinking-LED program over USB. About 15 minutes start to finish.
 
 ## What is TinyCLR?
 
 TinyCLR is a .NET runtime for embedded products from GHI Electronics. You write C# in **Visual Studio** or **Visual Studio Code (VS Code)**, deploy and debug over USB, and the same code runs across every [SITCore hardware](hardware.mdx) form factor — chipsets, modules, single-board computers, and dev boards. No JTAG, no external programmer, no separate toolchain.
 
-Out of the box: modern C# (generics, async/await, top-level statements), step debugging in Visual Studio, full peripheral coverage (GPIO, SPI, I²C, UART, networking, displays, file system), security (TLS, secure boot, IP protection, encrypted firmware updates), and cloud SDKs for Azure and AWS. Browse the full [features list](features.mdx) for the deep dive.
+Out of the box: modern C# (generics, async/await, top-level statements), step debugging in your IDE, full peripheral coverage (GPIO, SPI, I²C, UART, networking, displays, file system), security (TLS, secure boot, IP protection, encrypted firmware updates), and cloud SDKs for Azure and AWS. Browse the full [features list](features.mdx) for the deep dive.
 
 TinyCLR is royalty-free for SITCore customers.
 
 ## What you'll need
 
-- A **SITCore board** — [chipset](soc.mdx), [module](som.mdx), [SBC](sbc.mdx), or [Dev Board](dev.mdx). For a fun, structured way to learn, the [Experimenter Kit](experimenter-kit.mdx) bundles a FEZ Bit with sensors, a robot, and a companion eBook.
-- A development PC with one of:
+- A **SITCore board** — [chipset](soc.mdx), [module](som.mdx), [SBC](sbc.mdx), or [Dev Board](dev.mdx). New to TinyCLR? The **FEZ Flea** is the cheapest entry at $14.95 — plug it into USB and you're running. For a structured hands-on path, the [Experimenter Kit](experimenter-kit.mdx) bundles a FEZ Bit with sensors, a robot, and a companion eBook.
+- A **Windows PC** with one of:
   - **Visual Studio 2026** — any edition works, including the free **Community Edition**
   - **VS Code** with the TinyCLR extension
 - A USB cable
 
+:::note
+**TinyCLR development requires Windows.** Both the Visual Studio and VS Code workflows depend on Windows-only deployment tooling — macOS and Linux aren't supported.
+:::
+
 No JTAG probe, no external programmer, no separate toolchain.
-
-## Pick your hardware
-
-TinyCLR runs on the SITCore family — chipsets, modules, single-board computers, and development boards. If you haven't picked one yet, see [SITCore Hardware](hardware.mdx) for the family overview. The **FEZ Flea** is the cheapest entry at $14.95 — plug it into USB and you're running.
 
 ## How a SITCore board starts up
 
@@ -66,7 +66,9 @@ For manual firmware updates without TinyCLR Config, see the [GHI Electronics Boo
 
 ## Build your first project
 
-Let's set up your IDE and blink an LED on a SITCore board. Pick the IDE you'd rather use — the steps switch to match.
+Let's get your IDE set up and the starter running. Pick the IDE you'd rather use — the steps switch to match. After the starter verifies, **both IDEs work the same** for everything that follows.
+
+### Set up and run the starter
 
 <Tabs groupId="ide">
 <TabItem value="vs" label="Visual Studio" default>
@@ -83,32 +85,7 @@ Let's set up your IDE and blink an LED on a SITCore board. Pick the IDE you'd ra
 
 6. Give the project a name and select a location, then click **Create**.
 
-7. Plug your board into USB and hit **Start** (or press **F5**). This will compile the code and deploy it to the device. The system will attempt to find an available device but you can go the `Project` → `Properties` to manually select the device and the transport. The template's starter code prints an incrementing counter to the **Output** window — confirming that your dev machine and the SITCore board are talking. Stop the program when you're satisfied.
-
-8. Now let's blink an LED. Install the **`GHIElectronics.TinyCLR.Devices.Gpio`** and **`GHIElectronics.TinyCLR.Pins`** NuGet packages.
-
-9. Replace `Program.cs` with:
-
-   ```csharp
-    using GHIElectronics.TinyCLR.Devices.Gpio;
-    using GHIElectronics.TinyCLR.Pins;
-    using System.Threading;
-
-    // Use SC20100.GpioPin.PE11 on the SC20100S Dev Board.
-    // Use SC20260.GpioPin.PB0 on the SCM20260D Dev Board.
-    var led = GpioController.GetDefault().OpenPin(FEZFlea.GpioPin.Led);
-    led.SetDriveMode(GpioPinDriveMode.Output);
-
-    while (true) {
-        led.Write(GpioPinValue.High);
-        Thread.Sleep(100);
-
-        led.Write(GpioPinValue.Low);
-        Thread.Sleep(100);
-    }
-   ```
-
-10. Press **F5** again. The on-board LED starts blinking.
+7. Plug your board into USB and hit **Start** (or press **F5**). Visual Studio compiles, finds your device, and deploys. (Need to pick the device manually? Use `Project` → `Properties`.) The template's starter code prints an incrementing counter to the **Output** window — confirming that your dev machine and the SITCore board are talking. Stop the program when you're satisfied.
 
 </TabItem>
 <TabItem value="vscode" label="VS Code">
@@ -123,37 +100,40 @@ Let's set up your IDE and blink an LED on a SITCore board. Pick the IDE you'd ra
 
 5. Choose a folder and project name, then let the extension scaffold the project.
 
-6. Plug your board into USB and press **F5**. The extension will search for attached devices and show options in the Command Palette.
-
-7.  The default template code prints an incrementing counter to the **Debug Console** — confirming that your dev machine and the SITCore board are talking. Stop the program when you're satisfied.
-
-8. Now let's blink an LED. Install the **`GHIElectronics.TinyCLR.Devices.Gpio`** and **`GHIElectronics.TinyCLR.Pins`** NuGet packages — the extension exposes a package-manager command in the Command Palette.
-
-9. Replace `Program.cs` with:
-
-   ```csharp
-    using GHIElectronics.TinyCLR.Devices.Gpio;
-    using GHIElectronics.TinyCLR.Pins;
-    using System.Threading;
-
-    // Use SC20100.GpioPin.PE11 on the SC20100S Dev Board.
-    // Use SC20260.GpioPin.PB0 on the SCM20260D Dev Board.
-    var led = GpioController.GetDefault().OpenPin(FEZFlea.GpioPin.Led);
-    led.SetDriveMode(GpioPinDriveMode.Output);
-
-    while (true) {
-        led.Write(GpioPinValue.High);
-        Thread.Sleep(100);
-
-        led.Write(GpioPinValue.Low);
-        Thread.Sleep(100);
-    }
-   ```
-
-10. Press **F5** again. The on-board LED starts blinking.
+6. Plug your board into USB and press **F5**. The extension finds the device (showing options in the Command Palette if more than one is attached), compiles, and deploys. The template's starter code prints an incrementing counter to the **Debug Console** — confirming that your dev machine and the SITCore board are talking. Stop the program when you're satisfied.
 
 </TabItem>
 </Tabs>
+
+### Blink an LED
+
+The steps below work the same in either IDE.
+
+1. Install the **`GHIElectronics.TinyCLR.Devices.Gpio`** and **`GHIElectronics.TinyCLR.Pins`** NuGet packages.
+
+2. Replace `Program.cs` with:
+
+   ```csharp
+   using GHIElectronics.TinyCLR.Devices.Gpio;
+   using GHIElectronics.TinyCLR.Pins;
+   using System.Threading;
+
+   // Adjust the pin for your board. For example:
+   //   SC20100S Dev Board: SC20100.GpioPin.PE11
+   //   SCM20260D Dev Board: SC20260.GpioPin.PB0
+   var led = GpioController.GetDefault().OpenPin(FEZFlea.GpioPin.Led);
+   led.SetDriveMode(GpioPinDriveMode.Output);
+
+   while (true) {
+       led.Write(GpioPinValue.High);
+       Thread.Sleep(100);
+
+       led.Write(GpioPinValue.Low);
+       Thread.Sleep(100);
+   }
+   ```
+
+3. Press **F5** again. The on-board LED starts blinking.
 
 ## What's next
 

@@ -38,7 +38,7 @@ export const faqSchema = {
       name: 'Do I need a Windows PC to develop TinyCLR applications?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Visual Studio is Windows-only, so for the classic Visual Studio workflow you need a Windows PC. Visual Studio Code support was added in TinyCLR v3 and runs on Linux, macOS, and Windows — confirm the current platform support on the Downloads page.',
+        text: 'Yes. TinyCLR development requires Windows. Both the Visual Studio workflow and the Visual Studio Code workflow depend on Windows-only deployment tooling — macOS and Linux are not supported for now.',
       },
     },
     {
@@ -158,6 +158,13 @@ Common questions about TinyCLR, SITCore, and running C# on embedded hardware. Do
 <summary>Can I run C# on a microcontroller?</summary>
 
 Yes. TinyCLR is a full .NET runtime that runs C# directly on ARM microcontrollers in the SITCore family. You write C# in Visual Studio or VS Code, deploy over USB, debug with real breakpoints, and get garbage collection, threading, exceptions, and the .NET base class library — on hardware that costs as little as **$14.95** ([FEZ Flea](sbc.mdx)).
+
+</details>
+
+<details>
+<summary>Do I need a Windows PC to develop TinyCLR applications?</summary>
+
+**Yes — TinyCLR development requires Windows.** Both the Visual Studio workflow and the VS Code workflow depend on Windows-only deployment tooling; macOS and Linux are not supported for now.
 
 </details>
 
