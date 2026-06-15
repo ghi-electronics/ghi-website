@@ -59,7 +59,7 @@ Power.Sleep();
 Debug.WriteLine("Woken up");
 
 // Handler can be empty — its existence is what arms the interrupt for wake-up.
-static void LdrButton_ValueChanged(GpioPin sender, GpioPinValueChangedEventArgs e) { }
+void LdrButton_ValueChanged(GpioPin sender, GpioPinValueChangedEventArgs e) { }
 ```
 
 Sleep for a specific time using the RTC:

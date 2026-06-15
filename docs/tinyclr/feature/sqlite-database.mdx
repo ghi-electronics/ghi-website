@@ -38,7 +38,7 @@ using (var db = new SQLiteDatabase()){
     PrintResult(db.ExecuteQuery("SELECT Var1, Var2, Var3 FROM Test WHERE Var2 BETWEEN 24 AND 26;"));
 }
 
-static void PrintResult(ResultSet result){
+void PrintResult(ResultSet result){
     Debug.WriteLine(result.RowCount + " row(s), " + result.ColumnCount + " column(s)");
 
     foreach (ArrayList row in result.Data){

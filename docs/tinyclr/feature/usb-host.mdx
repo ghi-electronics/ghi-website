@@ -25,8 +25,8 @@ using System.Threading;
 using GHIElectronics.TinyCLR.Devices.Storage;
 using GHIElectronics.TinyCLR.Devices.UsbHost;
 using GHIElectronics.TinyCLR.Devices.UsbHost.Descriptors;
-using GHIElectronics.TinyCLR.IO;
 using GHIElectronics.TinyCLR.Pins;
+using GHIElectronics.TinyCLR.IO;
 
 var usbHostController = UsbHostController.GetDefault();
 usbHostController.OnConnectionChangedEvent += OnConnectionChanged;
@@ -34,7 +34,7 @@ usbHostController.Enable();
 
 Thread.Sleep(Timeout.Infinite);
 
-static void OnConnectionChanged(UsbHostController sender, DeviceConnectionEventArgs e){
+void OnConnectionChanged(UsbHostController sender, DeviceConnectionEventArgs e){
     Debug.WriteLine("Id=" + e.Id + " interface=" + e.InterfaceIndex + " port=" + e.PortNumber
                   + " type=" + e.Type + " vid=" + e.VendorId + " pid=" + e.ProductId);
 
@@ -52,7 +52,7 @@ static void OnConnectionChanged(UsbHostController sender, DeviceConnectionEventA
     }
 }
 
-static void HandleConnect(DeviceConnectionEventArgs e){
+void HandleConnect(DeviceConnectionEventArgs e){
     switch (e.Type){
         case BaseDevice.DeviceType.Keyboard:
             var keyboard = new Keyboard(e.Id, e.InterfaceIndex);
@@ -89,7 +89,8 @@ static void HandleConnect(DeviceConnectionEventArgs e){
 When a USB stick or external drive is detected, mount it through `StorageController` and use it like any other [file system](file-system.mdx):
 
 ```csharp
-static void MountMassStorage(){
+void MountMassStorage()
+{
     var storage = StorageController.FromName(SC20260.StorageController.UsbHostMassStorage);
     var drive = FileSystem.Mount(storage.Hdc);
     var info = new DriveInfo(drive.Name);
@@ -109,7 +110,8 @@ The mount lives until `FileSystem.Unmount(...)` (typically called on the `Discon
 If a device's class doesn't match `Keyboard`, `Mouse`, `Joystick`, or `MassStorage`, you can talk to it as a **raw USB device** — reading descriptors, opening pipes, and exchanging bytes directly. Useful for proprietary HID devices, custom hardware, or testing unusual USB peripherals.
 
 ```csharp
-static void ReadRawDevice(DeviceConnectionEventArgs e){
+void ReadRawDevice(DeviceConnectionEventArgs e)
+{
     var raw = new RawDevice(e.Id, e.InterfaceIndex, e.Type);
 
     var deviceDescriptor = raw.GetDeviceDescriptor();
@@ -135,11 +137,13 @@ static void ReadRawDevice(DeviceConnectionEventArgs e){
     var data = new byte[8];
     var read = pipe.Transfer(data);
 
-    if (read > 0){
+    if (read > 0)
+    {
         Debug.WriteLine("Raw device read " + read + " bytes: "
                       + data[0] + "," + data[1] + "," + data[2] + "," + data[3]);
     }
-    else{
+    else
+    {
         Debug.WriteLine("No data available");
     }
 

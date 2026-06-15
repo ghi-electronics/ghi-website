@@ -30,7 +30,7 @@ var pin = new Pair<int, string>(7, "PB7");            // same class, different t
 A method can have its own type parameters, usually inferred from the arguments:
 
 ```csharp
-static void Swap<T>(ref T a, ref T b) {
+void Swap<T>(ref T a, ref T b) {
     var t = a; a = b; b = t;
 }
 

@@ -210,7 +210,7 @@ typedef struct {
     volatile uint8_t  ledState;
 } TaskState;
 
-static void OnTaskTick(void* arg) {
+void OnTaskTick(void* arg) {
     TaskState* s = (TaskState*)arg;
     s->tickCount++;
     s->ledState ^= 1;
@@ -264,7 +264,7 @@ RLP_EXPORT int EventFire(void** args) {
 ```
 
 ```csharp
-static void OnRlpEvent(uint data) {
+void OnRlpEvent(uint data) {
     Debug.WriteLine("RLP event: 0x" + data.ToString("X8"));
 }
 
@@ -285,7 +285,7 @@ Wire a button to an LED entirely in native code. The ISR runs in completion-engi
 // template_src.c
 typedef struct { uint32_t btnPin, ledPin; } BtnState;
 
-static void OnButtonChange(uint32_t pin, uint32_t state, void* param) {
+void OnButtonChange(uint32_t pin, uint32_t state, void* param) {
     BtnState* s = (BtnState*)param;
     RLP_Gpio_Write(s->ledPin, state ? 0 : 1);   // pull-up button: pressed (0) → LED on
 }
