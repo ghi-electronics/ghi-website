@@ -83,7 +83,7 @@ mjpegDecoder.StartDecode(stream);       // Non-blocking — frames arrive via th
 
 Thread.Sleep(Timeout.Infinite);
 
-static void MjpegDecoder_FrameDecodedEvent(byte[] data) {
+void MjpegDecoder_FrameDecodedEvent(byte[] data) {
     using (var image = new Bitmap(data, 0, data.Length, BitmapImageType.Jpeg)) {
         if (graphic != null) {
             graphic.DrawImage(image, 0, 0, image.Width, image.Height);

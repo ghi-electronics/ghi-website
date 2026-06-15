@@ -28,7 +28,7 @@ TinyCLR supports both **static** and **dynamic** IP. With either method, a `Netw
 ```csharp
 networkController.NetworkAddressChanged += NetworkController_NetworkAddressChanged;
 
-static void NetworkController_NetworkAddressChanged(NetworkController sender, NetworkAddressChangedEventArgs e) {
+void NetworkController_NetworkAddressChanged(NetworkController sender, NetworkAddressChangedEventArgs e) {
     var ipProperties = sender.GetIPProperties();
 }
 ```

@@ -39,11 +39,10 @@ PWM is perfect for dimming an LED or controlling the speed of a motor. When the 
 <TabItem value="netiot" label=".NET IoT API" default>
 
 ```csharp
-using System.Threading;
 using System.Device.Pwm;
 using GHIElectronics.TinyCLR.Pins;
 
-using PwmChannel led = PwmChannel.Create(FEZBit.SpiBus.Chip0, FEZBit.Timer.Pwm.Controller1.Led, 10000, 0.5);
+using PwmChannel led = PwmChannel.Create(FEZBit.Timer.Pwm.Controller1.Chip, FEZBit.Timer.Pwm.Controller1.Led, 10000, 0.5);
 
 double duty = 0.5, speed = 0.01;
 
@@ -105,52 +104,46 @@ The example below targets the SC20100S Dev Board.
 
 ```csharp
 using System.Device.Pwm;
-using System.Threading;
 using GHIElectronics.TinyCLR.Pins;
 
-class Program {
-    const int NOTE_C = 261;
-    const int NOTE_D = 294;
-    const int NOTE_E = 330;
-    const int NOTE_F = 349;
-    const int NOTE_G = 392;
+const int NOTE_C = 261;
+const int NOTE_D = 294;
+const int NOTE_E = 330;
+const int NOTE_F = 349;
+const int NOTE_G = 392;
 
-    const int WHOLE_DURATION = 2000;
-    const int EIGHTH = WHOLE_DURATION / 8;
-    const int QUARTER = WHOLE_DURATION / 4;
-    const int QUARTERDOT = WHOLE_DURATION / 3;
-    const int HALF = WHOLE_DURATION / 2;
-    const int WHOLE = WHOLE_DURATION;
+const int WHOLE_DURATION = 2000;
+const int EIGHTH = WHOLE_DURATION / 8;
+const int QUARTER = WHOLE_DURATION / 4;
+const int QUARTERDOT = WHOLE_DURATION / 3;
+const int HALF = WHOLE_DURATION / 2;
+const int WHOLE = WHOLE_DURATION;
 
     // Make sure the two arrays match in length — each duration corresponds to one note.
-    private static int[] note = { NOTE_E, NOTE_E, NOTE_F, NOTE_G, NOTE_G, NOTE_F, NOTE_E,
-                                  NOTE_D, NOTE_C, NOTE_C, NOTE_D, NOTE_E, NOTE_E, NOTE_D,
-                                  NOTE_D, NOTE_E, NOTE_E, NOTE_F, NOTE_G, NOTE_G, NOTE_F,
-                                  NOTE_E, NOTE_D, NOTE_C, NOTE_C, NOTE_D, NOTE_E, NOTE_D,
-                                  NOTE_C, NOTE_C };
+int[] note = { NOTE_E, NOTE_E, NOTE_F, NOTE_G, NOTE_G, NOTE_F, NOTE_E,
+               NOTE_D, NOTE_C, NOTE_C, NOTE_D, NOTE_E, NOTE_E, NOTE_D,
+               NOTE_D, NOTE_E, NOTE_E, NOTE_F, NOTE_G, NOTE_G, NOTE_F,
+               NOTE_E, NOTE_D, NOTE_C, NOTE_C, NOTE_D, NOTE_E, NOTE_D,
+               NOTE_C, NOTE_C };
 
-    private static int[] duration = { QUARTER, QUARTER, QUARTER, QUARTER, QUARTER, QUARTER,
-                                      QUARTER, QUARTER, QUARTER, QUARTER, QUARTER, QUARTER,
-                                      QUARTERDOT, EIGHTH, HALF, QUARTER, QUARTER, QUARTER, QUARTER,
-                                      QUARTER, QUARTER, QUARTER, QUARTER, QUARTER, QUARTER,
-                                      QUARTER, QUARTER, QUARTERDOT, EIGHTH, WHOLE };
+int[] duration = { QUARTER, QUARTER, QUARTER, QUARTER, QUARTER, QUARTER,
+                   QUARTER, QUARTER, QUARTER, QUARTER, QUARTER, QUARTER,
+                   QUARTERDOT, EIGHTH, HALF, QUARTER, QUARTER, QUARTER, QUARTER,
+                   QUARTER, QUARTER, QUARTER, QUARTER, QUARTER, QUARTER,
+                   QUARTER, QUARTER, QUARTERDOT, EIGHTH, WHOLE };
 
-    private static void Main() {
-        // SC20100.Timer.Pwm.Controller3 → chip 2
-        using PwmChannel toneOut = PwmChannel.Create(2, FEZBit.Timer.Pwm.Controller3.Buzzer, NOTE_C, 0.5);
+using PwmChannel toneOut = PwmChannel.Create(FEZBit.Timer.Pwm.Controller3.Chip, FEZBit.Timer.Pwm.Controller3.Buzzer, NOTE_C, 0.5);
 
-        while (true) {
-            toneOut.Start();
+while (true){
+    toneOut.Start();
 
-            for (int i = 0; i < note.Length; i++) {
-                toneOut.Frequency = note[i];
-                Thread.Sleep(duration[i]);
-            }
-
-            toneOut.Stop();
-            Thread.Sleep(1000);
-        }
+    for (int i = 0; i < note.Length; i++){
+        toneOut.Frequency = note[i];
+        Thread.Sleep(duration[i]);
     }
+
+    toneOut.Stop();
+    Thread.Sleep(1000);
 }
 ```
 
@@ -158,54 +151,49 @@ class Program {
 <TabItem value="tinyclr" label="TinyCLR API">
 
 ```csharp
-using System.Threading;
 using GHIElectronics.TinyCLR.Devices.Pwm;
 using GHIElectronics.TinyCLR.Pins;
 
-class Program{
-    const int NOTE_C = 261;
-    const int NOTE_D = 294;
-    const int NOTE_E = 330;
-    const int NOTE_F = 349;
-    const int NOTE_G = 392;
+const int NOTE_C = 261;
+const int NOTE_D = 294;
+const int NOTE_E = 330;
+const int NOTE_F = 349;
+const int NOTE_G = 392;
 
-    const int WHOLE_DURATION = 2000;
-    const int EIGHTH = WHOLE_DURATION / 8;
-    const int QUARTER = WHOLE_DURATION / 4;
-    const int QUARTERDOT = WHOLE_DURATION / 3;
-    const int HALF = WHOLE_DURATION / 2;
-    const int WHOLE = WHOLE_DURATION;
+const int WHOLE_DURATION = 2000;
+const int EIGHTH = WHOLE_DURATION / 8;
+const int QUARTER = WHOLE_DURATION / 4;
+const int QUARTERDOT = WHOLE_DURATION / 3;
+const int HALF = WHOLE_DURATION / 2;
+const int WHOLE = WHOLE_DURATION;
 
     // Make sure the two arrays match in length — each duration corresponds to one note.
-    private static int[] note = { NOTE_E, NOTE_E, NOTE_F, NOTE_G, NOTE_G, NOTE_F, NOTE_E,
-                                  NOTE_D, NOTE_C, NOTE_C, NOTE_D, NOTE_E, NOTE_E, NOTE_D,
-                                  NOTE_D, NOTE_E, NOTE_E, NOTE_F, NOTE_G, NOTE_G, NOTE_F,
-                                  NOTE_E, NOTE_D, NOTE_C, NOTE_C, NOTE_D, NOTE_E, NOTE_D,
-                                  NOTE_C, NOTE_C };
+int[] note = { NOTE_E, NOTE_E, NOTE_F, NOTE_G, NOTE_G, NOTE_F, NOTE_E,
+               NOTE_D, NOTE_C, NOTE_C, NOTE_D, NOTE_E, NOTE_E, NOTE_D,
+               NOTE_D, NOTE_E, NOTE_E, NOTE_F, NOTE_G, NOTE_G, NOTE_F,
+               NOTE_E, NOTE_D, NOTE_C, NOTE_C, NOTE_D, NOTE_E, NOTE_D,
+               NOTE_C, NOTE_C };
 
-    private static int[] duration = { QUARTER, QUARTER, QUARTER, QUARTER, QUARTER, QUARTER,
-                                      QUARTER, QUARTER, QUARTER, QUARTER, QUARTER, QUARTER,
-                                      QUARTERDOT, EIGHTH, HALF, QUARTER, QUARTER, QUARTER, QUARTER,
-                                      QUARTER, QUARTER, QUARTER, QUARTER, QUARTER, QUARTER,
-                                      QUARTER, QUARTER, QUARTERDOT, EIGHTH, WHOLE };
+int[] duration = { QUARTER, QUARTER, QUARTER, QUARTER, QUARTER, QUARTER,
+                   QUARTER, QUARTER, QUARTER, QUARTER, QUARTER, QUARTER,
+                   QUARTERDOT, EIGHTH, HALF, QUARTER, QUARTER, QUARTER, QUARTER,
+                   QUARTER, QUARTER, QUARTER, QUARTER, QUARTER, QUARTER,
+                   QUARTER, QUARTER, QUARTERDOT, EIGHTH, WHOLE };
 
-    private static void Main(){
-        var controller = PwmController.FromName(FEZBit.Timer.Pwm.Controller3.Id);
-        var toneOut = controller.OpenChannel(FEZBit.Timer.Pwm.Controller3.Buzzer);
-        toneOut.SetActiveDutyCyclePercentage(0.5);
+var controller = PwmController.FromName(FEZBit.Timer.Pwm.Controller3.Id);
+var toneOut = controller.OpenChannel(FEZBit.Timer.Pwm.Controller3.Buzzer);
+toneOut.SetActiveDutyCyclePercentage(0.5);
 
-        while (true){
-            toneOut.Start();
+while (true){
+    toneOut.Start();
 
-            for (int i = 0; i < note.Length; i++){
-                controller.SetDesiredFrequency(note[i]);
-                Thread.Sleep(duration[i]);
-            }
-
-            toneOut.Stop();
-            Thread.Sleep(1000);
-        }
+    for (int i = 0; i < note.Length; i++){
+        controller.SetDesiredFrequency(note[i]);
+        Thread.Sleep(duration[i]);
     }
+
+    toneOut.Stop();
+    Thread.Sleep(1000);
 }
 ```
 

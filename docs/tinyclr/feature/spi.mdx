@@ -49,7 +49,7 @@ NuGet packages:
 using System.Device.Spi;
 using GHIElectronics.TinyCLR.Pins;
 
-var settings = new SpiConnectionSettings(FEZBit.SpiBus.Chip3, FEZBit.GpioPin.P16){
+var settings = new SpiConnectionSettings(FEZBit.SpiBus.DisplayBusId, FEZBit.GpioPin.P16){
     Mode = SpiMode.Mode1,
     ClockFrequency = 4_000_000,
 };
@@ -117,7 +117,7 @@ TinyCLR supports switching between **most significant bit first (MSb)** and **le
 <TabItem value="netiot" label=".NET IoT API" default>
 
 ```csharp
-var settings = new SpiConnectionSettings(FEZBit.SpiBus.Chip3, FEZBit.GpioPin.P16) {
+var settings = new SpiConnectionSettings(FEZBit.SpiBus.EdgeBusId, FEZBit.GpioPin.P16) {
     DataFlow = DataFlow.MsbFirst,   // or DataFlow.LsbFirst
 };
 ```

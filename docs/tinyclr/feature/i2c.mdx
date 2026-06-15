@@ -45,7 +45,7 @@ The master is the host that initiates every transfer. A TinyCLR board is the mas
 using System.Device.I2c;
 using GHIElectronics.TinyCLR.Pins;
 
-var settings = new I2cConnectionSettings(FEZBit.I2cBus.Chip0, 0x1D);
+var settings = new I2cConnectionSettings(FEZBit.I2cBus.EdgeBusId, 0x1D);
 
 using I2cDevice device = I2cDevice.Create(settings);
 
@@ -61,7 +61,7 @@ using GHIElectronics.TinyCLR.Devices.I2c;
 using GHIElectronics.TinyCLR.Pins;
 
 var settings = new I2cConnectionSettings(0x1D, 100_000);    // Slave address and bus speed.
-var controller = I2cController.FromName(FEZBit.I2cBus.Chip0);
+var controller = I2cController.FromName(FEZBit.I2cBus.EdgeBusId);
 var device = controller.GetDevice(settings);
 
 device.Write(new byte[] { 1, 2 });          // Send-only.

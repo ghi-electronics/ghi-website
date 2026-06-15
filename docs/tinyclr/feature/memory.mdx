@@ -80,7 +80,7 @@ Some objects represent **physical hardware**, not just memory — a GPIO pin, a 
 The example below opens an LED pin in a method, then exits without releasing it. The next attempt to open the same pin throws because it's still held by the orphaned reference:
 
 ```csharp
-static void Main() {
+void Main() {
     BadExample();
 
     // Throws — PE11 is already open.
@@ -89,7 +89,7 @@ static void Main() {
     led.Write(GpioPinValue.Low);
 }
 
-static void BadExample() {
+void BadExample() {
     var led = GpioController.GetDefault().OpenPin(SC20100.GpioPin.PE11);
     led.SetDriveMode(GpioPinDriveMode.Output);
     led.Write(GpioPinValue.High);
@@ -100,7 +100,7 @@ static void BadExample() {
 Calling `.Dispose()` (or wrapping in a `using` block) releases the pin so it can be opened again:
 
 ```csharp
-static void OkExample() {
+void OkExample() {
     using (var led = GpioController.GetDefault().OpenPin(SC20100.GpioPin.PE11)) {
         led.SetDriveMode(GpioPinDriveMode.Output);
         led.Write(GpioPinValue.High);
@@ -112,21 +112,17 @@ static void OkExample() {
 For pins (and other hardware) you'll use repeatedly across methods, the cleanest pattern is to **open once at startup, store as a class field, and reuse**:
 
 ```csharp
-class Program {
-    static GpioPin led;     // Accessible from anywhere in Program.
+GpioPin led; // Accessible from anywhere in Program.
 
-    static void Main() {
-        led = GpioController.GetDefault().OpenPin(SC20100.GpioPin.PE11);
-        led.SetDriveMode(GpioPinDriveMode.Output);
+led = GpioController.GetDefault().OpenPin(SC20100.GpioPin.PE11);
+led.SetDriveMode(GpioPinDriveMode.Output);
 
-        UseLed();
+UseLed();
 
-        led.Write(GpioPinValue.Low);
-    }
+led.Write(GpioPinValue.Low);
 
-    static void UseLed() {
-        led.Write(GpioPinValue.High);
-    }
+void UseLed(){
+    led.Write(GpioPinValue.High);
 }
 ```
 
