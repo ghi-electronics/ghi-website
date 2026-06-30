@@ -14,6 +14,11 @@ title: Release Notes
 
 - No changes. Firmware version 3.0.0.2000 remains the recommended version.
 
+Known issues
+
+- SC20xxx: Webcam reconnect fails after disconnect when connected through a hub.
+- USB host hubs do not support low-speed (LS) devices. To use a mouse or keyboard, connect it directly to the USB port or use a full-speed device instead.
+
 ### Visual Studio Extension
 
 - Fixed Visual Studio freezing/closing when deploying to a low-memory device
@@ -24,6 +29,9 @@ title: Release Notes
 Known issues
 
 - An exclamation mark may still appear due to duplicate NuGet packages when using the PackageReference configuration, but it is harmless and can be safely ignored.
+- Users need to add the GHIElectronics.TinyCLR.Drawing NuGet package when adding a bitmap or image resource (if it has not already been added to the project).
+- Users need to run Run Custom Tool on the resource to (re)generate the GetBytes() / GetBitmap() accessors.
+- Desktop mode does not support Debug.WriteLine; use Console.WriteLine instead.
 
 ### TinyCLR Config
 
