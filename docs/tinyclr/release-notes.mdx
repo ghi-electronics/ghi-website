@@ -4,6 +4,35 @@ title: Release Notes
 
 ![TinyCLR Logo](/img/docs/tinyclr-logo.png)
 
+## 3.0.0.3000 (2026-06-29) Prerelease
+
+### Libraries
+
+- Support HTTPS with no CA certificate option
+
+### Firmware
+
+- No changes. Firmware version 3.0.0.2000 remains the recommended version.
+
+### Visual Studio Extension
+
+- Fixed Visual Studio freezing/closing when deploying to a low-memory device
+- Support packages.config and PackageReference
+- Ctrl+F5 now deploys the application and reboots the device immediately. There is no longer a 60-second wait.
+- The same NuGet package can be used on both desktop and device projects, as long as it is compatible with the target device.
+
+Known issues
+
+- An exclamation mark may still appear due to duplicate NuGet packages when using the PackageReference configuration, but it is harmless and can be safely ignored.
+
+### TinyCLR Config
+
+- Build-tca now supports PackageReference 
+
+### Visual Studio Code extension
+
+- Update the fixes from Visual Studio extension. 
+
 ## 3.0.0.2000 (2026-06-12) Prerelease
 
 TinyCLR OS 3.0 is a major release. The headline change is broad runtime and library support for modern C#: generics and generic collections, `Task`/async,

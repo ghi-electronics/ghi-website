@@ -119,6 +119,7 @@ The steps below work the same in either IDE.
    using System.Threading;
 
    // Adjust the pin for your board. For example:
+   //   SCM13048Q Dev Board: SC13048.GpioPin.PA8
    //   SC20100S Dev Board: SC20100.GpioPin.PE11
    //   SCM20260D Dev Board: SC20260.GpioPin.PB0
    var led = GpioController.GetDefault().OpenPin(FEZFlea.GpioPin.Led);
