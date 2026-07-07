@@ -4,9 +4,11 @@
   "families": [
     {
       "id": "sc20",
-      "match": [
-        "SC20"
-      ],
+      "name": "SITCore SC20xxx",
+      "usb": {
+        "vid": "0x1B9F",
+        "pid": "0x5010"
+      },
       "version": "3.0.0.2000",
       "deviceVersion": "3.0.0.20",
       "value": 50331668,
@@ -16,9 +18,11 @@
     },
     {
       "id": "sc13",
-      "match": [
-        "SC13"
-      ],
+      "name": "SITCore SC13xxx",
+      "usb": {
+        "vid": "0x1B9F",
+        "pid": "0x5012"
+      },
       "version": "3.0.0.2000",
       "deviceVersion": "3.0.0.20",
       "value": 50331668,

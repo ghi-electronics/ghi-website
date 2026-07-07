@@ -4,7 +4,7 @@ REM  build_tinyclr_api.bat
 REM
 REM  Regenerates the TinyCLR-specific generated artifacts and (as always with the
 REM  cloud build) leaves you to COMMIT the results:
-REM    1. static\bin\fw\firmware.json  -- the firmware manifest the Visual Studio
+REM    1. static\bin\fw\tinyclr_firmware.json  -- the firmware manifest the Visual Studio
 REM       extension fetches to detect out-of-date devices. Derived from the
 REM       Firmware table in docs\tinyclr\downloads.mdx (only needs Node).
 REM    2. docs\tinyclr\api             -- the API reference, from the C# source in
@@ -35,7 +35,7 @@ IF ERRORLEVEL 1 (
 REM --- Firmware manifest -----------------------------------------------------
 REM  Only reads docs\tinyclr\downloads.mdx, so run it first, independent of the
 REM  TinyCLR-Libraries check below.
-ECHO [build_tinyclr_api] Generating firmware manifest into static\bin\fw\firmware.json ...
+ECHO [build_tinyclr_api] Generating firmware manifest into static\bin\fw\tinyclr_firmware.json ...
 node "%WEB_ROOT%scripts\generate-firmware-manifest.mjs"
 IF ERRORLEVEL 1 (
   ECHO [build_tinyclr_api] FAILED ^(firmware manifest^).
