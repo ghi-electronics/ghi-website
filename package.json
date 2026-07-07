@@ -5,6 +5,7 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "gen-api": "node scripts/generate-api.mjs",
+    "gen-firmware": "node scripts/generate-firmware-manifest.mjs",
     "start": "docusaurus start",
     "start:proxy": "concurrently \"npm run proxy\" \"npm run start\"",
     "proxy": "node proxy-server.js",

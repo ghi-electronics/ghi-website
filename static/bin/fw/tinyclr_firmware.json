@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "source": "docs/tinyclr/downloads.mdx",
+  "families": [
+    {
+      "id": "sc20",
+      "name": "SITCore SC20xxx",
+      "usb": {
+        "vid": "0x1B9F",
+        "pid": "0x5010"
+      },
+      "version": "3.0.0.2000",
+      "deviceVersion": "3.0.0.20",
+      "value": 50331668,
+      "date": "2026-06-11",
+      "url": "/bin/fw/sitcore-sc20-firmware-v3.0.0.2000.ghi",
+      "md5": "83A54719D75638EC98B37F04A11B0DD3"
+    },
+    {
+      "id": "sc13",
+      "name": "SITCore SC13xxx",
+      "usb": {
+        "vid": "0x1B9F",
+        "pid": "0x5012"
+      },
+      "version": "3.0.0.2000",
+      "deviceVersion": "3.0.0.20",
+      "value": 50331668,
+      "date": "2026-06-11",
+      "url": "/bin/fw/sitcore-sc13-firmware-v3.0.0.2000.ghi",
+      "md5": "9DA41FEA790C4E6A78BCDB5A75BE3188"
+    }
+  ]
+}
