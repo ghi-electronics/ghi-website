@@ -2255,3 +2255,13 @@ a.pillar-card:hover::after {
 .theme-doc-markdown h2:first-of-type {
   margin-top: 2rem;
 }
+
+/* Center every image in doc content (docs/tinyclr/*, docs/endpoint/*), including
+   ones wrapped in a link (e.g. pinout images linking to a PDF). Scoped to the
+   docs markdown wrapper so marketing-page components with their own image
+   layout (.split img, .pillar-card__image img, etc.) are unaffected. */
+.theme-doc-markdown img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

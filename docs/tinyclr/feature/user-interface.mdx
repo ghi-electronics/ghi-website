@@ -179,6 +179,47 @@ panel.Children.Add(txt2);
 panel.Children.Add(rect);
 ```
 
+### Grid
+
+Row/column layout with pixel, `Auto`, and star (weighted) sizing — a WPF-style subset. Assign children to cells with `Grid.SetRow(...)` / `Grid.SetColumn(...)`; there is no row/column spanning — each child occupies exactly one cell.
+
+```csharp
+var grid = new Grid();
+grid.RowDefinitions.Add(GridLength.Auto());
+grid.RowDefinitions.Add(GridLength.Star(1));
+grid.ColumnDefinitions.Add(GridLength.Star(2));
+grid.ColumnDefinitions.Add(GridLength.Pixel(120));
+
+var title = new Text(font, "Title");
+Grid.SetColumn(title, 0);
+grid.Children.Add(title);
+
+var button = new Button { Child = new Text(font, "OK") };
+Grid.SetRow(button, 1);
+Grid.SetColumn(button, 1);
+grid.Children.Add(button);
+```
+
+### DockPanel
+
+Docks each child to an edge of the space left by the previously docked children — `Dock.Left`, `Top`, `Right`, or `Bottom`. When `LastChildFill` is true (the default), the last child fills whatever remains in the center.
+
+```csharp
+var dockPanel = new DockPanel();
+
+var header = new Text(font, "Header") { HorizontalAlignment = HorizontalAlignment.Center };
+DockPanel.SetDock(header, Dock.Top);
+
+var sidebar = new Rectangle(80, 200) { Fill = new SolidColorBrush(Colors.Gray) };
+DockPanel.SetDock(sidebar, Dock.Left);
+
+var content = new Text(font, "Fills the remaining space");
+
+dockPanel.Children.Add(header);
+dockPanel.Children.Add(sidebar);
+dockPanel.Children.Add(content); // last child fills the center
+```
+
 ### Canvas
 
 Pixel-precise child placement. Position with `Canvas.SetLeft(...)`, `Canvas.SetTop(...)`, `Canvas.SetRight(...)`, `Canvas.SetBottom(...)`. `Width`/`Height` are *requested* dimensions; the actual size is constrained by the parent. Read `ActualWidth`/`ActualHeight` for the final size.
@@ -225,6 +266,31 @@ canvas.Children.Add(border);
 ```
 :::
 
+### GroupBox
+
+A titled frame around a single child — draws a labeled border with the header above the content.
+
+```csharp
+var groupBox = new GroupBox {
+    Header = "Settings",
+    Font = font,
+    Child = new Text(font, "Inside the group"),
+};
+```
+
+### Expander
+
+A header with an expand/collapse chevron; tapping the header shows or hides the single child content.
+
+```csharp
+var expander = new Expander {
+    Header = "Advanced",
+    Font = font,
+    Child = new Text(font, "Hidden until expanded"),
+    IsExpanded = false,
+};
+```
+
 ### Button
 
 Accepts taps (touch screen) or selects (hardware buttons). Needs a `Child` — typically text — to label the button. Hook the `Click` event for input.
@@ -242,6 +308,27 @@ var button = new Button {
 };
 
 button.Click += (sender, e) => Debug.WriteLine("Tapped");
+```
+
+### CheckBox
+
+A two-state check box that toggles when tapped (touch or the Select hardware button). It has no inline label — pair it with a `Text` element for a caption.
+
+```csharp
+var checkBox = new CheckBox();
+checkBox.Checked += (sender, e) => Debug.WriteLine("Checked");
+checkBox.Unchecked += (sender, e) => Debug.WriteLine("Unchecked");
+```
+
+### RadioButton
+
+A selectable button that's mutually exclusive with other `RadioButton`s sharing the same group name (passed to the constructor). `RadioButtonManager.GetValue(groupName)` returns the `Value` of whichever button in the group is currently selected.
+
+```csharp
+var optionA = new RadioButton("options") { Value = "A" };
+var optionB = new RadioButton("options") { Value = "B" };
+
+optionA.Click += (sender, e) => Debug.WriteLine("Selected: " + RadioButtonManager.GetValue("options"));
 ```
 
 ### TextFlow
@@ -285,6 +372,21 @@ separator.SetMargin(2);
 listBox.Items.Add(separator);
 ```
 
+### ComboBox
+
+A collapsible selection list — shows the selected option and expands to the full list on tap. Inherits from `ListBox`, so it shares its `SelectionChanged` event.
+
+```csharp
+var comboBox = new ComboBox {
+    Font = font,
+    Width = 120,
+    Height = 25,
+    Options = new ArrayList { "Red", "Green", "Blue" },
+};
+
+comboBox.SelectionChanged += (sender, e) => Debug.WriteLine("Selected index " + comboBox.SelectedIndex);
+```
+
 ### ScrollViewer
 
 Wraps content larger than the visible area and provides scrolling — line-by-line or by page.
@@ -323,6 +425,35 @@ var slider = new Slider(30, 150) {
 slider.OnValueChanged += (sender, e) => Debug.WriteLine("new value = " + e.Value);
 ```
 
+### ProgressBar
+
+A bar that visually fills toward `MaxValue`, growing in one of four directions.
+
+```csharp
+var progressBar = new ProgressBar {
+    Width = 150, Height = 20,
+    MaxValue = 100,
+    Value = 40,
+    Direction = Direction.Right,
+};
+```
+
+### Gauge
+
+An analog dial with calibrated tick marks, an optional threshold arc around a recommended value, an optional seven-segment digital readout, and a pointer needle. Always square — pass the side length to the constructor.
+
+```csharp
+var gauge = new Gauge(150) {
+    Font = font,
+    MinValue = 0,
+    MaxValue = 100,
+    Value = 62,
+    DialText = "RPM x100",
+    EnableThreshold = true,
+    RecommendedValue = 80,
+};
+```
+
 ### DataGrid
 
 A simple table with columns and rows. Cells can be tapped via `TapCellEvent`.
@@ -338,6 +469,57 @@ dataGrid.AddItem(new DataGridItem(new[] { "item 1", "item 2", "item 3" }));
 dataGrid.AddItem(new DataGridItem(new[] { "item 4", "item 5", "item 6" }));
 
 dataGrid.TapCellEvent += (sender, e) => Debug.WriteLine(e.ToString());
+```
+
+### TreeView
+
+A hierarchical list of `TreeNode`s with expand/collapse. Tapping a node's chevron toggles its children; tapping the row selects it.
+
+```csharp
+var treeView = new TreeView { Font = font };
+
+var root = new TreeNode("Root");
+root.Add(new TreeNode("Child 1"));
+root.Add(new TreeNode("Child 2"));
+
+treeView.AddNode(root);
+```
+
+### Calendar
+
+A month calendar — a header with prev/next arrows, a day-of-week row, and a grid of day cells. Tapping the arrows changes the month; tapping a day selects it.
+
+```csharp
+var calendar = new Calendar {
+    Font = font,
+    Year = 2026,
+    Month = 7,
+};
+```
+
+### Menu
+
+A two-level menu bar: a row of top-level entries; tapping one opens its sub-items as an inline dropdown drawn within the control's bounds. Embedded UIs have no popup layer, so size the `Menu` tall enough to show the open dropdown.
+
+```csharp
+var menu = new Menu { Font = font };
+
+var file = new MenuEntry("File");
+file.Add(new MenuEntry("Open"));
+file.Add(new MenuEntry("Save"));
+menu.AddItem(file);
+
+menu.ItemClick += (sender, header) => Debug.WriteLine("Clicked: " + header);
+```
+
+### TabControl
+
+A tabbed container: a strip of tab headers over a body that shows the selected tab's content.
+
+```csharp
+var tabControl = new TabControl();
+tabControl.AddTab("General", new Text(font, "General settings"));
+tabControl.AddTab("Advanced", new Text(font, "Advanced settings"));
 ```
 
 ### Chart
@@ -358,6 +540,38 @@ var chart = new Chart(400, 200) {
     ChartTitle = "TinyCLR Chart",
     Items = data,
     Mode = ChartMode.RectangleMode,
+};
+```
+
+### Image
+
+Displays a bitmap loaded from a project image resource, with `Stretch.None` (natural size) or `Stretch.Fill` (scaled to `Width`/`Height`).
+
+```csharp
+var image = new Image {
+    Source = BitmapImage.FromGraphics(Graphics.FromImage(Resources.GetBitmap(Resources.BitmapResources.logo))),
+    Stretch = Stretch.Fill,
+    Width = 64,
+    Height = 64,
+};
+```
+
+### Shapes
+
+`GHIElectronics.TinyCLR.UI.Shapes` also includes `Ellipse`, `Line`, and `Polygon` — alongside `Rectangle` (shown above under [Panel](#panel)) — all sharing the `Fill` and `Stroke` properties of the `Shape` base class.
+
+```csharp
+using GHIElectronics.TinyCLR.UI.Shapes;
+
+var ellipse = new Ellipse(xRadius: 40, yRadius: 20) {
+    Fill = new SolidColorBrush(Colors.Blue),
+    Stroke = new Pen(Colors.White, 2),
+};
+
+var line = new Line(dx: 100, dy: 50) { Stroke = new Pen(Colors.Red, 2) };
+
+var triangle = new Polygon(new[] { 0, 40, 20, 0, 40, 40 }) {
+    Fill = new SolidColorBrush(Colors.Green),
 };
 ```
 
@@ -486,6 +700,75 @@ void ShowConfirmation(int counter) {
 }
 ```
 
+## Visual Studio UI Designer
+
+The **TinyCLR-SDK** ships a Visual Studio extension (**TinyCLR UI Designer**, VSIX) that lets you lay out a screen visually instead of writing `Elements()` by hand. It adds:
+
+- A **`.tcui` screen file** format — an XML, WPF-flavored description of a window's element tree.
+- A **live WPF preview** and **toolbox** (Tools/Extensions → **TinyCLR UI Preview…**) with drag-and-drop placement, a target-`Grid` picker, and a right-click **Edit .tcui properties** dialog.
+- **MSBuild code generation** that turns each `.tcui` into a sibling `.tcui.g.cs` partial class before compiling.
+- Project/item templates: **TinyCLR UI Application** (a full starter project) and **TinyCLR UI Screen** (adds one more `.tcui` + code-behind pair to an existing project).
+
+Install it from the Visual Studio Marketplace; it requires the **TinyCLR OS Project** extension and Visual Studio 2022 (17.x).
+
+### The `.tcui` file
+
+Each screen is one XML file. The root element is either `Window` or a panel (`Canvas`, `Grid`, `StackPanel`, `DockPanel`) for a reusable fragment; `Class="Namespace.ClassName"` names the generated partial class. Element names map to `GHIElectronics.TinyCLR.UI.Controls` types; a `Name` attribute becomes a backing field; dotted attributes (`Grid.Row`, `Canvas.Left`, `DockPanel.Dock`) are attached properties.
+
+```xml title="MainWindow.tcui"
+<Window Class="MyApp.MainWindow" Width="480" Height="272">
+  <Grid Name="RootGrid">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="120" />
+    </Grid.ColumnDefinitions>
+
+    <Text Name="TitleText" TextContent="Hello TinyCLR UI" Grid.Row="0" Grid.Column="0" />
+
+    <Button Name="OkButton" Width="100" Height="40" TabIndex="0" IsTabStop="true"
+            Grid.Row="1" Grid.Column="1" Click="OkButton_Click">
+      <Text TextContent="OK" />
+    </Button>
+  </Grid>
+</Window>
+```
+
+The code-behind partial only needs to call `InitializeComponent()` and wire any handlers referenced by name in the markup:
+
+```csharp title="MainWindow.cs"
+using GHIElectronics.TinyCLR.UI;
+
+namespace MyApp {
+    public partial class MainWindow : Window {
+        public MainWindow() => InitializeComponent();
+
+        private void OkButton_Click(object sender, RoutedEventArgs e) => Debug.WriteLine("OK tapped");
+    }
+}
+```
+
+`GenerateTcuiScreens` (an MSBuild task from `GHIElectronics.TinyCLR.UI.BuildTasks`, wired in by `GHIElectronics.TinyCLR.UI.targets`) reads the XML directly and emits `MainWindow.tcui.g.cs` with the `private void InitializeComponent()` body — one `new <Type>()` plus property/attached-property/event lines per element — before every build. It regenerates only when the `.tcui` is newer than its output, and is cleaned alongside `obj`/`bin`.
+
+### Supported elements
+
+The generator recognizes: `Grid`, `Canvas`, `StackPanel`, `DockPanel` (panels); `Button`, `Border`, `ScrollViewer`, `GroupBox`, `Expander` (single-child content controls); `Text` (also accepts the WPF alias `TextBlock`), `TextBox`, `TextFlow`, `CheckBox`, `RadioButton`, `ProgressBar`, `Slider`, `Gauge`, `ComboBox`, `ListBox`, `DataGrid`, `Chart`, `Rectangle`, `Ellipse`, `Image`, `TabControl` (`<TabItem Header="...">`), `TreeView` (`<TreeNode Header="...">`, nestable), `Menu` (`<MenuItem Header="...">`, nestable), and `Calendar`. The live-preview **toolbox** can drag-and-drop a smaller core set directly onto the canvas; every other supported element can still be hand-authored in the XML and generates correctly.
+
+### Property, color, and layout conventions
+
+The generator maps WPF-flavored attributes onto whichever real TinyCLR.UI member exists on that element type, so a markup snippet pasted from WPF mostly works as-is:
+
+- **Colors** — `#RGB` / `#RRGGBB` / `#AARRGGBB`, `0xRRGGBB`, the 12 `Colors` names, or common extended names (`Orange`, `Navy`, `Crimson`, …). Routed to a `Brush` or a `Color` property depending on what the control actually exposes (e.g. `Background` on `Border` becomes a `SolidColorBrush`; on `Gauge` it sets `BackColor` directly); an `#AARRGGBB` alpha becomes the brush's `Opacity`.
+- **`Grid` lengths** — `Auto`, WPF-style `*` / `2*`, or the legacy `Pixel:N` / `Star:N`.
+- **`Margin`** — one integer (`SetMargin(n)`) or four comma-separated (`SetMargin(l,t,r,b)`).
+- **`Opacity`** (0–1) — mapped to the integer `Alpha` (0–255) property on controls that expose one.
+- **Events** — `Click="Handler"` etc. emit `control.Click += this.Handler;`, only for events that actually exist on that element type.
+- **Root `Background`** — a solid color, `linear:Color1,Color2` for a corner-to-corner `LinearGradientBrush`, or `image:ResourceName` for an `ImageBrush` over a project bitmap resource.
+
+An attribute the device control genuinely has no equivalent for (a WPF-only decoration, or a property on the wrong control type) is **dropped with a `// note:` comment** in the generated file rather than breaking the build — check the generated `.tcui.g.cs` if a property you set doesn't seem to take effect. One current gap: the on-device `Grid` has no row/column spanning, so `Grid.RowSpan`/`Grid.ColumnSpan` are accepted in markup (for the WPF preview) but ignored in codegen.
 
 ## API reference
 

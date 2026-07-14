@@ -13,15 +13,16 @@
  * machine manifest can never drift. There is no HTML scraping in the extension.
  *
  * Version convention (load-bearing):
- *   The firmware version is a 32-bit value split into 4 bytes: x.y.z.t, each 0-255.
- *   The website/Config DISPLAY the 4th byte multiplied by 100, so it always ends
- *   in "00" (device 3.0.0.20  ->  shown 3.0.0.2000). The device itself reports the
- *   real byte (20). So the manifest carries BOTH:
- *     - `version`       the display string ("3.0.0.2000") — shown to users
- *     - `deviceVersion` the real x.y.z.t   ("3.0.0.20")   — what the device reports
- *     - `value`         the real version packed as a uint32 — the compare key
- *   The extension packs the device's reported version the same way and compares
- *   uint32 to uint32. No ÷100 heuristic or string parsing lives in the extension.
+ *   The firmware DEVICE_VERSION is a 64-bit value split into FOUR 16-bit fields:
+ *     (major << 48) | (minor << 32) | (build << 16) | revision      each 0-65535.
+ *   The device reports this exact version over the wire (e.g. 3.0.0.2000 with the
+ *   full 2000 in the revision field), and the website label is the same string. So
+ *   `version` ("3.0.0.2000") is BOTH the display string AND the compare key: the
+ *   extension parses it into a System.Version and compares field-by-field against
+ *   the device's reported version. No scaling — do NOT divide/multiply by 100.
+ *   (The ÷100 form, e.g. 0x03000014 = ...0x14 = 20, only appears in the 32-bit
+ *    ImageGenParameters inside a board's BuildConfiguration.txt — a build artifact,
+ *    not what the device reports and not what we compare.)
  *
  * Usage:
  *   node scripts/generate-firmware-manifest.mjs
@@ -92,29 +93,15 @@ const USB_IDS = {
   SC13: { vid: '0x1B9F', pid: '0x5012' },
 };
 
-/** "v3.0.0.2000-prerelease" -> display octets [3,0,0,2000]. */
-function displayOctets(label) {
+/** "v3.0.0.2000-prerelease" -> "3.0.0.2000". Four fields, each 0-65535 (the device reports this
+ *  exact version; it is compared field-by-field with no scaling). */
+function parseVersion(label) {
   const s = label.trim().replace(/^v/i, '').replace(/[-_].*$/, ''); // drop leading v + "-prerelease"/"_RTW"
   const parts = s.split('.').map((n) => Number.parseInt(n, 10));
-  if (parts.length !== 4 || parts.some((n) => Number.isNaN(n)))
-    throw new Error(`Unexpected firmware version label: "${label}"`);
-  return parts;
+  if (parts.length !== 4 || parts.some((n) => Number.isNaN(n) || n < 0 || n > 65535))
+    throw new Error(`Unexpected firmware version label: "${label}" (expected 4 fields, each 0-65535)`);
+  return parts.join('.');
 }
-
-/** Display octets [3,0,0,2000] -> real device octets [3,0,0,20] (4th byte ÷100). */
-function deviceOctets(display, label) {
-  const [a, b, c, d] = display;
-  if (d % 100 !== 0)
-    console.warn(`[fw] WARN: 4th field ${d} in "${label}" is not a multiple of 100 (expected trailing "00").`);
-  const t = Math.round(d / 100);
-  const real = [a, b, c, t];
-  if (real.some((x) => x < 0 || x > 255))
-    console.warn(`[fw] WARN: version "${real.join('.')}" from "${label}" has a byte outside 0-255.`);
-  return real;
-}
-
-/** Pack real octets into an unsigned 32-bit compare key. */
-const packValue = ([a, b, c, d]) => ((a << 24) | (b << 16) | (c << 8) | d) >>> 0;
 
 /** "pathname:///bin/fw/x.ghi" -> "/bin/fw/x.ghi"; absolute http(s) URLs pass through. */
 function normalizeUrl(u) {
@@ -147,15 +134,11 @@ function parseFamilies(section) {
       console.warn(`[fw] WARN: no USB VID/PID mapping for family "${familyCode}"; the extension cannot match this device. Add it to USB_IDS.`);
 
     const [, label, rawUrl, date, , md5] = row;
-    const display = displayOctets(label);
-    const real = deviceOctets(display, label);
     families.push({
       id: familyCode.toLowerCase(),  // "sc20"
       name,                          // "SITCore SC20xxx" — shown to users (never the renamable device name)
       usb,                           // { vid, pid } — the immutable match key, or null when unmapped
-      version: display.join('.'),    // "3.0.0.2000" — display form (shown to users)
-      deviceVersion: real.join('.'), // "3.0.0.20"   — what the device reports
-      value: packValue(real),        // uint32 compare key
+      version: parseVersion(label),  // "3.0.0.2000" — the firmware version (4x16-bit); display AND compare key
       date: date.trim(),             // "2026-06-11"
       url: normalizeUrl(rawUrl),     // "/bin/fw/sitcore-sc20-firmware-v3.0.0.2000.ghi"
       md5: md5.trim().toUpperCase(),
@@ -199,7 +182,7 @@ async function main() {
   await fs.writeFile(args.out, json);
   console.log(`[fw] wrote ${path.relative(WEBSITE_ROOT, args.out)}`);
   for (const f of families)
-    console.log(`[fw]   ${f.id.padEnd(5)} vid/pid ${(f.usb ? f.usb.vid + '/' + f.usb.pid : 'unmapped').padEnd(15)} display ${f.version.padEnd(12)} device ${f.deviceVersion.padEnd(10)} value ${f.value}`);
+    console.log(`[fw]   ${f.id.padEnd(5)} vid/pid ${(f.usb ? f.usb.vid + '/' + f.usb.pid : 'unmapped').padEnd(15)} version ${f.version}`);
 }
 
 main().catch((err) => { console.error(err); process.exit(1); });
