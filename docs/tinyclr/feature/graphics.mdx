@@ -2,9 +2,23 @@
 title: Graphics
 ---
 
-TinyCLR's graphics stack provides the standard drawing primitives — shapes, text, bitmaps, color management, clipping — on top of a configured display. This page covers the drawing API; for setting up the display itself (parallel RGB timing, SPI controllers, etc.), see [Displays](displays.mdx).
+TinyCLR has **two graphics options** for drawing on a display:
+
+- **The graphics engine (this page)** — the standard drawing primitives: shapes, text, bitmaps, color management, and clipping, on top of a configured display. Available on **SC20xxx** hardware. There's no built-in font — text draws with font resources embedded in your project ([Font Support](font-support.mdx)).
+- **[BasicGraphics](#basicgraphics)** — a lightweight managed library with a built-in font. It runs on **every device**, but it's mainly for **small chips without native display support** — on **SC13xxx** hardware it's the only option.
+
+This page covers the graphics engine's drawing API; BasicGraphics is summarized [below](#basicgraphics), with its full reference in [Extended Features](../drivers/software-utility.mdx#basic-graphics). For setting up the display itself (parallel RGB timing, SPI controllers, etc.), see [Displays](displays.mdx).
 
 NuGet package: **`GHIElectronics.TinyCLR.Drawing`**. Add the display-specific packages from [Displays](displays.mdx) for the underlying panel.
+
+## Which do I need?
+
+Beyond the drawing libraries above, TinyCLR also has a full UI framework — pick by what you're building:
+
+- **Graphics (this page)** — immediate-mode drawing. You call `DrawLine`, `FillEllipse`, `DrawString` and push the result to the screen yourself: the quickest way to draw simple shapes, text, and bitmaps, ideal for gauges, dashboards, and custom visuals. Both libraries fit here — the graphics engine on SC20xxx, [BasicGraphics](#basicgraphics) on small chips.
+- **[User Interface](user-interface.mdx)** — a WPF-style framework on the same display backends: windows, buttons, lists, layouts, events, and touch handling, with screens laid out visually in the [TinyCLR UI Designer](user-interface.mdx#visual-studio-ui-designer). Pick it when you're building screens a user interacts with rather than drawing visuals yourself.
+
+**Try it:** the [Create Graphics tutorial](../tutorial/create-graphics.mdx) bounces a ball and centers text on screen with both drawing libraries in about 25 minutes.
 
 ## Drawing primitives
 
@@ -30,7 +44,9 @@ The core shapes use `Graphics` methods with `Pen` and `Brush` arguments:
 
 ## BasicGraphics
 
-**`BasicGraphics`** is a simpler driver that runs on **every device**, including small chips without native display support. Use it when full `Graphics` is overkill or unavailable. See [Extended Features → BasicGraphics](../drivers/software-utility.mdx#basic-graphics) for the full reference.
+**`BasicGraphics`** is a simpler, pure-managed drawing library with a built-in font — `SetPixel`, `DrawLine`, `DrawRectangle`, `DrawCircle`, `DrawString`, and friends. It runs on **every device**, but it's mainly for **small chips without native display support**: the full graphics engine isn't available on SC13xxx hardware, so BasicGraphics is the drawing option there. It also works on SC20xxx when the full engine is more than you need.
+
+Part 1 of the [Create Graphics tutorial](../tutorial/create-graphics.mdx) is built on it; see [Extended Features → BasicGraphics](../drivers/software-utility.mdx#basic-graphics) for the full reference.
 
 ## Getting a `Graphics` surface
 

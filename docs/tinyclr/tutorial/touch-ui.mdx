@@ -1,0 +1,447 @@
+---
+title: Build a Touch UI
+description: Step-by-step tutorial — configure a display, design two screens in the TinyCLR UI Designer, and navigate between them by touch on a SITCore dev board.
+---
+
+# Build a Touch UI
+
+You've blinked an LED — now build something you can touch. This tutorial walks you through a complete touch application: a tap counter with a second page you can navigate to and back, with the screens laid out visually in the **TinyCLR UI Designer**. About 30 minutes.
+
+Along the way you'll meet the four pieces every TinyCLR touch UI is made of:
+
+1. **[Displays](../feature/displays.mdx)** — configure and enable the panel.
+2. **[Font Support](../feature/font-support.mdx)** — nothing renders text without a font resource.
+3. **[User Interface](../feature/user-interface.mdx)** — the WPF-inspired framework of windows, panels, and controls.
+4. **[Touch Screen](../feature/touch-screen.mdx)** — the capacitive touch driver that feeds input to the UI.
+
+Each step links to the matching reference page for depth and for other hardware.
+
+:::note 
+What you'll need
+- The **[getting started](../getting-started.mdx)** steps completed — IDE installed, firmware flashed, and the starter project deploying.
+- An **SCM20260D Dev Board** with the **4.3" parallel display** (480×272, capacitive touch) — or a **[FEZ Portal](../sbc.mdx#fez-portal-1)**, the all-in-one SBC with the same display built in. The only code difference between the two is the touch interrupt pin (see Step 4).
+- **Visual Studio**, for the screen-design steps — the UI Designer is a Visual Studio extension. Using VS Code? You can build the same screens in code (see the end of Step 6).
+
+Using a different board or panel? The structure of this tutorial is the same — swap the display timing values and pin names using [Displays](../feature/displays.mdx) and your board's pinout.
+:::
+
+## Step 1 — Install the NuGet packages
+
+Add these packages to a fresh **TinyCLR Application** project:
+
+- **`GHIElectronics.TinyCLR.Devices.Display`** — the display controller
+- **`GHIElectronics.TinyCLR.Devices.Gpio`** — backlight and touch interrupt pins
+- **`GHIElectronics.TinyCLR.Devices.I2c`** — bus for the touch controller
+- **`GHIElectronics.TinyCLR.Pins`** — named pins for your board
+- **`GHIElectronics.TinyCLR.UI`** — the UI framework (pulls in `GHIElectronics.TinyCLR.Drawing` as a dependency)
+- **`GHIElectronics.TinyCLR.Drivers.FocalTech.FT5xx6`** — the capacitive touch driver
+
+## Step 2 — Fonts
+
+Nothing renders text without a font. TinyCLR fonts are binary resources embedded in the project — and the **TinyCLR Application** template already includes two ready to use (`droid_reg10` and `droid_reg12`). The UI Designer's generated code loads them automatically for text elements, so there's nothing to set up for this tutorial.
+
+To use your own font instead, convert any TrueType font with the **FontConverter** tool (from the [Downloads](../downloads.mdx) page) and add the result to `Resources.resx` — sizes, character ranges, and anti-aliasing options are covered in [Font Support](../feature/font-support.mdx).
+
+## Step 3 — Configure the display and application
+
+A UI program subclasses `Application` and hands it an enabled `DisplayController`. Replace `Program.cs` with the skeleton below — it powers the backlight, configures the 4.3" panel timing, and prepares the application. Nothing shows on screen yet; the first screen arrives in Step 5.
+
+```csharp title="Program.cs"
+using System;
+using System.Drawing;
+using TouchUi;
+using TouchUi.Properties;
+using GHIElectronics.TinyCLR.Devices.Display;
+using GHIElectronics.TinyCLR.Devices.Gpio;
+using GHIElectronics.TinyCLR.Devices.I2c;
+using GHIElectronics.TinyCLR.Drivers.FocalTech.FT5xx6;
+using GHIElectronics.TinyCLR.Pins;
+using GHIElectronics.TinyCLR.UI;
+using GHIElectronics.TinyCLR.UI.Input;
+
+class Program : Application {
+    static Program app;
+
+    public Program(DisplayController d) : base(d) { }
+
+    static void Main() {
+        var gpio = GpioController.GetDefault();
+
+        // Backlight on.
+        var backlight = gpio.OpenPin(SC20260.GpioPin.PA15);
+        backlight.SetDriveMode(GpioPinDriveMode.Output);
+        backlight.Write(GpioPinValue.High);
+
+        // 4.3" panel timing — other panels: see the Displays page.
+        var display = DisplayController.GetDefault();
+        display.SetConfiguration(new ParallelDisplayControllerSettings {
+            Width = 480,
+            Height = 272,
+            DataFormat = DisplayDataFormat.Rgb565,
+            Orientation = DisplayOrientation.Degrees0,
+            PixelClockRate = 10_000_000,
+            HorizontalFrontPorch = 2,
+            HorizontalBackPorch = 2,
+            HorizontalSyncPulseWidth = 41,
+            HorizontalSyncPolarity = false,
+            VerticalFrontPorch = 2,
+            VerticalBackPorch = 2,
+            VerticalSyncPulseWidth = 10,
+            VerticalSyncPolarity = false,
+            PixelPolarity = false,
+            DataEnablePolarity = false,
+            DataEnableIsFixed = false,
+        });
+        display.Enable();
+
+        app = new Program(display);
+
+        // Touch wiring goes here (Step 4).
+
+        // Pages and app.Run go here (Steps 5 and 6).
+    }
+}
+```
+
+`TouchUi` is the project's default namespace — substitute your own project's name. The template's starter files already define it (and its `Properties` namespace, home of the `Resources` class), and the screens you add in Steps 5 and 6 live there too.
+
+Display configuration — timing values, virtual SPI displays, low-level access — is covered on the [Displays](../feature/displays.mdx) page.
+
+## Step 4 — Wire up touch
+
+The 4.3" capacitive panel uses a **FocalTech FT5xx6** controller on I²C. The driver is **interrupt-driven**: the panel pulls its interrupt line low whenever touch data is ready, and the driver only reads (and reports positions, in display pixels) when that happens — so if the interrupt pin doesn't match your board's wiring, no touch event ever fires. Forwarding the driver's events to `app.InputProvider` is all the UI framework needs to route taps to your controls.
+
+Replace the Step 4 placeholder comment in `Main` with:
+
+```csharp
+var i2c = I2cController.FromName(SC20260.I2cBus.I2c1);
+var touch = new FT5xx6Controller(
+    i2c.GetDevice(FT5xx6Controller.GetConnectionSettings()),
+    gpio.OpenPin(SC20260.GpioPin.PJ14));        // Touch interrupt pin.
+
+touch.TouchDown += (s, e) => app.InputProvider.RaiseTouch(e.X, e.Y, TouchMessages.Down, DateTime.UtcNow);
+touch.TouchUp   += (s, e) => app.InputProvider.RaiseTouch(e.X, e.Y, TouchMessages.Up, DateTime.UtcNow);
+touch.TouchMove += (s, e) => app.InputProvider.RaiseTouch(e.X, e.Y, TouchMessages.Move, DateTime.UtcNow);
+```
+
+:::note
+The touch interrupt pin is the one code difference between the two boards: **PJ14** on the SCM20260D Dev Board, **PG9** on the [FEZ Portal](../sbc.mdx#fez-portal-1). Everything else in this tutorial is identical on both.
+:::
+
+Resistive panels, rotated displays, and driver details are on the [Touch Screen](../feature/touch-screen.mdx) page.
+
+## Step 5 — Design the first page
+
+The screens themselves come from the **[TinyCLR UI Designer](../feature/user-interface.mdx#visual-studio-ui-designer)** rather than hand-built element trees. Each screen is a **`.tcui`** file — a WPF-flavored XML description of the element tree — paired with a C# code-behind class. A live preview renders the markup as you edit, and the build generates the `InitializeComponent()` that constructs the elements on the device.
+
+Install the **TinyCLR UI Designer** extension from the Visual Studio Marketplace (`Extensions` → `Manage Extensions...`) — it works alongside the TinyCLR OS Project extension you installed in [getting started](../getting-started.mdx).
+
+**Add the screen.** Right-click the project → `Add` → `New Item...` → **TinyCLR UI Screen** → name it `CounterPage`. You get a pair of files: `CounterPage.tcui` (the markup) and `CounterPage.cs` (the code-behind).
+
+![Add TinyCLR UI](/img/docs/add-ui.png)
+
+**Lay it out.** Select the `CounterPage.tcui` file in the Solution Explorer, once selected click on the `TinyCLR UI Designer` tab and drag a `Text` and `Button` element from the toolbox onto the canvas — or edit the .tcui file directly; the UI Designer updates any manual changes made. However you get there, make `CounterPage.tcui` read:
+
+```xml title="CounterPage.tcui"
+<Window Class="TouchUi.CounterPage" Width="480" Height="272">
+  <Canvas Name="RootCanvas">
+    <Button Name="Button1" Width="140" Height="48"
+        TabIndex="0" IsTabStop="true"
+        Canvas.Left="166" Canvas.Top="113"
+        HorizontalContentAlignment="Center" Click="TapButton_Click">
+      <Text TextContent="Tap me!" />
+    </Button>
+    <Text Name="TapsLabel" TextContent="Taps: 0" Width="176" Height="26"
+        TextAlignment="Center"
+        Canvas.Left="148" Canvas.Top="79" />
+  </Canvas>
+</Window>
+```
+
+Four conventions are doing the work here (the full list is in the [Designer reference](../feature/user-interface.mdx#visual-studio-ui-designer)):
+
+- The root is a **`Window`** — a complete screen. Constructing a `Window` registers it with the window manager, so it's shown directly — never nested inside another window or element.
+- **`Class`** names the partial class the build generates from this markup. Use your project's default namespace in place of `TouchUi`.
+- **`Name`** turns an element into a private field the code-behind can use — `Name="TapsLabel"` becomes `_tapsLabel`.
+- **`Click="TapButton_Click"`** wires the button to a handler you write in the code-behind.
+
+Text elements automatically use the template's built-in font ([Step 2](#step-2--fonts)) — the generated code loads it for you.
+
+**The code-behind.** Clicking an element in the UI Designer creates its event handler in `CounterPage.cs`. Fill in the tap counter — the count lives in an instance field on the page:
+
+```csharp title="CounterPage.cs"
+namespace TouchUi {
+    public partial class CounterPage : GHIElectronics.TinyCLR.UI.Window {
+        private int taps;
+
+        public CounterPage() {
+            InitializeComponent();
+        }
+
+        private void TapButton_Click(object sender, GHIElectronics.TinyCLR.UI.RoutedEventArgs e) {
+            taps++;
+            _tapsLabel.TextContent = "Taps: " + taps;
+            _tapsLabel.Invalidate();
+        }
+    }
+}
+```
+
+**Show it.** The screen *is* a window — run it directly. In `Program.cs`, add a field for the page:
+
+```csharp title="Program.cs"
+public static CounterPage Counter;
+```
+
+then replace the Steps 5–6 placeholder comment at the end of `Main` with:
+
+```csharp title="Program.cs — end of Main"
+        Counter = new CounterPage();
+
+        app.Run(Counter);
+```
+
+:::warning
+A Designer screen can never be another window's `Child` — as a `Window` it already belongs to the window manager, and nesting it throws `ArgumentException: element has parent`. Run it directly, or show and hide it as in Step 6.
+:::
+
+:::tip
+`Click` fires on the UI thread, so updating the label directly is safe here. Updating elements from a timer or another thread requires `Dispatcher.Invoke` — see [User Interface → The Dispatcher](../feature/user-interface.mdx#the-dispatcher).
+:::
+
+## Step 6 — Design the second page
+
+Each Designer screen is a full window, and the window manager shows whatever is visible — so "navigating" means hiding the current screen and showing another. Add a field for the second page and a small navigation helper to `Program`:
+
+```csharp title="Program.cs"
+public static AboutPage About;
+
+static Window current;
+
+public static void Navigate(Window page) {
+    if (current == page)
+        return;
+
+    current.Visibility = Visibility.Hidden;
+    current = page;
+    current.Visibility = Visibility.Visible;
+    current.Invalidate();
+}
+```
+
+then create the About page alongside the counter page at the end of `Main`, hidden until it's navigated to:
+
+```csharp title="Program.cs — end of Main"
+        Counter = new CounterPage();
+        // highlight-start
+        About = new AboutPage();
+        About.Visibility = Visibility.Hidden;
+        current = Counter;
+        // highlight-end
+
+        app.Run(Counter);
+```
+
+**Design the About screen.** Add another **TinyCLR UI Screen** named `AboutPage` — a title and a **Back** button:
+
+```xml title="AboutPage.tcui"
+<Window Class="TouchUi.AboutPage" Width="480" Height="272">
+  <Canvas Name="RootCanvas">
+    <Text Name="TitleLabel" TextContent="Page Two - Built with TinyCLR UI" Width="260" Height="29"
+        TextAlignment="Center"
+        Canvas.Left="110" Canvas.Top="104" />
+    <Button Name="BackButton" Width="140" Height="48"
+        TabIndex="0" IsTabStop="true"
+        Canvas.Left="168" Canvas.Top="145"
+        HorizontalContentAlignment="Center" Click="BackButton_Click">
+      <Text TextContent="Back" />
+    </Button>
+  </Canvas>
+</Window>
+```
+
+Its code-behind sends **Back** to the main page:
+
+```csharp title="AboutPage.cs"
+namespace TouchUi {
+    public partial class AboutPage : GHIElectronics.TinyCLR.UI.Window {
+        public AboutPage() {
+            InitializeComponent();
+        }
+
+        private void BackButton_Click(object sender, GHIElectronics.TinyCLR.UI.RoutedEventArgs e) {
+            Program.Navigate(Program.Counter);
+        }
+    }
+}
+```
+
+**Link the pages.** Give the counter page an **About** button below the tap button — drag another Button onto `CounterPage` in the Designer, or add it in the markup. The addition is highlighted:
+
+```xml title="CounterPage.tcui"
+<Window Class="TouchUi.CounterPage" Width="480" Height="272">
+  <Canvas Name="RootCanvas">
+    <Button Name="Button1" Width="140" Height="48"
+        TabIndex="0" IsTabStop="true"
+        Canvas.Left="166" Canvas.Top="113"
+        HorizontalContentAlignment="Center" Click="TapButton_Click">
+      <Text TextContent="Tap me!" />
+    </Button>
+    <Text Name="TapsLabel" TextContent="Taps: 0" Width="176" Height="26"
+        TextAlignment="Center"
+        Canvas.Left="148" Canvas.Top="79" />
+    <!-- highlight-start -->
+    <Button Name="AboutButton" Width="140" Height="48"
+        TabIndex="0" IsTabStop="true"
+        Canvas.Left="166" Canvas.Top="172"
+        HorizontalContentAlignment="Center" Click="AboutButton_Click">
+      <Text TextContent="About" />
+    </Button>
+    <!-- highlight-end -->
+  </Canvas>
+</Window>
+```
+
+Then the matching handler in `CounterPage.cs`:
+
+```csharp title="CounterPage.cs — addition"
+        private void AboutButton_Click(object sender, GHIElectronics.TinyCLR.UI.RoutedEventArgs e) {
+            Program.Navigate(Program.About);
+        }
+```
+
+Both pages are created **once** at startup and shown or hidden by `Navigate` — that's why `taps` lives on the `CounterPage` instance and the count is still there when you come back from the About page.
+
+<details>
+<summary>Prefer plain code, or using VS Code? The same two pages without the Designer</summary>
+
+Everything the Designer generates can be written by hand — here a hand-built page is a method that returns an element tree, hosted in one hand-made `Window` whose `Child` gets swapped. (`Child`-swapping is fine here because these pages are panels, not windows.)
+
+Skip the `.tcui` files and the `Counter`/`About`/`current` members from Steps 5–6. Add `using GHIElectronics.TinyCLR.UI.Controls;` and `using GHIElectronics.TinyCLR.UI.Media;` to the usings, and end `Main` with:
+
+```csharp title="Program.cs — end of Main"
+        font = Resources.GetFont(Resources.FontResources.droid_reg10);
+
+        app.Run(CreateWindow(display));
+```
+
+Then add the fields, navigation, and page builders:
+
+```csharp title="Program.cs"
+static Window window;
+static Font font;
+static int taps;
+
+static void Navigate(UIElement page) {
+    window.Child = page;
+    window.Invalidate();
+}
+
+private static Window CreateWindow(DisplayController display) {
+    window = new Window {
+        Width = (int)display.ActiveConfiguration.Width,
+        Height = (int)display.ActiveConfiguration.Height,
+        Background = new LinearGradientBrush(Colors.Blue, Colors.Teal, 0, 0,
+            (int)display.ActiveConfiguration.Width, (int)display.ActiveConfiguration.Height),
+        Visibility = Visibility.Visible,
+    };
+    window.Child = CounterPage();
+    return window;
+}
+
+private static UIElement CounterPage() {
+    var panel = new StackPanel(Orientation.Vertical) {
+        VerticalAlignment = VerticalAlignment.Center,
+    };
+
+    var label = new Text(font, "Taps: " + taps) {
+        ForeColor = Colors.White,
+        HorizontalAlignment = HorizontalAlignment.Center,
+    };
+    label.SetMargin(20);
+
+    var button = new Button {
+        Child = new Text(font, "Tap me!") {
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center,
+        },
+        Width = 140,
+        Height = 48,
+        HorizontalAlignment = HorizontalAlignment.Center,
+    };
+
+    button.Click += (s, e) => {
+        taps++;
+        label.TextContent = "Taps: " + taps;
+        label.Invalidate();
+    };
+
+    var about = new Button {
+        Child = new Text(font, "About") {
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center,
+        },
+        Width = 140,
+        Height = 48,
+        HorizontalAlignment = HorizontalAlignment.Center,
+    };
+    about.SetMargin(10);
+    about.Click += (s, e) => Navigate(AboutPage());
+
+    panel.Children.Add(label);
+    panel.Children.Add(button);
+    panel.Children.Add(about);
+    return panel;
+}
+
+private static UIElement AboutPage() {
+    var panel = new StackPanel(Orientation.Vertical) {
+        VerticalAlignment = VerticalAlignment.Center,
+    };
+
+    var title = new Text(font, "Page two — built with TinyCLR UI") {
+        ForeColor = Colors.White,
+        HorizontalAlignment = HorizontalAlignment.Center,
+    };
+    title.SetMargin(20);
+
+    var back = new Button {
+        Child = new Text(font, "Back") {
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center,
+        },
+        Width = 140,
+        Height = 48,
+        HorizontalAlignment = HorizontalAlignment.Center,
+    };
+    back.Click += (s, e) => Navigate(CounterPage());
+
+    panel.Children.Add(title);
+    panel.Children.Add(back);
+    return panel;
+}
+```
+
+Here the pages are rebuilt on every visit, so the tap count is a `static` field on `Program` — that's what keeps the counter's value when you navigate away and back.
+
+</details>
+
+## Step 7 — Run it
+
+Press **F5**. The build first turns each `.tcui` into a generated partial class (`CounterPage.tcui.g.cs` — open it to see exactly what `InitializeComponent` does), then compiles and deploys. The counter page appears, and every tap of the button bumps the counter. Tap **About** to switch pages, **Back** to return — the count is still there.
+
+If something's off:
+
+- **Blank screen** — recheck the backlight pin and the timing values against your panel ([Displays](../feature/displays.mdx)).
+- **UI shows but taps do nothing** — the touch driver is interrupt-driven, so a wrong interrupt pin means zero events; verify the pin for your board (PJ14 Dev Board, PG9 FEZ Portal — see Step 4), the I²C bus, and that all three `RaiseTouch` lines are wired ([Touch Screen](../feature/touch-screen.mdx)).
+- **`ArgumentException: element has parent`** — a Designer screen was assigned as a `Child`. Screens are windows: run the first one and switch with `Navigate`, never nest them.
+- **`InitializeComponent` not found** — the `.tcui` didn't generate; check that each file's `Class` attribute matches its code-behind's namespace and class name.
+- **A property you set in markup has no effect** — the generator drops attributes the device control doesn't support, with a `// note:` comment in the generated `.tcui.g.cs`; check there first.
+
+## Where to go next
+
+- **[User Interface](../feature/user-interface.mdx)** — the full catalog of ~30 controls (lists, sliders, gauges, charts…), hardware-button input, and layout panels.
+- **[TabControl](../feature/user-interface.mdx#tabcontrol)** — a ready-made alternative to hand-rolled navigation when your pages fit a tabbed layout.
+- **[UI Designer reference](../feature/user-interface.mdx#visual-studio-ui-designer)** — the full `.tcui` conventions: supported elements, colors and gradients, attached properties, and how the markup maps to device controls.
+- **[Graphics](../feature/graphics.mdx)** — drop below the UI framework and draw shapes, text, and bitmaps directly.
+- **[Displays](../feature/displays.mdx)** — 7" panels, SPI displays, and character LCDs.

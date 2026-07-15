@@ -12,6 +12,10 @@ The pages of this section split as follows: **this page** covers configuring the
 
 NuGet packages: **`GHIElectronics.TinyCLR.Devices.Display`**, **`GHIElectronics.TinyCLR.Devices.Gpio`**, **`GHIElectronics.TinyCLR.Pins`**, plus **`GHIElectronics.TinyCLR.Drawing`** if you're using the graphics engine.
 
+:::tip
+Want a guided start instead of reference material? The [Create Graphics tutorial](../tutorial/create-graphics.mdx) walks through this exact display setup and draws on it, and [Build a Touch UI](../tutorial/touch-ui.mdx) builds a two-page touch app on top of the same configuration.
+:::
+
 ## Native displays
 
 Parallel RGB displays connect to dedicated pins on the SITCore. The display controller uses **DMA to refresh the panel automatically and continuously** from a framebuffer in RAM — no CPU involvement, no per-frame work in your application. You just write to the framebuffer, and the panel updates.
