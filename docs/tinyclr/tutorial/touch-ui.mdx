@@ -7,6 +7,8 @@ description: Step-by-step tutorial — configure a display, design two screens i
 
 You've blinked an LED — now build something you can touch. This tutorial walks you through a complete touch application: a tap counter with a second page you can navigate to and back, with the screens laid out visually in the **TinyCLR UI Designer**. About 30 minutes.
 
+![TinyCLR UI Designer](/img/docs/ui-designer.png)
+
 Along the way you'll meet the four pieces every TinyCLR touch UI is made of:
 
 1. **[Displays](../feature/displays.mdx)** — configure and enable the panel.
@@ -142,6 +144,8 @@ Install the **TinyCLR UI Designer** extension from the Visual Studio Marketplace
 
 **Lay it out.** Select the `CounterPage.tcui` file in the Solution Explorer, once selected click on the `TinyCLR UI Designer` tab and drag a `Text` and `Button` element from the toolbox onto the canvas — or edit the .tcui file directly; the UI Designer updates any manual changes made. However you get there, make `CounterPage.tcui` read:
 
+![Add UI Elements](/img/docs/add-ui-elements.png)
+
 ```xml title="CounterPage.tcui"
 <Window Class="TouchUi.CounterPage" Width="480" Height="272">
   <Canvas Name="RootCanvas">
@@ -168,6 +172,8 @@ Four conventions are doing the work here (the full list is in the [Designer refe
 Text elements automatically use the template's built-in font ([Step 2](#step-2--fonts)) — the generated code loads it for you.
 
 **The code-behind.** Clicking an element in the UI Designer creates its event handler in `CounterPage.cs`. Fill in the tap counter — the count lives in an instance field on the page:
+
+![Click Tap Button](/img/docs/click-ui-tap.png)
 
 ```csharp title="CounterPage.cs"
 namespace TouchUi {
@@ -243,6 +249,7 @@ then create the About page alongside the counter page at the end of `Main`, hidd
 ```
 
 **Design the About screen.** Add another **TinyCLR UI Screen** named `AboutPage` — a title and a **Back** button:
+![Add Second Page](/img/docs/add-ui-pagetwo.png)
 
 ```xml title="AboutPage.tcui"
 <Window Class="TouchUi.AboutPage" Width="480" Height="272">
@@ -259,8 +266,8 @@ then create the About page alongside the counter page at the end of `Main`, hidd
   </Canvas>
 </Window>
 ```
-
-Its code-behind sends **Back** to the main page:
+Clicking on the **Back** in the UI Designer creates the necessary event handler, then adding `Program.Navigate(Program.Counter);` to the event, sends the end-user back to the **Counter** page:
+![Click Back Button](/img/docs/click-ui-back.png)
 
 ```csharp title="AboutPage.cs"
 namespace TouchUi {
@@ -270,13 +277,17 @@ namespace TouchUi {
         }
 
         private void BackButton_Click(object sender, GHIElectronics.TinyCLR.UI.RoutedEventArgs e) {
+            <!-- highlight-start -->
             Program.Navigate(Program.Counter);
+            <!-- highlight-end -->
         }
     }
 }
 ```
 
 **Link the pages.** Give the counter page an **About** button below the tap button — drag another Button onto `CounterPage` in the Designer, or add it in the markup. The addition is highlighted:
+
+![Add About Button](/img/docs/add-ui-about-button.png)
 
 ```xml title="CounterPage.tcui"
 <Window Class="TouchUi.CounterPage" Width="480" Height="272">
@@ -302,7 +313,9 @@ namespace TouchUi {
 </Window>
 ```
 
-Then the matching handler in `CounterPage.cs`:
+Then the matching handler in `CounterPage.cs`, the code can be added manually or by clicking the button in the UI Designer which ever method is desired:
+
+![Click About Button](/img/docs/click-ui-about.png)
 
 ```csharp title="CounterPage.cs — addition"
         private void AboutButton_Click(object sender, GHIElectronics.TinyCLR.UI.RoutedEventArgs e) {
