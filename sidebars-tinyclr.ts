@@ -10,6 +10,7 @@ const sidebars: SidebarsConfig = {
       items: [
         'tutorial/create-graphics',
         'tutorial/touch-ui',
+        'tutorial/vscode',
       ],
     },
     {

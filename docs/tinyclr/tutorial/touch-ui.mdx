@@ -22,7 +22,7 @@ Each step links to the matching reference page for depth and for other hardware.
 What you'll need
 - The **[getting started](../getting-started.mdx)** steps completed — IDE installed and firmware flashed. This tutorial creates a project of its own, so there's no need to keep the getting-started project around.
 - An **SCM20260D Dev Board** with the **4.3" parallel display** (480×272, capacitive touch) — or a **[FEZ Portal](../sbc.mdx#fez-portal-1)**, the all-in-one SBC with the same display built in. The only code difference between the two is the touch interrupt pin (see Step 1).
-- **Visual Studio** — the **TinyCLR UI Application** project template and the UI Designer used in this tutorial are both Visual Studio-only. Using VS Code? Step 1 notes what to add by hand, and the end of Step 4 builds the screens in code instead of the Designer.
+- **Visual Studio** — the **TinyCLR UI Application** project template and the UI Designer used in this tutorial are both Visual Studio-only.
 
 Using a different board or panel? The structure of this tutorial is the same — swap the display timing values and pin names using [Displays](../feature/displays.mdx) and your board's pinout.
 :::
@@ -36,8 +36,6 @@ It starts you off with everything a touch UI needs already wired up:
 - **NuGet packages** — display, GPIO, I²C, pins, the UI framework (which pulls in the drawing library), and the FocalTech FT5xx6 touch driver are all referenced already.
 - **`Program.cs`** — powers the backlight, configures the 4.3" panel (480×272), and wires the FT5xx6 touch controller's `TouchDown`/`TouchUp` events into `MainApp.InputProvider.RaiseTouch` via `InitializeTouch()`. Defaults target the **SCM20260D Dev Board**; on a **[FEZ Portal](../sbc.mdx#fez-portal-1)**, change the interrupt pin in `InitializeTouch()` from `PJ14` to `PG9` — everything else is identical. Other panels, timings, and resistive touch are covered on [Displays](../feature/displays.mdx) and [Touch Screen](../feature/touch-screen.mdx).
 - **`MainWindow.tcui`** / **`MainWindow.cs`** — a starter Designer screen. Step 3 turns it into the tap counter.
-
-Not using Visual Studio? Create a plain **TinyCLR Application** project, add the packages above, and configure the display and touch driver by hand using the pages linked above — then pick up at Step 3, building the screens in code (see the end of Step 4).
 
 ## Step 2 — Fonts
 
@@ -237,7 +235,7 @@ Then the matching handler in `MainWindow.cs`, the code can be added manually or 
 Both pages are created **once** at startup and shown or hidden by `Navigate` — that's why `taps` lives on the `MainWindow` instance and the count is still there when you come back from the About page.
 
 <details>
-<summary>Prefer plain code, or using VS Code? The same two pages without the Designer</summary>
+<summary>Prefer plain code? The same two pages without the Designer</summary>
 
 Everything the Designer generates can be written by hand — here a hand-built page is a method that returns an element tree, hosted in one hand-made `Window` whose `Child` gets swapped. (`Child`-swapping is fine here because these pages are panels, not windows.)
 
