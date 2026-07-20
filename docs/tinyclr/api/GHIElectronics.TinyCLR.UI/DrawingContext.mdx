@@ -195,6 +195,22 @@ public void DrawRectangle(Brush brush, Pen pen, int x, int y, int width, int hei
 
 Draws a rectangle with the given fill and outline.
 
+### DrawRectangle(Brush brush, Pen pen, int x, int y, int width, int height, int xCornerRadius, int yCornerRadius)
+
+```csharp
+public void DrawRectangle(Brush brush, Pen pen, int x, int y, int width, int height, int xCornerRadius, int yCornerRadius)
+```
+
+Fills/strokes a rectangle with rounded corners (radius in pixels).
+
+### FillRoundedRectangle(Brush brush, int x, int y, int width, int height, int radius)
+
+```csharp
+public void FillRoundedRectangle(Brush brush, int x, int y, int width, int height, int radius)
+```
+
+Fills a rectangle with rounded corners, composed entirely from the proven square-fill path (one horizontal span per scan line). This deliberately avoids the native rounded-rectangle primitive, which is unexercised elsewhere and hard-faults on device. It runs only when a control is (re)painted — not per frame — so the extra spans cost nothing during animation. Exact for a `SolidColorBrush`. A non-solid brush (e.g. a gradient) can't be span-filled without distorting its ramp, so it falls back to a square fill (correct colors, square corners).
+
 ### Dispose()
 
 ```csharp

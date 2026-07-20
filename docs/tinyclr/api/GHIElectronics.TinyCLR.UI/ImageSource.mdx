@@ -40,3 +40,13 @@ public virtual int Height { get; }
 ```
 
 The height of the image in pixels.
+
+## Methods
+
+### MakeTransparent(int rgb)
+
+```csharp
+public void MakeTransparent(int rgb)
+```
+
+Marks a color key (0xRRGGBB) transparent so those pixels are skipped when the image is drawn — the standard TinyCLR way to knock out an icon's flat backdrop (e.g. 0xFF00F2 magenta). Applies to the backing surface, so it affects every subsequent draw of this image.

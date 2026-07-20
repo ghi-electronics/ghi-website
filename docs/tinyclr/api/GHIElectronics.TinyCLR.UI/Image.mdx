@@ -31,6 +31,14 @@ public ImageSource Source { get; set; }
 
 The image to display.
 
+### TransparentColor
+
+```csharp
+public int TransparentColor { get; set; }
+```
+
+A color key (0xRRGGBB) rendered as transparent, e.g. an icon's magenta backdrop (0xFF00F2). The default -1 means no key (the image draws opaque). Order-independent: setting either this or `Source` (re)applies the key.
+
 ## Methods
 
 ### MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)

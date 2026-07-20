@@ -1,0 +1,70 @@
+---
+title: "DockPanel Class"
+sidebar_label: "DockPanel"
+---
+
+# DockPanel Class
+
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
+
+Panel that docks each child to one edge (Left/Top/Right/Bottom) of the space left by the previously docked children; when `LastChildFill` is true (the default) the last child fills whatever remains in the centre. WPF-style. Choose an edge per child with `GetDock` / `SetDock` (default Left).
+
+```csharp
+public class DockPanel : Panel
+```
+
+## Constructors
+
+### DockPanel()
+
+```csharp
+public DockPanel()
+```
+
+Creates a new DockPanel.
+
+## Properties
+
+### LastChildFill
+
+```csharp
+public bool LastChildFill { get; set; }
+```
+
+Whether the last child fills the remaining central area instead of being docked (default true).
+
+## Methods
+
+### GetDock(UIElement e)
+
+```csharp
+public static Dock GetDock(UIElement e)
+```
+
+Gets the edge an element is docked to (default `Dock.Left`).
+
+**Returns** `Dock`
+
+### SetDock(UIElement e, Dock dock)
+
+```csharp
+public static void SetDock(UIElement e, Dock dock)
+```
+
+Docks an element to an edge of its parent DockPanel.
+
+### MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
+
+```csharp
+protected override void MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
+```
+
+Measures children, accumulating docked extents along each axis (WPF DockPanel algorithm).
+
+### ArrangeOverride(int arrangeWidth, int arrangeHeight)
+
+```csharp
+protected override void ArrangeOverride(int arrangeWidth, int arrangeHeight)
+```
+
+Arranges each child against its docked edge; the last child fills the remainder when enabled.

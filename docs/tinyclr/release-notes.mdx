@@ -4,6 +4,68 @@ title: Release Notes
 
 ![TinyCLR Logo](/img/docs/tinyclr-logo.png)
 
+## 3.0.1.1000 (2026-07-20) RTW
+
+3.0.1.1000 is the first RTW (stable) release of TinyCLR OS 3.0. The headline additions are a visual **TinyCLR UI Designer** for Visual Studio, an expanded library of ready-to-use UI controls, and a **PC emulator** that runs the actual CLR core — which replaces the previous Desktop dual-mode. The Visual Studio extension can now also detect out-of-date device firmware and update it from the IDE.
+
+### Libraries
+
+New features
+
+- An expanded set of `TinyCLR.UI` controls: `DataGrid`, `Chart`, `Gauge`, `Calendar`, `Menu`, `TabControl`, `TreeView`, `Expander`, `GroupBox`, and the `DockPanel` layout container.
+- `CornerRadius` on `Border`/`Panel`, `Gauge` sweep angle, and `Chart` area mode.
+- `Button.ClickMode` (`Press` / `Release`) for instant touch-down response.
+- A built-in on-screen pointer (`UI.Input.Pointer`) and `UIElement.IsHitTestVisible`, plus support for driving the UI with a USB mouse and keyboard.
+- `System.Xml` now ships alongside the classic `Data.Xml` API, so existing 2.x XML code compiles unchanged and new code can use `using System.Xml`.
+
+Fixes
+
+- 2.x XML code that stopped compiling in 3.0 (the XML types had become internal) compiles again.
+
+### Firmware
+
+New features
+
+- `DigitalSignal.Generate` repeat / continuous (infinite) output mode.
+
+Fixes & improvements
+
+- Fixed low-power `Sleep` not waking on devices that execute from external QSPI flash.
+- Fixed a DNS resolution issue.
+- Improved on-device UI rendering performance.
+- Raised the internal string/signature table limit from 32K to 64K, allowing larger programs and resource sets.
+
+Known issues
+
+- SC20xxx: Webcam reconnect fails after disconnect when connected through a hub.
+- USB host hubs do not support low-speed (LS) devices. To use a mouse or keyboard, connect it directly to the USB port or use a full-speed device instead.
+
+### Visual Studio Extension
+
+New features
+
+- **TinyCLR UI Designer**: design device UI visually — drag controls from a toolbox onto the canvas, move and resize them, edit properties, and wire event handlers — with a live, device-accurate preview.
+- **PC emulator (replaces Desktop mode)**: run and F5-debug your application on Windows against the real CLR core, including networking, TLS/crypto, and the device libraries. The previous Desktop / .NET Framework 4.8 dual-mode has been removed.
+- **Firmware update check**: the extension detects when a connected device's firmware is out of date and lets you update it from the IDE.
+- New UI Application and SPI-display project templates.
+
+Fixes
+
+- Fixed the duplicate-NuGet exclamation mark (⚠) shown with `PackageReference`.
+- Resource accessors (`GetBytes()` / `GetBitmap()`) are now generated automatically — you no longer need to run **Run Custom Tool**.
+
+Known issues
+
+- You need to add the `GHIElectronics.TinyCLR.Drawing` NuGet package when adding a bitmap or image resource (if it is not already in the project).
+
+### TinyCLR Config
+
+- Rebuilt for internal consistency with this release; the version was updated to stay in sync with TinyCLR 3.0.1.1000. No functional changes.
+
+### Visual Studio Code extension
+
+- Migrated to SDK-style projects (`dotnet add package` + `dotnet build`), with support for adding image, font, binary, string, and text resources.
+
 ## 3.0.0.3000 (2026-06-29) Prerelease
 
 ### Libraries

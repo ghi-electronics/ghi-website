@@ -41,6 +41,14 @@ public void RaiseTouch(int x, int y, TouchMessages which, DateTime time)
 
 Reports a touch event at the given position to the input manager.
 
+### RaiseCharacter(char character)
+
+```csharp
+public void RaiseCharacter(char character)
+```
+
+Reports a typed character (from a physical keyboard) to the focused element. Map a real keyboard's characters to this for PC-style text entry into a focused TextBox. Backspace = '\b', delete = (char)127. Safe to call from any thread - it marshals onto the UI dispatcher.
+
 ### RaiseFocusNavigation(bool forward)
 
 ```csharp

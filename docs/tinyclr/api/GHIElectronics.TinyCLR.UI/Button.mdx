@@ -41,6 +41,22 @@ public int RadiusBorder { get; set; }
 
 Corner radius used by the nine-slice button image.
 
+### BackgroundImage
+
+```csharp
+public ImageSource BackgroundImage { get; set; }
+```
+
+Optional custom face image, nine-slice scaled with `RadiusBorder`. When set it replaces the default themed button skin (and takes priority over `Control.Background`).
+
+### ClickMode
+
+```csharp
+public ClickMode ClickMode { get; set; }
+```
+
+Determines whether `Click` fires on touch press or release. Default is `ClickMode.Release` (WPF convention); set to `ClickMode.Press` for the instant TinyCLR 2.x response (fires the moment the button is touched).
+
 ### IsPressed
 
 ```csharp
@@ -50,6 +66,14 @@ public bool IsPressed { get; }
 True while the button is held down.
 
 ## Methods
+
+### ArrangeOverride(int arrangeWidth, int arrangeHeight)
+
+```csharp
+protected override void ArrangeOverride(int arrangeWidth, int arrangeHeight)
+```
+
+Places the content (`ContentControl.Child`) inside the button face according to `ContentControl.HorizontalContentAlignment` / `ContentControl.VerticalContentAlignment`. For the default Center/Center this sizes the child to its desired size and centers it; Stretch fills the face (the pre-existing behavior).
 
 ### OnTouchUp(TouchEventArgs e)
 
@@ -65,7 +89,7 @@ Handles touch release; fires Click if the press started on this button.
 protected override void OnTouchDown(TouchEventArgs e)
 ```
 
-Handles touch press; marks the button as pressed.
+Handles touch press; marks the button as pressed (and, in `ClickMode.Press` mode, fires `Click` immediately).
 
 ### OnButtonDown(ButtonEventArgs e)
 

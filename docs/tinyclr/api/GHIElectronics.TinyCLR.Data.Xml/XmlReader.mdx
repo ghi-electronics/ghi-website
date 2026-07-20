@@ -1,0 +1,666 @@
+---
+title: "XmlReader Class"
+sidebar_label: "XmlReader"
+---
+
+# XmlReader Class
+
+**NuGet:** `GHIElectronics.TinyCLR.Data.Xml`<br/>**Assembly:** `GHIElectronics.TinyCLR.Data.Xml`<br/>**Namespace:** `GHIElectronics.TinyCLR.Data.Xml`
+
+_No description available._
+
+```csharp
+public abstract class XmlReader : IDisposable
+```
+
+## Properties
+
+### Settings
+
+```csharp
+public virtual XmlReaderSettings Settings { get; }
+```
+
+_No description available._
+
+### NodeType
+
+```csharp
+public abstract XmlNodeType NodeType { get; }
+```
+
+_No description available._
+
+### Name
+
+```csharp
+public virtual string Name { get; }
+```
+
+_No description available._
+
+### LocalName
+
+```csharp
+public abstract string LocalName { get; }
+```
+
+_No description available._
+
+### NamespaceURI
+
+```csharp
+public abstract string NamespaceURI { get; }
+```
+
+_No description available._
+
+### Prefix
+
+```csharp
+public abstract string Prefix { get; }
+```
+
+_No description available._
+
+### HasValue
+
+```csharp
+public abstract bool HasValue { get; }
+```
+
+_No description available._
+
+### Value
+
+```csharp
+public abstract string Value { get; }
+```
+
+_No description available._
+
+### Depth
+
+```csharp
+public abstract int Depth { get; }
+```
+
+_No description available._
+
+### BaseURI
+
+```csharp
+public abstract string BaseURI { get; }
+```
+
+_No description available._
+
+### IsEmptyElement
+
+```csharp
+public abstract bool IsEmptyElement { get; }
+```
+
+_No description available._
+
+### IsDefault
+
+```csharp
+public virtual bool IsDefault { get; }
+```
+
+_No description available._
+
+### QuoteChar
+
+```csharp
+public virtual char QuoteChar { get; }
+```
+
+_No description available._
+
+### XmlSpace
+
+```csharp
+public virtual XmlSpace XmlSpace { get; }
+```
+
+_No description available._
+
+### XmlLang
+
+```csharp
+public virtual string XmlLang { get; }
+```
+
+_No description available._
+
+### ValueType
+
+```csharp
+public virtual System.Type ValueType { get; }
+```
+
+_No description available._
+
+### AttributeCount
+
+```csharp
+public abstract int AttributeCount { get; }
+```
+
+_No description available._
+
+### i]
+
+```csharp
+public virtual string this[int i] { get; }
+```
+
+_No description available._
+
+### name]
+
+```csharp
+public virtual string this[string name] { get; }
+```
+
+_No description available._
+
+### namespaceURI]
+
+```csharp
+public virtual string this[string name, string namespaceURI] { get; }
+```
+
+_No description available._
+
+### EOF
+
+```csharp
+public abstract bool EOF { get; }
+```
+
+_No description available._
+
+### ReadState
+
+```csharp
+public abstract ReadState ReadState { get; }
+```
+
+_No description available._
+
+### NameTable
+
+```csharp
+public abstract XmlNameTable NameTable { get; }
+```
+
+_No description available._
+
+### CanResolveEntity
+
+```csharp
+public virtual bool CanResolveEntity { get; }
+```
+
+_No description available._
+
+### CanReadBinaryContent
+
+```csharp
+public virtual bool CanReadBinaryContent { get; }
+```
+
+_No description available._
+
+### CanReadValueChunk
+
+```csharp
+public virtual bool CanReadValueChunk { get; }
+```
+
+_No description available._
+
+### HasAttributes
+
+```csharp
+public virtual bool HasAttributes { get; }
+```
+
+_No description available._
+
+## Methods
+
+### ReadContentAsObject()
+
+```csharp
+public virtual object ReadContentAsObject()
+```
+
+_No description available._
+
+**Returns** `object`
+
+### GetAttribute(string name)
+
+```csharp
+public abstract string GetAttribute(string name)
+```
+
+_No description available._
+
+**Returns** `string`
+
+### GetAttribute(string name, string namespaceURI)
+
+```csharp
+public abstract string GetAttribute(string name, string namespaceURI)
+```
+
+_No description available._
+
+**Returns** `string`
+
+### GetAttribute(int i)
+
+```csharp
+public abstract string GetAttribute(int i)
+```
+
+_No description available._
+
+**Returns** `string`
+
+### MoveToAttribute(string name)
+
+```csharp
+public abstract bool MoveToAttribute(string name)
+```
+
+_No description available._
+
+**Returns** `bool`
+
+### MoveToAttribute(string name, string ns)
+
+```csharp
+public abstract bool MoveToAttribute(string name, string ns)
+```
+
+_No description available._
+
+**Returns** `bool`
+
+### MoveToAttribute(int i)
+
+```csharp
+public virtual void MoveToAttribute(int i)
+```
+
+_No description available._
+
+### MoveToFirstAttribute()
+
+```csharp
+public abstract bool MoveToFirstAttribute()
+```
+
+_No description available._
+
+**Returns** `bool`
+
+### MoveToNextAttribute()
+
+```csharp
+public abstract bool MoveToNextAttribute()
+```
+
+_No description available._
+
+**Returns** `bool`
+
+### MoveToElement()
+
+```csharp
+public abstract bool MoveToElement()
+```
+
+_No description available._
+
+**Returns** `bool`
+
+### ReadAttributeValue()
+
+```csharp
+public abstract bool ReadAttributeValue()
+```
+
+_No description available._
+
+**Returns** `bool`
+
+### Read()
+
+```csharp
+public abstract bool Read()
+```
+
+_No description available._
+
+**Returns** `bool`
+
+### Close()
+
+```csharp
+public abstract void Close()
+```
+
+_No description available._
+
+### Skip()
+
+```csharp
+public virtual void Skip()
+```
+
+_No description available._
+
+### LookupNamespace(string prefix)
+
+```csharp
+public abstract string LookupNamespace(string prefix)
+```
+
+_No description available._
+
+**Returns** `string`
+
+### ResolveEntity()
+
+```csharp
+public abstract void ResolveEntity()
+```
+
+_No description available._
+
+### ReadContentAsBase64(byte[] buffer, int index, int count)
+
+```csharp
+public virtual int ReadContentAsBase64(byte[] buffer, int index, int count)
+```
+
+_No description available._
+
+**Returns** `int`
+
+### ReadElementContentAsBase64(byte[] buffer, int index, int count)
+
+```csharp
+public virtual int ReadElementContentAsBase64(byte[] buffer, int index, int count)
+```
+
+_No description available._
+
+**Returns** `int`
+
+### ReadContentAsBinHex(byte[] buffer, int index, int count)
+
+```csharp
+public virtual int ReadContentAsBinHex(byte[] buffer, int index, int count)
+```
+
+_No description available._
+
+**Returns** `int`
+
+### ReadElementContentAsBinHex(byte[] buffer, int index, int count)
+
+```csharp
+public virtual int ReadElementContentAsBinHex(byte[] buffer, int index, int count)
+```
+
+_No description available._
+
+**Returns** `int`
+
+### ReadValueChunk(char[] buffer, int index, int count)
+
+```csharp
+public virtual int ReadValueChunk(char[] buffer, int index, int count)
+```
+
+_No description available._
+
+**Returns** `int`
+
+### ReadString()
+
+```csharp
+public virtual string ReadString()
+```
+
+_No description available._
+
+**Returns** `string`
+
+### MoveToContent()
+
+```csharp
+public virtual XmlNodeType MoveToContent()
+```
+
+_No description available._
+
+**Returns** `XmlNodeType`
+
+### ReadStartElement()
+
+```csharp
+public virtual void ReadStartElement()
+```
+
+_No description available._
+
+### ReadStartElement(string name)
+
+```csharp
+public virtual void ReadStartElement(string name)
+```
+
+_No description available._
+
+### ReadStartElement(string localname, string ns)
+
+```csharp
+public virtual void ReadStartElement(string localname, string ns)
+```
+
+_No description available._
+
+### ReadElementString()
+
+```csharp
+public virtual string ReadElementString()
+```
+
+_No description available._
+
+**Returns** `string`
+
+### ReadElementString(string name)
+
+```csharp
+public virtual string ReadElementString(string name)
+```
+
+_No description available._
+
+**Returns** `string`
+
+### ReadElementString(string localname, string ns)
+
+```csharp
+public virtual string ReadElementString(string localname, string ns)
+```
+
+_No description available._
+
+**Returns** `string`
+
+### ReadEndElement()
+
+```csharp
+public virtual void ReadEndElement()
+```
+
+_No description available._
+
+### IsStartElement()
+
+```csharp
+public virtual bool IsStartElement()
+```
+
+_No description available._
+
+**Returns** `bool`
+
+### IsStartElement(string name)
+
+```csharp
+public virtual bool IsStartElement(string name)
+```
+
+_No description available._
+
+**Returns** `bool`
+
+### IsStartElement(string localname, string ns)
+
+```csharp
+public virtual bool IsStartElement(string localname, string ns)
+```
+
+_No description available._
+
+**Returns** `bool`
+
+### ReadToFollowing(string name)
+
+```csharp
+public virtual bool ReadToFollowing(string name)
+```
+
+_No description available._
+
+**Returns** `bool`
+
+### ReadToFollowing(string localName, string namespaceURI)
+
+```csharp
+public virtual bool ReadToFollowing(string localName, string namespaceURI)
+```
+
+_No description available._
+
+**Returns** `bool`
+
+### ReadToDescendant(string name)
+
+```csharp
+public virtual bool ReadToDescendant(string name)
+```
+
+_No description available._
+
+**Returns** `bool`
+
+### ReadToDescendant(string localName, string namespaceURI)
+
+```csharp
+public virtual bool ReadToDescendant(string localName, string namespaceURI)
+```
+
+_No description available._
+
+**Returns** `bool`
+
+### ReadToNextSibling(string name)
+
+```csharp
+public virtual bool ReadToNextSibling(string name)
+```
+
+_No description available._
+
+**Returns** `bool`
+
+### ReadToNextSibling(string localName, string namespaceURI)
+
+```csharp
+public virtual bool ReadToNextSibling(string localName, string namespaceURI)
+```
+
+_No description available._
+
+**Returns** `bool`
+
+### IsName(string str)
+
+```csharp
+public static bool IsName(string str)
+```
+
+_No description available._
+
+**Returns** `bool`
+
+### IsNameToken(string str)
+
+```csharp
+public static bool IsNameToken(string str)
+```
+
+_No description available._
+
+**Returns** `bool`
+
+### Dispose()
+
+```csharp
+public virtual void Dispose()
+```
+
+_No description available._
+
+### Create(Stream input)
+
+```csharp
+public static XmlReader Create(Stream input)
+```
+
+_No description available._
+
+**Returns** `XmlReader`
+
+### Create(Stream input, XmlReaderSettings settings)
+
+```csharp
+public static XmlReader Create(Stream input, XmlReaderSettings settings)
+```
+
+_No description available._
+
+**Returns** `XmlReader`
+
+### Create(Stream input, XmlReaderSettings settings, string baseUri)
+
+```csharp
+public static XmlReader Create(Stream input, XmlReaderSettings settings, string baseUri)
+```
+
+_No description available._
+
+**Returns** `XmlReader`

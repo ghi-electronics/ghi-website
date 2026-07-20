@@ -105,7 +105,7 @@ Removes any binding previously set with `SetTextBinding`.
 protected override void OnTouchUp(TouchEventArgs e)
 ```
 
-Opens the on-screen keyboard when the field is tapped.
+Focuses the field on tap and, unless a physical keyboard has suppressed it, opens the on-screen keyboard.
 
 ### OnButtonDown(ButtonEventArgs e)
 
@@ -113,7 +113,31 @@ Opens the on-screen keyboard when the field is tapped.
 protected override void OnButtonDown(ButtonEventArgs e)
 ```
 
-Hardware button support: `HardwareButton.Select` opens the on-screen keyboard, mirroring tap-to-edit behavior.
+Hardware buttons: Select opens the on-screen keyboard (unless suppressed); Left/Right/Home move the caret. Arrow keys from a physical keyboard map here.
+
+### OnCharacter(char c)
+
+```csharp
+protected override void OnCharacter(char c)
+```
+
+Inserts or removes a character at the caret (physical-keyboard text entry). Backspace = '\b', delete = (char)127.
+
+### OnGotFocus(FocusChangedEventArgs e)
+
+```csharp
+protected override void OnGotFocus(FocusChangedEventArgs e)
+```
+
+Starts the blinking caret and moves it to the end of the text when the field gains focus.
+
+### OnLostFocus(FocusChangedEventArgs e)
+
+```csharp
+protected override void OnLostFocus(FocusChangedEventArgs e)
+```
+
+Stops the blinking caret when the field loses focus.
 
 ### MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
 

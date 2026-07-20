@@ -1,0 +1,22 @@
+---
+title: "ClickMode Enum"
+sidebar_label: "ClickMode"
+---
+
+# ClickMode Enum
+
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
+
+Specifies when the `Click` event fires for button-family controls (`Button`, `CheckBox`, `RadioButton`). Mirrors WPF's `System.Windows.Controls.ClickMode`. Governs touch activation; the default is `Release`.
+
+```csharp
+public enum ClickMode
+```
+
+## Fields
+
+| Name | Value | Description |
+|---|---|---|
+| `Release` | `0` | Click fires when the touch is pressed and then released over the control (default, matches WPF). Allows dragging off the control before release to cancel. |
+| `Press` | `1` | Click fires as soon as the control is pressed (touch down) for the snappiest response. This matches the TinyCLR 2.x behavior; there is no drag-off-to-cancel in this mode. |
+| `Hover` | `2` | Reserved for pointer hover. A touch-only panel never hovers, so this behaves like `Release` for touch input. |

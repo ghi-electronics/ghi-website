@@ -49,6 +49,14 @@ public ushort RadiusBorder { get; set; }
 
 Corner radius used by the nine-slice check box image.
 
+### ClickMode
+
+```csharp
+public ClickMode ClickMode { get; set; }
+```
+
+Determines whether the check box clicks/toggles on touch press or release. Default is `ClickMode.Release` (WPF convention); set to `ClickMode.Press` for the instant TinyCLR 2.x response.
+
 ### IsChecked
 
 ```csharp
@@ -73,7 +81,7 @@ Draws the check box in its checked or unchecked state.
 protected override void OnTouchUp(TouchEventArgs e)
 ```
 
-Handles touch release; toggles the check box.
+Handles touch release; toggles the check box (unless it already toggled on press).
 
 ### OnTouchDown(TouchEventArgs e)
 
@@ -81,7 +89,7 @@ Handles touch release; toggles the check box.
 protected override void OnTouchDown(TouchEventArgs e)
 ```
 
-Handles touch press. Toggling is deferred to touch release.
+Handles touch press. In the default Release mode toggling is deferred to touch release; in `ClickMode.Press` mode it toggles immediately.
 
 ### OnButtonUp(ButtonEventArgs e)
 

@@ -137,6 +137,14 @@ public bool IsVisible { get; }
 
 A property indicating if this element is Visible or not.
 
+### IsHitTestVisible
+
+```csharp
+public bool IsHitTestVisible { get; set; }
+```
+
+Whether this element takes part in pointer/touch hit-testing. Set to `false` for a decorative overlay (e.g. a cursor or a background animation) so touches pass through to the controls underneath instead of being swallowed. Default is `true`.
+
 ### IsEnabled
 
 ```csharp
@@ -508,6 +516,14 @@ public void Invalidate()
 ```
 
 Marks the entire element as needing to be redrawn.
+
+### OnCharacter(char c)
+
+```csharp
+protected virtual void OnCharacter(char c)
+```
+
+Delivers a typed character (from a physical keyboard) to this element. Override to handle text input - the base implementation ignores it. A backspace arrives as '\b', a delete as (char)127; other control characters are not delivered. Fed by `Input.InputProvider.RaiseCharacter`, which routes to the focused element.
 
 ### RaiseEvent(RoutedEventArgs args)
 

@@ -81,6 +81,14 @@ public ShutdownMode ShutdownMode { get; set; }
 
 The ShutdownMode property is called to set the shutdown specific mode of the application. Setting this property controls the way in which an application will shutdown. The three values for the ShutdownMode enum are : OnLastWindowClose OnMainWindowClose OnExplicitShutdown OnLastWindowClose - this mode will shutdown the application when the last window is closed, or an explicit call is made to Application.Shutdown(). This is the default mode. OnMainWindowClose - this mode will shutdown the application when the main window has been closed, or Application.Shutdown() is called. Note that if the MainWindow property has not been set - this mode is equivalent to OnExplicitOnly. OnExplicitShutdown- this mode will shutdown the application only when an explicit call to OnShutdown() has been made.
 
+### ShowOnScreenKeyboardAutomatically
+
+```csharp
+public bool ShowOnScreenKeyboardAutomatically { get; set; }
+```
+
+Whether tapping (or Select-ing) a TextBox automatically pops up the on-screen keyboard. Default true. Set to false when a physical keyboard is connected so the user types on it instead (tablet-style); the on-screen keyboard can still be shown on demand via `ShowOnScreenKeyboardFor`. When set back to true, tapping a TextBox pops the keyboard again.
+
 ## Methods
 
 ### Run()
@@ -152,6 +160,14 @@ OnExit is called to raise the Exit event. The developer will typically override 
 | Parameter | Type | Description |
 |---|---|---|
 | `e` | `EventArgs` | The event args that will be passed to the Exit event |
+
+### ShowOnScreenKeyboardFor(TextBox textBox)
+
+```csharp
+public void ShowOnScreenKeyboardFor(TextBox textBox)
+```
+
+Shows the on-screen keyboard for the given TextBox (its text is edited and written back when the user accepts). Called automatically when a TextBox is tapped unless `ShowOnScreenKeyboardAutomatically` is false; call it yourself for an on-demand keyboard button.
 
 ## Events
 

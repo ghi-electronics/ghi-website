@@ -1,0 +1,74 @@
+---
+title: "Expander Class"
+sidebar_label: "Expander"
+---
+
+# Expander Class
+
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
+
+A header with an expand/collapse chevron; tapping the header shows or hides the single child content.
+
+```csharp
+public class Expander : ContentControl
+```
+
+## Properties
+
+### Header
+
+```csharp
+public string Header { get; set; }
+```
+
+The header text (always visible). Uses the inherited `Control.Font`.
+
+### HeaderColor
+
+```csharp
+public Color HeaderColor { get; set; }
+```
+
+The colour of the header text and chevron.
+
+### IsExpanded
+
+```csharp
+public bool IsExpanded { get; set; }
+```
+
+Whether the content is shown. Tapping the header toggles this.
+
+## Methods
+
+### OnTouchUp(TouchEventArgs e)
+
+```csharp
+protected override void OnTouchUp(TouchEventArgs e)
+```
+
+Toggles expansion when the header row is tapped.
+
+### MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
+
+```csharp
+protected override void MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
+```
+
+Measures the header plus (when expanded) the child.
+
+### ArrangeOverride(int arrangeWidth, int arrangeHeight)
+
+```csharp
+protected override void ArrangeOverride(int arrangeWidth, int arrangeHeight)
+```
+
+Arranges the child below the header (zero size when collapsed).
+
+### OnRender(DrawingContext dc)
+
+```csharp
+public override void OnRender(DrawingContext dc)
+```
+
+Draws the chevron + header text + a separator line under the header.

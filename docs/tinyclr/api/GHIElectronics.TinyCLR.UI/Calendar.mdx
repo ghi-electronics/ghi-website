@@ -1,0 +1,92 @@
+---
+title: "Calendar Class"
+sidebar_label: "Calendar"
+---
+
+# Calendar Class
+
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
+
+A month calendar: a header with prev/next month arrows, a day-of-week row, and a grid of day cells. Tapping the arrows changes the month; tapping a day selects it.
+
+```csharp
+public class Calendar : Control
+```
+
+## Constructors
+
+### Calendar()
+
+```csharp
+public Calendar()
+```
+
+Creates a calendar showing the current month.
+
+## Properties
+
+### ForeColor
+
+```csharp
+public Color ForeColor { get; set; }
+```
+
+Colour of the day / header text.
+
+### SelectionColor
+
+```csharp
+public Color SelectionColor { get; set; }
+```
+
+Fill behind the selected day.
+
+### Year
+
+```csharp
+public int Year { get; set; }
+```
+
+The displayed year.
+
+### Month
+
+```csharp
+public int Month { get; set; }
+```
+
+The displayed month (1-12).
+
+### SelectedDay
+
+```csharp
+public int SelectedDay { get; set; }
+```
+
+The selected day of month (0 = none).
+
+## Methods
+
+### MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
+
+```csharp
+protected override void MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
+```
+
+Reports the full grid height (header + day-of-week row + 6 week rows).
+
+### OnTouchUp(TouchEventArgs e)
+
+```csharp
+protected override void OnTouchUp(TouchEventArgs e)
+```
+
+Handles taps on the prev/next arrows and the day cells.
+
+### OnRender(DrawingContext dc)
+
+```csharp
+public override void OnRender(DrawingContext dc)
+```
+
+Draws the header, weekday initials, and the day grid.
