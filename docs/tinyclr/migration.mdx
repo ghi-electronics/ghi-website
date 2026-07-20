@@ -1,6 +1,6 @@
 ---
 title: Migrating from v2
-description: TinyCLR v3 is mostly backward-compatible with v2. New features include generics, async/await, C# 11, dual .NET IoT APIs, RLP for native C/C++, and Desktop Mode for PC-side testing — plus Visual Studio 2026 and VS Code support.
+description: TinyCLR v3 is mostly backward-compatible with v2. New features include generics, async/await, C# 11, dual .NET IoT APIs, and RLP for native C/C++ — plus Visual Studio 2026 and VS Code support.
 ---
 
 TinyCLR v3 is mostly backwards-compatible at the library API level — **the bulk of v2 application code compiles unchanged**. The differences are in the project/solution tooling and in optional new features you can opt into when you're ready.
@@ -20,7 +20,6 @@ The reason for starting fresh instead of opening the v2 solution is that the **p
 
 - **Modern C# features** — `async`/`await`, top-level statements, generics (`List<T>`, `Dictionary<TKey, TValue>`, `Stack<T>`, `Queue<T>`)
 - **Standard .NET IoT APIs** for peripherals (GPIO, PWM, SPI, I²C, UART) alongside the original TinyCLR APIs — see [Two APIs side-by-side](#two-apis-side-by-side) below
-- **Dual mode** — a TinyCLR project can run on the device and in Desktop mode (.NET Framework 4.8). See [Desktop Mode](feature/desktop-mode.mdx).
 - **Visual Studio 2026** (any edition including Community) is the supported IDE for the v3 extension — and v3 also adds **Visual Studio Code** support via a dedicated extension. Both run on Windows only.
 - **Updated project/solution system** with the changes above
 
