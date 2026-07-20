@@ -1,0 +1,67 @@
+---
+title: VS Code
+description: Create a TinyCLR project in VS Code and add fonts, images, and other resources with the TinyCLR extension's built-in commands.
+---
+
+# VS Code
+
+VS Code is a great lean alternative to Visual Studio for TinyCLR development — lighter, faster to open, and it deploys and debugs on SITCore hardware just as well. The C# you write is identical either way; what's different is the project itself. A Visual Studio TinyCLR project and a VS Code TinyCLR project are different project types — different templates, different tooling — so a project created in one doesn't open in the other. Pick the IDE per project, not per line of code.
+
+This page covers the two things that work differently enough in VS Code to deserve their own walkthrough: creating a project, and adding resources. About 10 minutes.
+
+:::note
+What you'll need
+- A SITCore board with TinyCLR firmware already flashed — see [Install or update firmware](../getting-started.mdx#install-or-update-firmware) if you haven't yet.
+:::
+
+## Step 1 — Create a project
+
+1. **Install [Visual Studio Code](https://code.visualstudio.com/)** if you don't already have it.
+
+2. **Install the TinyCLR extension.** Search the Extensions view for `tinyclr` and install it — click "Switch to Pre-Release Version" if you want the newest features ahead of a stable release. The extension adds TinyCLR commands to the Command Palette (`Ctrl+Shift+P`).
+
+3. Open the Command Palette and run **TinyCLR: New Project**.
+
+4. Pick the **TinyCLR Application** template when prompted.
+
+5. Choose a folder and project name, then let the extension scaffold the project.
+
+6. Plug your board into USB and press **F5**. The extension finds the device (showing options in the Command Palette if more than one is attached), compiles, and deploys. The starter code prints an incrementing counter to the **Debug Console** — confirming your dev machine and the SITCore board are talking. Stop the program when you're satisfied.
+
+From here, [Create Graphics](create-graphics.mdx) works exactly the same in VS Code as in Visual Studio. [Build a Touch UI](touch-ui.mdx), on the other hand, needs the UI Designer and the TinyCLR UI Application template — both Visual Studio-only — so that one's a Visual Studio tutorial.
+
+## Step 2 — Add a resource
+
+Resources are binary assets — fonts, images, arbitrary files, strings — bundled into your app and loaded by name at runtime (the [Resources](../feature/resources.mdx) page has the full reference). In Visual Studio, you add them by dragging files onto a Resources designer; in VS Code, the TinyCLR extension has a dedicated command for the same job.
+
+1. Open the Command Palette and run **TinyCLR: Add Resources**.
+
+2. Pick the kind of resource you're adding:
+
+   | Type | What it is | Accessor |
+   |---|---|---|
+   | **String** | A text string you type in | `Resources.GetString(...)` |
+   | **Text File** | A text file's contents, loaded as a string | `Resources.GetString(...)` |
+   | **Image** | A BMP, JPG, or GIF | `Resources.GetBitmap(...)` |
+   | **Binary File** | Any file, embedded as a `byte[]` | `Resources.GetBytes(...)` |
+   | **Font File** | A converted `.tinyfnt` device font, embedded as a `byte[]` | `Resources.GetBytes(...)` |
+
+3. For file-based types, a file picker opens — pick the file and the extension does the rest: it embeds the file and adds a named identifier for it to the generated `Resources` class, the same enum-based pattern Visual Studio generates.
+
+Load it the same way from C# regardless of which IDE added it:
+
+```csharp
+var logo = Resources.GetBitmap(Resources.BitmapResources.Logo);
+```
+
+(`Logo` above is whatever name the resource got when you added it — swap in your own.)
+
+:::tip
+**Font File** expects an already-converted `.tinyfnt` file, not a raw `.ttf`. Convert your TrueType font first with the **FontConverter** tool (from the [Downloads](../downloads.mdx) page) — see [Font Support](../feature/font-support.mdx) for sizes, character ranges, and anti-aliasing options.
+:::
+
+## Where to go next
+
+- **[Create Graphics](create-graphics.mdx)** — bounce a ball and draw text on a SITCore display.
+- **[Resources](../feature/resources.mdx)** — the full reference on loading and partial-reading resources.
+- **[Font Support](../feature/font-support.mdx)** — converting and using your own fonts.
