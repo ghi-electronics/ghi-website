@@ -10,7 +10,7 @@
         "pid": "0x5010"
       },
       "version": "3.0.1.1000",
-      "date": "2026-07-20",
+      "date": "2026-07-22",
       "url": "/bin/fw/sitcore-sc20-firmware-v3.0.1.1000.ghi",
       "md5": "752A16868634810D0EF683E16801A4DB"
     },
@@ -22,7 +22,7 @@
         "pid": "0x5012"
       },
       "version": "3.0.1.1000",
-      "date": "2026-07-20",
+      "date": "2026-07-22",
       "url": "/bin/fw/sitcore-sc13-firmware-v3.0.1.1000.ghi",
       "md5": "BAB67D31741519F18658E80643AFB6A0"
     }
