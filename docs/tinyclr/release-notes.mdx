@@ -4,7 +4,7 @@ title: Release Notes
 
 ![TinyCLR Logo](/img/docs/tinyclr-logo.png)
 
-## 3.0.1.1000 (2026-07-20) Prerelease
+## 3.0.1.1000 (2026-07-22) Prerelease
 
 3.0.1.1000 is a prerelease of TinyCLR OS 3.0. The headline additions are a visual **TinyCLR UI Designer** for Visual Studio and an expanded library of ready-to-use UI controls. The Visual Studio extension can now also detect out-of-date device firmware and update it from the IDE.
 
@@ -20,6 +20,7 @@ New features
 
 Fixes
 
+- Fixed blocking socket calls stalling the rest of the application: while one thread was blocked in `Accept`, `Receive`, or `Send`, every other thread's `Thread.Sleep` could be delayed by up to ~250 ms. Blocking socket operations now wait cooperatively, so other threads keep running on schedule.
 - 2.x XML code that stopped compiling in 3.0 (the XML types had become internal) compiles again.
 
 ### Firmware
@@ -39,7 +40,6 @@ Known issues
 
 - SC20xxx: Webcam reconnect fails after disconnect when connected through a hub.
 - USB host hubs do not support low-speed (LS) devices. To use a mouse or keyboard, connect it directly to the USB port or use a full-speed device instead.
-- SC20xxx: while a thread is blocked in a blocking socket `Accept`/`Receive`, `Thread.Sleep` on other threads only wakes on the lwIP slow-timer tick, quantizing wake-ups to ~250 ms (short sleeps can be delayed by up to ~250 ms). Workaround: use non-blocking sockets with `Socket.Poll` instead of a blocking `Accept`/`Receive` — polling is unaffected.
 
 ### Visual Studio Extension
 
@@ -57,6 +57,8 @@ Fixes
 Known issues
 
 - You need to add the `GHIElectronics.TinyCLR.Drawing` NuGet package when adding a bitmap or image resource (if it is not already in the project).
+- **UI Designer**: in a `Grid`, a control whose `Grid.Row` / `Grid.Column` is greater than the number of defined rows/columns overlaps other controls in the preview. Add matching `RowDefinition` / `ColumnDefinition` entries to the `Grid`.
+- **UI Designer**: a control inside a `ScrollViewer` cannot be selected by clicking it on the canvas. Select a control nested inside it and press **Esc** to step up to the parent.
 
 ### TinyCLR Config
 
