@@ -12,7 +12,7 @@
       "version": "3.0.1.1000",
       "date": "2026-07-20",
       "url": "/bin/fw/sitcore-sc20-firmware-v3.0.1.1000.ghi",
-      "md5": "952252C924A1C75B3AA78820CD76B41E"
+      "md5": "752A16868634810D0EF683E16801A4DB"
     },
     {
       "id": "sc13",
@@ -24,7 +24,7 @@
       "version": "3.0.1.1000",
       "date": "2026-07-20",
       "url": "/bin/fw/sitcore-sc13-firmware-v3.0.1.1000.ghi",
-      "md5": "C9AC3AA16314116224D1D0670896E865"
+      "md5": "BAB67D31741519F18658E80643AFB6A0"
     }
   ]
 }
