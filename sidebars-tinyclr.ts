@@ -2,7 +2,17 @@ import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
 
 const sidebars: SidebarsConfig = {
   tinyclrSidebar: [
-    'getting-started',
+    {
+      type: 'category',
+      label: 'Getting Started',
+      link: {type: 'doc', id: 'getting-started'},
+      collapsed: true,
+      items: [
+        'tutorial/create-graphics',
+        'tutorial/touch-ui',
+        'tutorial/vscode',
+      ],
+    },
     {
       type: 'category',
       label: 'SITCore Hardware',
@@ -139,7 +149,7 @@ const sidebars: SidebarsConfig = {
           collapsed: true,
           items: [
             'feature/debugging',
-            'feature/desktop-mode',
+            'feature/emulator',
             'feature/memory',
             'feature/unmanaged-heap',
             'feature/marshal',

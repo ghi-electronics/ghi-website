@@ -41,6 +41,30 @@ Determines if this window is always on the top.
 
 ## Methods
 
+### Hide()
+
+```csharp
+public void Hide()
+```
+
+Hides the window without closing it, WPF-style. It stays alive and can be shown again with `Show`.
+
+### Activate()
+
+```csharp
+public void Activate()
+```
+
+Brings the window to the front of the z-order and gives it input focus, WPF-style.
+
+### Close()
+
+```csharp
+public void Close()
+```
+
+Closes the window and removes it from the application and window manager.
+
 ### ArrangeOverride(int arrangeWidth, int arrangeHeight)
 
 ```csharp

@@ -1,0 +1,56 @@
+---
+title: "MenuEntry Class"
+sidebar_label: "MenuEntry"
+---
+
+# MenuEntry Class
+
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
+
+An entry in a `Menu`: a header plus optional sub-items.
+
+```csharp
+public sealed class MenuEntry
+```
+
+## Constructors
+
+### MenuEntry(string header)
+
+```csharp
+public MenuEntry(string header)
+```
+
+Creates an entry with the given header.
+
+## Methods
+
+### ArrayList()
+
+```csharp
+public readonly ArrayList Children = new ArrayList()
+```
+
+The sub-items shown when this top-level entry is opened.
+
+**Returns** `ArrayList Children = new`
+
+### Add(MenuEntry child)
+
+```csharp
+public MenuEntry Add(MenuEntry child)
+```
+
+Adds a sub-item.
+
+**Returns** `MenuEntry`
+
+## Fields
+
+### Header
+
+```csharp
+public string Header
+```
+
+The text shown for this entry.

@@ -1,0 +1,390 @@
+---
+title: "XmlTextReader Class"
+sidebar_label: "XmlTextReader"
+---
+
+# XmlTextReader Class
+
+**NuGet:** `GHIElectronics.TinyCLR.Data.Xml`<br/>**Assembly:** `GHIElectronics.TinyCLR.Data.Xml`<br/>**Namespace:** `GHIElectronics.TinyCLR.Data.Xml`
+
+_No description available._
+
+```csharp
+public class XmlTextReader : XmlReader, IXmlLineInfo
+```
+
+## Constructors
+
+### XmlTextReader(Stream input)
+
+```csharp
+public XmlTextReader(Stream input) : this( , input, new NameTable())
+```
+
+_No description available._
+
+### XmlTextReader(Stream input, XmlNameTable nt)
+
+```csharp
+public XmlTextReader(Stream input, XmlNameTable nt) : this( , input, nt)
+```
+
+_No description available._
+
+## Properties
+
+### Settings
+
+```csharp
+public override XmlReaderSettings Settings { get; }
+```
+
+_No description available._
+
+### NodeType
+
+```csharp
+public override XmlNodeType NodeType { get; }
+```
+
+_No description available._
+
+### Name
+
+```csharp
+public override string Name { get; }
+```
+
+_No description available._
+
+### LocalName
+
+```csharp
+public override string LocalName { get; }
+```
+
+_No description available._
+
+### NamespaceURI
+
+```csharp
+public override string NamespaceURI { get; }
+```
+
+_No description available._
+
+### Prefix
+
+```csharp
+public override string Prefix { get; }
+```
+
+_No description available._
+
+### HasValue
+
+```csharp
+public override bool HasValue { get; }
+```
+
+_No description available._
+
+### Value
+
+```csharp
+public override string Value { get; }
+```
+
+_No description available._
+
+### Depth
+
+```csharp
+public override int Depth { get; }
+```
+
+_No description available._
+
+### BaseURI
+
+```csharp
+public override string BaseURI { get; }
+```
+
+_No description available._
+
+### IsEmptyElement
+
+```csharp
+public override bool IsEmptyElement { get; }
+```
+
+_No description available._
+
+### IsDefault
+
+```csharp
+public override bool IsDefault { get; }
+```
+
+_No description available._
+
+### QuoteChar
+
+```csharp
+public override char QuoteChar { get; }
+```
+
+_No description available._
+
+### XmlSpace
+
+```csharp
+public override XmlSpace XmlSpace { get; }
+```
+
+_No description available._
+
+### XmlLang
+
+```csharp
+public override string XmlLang { get; }
+```
+
+_No description available._
+
+### ReadState
+
+```csharp
+public override ReadState ReadState { get; }
+```
+
+_No description available._
+
+### EOF
+
+```csharp
+public override bool EOF { get; }
+```
+
+_No description available._
+
+### NameTable
+
+```csharp
+public override XmlNameTable NameTable { get; }
+```
+
+_No description available._
+
+### CanResolveEntity
+
+```csharp
+public override bool CanResolveEntity { get; }
+```
+
+_No description available._
+
+### AttributeCount
+
+```csharp
+public override int AttributeCount { get; }
+```
+
+_No description available._
+
+### CanReadBinaryContent
+
+```csharp
+public override bool CanReadBinaryContent { get; }
+```
+
+_No description available._
+
+### CanReadValueChunk
+
+```csharp
+public override bool CanReadValueChunk { get; }
+```
+
+_No description available._
+
+### LineNumber
+
+```csharp
+public int LineNumber { get; }
+```
+
+_No description available._
+
+### LinePosition
+
+```csharp
+public int LinePosition { get; }
+```
+
+_No description available._
+
+## Methods
+
+### GetAttribute(string name)
+
+```csharp
+public override string GetAttribute(string name)
+```
+
+_No description available._
+
+**Returns** `string`
+
+### GetAttribute(string name, string namespaceURI)
+
+```csharp
+public override string GetAttribute(string name, string namespaceURI)
+```
+
+_No description available._
+
+**Returns** `string`
+
+### GetAttribute(int i)
+
+```csharp
+public override string GetAttribute(int i)
+```
+
+_No description available._
+
+**Returns** `string`
+
+### MoveToAttribute(string name)
+
+```csharp
+public override bool MoveToAttribute(string name)
+```
+
+_No description available._
+
+**Returns** `bool`
+
+### MoveToAttribute(string name, string ns)
+
+```csharp
+public override bool MoveToAttribute(string name, string ns)
+```
+
+_No description available._
+
+**Returns** `bool`
+
+### MoveToAttribute(int i)
+
+```csharp
+public override void MoveToAttribute(int i)
+```
+
+_No description available._
+
+### MoveToFirstAttribute()
+
+```csharp
+public override bool MoveToFirstAttribute()
+```
+
+_No description available._
+
+**Returns** `bool`
+
+### MoveToNextAttribute()
+
+```csharp
+public override bool MoveToNextAttribute()
+```
+
+_No description available._
+
+**Returns** `bool`
+
+### MoveToElement()
+
+```csharp
+public override bool MoveToElement()
+```
+
+_No description available._
+
+**Returns** `bool`
+
+### Read()
+
+```csharp
+public override bool Read()
+```
+
+_No description available._
+
+**Returns** `bool`
+
+### Close()
+
+```csharp
+public override void Close()
+```
+
+_No description available._
+
+### Skip()
+
+```csharp
+public override void Skip()
+```
+
+_No description available._
+
+### LookupNamespace(string prefix)
+
+```csharp
+public override string LookupNamespace(string prefix)
+```
+
+_No description available._
+
+**Returns** `string`
+
+### ReadAttributeValue()
+
+```csharp
+public override bool ReadAttributeValue()
+```
+
+_No description available._
+
+**Returns** `bool`
+
+### ResolveEntity()
+
+```csharp
+public override void ResolveEntity()
+```
+
+_No description available._
+
+### ReadValueChunk(char[] buffer, int index, int count)
+
+```csharp
+public override int ReadValueChunk(char[] buffer, int index, int count)
+```
+
+_No description available._
+
+**Returns** `int`
+
+### HasLineInfo()
+
+```csharp
+public bool HasLineInfo()
+```
+
+_No description available._
+
+**Returns** `bool`

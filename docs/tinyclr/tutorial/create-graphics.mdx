@@ -1,0 +1,241 @@
+---
+title: Create Graphics
+description: Step-by-step tutorial — bounce a ball and center text on a SITCore display, first with BasicGraphics, then with the full graphics engine.
+---
+
+# Create Graphics
+
+Your first graphics on a SITCore display: a ball that bounces around the screen with a line of text centered in the middle — built **twice**, once with each of TinyCLR's [two graphics options](../feature/graphics.mdx):
+
+- **Part 1 — [BasicGraphics](../feature/graphics.mdx#basicgraphics)** (Steps 3–4): the lightweight library with a built-in font. Runs on **every device**, and the only option on SC13xxx chips.
+- **Part 2 — the [graphics engine](../feature/graphics.mdx)** (Step 5): the full drawing API — brushes, converted fonts, images — and the production choice on **SC20xxx** hardware.
+
+Same ball, same text, two APIs — by the end you'll know exactly how they differ and which one your project needs. About 25 minutes for both parts.
+
+:::note
+What you'll need
+- The **[getting started](../getting-started.mdx)** steps completed — IDE installed, firmware flashed, and the starter project deploying.
+- An **SCM20260D Dev Board** with the **4.3" parallel display** (480×272) — or a **[FEZ Portal](../sbc.mdx#fez-portal-1)**. No touch is involved, so the code is exactly the same on both boards. (Both are SC20xxx, so both parts of this tutorial run on them.)
+
+Using a different panel? Swap the display timing values using [Displays](../feature/displays.mdx) and your board's pinout.
+:::
+
+## Step 1 — Install the NuGet packages
+
+Add these packages to a fresh **TinyCLR Application** project:
+
+- **`GHIElectronics.TinyCLR.Devices.Display`** — the display controller
+- **`GHIElectronics.TinyCLR.Devices.Gpio`** — the backlight pin
+- **`GHIElectronics.TinyCLR.Pins`** — named pins for your board
+- **`GHIElectronics.TinyCLR.Drivers.BasicGraphics`** — the drawing library for Part 1
+- **`GHIElectronics.TinyCLR.Drawing`** — the graphics engine for Part 2
+
+## Step 2 — Configure the display
+
+Replace `Program.cs` with the skeleton below — it powers the backlight, configures the 4.3" panel timing, and enables the display:
+
+```csharp title="Program.cs"
+using System;
+using System.Threading;
+using GHIElectronics.TinyCLR.Devices.Display;
+using GHIElectronics.TinyCLR.Devices.Gpio;
+using GHIElectronics.TinyCLR.Drivers.BasicGraphics;
+using GHIElectronics.TinyCLR.Pins;
+
+class Program {
+    static void Main() {
+        var gpio = GpioController.GetDefault();
+
+        // Backlight on.
+        var backlight = gpio.OpenPin(SC20260.GpioPin.PA15);
+        backlight.SetDriveMode(GpioPinDriveMode.Output);
+        backlight.Write(GpioPinValue.High);
+
+        // 4.3" panel timing — same on the Dev Board and the FEZ Portal.
+        var display = DisplayController.GetDefault();
+        display.SetConfiguration(new ParallelDisplayControllerSettings {
+            Width = 480,
+            Height = 272,
+            DataFormat = DisplayDataFormat.Rgb565,
+            Orientation = DisplayOrientation.Degrees0,
+            PixelClockRate = 10_000_000,
+            HorizontalFrontPorch = 2,
+            HorizontalBackPorch = 2,
+            HorizontalSyncPulseWidth = 41,
+            HorizontalSyncPolarity = false,
+            VerticalFrontPorch = 2,
+            VerticalBackPorch = 2,
+            VerticalSyncPulseWidth = 10,
+            VerticalSyncPolarity = false,
+            PixelPolarity = false,
+            DataEnablePolarity = false,
+            DataEnableIsFixed = false,
+        });
+        display.Enable();
+
+        // Drawing goes here (Step 3).
+    }
+}
+```
+
+There's no `Application`, no window, no UI framework here — this tutorial talks to the display directly.
+
+## Step 3 — Bounce the ball with BasicGraphics
+
+`BasicGraphics` can manage the frame buffer for you: give it the screen size and color format, draw into it, then hand the buffer to the display controller with `DrawBuffer`. Each pass through the loop clears the buffer, draws the circle at its new position, and pushes the whole frame to the screen.
+
+Replace the Step 3 comment in `Main` with:
+
+```csharp
+const int Width = 480;
+const int Height = 272;
+
+var gfx = new BasicGraphics(Width, Height, ColorFormat.Rgb565);
+
+var ballColor = BasicGraphics.ColorFromRgb(255, 170, 85);
+var radius = 20;
+
+var x = Width / 2;
+var y = Height / 2;
+var dx = 4;
+var dy = 3;
+
+while (true) {
+    // Flip direction when the next move would push the ball past an edge.
+    if (x - radius + dx < 0 || x + radius + dx >= Width) dx = -dx;
+    if (y - radius + dy < 0 || y + radius + dy >= Height) dy = -dy;
+
+    x += dx;
+    y += dy;
+
+    gfx.Clear();
+    gfx.DrawCircle(ballColor, x, y, radius);
+
+    display.DrawBuffer(0, 0, 0, 0, Width, Height, Width, gfx.Buffer, 0);
+
+    Thread.Sleep(10);
+}
+```
+
+Press **F5** — the ball drifts across the screen and rebounds off every edge.
+
+A few things worth noticing:
+
+- **`DrawCircle(color, x, y, radius)`** takes the *center* of the circle, which is why the bounce checks measure `radius` away from `x` and `y`.
+- **Colors are plain `uint` values** built with `BasicGraphics.ColorFromRgb(r, g, b)` — no brushes, no color structs.
+- **`DrawBuffer`** copies the finished frame into the display's DMA framebuffer; the panel refreshes itself from there with no CPU involvement ([Displays → Low-level access](../feature/displays.mdx#low-level-access)).
+- Change `dx`/`dy` for speed and angle, `Thread.Sleep` for frame pacing.
+
+## Step 4 — Add text with DrawString
+
+`BasicGraphics` has a built-in font — no font resources to convert or embed. Each character is a **5×8-pixel** glyph with one pixel of spacing, so a character advances **6 pixels** horizontally, and the scaled `DrawString` overload multiplies both directions.
+
+The built-in font is all this tutorial needs, but BasicGraphics can also use **font resources** when you want a real typeface — see [Font Support](../feature/font-support.mdx) for converting a TrueType font and embedding it in your project.
+
+Add the text setup before the loop, and one `DrawString` after the circle so the text stays fixed while the ball bounces behind it:
+
+```csharp
+// highlight-start
+var text = "Hello TinyCLR!";
+var textColor = BasicGraphics.ColorFromRgb(255, 255, 255);
+var scale = 3;
+var textWidth = text.Length * 6 * scale;    // built-in font: 5px glyph + 1px spacing per character
+var textHeight = 8 * scale;
+// highlight-end
+
+while (true) {
+    // Flip direction when the next move would push the ball past an edge.
+    if (x - radius + dx < 0 || x + radius + dx >= Width) dx = -dx;
+    if (y - radius + dy < 0 || y + radius + dy >= Height) dy = -dy;
+
+    x += dx;
+    y += dy;
+
+    gfx.Clear();
+    gfx.DrawCircle(ballColor, x, y, radius);
+    // highlight-start
+    gfx.DrawString(text, textColor,
+        (Width - textWidth) / 2, (Height - textHeight) / 2, scale, scale);
+    // highlight-end
+
+    display.DrawBuffer(0, 0, 0, 0, Width, Height, Width, gfx.Buffer, 0);
+
+    Thread.Sleep(10);
+}
+```
+
+Press **F5** again — "Hello TinyCLR!" sits centered on the screen, and because it's drawn *after* the circle each frame, the ball appears to pass behind it.
+
+## Step 5 — The same ball on the graphics engine
+
+BasicGraphics got us on screen fast, but on SC20xxx hardware the **[graphics engine](../feature/graphics.mdx)** is the production choice: `System.Drawing`-style brushes and pens, converted fonts, JPEG/GIF/BMP images, clipping, and more. Let's draw the exact same scene with it.
+
+:::note
+Unlike BasicGraphics, the graphics engine has **no built-in font** — any text it draws needs a font added to your project's **resources**. This tutorial uses the `droid_reg10` font the project template already includes; to use your own typeface, convert it and embed it as shown on the [Font Support](../feature/font-support.mdx) page.
+:::
+
+Add two usings to `Program.cs` — the engine's API and your project's `Properties` namespace (this tutorial assumes the project is named `CreateGraphics`; substitute yours):
+
+```csharp
+using System.Drawing;
+using CreateGraphics.Properties;
+```
+
+Then replace all the drawing code from Steps 3–4 with:
+
+```csharp
+const int Width = 480;
+const int Height = 272;
+
+var screen = Graphics.FromHdc(display.Hdc);
+var font = Resources.GetFont(Resources.FontResources.droid_reg10);
+
+var ballBrush = new SolidBrush(Color.Red);
+var textBrush = new SolidBrush(Color.White);
+
+var text = "Hello TinyCLR!";
+var textSize = screen.MeasureString(text, font);
+
+var radius = 20;
+var x = Width / 2;
+var y = Height / 2;
+var dx = 4;
+var dy = 3;
+
+while (true) {
+    // Flip direction when the next move would push the ball past an edge.
+    if (x - radius + dx < 0 || x + radius + dx >= Width) dx = -dx;
+    if (y - radius + dy < 0 || y + radius + dy >= Height) dy = -dy;
+
+    x += dx;
+    y += dy;
+
+    screen.Clear();
+    screen.FillEllipse(ballBrush, x - radius, y - radius, radius * 2, radius * 2);
+    screen.DrawString(text, font, textBrush,
+        (Width - textSize.Width) / 2, (Height - textSize.Height) / 2);
+    screen.Flush();
+
+    Thread.Sleep(10);
+}
+```
+
+Press **F5** — same bouncing ball, same centered text. The differences are the lesson:
+
+- **Colors become `Color` structs wrapped in brushes and pens** (`SolidBrush`, `Pen`) instead of raw `uint` values.
+- **Text requires a font resource** — there's no built-in font (see the note above). And **`MeasureString`** centers it — no glyph math.
+- **`FillEllipse` takes a bounding box** (top-left corner plus width and height), not a center point — hence `x - radius, y - radius`.
+- **`Graphics.FromHdc(display.Hdc)`** draws straight into the display's framebuffer, and **`Flush()`** presents the frame — no buffer to hand over yourself.
+
+From here the whole engine is available: [images](../feature/image-decoders.mdx), clipping, tiling, scaling — see [Graphics](../feature/graphics.mdx) for the full API.
+
+**Which one should you use?** On SC13xxx chips there's no choice — BasicGraphics is the drawing library. On SC20xxx, reach for the graphics engine unless your needs are so simple that skipping font resources and `System.Drawing` is worth it.
+
+If the screen stays blank in either part, recheck the backlight pin and the timing values against your panel ([Displays](../feature/displays.mdx)).
+
+## Where to go next
+
+- **[Build a Touch UI](touch-ui.mdx)** — the next tutorial: design screens with buttons and touch in the TinyCLR UI Designer.
+- **[Graphics](../feature/graphics.mdx)** — the full graphics engine reference: shapes, helpers, virtual displays, 2D copies.
+- **[BasicGraphics reference](../drivers/software-utility.mdx#basic-graphics)** — the full API, including running it on small chips by overriding `SetPixel`.
+- **[Displays](../feature/displays.mdx)** — 7" panels, SPI displays, and low-level display access.

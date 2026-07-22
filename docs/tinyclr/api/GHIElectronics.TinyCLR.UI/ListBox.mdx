@@ -7,7 +7,7 @@ sidebar_label: "ListBox"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-A scrollable list of selectable items.
+A scrollable list of selectable items. Two content modes: Items — add explicit `ListBoxItem` rows via `Items` (fully realized). ItemsSource — bind a large `IList` of data to `ItemsSource`; the list then virtualizes, recycling a small pool of rows (each item shown via `ToString()`). This replaces the former separate `VirtualizingListBox`. The two modes are mutually exclusive; setting `ItemsSource` switches the list into virtualized mode.
 
 ```csharp
 public class ListBox : ContentControl
@@ -88,6 +88,22 @@ public ScrollingStyle ScrollingStyle { get; set; }
 ```
 
 The scrolling style.
+
+### ItemsSource
+
+```csharp
+public IList ItemsSource { get; set; }
+```
+
+Binds a large data list to the list box; each item is shown via its `ToString()`. Setting this switches the list into virtualized mode (a small pool of rows is recycled while scrolling), for big lists that would be too heavy as explicit `Items`. Leave null to use the `Items` collection. This replaces the former separate `VirtualizingListBox` control.
+
+### ItemHeight
+
+```csharp
+public int ItemHeight { get; set; }
+```
+
+Fixed row height in pixels used for the virtualization math in `ItemsSource` mode.
 
 ## Methods
 

@@ -4,7 +4,18 @@ title: User Interface
 
 The **`GHIElectronics.TinyCLR.UI`** library provides a **WPF-inspired** UI framework — windows, panels, layouts, controls, an event-driven dispatcher, and styling via brushes. If you've written Windows Presentation Foundation code, the patterns will feel familiar.
 
-NuGet packages: **`GHIElectronics.TinyCLR.UI`** and **`GHIElectronics.TinyCLR.UI.Media`** for the framework; whichever **display** and **bus** packages your panel needs ([Displays → Native](displays.mdx#native-displays) or [Virtual](displays.mdx#virtual-displays)).
+![TinyCLR UI Designer](/img/docs/tinyclr-ui-designer.png)
+
+NuGet package: **`GHIElectronics.TinyCLR.UI`** (the `GHIElectronics.TinyCLR.UI.Media` namespace ships inside it); add whichever **display** and **bus** packages your panel needs ([Displays → Native](displays.mdx#native-displays) or [Virtual](displays.mdx#virtual-displays)).
+
+## Which do I need?
+
+TinyCLR has two ways to put things on a screen:
+
+- **User Interface (this page)** — a WPF-style framework: windows, panels, controls, events, and touch input, with screens laid out visually in the [Visual Studio UI Designer](#visual-studio-ui-designer). Pick it when you're building screens a user interacts with — settings pages, forms, menus, dashboards with buttons.
+- **[Graphics](graphics.mdx)** — immediate-mode drawing on the same display backends. You draw shapes, text, and bitmaps yourself: the quickest way to put simple, custom visuals on screen when the full framework is more than you need.
+
+**Try it:** the [Build a Touch UI tutorial](../tutorial/touch-ui.mdx) walks through a two-page touch app — designed in the UI Designer — in about 20 minutes.
 
 ## Application skeleton
 
@@ -19,7 +30,7 @@ class Program : Application {
 
     static void Main() {
         var display = DisplayController.GetDefault();
-        display.SetConfiguration(new ParallelDisplayControllerSettings { /* see Graphics page */ });
+        display.SetConfiguration(new ParallelDisplayControllerSettings { /* see Displays page */ });
         display.Enable();
 
         var app = new Program(display);
@@ -33,7 +44,7 @@ class Program : Application {
 }
 ```
 
-For the display setup itself (timing parameters, backlight, SPI driver wiring), follow the patterns on the [Graphics page](graphics.mdx) — the UI library uses the same display backends.
+For the display setup itself (timing parameters, backlight, SPI driver wiring), follow the patterns on the [Displays page](displays.mdx) — the UI library uses the same display backends.
 
 ## Windows
 
@@ -97,7 +108,7 @@ class Program : Application {
     public Program(int width, int height) : base(width, height) { }
 
     static void Main() {
-        // ... set up st7735 controller (see Graphics → Virtual displays)
+        // ... set up st7735 controller (see Displays → Virtual displays)
         Graphics.OnFlushEvent += (sender, data, x, y, w, h, origW) => st7735.DrawBuffer(data);
 
         var app = new Program(160, 128);

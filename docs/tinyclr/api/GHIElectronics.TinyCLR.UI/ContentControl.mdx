@@ -15,6 +15,22 @@ public abstract class ContentControl : Control
 
 ## Properties
 
+### HorizontalContentAlignment
+
+```csharp
+public HorizontalAlignment HorizontalContentAlignment { get; set; }
+```
+
+Horizontal placement of `Child` within this control's content area. `HorizontalAlignment.Stretch` (the default) gives the child the full width and lets the child's own `UIElement.HorizontalAlignment` take effect (back-compat). Derived controls such as `Button` default this to `HorizontalAlignment.Center`.
+
+### VerticalContentAlignment
+
+```csharp
+public VerticalAlignment VerticalContentAlignment { get; set; }
+```
+
+Vertical placement of `Child` within this control's content area. See `HorizontalContentAlignment` for the Stretch/back-compat semantics.
+
 ### Child
 
 ```csharp

@@ -1,0 +1,64 @@
+---
+title: "TreeNode Class"
+sidebar_label: "TreeNode"
+---
+
+# TreeNode Class
+
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
+
+A node in a `TreeView`: a header plus optional child nodes.
+
+```csharp
+public sealed class TreeNode
+```
+
+## Constructors
+
+### TreeNode(string header)
+
+```csharp
+public TreeNode(string header)
+```
+
+Creates a node with the given header.
+
+## Methods
+
+### ArrayList()
+
+```csharp
+public readonly ArrayList Children = new ArrayList()
+```
+
+The child nodes.
+
+**Returns** `ArrayList Children = new`
+
+### Add(TreeNode child)
+
+```csharp
+public TreeNode Add(TreeNode child)
+```
+
+Adds a child node.
+
+**Returns** `TreeNode`
+
+## Fields
+
+### Header
+
+```csharp
+public string Header
+```
+
+The text shown for this node.
+
+### IsExpanded
+
+```csharp
+public bool IsExpanded
+```
+
+Whether the node's children are shown.

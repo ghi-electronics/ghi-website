@@ -1,0 +1,98 @@
+---
+title: "TabControl Class"
+sidebar_label: "TabControl"
+---
+
+# TabControl Class
+
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
+
+A tabbed container: a strip of tab headers over a body that shows the selected tab's content. Add tabs with `AddTab`; tapping a header selects it.
+
+```csharp
+public class TabControl : Control
+```
+
+## Properties
+
+### TabColor
+
+```csharp
+public Color TabColor { get; set; }
+```
+
+Fill of an unselected tab header.
+
+### SelectedTabColor
+
+```csharp
+public Color SelectedTabColor { get; set; }
+```
+
+Fill of the selected tab header (and the body).
+
+### HeaderColor
+
+```csharp
+public Color HeaderColor { get; set; }
+```
+
+Colour of the header text and separators.
+
+### HeaderHeight
+
+```csharp
+public int HeaderHeight { get; set; }
+```
+
+Height in pixels of the tab-header strip.
+
+### SelectedIndex
+
+```csharp
+public int SelectedIndex { get; set; }
+```
+
+The index of the visible tab. May be set before tabs are added (it is clamped when rendering).
+
+## Methods
+
+### AddTab(string header, UIElement content)
+
+```csharp
+public void AddTab(string header, UIElement content)
+```
+
+Adds a tab with the given header text and content element.
+
+### MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
+
+```csharp
+protected override void MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
+```
+
+Measures every tab's content against the body area.
+
+### ArrangeOverride(int arrangeWidth, int arrangeHeight)
+
+```csharp
+protected override void ArrangeOverride(int arrangeWidth, int arrangeHeight)
+```
+
+Arranges the selected tab's content in the body; collapses the rest.
+
+### OnTouchUp(TouchEventArgs e)
+
+```csharp
+protected override void OnTouchUp(TouchEventArgs e)
+```
+
+Selects the tapped tab header.
+
+### OnRender(DrawingContext dc)
+
+```csharp
+public override void OnRender(DrawingContext dc)
+```
+
+Draws the tab-header strip.

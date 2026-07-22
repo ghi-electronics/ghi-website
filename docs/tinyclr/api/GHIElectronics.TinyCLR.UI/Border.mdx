@@ -33,6 +33,14 @@ public Media.Brush BorderBrush { get; set; }
 
 The brush used to paint the border.
 
+### CornerRadius
+
+```csharp
+public int CornerRadius { get; set; }
+```
+
+Corner radius in pixels (0 = square corners, the default). Rounds both the border and the background fill — cheap (only the corner pixels rasterize).
+
 ## Methods
 
 ### GetBorderThickness(out int left, out int top, out int right, out int bottom)

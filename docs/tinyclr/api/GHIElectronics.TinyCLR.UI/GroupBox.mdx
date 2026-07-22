@@ -1,0 +1,66 @@
+---
+title: "GroupBox Class"
+sidebar_label: "GroupBox"
+---
+
+# GroupBox Class
+
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
+
+A titled frame around a single child: draws a labelled border with the header above the content.
+
+```csharp
+public class GroupBox : ContentControl
+```
+
+## Properties
+
+### Header
+
+```csharp
+public string Header { get; set; }
+```
+
+The title shown above the frame. Uses the inherited `Control.Font`.
+
+### BorderColor
+
+```csharp
+public Color BorderColor { get; set; }
+```
+
+The colour of the frame border.
+
+### HeaderColor
+
+```csharp
+public Color HeaderColor { get; set; }
+```
+
+The colour of the header text.
+
+## Methods
+
+### MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
+
+```csharp
+protected override void MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
+```
+
+Measures the child plus the header + frame padding.
+
+### ArrangeOverride(int arrangeWidth, int arrangeHeight)
+
+```csharp
+protected override void ArrangeOverride(int arrangeWidth, int arrangeHeight)
+```
+
+Arranges the child inside the frame, below the header.
+
+### OnRender(DrawingContext dc)
+
+```csharp
+public override void OnRender(DrawingContext dc)
+```
+
+Draws the frame border and the header text.

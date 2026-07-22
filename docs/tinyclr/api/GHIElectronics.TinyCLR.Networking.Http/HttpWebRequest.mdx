@@ -39,6 +39,14 @@ public X509Certificate[] HttpsAuthentCerts { get; set; }
 
 Gets or sets the array of certificates used to authenticate https servers. These certificates are used only for https connections; http connections do not require them.
 
+### SslVerification
+
+```csharp
+public SslVerification SslVerification { get; set; }
+```
+
+Gets or sets how the server's certificate is verified during the TLS handshake for https requests. Default `SslVerification.Optional`. Set to `SslVerification.None` to accept ANY server certificate without a root CA (the device has no certificate trust store) - the embedded equivalent of `curl -k`.
+
 ### ReadWriteTimeout
 
 ```csharp

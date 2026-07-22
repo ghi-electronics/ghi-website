@@ -23,6 +23,7 @@ sidebar_label: Overview
 | [ButtonDevice](./ButtonDevice.mdx) | `GHIElectronics.TinyCLR.UI.Input` | The ButtonDevice class represents the button device to the members of a context. |
 | [ButtonEventArgs](./ButtonEventArgs.mdx) | `GHIElectronics.TinyCLR.UI.Input` | The ButtonEventArgs class contains information about button states. |
 | [Buttons](./Buttons.mdx) | `GHIElectronics.TinyCLR.UI.Input` | The Button class represents the button device to the members of a context. |
+| [Calendar](./Calendar.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | A month calendar: a header with prev/next month arrows, a day-of-week row, and a grid of day cells. Tapping the arrows changes the month; tapping a day selects it. |
 | [CancelEventArgs](./CancelEventArgs.mdx) | `GHIElectronics.TinyCLR.UI` | Provides data for a cancelable event. |
 | [Canvas](./Canvas.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | Panel that positions children by explicit left/top/right/bottom anchors. |
 | [Chart](./Chart.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | Simple line / bar chart. The rendered surface is cached and only rebuilt when `Refresh` is called or the control's render size changes — so calling Invalidate on the parent each frame does not redo the chart math. |
@@ -30,6 +31,7 @@ sidebar_label: Overview
 | [ChartPointModel](./ChartPointModel.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | Pairs a plotted point with its source value. |
 | [CheckBox](./CheckBox.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | A two-state check box that toggles when clicked. |
 | [Colors](./Colors.mdx) | `GHIElectronics.TinyCLR.UI.Media` | Provides a set of predefined colors. |
+| [ComboBox](./ComboBox.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | A collapsible selection list (combo box): shows the selected option and expands to the full list on tap. |
 | [Constants](./Constants.mdx) | `GHIElectronics.TinyCLR.UI.Media` | Provides constant values used by the media types. |
 | [ContentControl](./ContentControl.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | Base class for controls that host a single child element. |
 | [Control](./Control.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | Base class for focusable UI controls with background, foreground and font. |
@@ -44,10 +46,11 @@ sidebar_label: Overview
 | [DispatcherObject](./DispatcherObject.mdx) | `GHIElectronics.TinyCLR.UI.Threading` | A DispatcherObject is an object associated with a `Dispatcher`. A DispatcherObject instance should only be access by the dispatcher's thread. |
 | [DispatcherOperation](./DispatcherOperation.mdx) | `GHIElectronics.TinyCLR.UI.Threading` | DispatcherOperation represents a delegate that has been posted to the Dispatcher queue. |
 | [DispatcherTimer](./DispatcherTimer.mdx) | `GHIElectronics.TinyCLR.UI.Threading` | A timer that is integrated into the Dispatcher queues, and will be processed after a given amount of time |
+| [DockPanel](./DockPanel.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | Panel that docks each child to one edge (Left/Top/Right/Bottom) of the space left by the previously docked children; when `LastChildFill` is true (the default) the last child fills whatever remains in the centre. WPF-style. Choose an edge per child with `GetDock` / `SetDock` (default Left). |
 | [DrawingContext](./DrawingContext.mdx) | `GHIElectronics.TinyCLR.UI.Media` | Drawing Context. |
-| [Dropdown](./Dropdown.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | A collapsible list that shows the selected option and expands on tap. |
 | [Ellipse](./Ellipse.mdx) | `GHIElectronics.TinyCLR.UI.Shapes` | Draws an ellipse. |
 | [EventRoute](./EventRoute.mdx) | `GHIElectronics.TinyCLR.UI` | Container for the route to be followed by a RoutedEvent when raised |
+| [Expander](./Expander.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | A header with an expand/collapse chevron; tapping the header shows or hides the single child content. |
 | [FocusChangedEventArgs](./FocusChangedEventArgs.mdx) | `GHIElectronics.TinyCLR.UI.Input` | The FocusChangedEventArgs class contains information about focus states |
 | [FocusNavigator](./FocusNavigator.mdx) | `GHIElectronics.TinyCLR.UI.Input` | PC-style tab order over the logical tree. Call from hardware mappings (e.g. next/previous) via `InputProvider.RaiseFocusNavigation`. |
 | [Gauge](./Gauge.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | Analog gauge with calibrated tick marks, optional threshold arc, optional seven-segment digital readout, dial label, and pointer needle. Always square — pass the side length to the constructor. Rendering is cached: the static background (dial face, calibration, threshold, digital number, label) is drawn once into a backing bitmap; only the pointer is redrawn each paint. Any property change marks the background dirty. |
@@ -57,6 +60,7 @@ sidebar_label: Overview
 | [GenericEvents](./GenericEvents.mdx) | `GHIElectronics.TinyCLR.UI.Input` | Defines the routed events raised by the generic input device. |
 | [Grid](./Grid.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | Row/column layout with pixel, auto, and star sizing (WPF-style subset). Use `GetRow` / `SetRow` and `GetColumn` / `SetColumn` on children. |
 | [GridLengthCollection](./GridLengthCollection.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | Notifying GridLength collection. Every mutation invalidates the owning Grid's measure pass so layout stays in sync without callers having to remember to call InvalidateMeasure() manually. |
+| [GroupBox](./GroupBox.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | A titled frame around a single child: draws a labelled border with the header above the content. |
 | [Image](./Image.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | Summary description for Image. |
 | [ImageBrush](./ImageBrush.mdx) | `GHIElectronics.TinyCLR.UI.Media` | A brush that paints a region with an image. |
 | [ImageSource](./ImageSource.mdx) | `GHIElectronics.TinyCLR.UI.Media` | Base class for an image that can be drawn. |
@@ -70,15 +74,18 @@ sidebar_label: Overview
 | [InputReportEventArgs](./InputReportEventArgs.mdx) | `GHIElectronics.TinyCLR.UI.Input` | The InputReportEventArgs class contains information about an input report that is being processed. |
 | [Line](./Line.mdx) | `GHIElectronics.TinyCLR.UI.Shapes` | Draws a straight line. |
 | [LinearGradientBrush](./LinearGradientBrush.mdx) | `GHIElectronics.TinyCLR.UI.Media` | A brush that paints a region with a linear color gradient. |
-| [ListBox](./ListBox.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | A scrollable list of selectable items. |
+| [ListBox](./ListBox.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | A scrollable list of selectable items. Two content modes: Items — add explicit `ListBoxItem` rows via `Items` (fully realized). ItemsSource — bind a large `IList` of data to `ItemsSource`; the list then virtualizes, recycling a small pool of rows (each item shown via `ToString()`). This replaces the former separate `VirtualizingListBox`. The two modes are mutually exclusive; setting `ItemsSource` switches the list into virtualized mode. |
 | [ListBoxItem](./ListBoxItem.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | A single selectable item within a `ListBox`. |
 | [ListBoxItemCollection](./ListBoxItemCollection.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | The collection of items belonging to a `ListBox`. |
 | [ListBoxItemHighlightable](./ListBoxItemHighlightable.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | A list box item that highlights its text and background when selected. |
+| [Menu](./Menu.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | A simple two-level menu bar: a row of top-level entries; tapping one opens its sub-items as an inline dropdown drawn within the control's bounds. (Embedded UIs have no popup layer, so size the Menu tall enough to show the open dropdown.) Bar entries are sized to their text so they sit close together like a real menu bar. Tapping a sub-item raises `ItemClick`. |
+| [MenuEntry](./MenuEntry.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | An entry in a `Menu`: a header plus optional sub-items. |
 | [MessageBox](./MessageBox.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | WinForms-style modal message box. Usage: `MessageBox.DefaultFont = myFont; // once at app start var r = MessageBox.Show("Erase all data?", "Confirm", MessageBoxButtons.YesNo); if (r == DialogResult.Yes) { ... }` Show() is synchronous: it nests a dispatcher frame so the UI keeps painting and dispatching input while the box is up, and returns when the user picks a button (or Esc cancels). Safe to call from any UI-thread event handler. |
 | [NotifyInputEventArgs](./NotifyInputEventArgs.mdx) | `GHIElectronics.TinyCLR.UI.Input` | Provides information about an input event being processed by the input manager. |
 | [OnScreenKeyboard](./OnScreenKeyboard.mdx) | `GHIElectronics.TinyCLR.UI` | An on-screen software keyboard window used to enter text into a text box. |
 | [Panel](./Panel.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | Base class for controls that arrange a collection of child elements. |
 | [Pen](./Pen.mdx) | `GHIElectronics.TinyCLR.UI.Media` | Describes the color and thickness used to draw outlines. |
+| [Pointer](./Pointer.mdx) | `GHIElectronics.TinyCLR.UI.Input` | An on-screen mouse cursor for pointer-driven UIs (e.g. an HDMI monitor with a USB mouse, where there is no touch panel). It draws an arrow on top of the whole UI and turns pointer motion + the left button into the framework's normal touch events, so every existing control works unchanged. |
 | [Polygon](./Polygon.mdx) | `GHIElectronics.TinyCLR.UI.Shapes` | Draws a polygon defined by a set of points. |
 | [PreProcessInputEventArgs](./PreProcessInputEventArgs.mdx) | `GHIElectronics.TinyCLR.UI.Input` | Allows the handler to cancel the processing of an input event. |
 | [PresentationSource](./PresentationSource.mdx) | `GHIElectronics.TinyCLR.UI` | Presentation source is our connection to the rest of the managed system. |
@@ -102,6 +109,7 @@ sidebar_label: Overview
 | [SolidColorBrush](./SolidColorBrush.mdx) | `GHIElectronics.TinyCLR.UI.Media` | A brush that paints a region with a solid color. |
 | [StackPanel](./StackPanel.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | A panel that stacks its children in a single row or column. |
 | [StagingAreaInputItem](./StagingAreaInputItem.mdx) | `GHIElectronics.TinyCLR.UI.Input` | This class encapsulates an input event while it is being processed by the input manager. |
+| [TabControl](./TabControl.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | A tabbed container: a strip of tab headers over a body that shows the selected tab's content. Add tabs with `AddTab`; tapping a header selects it. |
 | [TapCellEventArgs](./TapCellEventArgs.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | Tap cell event arguments. |
 | [Text](./Text.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | A lightweight element that draws a single string in a given font. |
 | [TextBox](./TextBox.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | An editable single-line text field that opens the on-screen keyboard when activated. |
@@ -117,10 +125,11 @@ sidebar_label: Overview
 | [TouchEvents](./TouchEvents.mdx) | `GHIElectronics.TinyCLR.UI.Input` | Defines the routed events raised for touch input. |
 | [TouchGestureEventArgs](./TouchGestureEventArgs.mdx) | `GHIElectronics.TinyCLR.UI.Input` | Contains information about a touch gesture event. |
 | [TouchInput](./TouchInput.mdx) | `GHIElectronics.TinyCLR.UI.Input` | Represents a single touch point. |
+| [TreeNode](./TreeNode.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | A node in a `TreeView`: a header plus optional child nodes. |
+| [TreeView](./TreeView.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | A hierarchical list of `TreeNode`s with expand/collapse. Tapping a node's chevron toggles its children; tapping the row selects it. |
 | [UIElement](./UIElement.mdx) | `GHIElectronics.TinyCLR.UI` | The base class for all visual elements that participate in layout, rendering, and input. |
 | [UIElementCollection](./UIElementCollection.mdx) | `GHIElectronics.TinyCLR.UI` | A UIElementCollection is a ordered collection of UIElements. |
 | [ValueChangedEventArgs](./ValueChangedEventArgs.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | Provides data for the slider's value-changed event. |
-| [VirtualizingListBox](./VirtualizingListBox.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | Large homogeneous lists: recycles a small pool of rows while preserving full scroll extent. Set `ItemsSource` to an `IList` (e.g. `ArrayList`); each item is shown via `ToString()`. |
 | [Window](./Window.mdx) | `GHIElectronics.TinyCLR.UI` | Represents a top-level window that hosts content and is managed by the window manager. |
 | [WindowManager](./WindowManager.mdx) | `GHIElectronics.TinyCLR.UI` | The root container that hosts all windows and drives rendering for a display. |
 
@@ -147,14 +156,17 @@ sidebar_label: Overview
 | [ButtonState](./ButtonState.mdx) | `GHIElectronics.TinyCLR.UI.Input` | The ButtonState enumeration describes the state that buttons can be in. |
 | [CaptureMode](./CaptureMode.mdx) | `GHIElectronics.TinyCLR.UI.Input` | Specifies how touch input is captured to an element. |
 | [ChartMode](./ChartMode.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | How the chart series is drawn. |
+| [ClickMode](./ClickMode.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | Specifies when the `Click` event fires for button-family controls (`Button`, `CheckBox`, `RadioButton`). Mirrors WPF's `System.Windows.Controls.ClickMode`. Governs touch activation; the default is `Release`. |
 | [DialogResult](./DialogResult.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | Identifies the button the user picked to dismiss the message box. |
 | [Direction](./Direction.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | Specifies the direction in which a progress bar fills. |
 | [Direction](./Direction_2.mdx) | `GHIElectronics.TinyCLR.UI.Shapes` | Specifies the direction in which a line is drawn. |
 | [DispatcherOperationStatus](./DispatcherOperationStatus.mdx) | `GHIElectronics.TinyCLR.UI.Threading` | An enumeration describing the status of a DispatcherOperation. |
+| [Dock](./Dock.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | The edge of a `DockPanel` that a child is docked to. |
 | [GridUnitType](./GridUnitType.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | How a grid row or column is sized. |
 | [HardwareButton](./HardwareButton.mdx) | `GHIElectronics.TinyCLR.UI.Input` | Identifies a hardware button. |
 | [HorizontalAlignment](./HorizontalAlignment.mdx) | `GHIElectronics.TinyCLR.UI` | Describes how a child element is horizontally positioned or stretched within its parent. |
 | [InputDeviceType](./InputDeviceType.mdx) | `GHIElectronics.TinyCLR.UI.Input` | Identifies the kind of input device. |
+| [MenuDropDirection](./MenuDropDirection.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | The direction a `Menu` opens its dropdowns. |
 | [MessageBoxButtons](./MessageBoxButtons.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | Specifies which buttons are shown on the message box. |
 | [Order](./Order.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | The order in which rows are sorted. |
 | [Orientation](./Orientation.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | Specifies whether a control lays out its content horizontally or vertically. |
@@ -187,6 +199,7 @@ sidebar_label: Overview
 | [GenericEventHandler](./GenericEventHandler.mdx) | `GHIElectronics.TinyCLR.UI.Input` | The delegate to use for handlers that receive GenericEventArgs. |
 | [InputEventHandler](./InputEventHandler.mdx) | `GHIElectronics.TinyCLR.UI.Input` | The delegate to use for handlers that receive InputEventArgs. |
 | [InputReportEventHandler](./InputReportEventHandler.mdx) | `GHIElectronics.TinyCLR.UI.Input` | The delegate to use for handlers that receive InputReportEventArgs |
+| [MenuItemClickHandler](./MenuItemClickHandler.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | Handles a `Menu.ItemClick` event. |
 | [NotifyInputEventHandler](./NotifyInputEventHandler.mdx) | `GHIElectronics.TinyCLR.UI.Input` | Delegate type for handles of events that use `NotifyInputEventArgs`. |
 | [OnTapCell](./OnTapCell.mdx) | `GHIElectronics.TinyCLR.UI.Controls` | Tap cell event handler. |
 | [PostRenderEventHandler](./PostRenderEventHandler.mdx) | `GHIElectronics.TinyCLR.UI` | Represents a method that performs custom drawing after the window tree has been rendered. |

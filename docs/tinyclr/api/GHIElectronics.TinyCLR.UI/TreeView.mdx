@@ -1,0 +1,74 @@
+---
+title: "TreeView Class"
+sidebar_label: "TreeView"
+---
+
+# TreeView Class
+
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
+
+A hierarchical list of `TreeNode`s with expand/collapse. Tapping a node's chevron toggles its children; tapping the row selects it.
+
+```csharp
+public class TreeView : Control
+```
+
+## Properties
+
+### RowHeight
+
+```csharp
+public int RowHeight { get; set; }
+```
+
+Row height in pixels.
+
+### HeaderColor
+
+```csharp
+public Color HeaderColor { get; set; }
+```
+
+Colour of node text.
+
+### SelectionColor
+
+```csharp
+public Color SelectionColor { get; set; }
+```
+
+Fill behind the selected row.
+
+## Methods
+
+### AddNode(TreeNode node)
+
+```csharp
+public void AddNode(TreeNode node)
+```
+
+Adds a top-level node.
+
+### MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
+
+```csharp
+protected override void MeasureOverride(int availableWidth, int availableHeight, out int desiredWidth, out int desiredHeight)
+```
+
+Reports the full height of all visible rows.
+
+### OnTouchUp(TouchEventArgs e)
+
+```csharp
+protected override void OnTouchUp(TouchEventArgs e)
+```
+
+Toggles a node's expansion (chevron zone) or selects the tapped row.
+
+### OnRender(DrawingContext dc)
+
+```csharp
+public override void OnRender(DrawingContext dc)
+```
+
+Draws each visible node with indentation, a chevron for parents, and the header text.

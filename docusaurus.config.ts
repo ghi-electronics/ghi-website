@@ -63,6 +63,13 @@ const config: Config = {
 
   headTags: [
     {
+      tagName: 'meta',
+      attributes: {
+        name: 'algolia-site-verification',
+        content: '8E03244EB419C28C',
+      },
+    },
+    {
       tagName: 'link',
       attributes: {
         rel: 'preconnect',
@@ -158,6 +165,19 @@ const config: Config = {
         editUrl: 'https://github.com/ghi-electronics/ghi-website/tree/main/',
       },
     ],
+    [
+      '@easyops-cn/docusaurus-search-local',
+      {
+        hashed: true,
+        language: ['en'],
+        indexPages: true,
+        indexBlog: false,
+        docsRouteBasePath: ['docs/tinyclr', 'docs/endpoint'],
+        docsPluginIdForPreferredVersion: 'tinyclr',
+        fuzzyMatchingDistance: 0,
+        searchBarShortcutHint: false,
+      },
+    ],
   ],
 
   presets: [
@@ -234,6 +254,10 @@ const config: Config = {
             {label: 'Social Responsibility', to: '/social-responsibility/'},
             {label: 'About Us', to: '/company/'},
           ],
+        },
+        {
+          type: 'search',
+          position: 'right',
         },
         {
           label: 'Contact',

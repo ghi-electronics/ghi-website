@@ -1,0 +1,76 @@
+---
+title: "Pointer Class"
+sidebar_label: "Pointer"
+---
+
+# Pointer Class
+
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Input`
+
+An on-screen mouse cursor for pointer-driven UIs (e.g. an HDMI monitor with a USB mouse, where there is no touch panel). It draws an arrow on top of the whole UI and turns pointer motion + the left button into the framework's normal touch events, so every existing control works unchanged.
+
+```csharp
+public sealed class Pointer
+```
+
+## Constructors
+
+### Pointer(Application application)
+
+```csharp
+public Pointer(Application application)
+```
+
+Creates a cursor for the given application and shows it centered once the UI is running.
+
+## Properties
+
+### X
+
+```csharp
+public int X { get; }
+```
+
+The current cursor x position, in screen pixels.
+
+### Y
+
+```csharp
+public int Y { get; }
+```
+
+The current cursor y position, in screen pixels.
+
+### Visible
+
+```csharp
+public bool Visible { get; set; }
+```
+
+Whether the cursor is drawn. Set to `false` to hide it (e.g. when the mouse is unplugged).
+
+## Methods
+
+### MoveTo(int x, int y)
+
+```csharp
+public void MoveTo(int x, int y)
+```
+
+Moves the cursor to an absolute screen position (clamped to the display).
+
+### MoveBy(int deltaX, int deltaY)
+
+```csharp
+public void MoveBy(int deltaX, int deltaY)
+```
+
+Moves the cursor by a relative delta.
+
+### SetLeftButton(bool pressed)
+
+```csharp
+public void SetLeftButton(bool pressed)
+```
+
+Reports the left button state: `true` = press (touch-down), `false` = release (touch-up). While pressed, subsequent moves are reported as drags.

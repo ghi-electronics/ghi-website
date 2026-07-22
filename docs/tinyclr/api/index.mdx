@@ -12,6 +12,7 @@ slug: /tinyclr/api
 | [GHIElectronics.TinyCLR.Cryptography](./GHIElectronics.TinyCLR.Cryptography/index.mdx) | Hashing and encryption primitives |
 | [GHIElectronics.TinyCLR.Data.Json](./GHIElectronics.TinyCLR.Data.Json/index.mdx) | JSON parsing and serialization |
 | [GHIElectronics.TinyCLR.Data.SQLite](./GHIElectronics.TinyCLR.Data.SQLite/index.mdx) | SQLite embedded SQL database |
+| [GHIElectronics.TinyCLR.Data.Xml](./GHIElectronics.TinyCLR.Data.Xml/index.mdx) | XML reading and writing |
 | [GHIElectronics.TinyCLR.Devices.Adc](./GHIElectronics.TinyCLR.Devices.Adc/index.mdx) | Analog-to-digital converter (ADC) input |
 | [GHIElectronics.TinyCLR.Devices.Camera](./GHIElectronics.TinyCLR.Devices.Camera/index.mdx) | Camera image capture |
 | [GHIElectronics.TinyCLR.Devices.Can](./GHIElectronics.TinyCLR.Devices.Can/index.mdx) | CAN bus communication |
@@ -48,7 +49,7 @@ slug: /tinyclr/api
 | [GHIElectronics.TinyCLR.Pins](./GHIElectronics.TinyCLR.Pins/index.mdx) | Board pin and peripheral ID definitions |
 | [GHIElectronics.TinyCLR.RegularExpressions](./GHIElectronics.TinyCLR.RegularExpressions/index.mdx) | Regular-expression matching |
 | [GHIElectronics.TinyCLR.RuntimeLoadableProcedures](./GHIElectronics.TinyCLR.RuntimeLoadableProcedures/index.mdx) | Load and run native C/C++ procedures (RLP) at runtime |
-| [GHIElectronics.TinyCLR.System.Xml](./GHIElectronics.TinyCLR.System.Xml/index.mdx) | System.Xml-compatible XML API |
+| [GHIElectronics.TinyCLR.System.Xml](./GHIElectronics.TinyCLR.System.Xml/index.mdx) | DEPRECATED - this package is no longer needed. The System.Xml API now ships inside the GHIElectronics.TinyCLR.Data.Xml package. Reference GHIElectronics.TinyCLR.Data.Xml instead; your code does not change (keep using System.Xml). This package is now an empty redirect that only depends on GHIElectronics.TinyCLR.Data.Xml, so existing projects keep building after an update. You may safely remove it once you reference GHIElectronics.TinyCLR.Data.Xml directly. |
 | [GHIElectronics.TinyCLR.UI](./GHIElectronics.TinyCLR.UI/index.mdx) | Graphical UI toolkit (controls, layout, touch input) |
 | [GHIElectronics.TinyCLR.Update](./GHIElectronics.TinyCLR.Update/index.mdx) | In-field firmware and application update (IFU) |
 | [System.Device.Gpio](./System.Device.Gpio/index.mdx) | System.Device.Gpio compatibility library |

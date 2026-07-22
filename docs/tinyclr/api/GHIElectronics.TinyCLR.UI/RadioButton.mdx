@@ -65,6 +65,14 @@ public bool ShowBackground { get; set; }
 
 Whether the bitmap background is drawn behind the button.
 
+### ClickMode
+
+```csharp
+public ClickMode ClickMode { get; set; }
+```
+
+Determines whether the button clicks/selects on touch press or release. Default is `ClickMode.Release` (WPF convention); set to `ClickMode.Press` for the instant TinyCLR 2.x response.
+
 ### Value
 
 ```csharp
@@ -129,7 +137,7 @@ Renders the radio button background and its checked/unchecked indicator.
 protected override void OnTouchUp(TouchEventArgs e)
 ```
 
-Handles a touch release by clicking and toggling the button.
+Handles a touch release by clicking and selecting the button (unless it already fired on press).
 
 ### OnTouchDown(TouchEventArgs e)
 
@@ -137,7 +145,7 @@ Handles a touch release by clicking and toggling the button.
 protected override void OnTouchDown(TouchEventArgs e)
 ```
 
-Handles a touch press; the click is performed on release instead.
+Handles a touch press. In the default Release mode the click is performed on release; in `ClickMode.Press` mode it fires immediately.
 
 ### OnButtonUp(ButtonEventArgs e)
 

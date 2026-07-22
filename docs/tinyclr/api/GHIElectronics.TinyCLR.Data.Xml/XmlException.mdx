@@ -1,0 +1,82 @@
+---
+title: "XmlException Class"
+sidebar_label: "XmlException"
+---
+
+# XmlException Class
+
+**NuGet:** `GHIElectronics.TinyCLR.Data.Xml`<br/>**Assembly:** `GHIElectronics.TinyCLR.Data.Xml`<br/>**Namespace:** `GHIElectronics.TinyCLR.Data.Xml`
+
+_No description available._
+
+```csharp
+public class XmlException : Exception
+```
+
+## Constructors
+
+### XmlException()
+
+```csharp
+public XmlException() : this(null)
+```
+
+_No description available._
+
+### XmlException(string message)
+
+```csharp
+public XmlException(string message) : this(message, ((Exception)null), 0, 0)
+```
+
+_No description available._
+
+### XmlException(string message, Exception innerException)
+
+```csharp
+public XmlException(string message, Exception innerException) : this(message, innerException, 0, 0)
+```
+
+_No description available._
+
+### XmlException(string message, Exception innerException, int lineNumber, int linePosition)
+
+```csharp
+public XmlException(string message, Exception innerException, int lineNumber, int linePosition) : this(message, innerException, lineNumber, linePosition, null)
+```
+
+_No description available._
+
+## Properties
+
+### LineNumber
+
+```csharp
+public int LineNumber { get; }
+```
+
+_No description available._
+
+### LinePosition
+
+```csharp
+public int LinePosition { get; }
+```
+
+_No description available._
+
+### SourceUri
+
+```csharp
+public string SourceUri { get; }
+```
+
+_No description available._
+
+### Message
+
+```csharp
+public override string Message { get; }
+```
+
+_No description available._

@@ -1,0 +1,92 @@
+---
+title: "ComboBox Class"
+sidebar_label: "ComboBox"
+---
+
+# ComboBox Class
+
+**NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
+
+A collapsible selection list (combo box): shows the selected option and expands to the full list on tap.
+
+```csharp
+public class ComboBox : ListBox, IDisposable
+```
+
+## Constructors
+
+### ComboBox()
+
+```csharp
+public ComboBox() : base()
+```
+
+Creates a new ComboBox.
+
+## Properties
+
+### Alpha
+
+```csharp
+public ushort Alpha { get; set; }
+```
+
+Opacity (0-255) used when drawing the combo box images.
+
+### RadiusBorder
+
+```csharp
+public int RadiusBorder { get; set; }
+```
+
+Corner radius used by the nine-slice combo box images.
+
+### MaxOpenHeight
+
+```csharp
+public int MaxOpenHeight { get; set; }
+```
+
+Optional cap on the expanded list height. When set to a positive value the open combo box is clamped to this height and overflow scrolls through the inherited ScrollViewer. Default 0 = no clamp (legacy behavior).
+
+### Options
+
+```csharp
+public ArrayList Options { get; set; }
+```
+
+The list of selectable options shown when the combo box is open.
+
+## Methods
+
+### OnButtonDown(ButtonEventArgs e)
+
+```csharp
+protected override void OnButtonDown(ButtonEventArgs e)
+```
+
+Hardware button support: `HardwareButton.Select` toggles the combo box open/closed (parity with touch). `HardwareButton.Back` closes an open combo box. Up/Down navigation comes free from `ListBox`.
+
+### OnRender(DrawingContext dc)
+
+```csharp
+public override void OnRender(DrawingContext dc)
+```
+
+Draws the combo box's text field and chevron button.
+
+### Dispose()
+
+```csharp
+public void Dispose()
+```
+
+Releases the resources used by the combo box.
+
+### Dispose(bool disposing)
+
+```csharp
+protected virtual void Dispose(bool disposing)
+```
+
+Releases the combo box's bitmap resources and event subscriptions.

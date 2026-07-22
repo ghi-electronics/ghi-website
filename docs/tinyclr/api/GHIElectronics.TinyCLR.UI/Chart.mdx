@@ -39,7 +39,7 @@ Spacing factor between labeled divisions on the X axis.
 public int DivisionAxisY { get; set; }
 ```
 
-Spacing factor between labeled divisions on the Y axis.
+Value step ("offset") between Y-axis labels. Labels are drawn at step, 2×step, … up to the first multiple that is >= the max data value; 0 is not labelled. Default 1 (every integer). E.g. 5 gives 5, 10, 15, … The plot scales from 0 to that top value.
 
 ### Font
 
@@ -96,6 +96,14 @@ public Media.SolidColorBrush BackgroundColor { get; set; }
 ```
 
 Brush used to fill the chart background.
+
+### AreaColor
+
+```csharp
+public Media.SolidColorBrush AreaColor { get; set; }
+```
+
+Fill under the series when `Mode` is `ChartMode.AreaMode`.
 
 ### RadiusPoint
 

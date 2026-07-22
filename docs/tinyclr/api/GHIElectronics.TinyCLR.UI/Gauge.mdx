@@ -49,6 +49,38 @@ public bool EnableThreshold { get; set; }
 
 When true, the threshold arc around the recommended value is drawn.
 
+### EnableScale
+
+```csharp
+public bool EnableScale { get; set; }
+```
+
+When true (the default), the control draws the tick marks and scale numbers. Set false when the dial face is supplied as a `BackgroundImage` that already includes the scale, so the control draws only the needle over your artwork (no numbers on top).
+
+### NeedleLength
+
+```csharp
+public double NeedleLength { get; set; }
+```
+
+Length of the pointer needle as a fraction of the dial radius (half the control size). Default 0.68 (the classic length). Lower = shorter needle — handy when a `BackgroundImage` dial's scale sits well inside the control. Clamped 0.1–1.2.
+
+### NeedleCenterY
+
+```csharp
+public double NeedleCenterY { get; set; }
+```
+
+Vertical position of the needle pivot (and centre cap) as a fraction of the control height. Default 0.5 (centre). Raise toward 1.0 (e.g. 0.75) to drop the pivot to the BOTTOM — the natural hub for a half (180°) dial whose arc sits in the upper area. Clamped 0–1. Affects only the needle/cap, so it's meant for an image-faced gauge (EnableScale=false); with drawn ticks it would offset the needle from the (centred) scale.
+
+### SweepAngle
+
+```csharp
+public float SweepAngle { get; set; }
+```
+
+Sweep of the dial arc in degrees (30–360). 270 (default) = classic dial, 180 = half dial, 360 = full ring. The arc is centred on the bottom opening.
+
 ### BackColor
 
 ```csharp
@@ -152,6 +184,22 @@ public bool EnableTransparentBackground { get; set; }
 ```
 
 When true, the dial face is overlapped by a slightly larger ellipse in the back color so the dial appears to float. Costs an extra FillEllipse per redraw.
+
+### BackgroundImage
+
+```csharp
+public System.Drawing.Image BackgroundImage { get; set; }
+```
+
+Optional custom dial-face image, drawn scaled to the square dial in place of the flat `DialColor` face. The tick marks, labels, threshold and needle are still drawn on top. Use with `TransparentColor` to key out a colour so a rectangular image can present as a circular (or any) shaped gauge.
+
+### TransparentColor
+
+```csharp
+public new MediaColor TransparentColor { get; set; }
+```
+
+A colour in `BackgroundImage` to make transparent (so a rectangular source image can show as a circular / custom-shaped gauge). Mirrors `System.Drawing.Image.MakeTransparent`; applied once when the background is next redrawn.
 
 ## Methods
 

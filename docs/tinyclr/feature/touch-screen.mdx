@@ -9,11 +9,15 @@ Displays can optionally include a touch overlay so users can interact with the d
 
 ![SITCore module driving a touch display](/img/docs/ucm-touch-display.jpg)
 
+:::tip
+For a guided start, the [Build a Touch UI tutorial](../tutorial/touch-ui.mdx) wires the capacitive driver below into a complete two-page touch application.
+:::
+
 ## Capacitive
 
 Capacitive panels use a dedicated controller chip on the panel's flat cable, talking to the SITCore over I²C (most common) or SPI. The capacitive displays in GHI Electronics' development options use a **FocalTech FT5xx6** controller, supported by the **`GHIElectronics.TinyCLR.Drivers.FocalTech.FT5xx6`** NuGet package.
 
-The driver reports touch position **in display pixels** — no scaling or calibration code needed. The driver source lives in the [TinyCLR-Drivers repo](https://github.com/ghi-electronics/TinyCLR-Drivers).
+The driver is **interrupt-driven** — the panel pulls its interrupt line low when touch data is ready, and the driver reads positions from there, reported **in display pixels** with no scaling or calibration code needed. The second constructor argument is that interrupt pin; it must match your board's wiring or no events fire (**PJ14** on the SCM20260D Dev Board, **PG9** on the [FEZ Portal](../sbc.mdx#fez-portal-1)). The driver source lives in the [TinyCLR-Drivers repo](https://github.com/ghi-electronics/TinyCLR-Drivers).
 
 The example below subscribes to `TouchMove` and draws a small ellipse at every reported point:
 
@@ -22,7 +26,7 @@ using GHIElectronics.TinyCLR.Drivers.FocalTech.FT5xx6;
 
 var touch = new FT5xx6Controller(
     i2cController.GetDevice(FT5xx6Controller.GetConnectionSettings()),
-    gpioController.OpenPin(SC20260.GpioPin.PJ14)        // Reset pin.
+    gpioController.OpenPin(SC20260.GpioPin.PJ14)        // Touch interrupt pin (board-specific).
 );
 
 touch.Orientation = FT5xx6Controller.TouchOrientation.Degrees0;

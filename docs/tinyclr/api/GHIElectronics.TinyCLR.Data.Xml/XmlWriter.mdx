@@ -1,0 +1,308 @@
+---
+title: "XmlWriter Class"
+sidebar_label: "XmlWriter"
+---
+
+# XmlWriter Class
+
+**NuGet:** `GHIElectronics.TinyCLR.Data.Xml`<br/>**Assembly:** `GHIElectronics.TinyCLR.Data.Xml`<br/>**Namespace:** `GHIElectronics.TinyCLR.Data.Xml`
+
+_No description available._
+
+```csharp
+public class XmlWriter : IDisposable
+```
+
+## Constructors
+
+### XmlWriter()
+
+```csharp
+protected XmlWriter()
+```
+
+_No description available._
+
+### XmlWriter(Stream output)
+
+```csharp
+protected XmlWriter(Stream output)
+```
+
+_No description available._
+
+## Properties
+
+### XmlLang
+
+```csharp
+public virtual string XmlLang { get; }
+```
+
+_No description available._
+
+## Methods
+
+### Close()
+
+```csharp
+public void Close()
+```
+
+_No description available._
+
+### Create(Stream output)
+
+```csharp
+public static XmlWriter Create(Stream output)
+```
+
+_No description available._
+
+**Returns** `XmlWriter`
+
+### Dispose(bool disposing)
+
+```csharp
+protected virtual void Dispose(bool disposing)
+```
+
+_No description available._
+
+### Dispose()
+
+```csharp
+public void Dispose()
+```
+
+_No description available._
+
+### Flush()
+
+```csharp
+public void Flush()
+```
+
+_No description available._
+
+### LookupPrefix(string ns)
+
+```csharp
+public string LookupPrefix(string ns)
+```
+
+_No description available._
+
+**Returns** `string`
+
+### WriteAttributeString(string localName, string value)
+
+```csharp
+public void WriteAttributeString(string localName, string value)
+```
+
+_No description available._
+
+### WriteAttributeString(string localName, string ns, string value)
+
+```csharp
+public void WriteAttributeString(string localName, string ns, string value)
+```
+
+_No description available._
+
+### WriteAttributeString(string prefix, string localName, string ns, string value)
+
+```csharp
+public void WriteAttributeString(string prefix, string localName, string ns, string value)
+```
+
+_No description available._
+
+### WriteBase64(byte[] buffer, int index, int count)
+
+```csharp
+public void WriteBase64(byte[] buffer, int index, int count)
+```
+
+_No description available._
+
+### WriteChars(char[] buffer, int index, int count)
+
+```csharp
+public void WriteChars(char[] buffer, int index, int count)
+```
+
+_No description available._
+
+### WriteComment(string text)
+
+```csharp
+public void WriteComment(string text)
+```
+
+_No description available._
+
+### WriteElementString(string localName, string value)
+
+```csharp
+public void WriteElementString(string localName, string value)
+```
+
+_No description available._
+
+### WriteElementString(string localName, string ns, string value)
+
+```csharp
+public void WriteElementString(string localName, string ns, string value)
+```
+
+_No description available._
+
+### WriteElementString(string prefix, string localName, string ns, string value)
+
+```csharp
+public void WriteElementString(string prefix, string localName, string ns, string value)
+```
+
+_No description available._
+
+### WriteEndAttribute()
+
+```csharp
+public void WriteEndAttribute()
+```
+
+_No description available._
+
+### WriteEndElement()
+
+```csharp
+public void WriteEndElement()
+```
+
+_No description available._
+
+### WriteProcessingInstruction(string name, string text)
+
+```csharp
+public void WriteProcessingInstruction(string name, string text)
+```
+
+_No description available._
+
+### WriteRaw(string data)
+
+```csharp
+public void WriteRaw(string data)
+```
+
+_No description available._
+
+### WriteStartDocument()
+
+```csharp
+public void WriteStartDocument()
+```
+
+_No description available._
+
+### WriteStartDocument(bool standalone)
+
+```csharp
+public void WriteStartDocument(bool standalone)
+```
+
+_No description available._
+
+### WriteEndDocument()
+
+```csharp
+public void WriteEndDocument()
+```
+
+_No description available._
+
+### WriteFullEndElement()
+
+```csharp
+public void WriteFullEndElement()
+```
+
+_No description available._
+
+### WriteCData(string text)
+
+```csharp
+public void WriteCData(string text)
+```
+
+_No description available._
+
+### WriteRaw(char[] buffer, int index, int count)
+
+```csharp
+public void WriteRaw(char[] buffer, int index, int count)
+```
+
+_No description available._
+
+### WriteStartAttribute(string localName)
+
+```csharp
+public void WriteStartAttribute(string localName)
+```
+
+_No description available._
+
+### WriteStartAttribute(string localName, string ns)
+
+```csharp
+public void WriteStartAttribute(string localName, string ns)
+```
+
+_No description available._
+
+### WriteStartAttribute(string prefix, string localName, string ns)
+
+```csharp
+public void WriteStartAttribute(string prefix, string localName, string ns)
+```
+
+_No description available._
+
+### WriteStartElement(string localName)
+
+```csharp
+public void WriteStartElement(string localName)
+```
+
+_No description available._
+
+### WriteStartElement(string localName, string ns)
+
+```csharp
+public string WriteStartElement(string localName, string ns)
+```
+
+_No description available._
+
+**Returns** `string`
+
+### WriteStartElement(string prefix, string localName, string ns)
+
+```csharp
+public string WriteStartElement(string prefix, string localName, string ns)
+```
+
+_No description available._
+
+**Returns** `string`
+
+### WriteString(string text)
+
+```csharp
+public void WriteString(string text)
+```
+
+_No description available._
