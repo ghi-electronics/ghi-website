@@ -56,9 +56,10 @@ Fixes
 
 Known issues
 
-- You need to add the `GHIElectronics.TinyCLR.Drawing` NuGet package when adding a bitmap or image resource (if it is not already in the project).
-- **UI Designer**: in a `Grid`, a control whose `Grid.Row` / `Grid.Column` is greater than the number of defined rows/columns overlaps other controls in the preview. Add matching `RowDefinition` / `ColumnDefinition` entries to the `Grid`.
-- **UI Designer**: a control inside a `ScrollViewer` cannot be selected by clicking it on the canvas. Select a control nested inside it and press **Esc** to step up to the parent.
+- **UI Designer**: in a `Grid`, a control whose `Grid.Row` / `Grid.Column` was greater than the number of defined rows/columns overlapped other controls in the preview.
+- **UI Designer**: a control inside a `ScrollViewer` cannot be selected by clicking it on the canvas.
+- **UI Designer**: an image with `Stretch="None"` wrong scale.
+- **UI Designer**: a resource whose name is not a valid C# identifier (for example `ghi-logo`) causes build errors.
 
 ### TinyCLR Config
 
