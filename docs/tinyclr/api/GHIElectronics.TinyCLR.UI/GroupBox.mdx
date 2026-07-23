@@ -7,7 +7,7 @@ sidebar_label: "GroupBox"
 
 **NuGet:** `GHIElectronics.TinyCLR.UI`<br/>**Assembly:** `GHIElectronics.TinyCLR.UI`<br/>**Namespace:** `GHIElectronics.TinyCLR.UI.Controls`
 
-A titled frame around a single child: draws a labelled border with the header above the content.
+A titled frame around a single child: draws a labelled border with the header sitting ON the top border line (WinForms/WPF "fieldset" style — the border is broken by a gap around the header text).
 
 ```csharp
 public class GroupBox : ContentControl
@@ -63,4 +63,4 @@ Arranges the child inside the frame, below the header.
 public override void OnRender(DrawingContext dc)
 ```
 
-Draws the frame border and the header text.
+Draws the fieldset frame: the top border runs through the vertical middle of the header text, broken by a gap around it (WinForms/WPF style).
