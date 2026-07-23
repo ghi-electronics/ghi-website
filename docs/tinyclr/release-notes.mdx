@@ -4,6 +4,38 @@ title: Release Notes
 
 ![TinyCLR Logo](/img/docs/tinyclr-logo.png)
 
+## 3.0.1.2000 (2026-07-23) Prerelease
+
+3.0.1.2000 is a prerelease that fixes a firmware update-over-USB/serial bug and resolves the UI Designer issues from 3.0.1.1000. Other libraries and tools are unchanged and were rebuilt only to keep versions in sync.
+
+### Firmware
+
+Fixes
+
+- Fixed firmware update timing out when the device was running an idle application: the device did not act on the "enter bootloader" command until it woke on its own. It now responds to the update request promptly over both USB and serial (COM) connections.
+
+### Libraries
+
+- `TinyCLR.UI` and all other libraries: version updated to match this release. No API or behavior changes; the UI improvements this cycle are in the UI Designer below.
+
+### Visual Studio Extension
+
+Fixes
+
+- Resolved all four UI Designer known issues from 3.0.1.1000.
+- The version-conflict error now lists each conflicting version and the projects that reference it, so it is clear which project to change.
+- **UI Designer**: a `Chart` now previews using its selected `Mode` (`LineMode`, `RectangleMode`, `AreaMode`), matching the device.
+- **UI Designer**: a control's `Width` and `Height` can be set directly in the designer (resize handles or the property grid); no need to edit the generated C#.
+- Adding an image or bitmap resource now adds the `GHIElectronics.TinyCLR.Drawing` package automatically from your configured NuGet sources.
+
+### TinyCLR Config
+
+- Version updated to match this release. No functional changes.
+
+### Visual Studio Code extension
+
+- Version updated to match this release. No functional changes.
+
 ## 3.0.1.1000 (2026-07-22) Prerelease
 
 3.0.1.1000 is a prerelease of TinyCLR OS 3.0. The headline additions are a visual **TinyCLR UI Designer** for Visual Studio and an expanded library of ready-to-use UI controls. The Visual Studio extension can now also detect out-of-date device firmware and update it from the IDE.
