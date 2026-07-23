@@ -12,7 +12,7 @@ title: Release Notes
 
 Fixes
 
-- Fixed firmware update timing out when the device was running an idle application: the device did not act on the "enter bootloader" command until it woke on its own. It now responds to the update request promptly over both USB and serial (COM) connections.
+- Fixed firmware update timing out on an idle device. The bootloader/reboot command is now handled promptly over both USB and serial (COM).
 
 ### Libraries
 
@@ -22,7 +22,10 @@ Fixes
 
 Fixes
 
-- Resolved all four UI Designer known issues from 3.0.1.1000.
+- **UI Designer**: `Grid.Row` / `Grid.Column` beyond the defined rows/columns no longer overlaps other controls in the preview.
+- **UI Designer**: a control inside a `ScrollViewer` can now be selected by clicking it on the canvas.
+- **UI Designer**: an image with `Stretch="None"` now previews at the correct scale.
+- **UI Designer**: a resource whose name is not a valid C# identifier (for example `ghi-logo`) no longer causes build errors.
 - The version-conflict error now lists each conflicting version and the projects that reference it, so it is clear which project to change.
 - **UI Designer**: a `Chart` now previews using its selected `Mode` (`LineMode`, `RectangleMode`, `AreaMode`), matching the device.
 - **UI Designer**: a control's `Width` and `Height` can be set directly in the designer (resize handles or the property grid); no need to edit the generated C#.
