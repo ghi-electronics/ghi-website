@@ -4,6 +4,32 @@ title: Release Notes
 
 ![TinyCLR Logo](/img/docs/tinyclr-logo.png)
 
+## 3.0.1.3000 (2026-07-24) Prerelease
+
+A Visual Studio extension and `GHIElectronics.TinyCLR.UI` update. Firmware and the other tools are unchanged.
+
+### Visual Studio Extension
+
+- **UI Designer**: host one screen inside another with a nested control (`<local:MyScreen/>`), shown live in the preview.
+- Firmware update: an "Automatically check for firmware updates" option, with clearer, shorter prompts.
+- Deploying an application that doesn't fit the device now stops with an error instead of a warning.
+
+### Libraries
+
+- `GHIElectronics.TinyCLR.UI` updated to 3.0.1.3000.
+
+### Firmware
+
+- No change. Version 3.0.1.2000 remains the current release.
+
+### TinyCLR Config
+
+- No change. Version 3.0.1.2000 remains the current release.
+
+### Visual Studio Code extension
+
+- No change. Version 3.0.6 remains the current release.
+
 ## 3.0.1.2000 (2026-07-23) Prerelease
 
 3.0.1.2000 is a prerelease that fixes a firmware update-over-USB/serial bug and resolves the UI Designer issues from 3.0.1.1000. Other libraries and tools are unchanged and were rebuilt only to keep versions in sync.
@@ -16,7 +42,7 @@ Fixes
 
 ### Libraries
 
-- `TinyCLR.UI` and all other libraries: version updated to match this release. No API or behavior changes; the UI improvements this cycle are in the UI Designer below.
+- `GHIElectronics.TinyCLR.UI` and all other libraries: version updated to match this release. No API or behavior changes; the UI improvements this cycle are in the UI Designer below.
 
 ### Visual Studio Extension
 
@@ -47,7 +73,7 @@ Fixes
 
 New features
 
-- An expanded set of `TinyCLR.UI` controls: `DataGrid`, `Chart`, `Gauge`, `Calendar`, `Menu`, `TabControl`, `TreeView`, `Expander`, `GroupBox`, and the `DockPanel` layout container.
+- An expanded set of `GHIElectronics.TinyCLR.UI` controls: `DataGrid`, `Chart`, `Gauge`, `Calendar`, `Menu`, `TabControl`, `TreeView`, `Expander`, `GroupBox`, and the `DockPanel` layout container.
 - `CornerRadius` on `Border`/`Panel`, `Gauge` sweep angle, and `Chart` area mode.
 - `Button.ClickMode` (`Press` / `Release`) for instant touch-down response.
 - A built-in on-screen pointer (`UI.Input.Pointer`) and `UIElement.IsHitTestVisible`, plus support for driving the UI with a USB mouse and keyboard.
