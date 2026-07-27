@@ -26,6 +26,10 @@ When TinyCLR Config opens, the **Device** section is near the top of the window.
 
 The **Erase → Erase All** option erases both the firmware and the application. This isn't required for a firmware update, but it can help when a device is misbehaving.
 
+:::note
+Using Visual Studio? The [Visual Studio Extension](visual-studio-extension.mdx) can detect out-of-date firmware and update it directly from the IDE, so you don't need to run TinyCLR Config separately.
+:::
+
 ### Deploying encrypted applications
 
 TinyCLR Config can package your compiled application as an **encrypted deployment file** (`.tca`) that requires a key to install. This is the path for production deployments — the application code is not readable on the device without the key.
