@@ -1,0 +1,34 @@
+---
+title: Visual Studio Extension
+---
+
+The **TinyCLR Project System** extension adds TinyCLR device communication, project templates, and the UI Designer to Visual Studio. Get it from the [Downloads](downloads.mdx) page, or install it directly from the Visual Studio Marketplace.
+
+## UI Designer
+
+![TinyCLR UI Designer](/img/docs/tinyclr-ui-designer.png)
+
+The extension includes a visual **UI Designer** for the [User Interface](feature/user-interface.mdx) framework — drag controls from a toolbox onto the canvas, move and resize them, edit properties, and wire up event handlers, all with a live, device-accurate preview. It's Visual Studio-only; there's no VS Code equivalent.
+
+**Try it:** the [Build a Touch UI](tutorial/touch-ui.mdx) tutorial walks through designing a two-page touch app in the UI Designer, about 20 minutes.
+
+## Updating firmware
+
+When you deploy or debug from Visual Studio, the extension checks the connected device's firmware and, if it's out of date, offers to update it right from the IDE — no need to switch to [TinyCLR Config](tinyclr-config.mdx) separately.
+
+![Auto Check Update](/img/docs/auto-check-update.png)
+
+As of **3.0.1.3000**, an **"Automatically check for firmware updates"** option controls whether this check runs automatically, and the update prompts are clearer and shorter than in earlier versions. See the [Release Notes](release-notes.mdx) for the full history of this feature.
+
+You can also trigger the check manually:
+
+![Check Update](/img/docs/check-update.png)
+
+1. Right-click the project and open **Properties**.
+2. Select the **TinyCLR OS** tab.
+3. Pick the connected device from the dropdown.
+4. Click **Check Update**. The prompt reports whether the device already has the latest firmware, or gives you a button to update it.
+
+:::tip
+Prefer a one-time manual update, or need to script it? [TinyCLR Config](tinyclr-config.mdx) can update firmware from its GUI or CLI — see [Install or update firmware](getting-started.mdx#install-or-update-firmware) for the standalone procedure.
+:::

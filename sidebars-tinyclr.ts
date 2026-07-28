@@ -209,6 +209,7 @@ const sidebars: SidebarsConfig = {
       items: [
         'tinyclr-config',
         'bootloader',
+        'visual-studio-extension',
       ],
     },
     {
