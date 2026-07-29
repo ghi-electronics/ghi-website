@@ -81,6 +81,14 @@ public float SweepAngle { get; set; }
 
 Sweep of the dial arc in degrees (30–360). 270 (default) = classic dial, 180 = half dial, 360 = full ring. The arc is centred on the bottom opening.
 
+### StartPosition
+
+```csharp
+public GaugeStartPosition StartPosition { get; set; }
+```
+
+Which side the dial's OPENING (the gap between the low and high ends of the scale) sits on. Default `GaugeStartPosition.Bottom` (6 o'clock, the classic dial); Left = 9 o'clock, Top = 12 o'clock, Right = 3 o'clock. Rotates the whole dial together (arc, needle, ticks and labels).
+
 ### BackColor
 
 ```csharp
