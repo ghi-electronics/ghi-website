@@ -5,7 +5,7 @@ title: Limitations
 TinyCLR is built for small, secure, embedded products. To keep performance high and application memory maximized on resource-constrained devices, a few features from full .NET are limited or unavailable. Here are the limitations you're most likely to run into, along with workarounds.
 
 1. **Multidimensional arrays are not supported.** Use jagged arrays instead — `[1][1]` rather than `[1,1]`.
-2. **Each assembly is limited to 64 KB.** For larger codebases, split your solution into multiple assemblies — better maintainability too. Resource files are not subject to this limit, so large lookup tables and binary objects should be included as resources.
+2. **Compiled code is capped at 64 KB per assembly.** That's the IL only — bigger than it sounds, and a lot of embedded logic. Resources live in a separate stream and don't count toward it, so images, fonts, lookup tables, and binary blobs can be far larger. 
 3. **A maximum of 64 assemblies can be loaded at once.**
 4. **`await Task<T>` (awaiting a generic task) is not supported.** Start the task and read `.Result` instead. Awaiting a non-generic `Task` (for example `await Task.Delay(...)` or `await Task.WhenAll(Task[])`) works.
 5. **Some advanced generic scenarios are not supported.** The generic collections and interfaces provided work, but a generic type boxed across an `async`/`await` suspension does not — this is the root of the `Task<T>` await limitation above.
