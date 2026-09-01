@@ -4,6 +4,30 @@ title: Release Notes
 
 ![TinyCLR Logo](/img/docs/tinyclr-logo.png)
 
+## 3.0.1.6001 (2026-09-01) RTW
+
+A tooling-only release that fixes two deployment failures. Firmware and the libraries are unchanged.
+
+### Visual Studio Extension
+
+- Fixed a deployment failure (`Wrong type in blob` / `MMP0000: 0x81010002`) in projects that enable nullable reference types or use an attribute with a `typeof` argument.
+
+### Visual Studio Code extension
+
+- Includes the same deployment fix as the Visual Studio extension.
+
+### TinyCLR Config
+
+- Includes the same deployment fix as the Visual Studio extension.
+
+### Firmware
+
+- No change. 3.0.1.6000 remains the current release.
+
+### Libraries
+
+- No change. 3.0.1.6000 remains the current release.
+
 ## 3.0.1.6000 (2026-08-27) RTW
 
 3.0.1.6000 is an RTW release: it improves QSPI handling for large applications that run from external deployment, and adds `GroupBox` background and header colors. All other libraries and tools were rebuilt only to keep versions in sync.
