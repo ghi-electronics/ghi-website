@@ -4,6 +4,31 @@ title: Release Notes
 
 ![TinyCLR Logo](/img/docs/tinyclr-logo.png)
 
+## 3.0.1.6000 (2026-08-27) RTW
+
+3.0.1.6000 is an RTW release: it improves QSPI handling for large applications that run from external deployment, and adds `GroupBox` background and header colors. All other libraries and tools were rebuilt only to keep versions in sync.
+
+### Firmware
+
+- Improved QSPI handling that may help avoid a potential issue when performing an in-field update (IFU) of a large application that uses external deployment.
+
+### Libraries
+
+- `GHIElectronics.TinyCLR.UI`: `GroupBox` now supports a background color and a header color.
+- All other libraries: version updated to match this release. No API or behavior changes.
+
+### Visual Studio Extension
+
+- **UI Designer**: `GroupBox` now supports a background color and a header color.
+
+### TinyCLR Config
+
+- Version updated to match this release. No functional changes.
+
+### Visual Studio Code extension
+
+- Version updated to match this release. No functional changes.
+
 ## 3.0.1.5000 (2026-08-06) Prerelease
 
 Visual Studio extension and `GHIElectronics.TinyCLR.UI` update. Firmware and the other tools are unchanged.
