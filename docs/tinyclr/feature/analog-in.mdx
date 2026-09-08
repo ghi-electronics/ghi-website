@@ -45,47 +45,71 @@ The ADC takes a small but non-zero amount of time to settle on each conversion. 
 adcChannel.SamplingTime = TimeSpan.FromTicks(10); // ~1 µs
 ```
 
-If the requested time falls between two supported values, the higher (slower) one is used.
+The hardware only supports a fixed set of sampling times. If the requested time falls between two of them, the higher (slower) one is used.
 
-**SC20xxx (full or half speed):**
+**SC20xxx (full or half speed).** The ADC runs from its own 32 MHz clock, independent of the core speed, so these values do not change when you switch clock profiles.
 
-| Ticks | Time |
-|------:|------|
-| 0   | 23 ns    |
-| 1   | 132 ns   |
-| 2   | 257 ns   |
-| 5   | 507 ns   |
-| 10  | 1.0 µs   |
-| 60  | 6.1 µs   |
-| 126 | 12.7 µs  |
+| Sampling time | Ticks that select it |
+|--------------:|----------------------|
+| 46.9 ns   | 0        |
+| 265.6 ns  | 1 – 2    |
+| 515.6 ns  | 3 – 5    |
+| 1.02 µs   | 6 – 10   |
+| 2.02 µs   | 11 – 20  |
+| 12.11 µs  | 21 – 121 |
+| 25.33 µs  | 122 +    |
 
-**SC13xxx (full speed):**
+:::note
+On SC13xxx the ADC is clocked from the system clock, so its sampling times **do** change with the clock profile — hence the two tables below.
+:::
 
-| Ticks | Time |
-|------:|------|
-| 0  | 81 ns   |
-| 1  | 156 ns  |
-| 3  | 306 ns  |
-| 5  | 593 ns  |
-| 11 | 1.2 µs  |
-| 30 | 3.1 µs  |
-| 80 | 8.0 µs  |
+**SC13xxx (full speed, 80 MHz):**
 
-**SC13xxx (half speed):**
+| Sampling time | Ticks that select it |
+|--------------:|----------------------|
+| 81.3 ns  | 0       |
+| 156.3 ns | 1       |
+| 306.3 ns | 2 – 3   |
+| 593.8 ns | 4 – 5   |
+| 1.16 µs  | 6 – 11  |
+| 3.09 µs  | 12 – 30 |
+| 8.01 µs  | 31 +    |
 
-| Ticks | Time |
-|------:|------|
-| 1   | 162 ns  |
-| 3   | 312 ns  |
-| 6   | 612 ns  |
-| 11  | 1.2 µs  |
-| 23  | 2.3 µs  |
-| 60  | 6.2 µs  |
-| 160 | 16.0 µs |
+**SC13xxx (half speed, 40 MHz):**
 
-## Internal temperature sensor
+| Sampling time | Ticks that select it |
+|--------------:|----------------------|
+| 162.5 ns | 0 – 1   |
+| 312.5 ns | 2 – 3   |
+| 612.5 ns | 4 – 6   |
+| 1.19 µs  | 7 – 11  |
+| 2.31 µs  | 12 – 23 |
+| 6.19 µs  | 24 – 61 |
+| 16.01 µs | 62 +    |
 
-SITCore chipsets include an internal temperature sensor on a dedicated ADC channel. Calibration values are stored in chip-specific memory regions and read with `Marshal.ReadInt32`.
+## Internal channels
+
+Besides the pin-backed channels, SITCore chipsets expose three on-die sources on dedicated ADC channels:
+
+| Source | SC20xxx | SC13xxx |
+|---|---|---|
+| Temperature sensor | `Adc.Controller3.InternalTemperatureSensor` | `Adc.Controller1.InternalTemperatureSensor` |
+| Internal reference (V<sub>REFINT</sub>) | `Adc.Controller3.InternalReferenceVoltage` | channel `0` |
+| Battery voltage | `Adc.Controller3.VBAT` (V<sub>BAT</sub>/4) | channel `18` (V<sub>BAT</sub>/3) |
+
+Always use the named constants rather than raw channel numbers — the numbering differs between families, and on SC20xxx V<sub>BAT</sub> and V<sub>REFINT</sub> are not the channels their position in the list suggests.
+
+These channels are high impedance and the driver always samples them at the longest available time, so `SamplingTime` has no effect on them.
+
+:::note
+V<sub>BAT</sub> is an optional carrier-board input for RTC backup. It is not tied to VDD inside the module, so with no battery or supercap fitted the pin floats and the reading is meaningless.
+:::
+
+### Reading the temperature
+
+Each die is calibrated in production. The values live in system memory, which managed code reads with `Marshal.ReadInt32` — arbitrary memory access is not available, but these specific addresses are permitted. The values themselves are 16-bit, so mask the result.
+
+Using V<sub>REFINT</sub> to derive the real analog supply makes the result independent of how close your rail actually is to 3.3 V:
 
 ```csharp
 using System;
@@ -98,47 +122,52 @@ using GHIElectronics.TinyCLR.Pins;
 
 var sc20xxx = DeviceInformation.DeviceName.IndexOf("SC20") >= 0;
 
-var ts_reg1 = sc20xxx ? (IntPtr)0x1FF1E820 : (IntPtr)0x1FFF75A8;
-var ts_reg2 = sc20xxx ? (IntPtr)0x1FF1E840 : (IntPtr)0x1FFF75CA;
-var enable_reg = sc20xxx
-    ? (IntPtr)(0x40000000U + 0x18020000 + 0x6300 + 8)
-    : (IntPtr)(0x40000000U + 0x08000000U + 0x08040300U + 8);
+// Factory calibration addresses, and the supply the die was calibrated at.
+// Both families calibrate at 30 C and 110 C.
+var tsCal1Addr    = sc20xxx ? (IntPtr)0x1FF1E820 : (IntPtr)0x1FFF75A8;
+var tsCal2Addr    = sc20xxx ? (IntPtr)0x1FF1E840 : (IntPtr)0x1FFF75CA;
+var vrefIntCalAddr = sc20xxx ? (IntPtr)0x1FF1E860 : (IntPtr)0x1FFF75AA;
+var vddaCal       = sc20xxx ? 3.3 : 3.0;
+
+const double cal1Temp = 30.0;
+const double cal2Temp = 110.0;
+
+// 16-bit values, so mask the 32-bit read.
+var tsCal1     = Marshal.ReadInt32(tsCal1Addr) & 0xFFFF;
+var tsCal2     = Marshal.ReadInt32(tsCal2Addr) & 0xFFFF;
+var vrefIntCal = Marshal.ReadInt32(vrefIntCalAddr) & 0xFFFF;
 
 var controller = sc20xxx
     ? AdcController.FromName(SC20100.Adc.Controller3.Id)
     : AdcController.FromName(SC13048.Adc.Controller1.Id);
 
-var channel = sc20xxx
+var temperature = sc20xxx
     ? controller.OpenChannel(SC20100.Adc.Controller3.InternalTemperatureSensor)
     : controller.OpenChannel(SC13048.Adc.Controller1.InternalTemperatureSensor);
 
-var enable_val = Marshal.ReadInt32(enable_reg);
-enable_val |= (1 << 23);
-Marshal.WriteInt32(enable_reg, enable_val);
+var reference = sc20xxx
+    ? controller.OpenChannel(SC20100.Adc.Controller3.InternalReferenceVoltage)
+    : controller.OpenChannel(0);   // SC13xxx: V_REFINT is channel 0
 
 while (true) {
-    var v = channel.ReadValue() * 1.0;
+    // The internal reference is a fixed bandgap, so comparing it against its
+    // calibration value gives the actual analog supply.
+    var vdda = vddaCal * vrefIntCal / reference.ReadValue();
 
-    var ts1 = Marshal.ReadInt32(ts_reg1);
-    var ts2 = Marshal.ReadInt32(ts_reg2);
+    // Normalise the sensor reading to the supply the calibration was taken at.
+    var raw = temperature.ReadValue() * vdda / vddaCal;
 
-    if (!sc20xxx) {
-        ts1 &= 0xFFFF;
-        ts2 &= 0xFFFF;
-        v *= 1.1;
-    }
+    var celsius = (cal2Temp - cal1Temp) / (tsCal2 - tsCal1) * (raw - tsCal1) + cal1Temp;
 
-    var t1 = (110 - 30) * 1.0;
-    var t2 = (ts2 - ts1) * 1.0;
-    var t3 = (v - ts1) * 1.0;
-
-    var temperature = t1 / t2 * t3 + 30;
-
-    Debug.WriteLine("T = " + temperature + " Celsius");
+    Debug.WriteLine("VDDA = " + vdda.ToString("N3") + " V, T = " + celsius.ToString("N1") + " C");
 
     Thread.Sleep(1000);
 }
 ```
+
+:::tip
+Earlier versions of this sample enabled the sensor by writing bit 23 of `ADC_CCR` by hand with `Marshal.WriteInt32`. That is no longer necessary — the driver switches the internal analog paths on when you open the channel.
+:::
 
 
 ## API reference

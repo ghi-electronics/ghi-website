@@ -93,6 +93,39 @@ while (true){
 </TabItem>
 </Tabs>
 
+## Polarity and the idle level
+
+Duty cycle is the fraction of the period the output spends **active**, and polarity decides which level "active" means. With the default `ActiveHigh`, the pin idles low and pulses high. With `ActiveLow` it idles high and pulses low.
+
+That has one consequence worth stating plainly, because it surprises people: **a duty cycle of 0 does not mean 0 V.** It means zero active time, so the pin rests at the *inactive* level — low for `ActiveHigh`, **high for `ActiveLow`**. If you need a driven logic 0, use `ActiveHigh` with a duty cycle of 0.
+
+## Stopping a channel
+
+**Stopping a PWM channel releases the pin rather than driving it.** The pin is reconfigured as a floating input, so its level is decided entirely by whatever is attached to it — not by PWM. Stopping does not give you a logic 0.
+
+This matters most for anything that must fail safe: a motor driver, a heater, a FET gate. It is also true *before* your application runs at all — the pin floats from reset until you configure it.
+
+There are three ways to get a defined level, and they are not equivalent:
+
+**Fit an external pull resistor.** The only option that also covers reset, boot and a crashed application, because it doesn't depend on software running. Use this for anything where the wrong level is unsafe.
+
+**Leave the channel running at 0% duty.** With `ActiveHigh` this actively drives low, which is genuinely different from stopping. Costs you a timer channel, but the level is driven rather than floating.
+
+**Dispose the channel, then drive the pin as GPIO:**
+
+```csharp
+pwmChannel.Stop();
+pwmChannel.Dispose();       // required - see below
+
+var gpio = GpioController.GetDefault().OpenPin(FEZBit.GpioPin.Led);
+gpio.SetDriveMode(GpioPinDriveMode.Output);
+gpio.Write(GpioPinValue.Low);
+```
+
+:::warning
+`Stop()` on its own does **not** free the pin — it stays reserved by the PWM controller, and opening it as a GPIO fails with a sharing violation. You must `Dispose()` the channel first.
+:::
+
 ## Musical tones
 
 Musical notes have specific frequencies — C is about 261 Hz. Putting frequencies and durations in arrays lets you sequence notes to play simple melodies. When playing notes by changing the frequency, keep the duty cycle at 0.5.

@@ -68,6 +68,35 @@ Attaches a removable storage device.
 |---|---|---|
 | `storage` | `IntPtr` | The storage device (hdc )to attach. |
 
+### AttachLogicalUnit(IntPtr storage, string vendor, string product)
+
+```csharp
+public void AttachLogicalUnit(IntPtr storage, string vendor, string product)
+```
+
+Attaches a removable storage device, giving it SCSI identification strings.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `storage` | `IntPtr` | The storage device (hdc )to attach. |
+| `vendor` | `string` | SCSI vendor identification, up to 8 characters. Reported by INQUIRY and shown by Windows as the `Ven_` part of the device id. Pass `null` to keep the default. Longer strings are truncated by the device; shorter ones are space padded. |
+| `product` | `string` | SCSI product identification, up to 16 characters, shown as the `Prod_` part. Pass `null` to use `UsbClientSetting.ProductName`, which is what earlier releases always did. |
+
+### AttachLogicalUnit(IntPtr storage, string vendor, string product, string revision)
+
+```csharp
+public void AttachLogicalUnit(IntPtr storage, string vendor, string product, string revision)
+```
+
+Attaches a removable storage device, giving it SCSI identification strings.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `storage` | `IntPtr` | The storage device (hdc )to attach. |
+| `vendor` | `string` | SCSI vendor identification, up to 8 characters. `null` keeps the default. |
+| `product` | `string` | SCSI product identification, up to 16 characters. `null` uses `UsbClientSetting.ProductName`. |
+| `revision` | `string` | SCSI product revision level, up to 4 characters. `null` keeps "1.00". |
+
 ### RemoveLogicalUnit(IntPtr storage)
 
 ```csharp
