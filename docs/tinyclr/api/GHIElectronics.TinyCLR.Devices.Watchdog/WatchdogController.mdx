@@ -23,13 +23,13 @@ public IWatchdogControllerProvider Provider { get; }
 
 The low-level provider backing this controller.
 
-### GetMaxTimeout
+### MaxTimeout
 
 ```csharp
-public uint GetMaxTimeout { get; }
+public TimeSpan MaxTimeout { get; }
 ```
 
-Largest legal value (in milliseconds) for the `Enable(uint)` timeout argument.
+Largest legal value for the `Enable(TimeSpan)` timeout argument.
 
 ### IsEnabled
 
@@ -79,17 +79,17 @@ public void Dispose()
 
 Releases the underlying provider.
 
-### Enable(uint timeout)
+### Enable(TimeSpan timeout)
 
 ```csharp
-public void Enable(uint timeout)
+public void Enable(TimeSpan timeout)
 ```
 
 Starts the watchdog. From this point on, `Reset` must be called more often than `timeout` or the device will reboot. On many chips the watchdog cannot be disabled once enabled.
 
 | Parameter | Type | Description |
 |---|---|---|
-| `timeout` | `uint` | Timeout in milliseconds (must be > 0 and ≤ `GetMaxTimeout`). |
+| `timeout` | `TimeSpan` | Timeout in TimeSpan (must be > 0 and ≤ `MaxTimeout`). |
 
 ### Disable()
 

@@ -4,29 +4,35 @@ title: Release Notes
 
 ![TinyCLR Logo](/img/docs/tinyclr-logo.png)
 
-## 3.0.1.6001 (2026-09-01) RTW
+## 3.0.2.1000 (2026-09-08) RTW
 
-A tooling-only release that fixes two deployment failures. Firmware and the libraries are unchanged.
-
-### Visual Studio Extension
-
-- Fixed a deployment failure (`Wrong type in blob` / `MMP0000: 0x81010002`) in projects that enable nullable reference types or use an attribute with a `typeof` argument.
-
-### Visual Studio Code extension
-
-- Includes the same deployment fix as the Visual Studio extension.
-
-### TinyCLR Config
-
-- Includes the same deployment fix as the Visual Studio extension.
+Firmware fixes for analog inputs and the CLR, plus mass storage identification. Update the firmware, the extension, and the libraries together.
 
 ### Firmware
 
-- No change. 3.0.1.6000 remains the current release.
+- **Analog in**: the internal temperature sensor, internal reference voltage, and VBAT channels now map and read correctly.
+- **Analog in**: fixed a spurious exception when reading a channel while USB is enumerating.
+- **CLR**: fixed an overloaded virtual method binding to the wrong overload.
+- **CLR**: fixed `ToString()`, `Equals()`, and `GetHashCode()` on an unconstrained generic holding a reference type.
+- **USB mass storage**: the SCSI product revision level is now settable.
 
 ### Libraries
 
-- No change. 3.0.1.6000 remains the current release.
+- `GHIElectronics.TinyCLR.Devices.UsbClient`: `MassStorage.AttachLogicalUnit` accepts SCSI vendor, product, and revision strings.
+- `GHIElectronics.TinyCLR.Pins`: corrected the `InternalReferenceVoltage` and `VBAT` ADC channel numbers.
+- All other libraries: version updated to match this release. No API or behavior changes.
+
+### Visual Studio Extension
+
+- Version updated to match this release. No functional changes.
+
+### Visual Studio Code extension
+
+- Version updated to match this release. No functional changes.
+
+### TinyCLR Config
+
+- Version updated to match this release. No functional changes.
 
 ## 3.0.1.6000 (2026-08-27) RTW
 
