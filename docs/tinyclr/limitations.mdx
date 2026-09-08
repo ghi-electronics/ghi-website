@@ -5,15 +5,17 @@ title: Limitations
 TinyCLR is built for small, secure, embedded products. To keep performance high and application memory maximized on resource-constrained devices, a few features from full .NET are limited or unavailable. Here are the limitations you're most likely to run into, along with workarounds.
 
 1. **Multidimensional arrays are not supported.** Use jagged arrays instead — `[1][1]` rather than `[1,1]`.
-2. **Compiled code is capped at 64 KB per assembly.** That's the IL only — bigger than it sounds, and a lot of embedded logic. Resources live in a separate stream and don't count toward it, so images, fonts, lookup tables, and binary blobs can be far larger. 
+2. **Compiled code is capped at 64 KB per assembly.** That's the IL only — bigger than it sounds, and a lot of embedded logic. Resources live in a separate stream and don't count toward it, so images, fonts, lookup tables, and binary blobs can be far larger. The other metadata streams (strings, signatures, type and method tables) share the same 64 KB ceiling, so a very large number of types or string literals in one assembly can hit the limit before the IL does.
 3. **A maximum of 64 assemblies can be loaded at once.**
 4. **`await Task<T>` (awaiting a generic task) is not supported.** Start the task and read `.Result` instead. Awaiting a non-generic `Task` (for example `await Task.Delay(...)` or `await Task.WhenAll(Task[])`) works.
 5. **Some advanced generic scenarios are not supported.** The generic collections and interfaces provided work, but a generic type boxed across an `async`/`await` suspension does not — this is the root of the `Task<T>` await limitation above.
-6. **LINQ is LINQ-to-Objects only.** `Join`/`GroupJoin`, the set operators (`Union`/`Intersect`/`Except`), `Zip`, and `DefaultIfEmpty` are not included, and there is no `IQueryable`/PLINQ.
-7. **`Tuple` and `ValueTuple` support 1–7 elements.** Tuple literals and deconstruction are included; the 8-or-more element nested ("TRest") form is not.
-8. **`List<T>` provides only common operations.** The indexer and `Add`/`Insert`/`Remove`/`Sort`/`Find`/`BinarySearch` (etc.) are supported; less-common members such as `AsReadOnly` and `Slice` are not included.
-9. **`Dictionary<TKey, TValue>` provides only common operations.** The indexer and `Add`/`Remove`/`TryGetValue`/`Keys`/`Values` are supported; enumeration order is not guaranteed and serialization is not included.
-10. **C# 12 is supported, with these limitations:**
+6. **`bool` and `char` lose their exact type when stored in an unconstrained generic.** They widen to a 32-bit integer on the way into the field, so calling `ToString()` on the value later gives the numeric form: `"1"` instead of `"True"`, `"65"` instead of `"A"`. Comparisons and arithmetic are unaffected, and the value itself is never wrong — only its rendering. Convert explicitly (`flag.ToString()` before storing), or use a concrete type rather than a generic one where the text matters. `int`, `double` and other full-width types are unaffected.
+7. **`default(T)` for a value-type `T` does not compare equal to the literal.** A generic method returning `default(T)` — `FirstOrDefault()` on an empty match, for example — produces a value that prints as `0` but for which `result == 0` is `false`. Don't use the default as a "not found" sentinel with a value-type `T`; test the sequence first (`Any()` before `First()`), or use a reference type or an explicit found/not-found flag.
+8. **LINQ is LINQ-to-Objects only.** `Join`/`GroupJoin`, the set operators (`Union`/`Intersect`/`Except`), `Zip`, and `DefaultIfEmpty` are not included, and there is no `IQueryable`/PLINQ.
+9. **`Tuple` and `ValueTuple` support 1–7 elements.** Tuple literals and deconstruction are included; the 8-or-more element nested ("TRest") form is not.
+10. **`List<T>` provides only common operations.** The indexer and `Add`/`Insert`/`Remove`/`Sort`/`Find`/`BinarySearch` (etc.) are supported; less-common members such as `AsReadOnly` and `Slice` are not included.
+11. **`Dictionary<TKey, TValue>` provides only common operations.** The indexer and `Add`/`Remove`/`TryGetValue`/`Keys`/`Values` are supported; enumeration order is not guaranteed and serialization is not included.
+12. **C# 12 is supported, with these limitations:**
     - **Inline arrays are not supported.** The `[InlineArray]` struct attribute is not available.
     - **Collection expressions can't target `Span<T>` or custom collection builders.** `[1, 2, 3]` works for arrays and `List<T>`, but not for `Span<T>`/`ReadOnlySpan<T>` or types that use `[CollectionBuilder]`.
     - **UTF-8 string literals (`"…"u8`) are not supported.** They produce a `ReadOnlySpan<byte>`, which TinyCLR does not include.
