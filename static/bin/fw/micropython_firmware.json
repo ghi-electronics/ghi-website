@@ -4,7 +4,7 @@
   "families": [
     {
       "id": "SC20xxx",
-      "device_support": "SC20260N, SC20260D",
+      "device_support": "SC20260x, FEZ base SC20xxx series",
       "kind": "ghi-loader",
       "enterBootloader": "Hold LDR, tap RESET, then release LDR.",
       "version": "1.29.0-33-g25afef4534",
@@ -13,7 +13,7 @@
     },
     {
       "id": "SC13xxx",
-      "device_support": "SC13048, FEZ Flea",
+      "device_support": "SC13048, FEZ base SC13xxx series",
       "kind": "ghi-loader",
       "enterBootloader": "Hold LDR, tap RESET, then release LDR.",
       "version": "1.29.0-33-g25afef4534",
