@@ -1,25 +1,7 @@
 {
   "schemaVersion": 1,
   "source": "DebuggerExtension/micropython-vsc-extension/tools/make_firmware_index.py",
-  "families": [
-    {
-      "id": "SC20xxx",
-      "device_support": "SC20260x, FEZ base SC20xxx series",
-      "kind": "ghi-loader",
-      "enterBootloader": "Hold LDR, tap RESET, then release LDR.",
-      "version": "1.29.0-33-g25afef4534",
-      "date": "2026-09-09",
-      "url": "N/A"
-    },
-    {
-      "id": "SC13xxx",
-      "device_support": "SC13048, FEZ base SC13xxx series",
-      "kind": "ghi-loader",
-      "enterBootloader": "Hold LDR, tap RESET, then release LDR.",
-      "version": "1.29.0-33-g25afef4534",
-      "date": "2026-09-09",
-      "url": "N/A"
-    },
+  "families": [    
     {
       "id": "RPI_PICO",
       "device_support": "Raspberry Pi Pico",
