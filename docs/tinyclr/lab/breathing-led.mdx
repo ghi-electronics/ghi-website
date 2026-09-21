@@ -1,0 +1,315 @@
+---
+title: Breathing LED
+sidebar_label: Breathing LED
+description: Electronics Lab — fade an LED smoothly from C# on a FEZ Flea or FEZ Bit using pulse-width modulation (PWM), and learn duty cycle, frequency, and why your eyes see brightness the way they do.
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Breathing LED
+
+A digital pin is either on or off — so how do you make an LED glow at half brightness? You switch it on and off so fast your eyes can't keep up. That's **pulse-width modulation (PWM)**, and in this lesson you'll use it to make an LED breathe: fading smoothly up and down like a sleeping laptop.
+
+About 30 minutes.
+
+## What you'll learn
+
+- What PWM is, and the two numbers that control it: **frequency** and **duty cycle**
+- Why fast pulses look like steady, dimmer light
+- How to fade an LED smoothly — and why a straight-line fade doesn't look straight
+
+## What you'll need
+
+- The [Digital Output](digital-output.mdx) circuit — the LED and 220 Ω resistor, still wired to the same pin
+- Nothing else from the kit
+
+## Pin reference
+
+| Connection | FEZ Flea | FEZ Bit |
+|---|---|---|
+| LED (through the 220 Ω resistor) | **PA3** — PWM controller 15 | **P0** — PWM controller 3 |
+| LED ground | **GND** | **GND** |
+
+This is the same wiring as Digital Output — no changes needed. Not every pin can do hardware PWM; see the **PWM** row in [your board's pins](index.mdx#get-to-know-your-board).
+
+## Step 1 — Create the project
+
+Create a new **TinyCLR Application** project and install the **`GHIElectronics.TinyCLR.Devices.Pwm`** and **`GHIElectronics.TinyCLR.Pins`** NuGet packages.
+
+The lessons use the standard .NET IoT API — `System.Device.Pwm`. See [PWM](../feature/pwm.mdx) for TinyCLR's original API and more detail.
+
+## Step 2 — Watch PWM in slow motion
+
+Before making it smooth, make it slow enough to see. This program pulses the LED **20 times a second**, on for **half** of each pulse:
+
+<Tabs groupId="board">
+<TabItem value="flea" label="FEZ Flea" default>
+
+```csharp title="Program.cs"
+using System.Device.Pwm;
+using System.Threading;
+using GHIElectronics.TinyCLR.Pins;
+
+using PwmChannel led = PwmChannel.Create(
+// highlight-start
+    FEZFlea.Timer.Pwm.Controller15.Chip,
+    FEZFlea.Timer.Pwm.Controller15.PA3,
+// highlight-end
+    20,     // frequency: 20 pulses per second
+    0.5);   // duty cycle: on for half of each pulse
+
+led.Start();
+
+Thread.Sleep(Timeout.Infinite);
+```
+
+</TabItem>
+<TabItem value="bit" label="FEZ Bit">
+
+```csharp title="Program.cs"
+using System.Device.Pwm;
+using System.Threading;
+using GHIElectronics.TinyCLR.Pins;
+
+using PwmChannel led = PwmChannel.Create(
+// highlight-start
+    FEZBit.Timer.Pwm.Controller3.Chip,
+    FEZBit.Timer.Pwm.Controller3.P0,
+// highlight-end
+    20,     // frequency: 20 pulses per second
+    0.5);   // duty cycle: on for half of each pulse
+
+led.Start();
+
+Thread.Sleep(Timeout.Infinite);
+```
+
+</TabItem>
+</Tabs>
+
+Press **F5**. The LED flickers rapidly — you can still just about see each pulse.
+
+- **`PwmChannel.Create(chip, channel, frequency, dutyCycle)`** opens a PWM output. A PWM pin belongs to a **controller** (the `Chip`) and a **channel** on it — the `Timer.Pwm` constants in the pins library give you both.
+- **Frequency** is how many pulses per second, in hertz (Hz).
+- **Duty cycle** is how much of each pulse the pin spends **on**, from `0.0` (never) to `1.0` (always).
+- **`Start()`** begins the pulses. From then on, the chip generates them by itself — your code is free to do anything else, or nothing.
+
+Now change the duty cycle from `0.5` to `0.1` and run again: short blips of light. Try `0.9`: the LED is mostly on, with quick dark gaps. The pulses happen at the same rate — only the **width** of each pulse changes. That's the "pulse-width" in pulse-width modulation.
+
+## Step 3 — Speed it up
+
+Change the frequency from `20` to `1000` — a thousand pulses a second — and add a loop that steps through a few duty cycles:
+
+<Tabs groupId="board">
+<TabItem value="flea" label="FEZ Flea" default>
+
+```csharp title="Program.cs"
+using System.Device.Pwm;
+using System.Threading;
+using GHIElectronics.TinyCLR.Pins;
+
+using PwmChannel led = PwmChannel.Create(
+// highlight-start
+    FEZFlea.Timer.Pwm.Controller15.Chip,
+    FEZFlea.Timer.Pwm.Controller15.PA3,
+// highlight-end
+    1000,   // 1000 pulses per second — too fast to see
+    0);     // start dark
+
+led.Start();
+
+double[] levels = { 0.02, 0.1, 0.5, 1.0 };
+
+while (true) {
+    foreach (double level in levels) {
+        led.DutyCycle = level;
+        Thread.Sleep(1000);
+    }
+}
+```
+
+</TabItem>
+<TabItem value="bit" label="FEZ Bit">
+
+```csharp title="Program.cs"
+using System.Device.Pwm;
+using System.Threading;
+using GHIElectronics.TinyCLR.Pins;
+
+using PwmChannel led = PwmChannel.Create(
+// highlight-start
+    FEZBit.Timer.Pwm.Controller3.Chip,
+    FEZBit.Timer.Pwm.Controller3.P0,
+// highlight-end
+    1000,   // 1000 pulses per second — too fast to see
+    0);     // start dark
+
+led.Start();
+
+double[] levels = { 0.02, 0.1, 0.5, 1.0 };
+
+while (true) {
+    foreach (double level in levels) {
+        led.DutyCycle = level;
+        Thread.Sleep(1000);
+    }
+}
+```
+
+</TabItem>
+</Tabs>
+
+Press **F5**. The flicker is gone. Instead, the LED steps through four **steady** brightness levels, once a second each.
+
+Nothing about the LED changed — it's still switching fully on and fully off. At 1000 times a second, your eyes can't follow the individual pulses, so they average them into a steady glow. On for 10% of the time looks like a dim light.
+
+**Try the debugger:** set a breakpoint on `Thread.Sleep(1000);` and press **F5**. When it stops, hover over `level` — and look at the LED. It holds that exact brightness while the program is paused, because the chip keeps generating the pulses on its own. Press **F5** a few times to step through the levels, then remove the breakpoint.
+
+## Step 4 — Make it breathe
+
+Now fade smoothly: step the duty cycle up from 0 to 1 in 100 small steps, then back down. A small `SetBrightness` method keeps the loops tidy — and sets up the next step:
+
+<Tabs groupId="board">
+<TabItem value="flea" label="FEZ Flea" default>
+
+```csharp title="Program.cs"
+using System.Device.Pwm;
+using System.Threading;
+using GHIElectronics.TinyCLR.Pins;
+
+using PwmChannel led = PwmChannel.Create(
+// highlight-start
+    FEZFlea.Timer.Pwm.Controller15.Chip,
+    FEZFlea.Timer.Pwm.Controller15.PA3,
+// highlight-end
+    1000,
+    0);
+
+led.Start();
+
+while (true) {
+    // Breathe in.
+    for (int step = 0; step <= 100; step++) {
+        SetBrightness(step / 100.0);
+        Thread.Sleep(10);
+    }
+
+    // Breathe out.
+    for (int step = 100; step >= 0; step--) {
+        SetBrightness(step / 100.0);
+        Thread.Sleep(10);
+    }
+}
+
+// Brightness from 0.0 (off) to 1.0 (full).
+void SetBrightness(double brightness) {
+    led.DutyCycle = brightness;
+}
+```
+
+</TabItem>
+<TabItem value="bit" label="FEZ Bit">
+
+```csharp title="Program.cs"
+using System.Device.Pwm;
+using System.Threading;
+using GHIElectronics.TinyCLR.Pins;
+
+using PwmChannel led = PwmChannel.Create(
+// highlight-start
+    FEZBit.Timer.Pwm.Controller3.Chip,
+    FEZBit.Timer.Pwm.Controller3.P0,
+// highlight-end
+    1000,
+    0);
+
+led.Start();
+
+while (true) {
+    // Breathe in.
+    for (int step = 0; step <= 100; step++) {
+        SetBrightness(step / 100.0);
+        Thread.Sleep(10);
+    }
+
+    // Breathe out.
+    for (int step = 100; step >= 0; step--) {
+        SetBrightness(step / 100.0);
+        Thread.Sleep(10);
+    }
+}
+
+// Brightness from 0.0 (off) to 1.0 (full).
+void SetBrightness(double brightness) {
+    led.DutyCycle = brightness;
+}
+```
+
+</TabItem>
+</Tabs>
+
+Press **F5**. The LED fades up and down, one breath every two seconds.
+
+Watch closely, though. It doesn't look even: the LED gets bright quickly, then seems to sit near full brightness for most of the breath, and only dips dark briefly at the bottom.
+
+## Step 5 — Make it look smooth
+
+The code is changing the duty cycle evenly. The problem is your eyes: they're far more sensitive to changes in **dim** light than in bright light. Going from 1% to 10% looks like a big jump; going from 60% to 70% barely registers.
+
+The fix is to spend more of the fade at the dim end. Squaring the brightness does exactly that — `0.5` becomes `0.25`, `0.1` becomes `0.01`, while `0` and `1` stay put. Change the body of `SetBrightness`:
+
+```csharp
+void SetBrightness(double brightness) {
+    led.DutyCycle = brightness * brightness;
+}
+```
+
+Press **F5**. Now the breath looks even all the way through — a slow, steady glow in and out.
+
+That's the payoff of wrapping the math in a method: one line changed, and every caller gets the better curve.
+
+## How it works
+
+### Duty cycle
+
+Each pulse has a fixed length — the **period** — set by the frequency. At 1000 Hz, each period is 1 ms. The duty cycle decides how much of that period the pin is High:
+
+```
+Duty cycle 10%   ▇▁▁▁▁▁▁▁▁▁▇▁▁▁▁▁▁▁▁▁▇▁▁▁▁▁▁▁▁▁   dim
+Duty cycle 50%   ▇▇▇▇▇▁▁▁▁▁▇▇▇▇▇▁▁▁▁▁▇▇▇▇▇▁▁▁▁▁   medium
+Duty cycle 90%   ▇▇▇▇▇▇▇▇▇▁▇▇▇▇▇▇▇▇▇▁▇▇▇▇▇▇▇▇▇▁   bright
+                 |← 1 ms →|
+```
+
+The LED receives power only while the pin is High, so a 10% duty cycle delivers about 10% of the energy of fully on. That's why PWM also works for motor speed and heaters — anything that responds to average power rather than individual pulses.
+
+### Frequency
+
+Frequency doesn't change brightness — it changes whether you **see** the pulses:
+
+- **Below about 50 Hz**, most people see flicker.
+- **Around 100 Hz and up**, the light looks steady. 1000 Hz leaves plenty of margin, even for fast eye movements and phone cameras.
+
+On SITCore, hardware PWM runs from about **15 Hz to 10 kHz**.
+
+### Hardware PWM
+
+Once you call `Start()`, the pulses come from a **timer** built into the chip — not from your code. That's why the brightness held steady while the debugger was paused, and why PWM keeps perfect timing no matter how busy your program gets.
+
+Each timer is a **controller**, and each controller can drive a few pins (**channels**). Channels on the same controller always share one frequency — worth remembering when you drive several LEDs at once in the next lesson.
+
+### Brightness and your eyes
+
+Human vision responds to light roughly logarithmically: each doubling of power looks like about the same step up in brightness. A linear fade crowds most of the visible change into the first few percent. Squaring the brightness (a simple **gamma correction**) spreads it back out. Displays and LED drivers everywhere use the same trick, usually with a slightly stronger curve.
+
+## Try this
+
+1. **Breathe faster, breathe slower.** Wire the button from [Digital Input](digital-input.mdx) (with `PinMode.InputPullUp`), and use its event to switch the `Thread.Sleep` in the loops between 10 ms and 3 ms. You'll need `GHIElectronics.TinyCLR.Devices.Gpio` too.
+2. **Heartbeat.** Replace the breath with two quick pulses followed by a pause — *ba-dum … ba-dum*.
+3. **Candle.** Set a random brightness between 0.6 and 1.0 every 50–150 ms (use `System.Random`) for a flickering flame.
+4. **The on-board LED.** Both boards' on-board LEDs are wired to PWM too — `Timer.Pwm.Controller1.Chip` and `Timer.Pwm.Controller1.Led`. Make it breathe in the opposite rhythm to the breadboard LED: when one is bright, the other is dim.
+
+## Next
+
+**[RGB LEDs](rgb-leds.mdx)** — three LEDs in one package: mix colors with digital outputs, then with PWM for any color you like.

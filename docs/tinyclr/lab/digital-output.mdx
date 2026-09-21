@@ -1,0 +1,268 @@
+---
+title: Digital Output
+sidebar_label: Digital Output
+description: Electronics Lab — blink an LED on a breadboard from C# on a FEZ Flea or FEZ Bit, learn why LEDs need a current-limiting resistor, and step through hardware code with the Visual Studio debugger.
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Digital Output
+
+Your first circuit: an LED on the breadboard, switched on and off from C#. Along the way you'll learn what a digital output actually does, why every LED needs a resistor, and — the best part — what it feels like to **pause real hardware with a breakpoint**.
+
+About 20 minutes.
+
+## What you'll learn
+
+- What a digital output is, and what `PinValue.High` and `PinValue.Low` mean electrically
+- How to wire an LED with a current-limiting resistor, and why 220 Ω is a safe value
+- How to step through hardware code with the debugger and watch the LED follow each line
+
+## What you'll need
+
+- The [Start Here](index.mdx) setup done — the on-board LED blinked in [Getting Started](../getting-started.mdx)
+- From the kit:
+  - Your board, breadboard, and USB cable(s)
+  - 1× LED (any color)
+  - 1× 220 Ω resistor (red · red · brown)
+  - Jumper wires — 1× pin-to-pin for the FEZ Flea, 2× pin-to-socket for the FEZ Bit
+
+## Pin reference
+
+| Connection | FEZ Flea | FEZ Bit |
+|---|---|---|
+| LED signal (through the resistor) | **PA3** | **P0** |
+| LED ground | **GND** | **GND** |
+
+Both pins also support PWM, so this same wiring carries straight into the [Breathing LED](breathing-led.mdx) lesson.
+
+## Step 1 — Create the project
+
+1. Create a new **TinyCLR Application** project, as in [Getting Started](../getting-started.mdx#set-up-and-run-the-starter).
+2. Install the **`GHIElectronics.TinyCLR.Devices.Gpio`** and **`GHIElectronics.TinyCLR.Pins`** NuGet packages.
+
+The lessons use the standard .NET IoT API — `System.Device.Gpio` — the same one you'd use on a Raspberry Pi running full .NET. Both namespaces come in the Gpio package; see [GPIO](../feature/gpio.mdx#two-apis) if you're curious about TinyCLR's original API.
+
+## Step 2 — Blink the on-board LED
+
+Start with no wiring at all, so you know the code works before the circuit is involved. Replace `Program.cs` with:
+
+<Tabs groupId="board">
+<TabItem value="flea" label="FEZ Flea" default>
+
+```csharp title="Program.cs"
+using System.Device.Gpio;
+using System.Threading;
+using GHIElectronics.TinyCLR.Pins;
+
+using GpioController controller = new GpioController();
+
+// highlight-next-line
+int ledPin = FEZFlea.GpioPin.Led;
+controller.OpenPin(ledPin, PinMode.Output);
+
+while (true) {
+    controller.Write(ledPin, PinValue.High);
+    Thread.Sleep(500);
+
+    controller.Write(ledPin, PinValue.Low);
+    Thread.Sleep(500);
+}
+```
+
+</TabItem>
+<TabItem value="bit" label="FEZ Bit">
+
+```csharp title="Program.cs"
+using System.Device.Gpio;
+using System.Threading;
+using GHIElectronics.TinyCLR.Pins;
+
+using GpioController controller = new GpioController();
+
+// highlight-next-line
+int ledPin = FEZBit.GpioPin.Led;
+controller.OpenPin(ledPin, PinMode.Output);
+
+while (true) {
+    controller.Write(ledPin, PinValue.High);
+    Thread.Sleep(500);
+
+    controller.Write(ledPin, PinValue.Low);
+    Thread.Sleep(500);
+}
+```
+
+</TabItem>
+</Tabs>
+
+Press **F5**. The on-board LED blinks once a second.
+
+- **`OpenPin(ledPin, PinMode.Output)`** claims the pin and makes it an output — the chip will drive its voltage.
+- **`Write(..., PinValue.High)`** sets the pin to **3.3 V**. `PinValue.Low` sets it to **0 V**.
+- **`Thread.Sleep(500)`** waits half a second. Without it, the LED would switch thousands of times a second — too fast to see.
+
+The highlighted line is the only one that changes between boards — everything else in the lessons is the same C#.
+
+Stop the program (**Shift+F5**) before wiring.
+
+## Step 3 — Wire the LED
+
+With USB **unplugged**:
+
+<Tabs groupId="board">
+<TabItem value="flea" label="FEZ Flea" default>
+
+{/* TODO(photo): FEZ Flea wiring — PA3 → resistor → LED → GND */}
+
+1. Place the FEZ Flea so it straddles the center gap of the breadboard.
+2. Plug the **resistor** from the row of pin **PA3** to an empty row.
+3. Plug the LED's **long leg** (anode) into the same row as the resistor's other end.
+4. Plug the LED's **short leg** (cathode) into another empty row.
+5. Use a jumper wire to connect the short leg's row to a **GND** pin.
+
+```
+FEZ Flea PA3 ──── 220 Ω resistor ────▶ LED ──── GND
+                                   (long leg → short leg)
+```
+
+</TabItem>
+<TabItem value="bit" label="FEZ Bit">
+
+{/* TODO(photo): FEZ Bit wiring — P0 → resistor → LED → GND */}
+
+1. Slide the FEZ Bit into the adapter board.
+2. Connect a pin-to-socket jumper wire from header pin **P0** to an empty breadboard row.
+3. Plug the **resistor** from that row to another empty row.
+4. Plug the LED's **long leg** (anode) into the same row as the resistor's other end.
+5. Plug the LED's **short leg** (cathode) into another empty row.
+6. Connect a second pin-to-socket jumper wire from that row to a **GND** header pin.
+
+```
+FEZ Bit P0 ──── 220 Ω resistor ────▶ LED ──── GND
+                                 (long leg → short leg)
+```
+
+</TabItem>
+</Tabs>
+
+{/* TODO(schematic): Digital Output schematic */}
+
+## Step 4 — Blink the breadboard LED
+
+Point `ledPin` at the breadboard pin instead of the on-board LED, and add a counter so there's something to inspect in the next step:
+
+<Tabs groupId="board">
+<TabItem value="flea" label="FEZ Flea" default>
+
+```csharp title="Program.cs"
+using System.Device.Gpio;
+using System.Threading;
+using GHIElectronics.TinyCLR.Pins;
+
+using GpioController controller = new GpioController();
+
+// highlight-next-line
+int ledPin = FEZFlea.GpioPin.PA3;
+controller.OpenPin(ledPin, PinMode.Output);
+
+int blinkCount = 0;
+
+while (true) {
+    controller.Write(ledPin, PinValue.High);
+    Thread.Sleep(500);
+
+    controller.Write(ledPin, PinValue.Low);
+    Thread.Sleep(500);
+
+    blinkCount++;
+}
+```
+
+</TabItem>
+<TabItem value="bit" label="FEZ Bit">
+
+```csharp title="Program.cs"
+using System.Device.Gpio;
+using System.Threading;
+using GHIElectronics.TinyCLR.Pins;
+
+using GpioController controller = new GpioController();
+
+// highlight-next-line
+int ledPin = FEZBit.GpioPin.P0;
+controller.OpenPin(ledPin, PinMode.Output);
+
+int blinkCount = 0;
+
+while (true) {
+    controller.Write(ledPin, PinValue.High);
+    Thread.Sleep(500);
+
+    controller.Write(ledPin, PinValue.Low);
+    Thread.Sleep(500);
+
+    blinkCount++;
+}
+```
+
+</TabItem>
+</Tabs>
+
+Plug in USB (on the FEZ Bit, both cables) and press **F5**. The LED on the breadboard blinks.
+
+**Not blinking?**
+
+- **LED backwards?** Flip it — the long leg goes toward the resistor and the signal pin.
+- **Same row?** Parts connect only when their legs share a row. Check that the resistor and LED long leg are in the same row, and the LED short leg and GND wire share another.
+- **Across the gap?** Holes on opposite sides of the center gap aren't connected.
+- **Right pin?** Compare against the [pin reference](#pin-reference) and [your board's pins](index.mdx#get-to-know-your-board).
+
+## Debug it
+
+This is where the lab is different. The debugger isn't simulating anything — it's attached to your board, and **when your code stops, the hardware stops with it**.
+
+{/* TODO(screenshot): breakpoint on the Write(High) line in Visual Studio */}
+
+1. **Set a breakpoint.** Click in the left margin next to `controller.Write(ledPin, PinValue.High);` — a red dot appears.
+2. **Run.** Press **F5**. The program stops on that line, highlighted in yellow. The LED is **off** — the line hasn't run yet.
+3. **Step.** Press **F10** (Step Over). The line executes and the **LED turns on** — at the exact moment you pressed the key.
+4. **Take your time.** The LED stays on for as long as you leave the program paused — **time is paused on the board, not just in the editor**. Press **F10** to run `Thread.Sleep(500)`.
+5. **Turn it off.** Press **F10** once more. The LED goes dark.
+6. **Inspect.** Hover over `blinkCount` to see how many blinks have completed. Press **F5** to continue — the program runs one more blink and stops at the breakpoint again. Hover again: the count has gone up by one.
+7. **Clean up.** Click the red dot to remove the breakpoint, then press **F5** to let it run freely.
+
+You just single-stepped a circuit. The debugger works like this in every lesson — whenever something doesn't behave, set a breakpoint and look.
+
+## How it works
+
+### Digital output
+
+A digital output has two states. **High** connects the pin to the chip's 3.3 V supply; **Low** connects it to 0 V (GND). When the pin is High, there's a 3.3 V difference between the pin and GND, so current flows through the resistor and the LED, and the LED lights. When the pin is Low, both ends are at 0 V — no current, no light.
+
+### Why the resistor matters
+
+An LED isn't like a light bulb. Once the voltage across it passes a threshold — about **2 V** for a red LED, around **3 V** for blue and white — its resistance drops dramatically, and it will draw as much current as it can get. With nothing to limit it, that current can burn out the LED and overload the pin.
+
+The resistor sets the current. **Ohm's law** — current = voltage ÷ resistance — tells you how much. The resistor sees whatever voltage the LED doesn't use:
+
+```
+current = (pin voltage − LED voltage) ÷ resistance
+        = (3.3 V − 2.0 V) ÷ 220 Ω
+        ≈ 6 mA
+```
+
+About 6 milliamps: plenty to see clearly, and well within what a microcontroller pin can supply.
+
+Use a **220 Ω** resistor with every LED in the lab. Its job is protection, not brightness — to control how bright an LED shines, you'll use PWM in the [Breathing LED](breathing-led.mdx) lesson.
+
+## Try this
+
+1. **Two LEDs.** Wire a second LED and 220 Ω resistor on **PA2** (FEZ Flea) or **P1** (FEZ Bit), and make the two alternate — one on while the other is off.
+2. **SOS.** Write a `Blink(int onMilliseconds)` method and use it to flash **· · · — — — · · ·** in Morse code: short blinks of 200 ms, long blinks of 600 ms.
+3. **Faster.** Shrink both `Thread.Sleep` values until the LED stops looking like it's blinking — somewhere around 10 ms it will look solid, just a little dimmer. Remember that: it's the idea behind [Breathing LED](breathing-led.mdx).
+
+## Next
+
+**[Digital Input](digital-input.mdx)** — read buttons, learn why inputs need pull-ups, react to presses with events, and build a reaction-time game.
