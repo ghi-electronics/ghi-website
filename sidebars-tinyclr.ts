@@ -4,7 +4,7 @@ const sidebars: SidebarsConfig = {
   tinyclrSidebar: [
     {
       type: 'category',
-      label: 'Getting Started',
+      label: 'TinyCLR Getting Started',
       link: {type: 'doc', id: 'getting-started'},
       collapsed: true,
       items: [
