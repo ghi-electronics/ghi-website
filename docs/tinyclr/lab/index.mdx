@@ -89,10 +89,10 @@ Each pin has a **name** you use in code, and a set of **functions** that tell yo
 | Function | What it does | First used in |
 |---|---|---|
 | **GPIO** | Digital input or output. Every signal pin can do this. | [Digital Output](digital-output.mdx) |
-| **PWM** | Generates pulses — for dimming LEDs, mixing colors, making tones, and driving servos. | [Breathing LED](breathing-led.mdx) |
-| **ADC** | Reads an analog voltage — for knobs, light sensors, and joysticks. | [Analog Input](analog-input.mdx) |
-| **I²C, SPI** | Buses for displays and sensors. | [Displays](displays.mdx) |
-| **3.3V, 5V** | Power for the parts on your breadboard. | [Analog Input](analog-input.mdx) |
+| **PWM** | Generates pulses — for dimming LEDs, mixing colors, making tones, and driving servos. | Breathing LED |
+| **ADC** | Reads an analog voltage — for knobs, light sensors, and joysticks. | Analog Input |
+| **I²C, SPI** | Buses for displays and sensors. | Displays |
+| **3.3V, 5V** | Power for the parts on your breadboard. | Analog Input |
 | **GND** | Ground — the 0 V reference every circuit returns to. | [Digital Output](digital-output.mdx) |
 
 <Tabs groupId="board">
@@ -216,28 +216,28 @@ These five habits prevent almost every beginner mistake:
 5. **Check your wiring against the lesson before powering up.** Most "my code doesn't work" moments are one wire in the wrong row.
 
 :::warning
-Signal pins run at **3.3 V** and can supply only a few milliamps — enough for LEDs and signals, not for motors or bright lamps. Parts that need more, like the servo, get their power from the **5V** pin, and the lesson shows how.
+Signal pins run at **3.3 V** and can supply only a few milliamps — enough for LEDs and signals, not for motors or bright lamps. Parts that need more, like the servo, get their power from the **5V** pin, and that lesson shows how.
 :::
 
 ## The lessons
 
-Work through them in order — each one builds on the last:
+Work through them in order — each one builds on the last. **Digital Output is published; the rest are being written and tested, and appear here as they're finished.**
 
-- **[Digital Output](digital-output.mdx)** — control your first LED, understand current-limiting resistors
-- **[Digital Input](digital-input.mdx)** — buttons and pull-up resistors — the kit's 27 kΩ resistors first, then the chip's built-in ones — plus events and a multi-button reaction-time game
-- **[Breathing LED](breathing-led.mdx)** — control power level with pulse-width modulation
-- **[RGB LEDs](rgb-leds.mdx)** — mix colors, first with digital outputs, then with PWM for any color
-- **[Sound](sound.mdx)** — frequency, pitch, and a melody on a piezo buzzer
-- **[Servo Motor](servo-motor.mdx)** — positioning with pulses
-- **[Analog Input](analog-input.mdx)** — the potentiometer as a dimmer; watch the ADC live in the debugger
-- **[Light and Logic](light-sensor.mdx)** — a photoresistor night-light with hysteresis
-- **[Joystick](joystick.mdx)** — a fun project: steer the servo or mix RGB colors with your thumb
-- **[Distance Sensor](distance-sensor.mdx)** — measure distance with ultrasound, and see why a radar is just a distance sensor that moves
-- **[Displays](displays.mdx)** — add a small I²C OLED: text, shapes, a live readout, and a scrolling graph
-- **[FEZ Bit Screen](bit-screen.mdx)** — the same readout in color on the FEZ Bit's built-in display, with nothing to wire
-- **[Addressable LEDs](addressable-leds.mdx)** — WS2812 / NeoPixel strips: color, brightness, and animation from C#
+- **[Digital Output](digital-output.mdx)** — control your first LED, understand current-limiting resistors ✅
+- **Digital Input** — buttons and pull-up resistors, events, and a multi-button reaction-time game
+- **Breathing LED** — control power level with pulse-width modulation
+- **RGB LEDs** — mix colors, first with digital outputs, then with PWM for any color
+- **Sound** — frequency, pitch, and a melody on a piezo buzzer
+- **Servo Motor** — positioning with pulses
+- **Analog Input** — the potentiometer as a dimmer; watch the ADC live in the debugger
+- **Light and Logic** — a photoresistor night-light with hysteresis
+- **Joystick** — a fun project: steer the servo or mix RGB colors with your thumb
+- **Distance Sensor** — measure distance with ultrasound, and see why a radar is just a distance sensor that moves
+- **Displays** — add a small I²C OLED: text, shapes, a live readout, and a scrolling graph
+- **FEZ Bit Screen** — the same readout in color on the FEZ Bit's built-in display, with nothing to wire
+- **Addressable LEDs** — WS2812 / NeoPixel strips: color, brightness, and animation from C#
 
-The last three need a part beyond the kit, except **FEZ Bit Screen**, which uses the display already on the board — each lesson lists exactly what to get. More lessons are on the way.
+A few of the later lessons need a part beyond the kit — each one lists exactly what to get. More lessons are on the way.
 
 Every lesson has a wiring photo, a schematic, and copy-paste C# code. And because your board runs with the debugger attached, breakpoints and variable inspection work everywhere — lessons point out the spots worth a look.
 

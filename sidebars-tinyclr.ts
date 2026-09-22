@@ -13,27 +13,16 @@ const sidebars: SidebarsConfig = {
         'tutorial/vscode',
       ],
     },
-    {
-      type: 'category',
-      label: 'Electronics Lab',
-      link: {type: 'doc', id: 'lab/index'},
-      collapsed: true,
-      items: [
-        'lab/digital-output',
-        'lab/digital-input',
-        'lab/breathing-led',
-        'lab/rgb-leds',
-        'lab/sound',
-        'lab/servo-motor',
-        'lab/analog-input',
-        'lab/light-sensor',
-        'lab/joystick',
-        'lab/distance-sensor',
-        'lab/displays',
-        'lab/bit-screen',
-        'lab/addressable-leds',
-      ],
-    },
+    // Electronics Lab — hidden from the sidebar while lessons are in draft.
+    // Pages still build and are reachable by direct link. To publish, restore:
+    // {
+    //   type: 'category', label: 'Electronics Lab',
+    //   link: {type: 'doc', id: 'lab/index'}, collapsed: true,
+    //   items: ['lab/digital-output', 'lab/digital-input', 'lab/breathing-led', 'lab/rgb-leds',
+    //           'lab/sound', 'lab/servo-motor', 'lab/analog-input', 'lab/light-sensor',
+    //           'lab/joystick', 'lab/distance-sensor', 'lab/displays', 'lab/bit-screen',
+    //           'lab/addressable-leds'],
+    // },
     {
       type: 'category',
       label: 'SITCore Hardware',

@@ -35,7 +35,7 @@ About 20 minutes.
 | LED signal (through the resistor) | **PA3** | **P0** |
 | LED ground | **GND** | **GND** |
 
-Both pins also support PWM, so this same wiring carries straight into the [Breathing LED](breathing-led.mdx) lesson.
+Both pins also support PWM, so this same wiring carries straight into a later lesson that fades the LED instead of switching it.
 
 ## Step 1 — Create the project
 
@@ -258,14 +258,14 @@ current = (pin voltage − LED voltage) ÷ resistance
 
 About 6 milliamps: plenty to see clearly, and well within what a microcontroller pin can supply.
 
-Use a **220 Ω** resistor with every LED in the lab. Its job is protection, not brightness — to control how bright an LED shines, you'll use PWM in the [Breathing LED](breathing-led.mdx) lesson.
+Use a **220 Ω** resistor with every LED in the lab. Its job is protection, not brightness — to control how bright an LED shines, you'll use PWM in a later lesson.
 
 ## Try this
 
 1. **Two LEDs.** Wire a second LED and 220 Ω resistor on **PA2** (FEZ Flea) or **P1** (FEZ Bit), and make the two alternate — one on while the other is off.
 2. **SOS.** Write a `Blink(int onMilliseconds)` method and use it to flash **· · · — — — · · ·** in Morse code: short blinks of 200 ms, long blinks of 600 ms.
-3. **Faster.** Shrink both `Thread.Sleep` values until the LED stops looking like it's blinking — somewhere around 10 ms it will look solid, just a little dimmer. Remember that: it's the idea behind [Breathing LED](breathing-led.mdx).
+3. **Faster.** Shrink both `Thread.Sleep` values until the LED stops looking like it's blinking — somewhere around 10 ms it will look solid, just a little dimmer. Remember that: it's the idea behind PWM, which a later lesson uses to fade an LED smoothly.
 
 ## Next
 
-**[Digital Input](digital-input.mdx)** — read buttons, learn why inputs need pull-ups, react to presses with events, and build a reaction-time game.
+More lessons are on the way — buttons and events, PWM, sound, a servo, analog sensors, and an ultrasonic distance sensor. [Start Here](index.mdx#the-lessons) lists what's coming.
