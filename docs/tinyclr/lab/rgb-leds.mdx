@@ -29,8 +29,6 @@ About 40 minutes.
   - Jumper wires
 - The LED from [Digital Output](digital-output.mdx) can come out — the RGB module replaces it
 
-{/* TODO: confirm the RGB module's pin labels (R, G, B, GND?), that it's common cathode, and that it has resistors on board */}
-
 ## Pin reference
 
 | RGB module pin | FEZ Flea | FEZ Bit |
@@ -48,7 +46,7 @@ Create a new **TinyCLR Application** project and install the **`GHIElectronics.T
 
 ## Step 2 — Wire the RGB LED
 
-The module has the current-limiting resistors built in, so its pins connect straight to your board.
+The module has the three current-limiting resistors built in, so its color pins connect straight to your board. The three LEDs inside share one **cathode**, which is the module's **GND** pin — so each color turns on by driving its pin **high**.
 
 {/* TODO(photo): RGB module wiring, both boards */}
 

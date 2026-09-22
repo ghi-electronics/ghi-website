@@ -30,6 +30,7 @@ const sidebars: SidebarsConfig = {
         'lab/joystick',
         'lab/distance-sensor',
         'lab/displays',
+        'lab/bit-screen',
         'lab/addressable-leds',
       ],
     },

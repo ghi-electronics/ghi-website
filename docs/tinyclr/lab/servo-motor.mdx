@@ -27,8 +27,6 @@ About 35 minutes.
   - Jumper wires
 - The [Sound](sound.mdx) buzzer can stay in place
 
-{/* TODO: confirm the kit servo's wire colors and its pulse range */}
-
 ## Pin reference
 
 | Servo wire | FEZ Flea | FEZ Bit |
@@ -52,11 +50,11 @@ P14 is the only channel on **controller 13**, so nothing else is affected. The R
 </TabItem>
 </Tabs>
 
-## Step 1: Create the project
+## Step 1 — Create the project
 
 Create a new **TinyCLR Application** project and install the **`GHIElectronics.TinyCLR.Devices.Pwm`** and **`GHIElectronics.TinyCLR.Pins`** NuGet packages.
 
-## Step 2: Wire the servo
+## Step 2 — Wire the servo
 
 {/* TODO(photo): servo wiring, both boards */}
 
@@ -85,10 +83,14 @@ With USB **unplugged**:
 </Tabs>
 
 :::warning
-Connect the red wire to **5V**, never to a signal pin or 3.3V. A servo's motor draws far more current than a pin can provide. The signal wire only carries the pulses.
+Connect the red wire to a **power** pin, never to a signal pin. A servo's motor draws far more current than a pin can provide. The signal wire only carries the pulses.
 :::
 
-## Step 3: Center the servo
+:::tip
+Servos work best at **5V**. **3.3V is fine for bench testing** like this lesson, where nothing is attached to the arm — expect less torque, and a servo that may stutter or stall as soon as it has real work to do. Give it 5V for anything that has to push, lift, or turn a load.
+:::
+
+## Step 3 — Center the servo
 
 A servo expects a pulse every **20 ms** (50 Hz). The width of that pulse sets the angle, and **1.5 ms is the center**. As a duty cycle, that's 1.5 ÷ 20 = **0.075**.
 
@@ -141,7 +143,7 @@ Press **F5**. The servo turns to its center position and stops. Try turning the 
 
 Once it's centered, pull the arm off and push it back on pointing **straight up**. Now it's easy to see which way it moves.
 
-## Step 4: Move to an angle
+## Step 4 — Move to an angle
 
 Duty cycles like `0.075` aren't a natural way to think about a motor. A small method converts **degrees** into a duty cycle:
 
@@ -241,7 +243,7 @@ Press **F5**. The arm swings between three positions, one second at each.
 
 Look closely at the angles. Chances are the arm moves **less than a full half-turn** from 0° to 180°. That's the next step.
 
-## Step 5: Calibrate the range
+## Step 5 — Calibrate the range
 
 1 ms to 2 ms is the textbook range, but many servos, including small hobby servos like the one in the kit, turn further with a wider range, often **0.5 ms to 2.5 ms**. Every model is a little different, so find your own:
 
@@ -255,7 +257,7 @@ Don't leave a servo straining against its end stop. It draws high current, heats
 
 **Try the debugger:** set a breakpoint on `servo.DutyCycle = pulse / Period;`, press **F5**, and hover over `pulse` each time it stops. You can see the exact pulse width behind each angle, and adjust your constants to match.
 
-## Step 6: Sweep, and stop it with a breakpoint
+## Step 6 — Sweep, and stop it with a breakpoint
 
 Replace the `while` loop with a smooth sweep, one degree at a time:
 
@@ -304,7 +306,9 @@ That's also why a servo holds its position under a breakpoint: the pulses come f
 
 ### Why the servo needs 5V
 
-The pin only sends a signal, which takes almost no current. The motor is a different story: a small servo can draw **several hundred milliamps** while moving, and more if it stalls. That power comes from the **5V** supply:
+The pin only sends a signal, which takes almost no current. The motor is a different story: a small servo can draw **several hundred milliamps** while moving, and more if it stalls. That power comes from a supply pin, not a signal pin.
+
+**5V or 3.3V?** A hobby servo is designed for 5V and delivers its rated torque there. At 3.3V it still turns, just with less force — fine for an unloaded arm on the bench, unreliable the moment it has to move something. Wire it to 5V once your project does real work:
 
 - **FEZ Flea:** the 5V pin comes straight from the USB cable.
 - **FEZ Bit:** the adapter board's 5V comes from its micro USB cable.
