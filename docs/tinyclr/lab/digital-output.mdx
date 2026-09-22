@@ -42,11 +42,11 @@ Both pins also support PWM, so this same wiring carries straight into the [Breat
 1. Create a new **TinyCLR Application** project, as in [Getting Started](../getting-started.mdx#set-up-and-run-the-starter).
 2. Install the **`GHIElectronics.TinyCLR.Devices.Gpio`** and **`GHIElectronics.TinyCLR.Pins`** NuGet packages.
 
-The lessons use the standard .NET IoT API — `System.Device.Gpio` — the same one you'd use on a Raspberry Pi running full .NET. Both namespaces come in the Gpio package; see [GPIO](../feature/gpio.mdx#two-apis) if you're curious about TinyCLR's original API.
+## Step 2 — The same blink, in the API this lab uses
 
-## Step 2 — Blink the on-board LED
+You've already blinked the on-board LED in [Getting Started](../getting-started.mdx#blink-an-led), and that page offered **two GPIO APIs** to do it with. Every lesson from here uses the **.NET IoT** one — `System.Device.Gpio`, the same API you'd write against on a Raspberry Pi running full .NET. Both live in the package you just installed, so nothing changes but the spelling.
 
-Start with no wiring at all, so you know the code works before the circuit is involved. Replace `Program.cs` with:
+Starting from the program you already know also means the board proves itself before any wiring is involved. Replace `Program.cs` with:
 
 <Tabs groupId="board">
 <TabItem value="flea" label="FEZ Flea" default>
@@ -99,13 +99,16 @@ while (true) {
 
 Press **F5**. The on-board LED blinks once a second.
 
-- **`OpenPin(ledPin, PinMode.Output)`** claims the pin and makes it an output — the chip will drive its voltage.
-- **`Write(..., PinValue.High)`** sets the pin to **3.3 V**. `PinValue.Low` sets it to **0 V**.
+Same LED, same blink — here's what the .NET IoT version is saying:
+
+- **`new GpioController()`** is the object you ask for pins, instead of `GpioController.GetDefault()`.
+- **`OpenPin(ledPin, PinMode.Output)`** claims the pin and makes it an output in one call — the chip will drive its voltage.
+- **`Write(ledPin, PinValue.High)`** sets the pin to **3.3 V**; `PinValue.Low` sets it to **0 V**. The pin comes along on every call, because the controller holds them all rather than handing you a pin object.
 - **`Thread.Sleep(500)`** waits half a second. Without it, the LED would switch thousands of times a second — too fast to see.
 
 The highlighted line is the only one that changes between boards — everything else in the lessons is the same C#.
 
-Stop the program (**Shift+F5**) before wiring.
+Stop the program (**Shift+F5**) before wiring. Next it moves off the board and onto the breadboard, where you decide which pin and which LED.
 
 ## Step 3 — Wire the LED
 
