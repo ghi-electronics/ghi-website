@@ -9,6 +9,8 @@ import TabItem from '@theme/TabItem';
 
 # Digital Output
 
+![Wiring Diagram](/img/docs/digital-output-hero.webp)
+
 Your first circuit: an LED on the breadboard, switched on and off from C#. Along the way you'll learn what a digital output actually does, why every LED needs a resistor, and — the best part — what it feels like to **pause real hardware with a breakpoint**.
 
 About 20 minutes.
@@ -117,7 +119,7 @@ With USB **unplugged**:
 <Tabs groupId="board">
 <TabItem value="flea" label="FEZ Flea" default>
 
-{/* TODO(photo): FEZ Flea wiring — PA3 → resistor → LED → GND */}
+![Wiring Diagram](/img/docs/digital-output-fez-flea.webp)
 
 1. Place the FEZ Flea so it straddles the center gap of the breadboard.
 2. Plug the **resistor** from the row of pin **PA3** to an empty row.
@@ -132,6 +134,8 @@ FEZ Flea PA3 ──── 220 Ω resistor ────▶ LED ──── GND
 
 </TabItem>
 <TabItem value="bit" label="FEZ Bit">
+
+![Wiring Diagram](/img/docs/digital-output-fez-bit.webp)
 
 {/* TODO(photo): FEZ Bit wiring — P0 → resistor → LED → GND */}
 
@@ -226,7 +230,7 @@ Plug in USB (on the FEZ Bit, both cables) and press **F5**. The LED on the bread
 
 This is where the lab is different. The debugger isn't simulating anything — it's attached to your board, and **when your code stops, the hardware stops with it**.
 
-{/* TODO(screenshot): breakpoint on the Write(High) line in Visual Studio */}
+![Debugging](/img/docs/debugging.webp)
 
 1. **Set a breakpoint.** Click in the left margin next to `controller.Write(ledPin, PinValue.High);` — a red dot appears.
 2. **Run.** Press **F5**. The program stops on that line, highlighted in yellow. The LED is **off** — the line hasn't run yet.
