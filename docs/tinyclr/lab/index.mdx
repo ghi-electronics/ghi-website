@@ -117,16 +117,16 @@ The white boxes are pin names (`PA3` → `FEZFlea.GpioPin.PA3` in code); the col
 
 **Power:** the single USB-C cable does everything — loads your code and powers the board. The Flea's **3V3** and **5V** pins power the parts on your breadboard.
 
-{/* TODO(photo): FEZ Flea placed on the breadboard */}
+![Wiring Diagram](/img/docs/digital-output-breadboard.webp)
 
 Full specs and the schematic: [FEZ Flea](../sbc.mdx#fez-flea).
 
 </TabItem>
 <TabItem value="bit" label="FEZ Bit">
 
-![FEZ Bit](/img/docs/fez-bit.png)
+![FezBit Breadboard](/img/docs/breadboard-fez-bit.webp)
 
-{/* TODO(image): FEZ Bit adapter board with header pin labels */}
+
 
 Pins on the edge connector are named `P0`–`P16` (`P0` → `FEZBit.GpioPin.P0` in code).
 
@@ -143,6 +143,9 @@ Pins on the edge connector are named `P0`–`P16` (`P0` → `FEZBit.GpioPin.P0` 
 
 **Setting up:** slide the FEZ Bit into the adapter board's edge connector, display facing up. The adapter brings every pad on the FEZ Bit out to a **row of male header pins** next to the breadboard. Connect a header pin to a breadboard row with a **pin-to-socket (male-to-female) jumper wire** — the socket end goes on the header pin.
 
+![2-USB](/img/docs/2-usb.webp)
+
+
 **Power:** the FEZ Bit kit uses two USB cables:
 
 - **USB-C → FEZ Bit** — loads and debugs your code.
@@ -150,11 +153,10 @@ Pins on the edge connector are named `P0`–`P16` (`P0` → `FEZBit.GpioPin.P0` 
 
 While you're coding, plug in both. When you're done, unplug the USB-C cable — the adapter's micro USB cable alone keeps your project running.
 
+
 :::tip
 Power breadboard parts from the adapter's **5V** and **3.3V** pins, not the FEZ Bit's own 3V pad. The FEZ Bit's regulator is sized for the board itself; the adapter's regulator is there for your circuits.
 :::
-
-{/* TODO(photo): FEZ Bit in the adapter board, wired to the breadboard, both cables connected */}
 
 Full specs and the schematic: [FEZ Bit](../sbc.mdx#fez-bit).
 
@@ -163,13 +165,17 @@ Full specs and the schematic: [FEZ Bit](../sbc.mdx#fez-bit).
 
 ## How a breadboard works
 
-{/* TODO(photo): breadboard with connected rows and rails highlighted */}
 
 A breadboard lets you build circuits by pushing parts and wires into holes — no soldering. Inside, metal strips connect certain holes together:
 
 - **Rows of five.** Each short row of five holes (for example, `a`–`e` in row 10) is connected. Anything plugged into the same row is wired together.
 - **The center gap.** The channel down the middle separates the two halves. Row 10 `a`–`e` is **not** connected to row 10 `f`–`j`.
+
+![Wiring Diagram](/img/docs/breadboard-wiring.webp)
+
 - **Power rails.** The long strips along the edges, marked **+** (red) and **−** (blue), run the length of the board. Connect them to **3.3V** and **GND** once and every part can reach power from anywhere.
+
+![Wiring Diagram](/img/docs/breadboard-power.webp)
 
 :::tip
 On some breadboards the power rails are split in the middle — a gap in the red and blue lines is the giveaway. Bridge the halves with a short jumper if you need power along the full length.
