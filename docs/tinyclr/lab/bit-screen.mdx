@@ -102,7 +102,7 @@ screen.DrawString("Hello!", white, 10, 10);
 screen.DrawString("In color", green, 10, 30);
 screen.DrawCircle(red, 120, 90, 20);
 
-display.DrawBuffer(screen.Buffer);
+display.DrawBufferNative(screen.Buffer);
 
 Thread.Sleep(Timeout.Infinite);
 ```
@@ -112,7 +112,7 @@ Press **F5**. White and green text and a red circle appear on the Bit's screen.
 - **`SetDataAccessControl`** sets which way round the image is drawn. If your text appears mirrored or upside down, flip the first two arguments.
 - **`ColorFormat.Rgb565`** is 16 bits per pixel: 5 bits red, 6 green, 5 blue — 65,536 colors, and 2 bytes per pixel instead of 3.
 - **`ColorFromRgb`** takes ordinary 0–255 values and packs them for you.
-- **`DrawBuffer`** sends the whole image, the same as the OLED in [Displays](displays.mdx).
+- **`DrawBufferNative`** sends the whole image, the same as the OLED in [Displays](displays.mdx).
 
 The buffer here is 160 × 128 × 2 = **40 KB**, forty times the OLED's. Color costs memory, which is why the small chip in the FEZ Flea sticks to a monochrome screen.
 
@@ -142,7 +142,7 @@ while (true) {
         screen.DrawLine(color, 10 + i, 72, 10 + i, 83);
     }
 
-    display.DrawBuffer(screen.Buffer);
+    display.DrawBufferNative(screen.Buffer);
     Thread.Sleep(100);
 }
 
@@ -159,7 +159,7 @@ double ReadAverage(int samples) {
 
 Add `using GHIElectronics.TinyCLR.Devices.Adc;` at the top, replace everything after the `screen.Clear()` in Step 3, and press **F5**. Cup your hand over the sensor: the number, the bar, and their color all respond.
 
-**Try the debugger:** set a breakpoint on `display.DrawBuffer(...)` and hover over `percent` and `color`. The screen holds the last frame you sent while you look — exactly what you'd want when a readout shows something surprising.
+**Try the debugger:** set a breakpoint on `display.DrawBufferNative(...)` and hover over `percent` and `color`. The screen holds the last frame you sent while you look — exactly what you'd want when a readout shows something surprising.
 
 ## Step 5 — A color graph
 
@@ -188,7 +188,7 @@ while (true) {
         screen.DrawLine(columnColor, i, Height - 3, i, Height - 3 - barHeight);
     }
 
-    display.DrawBuffer(screen.Buffer);
+    display.DrawBufferNative(screen.Buffer);
     Thread.Sleep(100);
 }
 ```
@@ -215,7 +215,7 @@ The setup is the same display object, with the drawing surface coming from a bit
 
 ```csharp
 // Requires the GHIElectronics.TinyCLR.Drawing NuGet package.
-Graphics.OnFlushEvent += (sender, data, x, y, w, h, originalWidth) => display.DrawBuffer(data);
+Graphics.OnFlushEvent += (sender, data, x, y, w, h, originalWidth) => display.DrawBufferNative(data);
 
 var gfx = Graphics.FromImage(new Bitmap(Width, Height));
 

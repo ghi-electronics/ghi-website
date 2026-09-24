@@ -116,7 +116,7 @@ screen.Clear();
 screen.DrawString("Hello!", white, 8, 8);
 screen.DrawString("TinyCLR", white, 8, 28);
 
-oled.DrawBuffer(screen.Buffer);
+oled.DrawBufferNative(screen.Buffer);
 
 Thread.Sleep(Timeout.Infinite);
 ```
@@ -145,7 +145,7 @@ screen.Clear();
 screen.DrawString("Hello!", white, 8, 8);
 screen.DrawString("TinyCLR", white, 8, 28);
 
-oled.DrawBuffer(screen.Buffer);
+oled.DrawBufferNative(screen.Buffer);
 
 Thread.Sleep(Timeout.Infinite);
 ```
@@ -156,7 +156,7 @@ Thread.Sleep(Timeout.Infinite);
 Press **F5**. Two lines of text appear on the OLED.
 
 - **`BasicGraphics`** holds a picture in memory — nothing on the display yet. `Clear` and `DrawString` only change those bytes.
-- **`oled.DrawBuffer(screen.Buffer)`** sends the whole picture over I²C. This is the moment the screen changes.
+- **`oled.DrawBufferNative(screen.Buffer)`** sends the whole picture over I²C. This is the moment the screen changes.
 - **`ColorFormat.OneBpp`** means one bit per pixel: lit or dark, which is all this screen can do. The buffer is 128 × 64 ÷ 8 = **1024 bytes**.
 
 Nothing on screen? Check SDA and SCL aren't swapped, and that the module is powered from 3.3 V.
@@ -180,16 +180,16 @@ while (true) {
     screen.DrawCircle(white, x, 52, 3);
     x = (x + 4) % Width;
 
-    oled.DrawBuffer(screen.Buffer);
+    oled.DrawBufferNative(screen.Buffer);
     Thread.Sleep(50);
 }
 ```
 
 Replace everything after the `white` line with this and press **F5**.
 
-Every frame follows the same three beats: **clear**, **draw**, **send**. Forget the `Clear` and old frames pile up; forget `DrawBuffer` and the screen freezes while your program happily draws to nothing.
+Every frame follows the same three beats: **clear**, **draw**, **send**. Forget the `Clear` and old frames pile up; forget `DrawBufferNative` and the screen freezes while your program happily draws to nothing.
 
-**Try the debugger:** set a breakpoint on `oled.DrawBuffer(...)` and press **F5** repeatedly. Each press paints exactly one frame, and `x` in the Locals window matches the dot's position — animation, one step at a time.
+**Try the debugger:** set a breakpoint on `oled.DrawBufferNative(...)` and press **F5** repeatedly. Each press paints exactly one frame, and `x` in the Locals window matches the dot's position — animation, one step at a time.
 
 ## Step 5 — A live sensor readout
 
@@ -235,7 +235,7 @@ while (true) {
         screen.DrawLine(white, 6 + i, 46, 6 + i, 53);
     }
 
-    oled.DrawBuffer(screen.Buffer);
+    oled.DrawBufferNative(screen.Buffer);
     Thread.Sleep(100);
 }
 
@@ -290,7 +290,7 @@ while (true) {
         screen.DrawLine(white, 6 + i, 46, 6 + i, 53);
     }
 
-    oled.DrawBuffer(screen.Buffer);
+    oled.DrawBufferNative(screen.Buffer);
     Thread.Sleep(100);
 }
 
@@ -336,7 +336,7 @@ while (true) {
         screen.SetPixel(i, 61 - history[i], white);
     }
 
-    oled.DrawBuffer(screen.Buffer);
+    oled.DrawBufferNative(screen.Buffer);
     Thread.Sleep(100);
 }
 ```
@@ -359,7 +359,7 @@ Unlike GPIO or PWM, the pins aren't yours to choose: SDA and SCL are fixed by th
 
 `BasicGraphics` never touches the display. It owns an array of bytes and draws into it, and `Buffer` hands you that array so a display driver can send it.
 
-That separation is why the same drawing code can target an OLED, a color LCD, or an LED matrix. It's also why every frame ends with `DrawBuffer`: an update is one transfer of the whole picture, which keeps the screen from showing half-drawn frames.
+That separation is why the same drawing code can target an OLED, a color LCD, or an LED matrix. It's also why every frame ends with `DrawBufferNative`: an update is one transfer of the whole picture, which keeps the screen from showing half-drawn frames.
 
 In `OneBpp` mode, each byte holds **eight vertically stacked pixels** — the layout the SSD1306 expects, so no conversion is needed between the two.
 
