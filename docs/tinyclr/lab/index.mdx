@@ -1,0 +1,257 @@
+---
+title: Start Here
+sidebar_label: Start Here
+description: Electronics Lab for the .NET Developer — set up your PC, get to know your FEZ Flea or FEZ Bit, and learn breadboard wiring basics before starting hands-on C# electronics lessons.
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Electronics Lab for the .NET Developer
+
+Project-based lessons that take you from blinking an LED to buttons, sound, servo control, analog sensing, and ultrasonic distance measurement — all in **C#**, with the **Visual Studio debugger attached to real hardware**. Set a breakpoint and the board stops with it. Hover a variable to read a sensor.
+
+If you can write a loop and a method, you're ready. No electronics background needed, no soldering, no new IDE.
+
+This page covers everything you need before the [first lesson](digital-output.mdx): setting up your PC, getting to know your board, and the wiring basics every lesson builds on. Already comfortable with breadboards? Skim [your board's pins](#get-to-know-your-board) and jump straight in.
+
+## Choose your board
+
+Every lesson works on both lab boards — the wiring and the code are the same except for **pin names**:
+
+- **FEZ Flea** — stamp-sized, plugs straight into the breadboard.
+- **FEZ Bit** — adds a 1.8" color display, WiFi, and on-board buttons and buzzer. Plugs into an adapter board next to the breadboard.
+
+Wherever the two differ, lessons show a **FEZ Flea / FEZ Bit** switch like the one below. Pick your board once — every page remembers it.
+
+<Tabs groupId="board">
+<TabItem value="flea" label="FEZ Flea" default>
+
+You're following along with the **FEZ Flea**. Pin names look like `PA3`, and in code `FEZFlea.GpioPin.PA3`.
+
+</TabItem>
+<TabItem value="bit" label="FEZ Bit">
+
+You're following along with the **FEZ Bit**. Pin names look like `P0`, and in code `FEZBit.GpioPin.P0`.
+
+</TabItem>
+</Tabs>
+
+## What's in the kit
+
+<Tabs groupId="board">
+<TabItem value="flea" label="FEZ Flea" default>
+
+- **FEZ Flea** — running TinyCLR, with headers fitted
+- Solderless breadboard
+- USB-C cable
+
+</TabItem>
+<TabItem value="bit" label="FEZ Bit">
+
+- **FEZ Bit** — running TinyCLR, with a 1.8" color display and WiFi
+- Solderless breadboard with a **FEZ Bit adapter board**
+- USB-C cable — for the FEZ Bit
+- Micro USB cable — for powering the adapter board
+
+</TabItem>
+</Tabs>
+
+Both kits include the same parts:
+
+- HC-SR04 ultrasonic distance sensor
+- Analog joystick (2-axis + button)
+- Color (RGB) LED module
+- Positional servo motor
+- Rotary sensor (potentiometer)
+- 4× colored pushbuttons
+- Piezo buzzer
+- Light sensor (photoresistor)
+- 6× LEDs
+- 10× 220 Ω resistors — for LEDs
+- 5× 27 kΩ resistors — for pull-ups and pull-downs
+- 10× pin-to-pin (male-to-male) jumper wires
+- 10× pin-to-socket (male-to-female) jumper wires
+- Zippered case
+
+## Set up your PC
+
+Follow [Getting Started](../getting-started.mdx) to install the tools, load the TinyCLR firmware, and run the starter project. Come back here once the **on-board LED is blinking** — that proves your PC, the IDE, and your board are all talking to each other.
+
+:::note
+TinyCLR development requires **Windows**. The lessons use **Visual Studio** (any edition, including the free Community Edition) for screenshots and shortcuts. VS Code works too — the debugging keys (**F5**, **F10**, **F11**) are the same.
+:::
+
+## Get to know your board
+
+Each pin has a **name** you use in code, and a set of **functions** that tell you what else it can do. Lessons tell you which pin to use — this is the map to find it.
+
+| Function | What it does | First used in |
+|---|---|---|
+| **GPIO** | Digital input or output. Every signal pin can do this. | [Digital Output](digital-output.mdx) |
+| **PWM** | Generates pulses — for dimming LEDs, mixing colors, making tones, and driving servos. | Breathing LED |
+| **ADC** | Reads an analog voltage — for knobs, light sensors, and joysticks. | Analog Input |
+| **I²C, SPI** | Buses for displays and sensors. | Displays |
+| **3.3V, 5V** | Power for the parts on your breadboard. | Analog Input |
+| **GND** | Ground — the 0 V reference every circuit returns to. | [Digital Output](digital-output.mdx) |
+
+<Tabs groupId="board">
+<TabItem value="flea" label="FEZ Flea" default>
+
+[![FEZ Flea pinout](/img/docs/fez-flea-pinout.png)](pathname:///pdf/fez-flea-pinout.pdf)
+
+The white boxes are pin names (`PA3` → `FEZFlea.GpioPin.PA3` in code); the colored labels are functions.
+
+| Function | FEZ Flea pins |
+|---|---|
+| **GPIO** | PA0, PA1, PA2, PA3, PA4, PA5, PB8, PB9, PB13, PB14, PB15 |
+| **PWM** | PA1, PA2, PA3, PA5, PB8 |
+| **ADC** | PA0, PA1, PA2, PA3, PA4, PA5 |
+| **I²C** | PB9 (SDA), PB8 (SCL) |
+| **SPI** | PB15 (MOSI), PB14 (MISO), PB13 (SCK) |
+| **Power** | 3V3, 5V, GND |
+
+**On the board:** a user LED (`FEZFlea.GpioPin.Led`) — the one you blinked in Getting Started — and an **LDR button** for [loading firmware](../getting-started.mdx#install-or-update-firmware).
+
+**Setting up:** push the Flea into the breadboard so it **straddles the center gap** — its two rows of pins on opposite halves. That way every pin gets its own row, and no two pins are shorted together. Parts connect by sharing a row with a pin, or with a pin-to-pin jumper wire.
+
+**Power:** the single USB-C cable does everything — loads your code and powers the board. The Flea's **3V3** and **5V** pins power the parts on your breadboard.
+
+![Wiring Diagram](/img/docs/digital-output-breadboard.webp)
+
+Full specs and the schematic: [FEZ Flea](../sbc.mdx#fez-flea).
+
+</TabItem>
+<TabItem value="bit" label="FEZ Bit">
+
+![FezBit Breadboard](/img/docs/breadboard-fez-bit.webp)
+
+
+
+Pins on the edge connector are named `P0`–`P16` (`P0` → `FEZBit.GpioPin.P0` in code).
+
+| Function | FEZ Bit pins |
+|---|---|
+| **GPIO** | P0–P16 |
+| **PWM** | P0, P1, P2, P3, P14, P15 |
+| **ADC** | P0, P1, P2, P3, P4, P9, P10, P13, P14, P15 |
+| **I²C** | P20 (SDA), P19 (SCL) |
+| **SPI** | P15 (MOSI), P14 (MISO), P13 (SCK) |
+| **Power (adapter board)** | 5V, 3.3V, GND |
+
+**On the board:** a user LED (`FEZBit.GpioPin.Led`), a buzzer (`FEZBit.GpioPin.Buzzer`), buttons **A** and **B** plus four direction buttons, a 1.8" color display, and WiFi. The lessons use the breadboard parts so they match the Flea — but you're free to try the on-board versions too.
+
+**Setting up:** slide the FEZ Bit into the adapter board's edge connector, display facing up. The adapter brings every pad on the FEZ Bit out to a **row of male header pins** next to the breadboard. Connect a header pin to a breadboard row with a **pin-to-socket (male-to-female) jumper wire** — the socket end goes on the header pin.
+
+![2-USB](/img/docs/2-usb.webp)
+
+
+**Power:** the FEZ Bit kit uses two USB cables:
+
+- **USB-C → FEZ Bit** — loads and debugs your code.
+- **Micro USB → adapter board** — powers the adapter's regulator, which provides **5V** and **3.3V** on the header for the parts on your breadboard. It powers the FEZ Bit too.
+
+While you're coding, plug in both. When you're done, unplug the USB-C cable — the adapter's micro USB cable alone keeps your project running.
+
+
+:::tip
+Power breadboard parts from the adapter's **5V** and **3.3V** pins, not the FEZ Bit's own 3V pad. The FEZ Bit's regulator is sized for the board itself; the adapter's regulator is there for your circuits.
+:::
+
+Full specs and the schematic: [FEZ Bit](../sbc.mdx#fez-bit).
+
+</TabItem>
+</Tabs>
+
+## How a breadboard works
+
+
+A breadboard lets you build circuits by pushing parts and wires into holes — no soldering. Inside, metal strips connect certain holes together:
+
+- **Rows of five.** Each short row of five holes (for example, `a`–`e` in row 10) is connected. Anything plugged into the same row is wired together.
+- **The center gap.** The channel down the middle separates the two halves. Row 10 `a`–`e` is **not** connected to row 10 `f`–`j`.
+
+![Wiring Diagram](/img/docs/breadboard-wiring.webp)
+
+- **Power rails.** The long strips along the edges, marked **+** (red) and **−** (blue), run the length of the board. Connect them to **3.3V** and **GND** once and every part can reach power from anywhere.
+
+![Wiring Diagram](/img/docs/breadboard-power.webp)
+
+:::tip
+On some breadboards the power rails are split in the middle — a gap in the red and blue lines is the giveaway. Bridge the halves with a short jumper if you need power along the full length.
+:::
+
+## Jumper wires
+
+- **Pin-to-pin (male-to-male)** — for connecting holes on the breadboard to each other.
+- **Pin-to-socket (male-to-female)** — for modules with header pins, like the distance sensor, joystick, and servo — and for the FEZ Bit adapter's header pins.
+
+Wire color doesn't affect the circuit, but a habit makes circuits easier to check: **red for power**, **black for GND**, other colors for signals.
+
+## Parts you'll meet first
+
+### LEDs
+
+An LED only lights when current flows in one direction:
+
+- The **longer leg** is the **anode** (+). It connects toward the pin.
+- The **shorter leg** — next to the **flat edge** of the LED's rim — is the **cathode** (−). It connects toward GND.
+
+Put one in backwards and it simply stays dark — no harm done. Flip it around.
+
+### Resistors
+
+Resistors limit current. They have **no polarity** — either direction works. The colored bands encode the value; the kit includes two values:
+
+| Value | Bands (4-band) | Used for |
+|---|---|---|
+| 220 Ω | red · red · brown · gold | Every LED — 10 in the kit |
+| 27 kΩ | red · violet · orange · gold | Pull-ups and pull-downs for inputs — 5 in the kit |
+
+
+Each lesson tells you which value to use and why.
+
+## Wiring habits
+
+These five habits prevent almost every beginner mistake:
+
+1. **Unplug USB while wiring** — both cables on the FEZ Bit. Plug back in when the circuit is complete.
+2. **Never connect 3.3V or 5V directly to GND.** That's a short circuit.
+3. **Never connect two pins that are both outputs.** If one drives high and the other low, the chip can be damaged.
+4. **Always use a resistor with an LED.** [Digital Output](digital-output.mdx#why-the-resistor-matters) explains why.
+5. **Check your wiring against the lesson before powering up.** Most "my code doesn't work" moments are one wire in the wrong row.
+
+:::warning
+Signal pins run at **3.3 V** and can supply only a few milliamps — enough for LEDs and signals, not for motors or bright lamps. Parts that need more, like the servo, get their power from the **5V** pin, and that lesson shows how.
+:::
+
+## The lessons
+
+Work through them in order — each one builds on the last. **Digital Output is published; the rest are being written and tested, and appear here as they're finished.**
+
+- **[Digital Output](digital-output.mdx)** — control your first LED, understand current-limiting resistors ✅
+- **Digital Input** — buttons and pull-up resistors, events, and a multi-button reaction-time game
+- **Breathing LED** — control power level with pulse-width modulation
+- **RGB LEDs** — mix colors, first with digital outputs, then with PWM for any color
+- **Sound** — frequency, pitch, and a melody on a piezo buzzer
+- **Servo Motor** — positioning with pulses
+- **Analog Input** — the potentiometer as a dimmer; watch the ADC live in the debugger
+- **Light and Logic** — a photoresistor night-light with hysteresis
+- **Joystick** — a fun project: steer the servo or mix RGB colors with your thumb
+- **Distance Sensor** — measure distance with ultrasound, and see why a radar is just a distance sensor that moves
+- **Displays** — add a small I²C OLED: text, shapes, a live readout, and a scrolling graph
+- **FEZ Bit Screen** — the same readout in color on the FEZ Bit's built-in display, with nothing to wire
+- **Addressable LEDs** — WS2812 / NeoPixel strips: color, brightness, and animation from C#
+
+A few of the later lessons need a part beyond the kit — each one lists exactly what to get. More lessons are on the way.
+
+Every lesson has a wiring photo, a schematic, and copy-paste C# code. And because your board runs with the debugger attached, breakpoints and variable inspection work everywhere — lessons point out the spots worth a look.
+
+## After the lessons
+
+Everything in this lab uses standard breadboard parts, so the skills carry over to any module you can buy. Free follow-on guides are on the way:
+
+- **LED matrices** — scrolling text, simple graphics, and your first animation loop
+- **Common sensors** — temperature, humidity, pressure, and accelerometers
+
+Before building your own project, skim [Limitations](../limitations.mdx) — a short list of full-.NET features TinyCLR trims to fit on a microcontroller. None of them come up in the lessons.
