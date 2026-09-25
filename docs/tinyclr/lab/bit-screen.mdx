@@ -205,7 +205,7 @@ Two extra pins come along with it. **RS** (register select) tells the display wh
 
 ### Why the backlight is separate
 
-An LCD makes no light of its own — it only blocks or passes the light behind it. That backlight is a plain LED panel on its own GPIO pin, which is why the screen looks black until you drive `Backlight` high. It's also PWM-capable, so `Timer.Pwm.Controller2.Backlight` can dim it the same way you dimmed an LED in [Breathing LED](breathing-led.mdx).
+An LCD makes no light of its own — it only blocks or passes the light behind it. That backlight is a plain LED panel on its own GPIO pin, which is why the screen looks black until you drive `Backlight` high. It's also PWM-capable, so `FEZBit.Timer.Pwm.Controller2.Backlight` can dim it the same way you dimmed an LED in [Breathing LED](breathing-led.mdx).
 
 ### The graphics engine
 
