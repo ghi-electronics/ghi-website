@@ -10,6 +10,8 @@ import TabItem from '@theme/TabItem';
 
 # Digital Input
 
+![Digital Output Main Image](/img/docs/digital-input-hero.webp)
+
 Outputs let your code change the world; inputs let the world change your code. In this lesson you'll wire a pushbutton, find out why a button on its own isn't enough, react to presses the efficient way with events — and finish with a two-player reaction-time game.
 
 About 45 minutes.
@@ -23,7 +25,7 @@ About 45 minutes.
 
 ## What you'll need
 
-- The [Digital Output](digital-output.mdx) circuit still wired — the LED is reused here
+- The [Digital Output](digital-output.mdx) circuit. We'll be moving a couple of the pins, consult the appropriate wiring diagram — the LED is reused here
 - From the kit:
   - 2× pushbuttons
   - 1× 27 kΩ resistor (red · violet · orange)
@@ -47,14 +49,12 @@ Create a new **TinyCLR Application** project and install the **`GHIElectronics.T
 
 A pushbutton has **four legs** connected in pairs inside. Press it, and the two pairs connect to each other. The easy rule: **use two diagonally opposite legs** — they're always on opposite sides of the switch, whichever way the button is turned.
 
-{/* TODO(photo): button with a 27 kΩ pull-up, both boards */}
-
-{/* TODO(schematic): Digital Input — pull-up resistor and button */}
-
 With USB **unplugged**:
 
 <Tabs groupId="board">
 <TabItem value="flea" label="FEZ Flea" default>
+
+![Wiring Diagram](/img/docs/digital-input-fez-flea.webp)
 
 1. **Power rails.** Connect **3V3** to the breadboard's red **+** rail and **GND** to the blue **−** rail with pin-to-pin jumper wires. Later lessons use these rails too.
 2. **Button.** Push a button into the breadboard so it straddles the center gap.
@@ -64,6 +64,8 @@ With USB **unplugged**:
 
 </TabItem>
 <TabItem value="bit" label="FEZ Bit">
+
+![Wiring Diagram](/img/docs/digital-input-fez-bit.webp)
 
 1. **Power rails.** Connect the adapter's **3.3V** header pin to the breadboard's red **+** rail and a **GND** header pin to the blue **−** rail with pin-to-socket jumper wires. Later lessons use these rails too.
 2. **Button.** Push a button into the breadboard so it straddles the center gap.
