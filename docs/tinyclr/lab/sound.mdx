@@ -10,6 +10,8 @@ import TabItem from '@theme/TabItem';
 
 # Sound
 
+![Sound Main Image](/img/docs/sound-hero.webp)
+
 In [Breathing LED](breathing-led.mdx) you held the frequency still and changed the duty cycle. Now flip it around: hold the duty cycle still and change the **frequency** — and a piezo buzzer turns those pulses into sound. By the end, your board plays a melody.
 
 About 30 minutes.
@@ -62,16 +64,20 @@ With USB **unplugged**:
 <Tabs groupId="board">
 <TabItem value="flea" label="FEZ Flea" default>
 
-1. Push the buzzer into the breadboard, each leg in its own row.
+![Wiring Diagram](/img/docs/sound-fez-flea.webp)
+
+1. Push the buzzer into the breadboard, place the **+** leg into it's own row and connect the other leg into the **-** rail.
 2. Connect the leg marked **+** on the buzzer to **PB8** with a pin-to-pin jumper wire.
-3. Connect the other leg to the **−** rail.
+3. Connect **GND** pin on the Flea to the **−** rail.
 
 </TabItem>
 <TabItem value="bit" label="FEZ Bit">
 
-1. Push the buzzer into the breadboard, each leg in its own row.
+![Wiring Diagram](/img/docs/sound-fez-bit.webp)
+
+1. Push the buzzer into the breadboard, place the **+** leg into it's own row and connect the other leg into the **-** rail.
 2. Connect header pin **P2** to the leg marked **+** on the buzzer with a pin-to-socket jumper wire.
-3. Connect the other leg to the **−** rail.
+3. Connect **GND** pin on the Bit to the **−** rail.
 
 </TabItem>
 </Tabs>

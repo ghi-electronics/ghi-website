@@ -10,6 +10,8 @@ import TabItem from '@theme/TabItem';
 
 # RGB LEDs
 
+![RGB LEDs Main Image](/img/docs/rgb-leds-hero.webp)
+
 An RGB LED is three LEDs — red, green, and blue — in one package. Turn them on in combinations and you get seven colors. Dim each one with PWM and you get practically any color at all.
 
 Along the way you'll run an experiment that reveals how PWM really works inside the chip: several pins can share one **controller**, and that controller has just **one frequency**.
@@ -49,14 +51,12 @@ Create a new **TinyCLR Application** project and install the **`GHIElectronics.T
 
 The module has the three current-limiting resistors built in, so its color pins connect straight to your board. The three LEDs inside share one **cathode**, which is the module's **GND** pin — so each color turns on by driving its pin **high**.
 
-{/* TODO(photo): RGB module wiring, both boards */}
-
-{/* TODO(schematic): RGB LEDs */}
-
 With USB **unplugged**:
 
 <Tabs groupId="board">
 <TabItem value="flea" label="FEZ Flea" default>
+
+![Wiring Diagram](/img/docs/rgb-leds-fez-flea.webp)
 
 1. Remove the LED and resistor from Digital Output.
 2. Plug the RGB module into the breadboard, each pin in its own row.
@@ -64,6 +64,8 @@ With USB **unplugged**:
 
 </TabItem>
 <TabItem value="bit" label="FEZ Bit">
+
+![Wiring Diagram](/img/docs/rgb-leds-fez-bit.webp)
 
 1. Remove the LED and resistor from Digital Output.
 2. Plug the RGB module into the breadboard, each pin in its own row.
