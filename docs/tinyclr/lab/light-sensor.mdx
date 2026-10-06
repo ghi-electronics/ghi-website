@@ -60,16 +60,16 @@ A photoresistor's resistance changes with light: a few kilohms in bright light, 
 GND ───┴──────────────┘
 ```
 
-{/* TODO(photo): photoresistor divider wiring, both boards */}
 
-{/* TODO(schematic): Light and Logic */}
 
 With USB **unplugged**:
 
 <Tabs groupId="board">
 <TabItem value="flea" label="FEZ Flea" default>
 
-1. Remove the potentiometer from the previous lesson. Leave the LED and its 220 Ω resistor on **PA3**.
+![Wiring Diagram](/img/docs/light-sensor-fez-flea.webp)
+
+1. Remove the potentiometer from the previous lesson. Leave the 3.3v and GND connected to the **+** and **-** rails, also leave the LED and its 220 Ω resistor on **PA3**.
 2. Plug the **photoresistor** from the **+** rail to an empty row. It has no polarity — either way round works.
 3. Plug the **27 kΩ resistor** from that same row to the **−** rail.
 4. Connect that row to **PA4**.
@@ -77,7 +77,9 @@ With USB **unplugged**:
 </TabItem>
 <TabItem value="bit" label="FEZ Bit">
 
-1. Remove the potentiometer from the previous lesson. Leave the LED and its 220 Ω resistor on **P0**.
+![Wiring Diagram](/img/docs/light-sensor-fez-bit.webp)
+
+1. Remove the potentiometer from the previous lesson. Leave the 3.3v and GND connected to the **+** and **-** rails, also leave the LED and its 220 Ω resistor on **P0**.
 2. Plug the **photoresistor** from the **+** rail to an empty row. It has no polarity — either way round works.
 3. Plug the **27 kΩ resistor** from that same row to the **−** rail.
 4. Connect that row to header pin **P10**.
