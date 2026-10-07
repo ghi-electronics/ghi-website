@@ -2,13 +2,17 @@
 title: Addressable LEDs
 sidebar_label: Addressable LEDs
 description: "Electronics Lab — drive WS2812 / NeoPixel LEDs from C# on a FEZ Flea or FEZ Bit: one data wire, per-LED color, animation, and the power budget that decides how many you can light."
-unlisted: true
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 # Addressable LEDs
+
+:::warning[Lesson in progress]
+The code and wiring here are written, but this lesson has **not been photographed or verified on hardware yet** — wiring photos and the schematic are still to come. Every lesson before it is finished. Expect small corrections.
+:::
+
 
 The RGB module in [RGB LEDs](rgb-leds.mdx) took three pins to make one color. **Addressable LEDs** take one pin — and give you a whole strip, each LED its own color. Every one of them has a tiny controller built in, listening for its own slice of a message that travels down the line.
 
