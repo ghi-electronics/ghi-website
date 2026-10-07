@@ -2,13 +2,14 @@
 title: Analog Input
 sidebar_label: Analog Input
 description: "Electronics Lab — read a potentiometer with the ADC from C# on a FEZ Flea or FEZ Bit: voltage dividers, resolution, averaging, and dimming an LED with a knob."
-unlisted: true
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 # Analog Input
+
+![Analog Main Image](/img/docs/analog-input-hero.webp)
 
 Every input so far has had two answers: pressed or not, high or low. The world isn't like that. Turn a knob and it passes through every position in between — and to read it, your board needs an **ADC**: an analog-to-digital converter that measures a voltage and hands your code a number.
 
@@ -50,28 +51,28 @@ GPIO and PWM had two APIs to choose from, and the lessons used the .NET IoT one.
 
 A potentiometer has three connections: the two ends of a resistive track, and a **wiper** that slides along it as you turn the knob. Put 3.3 V across the ends, and the wiper delivers anything from 0 V to 3.3 V depending on its position.
 
-{/* TODO(photo): potentiometer wiring, both boards */}
-
-{/* TODO(schematic): Analog Input */}
-
 With USB **unplugged**:
 
 <Tabs groupId="board">
 <TabItem value="flea" label="FEZ Flea" default>
 
+![Wiring Diagram](/img/docs/analog-input-fez-flea.webp)
+
 1. Push the potentiometer into the breadboard, each pin in its own row.
 2. Connect one outer pin to the **+** rail, the other outer pin to the **−** rail.
 3. Connect the **middle** pin (the wiper) to **PA0**.
-4. Wire the LED and its 220 Ω resistor from **PA3** to the **−** rail, as in [Digital Output](digital-output.mdx#step-3--wire-the-led).
+4. Wire the LED and its 220 Ω resistor from **PA3** to the **−** rail.
 5. Make sure the rails reach your board: **3V3** to **+**, **GND** to **−**.
 
 </TabItem>
 <TabItem value="bit" label="FEZ Bit">
 
+![Wiring Diagram](/img/docs/analog-input-fez-bit.webp)
+
 1. Push the potentiometer into the breadboard, each pin in its own row.
 2. Connect one outer pin to the **+** rail, the other outer pin to the **−** rail.
 3. Connect the **middle** pin (the wiper) to header pin **P4**.
-4. Wire the LED and its 220 Ω resistor from header pin **P0** to the **−** rail, as in [Digital Output](digital-output.mdx#step-3--wire-the-led).
+4. Wire the LED and its 220 Ω resistor from header pin **P0** to the **−** rail.
 5. Make sure the rails reach the adapter: **3.3V** to **+**, **GND** to **−**.
 
 </TabItem>

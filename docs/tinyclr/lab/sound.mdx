@@ -2,13 +2,14 @@
 title: Sound
 sidebar_label: Sound
 description: "Electronics Lab — make sound from C# on a FEZ Flea or FEZ Bit with a piezo buzzer and PWM: beeps, a siren sweep, musical notes, and a melody."
-unlisted: true
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 # Sound
+
+![Sound Main Image](/img/docs/sound-hero.webp)
 
 In [Breathing LED](breathing-led.mdx) you held the frequency still and changed the duty cycle. Now flip it around: hold the duty cycle still and change the **frequency** — and a piezo buzzer turns those pulses into sound. By the end, your board plays a melody.
 
@@ -51,10 +52,6 @@ Create a new **TinyCLR Application** project and install the **`GHIElectronics.T
 
 ## Step 2 — Wire the buzzer
 
-{/* TODO(photo): buzzer wiring, both boards */}
-
-{/* TODO(schematic): Sound */}
-
 A piezo buzzer draws very little current, so it connects straight to the pin — no resistor needed.
 
 With USB **unplugged**:
@@ -62,16 +59,20 @@ With USB **unplugged**:
 <Tabs groupId="board">
 <TabItem value="flea" label="FEZ Flea" default>
 
-1. Push the buzzer into the breadboard, each leg in its own row.
+![Wiring Diagram](/img/docs/sound-fez-flea.webp)
+
+1. Push the buzzer into the breadboard, place the **+** leg into it's own row and connect the other leg into the **-** rail.
 2. Connect the leg marked **+** on the buzzer to **PB8** with a pin-to-pin jumper wire.
-3. Connect the other leg to the **−** rail.
+3. Connect **GND** pin on the Flea to the **−** rail.
 
 </TabItem>
 <TabItem value="bit" label="FEZ Bit">
 
-1. Push the buzzer into the breadboard, each leg in its own row.
+![Wiring Diagram](/img/docs/sound-fez-bit.webp)
+
+1. Push the buzzer into the breadboard, place the **+** leg into it's own row and connect the other leg into the **-** rail.
 2. Connect header pin **P2** to the leg marked **+** on the buzzer with a pin-to-socket jumper wire.
-3. Connect the other leg to the **−** rail.
+3. Connect **GND** pin on the Bit to the **−** rail.
 
 </TabItem>
 </Tabs>
@@ -289,7 +290,7 @@ Musical notes follow a simple pattern: **doubling a frequency raises the pitch b
 |---|---|---|---|---|---|---|---|---|
 | **Hz** | 262 | 294 | 330 | 349 | 392 | 440 | 494 | 523 |
 
-Hardware PWM on SITCore covers about **15 Hz to 10 kHz** — nearly the whole range of a piano, and well past what a small buzzer can reproduce loudly.
+Hardware PWM on SITCore covers about **15 Hz to 20 MHz (FEZ Flea) or higher (FEZ Bit)** — nearly the whole range of a piano, and well past what a small buzzer can reproduce loudly.
 
 ### Why the buzzer needs its own controller
 

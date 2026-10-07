@@ -2,13 +2,14 @@
 title: Joystick
 sidebar_label: Joystick
 description: "Electronics Lab — read a two-axis joystick from C# on a FEZ Flea or FEZ Bit: centered readings, dead zones, its push button, and steering a servo with your thumb."
-unlisted: true
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 # Joystick
+
+![Joystick Main Image](/img/docs/joystick-hero.webp)
 
 Nothing in this lesson is new — a joystick is two potentiometers on a gimbal, plus a button. That's the point. You already know how to read all three, so this one is a **project**: put them together and steer the servo with your thumb.
 
@@ -58,14 +59,12 @@ Create a new **TinyCLR Application** project and install **`GHIElectronics.TinyC
 
 ## Step 2 — Wire the joystick
 
-{/* TODO(photo): joystick and servo wiring, both boards */}
-
-{/* TODO(schematic): Joystick */}
-
 With USB **unplugged**:
 
 <Tabs groupId="board">
 <TabItem value="flea" label="FEZ Flea" default>
+  
+![Wiring Diagram](/img/docs/joystick-fez-flea.webp)
 
 1. Clear the photoresistor and LED from the last lesson.
 2. Plug the joystick's five pins into five breadboard rows (use pin-to-socket wires if it has a socket header).
@@ -75,6 +74,8 @@ With USB **unplugged**:
 
 </TabItem>
 <TabItem value="bit" label="FEZ Bit">
+
+![Wiring Diagram](/img/docs/joystick-fez-bit.webp)
 
 1. Clear the photoresistor and LED from the last lesson.
 2. Plug the joystick's five pins into five breadboard rows (use pin-to-socket wires if it has a socket header).

@@ -2,13 +2,14 @@
 title: Servo Motor
 sidebar_label: Servo Motor
 description: "Electronics Lab — position a servo motor from C# on a FEZ Flea or FEZ Bit: timed PWM pulses, angles, calibration, and pausing a moving motor with the debugger."
-unlisted: true
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 # Servo Motor
+
+![Servo Main Image](/img/docs/servo-hero.webp)
 
 So far PWM has dimmed a light and made a sound. Now it moves something. A servo motor turns its arm to an exact angle, and holds it there, based on the **width of the pulses** you send it. By the end of this lesson you'll sweep the arm back and forth, and stop it mid-sweep with a breakpoint.
 
@@ -41,6 +42,8 @@ A servo needs a steady **50 Hz**, so it gets a controller no other part changes:
 <Tabs groupId="board">
 <TabItem value="flea" label="FEZ Flea" default>
 
+
+
 PA1 shares **controller 2** with PA5, the blue channel from [RGB LEDs](rgb-leds.mdx). Both use the same frequency when nothing else changes it, but to keep things simple, **remove the RGB module** for this lesson. The buzzer on PB8 has a controller to itself and can stay.
 
 </TabItem>
@@ -57,9 +60,7 @@ Create a new **TinyCLR Application** project and install the **`GHIElectronics.T
 
 ## Step 2 — Wire the servo
 
-{/* TODO(photo): servo wiring, both boards */}
-
-{/* TODO(schematic): Servo Motor */}
+![Servo Pin Out](/img/docs/servo-wiring.webp)
 
 The servo ends in a 3-hole socket. Push a **pin-to-pin** jumper wire into each hole, then plug the other ends into three empty breadboard rows.
 
@@ -68,17 +69,20 @@ With USB **unplugged**:
 <Tabs groupId="board">
 <TabItem value="flea" label="FEZ Flea" default>
 
-1. Connect the **orange** (signal) row to **PA1**.
-2. Connect the **red** (power) row to the Flea's **5V** pin.
-3. Connect the **brown** (ground) row to the **−** rail.
+![Wiring Diagram](/img/docs/servo-fez-flea.webp)
+
+1. Connect the **orange** (signal) to **PA1**.
+2. Connect the **red** (power) to the Flea's **5V** pin.
+3. Connect the **brown** (ground) to the Flea's **GND** pin.
 
 </TabItem>
 <TabItem value="bit" label="FEZ Bit">
 
-1. With a pin-to-socket jumper wire, connect header pin **P14** to the **orange** (signal) row.
-2. With a pin-to-socket jumper wire, connect the adapter's **5V** header pin to the **red** (power) row.
-3. Connect the **brown** (ground) row to the **−** rail.
-4. Plug in the **micro USB** cable to the adapter board when you run the code. It supplies the servo's 5V.
+![Wiring Diagram](/img/docs/servo-fez-bit.webp)
+
+In projects that have more components requiring power we can use the **+** and **-** rails to send power to all the components.
+
+1.  For this exercise we can just plug directly into the **P14** pin header. Align the orange and yellow header pin, this will align the power and ground pins too. 
 
 </TabItem>
 </Tabs>

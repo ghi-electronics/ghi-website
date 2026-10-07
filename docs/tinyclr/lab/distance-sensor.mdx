@@ -2,13 +2,14 @@
 title: Distance Sensor
 sidebar_label: Distance Sensor
 description: "Electronics Lab — measure distance with an HC-SR04 ultrasonic sensor from C# on a FEZ Flea or FEZ Bit: trigger a ping, time the echo, convert with the speed of sound, and build a parking sensor."
-unlisted: true
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 # Distance Sensor
+
+![Distance Sensor Main Image](/img/docs/distance-sensor-hero.webp)
 
 Bats do it, ships do it, and so does the sensor in the kit: send out a sound pulse, wait for the echo, and work out the distance from how long it took. The HC-SR04 does the ultrasound part; your code does the timing and the arithmetic.
 
@@ -53,27 +54,29 @@ This lesson uses TinyCLR's own GPIO API — `GHIElectronics.TinyCLR.Devices.Gpio
 
 ## Step 2 — Wire the sensor
 
-{/* TODO(photo): HC-SR04 wiring, both boards */}
-
-{/* TODO(schematic): Distance Sensor */}
-
 With USB **unplugged**:
 
 <Tabs groupId="board">
 <TabItem value="flea" label="FEZ Flea" default>
 
-1. Clear the joystick and servo from the last lesson. Keep the buzzer on **PB8** if it's still wired.
-2. Plug the sensor into the breadboard, or use pin-to-socket wires to reach its four pins.
-3. **VCC** → the Flea's **5V** pin. **GND** → the **−** rail.
-4. **Trig** → **PB14**. **Echo** → **PB15**.
+![Wiring Diagram](/img/docs/distance-sensor-fez-flea.webp)
+
+1. Clear the joystick and servo from the last lesson.
+2. Add a buzzer on **PB8** and **-** rail. 
+3. Plug the sensor into the breadboard, or use pin-to-socket wires to reach its four pins.
+4. **VCC** → the Flea's **5V** pin. **GND** → the **−** rail.
+5. **Trig** → **PB14**. **Echo** → **PB15**.
 
 </TabItem>
 <TabItem value="bit" label="FEZ Bit">
 
+![Wiring Diagram](/img/docs/distance-sensor-fez-bit.webp)
+
 1. Clear the joystick and servo from the last lesson. Keep the buzzer on **P2** if it's still wired.
-2. Plug the sensor into the breadboard, or use pin-to-socket wires to reach its four pins.
-3. **VCC** → the adapter's **5V** header pin. **GND** → the **−** rail.
-4. **Trig** → header pin **P6**. **Echo** → **P7**.
+2. Add a buzzer on **PB8** and **-** rail. 
+3. Plug the sensor into the breadboard, or use pin-to-socket wires to reach its four pins.
+4. **VCC** → the adapter's **5V** header pin. **GND** → the **−** rail.
+5. **Trig** → header pin **P6**. **Echo** → **P7**.
 
 </TabItem>
 </Tabs>
