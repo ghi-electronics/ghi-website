@@ -10,6 +10,8 @@ import TabItem from '@theme/TabItem';
 
 # Joystick
 
+![Joystick Main Image](/img/docs/joystick-hero.webp)
+
 Nothing in this lesson is new — a joystick is two potentiometers on a gimbal, plus a button. That's the point. You already know how to read all three, so this one is a **project**: put them together and steer the servo with your thumb.
 
 The new ideas are small but practical: a sensor that rests in the **middle** instead of at one end, and a **dead zone** so it doesn't drift when you let go.
@@ -58,14 +60,12 @@ Create a new **TinyCLR Application** project and install **`GHIElectronics.TinyC
 
 ## Step 2 — Wire the joystick
 
-{/* TODO(photo): joystick and servo wiring, both boards */}
-
-{/* TODO(schematic): Joystick */}
-
 With USB **unplugged**:
 
 <Tabs groupId="board">
 <TabItem value="flea" label="FEZ Flea" default>
+  
+![Wiring Diagram](/img/docs/joystick-fez-flea.webp)
 
 1. Clear the photoresistor and LED from the last lesson.
 2. Plug the joystick's five pins into five breadboard rows (use pin-to-socket wires if it has a socket header).
@@ -75,6 +75,8 @@ With USB **unplugged**:
 
 </TabItem>
 <TabItem value="bit" label="FEZ Bit">
+
+![Wiring Diagram](/img/docs/joystick-fez-bit.webp)
 
 1. Clear the photoresistor and LED from the last lesson.
 2. Plug the joystick's five pins into five breadboard rows (use pin-to-socket wires if it has a socket header).
