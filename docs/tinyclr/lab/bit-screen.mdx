@@ -10,10 +10,7 @@ This lesson uses the color screen built into the **FEZ Bit** — no extra parts,
 
 # FEZ Bit Screen
 
-:::warning[Lesson in progress]
-The code and wiring here are written, but this lesson has **not been photographed or verified on hardware yet** — wiring photos and the schematic are still to come. Every lesson before it is finished. Expect small corrections.
-:::
-
+![FEZ Bit Screen Main Image](/img/docs/bit-screen-hero.webp)
 
 The FEZ Bit has a **160×128 color display** on the front, wired to the board over SPI. Everything from [Displays](displays.mdx) applies — draw into a buffer, then send it — with two differences: there's no wiring to do, and you have **color** to work with.
 
@@ -58,10 +55,13 @@ Create a new **TinyCLR Application** project and install:
 - **`GHIElectronics.TinyCLR.Devices.Spi`**, **`GHIElectronics.TinyCLR.Devices.Gpio`**, **`GHIElectronics.TinyCLR.Devices.Adc`**, and **`GHIElectronics.TinyCLR.Pins`**
 
 ## Step 2 — Wire the sensor
+![Wiring Diagram](/img/docs/light-sensor-fez-bit.webp)
 
 The display needs nothing. Rebuild the photoresistor divider from [Light and Logic](light-sensor.mdx#step-2--build-a-voltage-divider): photoresistor from the **+** rail to a row, 27 kΩ from that row to **−**, and that row to header pin **P10**.
 
 ## Step 3 — Wake up the screen
+
+![Color Readout](/img/docs/wakeup-screen.webp)
 
 The display is an **ST7735** on SPI. Four lines of setup, then it's ready:
 
@@ -101,6 +101,8 @@ uint white = BasicGraphics.ColorFromRgb(255, 255, 255);
 uint green = BasicGraphics.ColorFromRgb(0, 255, 0);
 uint red = BasicGraphics.ColorFromRgb(255, 0, 0);
 
+//Replace code below in Step 4
+
 screen.Clear();
 screen.DrawString("Hello!", white, 10, 10);
 screen.DrawString("In color", green, 10, 30);
@@ -121,6 +123,8 @@ Press **F5**. White and green text and a red circle appear on the Bit's screen.
 The buffer here is 160 × 128 × 2 = **40 KB**, forty times the OLED's. Color costs memory, which is why the small chip in the FEZ Flea sticks to a monochrome screen.
 
 ## Step 4 — A color readout
+
+![Color Readout](/img/docs/color-readout-bit.webp)
 
 Color earns its place when it carries meaning. This readout turns from green to red as the room darkens:
 
@@ -150,6 +154,8 @@ while (true) {
     Thread.Sleep(100);
 }
 
+//Keep function below in Step 5
+
 double ReadAverage(int samples) {
     double total = 0;
 
@@ -167,7 +173,9 @@ Add `using GHIElectronics.TinyCLR.Devices.Adc;` at the top, replace everything a
 
 ## Step 5 — A color graph
 
-The same rolling history as the OLED lesson, with one advantage: each column can be colored by its own value, so a glance shows when the room was dark.
+![Color Graph](/img/docs/color-graph-bit.webp)
+
+The same rolling history as the OLED lesson, with one advantage: each column can be colored by its own value, so a glance shows when the room was dark. Replace the `while(true)` loop from Step 4, but keep the `ReadAverage()` function below it. 
 
 ```csharp
 int[] history = new int[Width];
