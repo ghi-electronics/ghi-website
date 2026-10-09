@@ -9,10 +9,7 @@ import TabItem from '@theme/TabItem';
 
 # Displays
 
-:::warning[Lesson in progress]
-The code and wiring here are written, but this lesson has **not been photographed or verified on hardware yet** — wiring photos and the schematic are still to come. Every lesson before it is finished. Expect small corrections.
-:::
-
+![Displays Main Image](/img/docs/displays-hero.webp)
 
 Every lesson so far has reported its results to Visual Studio. Unplug the USB cable and your project goes quiet. A screen changes that: the board shows its own readings, and becomes something you can put on a shelf.
 
@@ -35,6 +32,8 @@ Using a FEZ Bit? It already has a color screen built in — [FEZ Bit Screen](bit
 
 ## What you'll need
 
+![SSD1306](/img/docs/ssd1306.webp)
+
 - An **SSD1306 128×64 I²C OLED**
 - From the kit:
   - Light sensor (photoresistor) and 1× 27 kΩ resistor — the divider from [Light and Logic](light-sensor.mdx#step-2--build-a-voltage-divider)
@@ -44,9 +43,9 @@ Using a FEZ Bit? It already has a color screen built in — [FEZ Bit Screen](bit
 
 | OLED pin | FEZ Flea | FEZ Bit |
 |---|---|---|
-| **SDA** (data) | **PB9** | **P20** |
-| **SCL** (clock) | **PB8** | **P19** |
-| **VCC** | **3V3** | **3.3V** (adapter) |
+| **SDA** (data) | **PB9** | **SDA(P20)** |
+| **SCL**/**SCK** (clock) | **PB8** | **SCL(P19)** |
+| **VCC**/**VDD** | **3V3** | **3.3V** (adapter) |
 | **GND** | **GND** | **GND** |
 
 | Also used | FEZ Flea | FEZ Bit |
@@ -65,16 +64,14 @@ Create a new **TinyCLR Application** project and install:
 
 ## Step 2 — Wire the display
 
-{/* TODO(photo): SSD1306 wiring, both boards */}
-
-{/* TODO(schematic): Displays */}
-
 I²C needs only two signal wires no matter how many devices share them: **SDA** carries data, **SCL** is the clock. Both must go to the pins that have those functions — unlike GPIO, you can't pick freely.
 
 With USB **unplugged**:
 
 <Tabs groupId="board">
 <TabItem value="flea" label="FEZ Flea" default>
+
+![Wiring Diagram](/img/docs/displays-fez-flea.webp)
 
 1. **VCC** → the **+** rail (3.3 V). **GND** → the **−** rail.
 2. **SDA** → **PB9**. **SCL** → **PB8**.
@@ -83,8 +80,10 @@ With USB **unplugged**:
 </TabItem>
 <TabItem value="bit" label="FEZ Bit">
 
+![Wiring Diagram](/img/docs/displays-fez-bit.webp)
+
 1. **VCC** → the **+** rail (3.3 V). **GND** → the **−** rail.
-2. **SDA** → header pin **P20**. **SCL** → **P19**.
+2. **SDA** → header pin **SDA(P20)**. **SCL** → **SCL(P19)**.
 3. Rebuild the photoresistor divider from [Light and Logic](light-sensor.mdx#step-2--build-a-voltage-divider): photoresistor from **+** rail to a row, 27 kΩ from that row to **−**, and that row to **P10**.
 
 </TabItem>

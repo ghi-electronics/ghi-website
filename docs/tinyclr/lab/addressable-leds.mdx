@@ -9,10 +9,7 @@ import TabItem from '@theme/TabItem';
 
 # Addressable LEDs
 
-:::warning[Lesson in progress]
-The code and wiring here are written, but this lesson has **not been photographed or verified on hardware yet** — wiring photos and the schematic are still to come. Every lesson before it is finished. Expect small corrections.
-:::
-
+![Addressable LEDs](/img/docs/addressable-led-strip-lights.webp)
 
 The RGB module in [RGB LEDs](rgb-leds.mdx) took three pins to make one color. **Addressable LEDs** take one pin — and give you a whole strip, each LED its own color. Every one of them has a tiny controller built in, listening for its own slice of a message that travels down the line.
 
@@ -56,9 +53,7 @@ Like the [Distance Sensor](distance-sensor.mdx), this lesson uses TinyCLR's own 
 
 ## Step 2 — Wire the strip
 
-{/* TODO(photo): WS2812 strip wiring, both boards */}
-
-{/* TODO(schematic): Addressable LEDs */}
+![Wiring the Strip](/img/docs/wiring-strip.webp)
 
 A strip has three connections: power, ground, and **data in**. Strips also have a data **out** at the far end, for chaining more — leave it unconnected.
 
@@ -234,6 +229,8 @@ Change `3 / 4` to `9 / 10` for a longer tail, or `1 / 2` for a short one.
 ## How it works
 
 ### One wire, many LEDs
+
+![Smart LED](/img/docs/smart-led.webp)
 
 Each LED contains a small controller. When a message arrives at its data-in pin, it keeps the **first** set of color values for itself and passes the rest out its data-out pin to the next LED. So a strip of eight needs a message with eight colors, and each LED quietly takes its own.
 
