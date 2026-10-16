@@ -4,6 +4,34 @@ title: Release Notes
 
 ![TinyCLR Logo](/img/docs/tinyclr-logo.png)
 
+## 3.0.2.2000 (2026-10-16) RTW
+
+Partial release — a critical SC13xxx flash fix, on-screen keyboard improvements in the UI library, a new CLI command in TinyCLR Config, and fixes in both extensions. SC20xxx firmware and all other libraries are unchanged.
+
+### Firmware
+
+- **SITCore SC13xxx**: fixed an issue where the internal FLASH_ECCR register could become corrupted.
+- **SITCore SC20xxx**: no change. 3.0.2.1000 remains the current release.
+
+### Libraries
+
+- `GHIElectronics.TinyCLR.UI`: on-screen keyboard now shows a press-feedback effect, and holding **Backspace** repeats the delete.
+- All other libraries: no change. 3.0.2.1000 remains the current release.
+
+### Visual Studio Extension
+
+- Fixed a case where a device COM port was still held by the extension even after the device had been removed from Device Manager.
+
+### TinyCLR Config
+
+- New `device-info` CLI command — reports the firmware version of the connected device.
+- Picks up the same COM-port release fix from the shared debugger library.
+
+### Visual Studio Code extension
+
+- Fixed the "device is busy" state persisting after a failed F5 deploy — the deploy gate now releases cleanly on every failure path.
+- Fixed **TinyCLR: New Class** on SDK-style projects: the command previously errored with "Project already includes…" and did not create the file.
+
 ## 3.0.2.1000 (2026-09-08) RTW
 
 Firmware fixes for analog inputs and the CLR, plus mass storage identification. Update the firmware, the extension, and the libraries together.
