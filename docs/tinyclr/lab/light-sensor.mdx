@@ -28,9 +28,20 @@ About 40 minutes.
 
 - From the kit:
   - Light sensor (photoresistor)
-  - 1× 27 kΩ resistor (red · violet · orange)
-  - 1× LED and 1× 220 Ω resistor
+  - 1× 27 kΩ resistor — marked `27K` on the paper strip
+  - 1× LED and 1× 220 Ω resistor — marked `220R`
   - Jumper wires
+
+<details>
+<summary>First time with these parts?</summary>
+
+- **LED** — the **longer leg** is the positive side (anode) and goes toward the pin; the shorter leg, next to the flat edge of the rim, goes toward GND. In backwards it just stays dark, so nothing is harmed.
+- **Resistor** — **no polarity**, so either way round works. The kit's resistors have **five** bands, while most charts online show four: 220 Ω is red · red · black · black · brown, and 27 kΩ is red · violet · black · red · brown.
+- **`220R` on the paper strip** means 220 Ω — the letter sits where the decimal point would go. `27K` is 27 kΩ.
+
+More in [Start Here → Parts you'll meet first](index.mdx#parts-youll-meet-first).
+
+</details>
 
 ## Pin reference
 
@@ -44,6 +55,8 @@ About 40 minutes.
 ## Step 1 — Create the project
 
 Create a new **TinyCLR Application** project and install **`GHIElectronics.TinyCLR.Devices.Adc`**, **`GHIElectronics.TinyCLR.Devices.Gpio`**, and **`GHIElectronics.TinyCLR.Pins`**.
+
+Need the steps? [Start Here](index.mdx#set-up-and-blink) covers creating a project and deploying.
 
 ## Step 2 — Build a voltage divider
 
@@ -72,7 +85,7 @@ With USB **unplugged**:
 
 1. Remove the potentiometer from the previous lesson. Leave the 3.3v and GND connected to the **+** and **-** rails, also leave the LED and its 220 Ω resistor on **PA3**.
 2. Plug the **photoresistor** from the **+** rail to an empty row. It has no polarity — either way round works.
-3. Plug the **27 kΩ resistor** from that same row to the **−** rail.
+3. Plug the **27 kΩ resistor** from that same row to the **−** rail — either way round is fine.
 4. Connect that row to **PA4**.
 
 </TabItem>
@@ -82,7 +95,7 @@ With USB **unplugged**:
 
 1. Remove the potentiometer from the previous lesson. Leave the 3.3v and GND connected to the **+** and **-** rails, also leave the LED and its 220 Ω resistor on **P0**.
 2. Plug the **photoresistor** from the **+** rail to an empty row. It has no polarity — either way round works.
-3. Plug the **27 kΩ resistor** from that same row to the **−** rail.
+3. Plug the **27 kΩ resistor** from that same row to the **−** rail — either way round is fine.
 4. Connect that row to header pin **P10**.
 
 </TabItem>
@@ -393,3 +406,7 @@ The rule of thumb: make the gap wider than your noise, narrower than the change 
 ## Next
 
 **[Joystick](joystick.mdx)**: two analog readings at once, a button, and something to steer.
+
+---
+
+Something not working, or a step unclear? [Ask in the TinyCLR forum](https://forums.ghielectronics.com/c/tinyclr/12) — we read every post.

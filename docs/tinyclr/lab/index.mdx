@@ -15,6 +15,10 @@ If you can write a loop and a method, you're ready. No electronics background ne
 
 This page covers everything you need before the [first lesson](digital-output.mdx): setting up your PC, getting to know your board, and the wiring basics every lesson builds on. Already comfortable with breadboards? Skim [your board's pins](#get-to-know-your-board) and jump straight in.
 
+:::tip[Stuck? Ask us]
+Post in the **[TinyCLR forum](https://forums.ghielectronics.com/c/tinyclr/12)** — the people who write the runtime and ship the kits read and answer there. Tell us your board, which lesson, and what you saw; a photo of your wiring helps.
+:::
+
 ## Choose your board
 
 Every lesson works on both lab boards — the wiring and the code are the same except for **pin names**:
@@ -74,12 +78,88 @@ Both kits include the same parts:
 - 10× pin-to-socket (male-to-female) jumper wires
 - Zippered case
 
-## Set up your PC
+## Set up and blink
 
-Follow [Getting Started](../getting-started.mdx) to install the tools, load the TinyCLR firmware, and run the starter project. Come back here once the **on-board LED is blinking** — that proves your PC, the IDE, and your board are all talking to each other.
+Five minutes, and you've proved your PC, your board, and the tools all work together. This is also the exact workflow every lesson uses.
+
+:::note[What we assume you already have]
+These lessons teach **electronics**, not C# or .NET setup. Before starting, your PC should already build and run a plain C# "hello world", and you should be comfortable **adding NuGet packages** to a project — every lesson begins by installing a couple.
+
+In **Visual Studio** that means the **.NET desktop development** workload is installed. In **VS Code** it means a **.NET SDK**, installed directly or by an extension that brings it along. If a hello world builds and runs, the TinyCLR tooling has what it needs.
+:::
+
+1. **Install Visual Studio 2026** — any edition, including the free [Community Edition](https://www.visualstudio.com/downloads/) — with the **.NET desktop development** workload.
+2. **Install the TinyCLR extension.** `Extensions` → `Manage Extensions…`, search for `tinyclr`, install **TinyCLR OS Project**, restart Visual Studio.
+3. **Create a project.** `Create a new project` → pick **TinyCLROS** from the Platforms dropdown → **TinyCLR Application** → name it and click **Create**.
+4. **Install the NuGet packages.** Right-click the project → `Manage NuGet Packages…` → **Browse**, then add **`GHIElectronics.TinyCLR.Devices.Gpio`** and **`GHIElectronics.TinyCLR.Pins`**. Each lesson lists the packages it needs in Step 1.
+5. **Plug your board into USB** and replace `Program.cs` with:
+
+<Tabs groupId="board">
+<TabItem value="flea" label="FEZ Flea" default>
+
+```csharp title="Program.cs"
+using System.Device.Gpio;
+using System.Threading;
+using GHIElectronics.TinyCLR.Pins;
+
+using GpioController controller = new GpioController();
+
+int ledPin = FEZFlea.GpioPin.Led;
+controller.OpenPin(ledPin, PinMode.Output);
+
+while (true) {
+    controller.Write(ledPin, PinValue.High);
+    Thread.Sleep(500);
+
+    controller.Write(ledPin, PinValue.Low);
+    Thread.Sleep(500);
+}
+```
+
+</TabItem>
+<TabItem value="bit" label="FEZ Bit">
+
+```csharp title="Program.cs"
+using System.Device.Gpio;
+using System.Threading;
+using GHIElectronics.TinyCLR.Pins;
+
+using GpioController controller = new GpioController();
+
+int ledPin = FEZBit.GpioPin.Led;
+controller.OpenPin(ledPin, PinMode.Output);
+
+while (true) {
+    controller.Write(ledPin, PinValue.High);
+    Thread.Sleep(500);
+
+    controller.Write(ledPin, PinValue.Low);
+    Thread.Sleep(500);
+}
+```
+
+</TabItem>
+</Tabs>
+
+6. **Press F5.** Visual Studio builds, finds your board, deploys, and attaches the debugger — and the on-board LED blinks.
+
+That's it. Every lesson from here is the same four moves: new project, add packages, paste code, press **F5**.
+
+:::tip[Deploy failed with a checksum error?]
+If the Output window shows something like this:
+
+```
+Error: the reference mscorlib cannot be used with this version of the firmware.
+Firmware checksum 0x8FF20F1B does not match the assembly checksum 0x04F4012C.
+```
+
+your board's firmware is older than the NuGet packages you just installed. [Install or update firmware](../getting-started.mdx#install-or-update-firmware) sorts it out in a couple of minutes. Otherwise there's nothing to do — kits ship ready to run.
+:::
 
 :::note
-TinyCLR development requires **Windows**. The lessons use **Visual Studio** (any edition, including the free Community Edition) for screenshots and shortcuts. VS Code works too — the debugging keys (**F5**, **F10**, **F11**) are the same.
+TinyCLR development requires **Windows**. The lessons use **Visual Studio** for screenshots and shortcuts; [VS Code](../tutorial/vscode.mdx) works too, with its own project type. The C# is identical either way, and so are **F5**, **F10**, and **F11**.
+
+Want the full walkthrough, including what the bootloader and firmware actually do? [TinyCLR Getting Started](../getting-started.mdx).
 :::
 
 ## Get to know your board
@@ -201,15 +281,19 @@ Put one in backwards and it simply stays dark — no harm done. Flip it around.
 
 ### Resistors
 
-Resistors limit current. They have **no polarity** — either direction works. The colored bands encode the value; the kit includes two values:
+Resistors limit current, and they have **no polarity** — either direction works, so you can't put one in backwards. The kit has two values:
 
-| Value | Bands (4-band) | Used for |
-|---|---|---|
-| 220 Ω | red · red · brown · gold | Every LED — 10 in the kit |
-| 27 kΩ | red · violet · orange · gold | Pull-ups and pull-downs for inputs — 5 in the kit |
+| Value | Used for | On the paper strip | 5-band code | 4-band code |
+|---|---|---|---|---|
+| **220 Ω** | Every LED — 10 in the kit | `220R` | red · red · black · black · brown | red · red · brown · gold |
+| **27 kΩ** | Pull-ups and pull-downs — 5 in the kit | `27K` | red · violet · black · red · brown | red · violet · orange · gold |
 
+Two things trip people up the first time:
 
-Each lesson tells you which value to use and why.
+- **`220R` means 220 Ω.** The letter sits where the decimal point would go, which keeps a smudged dot from changing the value. So `4K7` is 4.7 kΩ, and `1M0` is 1 MΩ.
+- **Your resistors have five bands, not four.** Most charts online show four. With five, the first **three** bands are digits instead of two, the fourth is the multiplier, and the last is tolerance — a brown final band means ±1%. Both codes are in the table above, so you can match whichever chart you find.
+
+The easiest approach: leave them on the labeled strip until you need one. Each lesson says which value to use and why.
 
 ## Wiring habits
 
@@ -240,21 +324,21 @@ Work through them in order — each one builds on the last:
 - **[Joystick](joystick.mdx)** — a fun project: steer the servo or mix RGB colors with your thumb
 - **[Distance Sensor](distance-sensor.mdx)** — measure distance with ultrasound, and see why a radar is just a distance sensor that moves
 
-These three are **still in progress** — the code and wiring are written, but they haven't been photographed or verified on hardware yet:
-
 - **[Displays](displays.mdx)** — add a small I²C OLED: text, shapes, a live readout, and a scrolling graph
 - **[FEZ Bit Screen](bit-screen.mdx)** — the same readout in color on the FEZ Bit's built-in display, with nothing to wire
 - **[Addressable LEDs](addressable-leds.mdx)** — WS2812 / NeoPixel strips: color, brightness, and animation from C#
 
-The last three need a part beyond the kit, except **FEZ Bit Screen**, which uses the display already on the board — each lesson lists exactly what to get. More lessons are on the way.
+The last three need a part beyond the kit, except **FEZ Bit Screen**, which uses the display already on the board — each lesson lists exactly what to get.
 
 Every lesson has a wiring photo, a schematic, and copy-paste C# code. And because your board runs with the debugger attached, breakpoints and variable inspection work everywhere — lessons point out the spots worth a look.
 
 ## After the lessons
 
-Everything in this lab uses standard breadboard parts, so the skills carry over to any module you can buy. Free follow-on guides are on the way:
+Everything in this lab uses standard breadboard parts, so the skills carry over to any module you can buy — and TinyCLR ships drivers for a lot of them. Two popular next steps:
 
-- **LED matrices** — scrolling text, simple graphics, and your first animation loop
-- **Common sensors** — temperature, humidity, pressure, and accelerometers
+- **LED matrices** — scrolling text, simple graphics, and your first animation loop, built on the [WS2812 driver](../drivers/led.mdx#ws2812) from [Addressable LEDs](addressable-leds.mdx)
+- **Common sensors** — temperature, humidity, pressure, and accelerometers over I²C and SPI, in [Extended Features → Sensors](../drivers/sensor.mdx)
+
+[Extended Features](../drivers/index.mdx) is the full catalog: displays, codecs, connectivity, motors, memory, and more, each with example code.
 
 Before building your own project, skim [Limitations](../limitations.mdx) — a short list of full-.NET features TinyCLR trims to fit on a microcontroller. None of them come up in the lessons.

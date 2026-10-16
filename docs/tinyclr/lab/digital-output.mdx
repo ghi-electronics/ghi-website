@@ -27,8 +27,19 @@ About 20 minutes.
 - From the kit:
   - Your board, breadboard, and USB cable(s)
   - 1× LED (any color)
-  - 1× 220 Ω resistor (red · red · brown)
+  - 1× 220 Ω resistor — marked `220R` on the paper strip
   - Jumper wires — 1× pin-to-pin for the FEZ Flea, 2× pin-to-socket for the FEZ Bit
+
+<details>
+<summary>First time with these parts?</summary>
+
+- **LED** — the **longer leg** is the positive side (anode) and goes toward the pin; the shorter leg, next to the flat edge of the rim, goes toward GND. In backwards it just stays dark, so nothing is harmed.
+- **Resistor** — **no polarity**, so either way round works. The kit's resistors have **five** bands, while most charts online show four: 220 Ω is red · red · black · black · brown, and 27 kΩ is red · violet · black · red · brown.
+- **`220R` on the paper strip** means 220 Ω — the letter sits where the decimal point would go. `27K` is 27 kΩ.
+
+More in [Start Here → Parts you'll meet first](index.mdx#parts-youll-meet-first).
+
+</details>
 
 ## Pin reference
 
@@ -43,6 +54,8 @@ Both pins also support PWM, so this same wiring carries straight into the [Breat
 
 1. Create a new **TinyCLR Application** project, as in [Getting Started](../getting-started.mdx#set-up-and-run-the-starter).
 2. Install the **`GHIElectronics.TinyCLR.Devices.Gpio`** and **`GHIElectronics.TinyCLR.Pins`** NuGet packages.
+
+Need the steps? [Start Here](index.mdx#set-up-and-blink) covers creating a project and deploying.
 
 ## Step 2 — The same blink, in the API this lab uses
 
@@ -122,7 +135,7 @@ With USB **unplugged**:
 ![Wiring Diagram](/img/docs/digital-output-fez-flea.webp)
 
 1. Place the FEZ Flea so it straddles the center gap of the breadboard.
-2. Plug the **resistor** from the row of pin **PA3** to an empty row.
+2. Plug the **resistor** from the row of pin **PA3** to an empty row. Resistors have no polarity, so either way round is fine.
 3. Plug the LED's **long leg** (anode) into the same row as the resistor's other end.
 4. Plug the LED's **short leg** (cathode) into another empty row.
 5. Use a jumper wire to connect the short leg's row to a **GND** pin.
@@ -139,7 +152,7 @@ FEZ Flea PA3 ──── 220 Ω resistor ────▶ LED ──── GND
 
 1. Slide the FEZ Bit into the adapter board.
 2. Connect a pin-to-socket jumper wire from header pin **P0** to an empty breadboard row.
-3. Plug the **resistor** from that row to another empty row.
+3. Plug the **resistor** from that row to another empty row. Resistors have no polarity, so either way round is fine.
 4. Plug the LED's **long leg** (anode) into the same row as the resistor's other end.
 5. Plug the LED's **short leg** (cathode) into another empty row.
 6. Connect a second pin-to-socket jumper wire from that row to a **GND** header pin.
@@ -269,3 +282,7 @@ Use a **220 Ω** resistor with every LED in the lab. Its job is protection, not 
 ## Next
 
 **[Digital Input](digital-input.mdx)** — read buttons, learn why inputs need pull-ups, react to presses with events, and build a reaction-time game.
+
+---
+
+Something not working, or a step unclear? [Ask in the TinyCLR forum](https://forums.ghielectronics.com/c/tinyclr/12) — we read every post.

@@ -23,13 +23,14 @@ TinyCLR is royalty-free for SITCore customers.
 ## What you'll need
 
 - A **SITCore board** — [chipset](soc.mdx), [module](som.mdx), [SBC](sbc.mdx), or [Dev Board](dev.mdx). New to TinyCLR? The **FEZ Flea** is the cheapest entry at $14.95 — plug it into USB and you're running. For a structured hands-on path, the [Experimenter Kit](experimenter-kit.mdx) bundles a FEZ Bit with sensors, a robot, and a companion eBook.
-- A **Windows PC** with one of:
-  - **Visual Studio 2026** — any edition works, including the free **Community Edition**
-  - **VS Code** with the TinyCLR extension
+- A **Windows PC** with **Visual Studio 2026** — any edition works, including the free **Community Edition**
 - A USB cable
+- A machine that already builds C#: the **.NET desktop development** workload in Visual Studio, or a **.NET SDK** for VS Code. Being comfortable creating a project and **adding NuGet packages** is assumed — this page teaches TinyCLR, not C# or .NET tooling.
 
 :::note
-**TinyCLR development requires Windows.** Both the Visual Studio and VS Code workflows depend on Windows-only deployment tooling — macOS and Linux aren't supported.
+**TinyCLR development requires Windows.** The deployment tooling is Windows-only — macOS and Linux aren't supported.
+
+Prefer a lighter editor? **[VS Code](tutorial/vscode.mdx)** is supported as well. This page uses Visual Studio throughout; the VS Code page covers its project type and workflow.
 :::
 
 No JTAG probe, no external programmer, no separate toolchain.
@@ -55,9 +56,20 @@ After startup, all three pins return to default GPIO state and are available as 
 
 Before TinyCLR can run your code, your SITCore device needs the TinyCLR firmware loaded. The firmware includes the Common Language Runtime — it interprets compiled C# IL on the device, manages execution, and lets your IDE deploy and debug over USB.
 
+:::note[When do I need this?]
+A board that's already running current firmware needs nothing. The usual sign that it doesn't is a deploy that fails with a checksum error:
+
+```
+Error: the reference mscorlib cannot be used with this version of the firmware.
+Firmware checksum 0x8FF20F1B does not match the assembly checksum 0x04F4012C.
+```
+
+That means the firmware on the device is older than the NuGet packages your project references. Update the firmware with the steps below, then deploy again.
+:::
+
 The firmware update procedure is the same for every SITCore product:
 
-1. **Activate the bootloader** — hold the LDR signal low while resetting the board. (Each board's pinout shows the LDR pin location.)
+1. **Activate the bootloader** — hold **LDR** low while resetting or power cycling the board. Boards bring LDR out to a button marked **LDR**, so in practice that means holding that button down while you press reset or re-plug the USB cable. (Each board's pinout shows where it is.)
 2. **Open the [TinyCLR Config](tinyclr-config.mdx) tool.**
 3. **Connect to the device** — select the correct COM port and click **Connect**. If the device doesn't appear, it isn't in loader mode — recheck the LDR pin and reset.
 4. **Download the firmware** from the [Downloads](downloads.mdx) page. Select the file in TinyCLR Config and click **Update Firmware**.
@@ -66,12 +78,9 @@ For manual firmware updates without TinyCLR Config, see the [GHI Electronics Boo
 
 ## Build your first project
 
-Let's get your IDE set up and the starter running. Pick the IDE you'd rather use — the steps switch to match. After the starter verifies, **both IDEs work the same** for everything that follows.
+Let's get Visual Studio set up and the starter running.
 
 ### Set up and run the starter
-
-<Tabs groupId="ide">
-<TabItem value="vs" label="Visual Studio" default>
 
 1. **Install Visual Studio 2026.** Any edition works, including the free [Community Edition](https://www.visualstudio.com/downloads/). During install, check the **.NET desktop development** workload.
 
@@ -87,27 +96,13 @@ Let's get your IDE set up and the starter running. Pick the IDE you'd rather use
 
 7. Plug your board into USB and hit **Start** (or press **F5**). Visual Studio compiles, finds your device, and deploys. (Need to pick the device manually? Use `Project` → `Properties`.) The template's starter code prints an incrementing counter to the **Output** window — confirming that your dev machine and the SITCore board are talking. Stop the program when you're satisfied.
 
-</TabItem>
-<TabItem value="vscode" label="VS Code">
-
-1. **Install [Visual Studio Code](https://code.visualstudio.com/)** if you don't already have it.
-
-2. **Install the TinyCLR extension.** Remember to click "Switch to Pre-Release Version" if desired. The extension adds TinyCLR commands to the Command Palette (`Ctrl+Shift+P`).
-
-3. Open the Command Palette (`Ctrl+Shift+P`) and run **TinyCLR: New Project**.
-
-4. Pick the **TinyCLR Application** template when prompted.
-
-5. Choose a folder and project name, then let the extension scaffold the project.
-
-6. Plug your board into USB and press **F5**. The extension finds the device (showing options in the Command Palette if more than one is attached), compiles, and deploys. The template's starter code prints an incrementing counter to the **Debug Console** — confirming that your dev machine and the SITCore board are talking. Stop the program when you're satisfied.
-
-</TabItem>
-</Tabs>
+:::tip[Using VS Code instead?]
+VS Code is fully supported, with its own TinyCLR project type — a project made in one IDE doesn't open in the other, so pick per project. The **[VS Code](tutorial/vscode.mdx)** page walks through creating a project and adding resources there. Everything after this section is identical in both.
+:::
 
 ### Blink an LED
 
-The steps below work the same in either IDE.
+From here on, the steps are the same whichever editor you use.
 
 1. Install the **`GHIElectronics.TinyCLR.Devices.Gpio`** and **`GHIElectronics.TinyCLR.Pins`** NuGet packages.
 

@@ -46,6 +46,8 @@ Keep an eye on the controller numbers — they matter in [Step 5](#step-5--one-c
 
 Create a new **TinyCLR Application** project and install the **`GHIElectronics.TinyCLR.Devices.Gpio`**, **`GHIElectronics.TinyCLR.Devices.Pwm`**, and **`GHIElectronics.TinyCLR.Pins`** NuGet packages.
 
+Need the steps? [Start Here](index.mdx#set-up-and-blink) covers creating a project and deploying.
+
 ## Step 2 — Wire the RGB LED
 
 The module has the three current-limiting resistors built in, so its color pins connect straight to your board. The three LEDs inside share one **cathode**, which is the module's **GND** pin — so each color turns on by driving its pin **high**.
@@ -369,3 +371,7 @@ The rule: **anything that needs its own frequency gets its own controller.** You
 ## Next
 
 **[Sound](sound.mdx)** — change the frequency instead of the duty cycle: make a piezo buzzer beep, sweep, and play a melody — on a controller of its own.
+
+---
+
+Something not working, or a step unclear? [Ask in the TinyCLR forum](https://forums.ghielectronics.com/c/tinyclr/12) — we read every post.
