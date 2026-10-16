@@ -27,8 +27,19 @@ About 45 minutes.
 - The [Digital Output](digital-output.mdx) circuit. We'll be moving a couple of the pins, consult the appropriate wiring diagram — the LED is reused here
 - From the kit:
   - 2× pushbuttons
-  - 1× 27 kΩ resistor (red · violet · orange)
+  - 1× 27 kΩ resistor — marked `27K` on the paper strip
   - Jumper wires
+
+<details>
+<summary>First time with these parts?</summary>
+
+- **LED** — the **longer leg** is the positive side (anode) and goes toward the pin; the shorter leg, next to the flat edge of the rim, goes toward GND. In backwards it just stays dark, so nothing is harmed.
+- **Resistor** — **no polarity**, so either way round works. The kit's resistors have **five** bands, while most charts online show four: 220 Ω is red · red · black · black · brown, and 27 kΩ is red · violet · black · red · brown.
+- **`220R` on the paper strip** means 220 Ω — the letter sits where the decimal point would go. `27K` is 27 kΩ.
+
+More in [Start Here → Parts you'll meet first](index.mdx#parts-youll-meet-first).
+
+</details>
 
 ## Pin reference
 
@@ -44,6 +55,8 @@ About 45 minutes.
 
 Create a new **TinyCLR Application** project and install the **`GHIElectronics.TinyCLR.Devices.Gpio`** and **`GHIElectronics.TinyCLR.Pins`** NuGet packages — the same as [Digital Output](digital-output.mdx#step-1--create-the-project).
 
+Need the steps? [Start Here](index.mdx#set-up-and-blink) covers creating a project and deploying.
+
 ## Step 2 — Wire a button with a pull-up resistor
 
 A pushbutton has **four legs** connected in pairs inside. Press it, and the two pairs connect to each other. The easy rule: **use two diagonally opposite legs** — they're always on opposite sides of the switch, whichever way the button is turned.
@@ -58,7 +71,7 @@ With USB **unplugged**:
 1. **Power rails.** Connect **3V3** to the breadboard's red **+** rail and **GND** to the blue **−** rail with pin-to-pin jumper wires. Later lessons use these rails too.
 2. **Button.** Push a button into the breadboard so it straddles the center gap.
 3. **Signal.** Connect **PB13** to the row of one button leg with a jumper wire.
-4. **Pull-up.** Plug the **27 kΩ resistor** from that same row to the **+** rail.
+4. **Pull-up.** Plug the **27 kΩ resistor** from that same row to the **+** rail — either way round, resistors have no polarity.
 5. **Ground.** Connect the row of the **diagonally opposite** button leg to the **−** rail.
 
 </TabItem>
@@ -69,7 +82,7 @@ With USB **unplugged**:
 1. **Power rails.** Connect the adapter's **3.3V** header pin to the breadboard's red **+** rail and a **GND** header pin to the blue **−** rail with pin-to-socket jumper wires. Later lessons use these rails too.
 2. **Button.** Push a button into the breadboard so it straddles the center gap.
 3. **Signal.** Connect header pin **P5** to the row of one button leg with a pin-to-socket jumper wire.
-4. **Pull-up.** Plug the **27 kΩ resistor** from that same row to the **+** rail.
+4. **Pull-up.** Plug the **27 kΩ resistor** from that same row to the **+** rail — either way round, resistors have no polarity.
 5. **Ground.** Connect the row of the **diagonally opposite** button leg to the **−** rail with a pin-to-pin jumper wire.
 
 </TabItem>
@@ -529,3 +542,7 @@ A **pull-down** is the mirror image: the resistor connects the pin to GND, the b
 ## Next
 
 **[Breathing LED](breathing-led.mdx)** — go beyond on and off: fade an LED smoothly with pulse-width modulation.
+
+---
+
+Something not working, or a step unclear? [Ask in the TinyCLR forum](https://forums.ghielectronics.com/c/tinyclr/12) — we read every post.
