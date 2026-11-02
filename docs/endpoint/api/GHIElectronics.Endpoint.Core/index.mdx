@@ -13,7 +13,6 @@ Core of the Endpoint libraries: board pin names and pin setup.
 | Class | Summary |
 |---|---|
 | [EPM815](./EPM815.mdx) | The EPM815 module: its pin names and the pin setup the other libraries use. Pin numbers are port * 16 + pin, with port Z after port I. |
-| [EPN256](./EPN256.mdx) | The EPN256 module: its pin names and the pin setup the other libraries use. Pin numbers are packed as `port * 16 + line`. Mirrors `Core.EPM815` so sample code reads the same shape across boards. |
 | [Events](./Events.mdx) | System event hooks used by the device libraries. Placeholder: the kernel log scanner that fed this class is parked; the class stays as the cross-library event sink for future use. |
 | [NativeRpmsgHelper](./NativeRpmsgHelper.mdx) | Low-level helper used by other libraries to talk to the firmware's hardware timing helper. Data is exchanged as 32-bit words in fixed-size blocks of `NativeRpmsgHelper.BlockSize` words. Most applications never call this directly; `Core.EPM815`-based classes such as `DigitalSignalController` use it internally. |
 | [NativeUtils](./NativeUtils.mdx) | Low-level helpers backed by the native `nativeutils.so` library: a CPU wait-for-interrupt and a hardware-assisted JPEG to RGB888 decoder. |

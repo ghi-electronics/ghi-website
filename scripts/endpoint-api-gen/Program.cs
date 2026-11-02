@@ -34,6 +34,15 @@ var skipAssemblies = new HashSet<string>(StringComparer.OrdinalIgnoreCase) {
     "GHIElectronics.Endpoint.Update",
 };
 
+// Individual top-level types intentionally hidden from the docs (and all
+// their nested types). Matched against the type's outermost enclosing class
+// name — e.g. "EPN256" hides EPN256, EPN256.Adc, EPN256.Gpio.Driver, etc.
+// EPN256 is the working name for the unreleased Nuvoton MA35D1 module;
+// remove this entry once the chip ships.
+var skipTopLevelTypes = new HashSet<string>(StringComparer.Ordinal) {
+    "EPN256",
+};
+
 // Discover DLLs: skip bin\Debug\...\ref\ and anything inside obj\
 var dllPaths = Directory.EnumerateFiles(libsRoot, "GHIElectronics.Endpoint.*.dll", SearchOption.AllDirectories)
     .Where(p => !p.Contains(Path.DirectorySeparatorChar + "obj" + Path.DirectorySeparatorChar))
@@ -58,7 +67,7 @@ using var loader = new Loader(dllPaths);
 var model = new List<AssemblyModel>();
 foreach (var asm in loader.LoadAll(dllPaths)) {
     var docs = loader.DocsFor(asm);
-    var am = BuildAssemblyModel(asm, docs, version);
+    var am = BuildAssemblyModel(asm, docs, version, skipTopLevelTypes);
     if (am != null) model.Add(am);
 }
 
@@ -87,7 +96,7 @@ Console.WriteLine($"[gen] wrote {typeCount} type pages ({docd} with a <summary>)
 return 0;
 
 // ──────────────────────────────────────────────────────────────────────────
-static AssemblyModel? BuildAssemblyModel(Assembly a, XmlDocReader? docs, string version) {
+static AssemblyModel? BuildAssemblyModel(Assembly a, XmlDocReader? docs, string version, HashSet<string> skipTopLevelTypes) {
     var name = a.GetName().Name;
     if (name == null || !name.StartsWith("GHIElectronics.Endpoint", StringComparison.Ordinal)) return null;
 
@@ -100,11 +109,20 @@ static AssemblyModel? BuildAssemblyModel(Assembly a, XmlDocReader? docs, string 
 
     foreach (var t in a.GetTypes()) {
         if (!IsPublicApiType(t)) continue;
+        if (skipTopLevelTypes.Contains(OutermostName(t))) continue;
         var tm = BuildTypeModel(t, docs);
         am.Types.Add(tm);
     }
     am.Types.Sort((x, y) => string.CompareOrdinal(x.Name, y.Name));
     return am;
+}
+
+// Name of the outermost enclosing type: "EPN256" for EPN256.Gpio.Driver, etc.
+// Used to skip a chip's entire type tree in one entry.
+static string OutermostName(Type t) {
+    var c = t;
+    while (c.DeclaringType is Type d) c = d;
+    return c.Name.Split('`')[0];
 }
 
 static bool IsPublicApiType(Type t) {
