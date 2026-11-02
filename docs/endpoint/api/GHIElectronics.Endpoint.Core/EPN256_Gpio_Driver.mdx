@@ -1,0 +1,398 @@
+---
+title: "EPN256.Gpio.Driver Class"
+sidebar_label: "EPN256.Gpio.Driver"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Driver Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+GPIO driver for .NET's `Gpio.GpioController` using the EPN256 pin numbers. Every pin mode, pull-up/down and pin change event of `Gpio.GpioController` works. One gpiochip is exposed per port (A ... N).
+
+```csharp
+public sealed class Driver : GpioDriver
+```
+
+## Constructors
+
+### Driver()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public Driver()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Driver();
+```
+
+</TabItem>
+</Tabs>
+
+## Properties
+
+### PinCount
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+protected int PinCount { }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+PinCount: int  # 
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+
+```
+
+</TabItem>
+</Tabs>
+
+**Returns** `int`
+
+## Methods
+
+### AddCallbackForPinValueChangedEvent(int pinNumber, PinEventTypes eventTypes, PinChangeEventHandler callback)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+protected override void AddCallbackForPinValueChangedEvent(int pinNumber, PinEventTypes eventTypes, PinChangeEventHandler callback)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def AddCallbackForPinValueChangedEvent(self, pinNumber: int, eventTypes: PinEventTypes, callback: PinChangeEventHandler) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+virtual void AddCallbackForPinValueChangedEvent(int32_t pinNumber, PinEventTypes eventTypes, const PinChangeEventHandler& callback) override;
+```
+
+</TabItem>
+</Tabs>
+
+### ClosePin(int pinNumber)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+protected override void ClosePin(int pinNumber)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def ClosePin(self, pinNumber: int) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+virtual void ClosePin(int32_t pinNumber) override;
+```
+
+</TabItem>
+</Tabs>
+
+### Dispose(bool disposing)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+protected override void Dispose(bool disposing)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def Dispose(self, disposing: bool) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+virtual void Dispose(bool disposing) override;
+```
+
+</TabItem>
+</Tabs>
+
+### GetPinMode(int pinNumber)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+protected override PinMode GetPinMode(int pinNumber)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def GetPinMode(self, pinNumber: int) -> PinMode:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+virtual PinMode GetPinMode(int32_t pinNumber) override;
+```
+
+</TabItem>
+</Tabs>
+
+**Returns** `PinMode`
+
+### IsPinModeSupported(int pinNumber, PinMode mode)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+protected override bool IsPinModeSupported(int pinNumber, PinMode mode)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def IsPinModeSupported(self, pinNumber: int, mode: PinMode) -> bool:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+virtual bool IsPinModeSupported(int32_t pinNumber, PinMode mode) override;
+```
+
+</TabItem>
+</Tabs>
+
+**Returns** `bool`
+
+### OpenPin(int pinNumber)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+protected override void OpenPin(int pinNumber)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def OpenPin(self, pinNumber: int) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+virtual void OpenPin(int32_t pinNumber) override;
+```
+
+</TabItem>
+</Tabs>
+
+### Read(int pinNumber)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+protected override PinValue Read(int pinNumber)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def Read(self, pinNumber: int) -> PinValue:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+virtual PinValue Read(int32_t pinNumber) override;
+```
+
+</TabItem>
+</Tabs>
+
+**Returns** `PinValue`
+
+### RemoveCallbackForPinValueChangedEvent(int pinNumber, PinChangeEventHandler callback)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+protected override void RemoveCallbackForPinValueChangedEvent(int pinNumber, PinChangeEventHandler callback)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def RemoveCallbackForPinValueChangedEvent(self, pinNumber: int, callback: PinChangeEventHandler) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+virtual void RemoveCallbackForPinValueChangedEvent(int32_t pinNumber, const PinChangeEventHandler& callback) override;
+```
+
+</TabItem>
+</Tabs>
+
+### SetPinMode(int pinNumber, PinMode mode)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+protected override void SetPinMode(int pinNumber, PinMode mode)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def SetPinMode(self, pinNumber: int, mode: PinMode) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+virtual void SetPinMode(int32_t pinNumber, PinMode mode) override;
+```
+
+</TabItem>
+</Tabs>
+
+### SetPinMode(int pinNumber, PinMode mode, PinValue initialValue)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+protected override void SetPinMode(int pinNumber, PinMode mode, PinValue initialValue)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def SetPinMode(self, pinNumber: int, mode: PinMode, initialValue: PinValue) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+virtual void SetPinMode(int32_t pinNumber, PinMode mode, PinValue initialValue) override;
+```
+
+</TabItem>
+</Tabs>
+
+### WaitForEvent(int pinNumber, PinEventTypes eventTypes, CancellationToken cancellationToken)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+protected override WaitForEventResult WaitForEvent(int pinNumber, PinEventTypes eventTypes, CancellationToken cancellationToken)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def WaitForEvent(self, pinNumber: int, eventTypes: PinEventTypes, cancellationToken: CancellationToken) -> WaitForEventResult:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+virtual WaitForEventResult WaitForEvent(int32_t pinNumber, PinEventTypes eventTypes, CancellationToken cancellationToken) override;
+```
+
+</TabItem>
+</Tabs>
+
+**Returns** `WaitForEventResult`
+
+### Write(int pinNumber, PinValue value)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+protected override void Write(int pinNumber, PinValue value)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def Write(self, pinNumber: int, value: PinValue) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+virtual void Write(int32_t pinNumber, PinValue value) override;
+```
+
+</TabItem>
+</Tabs>
+

@@ -1,0 +1,33 @@
+---
+title: "EPM815 Class"
+sidebar_label: "EPM815"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# EPM815 Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+The EPM815 module: its pin names and the pin setup the other libraries use. Pin numbers are port * 16 + pin, with port Z after port I.
+
+```csharp
+public static class EPM815
+```
+
+## Nested Types
+
+| Type | Kind | Summary |
+|---|---|---|
+| [EPM815.Adc](./EPM815_Adc.mdx) | Class | The analog inputs bundled with EPM815. Use with .NET's `System.Device.Analog` through the `GHIElectronics.Endpoint.Devices.Adc` package. |
+| [EPM815.Can](./EPM815_Can.mdx) | Class | The CAN ports bundled with EPM815. Use with .NET IoT's `CanRaw` (`Iot.Device.SocketCan`, which the `GHIElectronics.Endpoint.Devices.Can` package brings). `Can.Initialize` connects the port's pins, sets its bitrate and starts it; then use `CanRaw` as usual. Each constant is the port's name for `CanRaw`, fixed by the firmware. A port that goes bus-off after too many errors restarts by itself after 100 ms. |
+| [EPM815.Dac](./EPM815_Dac.mdx) | Class | The analog outputs bundled with EPM815. Use with the `GHIElectronics.Endpoint.Devices.Dac` package (same API as TinyCLR). |
+| [EPM815.Gpio](./EPM815_Gpio.mdx) | Class | GPIO pins and the register-level pin configuration (mode, alternate function, pull, speed, output type) for EPM815. Most applications should use the standard `Gpio.GpioController` through `Gpio.Driver`; the enums and setters here are for the low-level peripheral libraries in this package. |
+| [EPM815.I2c](./EPM815_I2c.mdx) | Class | The I2C buses bundled with EPM815. Use with .NET's `System.Device.I2c`. `I2c.Initialize` connects the bus's pins and sets its speed; then use `I2cDevice` as usual. Each constant is the bus number for `I2cConnectionSettings` (`/dev/i2c-N`), fixed by the firmware. |
+| [EPM815.Pwm](./EPM815_Pwm.mdx) | Class | PWM pins bundled with EPM815, for .NET's `System.Device.Pwm`. `Pwm.Initialize` connects the pin to its timer; `Pwm.GetChipId` and `Pwm.GetChannelId` give what `PwmChannel` needs. Channels of one timer share its frequency. |
+| [EPM815.SerialPort](./EPM815_SerialPort.mdx) | Class | The serial ports (UARTs) bundled with EPM815, for .NET's `System.IO.Ports`. `SerialPort.Initialize` connects the port's pins; then use `SerialPort` as usual. |
+| [EPM815.Spi](./EPM815_Spi.mdx) | Class | The SPI buses bundled with EPM815, for .NET's `System.Device.Spi`. `Spi.Initialize` connects the bus's pins and loads the SPI driver; then use `SpiDevice` as usual. Each constant is the bus number for `SpiConnectionSettings` (`/dev/spidevN.0`), fixed by the firmware. Chip select is not driven by the bus: use any GPIO pin. |
+| [EPM815.StorageController](./EPM815_StorageController.mdx) | Class | SD cards and USB drives on EPM815. Use with the `GHIElectronics.Endpoint.Devices.Storage` package. |
+| [EPM815.Watchdog](./EPM815_Watchdog.mdx) | Class | The watchdog bundled with EPM815. Use with the `GHIElectronics.Endpoint.Devices.Watchdog` package (same API as TinyCLR). |
+

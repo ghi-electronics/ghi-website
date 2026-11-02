@@ -1,0 +1,84 @@
+---
+title: "NativeUtils Class"
+sidebar_label: "NativeUtils"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# NativeUtils Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+Low-level helpers backed by the native `nativeutils.so` library: a CPU wait-for-interrupt and a hardware-assisted JPEG to RGB888 decoder.
+
+```csharp
+public static class NativeUtils
+```
+
+## Methods
+
+### JpegtoRGB888(byte[] src, int size, byte[] dest)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static void JpegtoRGB888(byte[] src, int size, byte[] dest)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def JpegtoRGB888(src: list[int], size: int, dest: list[int]) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static void JpegtoRGB888(const std::vector<uint8_t>& src, int32_t size, const std::vector<uint8_t>& dest);
+```
+
+</TabItem>
+</Tabs>
+
+Decodes a JPEG image to packed 24-bit RGB888 pixels. Uses the hardware JPEG decoder when the chip has one; otherwise a software decoder in the native library.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `src` | `byte[]` | JPEG-encoded bytes. |
+| `size` | `int` | Number of valid bytes in `src`. |
+| `dest` | `byte[]` | Destination buffer, large enough for width * height * 3 bytes. |
+
+### WaitForInterrupt()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static void WaitForInterrupt()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def WaitForInterrupt() -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static void WaitForInterrupt();
+```
+
+</TabItem>
+</Tabs>
+
+Blocks the calling thread with the ARM WFI (wait-for-interrupt) instruction. The core sleeps until the next interrupt is delivered.
+

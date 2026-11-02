@@ -1,0 +1,181 @@
+---
+title: "RawDevice.Pipe Class"
+sidebar_label: "RawDevice.Pipe"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Pipe Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
+
+A USB communication pipe.
+
+```csharp
+public class Pipe : IDisposable
+```
+
+## Properties
+
+### Endpoint
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public Endpoint Endpoint { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Endpoint: Endpoint  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Endpoint Endpoint() const;
+```
+
+</TabItem>
+</Tabs>
+
+Endpoint associated with this pipe.
+
+**Returns** `Endpoint`
+
+### TransferTimeout
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int TransferTimeout { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+TransferTimeout: int  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t TransferTimeout() const;
+void TransferTimeout(int32_t value);
+```
+
+</TabItem>
+</Tabs>
+
+The timeout for transfer operations in milliseconds (0: none). Defaults to 500ms.
+
+**Returns** `int`
+
+## Methods
+
+### Dispose()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public void Dispose()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def Dispose(self) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+void Dispose();
+```
+
+</TabItem>
+</Tabs>
+
+Closes the pipe.
+
+### Transfer(byte[] buffer, int offset, int count)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int Transfer(byte[] buffer, int offset, int count)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def Transfer(self, buffer: list[int], offset: int, count: int) -> int:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t Transfer(const std::vector<uint8_t>& buffer, int32_t offset, int32_t count);
+```
+
+</TabItem>
+</Tabs>
+
+Transfers data to/from the endpoint: an IN endpoint (address 0x80 and up) fills the buffer, an OUT endpoint sends it.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `buffer` | `byte[]` | The transfer buffer. |
+| `offset` | `int` | The offset into the buffer. |
+| `count` | `int` | The amount to transfer starting at offset from the buffer. |
+
+**Returns** `int` — The number of bytes successfully transferred.
+
+### Transfer(byte[] buffer)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int Transfer(byte[] buffer)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def Transfer(self, buffer: list[int]) -> int:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t Transfer(const std::vector<uint8_t>& buffer);
+```
+
+</TabItem>
+</Tabs>
+
+Transfers data to/from the endpoint.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `buffer` | `byte[]` | The transfer buffer. |
+
+**Returns** `int` — The number of bytes successfully transferred.
+

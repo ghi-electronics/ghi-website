@@ -1,0 +1,254 @@
+---
+title: "InputTouch Class"
+sidebar_label: "InputTouch"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# InputTouch Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Touch`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Touch`
+
+Touchscreen backed by a kernel input device at `/dev/input/eventN`. USB HID touchscreens show up this way automatically.
+
+```csharp
+public sealed class InputTouch : Touch
+```
+
+## Constructors
+
+### InputTouch(string deviceName)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public InputTouch(string deviceName)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self, deviceName: str):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+InputTouch(const std::string& deviceName);
+```
+
+</TabItem>
+</Tabs>
+
+Opens a specific /dev/input/eventN path.
+
+## Properties
+
+### Connected
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public bool Connected { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Connected: bool  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+bool Connected() const;
+```
+
+</TabItem>
+</Tabs>
+
+**Returns** `bool`
+
+### DeviceName
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public string DeviceName { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+DeviceName: str  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+std::string DeviceName() const;
+```
+
+</TabItem>
+</Tabs>
+
+The `/dev/input/eventN` path the touchscreen was opened on.
+
+**Returns** `string`
+
+### Height
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int Height { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Height: int  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t Height() const;
+```
+
+</TabItem>
+</Tabs>
+
+**Returns** `int`
+
+### ProductId
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int ProductId { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+ProductId: int  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t ProductId() const;
+```
+
+</TabItem>
+</Tabs>
+
+USB product id (0 if the touchscreen is not a USB device).
+
+**Returns** `int`
+
+### VendorId
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int VendorId { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+VendorId: int  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t VendorId() const;
+```
+
+</TabItem>
+</Tabs>
+
+USB vendor id (0 if the touchscreen is not a USB device).
+
+**Returns** `int`
+
+### Width
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int Width { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Width: int  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t Width() const;
+```
+
+</TabItem>
+</Tabs>
+
+**Returns** `int`
+
+## Methods
+
+### Dispose()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public override void Dispose()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def Dispose(self) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+virtual void Dispose() override;
+```
+
+</TabItem>
+</Tabs>
+
+Closes the kernel input device and stops the reader thread.
+

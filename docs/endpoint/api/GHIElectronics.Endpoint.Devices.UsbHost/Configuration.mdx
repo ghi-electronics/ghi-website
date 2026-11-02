@@ -1,0 +1,428 @@
+---
+title: "Configuration Class"
+sidebar_label: "Configuration"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Configuration Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost.Descriptors`
+
+Configuration descriptor.
+
+```csharp
+public class Configuration : BaseDescriptor
+```
+
+## Constructors
+
+### Configuration(byte[] buffer)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public Configuration(byte[] buffer)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self, buffer: list[int]):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Configuration(const std::vector<uint8_t>& buffer);
+```
+
+</TabItem>
+</Tabs>
+
+Constructs a new descriptor.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `buffer` | `byte[]` | The buffer with which to populate the descriptor. |
+
+### Configuration(byte[] buffer, int offset)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public Configuration(byte[] buffer, int offset)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self, buffer: list[int], offset: int):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Configuration(const std::vector<uint8_t>& buffer, int32_t offset);
+```
+
+</TabItem>
+</Tabs>
+
+Constructs a new descriptor.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `buffer` | `byte[]` | The buffer with which to populate the descriptor. |
+| `offset` | `int` | The offset into the buffer at which to start. |
+
+### Configuration()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+protected Configuration()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Configuration();
+```
+
+</TabItem>
+</Tabs>
+
+Constructs a new descriptor.
+
+## Properties
+
+### Attributes
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public byte Attributes { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Attributes: int  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+uint8_t Attributes() const;
+void Attributes(uint8_t value);
+```
+
+</TabItem>
+</Tabs>
+
+A bitmap representing the attributes of the device.
+
+**Returns** `byte`
+
+### AuxiliaryDescriptors
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public Auxiliary[] AuxiliaryDescriptors { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+AuxiliaryDescriptors: list[Auxiliary]  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+std::vector<Auxiliary> AuxiliaryDescriptors() const;
+void AuxiliaryDescriptors(std::vector<Auxiliary> value);
+```
+
+</TabItem>
+</Tabs>
+
+Child auxiliary descriptors.
+
+**Returns** `Auxiliary[]`
+
+### Index
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public byte Index { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Index: int  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+uint8_t Index() const;
+void Index(uint8_t value);
+```
+
+</TabItem>
+</Tabs>
+
+The configuration string descriptor index.
+
+**Returns** `byte`
+
+### Interfaces
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public Interface[] Interfaces { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Interfaces: list[Interface]  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+std::vector<Interface> Interfaces() const;
+void Interfaces(std::vector<Interface> value);
+```
+
+</TabItem>
+</Tabs>
+
+Child interface descriptors.
+
+**Returns** `Interface[]`
+
+### MaxPower
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public byte MaxPower { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+MaxPower: int  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+uint8_t MaxPower() const;
+void MaxPower(uint8_t value);
+```
+
+</TabItem>
+</Tabs>
+
+The maximum power consumption in 2mA units.
+
+**Returns** `byte`
+
+### NumberOfInterfaces
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public byte NumberOfInterfaces { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+NumberOfInterfaces: int  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+uint8_t NumberOfInterfaces() const;
+void NumberOfInterfaces(uint8_t value);
+```
+
+</TabItem>
+</Tabs>
+
+The number of interfaces.
+
+**Returns** `byte`
+
+### TotalLength
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public ushort TotalLength { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+TotalLength: int  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+uint16_t TotalLength() const;
+void TotalLength(uint16_t value);
+```
+
+</TabItem>
+</Tabs>
+
+Total length of the the data returned in bytes.
+
+**Returns** `ushort`
+
+### Value
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public byte Value { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Value: int  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+uint8_t Value() const;
+void Value(uint8_t value);
+```
+
+</TabItem>
+</Tabs>
+
+The value to be used as an argument to select this configuration.
+
+**Returns** `byte`
+
+## Methods
+
+### FillChildren(byte[] bytes, int offset)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public void FillChildren(byte[] bytes, int offset)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def FillChildren(self, bytes: list[int], offset: int) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+void FillChildren(const std::vector<uint8_t>& bytes, int32_t offset);
+```
+
+</TabItem>
+</Tabs>
+
+Walks a config-descriptor blob from `offset` to the end and fills `Configuration.Interfaces`, the nested endpoints, and `Configuration.AuxiliaryDescriptors`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `bytes` | `byte[]` | The full configuration-descriptor blob (length = `Configuration.TotalLength`). |
+| `offset` | `int` | Byte offset to start parsing children — typically `Configuration.FixedLength` when the blob starts with the configuration header. |
+
+## Fields
+
+### FixedLength
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public const byte FixedLength = 9
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+FixedLength: int = 9
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static constexpr uint8_t FixedLength = 9;
+```
+
+</TabItem>
+</Tabs>
+
+The fixed length of this descriptor type in bytes.
+

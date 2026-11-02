@@ -1,0 +1,110 @@
+---
+title: "Mouse.ButtonChangedEventArgs Class"
+sidebar_label: "Mouse.ButtonChangedEventArgs"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# ButtonChangedEventArgs Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
+
+The events args for the ButtonPressed and ButtonReleased events.
+
+```csharp
+public class ButtonChangedEventArgs : EventArgs
+```
+
+## Constructors
+
+### ButtonChangedEventArgs()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public ButtonChangedEventArgs()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+ButtonChangedEventArgs();
+```
+
+</TabItem>
+</Tabs>
+
+## Properties
+
+### State
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public ButtonState State { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+State: ButtonState  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+ButtonState State() const;
+void State(ButtonState value);
+```
+
+</TabItem>
+</Tabs>
+
+The new state of the button.
+
+**Returns** `ButtonState`
+
+### Which
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public Buttons Which { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Which: Buttons  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Buttons Which() const;
+void Which(Buttons value);
+```
+
+</TabItem>
+</Tabs>
+
+Which button changed its state.
+
+**Returns** `Buttons`
+

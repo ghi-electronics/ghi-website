@@ -1,0 +1,300 @@
+---
+title: "Endpoint Class"
+sidebar_label: "Endpoint"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Endpoint Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost.Descriptors`
+
+Endpoint descriptor.
+
+```csharp
+public class Endpoint : BaseDescriptor
+```
+
+## Constructors
+
+### Endpoint(byte[] buffer)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public Endpoint(byte[] buffer)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self, buffer: list[int]):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Endpoint(const std::vector<uint8_t>& buffer);
+```
+
+</TabItem>
+</Tabs>
+
+Constructs a new descriptor.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `buffer` | `byte[]` | The buffer with which to populate the descriptor. |
+
+### Endpoint(byte[] buffer, int offset)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public Endpoint(byte[] buffer, int offset)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self, buffer: list[int], offset: int):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Endpoint(const std::vector<uint8_t>& buffer, int32_t offset);
+```
+
+</TabItem>
+</Tabs>
+
+Constructs a new descriptor.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `buffer` | `byte[]` | The buffer with which to populate the descriptor. |
+| `offset` | `int` | The offset into the buffer at which to start. |
+
+### Endpoint()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+protected Endpoint()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Endpoint();
+```
+
+</TabItem>
+</Tabs>
+
+Constructs a new descriptor.
+
+## Properties
+
+### Address
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public byte Address { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Address: int  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+uint8_t Address() const;
+void Address(uint8_t value);
+```
+
+</TabItem>
+</Tabs>
+
+The endpoint address.
+
+**Returns** `byte`
+
+### Attributes
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public byte Attributes { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Attributes: int  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+uint8_t Attributes() const;
+void Attributes(uint8_t value);
+```
+
+</TabItem>
+</Tabs>
+
+The attributes of the endpoint.
+
+**Returns** `byte`
+
+### AuxiliaryDescriptors
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public Auxiliary[] AuxiliaryDescriptors { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+AuxiliaryDescriptors: list[Auxiliary]  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+std::vector<Auxiliary> AuxiliaryDescriptors() const;
+void AuxiliaryDescriptors(std::vector<Auxiliary> value);
+```
+
+</TabItem>
+</Tabs>
+
+Child auxiliary descriptors.
+
+**Returns** `Auxiliary[]`
+
+### Interval
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public byte Interval { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Interval: int  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+uint8_t Interval() const;
+void Interval(uint8_t value);
+```
+
+</TabItem>
+</Tabs>
+
+The interval for data transfer pooling in frame counts.
+
+**Returns** `byte`
+
+### MaximumPacketSize
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public ushort MaximumPacketSize { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+MaximumPacketSize: int  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+uint16_t MaximumPacketSize() const;
+void MaximumPacketSize(uint16_t value);
+```
+
+</TabItem>
+</Tabs>
+
+The maximum packet size this endpoint can transmit.
+
+**Returns** `ushort`
+
+## Fields
+
+### FixedLength
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public const byte FixedLength = 7
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+FixedLength: int = 7
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static constexpr uint8_t FixedLength = 7;
+```
+
+</TabItem>
+</Tabs>
+
+The fixed length of this descriptor type in bytes.
+

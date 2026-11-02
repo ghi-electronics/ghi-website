@@ -1,0 +1,115 @@
+---
+title: "TouchEventArgs Class"
+sidebar_label: "TouchEventArgs"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# TouchEventArgs Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Touch`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Touch`
+
+Event data for `Touch.OnChangedEvent`: how the fingers changed since the last event.
+
+```csharp
+public sealed class TouchEventArgs : EventArgs
+```
+
+## Constructors
+
+### TouchEventArgs(TouchEventType eventType, TouchPoint[] points)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public TouchEventArgs(TouchEventType eventType, TouchPoint[] points)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self, eventType: TouchEventType, points: list[TouchPoint]):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+TouchEventArgs(TouchEventType eventType, const std::vector<TouchPoint>& points);
+```
+
+</TabItem>
+</Tabs>
+
+Builds a touch-event payload.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `eventType` | `TouchEventType` | What changed (pressed, moved, released). |
+| `points` | `TouchPoint[]` | Every finger currently on the screen; empty when `eventType` is `TouchEventType.Released`. |
+
+## Properties
+
+### EventType
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public TouchEventType EventType { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+EventType: TouchEventType  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+TouchEventType EventType() const;
+```
+
+</TabItem>
+</Tabs>
+
+Kind of change this event represents.
+
+**Returns** `TouchEventType`
+
+### Points
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public TouchPoint[] Points { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Points: list[TouchPoint]  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+std::vector<TouchPoint> Points() const;
+```
+
+</TabItem>
+</Tabs>
+
+Every finger currently on the screen. Empty for Released.
+
+**Returns** `TouchPoint[]`
+

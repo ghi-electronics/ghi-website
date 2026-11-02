@@ -1,0 +1,141 @@
+---
+title: "BacklightSettings Class"
+sidebar_label: "BacklightSettings"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# BacklightSettings Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Display`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Display`
+
+GPIO pin that drives the panel's backlight.
+
+```csharp
+public sealed class BacklightSettings
+```
+
+## Constructors
+
+### BacklightSettings()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public BacklightSettings()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+BacklightSettings();
+```
+
+</TabItem>
+</Tabs>
+
+## Properties
+
+### ActivePolarity
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public SignalPolarity ActivePolarity { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+ActivePolarity: SignalPolarity  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+SignalPolarity ActivePolarity() const;
+void ActivePolarity(SignalPolarity value);
+```
+
+</TabItem>
+</Tabs>
+
+Which GPIO level turns the backlight ON. ActiveHigh (default) = pulled high to light the panel. ActiveLow is common when the pin drives the gate of a PNP transistor.
+
+**Returns** `SignalPolarity`
+
+### GpioChip
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public string GpioChip { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+GpioChip: str  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+std::string GpioChip() const;
+void GpioChip(std::string value);
+```
+
+</TabItem>
+</Tabs>
+
+Gpiochip name as the kernel exposes it (e.g. "gpiochip7").
+
+**Returns** `string`
+
+### GpioPin
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public Nullable<int> GpioPin { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+GpioPin: Nullable[int]  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Nullable<int32_t> GpioPin() const;
+void GpioPin(Nullable<int32_t> value);
+```
+
+</TabItem>
+</Tabs>
+
+Line number on the chip.
+
+**Returns** `Nullable<int>`
+

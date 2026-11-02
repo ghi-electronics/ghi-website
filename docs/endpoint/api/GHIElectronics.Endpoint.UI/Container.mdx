@@ -1,0 +1,52 @@
+---
+title: "Container Class"
+sidebar_label: "Container"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Container Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Groups child widgets. Children are positioned relative to the container.
+
+```csharp
+public class Container : Widget
+```
+
+## Constructors
+
+### Container(Widget parent)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public Container(Widget parent)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self, parent: Widget):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Container(const Widget& parent);
+```
+
+</TabItem>
+</Tabs>
+
+Create a container inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+

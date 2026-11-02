@@ -1,0 +1,172 @@
+---
+title: "CameraConfiguration Class"
+sidebar_label: "CameraConfiguration"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# CameraConfiguration Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Camera`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Camera`
+
+Resolution, pixel format and frame rate requested from a camera.
+
+```csharp
+public class CameraConfiguration
+```
+
+## Constructors
+
+### CameraConfiguration()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public CameraConfiguration()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+CameraConfiguration();
+```
+
+</TabItem>
+</Tabs>
+
+## Properties
+
+### FrameRate
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int FrameRate { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+FrameRate: int  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t FrameRate() const;
+void FrameRate(int32_t value);
+```
+
+</TabItem>
+</Tabs>
+
+Target frame rate in frames per second. Defaults to 15.
+
+**Returns** `int`
+
+### Height
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int Height { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Height: int  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t Height() const;
+void Height(int32_t value);
+```
+
+</TabItem>
+</Tabs>
+
+Frame height in pixels.
+
+**Returns** `int`
+
+### ImageFormat
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public PixelFormat ImageFormat { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+ImageFormat: PixelFormat  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+PixelFormat ImageFormat() const;
+void ImageFormat(PixelFormat value);
+```
+
+</TabItem>
+</Tabs>
+
+Pixel format each frame is delivered in. Defaults to `PixelFormat.Rgb565`.
+
+**Returns** `PixelFormat`
+
+### Width
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int Width { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Width: int  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t Width() const;
+void Width(int32_t value);
+```
+
+</TabItem>
+</Tabs>
+
+Frame width in pixels.
+
+**Returns** `int`
+

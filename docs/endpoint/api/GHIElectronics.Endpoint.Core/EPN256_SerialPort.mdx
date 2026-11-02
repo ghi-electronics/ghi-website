@@ -1,0 +1,168 @@
+---
+title: "EPN256.SerialPort Class"
+sidebar_label: "EPN256.SerialPort"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# SerialPort Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+The user-facing serial ports (UARTs) bundled with EPN256, for `System.IO.Ports.SerialPort`. The console UART is reserved for the kernel and not exposed here. The three ports below have stable names, so `SerialPort.Uart11` is always `/dev/ttyS11`. `SerialPort.Initialize` brings up the UART, claiming its TX / RX pins; `SerialPort.UnInitialize` returns them to free GPIO. Both are safe to call multiple times; the first `SerialPort.Initialize` does the work and the matching `SerialPort.UnInitialize` undoes it.
+
+```csharp
+public static class SerialPort
+```
+
+## Methods
+
+### Initialize(string device)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static void Initialize(string device)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def Initialize(device: str) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static void Initialize(const std::string& device);
+```
+
+</TabItem>
+</Tabs>
+
+Brings up the UART so its TX / RX pins are muxed and `/dev/ttyS<N>` becomes writable.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `device` | `string` | One of `SerialPort.Uart11`, `SerialPort.Uart12`, `SerialPort.Uart14`. |
+
+### UnInitialize(string device)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static void UnInitialize(string device)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def UnInitialize(device: str) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static void UnInitialize(const std::string& device);
+```
+
+</TabItem>
+</Tabs>
+
+Tears down the UART and releases the TX / RX pins back to free GPIO. Reverses `SerialPort.Initialize`; call once per `SerialPort.Initialize`.
+
+## Fields
+
+### Uart11
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public const string Uart11 = "/dev/ttyS11"
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Uart11: str = "/dev/ttyS11"
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static constexpr std::string Uart11 = "/dev/ttyS11";
+```
+
+</TabItem>
+</Tabs>
+
+UART11: PB2 (TX), PB3 (RX); /dev/ttyS11
+
+### Uart12
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public const string Uart12 = "/dev/ttyS12"
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Uart12: str = "/dev/ttyS12"
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static constexpr std::string Uart12 = "/dev/ttyS12";
+```
+
+</TabItem>
+</Tabs>
+
+UART12: PK1 (TX), PK0 (RX); /dev/ttyS12
+
+### Uart14
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public const string Uart14 = "/dev/ttyS14"
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Uart14: str = "/dev/ttyS14"
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static constexpr std::string Uart14 = "/dev/ttyS14";
+```
+
+</TabItem>
+</Tabs>
+
+UART14: PK14 (TX), PK15 (RX); /dev/ttyS14
+

@@ -1,0 +1,16 @@
+---
+title: "GHIElectronics.Endpoint.Devices.Sound"
+hide_title: true
+sidebar_label: Overview
+---
+
+<h1 className="api-package-heading">GHIElectronics.Endpoint.Devices.Sound</h1>
+
+Play and record WAV / MP3 on any sound card of the board, with the API of .NET IoT's SoundDevice (Iot.Device.Media).
+
+## Classes
+
+| Class | Summary |
+|---|---|
+| [SoundDeviceExtensions](./SoundDeviceExtensions.mdx) | MP3 for .NET IoT's `SoundDevice` (`Iot.Device.Media`), which plays and records WAV, and sets the volume, on any sound card of the board. A USB sound card is `"hw:1"` (the `DeviceName` of its `UsbHostController` event); with more than one card, give it as `PlaybackDeviceName = "plughw:1"` (the "plug" converts any WAV to what the card plays) and `MixerDeviceName = "hw:1"`. `SoundDevice.Create(settings)` turns the sound on with the card's first control: on a card whose first control has no playback switch it throws ("Set playback mute error"); then use `SoundDevice.Create(settings, false)`. |
+

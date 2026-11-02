@@ -1,0 +1,371 @@
+---
+title: "EPM815.Gpio Class"
+sidebar_label: "EPM815.Gpio"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Gpio Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+GPIO pins and the register-level pin configuration (mode, alternate function, pull, speed, output type) for EPM815. Most applications should use the standard `Gpio.GpioController` through `Gpio.Driver`; the enums and setters here are for the low-level peripheral libraries in this package.
+
+```csharp
+public static class Gpio
+```
+
+## Nested Types
+
+| Type | Kind | Summary |
+|---|---|---|
+| [EPM815.Gpio.Alternate](./EPM815_Gpio_Alternate.mdx) | Enum | Alternate functions AF0..AF15 for the pin's AFRL / AFRH register. |
+| [EPM815.Gpio.Driver](./EPM815_Gpio_Driver.mdx) | Class | GPIO driver for .NET's `Gpio.GpioController` using the EPM815 pin numbers, on every port. Open pins are reserved so the other libraries (I2C, UART, ...) cannot take them by mistake. Every pin mode, pull-up/down and pin change event of `Gpio.GpioController` works. |
+| [EPM815.Gpio.Edge](./EPM815_Gpio_Edge.mdx) | Enum | Edge-trigger direction for pin change events. |
+| [EPM815.Gpio.Moder](./EPM815_Gpio_Moder.mdx) | Enum | Values for the GPIO MODER register. |
+| [EPM815.Gpio.OutputType](./EPM815_Gpio_OutputType.mdx) | Enum | Values for the GPIO OTYPER register. |
+| [EPM815.Gpio.Pin](./EPM815_Gpio_Pin.mdx) | Class | The EPM815's pins (ports A to I and Z) |
+| [EPM815.Gpio.Port](./EPM815_Gpio_Port.mdx) | Enum | GPIO ports on EPM815 (A..I plus the always-on Z bank). |
+| [EPM815.Gpio.Pull](./EPM815_Gpio_Pull.mdx) | Enum | Values for the GPIO PUPDR register. |
+| [EPM815.Gpio.Speed](./EPM815_Gpio_Speed.mdx) | Enum | Values for the GPIO OSPEEDR register (slew rate). |
+
+## Methods
+
+### GetPin(int pin)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static int GetPin(int pin)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def GetPin(pin: int) -> int:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static int32_t GetPin(int32_t pin);
+```
+
+</TabItem>
+</Tabs>
+
+The line within the port for the pin (0 to 15).
+
+**Returns** `int`
+
+### GetPort(int pin)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static int GetPort(int pin)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def GetPort(pin: int) -> int:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static int32_t GetPort(int32_t pin);
+```
+
+</TabItem>
+</Tabs>
+
+The port index for the pin (0 = A ... 8 = I; 9 = Z).
+
+**Returns** `int`
+
+### IsPinReserved(int pin)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static bool IsPinReserved(int pin)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def IsPinReserved(pin: int) -> bool:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static bool IsPinReserved(int32_t pin);
+```
+
+</TabItem>
+</Tabs>
+
+True if the pin is currently reserved (by the app or by any library).
+
+**Returns** `bool`
+
+### Name(int pin)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static string Name(int pin)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def Name(pin: int) -> str:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static std::string Name(int32_t pin);
+```
+
+</TabItem>
+</Tabs>
+
+The pin's name, for example "PC0"
+
+**Returns** `string`
+
+### PinRelease(int pin)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static void PinRelease(int pin)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def PinRelease(pin: int) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static void PinRelease(int32_t pin);
+```
+
+</TabItem>
+</Tabs>
+
+Releases a reservation made with `Gpio.PinReserve`.
+
+### PinReserve(int pin)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static void PinReserve(int pin)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def PinReserve(pin: int) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static void PinReserve(int32_t pin);
+```
+
+</TabItem>
+</Tabs>
+
+Marks the pin as used by the app, so the libraries do not use it too
+
+### SetAlternate(int pin, Alternate alternate)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static void SetAlternate(int pin, Alternate alternate)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def SetAlternate(pin: int, alternate: Alternate) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static void SetAlternate(int32_t pin, Alternate alternate);
+```
+
+</TabItem>
+</Tabs>
+
+Writes the pin's alternate function (AFRL / AFRH).
+
+| Parameter | Type | Description |
+|---|---|---|
+| `pin` | `int` | EPM815 pin number. |
+| `alternate` | `Alternate` | The AF to select; `Alternate.NONE` is not allowed. |
+
+### SetModer(int pin, Moder moder)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static void SetModer(int pin, Moder moder)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def SetModer(pin: int, moder: Moder) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static void SetModer(int32_t pin, Moder moder);
+```
+
+</TabItem>
+</Tabs>
+
+Writes the pin's MODER register field.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `pin` | `int` | EPM815 pin number. |
+| `moder` | `Moder` | The mode to apply; `Moder.NONE` is not allowed. |
+
+### SetOutputType(int pin, OutputType type)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static void SetOutputType(int pin, OutputType type)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def SetOutputType(pin: int, type: OutputType) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static void SetOutputType(int32_t pin, OutputType type);
+```
+
+</TabItem>
+</Tabs>
+
+Writes the pin's OTYPER register bit (push-pull or open-drain).
+
+### SetPull(int pin, Pull pull)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static void SetPull(int pin, Pull pull)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def SetPull(pin: int, pull: Pull) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static void SetPull(int32_t pin, Pull pull);
+```
+
+</TabItem>
+</Tabs>
+
+Writes the pin's PUPDR register field (pull-up / pull-down).
+
+### SetSpeed(int pin, Speed speed)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static void SetSpeed(int pin, Speed speed)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def SetSpeed(pin: int, speed: Speed) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static void SetSpeed(int32_t pin, Speed speed);
+```
+
+</TabItem>
+</Tabs>
+
+Writes the pin's OSPEEDR register field (slew rate).
+

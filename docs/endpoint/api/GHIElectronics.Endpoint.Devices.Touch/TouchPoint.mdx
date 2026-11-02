@@ -1,0 +1,146 @@
+---
+title: "TouchPoint Struct"
+sidebar_label: "TouchPoint"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# TouchPoint Struct
+
+**Package:** `GHIElectronics.Endpoint.Devices.Touch`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Touch`
+
+One finger on the touchscreen.
+
+```csharp
+public struct TouchPoint
+```
+
+## Constructors
+
+### TouchPoint(int id, int x, int y)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public TouchPoint(int id, int x, int y)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self, id: int, x: int, y: int):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+TouchPoint(int32_t id, int32_t x, int32_t y);
+```
+
+</TabItem>
+</Tabs>
+
+Builds a touch point.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `id` | `int` | Tracking id, stable per finger across moves within one gesture. |
+| `x` | `int` | X coordinate in pixels, 0 at the left of the panel. |
+| `y` | `int` | Y coordinate in pixels, 0 at the top of the panel. |
+
+## Properties
+
+### Id
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int Id { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Id: int  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t Id() const;
+```
+
+</TabItem>
+</Tabs>
+
+Tracking ID, stable per finger across moves within one gesture.
+
+**Returns** `int`
+
+### X
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int X { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+X: int  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t X() const;
+```
+
+</TabItem>
+</Tabs>
+
+X coordinate in pixels, 0 at the left of the panel.
+
+**Returns** `int`
+
+### Y
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int Y { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Y: int  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t Y() const;
+```
+
+</TabItem>
+</Tabs>
+
+Y coordinate in pixels, 0 at the top of the panel.
+
+**Returns** `int`
+

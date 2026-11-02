@@ -1,0 +1,424 @@
+---
+title: "Interface Class"
+sidebar_label: "Interface"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Interface Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost.Descriptors`
+
+Interface descriptor.
+
+```csharp
+public class Interface : BaseDescriptor
+```
+
+## Constructors
+
+### Interface(byte[] buffer)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public Interface(byte[] buffer)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self, buffer: list[int]):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Interface(const std::vector<uint8_t>& buffer);
+```
+
+</TabItem>
+</Tabs>
+
+Constructs a new descriptor.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `buffer` | `byte[]` | The buffer with which to populate the descriptor. |
+
+### Interface(byte[] buffer, int offset)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public Interface(byte[] buffer, int offset)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self, buffer: list[int], offset: int):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Interface(const std::vector<uint8_t>& buffer, int32_t offset);
+```
+
+</TabItem>
+</Tabs>
+
+Constructs a new descriptor.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `buffer` | `byte[]` | The buffer with which to populate the descriptor. |
+| `offset` | `int` | The offset into the buffer at which to start. |
+
+### Interface()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+protected Interface()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Interface();
+```
+
+</TabItem>
+</Tabs>
+
+Constructs a new descriptor.
+
+## Properties
+
+### AlternateSetting
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public byte AlternateSetting { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+AlternateSetting: int  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+uint8_t AlternateSetting() const;
+void AlternateSetting(uint8_t value);
+```
+
+</TabItem>
+</Tabs>
+
+The value used to select alternate settings.
+
+**Returns** `byte`
+
+### AuxiliaryDescriptors
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public Auxiliary[] AuxiliaryDescriptors { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+AuxiliaryDescriptors: list[Auxiliary]  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+std::vector<Auxiliary> AuxiliaryDescriptors() const;
+void AuxiliaryDescriptors(std::vector<Auxiliary> value);
+```
+
+</TabItem>
+</Tabs>
+
+Child auxiliary descriptors.
+
+**Returns** `Auxiliary[]`
+
+### ClassCode
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public byte ClassCode { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+ClassCode: int  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+uint8_t ClassCode() const;
+void ClassCode(uint8_t value);
+```
+
+</TabItem>
+</Tabs>
+
+The class code.
+
+**Returns** `byte`
+
+### Endpoints
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public Endpoint[] Endpoints { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Endpoints: list[Endpoint]  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+std::vector<Endpoint> Endpoints() const;
+void Endpoints(std::vector<Endpoint> value);
+```
+
+</TabItem>
+</Tabs>
+
+Child endpoint descriptors.
+
+**Returns** `Endpoint[]`
+
+### Index
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public byte Index { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Index: int  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+uint8_t Index() const;
+void Index(uint8_t value);
+```
+
+</TabItem>
+</Tabs>
+
+The interface string descriptor index.
+
+**Returns** `byte`
+
+### Number
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public byte Number { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Number: int  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+uint8_t Number() const;
+void Number(uint8_t value);
+```
+
+</TabItem>
+</Tabs>
+
+The number of the interface.
+
+**Returns** `byte`
+
+### NumberEndpoints
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public byte NumberEndpoints { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+NumberEndpoints: int  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+uint8_t NumberEndpoints() const;
+void NumberEndpoints(uint8_t value);
+```
+
+</TabItem>
+</Tabs>
+
+The number of endpoints for this interface.
+
+**Returns** `byte`
+
+### ProtocolCode
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public byte ProtocolCode { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+ProtocolCode: int  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+uint8_t ProtocolCode() const;
+void ProtocolCode(uint8_t value);
+```
+
+</TabItem>
+</Tabs>
+
+The protocal code.
+
+**Returns** `byte`
+
+### SubclassCode
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public byte SubclassCode { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+SubclassCode: int  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+uint8_t SubclassCode() const;
+void SubclassCode(uint8_t value);
+```
+
+</TabItem>
+</Tabs>
+
+The subclass code.
+
+**Returns** `byte`
+
+## Fields
+
+### FixedLength
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public const byte FixedLength = 9
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+FixedLength: int = 9
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static constexpr uint8_t FixedLength = 9;
+```
+
+</TabItem>
+</Tabs>
+
+The fixed length of this descriptor type in bytes.
+

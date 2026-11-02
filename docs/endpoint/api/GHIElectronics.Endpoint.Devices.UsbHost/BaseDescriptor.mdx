@@ -1,0 +1,117 @@
+---
+title: "BaseDescriptor Class"
+sidebar_label: "BaseDescriptor"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# BaseDescriptor Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost.Descriptors`
+
+The base USB descriptor.
+
+```csharp
+public class BaseDescriptor
+```
+
+## Constructors
+
+### BaseDescriptor(DescriptorType type, byte length)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+protected BaseDescriptor(DescriptorType type, byte length)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self, type: DescriptorType, length: int):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+BaseDescriptor(DescriptorType type, uint8_t length);
+```
+
+</TabItem>
+</Tabs>
+
+Creates a new base descriptor
+
+| Parameter | Type | Description |
+|---|---|---|
+| `type` | `DescriptorType` | The type of the derived descriptor |
+| `length` | `byte` | The length of the descriptor. |
+
+## Properties
+
+### Length
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public byte Length { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Length: int  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+uint8_t Length() const;
+void Length(uint8_t value);
+```
+
+</TabItem>
+</Tabs>
+
+Length of descriptor in bytes.
+
+**Returns** `byte`
+
+### Type
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public DescriptorType Type { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Type: DescriptorType  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+DescriptorType Type() const;
+void Type(DescriptorType value);
+```
+
+</TabItem>
+</Tabs>
+
+The type of the descriptor.
+
+**Returns** `DescriptorType`
+

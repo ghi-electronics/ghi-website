@@ -1,0 +1,146 @@
+---
+title: "CheckBox Class"
+sidebar_label: "CheckBox"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# CheckBox Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Two-state check box with a label. `CheckBox.ValueChanged` fires on each toggle.
+
+```csharp
+public class CheckBox : Widget
+```
+
+## Constructors
+
+### CheckBox(Widget parent)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public CheckBox(Widget parent)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self, parent: Widget):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+CheckBox(const Widget& parent);
+```
+
+</TabItem>
+</Tabs>
+
+Create a check box inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Properties
+
+### IsChecked
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public bool IsChecked { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+IsChecked: bool  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+bool IsChecked() const;
+void IsChecked(bool value);
+```
+
+</TabItem>
+</Tabs>
+
+Checked state. Read-back is supported by LVGL.
+
+**Returns** `bool`
+
+### Text
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public string Text { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Text: str  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+std::string Text() const;
+void Text(std::string value);
+```
+
+</TabItem>
+</Tabs>
+
+Label text shown next to the check box. `null` is treated as empty. Getter returns the last value set.
+
+**Returns** `string`
+
+## Events
+
+### ValueChanged
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public event EventHandler ValueChanged
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+ValueChanged  # += / -= handler
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Core::Event<...> ValueChanged;
+```
+
+</TabItem>
+</Tabs>
+
+Fires when `CheckBox.IsChecked` toggles via user interaction. Runs on the UI thread.
+

@@ -1,0 +1,262 @@
+---
+title: "DacController Class"
+sidebar_label: "DacController"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# DacController Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Dac`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Dac`
+
+Endpoint's DAC (analog outputs), with the same API as TinyCLR. Opening a channel makes its pin an analog output; closing it switches the output off and puts the pin back as it was.
+
+```csharp
+public class DacController : IDisposable
+```
+
+## Properties
+
+### ChannelCount
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int ChannelCount { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+ChannelCount: int  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t ChannelCount() const;
+```
+
+</TabItem>
+</Tabs>
+
+The number of channels in the chip (channel numbers start at 0)
+
+**Returns** `int`
+
+### MaxValue
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int MaxValue { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+MaxValue: int  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t MaxValue() const;
+```
+
+</TabItem>
+</Tabs>
+
+The value for the reference voltage (3.3 V)
+
+**Returns** `int`
+
+### MinValue
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int MinValue { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+MinValue: int  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t MinValue() const;
+```
+
+</TabItem>
+</Tabs>
+
+The value for 0 V
+
+**Returns** `int`
+
+### ResolutionInBits
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int ResolutionInBits { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+ResolutionInBits: int  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t ResolutionInBits() const;
+```
+
+</TabItem>
+</Tabs>
+
+Sample width in bits
+
+**Returns** `int`
+
+## Methods
+
+### Dispose()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public void Dispose()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def Dispose(self) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+void Dispose();
+```
+
+</TabItem>
+</Tabs>
+
+Nothing to release: each channel is released when it is disposed
+
+### FromName(string name)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static DacController FromName(string name)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def FromName(name: str) -> DacController:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static DacController FromName(const std::string& name);
+```
+
+</TabItem>
+</Tabs>
+
+The DAC named `name`: EPM815.Dac.Id
+
+**Returns** `DacController`
+
+### GetDefault()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static DacController GetDefault()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def GetDefault() -> DacController:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static DacController GetDefault();
+```
+
+</TabItem>
+</Tabs>
+
+The board's DAC
+
+**Returns** `DacController`
+
+### OpenChannel(int channelNumber)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public DacChannel OpenChannel(int channelNumber)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def OpenChannel(self, channelNumber: int) -> DacChannel:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+DacChannel OpenChannel(int32_t channelNumber);
+```
+
+</TabItem>
+</Tabs>
+
+Opens a channel for output: EPM815.Dac.PA4 or EPM815.Dac.PA5
+
+**Returns** `DacChannel`
+

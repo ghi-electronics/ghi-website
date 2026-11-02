@@ -1,0 +1,115 @@
+---
+title: "Switch Class"
+sidebar_label: "Switch"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Switch Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Binary on/off toggle. ValueChanged fires on each flip.
+
+```csharp
+public class Switch : Widget
+```
+
+## Constructors
+
+### Switch(Widget parent)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public Switch(Widget parent)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self, parent: Widget):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Switch(const Widget& parent);
+```
+
+</TabItem>
+</Tabs>
+
+Create a switch inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Properties
+
+### IsChecked
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public bool IsChecked { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+IsChecked: bool  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+bool IsChecked() const;
+void IsChecked(bool value);
+```
+
+</TabItem>
+</Tabs>
+
+On/off state. Read-back is supported by LVGL.
+
+**Returns** `bool`
+
+## Events
+
+### ValueChanged
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public event EventHandler ValueChanged
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+ValueChanged  # += / -= handler
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Core::Event<...> ValueChanged;
+```
+
+</TabItem>
+</Tabs>
+
+Fires on every flip of `Switch.IsChecked` from user interaction. Runs on the UI thread.
+

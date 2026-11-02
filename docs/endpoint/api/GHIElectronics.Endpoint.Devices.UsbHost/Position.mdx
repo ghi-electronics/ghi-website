@@ -1,0 +1,145 @@
+---
+title: "Position Struct"
+sidebar_label: "Position"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Position Struct
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
+
+Represents the a generic position.
+
+```csharp
+public struct Position
+```
+
+## Properties
+
+### X
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int X { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+X: int  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t X() const;
+void X(int32_t value);
+```
+
+</TabItem>
+</Tabs>
+
+The X coordinate.
+
+**Returns** `int`
+
+### Y
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int Y { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Y: int  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t Y() const;
+void Y(int32_t value);
+```
+
+</TabItem>
+</Tabs>
+
+The Y coordinate.
+
+**Returns** `int`
+
+### Z
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int Z { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Z: int  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t Z() const;
+void Z(int32_t value);
+```
+
+</TabItem>
+</Tabs>
+
+The Z coordinate.
+
+**Returns** `int`
+
+## Methods
+
+### ToString()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public override string ToString()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def ToString(self) -> str:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+virtual std::string ToString() override;
+```
+
+</TabItem>
+</Tabs>
+
+Returns a string representation of the position.
+
+**Returns** `string` — The position.
+

@@ -1,0 +1,141 @@
+---
+title: "WiFiNetworkInterfaceSettings Class"
+sidebar_label: "WiFiNetworkInterfaceSettings"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# WiFiNetworkInterfaceSettings Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Network`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Network`
+
+Settings for a WiFi interface. Inherits IP / DNS / MAC fields from `Network.NetworkInterfaceSettings` and adds the SSID and password used to associate with the access point.
+
+```csharp
+public class WiFiNetworkInterfaceSettings : NetworkInterfaceSettings
+```
+
+## Constructors
+
+### WiFiNetworkInterfaceSettings()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public WiFiNetworkInterfaceSettings()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+WiFiNetworkInterfaceSettings();
+```
+
+</TabItem>
+</Tabs>
+
+## Properties
+
+### Password
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public string Password { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Password: str  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+std::string Password() const;
+void Password(std::string value);
+```
+
+</TabItem>
+</Tabs>
+
+Plain-text passphrase. Ignored when `WiFiNetworkInterfaceSettings.Security` is `WiFiSecurityType.None`.
+
+**Returns** `string`
+
+### Security
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public WiFiSecurityType Security { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Security: WiFiSecurityType  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+WiFiSecurityType Security() const;
+void Security(WiFiSecurityType value);
+```
+
+</TabItem>
+</Tabs>
+
+Which WPA variant the access point uses. Default: WPA2.
+
+**Returns** `WiFiSecurityType`
+
+### Ssid
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public string Ssid { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Ssid: str  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+std::string Ssid() const;
+void Ssid(std::string value);
+```
+
+</TabItem>
+</Tabs>
+
+The network name to connect to.
+
+**Returns** `string`
+

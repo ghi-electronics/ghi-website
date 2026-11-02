@@ -1,0 +1,309 @@
+---
+title: "EPN256.I2c Class"
+sidebar_label: "EPN256.I2c"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# I2c Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+The I2C buses bundled with EPN256. Use with .NET's `System.Device.I2c`. `I2c.Initialize` brings up the bus and muxes its pins; `I2c.UnInitialize` tears it down so the pins return to free GPIO. The buses are kept unprobed until a userspace library needs them (pay-for-use rule). Each constant is the bus number for `I2cConnectionSettings` (`/dev/i2c-N`).
+
+```csharp
+public static class I2c
+```
+
+## Methods
+
+### Initialize(int bus, int frequency)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static void Initialize(int bus, int frequency)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def Initialize(bus: int, frequency: int) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static void Initialize(int32_t bus, int32_t frequency);
+```
+
+</TabItem>
+</Tabs>
+
+Brings up the I2C controller so `/dev/i2c-{bus}` appears and the bus's pins are muxed. May be called more than once for the same bus; the same number of `I2c.UnInitialize` calls then releases it.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `bus` | `int` | I2c1, I2c2, I2c3, I2c4 or I2c5. |
+| `frequency` | `int` | The bus speed in Hz, from 10 kHz to 1 MHz. A non-default value is accepted but not yet applied; the controller currently runs at its configured default speed. |
+
+### UnInitialize(int bus)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static void UnInitialize(int bus)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def UnInitialize(bus: int) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static void UnInitialize(int32_t bus);
+```
+
+</TabItem>
+</Tabs>
+
+Reverse of `I2c.Initialize`. When the last outstanding `I2c.Initialize` for any bus is matched, the I2C driver is unloaded, which releases the pin mux for every bus and returns their pins to free GPIO.
+
+## Fields
+
+### DefaultFrequency
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public const int DefaultFrequency = 400000
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+DefaultFrequency: int = 400000
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static constexpr int32_t DefaultFrequency = 400000;
+```
+
+</TabItem>
+</Tabs>
+
+The speed when none is given: 400 kHz (fast mode)
+
+### I2c1
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public const int I2c1 = 1
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+I2c1: int = 1
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static constexpr int32_t I2c1 = 1;
+```
+
+</TabItem>
+</Tabs>
+
+I2C1: PB10 (SDA), PB11 (SCL); /dev/i2c-1 (requires a board-level pinctrl override; left in for API parity).
+
+### I2c2
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public const int I2c2 = 2
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+I2c2: int = 2
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static constexpr int32_t I2c2 = 2;
+```
+
+</TabItem>
+</Tabs>
+
+I2C2: PB8 (SDA), PB9 (SCL); /dev/i2c-2. Hosts the on-SOM audio codec at 0x1A; sharing is fine.
+
+### I2c3
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public const int I2c3 = 3
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+I2c3: int = 3
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static constexpr int32_t I2c3 = 3;
+```
+
+</TabItem>
+</Tabs>
+
+I2C3: PM14 (SDA), PM15 (SCL); /dev/i2c-3.
+
+### I2c4
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public const int I2c4 = 4
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+I2c4: int = 4
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static constexpr int32_t I2c4 = 4;
+```
+
+</TabItem>
+</Tabs>
+
+I2C4: /dev/i2c-4.
+
+### I2c5
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public const int I2c5 = 5
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+I2c5: int = 5
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static constexpr int32_t I2c5 = 5;
+```
+
+</TabItem>
+</Tabs>
+
+I2C5: PJ12 (SDA), PJ13 (SCL); /dev/i2c-5. Default bus for the touch chip on the EPN256 reference panel.
+
+### MaxFrequency
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public const int MaxFrequency = 1000000
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+MaxFrequency: int = 1000000
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static constexpr int32_t MaxFrequency = 1000000;
+```
+
+</TabItem>
+</Tabs>
+
+1 MHz (fast mode plus)
+
+### MinFrequency
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public const int MinFrequency = 10000
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+MinFrequency: int = 10000
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static constexpr int32_t MinFrequency = 10000;
+```
+
+</TabItem>
+</Tabs>
+
+The slowest supported bus speed: 10 kHz.
+

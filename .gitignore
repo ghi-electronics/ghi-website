@@ -8,6 +8,17 @@
 .docusaurus
 .cache-loader
 
+# .NET build output of the Endpoint API generator (scripts/endpoint-api-gen).
+# The compiled dlls / exe / pdb / deps.json land under bin/ and obj/ when the
+# generator is built or run via `dotnet run`. Only the .cs sources + .csproj
+# belong in git; the generated API pages under docs/endpoint/api/ ARE committed
+# (see build_endpoint_api.bat).
+bin/
+obj/
+
+# Editor backups (e.g. docs/tinyclr/release-notes.mdx.bak)
+*.bak
+
 # Misc
 .DS_Store
 .env.local

@@ -1,0 +1,209 @@
+---
+title: "Keyboard Class"
+sidebar_label: "Keyboard"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Keyboard Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
+
+Allows a usb device to be used as a keyboard.
+
+```csharp
+public class Keyboard : BaseDevice
+```
+
+### Remarks
+
+The CharUp and CharDown events are only fired when a given key press has a corresponding ASCII key code (a US keyboard; Ctrl+A to Ctrl+Z give 1 to 26). A key held down gives one KeyDown. The events come on the keyboard's own thread.
+
+## Nested Types
+
+| Type | Kind | Summary |
+|---|---|---|
+| [Keyboard.KeyboardEventArgs](./Keyboard_KeyboardEventArgs.mdx) | Class | Event arguments for the keyboard events. |
+| [Keyboard.KeyboardEventHandler](./Keyboard_KeyboardEventHandler.mdx) | Delegate | The handler for used for keyboard callbacks. |
+
+## Constructors
+
+### Keyboard(string deviceName)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public Keyboard(string deviceName)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self, deviceName: str):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Keyboard(const std::string& deviceName);
+```
+
+</TabItem>
+</Tabs>
+
+Opens the keyboard that UsbHostController reported ("/dev/input/event1").
+
+## Methods
+
+### IsKeyPressed(Key key)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public KeyState IsKeyPressed(Key key)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def IsKeyPressed(self, key: Key) -> KeyState:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+KeyState IsKeyPressed(Key key);
+```
+
+</TabItem>
+</Tabs>
+
+Gets the current state of a key.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `key` | `Key` | The key to query. |
+
+**Returns** `KeyState` — The state of the key.
+
+## Events
+
+### CharDown
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public event KeyboardEventHandler CharDown
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+CharDown  # += / -= handler
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Core::Event<...> CharDown;
+```
+
+</TabItem>
+</Tabs>
+
+Fired when a key is pressed and it can be converted to ASCII.
+
+### CharUp
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public event KeyboardEventHandler CharUp
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+CharUp  # += / -= handler
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Core::Event<...> CharUp;
+```
+
+</TabItem>
+</Tabs>
+
+Fired when a key is released and it can be converted to ASCII.
+
+### KeyDown
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public event KeyboardEventHandler KeyDown
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+KeyDown  # += / -= handler
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Core::Event<...> KeyDown;
+```
+
+</TabItem>
+</Tabs>
+
+Fired when a key is pressed.
+
+### KeyUp
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public event KeyboardEventHandler KeyUp
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+KeyUp  # += / -= handler
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Core::Event<...> KeyUp;
+```
+
+</TabItem>
+</Tabs>
+
+Fired when a key is released.
+

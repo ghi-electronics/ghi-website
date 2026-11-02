@@ -1,0 +1,260 @@
+---
+title: "WatchdogController Class"
+sidebar_label: "WatchdogController"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# WatchdogController Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Watchdog`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Watchdog`
+
+Endpoint's watchdog, with the same API as TinyCLR. After `WatchdogController.Enable`, `WatchdogController.Reset` must be called more often than the timeout, or the board restarts. The watchdog cannot be stopped once it runs. `WatchdogController.Disable` hands it to the system, which then keeps it fed. If the program ends or crashes without `WatchdogController.Disable`, the board restarts after the timeout, also when debugging stops.
+
+```csharp
+public class WatchdogController : IDisposable
+```
+
+## Properties
+
+### IsEnabled
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public bool IsEnabled { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+IsEnabled: bool  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+bool IsEnabled() const;
+```
+
+</TabItem>
+</Tabs>
+
+Whether this controller has enabled the watchdog (and not disabled it)
+
+**Returns** `bool`
+
+### MaxTimeout
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public TimeSpan MaxTimeout { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+MaxTimeout: datetime.timedelta  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Core::TimeSpan MaxTimeout() const;
+```
+
+</TabItem>
+</Tabs>
+
+The longest timeout the hardware supports.
+
+**Returns** `TimeSpan`
+
+## Methods
+
+### Disable()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public void Disable()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def Disable(self) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+void Disable();
+```
+
+</TabItem>
+</Tabs>
+
+Stops watching this program: the system keeps the watchdog fed from now on (the chip's watchdog itself cannot stop)
+
+### Dispose()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public void Dispose()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def Dispose(self) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+void Dispose();
+```
+
+</TabItem>
+</Tabs>
+
+Releases the controller. An enabled watchdog stays enabled: with nobody to reset it, the board restarts after the timeout. Call `WatchdogController.Disable` first to avoid that.
+
+### Enable(TimeSpan timeout)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public void Enable(TimeSpan timeout)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def Enable(self, timeout: datetime.timedelta) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+void Enable(Core::TimeSpan timeout);
+```
+
+</TabItem>
+</Tabs>
+
+Starts the watchdog, or changes its timeout. The system counts whole seconds, so the timeout is rounded up to the next second.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `timeout` | `TimeSpan` | More than 0 and at most `WatchdogController.MaxTimeout` |
+
+### FromName(string name)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static WatchdogController FromName(string name)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def FromName(name: str) -> WatchdogController:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static WatchdogController FromName(const std::string& name);
+```
+
+</TabItem>
+</Tabs>
+
+The watchdog named `name`: EPM815.Watchdog.Id
+
+**Returns** `WatchdogController`
+
+### GetDefault()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static WatchdogController GetDefault()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def GetDefault() -> WatchdogController:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static WatchdogController GetDefault();
+```
+
+</TabItem>
+</Tabs>
+
+The board's watchdog
+
+**Returns** `WatchdogController`
+
+### Reset()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public void Reset()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def Reset(self) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+void Reset();
+```
+
+</TabItem>
+</Tabs>
+
+Starts the timeout again. Call it more often than the timeout.
+

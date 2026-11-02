@@ -1,0 +1,197 @@
+---
+title: "StorageController Class"
+sidebar_label: "StorageController"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# StorageController Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Storage`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Storage`
+
+The SD card slot or the USB drives. Events come on the library's storage thread. A drive that is pulled out is unmounted by the library. The SD card is at `/media/sd/`; USB drives get the first free `/media/usbN/`, as Windows gives the first free drive letter. A controller stays alive until it is disposed.
+
+```csharp
+public sealed class StorageController : IDisposable
+```
+
+## Properties
+
+### Name
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public string Name { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Name: str  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+std::string Name() const;
+```
+
+</TabItem>
+</Tabs>
+
+The name this controller was created with (e.g. `EPM815.StorageController.SdCard`).
+
+**Returns** `string`
+
+## Methods
+
+### Disable()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public void Disable()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def Disable(self) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+void Disable();
+```
+
+</TabItem>
+</Tabs>
+
+Stops reporting drives. Already-reported drives stay mounted; call `FileSystem.Unmount` to unmount them.
+
+### Dispose()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public void Dispose()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def Dispose(self) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+void Dispose();
+```
+
+</TabItem>
+</Tabs>
+
+Stops the events (one being delivered finishes first)
+
+### Enable()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public void Enable()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def Enable(self) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+void Enable();
+```
+
+</TabItem>
+</Tabs>
+
+Starts reporting drives: first the ones already plugged in
+
+### FromName(string name)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static StorageController FromName(string name)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def FromName(name: str) -> StorageController:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static StorageController FromName(const std::string& name);
+```
+
+</TabItem>
+</Tabs>
+
+EPM815.StorageController.SdCard or EPM815.StorageController.UsbHostMassStorage
+
+**Returns** `StorageController`
+
+## Events
+
+### ConnectionChanged
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public event ConnectionChangedEventHandler ConnectionChanged
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+ConnectionChanged  # += / -= handler
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Core::Event<...> ConnectionChanged;
+```
+
+</TabItem>
+</Tabs>
+
+A drive connected or disconnected
+

@@ -1,0 +1,158 @@
+---
+title: "Menu Class"
+sidebar_label: "Menu"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Menu Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Horizontal menu bar. `Menu.AddItem` returns a leaf-item handle; `Menu.AddDropdown` returns a dropdown handle whose entries are listed on click.
+
+```csharp
+public class Menu : Widget
+```
+
+## Constructors
+
+### Menu(Widget parent)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public Menu(Widget parent)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self, parent: Widget):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Menu(const Widget& parent);
+```
+
+</TabItem>
+</Tabs>
+
+Create a menu bar inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Properties
+
+### Background
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public uint Background { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Background: int  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+uint32_t Background() const;
+void Background(uint32_t value);
+```
+
+</TabItem>
+</Tabs>
+
+Menu-bar background color as `0x00RRGGBB`. Getter returns the last value set.
+
+**Returns** `uint`
+
+## Methods
+
+### AddDropdown(string header, string[] subItems, int itemWidth)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public MenuItem AddDropdown(string header, string[] subItems, int itemWidth)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def AddDropdown(self, header: str, subItems: list[str], itemWidth: int) -> MenuItem:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+MenuItem AddDropdown(const std::string& header, const std::vector<std::string>& subItems, int32_t itemWidth);
+```
+
+</TabItem>
+</Tabs>
+
+Append a dropdown menu item that opens a sub-list when tapped.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `header` | `string` | Button text shown on the bar. |
+| `subItems` | `string[]` | Sub-item strings; `null` is treated as empty. |
+| `itemWidth` | `int` | Fixed width in pixels; `0` fits the text. |
+
+**Returns** `MenuItem` — Handle for subscribing to `MenuItem.ValueChanged` and reading `MenuItem.Selected`.
+
+### AddItem(string header, int itemWidth)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public MenuItem AddItem(string header, int itemWidth)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def AddItem(self, header: str, itemWidth: int) -> MenuItem:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+MenuItem AddItem(const std::string& header, int32_t itemWidth);
+```
+
+</TabItem>
+</Tabs>
+
+Append a leaf menu item.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `header` | `string` | Button text shown on the bar. |
+| `itemWidth` | `int` | Fixed width in pixels; `0` fits the text. |
+
+**Returns** `MenuItem` — Handle for subscribing to `MenuItem.Clicked`.
+

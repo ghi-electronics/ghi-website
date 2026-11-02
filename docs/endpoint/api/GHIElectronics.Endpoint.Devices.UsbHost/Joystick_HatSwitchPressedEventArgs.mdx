@@ -1,0 +1,78 @@
+---
+title: "Joystick.HatSwitchPressedEventArgs Class"
+sidebar_label: "Joystick.HatSwitchPressedEventArgs"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# HatSwitchPressedEventArgs Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
+
+The events args for the HatSwitchPressed event.
+
+```csharp
+public class HatSwitchPressedEventArgs : EventArgs
+```
+
+## Constructors
+
+### HatSwitchPressedEventArgs()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public HatSwitchPressedEventArgs()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+HatSwitchPressedEventArgs();
+```
+
+</TabItem>
+</Tabs>
+
+## Properties
+
+### Direction
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public HatSwitchDirection Direction { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Direction: HatSwitchDirection  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+HatSwitchDirection Direction() const;
+```
+
+</TabItem>
+</Tabs>
+
+The new direction of the hat switch.
+
+**Returns** `HatSwitchDirection`
+

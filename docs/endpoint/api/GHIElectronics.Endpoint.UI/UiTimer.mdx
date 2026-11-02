@@ -1,0 +1,180 @@
+---
+title: "UiTimer Class"
+sidebar_label: "UiTimer"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# UiTimer Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Thread-safe periodic callback that runs on the UI thread. The `callback` fires inside `UI.Run`'s LVGL pump every `periodMs` milliseconds, so widget updates in it are safe (LVGL itself is single- threaded). Dispose cancels the timer. Create / SetPeriod / Dispose are safe from any thread; the body runs on the UI thread.
+
+```csharp
+public sealed class UiTimer : IDisposable
+```
+
+## Constructors
+
+### UiTimer(uint periodMs, Action callback)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public UiTimer(uint periodMs, Action callback)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self, periodMs: int, callback: Action):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+UiTimer(uint32_t periodMs, const Action& callback);
+```
+
+</TabItem>
+</Tabs>
+
+Create a periodic timer that fires `callback` on the UI thread.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `periodMs` | `uint` | Period in milliseconds between callbacks. |
+| `callback` | `Action` | Delegate to invoke on each tick; runs on LVGL's event thread so widget updates are safe. |
+
+### UiTimer(TimeSpan period, Action callback)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public UiTimer(TimeSpan period, Action callback)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self, period: datetime.timedelta, callback: Action):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+UiTimer(Core::TimeSpan period, const Action& callback);
+```
+
+</TabItem>
+</Tabs>
+
+Create a periodic timer with a `System.TimeSpan` period (clamped to at least 1 ms).
+
+| Parameter | Type | Description |
+|---|---|---|
+| `period` | `TimeSpan` | Period between callbacks. |
+| `callback` | `Action` | Delegate to invoke on each tick; runs on the UI thread. |
+
+## Methods
+
+### Dispose()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public void Dispose()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def Dispose(self) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+void Dispose();
+```
+
+</TabItem>
+</Tabs>
+
+Cancel the timer and release its pinned callback. Idempotent.
+
+### SetPeriod(TimeSpan period)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public void SetPeriod(TimeSpan period)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def SetPeriod(self, period: datetime.timedelta) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+void SetPeriod(Core::TimeSpan period);
+```
+
+</TabItem>
+</Tabs>
+
+Change the timer period (clamped to at least 1 ms). Safe to call from any thread.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `period` | `TimeSpan` | New period. |
+
+### SetPeriod(uint periodMs)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public void SetPeriod(uint periodMs)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def SetPeriod(self, periodMs: int) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+void SetPeriod(uint32_t periodMs);
+```
+
+</TabItem>
+</Tabs>
+
+Change the timer period in milliseconds. Safe to call from any thread.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `periodMs` | `uint` | New period in milliseconds. |
+

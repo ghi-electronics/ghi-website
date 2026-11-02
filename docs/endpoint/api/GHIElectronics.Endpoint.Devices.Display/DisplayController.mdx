@@ -1,0 +1,427 @@
+---
+title: "DisplayController Class"
+sidebar_label: "DisplayController"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# DisplayController Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Display`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Display`
+
+A display on the board. This class is abstract: the library ships one concrete subclass, `Display.ParallelDisplayController`, for the built-in parallel RGB panel into `/dev/fb0`. Customers wiring any other kind of panel (SPI, I2C, custom) subclass this directly and drive the hardware through the Core `Spi`/`I2c`/`Gpio` APIs. The abstract contract is: open the panel on `DisplayController.Enable`, close it on `DisplayController.Disable`, push pixels on `DisplayController.Flush`.
+
+```csharp
+public abstract class DisplayController : IDisposable
+```
+
+## Constructors
+
+### DisplayController()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+protected DisplayController()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+DisplayController();
+```
+
+</TabItem>
+</Tabs>
+
+## Properties
+
+### Height
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int Height { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Height: int  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t Height() const;
+```
+
+</TabItem>
+</Tabs>
+
+Visible height of the panel in pixels.
+
+**Returns** `int`
+
+### IsEnabled
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public bool IsEnabled { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+IsEnabled: bool  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+bool IsEnabled() const;
+```
+
+</TabItem>
+</Tabs>
+
+True once the panel driver / init path has run and the panel is ready to receive pixels.
+
+**Returns** `bool`
+
+### Width
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int Width { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Width: int  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t Width() const;
+```
+
+</TabItem>
+</Tabs>
+
+Visible width of the panel in pixels.
+
+**Returns** `int`
+
+## Methods
+
+### Disable()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public abstract void Disable()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def Disable(self) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+virtual void Disable();
+```
+
+</TabItem>
+</Tabs>
+
+Reverse of `DisplayController.Enable`. Safe to call when nothing is enabled.
+
+### Dispose()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public abstract void Dispose()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def Dispose(self) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+virtual void Dispose();
+```
+
+</TabItem>
+</Tabs>
+
+Calls `DisplayController.Disable` and releases any resources the subclass holds.
+
+### Enable()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public abstract void Enable()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def Enable(self) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+virtual void Enable();
+```
+
+</TabItem>
+</Tabs>
+
+Loads the panel driver / runs the init sequence. Throws if the apply fails.
+
+### Flush(ReadOnlySpan&lt;byte> pixels)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public void Flush(ReadOnlySpan<byte> pixels)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def Flush(self, pixels: ReadOnlySpan[int]) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+void Flush(ReadOnlySpan<uint8_t> pixels);
+```
+
+</TabItem>
+</Tabs>
+
+Push a full-screen frame. Pixel format defaults to `PixelFormat.Format16bppRgb565`.
+
+### Flush(ReadOnlySpan&lt;byte> pixels, PixelFormat format)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public void Flush(ReadOnlySpan<byte> pixels, PixelFormat format)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def Flush(self, pixels: ReadOnlySpan[int], format: PixelFormat) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+void Flush(ReadOnlySpan<uint8_t> pixels, PixelFormat format);
+```
+
+</TabItem>
+</Tabs>
+
+Push a full-screen frame in the given format.
+
+### Flush(ReadOnlySpan&lt;byte> pixels, PixelFormat format, int x, int y, int width, int height)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public abstract void Flush(ReadOnlySpan<byte> pixels, PixelFormat format, int x, int y, int width, int height)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def Flush(self, pixels: ReadOnlySpan[int], format: PixelFormat, x: int, y: int, width: int, height: int) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+virtual void Flush(ReadOnlySpan<uint8_t> pixels, PixelFormat format, int32_t x, int32_t y, int32_t width, int32_t height);
+```
+
+</TabItem>
+</Tabs>
+
+Push a region of the panel. The subclass handles any pixel-format conversion.
+
+### GetDefault()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static DisplayController GetDefault()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def GetDefault() -> DisplayController:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static DisplayController GetDefault();
+```
+
+</TabItem>
+</Tabs>
+
+The built-in display controller for this board, or null if `/config/display.json` says the type is `DisplayType.None`. Customers using a custom (SPI/I2C/other) panel instantiate their own subclass of `Display.DisplayController` directly instead.
+
+**Returns** `DisplayController`
+
+### GetSettings()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static DisplaySettings GetSettings()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def GetSettings() -> DisplaySettings:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static DisplaySettings GetSettings();
+```
+
+</TabItem>
+</Tabs>
+
+Reads the built-in display's settings from `/config/display.json`. Changes to the returned object do nothing until passed back to `DisplayController.SetSettings`.
+
+**Returns** `DisplaySettings`
+
+### SetSettings(DisplaySettings settings)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static void SetSettings(DisplaySettings settings)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def SetSettings(settings: DisplaySettings) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static void SetSettings(const DisplaySettings& settings);
+```
+
+</TabItem>
+</Tabs>
+
+Writes the settings to `/config/display.json` (persisted across reboots). Does NOT apply them to the live panel - call `DisplayController.Enable` for that.
+
+### ShowLogo()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public virtual void ShowLogo()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def ShowLogo(self) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+virtual void ShowLogo();
+```
+
+</TabItem>
+</Tabs>
+
+Reads the `logo` filename from `/config/display.json`, decodes the 24-bit BMP file from `/config`, and calls `DisplayController.Flush` with it. No-op if the file is missing or not a 24-bit uncompressed BMP. Virtual so a subclass can replace the behaviour (e.g. pre-convert to the panel's native format once instead of on every call).
+

@@ -1,0 +1,239 @@
+---
+title: "HidDevice Class"
+sidebar_label: "HidDevice"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# HidDevice Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
+
+A HID device that is no keyboard, mouse or joystick (a sensor, a USB I/O board, a UPS...): its reports, as hidapi gives them.
+
+```csharp
+public class HidDevice : BaseDevice
+```
+
+### Remarks
+
+Open it with the DeviceName of a HID device from `UsbHostController` ("/dev/hidraw0"). A report's first byte is its report ID: 0 for a device that does not number its reports.
+
+## Constructors
+
+### HidDevice(string deviceName)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public HidDevice(string deviceName)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self, deviceName: str):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+HidDevice(const std::string& deviceName);
+```
+
+</TabItem>
+</Tabs>
+
+Opens the HID device that UsbHostController reported ("/dev/hidraw0").
+
+## Properties
+
+### ProductName
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public string ProductName { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+ProductName: str  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+std::string ProductName() const;
+```
+
+</TabItem>
+</Tabs>
+
+The device's name ("Microchip Technology Inc. MCP2221 USB-I2C/UART Combo")
+
+**Returns** `string`
+
+## Methods
+
+### GetFeatureReport(Span&lt;byte> buffer)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int GetFeatureReport(Span<byte> buffer)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def GetFeatureReport(self, buffer: Span[int]) -> int:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t GetFeatureReport(Span<uint8_t> buffer);
+```
+
+</TabItem>
+</Tabs>
+
+Gets a feature report. buffer[0] is the report ID (0 if the device has none).
+
+**Returns** `int` — The report's length, with its report ID.
+
+### GetReportDescriptor()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public byte[] GetReportDescriptor()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def GetReportDescriptor(self) -> list[int]:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+std::vector<uint8_t> GetReportDescriptor();
+```
+
+</TabItem>
+</Tabs>
+
+The report descriptor: what reports the device has and what is in them.
+
+**Returns** `byte[]`
+
+### Read(Span&lt;byte> buffer, int timeout)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int Read(Span<byte> buffer, int timeout)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def Read(self, buffer: Span[int], timeout: int) -> int:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t Read(Span<uint8_t> buffer, int32_t timeout);
+```
+
+</TabItem>
+</Tabs>
+
+Reads an input report (its first byte is its report ID if the device numbers its reports).
+
+| Parameter | Type | Description |
+|---|---|---|
+| `buffer` | `Span<byte>` | Where the report goes. |
+| `timeout` | `int` | How long to wait for one, in milliseconds (Timeout.Infinite: as long as it takes). |
+
+**Returns** `int` — The report's length, 0 if none came in time.
+
+### SendFeatureReport(ReadOnlySpan&lt;byte> report)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public void SendFeatureReport(ReadOnlySpan<byte> report)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def SendFeatureReport(self, report: ReadOnlySpan[int]) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+void SendFeatureReport(ReadOnlySpan<uint8_t> report);
+```
+
+</TabItem>
+</Tabs>
+
+Sends a feature report. Its first byte is the report ID (0 if the device has none).
+
+### Write(ReadOnlySpan&lt;byte> report)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int Write(ReadOnlySpan<byte> report)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def Write(self, report: ReadOnlySpan[int]) -> int:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t Write(ReadOnlySpan<uint8_t> report);
+```
+
+</TabItem>
+</Tabs>
+
+Sends an output report. Its first byte is the report ID (0 if the device has none).
+
+**Returns** `int` — The number of bytes written.
+

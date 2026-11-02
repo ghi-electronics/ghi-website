@@ -1,0 +1,172 @@
+---
+title: "CameraFormat Class"
+sidebar_label: "CameraFormat"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# CameraFormat Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Camera`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Camera`
+
+A picture size a camera has, what it sends for it, and its highest frame rate.
+
+```csharp
+public sealed class CameraFormat
+```
+
+## Properties
+
+### Height
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int Height { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Height: int  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t Height() const;
+```
+
+</TabItem>
+</Tabs>
+
+Picture height in pixels.
+
+**Returns** `int`
+
+### MaxFrameRate
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int MaxFrameRate { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+MaxFrameRate: int  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t MaxFrameRate() const;
+```
+
+</TabItem>
+</Tabs>
+
+Frames per second
+
+**Returns** `int`
+
+### PixelFormat
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public CameraPixelFormat PixelFormat { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+PixelFormat: CameraPixelFormat  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+CameraPixelFormat PixelFormat() const;
+```
+
+</TabItem>
+</Tabs>
+
+What the camera sends for this size.
+
+**Returns** `CameraPixelFormat`
+
+### Width
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int Width { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Width: int  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t Width() const;
+```
+
+</TabItem>
+</Tabs>
+
+Picture width in pixels.
+
+**Returns** `int`
+
+## Methods
+
+### ToString()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public override string ToString()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def ToString(self) -> str:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+virtual std::string ToString() override;
+```
+
+</TabItem>
+</Tabs>
+
+Returns a human-readable description like "640x480 Mjpeg 30 fps".
+
+**Returns** `string`
+

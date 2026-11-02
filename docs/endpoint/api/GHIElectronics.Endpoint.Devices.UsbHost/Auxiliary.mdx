@@ -1,0 +1,118 @@
+---
+title: "Auxiliary Class"
+sidebar_label: "Auxiliary"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Auxiliary Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost.Descriptors`
+
+Represents additional auxiliary descriptors.
+
+```csharp
+public class Auxiliary : BaseDescriptor
+```
+
+## Constructors
+
+### Auxiliary(byte[] buffer)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public Auxiliary(byte[] buffer)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self, buffer: list[int]):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Auxiliary(const std::vector<uint8_t>& buffer);
+```
+
+</TabItem>
+</Tabs>
+
+Constructs a new descriptor.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `buffer` | `byte[]` | The buffer with which to populate the descriptor. |
+
+### Auxiliary(byte[] buffer, int offset)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public Auxiliary(byte[] buffer, int offset)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self, buffer: list[int], offset: int):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Auxiliary(const std::vector<uint8_t>& buffer, int32_t offset);
+```
+
+</TabItem>
+</Tabs>
+
+Constructs a new descriptor.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `buffer` | `byte[]` | The buffer with which to populate the descriptor. |
+| `offset` | `int` | The offset into the buffer at which to start. |
+
+## Properties
+
+### Payload
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public byte[] Payload { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Payload: list[int]  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+std::vector<uint8_t> Payload() const;
+void Payload(std::vector<uint8_t> value);
+```
+
+</TabItem>
+</Tabs>
+
+The payload of the descriptor excluding length and type.
+
+**Returns** `byte[]`
+

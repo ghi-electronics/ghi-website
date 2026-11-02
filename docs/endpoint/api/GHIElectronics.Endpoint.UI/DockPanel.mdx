@@ -1,0 +1,85 @@
+---
+title: "DockPanel Class"
+sidebar_label: "DockPanel"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# DockPanel Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+WPF-style DockPanel. LVGL has no dock layout; the caller (or codegen) computes each child's absolute position from its Dock side plus the remaining area, then uses the child's X/Y/Width/Height properties.
+
+```csharp
+public class DockPanel : Widget
+```
+
+## Constructors
+
+### DockPanel(Widget parent)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public DockPanel(Widget parent)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self, parent: Widget):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+DockPanel(const Widget& parent);
+```
+
+</TabItem>
+</Tabs>
+
+Create a dock panel inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Properties
+
+### LastChildFill
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public bool LastChildFill { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+LastChildFill: bool  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+bool LastChildFill() const;
+void LastChildFill(bool value);
+```
+
+</TabItem>
+</Tabs>
+
+When `true`, the last added child fills the remaining area. Consumed by codegen, not LVGL.
+
+**Returns** `bool`
+

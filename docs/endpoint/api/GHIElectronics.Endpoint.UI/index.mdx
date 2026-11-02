@@ -1,0 +1,57 @@
+---
+title: "GHIElectronics.Endpoint.UI"
+hide_title: true
+sidebar_label: Overview
+---
+
+<h1 className="api-package-heading">GHIElectronics.Endpoint.UI</h1>
+
+UI widgets for Endpoint: Button, Label, Container, Image, TextBox, Slider, CheckBox on top of the embedded LVGL in libendpoint. Pair with the GHI UI designer.
+
+## Classes
+
+| Class | Summary |
+|---|---|
+| [Border](./Border.mdx) | Container with WPF-style `Border.Thickness`, `Border.BorderBrush`, `Border.CornerRadius`, and `Border.Padding`. Children are positioned relative to this border, same as `UI.Container`. Background is set via the inherited `Widget.BackgroundColor`. |
+| [Button](./Button.mdx) | Clickable push button with text, color, and font-size properties. |
+| [Calendar](./Calendar.mdx) | Month calendar. |
+| [Chart](./Chart.mdx) | Simple chart with a single series. Not a standard .NET widget — the API mirrors TinyCLR's Chart for ease of porting. |
+| [CheckBox](./CheckBox.mdx) | Two-state check box with a label. `CheckBox.ValueChanged` fires on each toggle. |
+| [Container](./Container.mdx) | Groups child widgets. Children are positioned relative to the container. |
+| [DataGrid](./DataGrid.mdx) | Simple grid of text cells (standard WPF widget name; TinyCLR-shape API). Call `DataGrid.SetSize` to allocate rows and columns, then `DataGrid.SetCell` to fill each cell. |
+| [DockPanel](./DockPanel.mdx) | WPF-style DockPanel. LVGL has no dock layout; the caller (or codegen) computes each child's absolute position from its Dock side plus the remaining area, then uses the child's X/Y/Width/Height properties. |
+| [Dropdown](./Dropdown.mdx) | Select one item from a list. ValueChanged fires when the selection changes. |
+| [Gauge](./Gauge.mdx) | Radial dial with a needle. Not a standard .NET widget — the API mirrors TinyCLR's Gauge. SweepAngle is 180/270/360 degrees. |
+| [Grid](./Grid.mdx) | WPF-style Grid with ColumnDefinitions + RowDefinitions. Call `Grid.SetDefinitions` once with the column + row sizes, then call `Grid.SetCell` on each child. Sizes: positive = fixed pixels; 0 or negative = star (-1 = "*", -2 = "2*", ...). |
+| [Image](./Image.mdx) | Displays a raster image fed as raw RGB565 pixel bytes. |
+| [Keyboard](./Keyboard.mdx) | Virtual on-screen keyboard. Attach to a `UI.TextBox` via `Keyboard.SetTarget` so taps on keys type into it. Positions itself at the bottom half of the display by default; override via inherited X / Y / Width / Height. |
+| [Label](./Label.mdx) | Static text display. For an interactive text input, use `UI.TextBox`. |
+| [ListBox](./ListBox.mdx) | Vertical scrollable list. `ListBox.AddItem` returns a handle whose Clicked event you subscribe to. |
+| [ListBoxItem](./ListBoxItem.mdx) | An item inside a ListBox. Subscribe to Clicked. |
+| [Menu](./Menu.mdx) | Horizontal menu bar. `Menu.AddItem` returns a leaf-item handle; `Menu.AddDropdown` returns a dropdown handle whose entries are listed on click. |
+| [MenuItem](./MenuItem.mdx) | Handle to a menu item. For a leaf item (`Menu.AddItem`) subscribe to `MenuItem.Clicked`. For a dropdown parent (`Menu.AddDropdown`) subscribe to `MenuItem.ValueChanged` and read `MenuItem.Selected` to find out which sub-item the user picked. |
+| [MessageBox](./MessageBox.mdx) | Modal dialog with title, body text, and footer buttons. Add buttons with `MessageBox.AddButton`; each returns a handle whose Clicked event you subscribe to. Call `MessageBox.Hide` to dismiss. |
+| [MessageBoxButton](./MessageBoxButton.mdx) | A button inside a MessageBox. Subscribe to Clicked. |
+| [ProgressBar](./ProgressBar.mdx) | Horizontal progress bar. No events; the owner drives it via `ProgressBar.Value`. |
+| [RadioButton](./RadioButton.mdx) | Circular-indicator CheckBox. Grouping (mutual exclusion) is up to the caller: subscribe to ValueChanged on each radio and clear the others when one gets selected. |
+| [Screen](./Screen.mdx) | A top-level container with no parent. Multiple screens can exist at once; only one is active at a time. Call `Screen.Load` to make this the currently-displayed screen. |
+| [Slider](./Slider.mdx) | Draggable horizontal slider. Default range is 0-100. |
+| [StackPanel](./StackPanel.mdx) | WPF-style StackPanel: stacks children vertically (default) or horizontally via LVGL flex layout. `StackPanel.Spacing` is the gap between children; each child's `Widget.SetMargin` stacks on top of that. |
+| [Switch](./Switch.mdx) | Binary on/off toggle. ValueChanged fires on each flip. |
+| [TextBox](./TextBox.mdx) | Single-line editable text input. Pair with a `UI.Keyboard` for on-screen typing. |
+| [TouchBridge](./TouchBridge.mdx) | Touch input bridge. Call `TouchBridge.Attach` once after `UI.Initialize`, then call `TouchBridge.Feed` from your touch chip's event handler. LVGL will dispatch Clicked / ValueChanged accordingly on its event loop. |
+| [TreeView](./TreeView.mdx) | Hierarchical list. Nodes are added imperatively via `TreeView.AddNode` with a depth value — codegen walks the tree and emits one AddNode call per visible node. |
+| [UI](./UI.mdx) | LVGL subsystem lifecycle. Call `UI.Initialize` once after the display is enabled, then `UI.Run` on your UI thread. LVGL is built single-threaded (`LV_USE_OS=LV_OS_NONE`); use `UI.UiTimer` for periodic work that must touch widgets. |
+| [UiTimer](./UiTimer.mdx) | Thread-safe periodic callback that runs on the UI thread. The `callback` fires inside `UI.Run`'s LVGL pump every `periodMs` milliseconds, so widget updates in it are safe (LVGL itself is single- threaded). Dispose cancels the timer. Create / SetPeriod / Dispose are safe from any thread; the body runs on the UI thread. |
+| [Widget](./Widget.mdx) | Abstract base class for every UI widget. Holds the opaque libendpoint handle and exposes geometry, visibility, and background styling shared by all widget types. All setters and events run on the UI thread; do not touch widgets from background threads (LVGL is built with `LV_USE_OS=LV_OS_NONE`). |
+
+## Enums
+
+| Enum | Summary |
+|---|---|
+| [ChartMode](./ChartMode.mdx) | Visual style used by `UI.Chart`. |
+| [Dock](./Dock.mdx) | Edge a child docks to within a `UI.DockPanel`. |
+| [GradientDirection](./GradientDirection.mdx) | Direction of a linear background gradient. |
+| [Orientation](./Orientation.mdx) | Direction in which `UI.StackPanel` arranges its children. |
+| [TextAlignment](./TextAlignment.mdx) | Horizontal alignment of text within its widget. |
+

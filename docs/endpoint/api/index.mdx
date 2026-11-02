@@ -1,16 +1,53 @@
 ---
 title: API Reference
+sidebar_label: Overview
+slug: /endpoint/api
 ---
 
-Endpoint uses the standard .NET APIs wherever they exist, and adds libraries for hardware features they don't cover.
+# Endpoint API Reference
+
+Endpoint uses the standard .NET APIs wherever they exist, and adds the libraries below for hardware features .NET does not cover. Every library has three parallel bindings — **.NET** (NuGet), **Python** (pip) and **C/C++** (header). The API names match character-for-character across the three languages.
 
 ## Standard .NET
 
 - [.NET API](https://learn.microsoft.com/en-gb/dotnet/api/)
 - [.NET IoT API](https://learn.microsoft.com/en-gb/dotnet/api/?view=iot-dotnet-latest)
 
+## Standard device APIs
+
+.NET's device APIs (GPIO, I²C, SPI, PWM, serial) are standard — Microsoft documents them in the links above and the C# code looks the same on any board. Python and C/C++ have no equivalent standard, so Endpoint ships wrapper packages with the SAME names and shape as the .NET API. Install the wrapper for your language; the member names (`GpioController`, `OpenPin`, `Write`, …) are identical.
+
+| API | .NET | Python | C/C++ |
+|---|---|---|---|
+| GPIO | [`System.Device.Gpio`](https://learn.microsoft.com/en-us/dotnet/api/system.device.gpio) | `pip install GHIElectronics.Endpoint.Devices.Gpio` | `#include <endpoint.h>` → `GHIElectronics::Endpoint::Devices::Gpio` |
+| I²C | [`System.Device.I2c`](https://learn.microsoft.com/en-us/dotnet/api/system.device.i2c) | `pip install GHIElectronics.Endpoint.Devices.I2c` | `#include <endpoint.h>` → `GHIElectronics::Endpoint::Devices::I2c` |
+| SPI | [`System.Device.Spi`](https://learn.microsoft.com/en-us/dotnet/api/system.device.spi) | `pip install GHIElectronics.Endpoint.Devices.Spi` | `#include <endpoint.h>` → `GHIElectronics::Endpoint::Devices::Spi` |
+| PWM | [`System.Device.Pwm`](https://learn.microsoft.com/en-us/dotnet/api/system.device.pwm) | `pip install GHIElectronics.Endpoint.Devices.Pwm` | `#include <endpoint.h>` → `GHIElectronics::Endpoint::Devices::Pwm` |
+| Serial port | [`System.IO.Ports.SerialPort`](https://learn.microsoft.com/en-us/dotnet/api/system.io.ports.serialport) | `pip install pyserial` *(Python-native; use its `serial.Serial` API)* | `#include <endpoint.h>` → `GHIElectronics::Endpoint::Devices::Ports` |
+
+:::note
+For serial, Python has an established ecosystem library — **pyserial** (`import serial`) — so the Endpoint pip package for serial is not shipped. Use pyserial directly; its API is different from .NET's `SerialPort` but it is what Python developers expect.
+:::
+
 ## Endpoint libraries
 
-:::warning[To be completed]
-The Endpoint library reference will be added here.
-:::
+Hardware features Microsoft's standard .NET APIs do not cover. Every library below is published for all three languages under the same name.
+
+| Library | Description |
+|---|---|
+| [GHIElectronics.Endpoint.Core](./GHIElectronics.Endpoint.Core/index.mdx) | Core of the Endpoint libraries: board pin names and pin setup. |
+| [GHIElectronics.Endpoint.Devices.Adc](./GHIElectronics.Endpoint.Devices.Adc/index.mdx) | Endpoint's analog inputs for .NET's System.Device.Analog. |
+| [GHIElectronics.Endpoint.Devices.Camera](./GHIElectronics.Endpoint.Devices.Camera/index.mdx) | USB webcams, parallel-port cameras (DCMI), and shared camera settings and image conversion for Endpoint. |
+| [GHIElectronics.Endpoint.Devices.Can](./GHIElectronics.Endpoint.Devices.Can.mdx) | CAN for Endpoint: .NET IoT's CanRaw (Iot.Device.SocketCan) on the board's CAN ports. EPM815.Can.Initialize sets a port up. |
+| [GHIElectronics.Endpoint.Devices.Dac](./GHIElectronics.Endpoint.Devices.Dac/index.mdx) | The DAC driver for Endpoint. |
+| [GHIElectronics.Endpoint.Devices.Display](./GHIElectronics.Endpoint.Devices.Display/index.mdx) | The display driver for Endpoint. |
+| [GHIElectronics.Endpoint.Devices.Network](./GHIElectronics.Endpoint.Devices.Network/index.mdx) | The network driver for Endpoint. |
+| [GHIElectronics.Endpoint.Devices.Rtc](./GHIElectronics.Endpoint.Devices.Rtc/index.mdx) | The RTC driver for Endpoint. |
+| [GHIElectronics.Endpoint.Devices.Sound](./GHIElectronics.Endpoint.Devices.Sound/index.mdx) | Play and record WAV / MP3 on any sound card of the board, with the API of .NET IoT's SoundDevice (Iot.Device.Media). |
+| [GHIElectronics.Endpoint.Devices.Storage](./GHIElectronics.Endpoint.Devices.Storage/index.mdx) | Endpoint's SD cards and USB drives: insert and remove events, mounting (System.IO's DriveInfo). |
+| [GHIElectronics.Endpoint.Devices.Touch](./GHIElectronics.Endpoint.Devices.Touch/index.mdx) | Touchscreen support for Endpoint. The Touch class is abstract: subclass it for your panel's chip (I2C, SPI, custom). Ships one concrete subclass, InputTouch, that wraps a kernel /dev/input/eventN (used for USB touchscreens). |
+| [GHIElectronics.Endpoint.Devices.Usb](./GHIElectronics.Endpoint.Devices.Usb/index.mdx) | USB device types for Endpoint. |
+| [GHIElectronics.Endpoint.Devices.UsbHost](./GHIElectronics.Endpoint.Devices.UsbHost/index.mdx) | Endpoint's USB devices: connected and disconnected events, what each device is and its port or network interface. |
+| [GHIElectronics.Endpoint.Devices.Watchdog](./GHIElectronics.Endpoint.Devices.Watchdog/index.mdx) | The watchdog driver for Endpoint. |
+| [GHIElectronics.Endpoint.Native](./GHIElectronics.Endpoint.Native/index.mdx) | Power and device information for Endpoint. |
+| [GHIElectronics.Endpoint.UI](./GHIElectronics.Endpoint.UI/index.mdx) | UI widgets for Endpoint: Button, Label, Container, Image, TextBox, Slider, CheckBox on top of the embedded LVGL in libendpoint. Pair with the GHI UI designer. |

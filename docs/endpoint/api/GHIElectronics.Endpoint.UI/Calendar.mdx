@@ -1,0 +1,121 @@
+---
+title: "Calendar Class"
+sidebar_label: "Calendar"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Calendar Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Month calendar.
+
+```csharp
+public class Calendar : Widget
+```
+
+## Constructors
+
+### Calendar(Widget parent)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public Calendar(Widget parent)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self, parent: Widget):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Calendar(const Widget& parent);
+```
+
+</TabItem>
+</Tabs>
+
+Create a calendar inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Methods
+
+### SetShowedDate(int year, int month)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public void SetShowedDate(int year, int month)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def SetShowedDate(self, year: int, month: int) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+void SetShowedDate(int32_t year, int32_t month);
+```
+
+</TabItem>
+</Tabs>
+
+Set the month shown by the calendar.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `year` | `int` | Four-digit year. |
+| `month` | `int` | Month, 1 (January) to 12 (December). |
+
+### SetToday(int year, int month, int day)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public void SetToday(int year, int month, int day)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def SetToday(self, year: int, month: int, day: int) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+void SetToday(int32_t year, int32_t month, int32_t day);
+```
+
+</TabItem>
+</Tabs>
+
+Set the day that is highlighted as "today".
+
+| Parameter | Type | Description |
+|---|---|---|
+| `year` | `int` | Four-digit year. |
+| `month` | `int` | Month, 1-12. |
+| `day` | `int` | Day of month, 1-31. |
+

@@ -1,0 +1,274 @@
+---
+title: "NativeRpmsgHelper Class"
+sidebar_label: "NativeRpmsgHelper"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# NativeRpmsgHelper Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+Low-level helper used by other libraries to talk to the firmware's hardware timing helper. Data is exchanged as 32-bit words in fixed-size blocks of `NativeRpmsgHelper.BlockSize` words. Most applications never call this directly; `Core.EPM815`-based classes such as `DigitalSignalController` use it internally.
+
+```csharp
+public static class NativeRpmsgHelper
+```
+
+## Nested Types
+
+| Type | Kind | Summary |
+|---|---|---|
+| [NativeRpmsgHelper.DataReceivedEventHandler](./NativeRpmsgHelper_DataReceivedEventHandler.mdx) | Delegate | Signature for the `NativeRpmsgHelper.DataReceived` event. |
+
+## Properties
+
+### BlockDelay
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static int BlockDelay { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+BlockDelay: int  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t BlockDelay() const;
+void BlockDelay(int32_t value);
+```
+
+</TabItem>
+</Tabs>
+
+Delay in milliseconds between consecutive `NativeRpmsgHelper.Send` blocks (default 5).
+
+**Returns** `int`
+
+### BlockSize
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static int BlockSize { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+BlockSize: int  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t BlockSize() const;
+```
+
+</TabItem>
+</Tabs>
+
+Number of 32-bit words in one message block (64).
+
+**Returns** `int`
+
+## Methods
+
+### Acquire()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static int Acquire()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def Acquire() -> int:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static int32_t Acquire();
+```
+
+</TabItem>
+</Tabs>
+
+Opens the helper endpoint and reserves it for this process. Call before `NativeRpmsgHelper.Send` or `NativeRpmsgHelper.StartReceiving`.
+
+**Returns** `int` — Zero on success, a negative error code otherwise.
+
+### Ping()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static int Ping()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def Ping() -> int:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static int32_t Ping();
+```
+
+</TabItem>
+</Tabs>
+
+Sends a ping message to the remote core and waits for a reply, as a quick link check.
+
+**Returns** `int` — Zero when the remote responds, a negative error code otherwise.
+
+### Release()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static int Release()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def Release() -> int:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static int32_t Release();
+```
+
+</TabItem>
+</Tabs>
+
+Releases the helper endpoint previously opened by `NativeRpmsgHelper.Acquire`.
+
+**Returns** `int` — Zero on success, a negative error code otherwise.
+
+### Send(uint[] data, int offset, int count)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static int Send(uint[] data, int offset, int count)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def Send(data: list[int], offset: int, count: int) -> int:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static int32_t Send(const std::vector<uint32_t>& data, int32_t offset, int32_t count);
+```
+
+</TabItem>
+</Tabs>
+
+Sends `count` 32-bit words from `data` starting at `offset`. The transfer is split into blocks of `NativeRpmsgHelper.BlockSize` words with `NativeRpmsgHelper.BlockDelay` milliseconds between blocks.
+
+**Returns** `int` — The number of words actually written.
+
+### StartReceiving()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static Task StartReceiving()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def StartReceiving() -> Task:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static Task StartReceiving();
+```
+
+</TabItem>
+</Tabs>
+
+Starts the background receive loop. The loop reads whole messages from the helper endpoint and raises `NativeRpmsgHelper.DataReceived` for each. Safe to call more than once: only the first call starts a loop; subsequent calls return a completed task.
+
+**Returns** `Task`
+
+## Events
+
+### DataReceived
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static event DataReceivedEventHandler DataReceived
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+DataReceived  # += / -= handler
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Core::Event<...> DataReceived;
+```
+
+</TabItem>
+</Tabs>
+
+Raised from the receive loop started by `NativeRpmsgHelper.StartReceiving`.
+

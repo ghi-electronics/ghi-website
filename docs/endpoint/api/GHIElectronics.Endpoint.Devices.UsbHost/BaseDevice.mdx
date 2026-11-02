@@ -1,0 +1,236 @@
+---
+title: "BaseDevice Class"
+sidebar_label: "BaseDevice"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# BaseDevice Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
+
+A USB device that the program uses: Keyboard, Mouse, Joystick, HidDevice, Printer or RawDevice, opened with the DeviceName that its UsbHostController event gives. Its events come on the device's own thread. When the device is unplugged, Disconnected is raised. A device stays alive until it is disposed.
+
+```csharp
+public abstract class BaseDevice : IDisposable
+```
+
+## Nested Types
+
+| Type | Kind | Summary |
+|---|---|---|
+| [BaseDevice.DisconnectedEventHandler](./BaseDevice_DisconnectedEventHandler.mdx) | Delegate | The event handler type for when the device disconnects. |
+
+## Properties
+
+### Connected
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public bool Connected { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Connected: bool  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+bool Connected() const;
+```
+
+</TabItem>
+</Tabs>
+
+Whether or not the device is connected.
+
+**Returns** `bool`
+
+### DeviceName
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public string DeviceName { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+DeviceName: str  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+std::string DeviceName() const;
+```
+
+</TabItem>
+</Tabs>
+
+What the device was opened with: "/dev/input/event2", "/dev/hidraw0", "/dev/usb/lp0", "/dev/bus/usb/001/005"
+
+**Returns** `string`
+
+### ProductId
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public ushort ProductId { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+ProductId: int  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+uint16_t ProductId() const;
+```
+
+</TabItem>
+</Tabs>
+
+The device's product id.
+
+**Returns** `ushort`
+
+### Type
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public DeviceType Type { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Type: DeviceType  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+DeviceType Type() const;
+```
+
+</TabItem>
+</Tabs>
+
+The device's type.
+
+**Returns** `DeviceType`
+
+### VendorId
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public ushort VendorId { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+VendorId: int  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+uint16_t VendorId() const;
+```
+
+</TabItem>
+</Tabs>
+
+The device's vendor id.
+
+**Returns** `ushort`
+
+## Methods
+
+### Dispose()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public void Dispose()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def Dispose(self) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+void Dispose();
+```
+
+</TabItem>
+</Tabs>
+
+Stops the device's events (one being delivered finishes first) and closes it
+
+## Events
+
+### Disconnected
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public event DisconnectedEventHandler Disconnected
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Disconnected  # += / -= handler
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Core::Event<...> Disconnected;
+```
+
+</TabItem>
+</Tabs>
+
+The event is fired when the device disconnects.
+

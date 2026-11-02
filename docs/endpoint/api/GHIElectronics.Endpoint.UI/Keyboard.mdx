@@ -1,0 +1,114 @@
+---
+title: "Keyboard Class"
+sidebar_label: "Keyboard"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Keyboard Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Virtual on-screen keyboard. Attach to a `UI.TextBox` via `Keyboard.SetTarget` so taps on keys type into it. Positions itself at the bottom half of the display by default; override via inherited X / Y / Width / Height.
+
+```csharp
+public class Keyboard : Widget
+```
+
+## Constructors
+
+### Keyboard(Widget parent)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public Keyboard(Widget parent)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self, parent: Widget):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Keyboard(const Widget& parent);
+```
+
+</TabItem>
+</Tabs>
+
+Create a virtual keyboard inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Methods
+
+### ClearTarget()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public void ClearTarget()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def ClearTarget(self) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+void ClearTarget();
+```
+
+</TabItem>
+</Tabs>
+
+Detach any current target so key presses go nowhere.
+
+### SetTarget(TextBox textbox)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public void SetTarget(TextBox textbox)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def SetTarget(self, textbox: TextBox) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+void SetTarget(const TextBox& textbox);
+```
+
+</TabItem>
+</Tabs>
+
+Route key presses into `textbox`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `textbox` | `TextBox` | Target text box; its text updates on each key. |
+

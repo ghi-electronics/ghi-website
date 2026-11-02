@@ -19,7 +19,7 @@ var setting = new CameraConfiguration()
 {
     Width = 640,
     Height = 480,
-    ImageFormat = Format.Rgb565, //Format.Jpeg
+    ImageFormat = PixelFormat.Rgb565, //PixelFormat.Jpeg
     FrameRate = 15,
 
 };
@@ -35,12 +35,12 @@ while (true)
         var data = webcam.Capture();
         if (data != null)
         {
-            if (setting.ImageFormat == Format.Rgb565)
+            if (setting.ImageFormat == PixelFormat.Rgb565)
             {
                 // Show on screen
                 //displayController.Flush(data, 0, data.Length, webcam.Width, webcam.Height);
             }
-            else if (setting.ImageFormat == Format.Jpeg)
+            else if (setting.ImageFormat == PixelFormat.Jpeg)
             {
                 // Save to file
                 using (var stream = File.Open($"/.epdata/{webcam.Width}x{webcam.Height}_{cnt}.jpeg", FileMode.Create))

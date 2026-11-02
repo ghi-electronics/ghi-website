@@ -1,0 +1,290 @@
+---
+title: "UsbDeviceConnectionEventArgs Class"
+sidebar_label: "UsbDeviceConnectionEventArgs"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# UsbDeviceConnectionEventArgs Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
+
+Event data for `UsbHostController.ConnectionChanged`: one USB device attached or detached.
+
+```csharp
+public sealed class UsbDeviceConnectionEventArgs : EventArgs
+```
+
+## Properties
+
+### DeviceName
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public string DeviceName { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+DeviceName: str  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+std::string DeviceName() const;
+```
+
+</TabItem>
+</Tabs>
+
+What to open: "/dev/ttyUSB0", "eth1"... (see DeviceType)
+
+**Returns** `string`
+
+### DeviceStatus
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public DeviceConnectionStatus DeviceStatus { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+DeviceStatus: DeviceConnectionStatus  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+DeviceConnectionStatus DeviceStatus() const;
+```
+
+</TabItem>
+</Tabs>
+
+Whether the device was just connected or just disconnected.
+
+**Returns** `DeviceConnectionStatus`
+
+### Id
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public uint Id { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Id: int  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+uint32_t Id() const;
+```
+
+</TabItem>
+</Tabs>
+
+The device's number: the same for all its events, a new one when it is plugged in again
+
+**Returns** `uint`
+
+### Manufacturer
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public string Manufacturer { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Manufacturer: str  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+std::string Manufacturer() const;
+```
+
+</TabItem>
+</Tabs>
+
+The device's own name for its maker ("Logitech"), empty if it has none
+
+**Returns** `string`
+
+### Product
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public string Product { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Product: str  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+std::string Product() const;
+```
+
+</TabItem>
+</Tabs>
+
+The device's own name ("USB Receiver"), empty if it has none
+
+**Returns** `string`
+
+### ProductId
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public ushort ProductId { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+ProductId: int  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+uint16_t ProductId() const;
+```
+
+</TabItem>
+</Tabs>
+
+USB product id (PID) from the device descriptor.
+
+**Returns** `ushort`
+
+### SerialNumber
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public string SerialNumber { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+SerialNumber: str  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+std::string SerialNumber() const;
+```
+
+</TabItem>
+</Tabs>
+
+Empty if the device has none
+
+**Returns** `string`
+
+### Type
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public DeviceType Type { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Type: DeviceType  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+DeviceType Type() const;
+```
+
+</TabItem>
+</Tabs>
+
+What the device gives (see `UsbHost.DeviceType`); hints what to open `UsbDeviceConnectionEventArgs.DeviceName` with.
+
+**Returns** `DeviceType`
+
+### VendorId
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public ushort VendorId { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+VendorId: int  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+uint16_t VendorId() const;
+```
+
+</TabItem>
+</Tabs>
+
+USB vendor id (VID) from the device descriptor.
+
+**Returns** `ushort`
+

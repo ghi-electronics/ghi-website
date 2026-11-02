@@ -1,0 +1,422 @@
+---
+title: "RtcController Class"
+sidebar_label: "RtcController"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# RtcController Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Rtc`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Rtc`
+
+The board's real-time clock, for .NET IoT's `RtcBase` (`Iot.Device.Rtc`). It counts UTC: at boot, the system time is set from it. `RtcController.IsValid` and `RtcController.SetChargeMode` are the same as TinyCLR's.
+
+```csharp
+public class RtcController : RtcBase
+```
+
+## Constructors
+
+### RtcController()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public RtcController()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+RtcController();
+```
+
+</TabItem>
+</Tabs>
+
+The chip's RTC
+
+## Properties
+
+### BackupMemorySize
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public uint BackupMemorySize { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+BackupMemorySize: int  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+uint32_t BackupMemorySize() const;
+```
+
+</TabItem>
+</Tabs>
+
+Not implemented yet: the size of the backup memory in bytes
+
+**Returns** `uint`
+
+### IsValid
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public bool IsValid { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+IsValid: bool  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+bool IsValid() const;
+```
+
+</TabItem>
+</Tabs>
+
+Whether the RTC has been set since it last lost power. Without power it starts again at 2000-01-01.
+
+**Returns** `bool`
+
+## Methods
+
+### Calibrate(int pulse)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public void Calibrate(int pulse)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def Calibrate(self, pulse: int) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+void Calibrate(int32_t pulse);
+```
+
+</TabItem>
+</Tabs>
+
+Not implemented yet
+
+### Dispose(bool disposing)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+protected override void Dispose(bool disposing)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def Dispose(self, disposing: bool) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+virtual void Dispose(bool disposing) override;
+```
+
+</TabItem>
+</Tabs>
+
+### ReadBackupMemory(byte[] destinationData)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int ReadBackupMemory(byte[] destinationData)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def ReadBackupMemory(self, destinationData: list[int]) -> int:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t ReadBackupMemory(const std::vector<uint8_t>& destinationData);
+```
+
+</TabItem>
+</Tabs>
+
+Not implemented yet
+
+**Returns** `int`
+
+### ReadBackupMemory(byte[] destinationData, uint sourceOffset)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int ReadBackupMemory(byte[] destinationData, uint sourceOffset)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def ReadBackupMemory(self, destinationData: list[int], sourceOffset: int) -> int:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t ReadBackupMemory(const std::vector<uint8_t>& destinationData, uint32_t sourceOffset);
+```
+
+</TabItem>
+</Tabs>
+
+Not implemented yet
+
+**Returns** `int`
+
+### ReadBackupMemory(byte[] destinationData, uint destinationOffset, uint sourceOffset, int count)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int ReadBackupMemory(byte[] destinationData, uint destinationOffset, uint sourceOffset, int count)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def ReadBackupMemory(self, destinationData: list[int], destinationOffset: int, sourceOffset: int, count: int) -> int:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t ReadBackupMemory(const std::vector<uint8_t>& destinationData, uint32_t destinationOffset, uint32_t sourceOffset, int32_t count);
+```
+
+</TabItem>
+</Tabs>
+
+Not implemented yet
+
+**Returns** `int`
+
+### ReadTime()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+protected override DateTime ReadTime()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def ReadTime(self) -> datetime.datetime:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+virtual DateTime ReadTime() override;
+```
+
+</TabItem>
+</Tabs>
+
+**Returns** `DateTime`
+
+### SetChargeMode(BatteryChargeMode chargeMode)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public void SetChargeMode(BatteryChargeMode chargeMode)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def SetChargeMode(self, chargeMode: BatteryChargeMode) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+void SetChargeMode(BatteryChargeMode chargeMode);
+```
+
+</TabItem>
+</Tabs>
+
+Charges the backup battery or supercapacitor on VBAT, or stops charging
+
+### SetTime(DateTime time)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+protected override void SetTime(DateTime time)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def SetTime(self, time: datetime.datetime) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+virtual void SetTime(DateTime time) override;
+```
+
+</TabItem>
+</Tabs>
+
+### WriteBackupMemory(byte[] sourceData)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public void WriteBackupMemory(byte[] sourceData)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def WriteBackupMemory(self, sourceData: list[int]) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+void WriteBackupMemory(const std::vector<uint8_t>& sourceData);
+```
+
+</TabItem>
+</Tabs>
+
+Not implemented yet
+
+### WriteBackupMemory(byte[] sourceData, uint destinationOffset)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public void WriteBackupMemory(byte[] sourceData, uint destinationOffset)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def WriteBackupMemory(self, sourceData: list[int], destinationOffset: int) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+void WriteBackupMemory(const std::vector<uint8_t>& sourceData, uint32_t destinationOffset);
+```
+
+</TabItem>
+</Tabs>
+
+Not implemented yet
+
+### WriteBackupMemory(byte[] sourceData, uint sourceOffset, uint destinationOffset, int count)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public void WriteBackupMemory(byte[] sourceData, uint sourceOffset, uint destinationOffset, int count)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def WriteBackupMemory(self, sourceData: list[int], sourceOffset: int, destinationOffset: int, count: int) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+void WriteBackupMemory(const std::vector<uint8_t>& sourceData, uint32_t sourceOffset, uint32_t destinationOffset, int32_t count);
+```
+
+</TabItem>
+</Tabs>
+
+Not implemented yet
+

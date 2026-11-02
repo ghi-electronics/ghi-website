@@ -19,9 +19,9 @@ title: "USB"
  //...
  var usbhost = new UsbHostController();
 
-usbhost.OnConnectionChangedEvent += Usbhost_OnConnectionChangedEvent;
+usbhost.ConnectionChanged += Usbhost_ConnectionChanged;
 usbhostController.Enable();
-void Usbhost_OnConnectionChangedEvent(UsbHostController sender, DeviceConnectionEventArgs e)
+void Usbhost_ConnectionChanged(UsbHostController sender, DeviceConnectionEventArgs e)
 {
     Console.WriteLine("Detect changed Id: " + e.DeviceId + ", name: " + e.DeviceName + ", status:" + e.DeviceStatus);
 
@@ -35,9 +35,9 @@ void Usbhost_OnConnectionChangedEvent(UsbHostController sender, DeviceConnection
  ```csharp
 var usbhost = new UsbHostController();
 string usbmountedPath = string.Empty;
-usbhost.OnConnectionChangedEvent += Usbhost_OnConnectionChangedEvent;
+usbhost.ConnectionChanged += Usbhost_ConnectionChanged;
 usbhostController.Enable();
-void Usbhost_OnConnectionChangedEvent(UsbHostController sender, DeviceConnectionEventArgs e)
+void Usbhost_ConnectionChanged(UsbHostController sender, DeviceConnectionEventArgs e)
 {
     Console.WriteLine("Detect changed Id: " + e.DeviceId + ", name: " + e.DeviceName + ", status:" + e.DeviceStatus);
 
@@ -94,7 +94,7 @@ hid.OnDisconnected += () =>
 The USB Camera library provides a stream of images. Note that only cameras with UVC (USB Video Class) standard are supported.
 
 ```csharp
-usbhostController.OnConnectionChangedEvent += (a, b) =>
+usbhostController.ConnectionChanged += (a, b) =>
 {
     var arg = b;
 
@@ -112,13 +112,13 @@ usbhostController.OnConnectionChangedEvent += (a, b) =>
             {
                 Width = 480,
                 Height = 272,
-                ImageFormat = Format.Rgb565,
+                ImageFormat = PixelFormat.Rgb565,
             };
 
             webcam.Setting = setting;
 
             webcam.VideoStreamStart();
-            webcam.FrameReceivedEvent += (a, b) =>
+            webcam.FrameReceived += (a, b) =>
             {
                 displayController.Flush(b, 0, b.Length, webcam.Width, webcam.Height);
             };

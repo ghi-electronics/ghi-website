@@ -6,7 +6,7 @@ It is possible to update the internal flash from an image found on SD or USB mem
 
 ```csharp
 var usbhost = new UsbHostController();
-usbhost.OnConnectionChangedEvent += UsbThumbDriveConnected;
+usbhost.ConnectionChanged += UsbThumbDriveConnected;
 usbhost.Enable();
 var cnt = 0;
 while (UsbMountPath == string.Empty)
@@ -15,7 +15,7 @@ while (UsbMountPath == string.Empty)
 
     Thread.Sleep(1000);
 }
-var update = new UpdateController(UpdateController.Mode.ProgrameMMC, EPM815.Gpio.Pin.PF0, UsbMountPath);
+var update = new UpdateController(UpdateController.Mode.ProgramEmmc, EPM815.Gpio.Pin.PF0, UsbMountPath);
 var result = update.Update();
 Console.WriteLine("Result update: " + result);
 

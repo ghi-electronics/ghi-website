@@ -1,0 +1,177 @@
+---
+title: "Slider Class"
+sidebar_label: "Slider"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Slider Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Draggable horizontal slider. Default range is 0-100.
+
+```csharp
+public class Slider : Widget
+```
+
+## Constructors
+
+### Slider(Widget parent)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public Slider(Widget parent)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self, parent: Widget):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Slider(const Widget& parent);
+```
+
+</TabItem>
+</Tabs>
+
+Create a slider inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Properties
+
+### Maximum
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int Maximum { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Maximum: int  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t Maximum() const;
+void Maximum(int32_t value);
+```
+
+</TabItem>
+</Tabs>
+
+Upper bound of `Slider.Value`. Setting it pushes both bounds to LVGL. Getter returns the last value set.
+
+**Returns** `int`
+
+### Minimum
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int Minimum { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Minimum: int  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t Minimum() const;
+void Minimum(int32_t value);
+```
+
+</TabItem>
+</Tabs>
+
+Lower bound of `Slider.Value`. Setting it pushes both bounds to LVGL. Getter returns the last value set.
+
+**Returns** `int`
+
+### Value
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int Value { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Value: int  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t Value() const;
+void Value(int32_t value);
+```
+
+</TabItem>
+</Tabs>
+
+Current slider position between `Slider.Minimum` and `Slider.Maximum`. Read-back is supported by LVGL.
+
+**Returns** `int`
+
+## Events
+
+### ValueChanged
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public event EventHandler ValueChanged
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+ValueChanged  # += / -= handler
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Core::Event<...> ValueChanged;
+```
+
+</TabItem>
+</Tabs>
+
+Fires on every change of `Slider.Value` from user drag. Runs on the UI thread.
+

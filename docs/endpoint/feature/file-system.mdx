@@ -21,10 +21,10 @@ using GHIElectronics.Endpoint.Devices.Mmc;
 //...
 
 var sdcard = new SdmmcController(SdmmcType.SdCard2);
-sdcard.OnConnectionChangedEvent += Sdcard_OnConnectionChangedEvent;
+sdcard.ConnectionChanged += Sdcard_ConnectionChanged;
 sdcard.Enable();
 
-void Sdcard_OnConnectionChangedEvent(SdmmcController sender, DeviceConnectionEventArgs e)
+void Sdcard_ConnectionChanged(SdmmcController sender, DeviceConnectionEventArgs e)
 {
     Console.WriteLine("Detect SDCard connection changed on" + e.DeviceName + ", status: " + e.DeviceStatus + ", id = " + e.DeviceId);
 }

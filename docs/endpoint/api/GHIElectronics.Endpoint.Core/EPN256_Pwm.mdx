@@ -1,0 +1,195 @@
+---
+title: "EPN256.Pwm Class"
+sidebar_label: "EPN256.Pwm"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Pwm Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+PWM channels bundled with EPN256, for `System.Device.Pwm`. The PWM controller stays unprobed and its pins stay free GPIO until `Pwm.Initialize` loads its driver. Reverse with `Pwm.UnInitialize`. The `EPWM_` number is the instance number; the sysfs `pwmchipN` is probe-order and is resolved at `Pwm.Initialize` time, so application code never has to deal with it.
+
+```csharp
+public static class Pwm
+```
+
+## Methods
+
+### GetChipId(int controller)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static int GetChipId(int controller)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def GetChipId(controller: int) -> int:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static int32_t GetChipId(int32_t controller);
+```
+
+</TabItem>
+</Tabs>
+
+Returns the Linux `pwmchipN` id for the chosen controller, which `System.Device.Pwm.PwmChannel.Create` takes as its first argument. Only valid after `Pwm.Initialize`.
+
+**Returns** `int`
+
+### Initialize(int controller)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static void Initialize(int controller)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def Initialize(controller: int) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static void Initialize(int32_t controller);
+```
+
+</TabItem>
+</Tabs>
+
+Loads the PWM controller driver so `/sys/class/pwm/pwmchipN` for the chosen controller appears. The PWM output pins are muxed as part of probe.
+
+### UnInitialize(int controller)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static void UnInitialize(int controller)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def UnInitialize(controller: int) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static void UnInitialize(int32_t controller);
+```
+
+</TabItem>
+</Tabs>
+
+Reverse of `Pwm.Initialize`. When no controller remains open, the driver is unloaded and the pins return to GPIO.
+
+## Fields
+
+### Epwm0
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public const int Epwm0 = 0
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Epwm0: int = 0
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static constexpr int32_t Epwm0 = 0;
+```
+
+</TabItem>
+</Tabs>
+
+EPWM0 (reserved — not wired on EPN256 reference board).
+
+### Epwm1
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public const int Epwm1 = 1
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Epwm1: int = 1
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static constexpr int32_t Epwm1 = 1;
+```
+
+</TabItem>
+</Tabs>
+
+EPWM1 (used by the display backlight on EPN256).
+
+### Epwm2
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public const int Epwm2 = 2
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Epwm2: int = 2
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static constexpr int32_t Epwm2 = 2;
+```
+
+</TabItem>
+</Tabs>
+
+EPWM2 (reserved — not wired on EPN256 reference board).
+

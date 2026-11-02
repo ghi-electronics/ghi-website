@@ -1,0 +1,312 @@
+---
+title: "EPM815.SerialPort Class"
+sidebar_label: "EPM815.SerialPort"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# SerialPort Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+The serial ports (UARTs) bundled with EPM815, for .NET's `System.IO.Ports`. `SerialPort.Initialize` connects the port's pins; then use `SerialPort` as usual.
+
+```csharp
+public static class SerialPort
+```
+
+## Methods
+
+### Initialize(string portName, bool enableHardwareFlowControl)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static void Initialize(string portName, bool enableHardwareFlowControl)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def Initialize(portName: str, enableHardwareFlowControl: bool) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static void Initialize(const std::string& portName, bool enableHardwareFlowControl);
+```
+
+</TabItem>
+</Tabs>
+
+Connects the port's TX and RX pins, and RTS and CTS for hardware flow control
+
+| Parameter | Type | Description |
+|---|---|---|
+| `portName` | `string` | Uart1 ... Uart8 |
+| `enableHardwareFlowControl` | `bool` | Also connect RTS and CTS (UART1, 2, 3 and 7) |
+
+### UnInitialize(string portName)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static void UnInitialize(string portName)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def UnInitialize(portName: str) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static void UnInitialize(const std::string& portName);
+```
+
+</TabItem>
+</Tabs>
+
+Gives the port's pins back, as they were before Initialize
+
+### UnInitialize(string portName, bool enabledHardwareFlowControl)
+
+> ⚠️ **Obsolete.** The flow control setting is remembered from Initialize: use UnInitialize(portName)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public static void UnInitialize(string portName, bool enabledHardwareFlowControl)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+@staticmethod
+def UnInitialize(portName: str, enabledHardwareFlowControl: bool) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static void UnInitialize(const std::string& portName, bool enabledHardwareFlowControl);
+```
+
+</TabItem>
+</Tabs>
+
+Gives the port's pins back, as they were before Initialize
+
+## Fields
+
+### Uart1
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public const string Uart1 = "/dev/ttySTM0"
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Uart1: str = "/dev/ttySTM0"
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static constexpr std::string Uart1 = "/dev/ttySTM0";
+```
+
+</TabItem>
+</Tabs>
+
+UART1: PZ7 (TX), PZ6 (RX), PA12 (RTS), PZ3 (CTS)
+
+### Uart2
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public const string Uart2 = "/dev/ttySTM1"
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Uart2: str = "/dev/ttySTM1"
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static constexpr std::string Uart2 = "/dev/ttySTM1";
+```
+
+</TabItem>
+</Tabs>
+
+UART2: PF5 (TX), PD6 (RX), PD4 (RTS), PD3 (CTS)
+
+### Uart3
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public const string Uart3 = "/dev/ttySTM2"
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Uart3: str = "/dev/ttySTM2"
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static constexpr std::string Uart3 = "/dev/ttySTM2";
+```
+
+</TabItem>
+</Tabs>
+
+UART3: PD8 (TX), PD9 (RX), PD12 (RTS), PD11 (CTS)
+
+### Uart4
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public const string Uart4 = "/dev/ttySTM3"
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Uart4: str = "/dev/ttySTM3"
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static constexpr std::string Uart4 = "/dev/ttySTM3";
+```
+
+</TabItem>
+</Tabs>
+
+UART4: PD1 (TX), PD0 (RX)
+
+### Uart5
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public const string Uart5 = "/dev/ttySTM4"
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Uart5: str = "/dev/ttySTM4"
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static constexpr std::string Uart5 = "/dev/ttySTM4";
+```
+
+</TabItem>
+</Tabs>
+
+UART5: PB13 (TX), PB12 (RX)
+
+### Uart7
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public const string Uart7 = "/dev/ttySTM6"
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Uart7: str = "/dev/ttySTM6"
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static constexpr std::string Uart7 = "/dev/ttySTM6";
+```
+
+</TabItem>
+</Tabs>
+
+UART7: PE8 (TX), PF6 (RX), PE9 (RTS), PE10 (CTS)
+
+### Uart8
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public const string Uart8 = "/dev/ttySTM7"
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Uart8: str = "/dev/ttySTM7"
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static constexpr std::string Uart8 = "/dev/ttySTM7";
+```
+
+</TabItem>
+</Tabs>
+
+UART8: PE1 (TX), PE0 (RX)
+

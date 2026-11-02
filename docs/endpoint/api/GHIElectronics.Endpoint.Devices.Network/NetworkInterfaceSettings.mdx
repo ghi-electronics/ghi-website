@@ -1,0 +1,234 @@
+---
+title: "NetworkInterfaceSettings Class"
+sidebar_label: "NetworkInterfaceSettings"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# NetworkInterfaceSettings Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Network`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Network`
+
+Settings for an Ethernet or PC-shared network interface (IP, routing, DNS, MAC pinning). Read with `NetworkController.GetInterfaceSettings` and apply with `NetworkController.SetInterfaceSettings`. For WiFi use `Network.WiFiNetworkInterfaceSettings`.
+
+```csharp
+public class NetworkInterfaceSettings
+```
+
+## Constructors
+
+### NetworkInterfaceSettings()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public NetworkInterfaceSettings()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+NetworkInterfaceSettings();
+```
+
+</TabItem>
+</Tabs>
+
+## Properties
+
+### Address
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public IPAddress Address { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Address: IPAddress  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+IPAddress Address() const;
+void Address(IPAddress value);
+```
+
+</TabItem>
+</Tabs>
+
+Static IPv4 address. Ignored when `NetworkInterfaceSettings.IsDhcpEnabled` is true.
+
+**Returns** `IPAddress`
+
+### DnsAddresses
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public IPAddress[] DnsAddresses { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+DnsAddresses: list[IPAddress]  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+std::vector<IPAddress> DnsAddresses() const;
+void DnsAddresses(std::vector<IPAddress> value);
+```
+
+</TabItem>
+</Tabs>
+
+Static DNS servers. Null or empty leaves the system default.
+
+**Returns** `IPAddress[]`
+
+### GatewayAddress
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public IPAddress GatewayAddress { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+GatewayAddress: IPAddress  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+IPAddress GatewayAddress() const;
+void GatewayAddress(IPAddress value);
+```
+
+</TabItem>
+</Tabs>
+
+Static IPv4 default gateway.
+
+**Returns** `IPAddress`
+
+### IsDhcpEnabled
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public bool IsDhcpEnabled { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+IsDhcpEnabled: bool  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+bool IsDhcpEnabled() const;
+void IsDhcpEnabled(bool value);
+```
+
+</TabItem>
+</Tabs>
+
+True = ask the network for an address (DHCP). False = use the static fields below.
+
+**Returns** `bool`
+
+### MacAddress
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public PhysicalAddress MacAddress { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+MacAddress: PhysicalAddress  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+PhysicalAddress MacAddress() const;
+void MacAddress(PhysicalAddress value);
+```
+
+</TabItem>
+</Tabs>
+
+When set, these settings apply only to the adapter with this MAC address. Null (default) means any adapter of this type.
+
+**Returns** `PhysicalAddress`
+
+### SubnetMask
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public IPAddress SubnetMask { get; set; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+SubnetMask: IPAddress  # @property / @setter
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+IPAddress SubnetMask() const;
+void SubnetMask(IPAddress value);
+```
+
+</TabItem>
+</Tabs>
+
+Static IPv4 subnet mask (e.g. 255.255.255.0).
+
+**Returns** `IPAddress`
+

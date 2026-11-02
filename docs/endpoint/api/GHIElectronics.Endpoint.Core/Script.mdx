@@ -1,0 +1,270 @@
+---
+title: "Script Class"
+sidebar_label: "Script"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Script Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+Runs a program and collects what it prints. For the libraries' remaining uses of Linux tools; prefer a direct API where there is one.
+
+```csharp
+public class Script
+```
+
+## Nested Types
+
+| Type | Kind | Summary |
+|---|---|---|
+| [Script.OutputDataReceivedEventHandler](./Script_OutputDataReceivedEventHandler.mdx) | Delegate | Signature for the `Script.OutputDataReceived` event. |
+
+## Constructors
+
+### Script(string filename, string workingdir, string arguments)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public Script(string filename, string workingdir, string arguments)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self, filename: str, workingdir: str, arguments: str):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Script(const std::string& filename, const std::string& workingdir, const std::string& arguments);
+```
+
+</TabItem>
+</Tabs>
+
+Prepares to run `filename` with the given arguments and working directory.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `filename` | `string` | Path to the program, or a name that `PATH` resolves. |
+| `workingdir` | `string` | Working directory for the program; empty for the current one. |
+| `arguments` | `string` | Command-line arguments as a single string, split by the shell convention. |
+
+## Properties
+
+### Error
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public string Error { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Error: str  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+std::string Error() const;
+```
+
+</TabItem>
+</Tabs>
+
+Everything the program has printed to standard error so far, newline-separated.
+
+**Returns** `string`
+
+### ExitCode
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int ExitCode { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+ExitCode: int  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t ExitCode() const;
+```
+
+</TabItem>
+</Tabs>
+
+The program's exit code; -1 if it could not be started
+
+**Returns** `int`
+
+### IsBusy
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public bool IsBusy { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+IsBusy: bool  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+bool IsBusy() const;
+```
+
+</TabItem>
+</Tabs>
+
+True while the program is running (between `Script.Start` and the program's exit).
+
+**Returns** `bool`
+
+### Output
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public string Output { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Output: str  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+std::string Output() const;
+```
+
+</TabItem>
+</Tabs>
+
+Everything the program has printed to standard output so far, newline-separated.
+
+**Returns** `string`
+
+## Methods
+
+### Start(bool waitforexit)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public void Start(bool waitforexit)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def Start(self, waitforexit: bool) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+void Start(bool waitforexit);
+```
+
+</TabItem>
+</Tabs>
+
+Starts the program and, unless told otherwise, waits until it ends
+
+### Stop()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public void Stop()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def Stop(self) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+void Stop();
+```
+
+</TabItem>
+</Tabs>
+
+Ends the program (and what it started)
+
+## Events
+
+### OutputDataReceived
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public event OutputDataReceivedEventHandler OutputDataReceived
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+OutputDataReceived  # += / -= handler
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Core::Event<...> OutputDataReceived;
+```
+
+</TabItem>
+</Tabs>
+
+Each line the program prints, as it prints it
+

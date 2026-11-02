@@ -1,0 +1,104 @@
+---
+title: "EPM815.Dac Class"
+sidebar_label: "EPM815.Dac"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Dac Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+The analog outputs bundled with EPM815. Use with the `GHIElectronics.Endpoint.Devices.Dac` package (same API as TinyCLR).
+
+```csharp
+public static class Dac
+```
+
+## Fields
+
+### Id
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public const string Id = "EPM815.Dac"
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Id: str = "EPM815.Dac"
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static constexpr std::string Id = "EPM815.Dac";
+```
+
+</TabItem>
+</Tabs>
+
+The DAC's name, for `DacController.FromName`.
+
+### PA4
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public const int PA4 = 0
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+PA4: int = 0
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static constexpr int32_t PA4 = 0;
+```
+
+</TabItem>
+</Tabs>
+
+DAC channel 1, on PA4.
+
+### PA5
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public const int PA5 = 1
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+PA5: int = 1
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+static constexpr int32_t PA5 = 1;
+```
+
+</TabItem>
+</Tabs>
+
+DAC channel 2, on PA5.
+

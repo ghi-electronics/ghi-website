@@ -1,0 +1,110 @@
+---
+title: "Image Class"
+sidebar_label: "Image"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Image Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Displays a raster image fed as raw RGB565 pixel bytes.
+
+```csharp
+public class Image : Widget
+```
+
+## Constructors
+
+### Image(Widget parent)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public Image(Widget parent)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self, parent: Widget):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Image(const Widget& parent);
+```
+
+</TabItem>
+</Tabs>
+
+Create an image inside `parent`. Call `Image.SetSource` to supply pixels.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Methods
+
+### Dispose()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public override void Dispose()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def Dispose(self) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+virtual void Dispose() override;
+```
+
+</TabItem>
+</Tabs>
+
+Release the pinned pixel buffer, then destroy the widget. Idempotent.
+
+### SetSource(byte[] rgb565Pixels, int width, int height)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public void SetSource(byte[] rgb565Pixels, int width, int height)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def SetSource(self, rgb565Pixels: list[int], width: int, height: int) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+void SetSource(const std::vector<uint8_t>& rgb565Pixels, int32_t width, int32_t height);
+```
+
+</TabItem>
+</Tabs>
+
+Set the image from RGB565 pixel bytes (little-endian). Width and height describe the source bitmap; use `Widget.Width`/ `Widget.Height` for displayed size (LVGL scales).
+

@@ -1,0 +1,170 @@
+---
+title: "AdcController Class"
+sidebar_label: "AdcController"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# AdcController Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Adc`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Adc`
+
+Endpoint's analog inputs, for .NET's `System.Device.Analog`. The pins are the per-board `Adc.Pin` constants (for example `EPM815.Adc.Pin`). Opening a pin makes it an analog input; closing it puts the pin back as it was. The inputs measure 0 V to `AnalogController.VoltageReference`.
+
+```csharp
+public sealed class AdcController : AnalogController
+```
+
+## Constructors
+
+### AdcController()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public AdcController()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+AdcController();
+```
+
+</TabItem>
+</Tabs>
+
+A controller for all of Endpoint's analog inputs.
+
+## Properties
+
+### PinCount
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int PinCount { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+PinCount: int  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t PinCount() const;
+```
+
+</TabItem>
+</Tabs>
+
+The number of analog inputs available.
+
+**Returns** `int`
+
+## Methods
+
+### ConvertPinNumberToAnalogChannelNumber(int pinNumber)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public override int ConvertPinNumberToAnalogChannelNumber(int pinNumber)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def ConvertPinNumberToAnalogChannelNumber(self, pinNumber: int) -> int:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+virtual int32_t ConvertPinNumberToAnalogChannelNumber(int32_t pinNumber) override;
+```
+
+</TabItem>
+</Tabs>
+
+The pin's channel within its converter.
+
+**Returns** `int`
+
+### OpenPinCore(int pinNumber)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+protected override AnalogInputPin OpenPinCore(int pinNumber)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def OpenPinCore(self, pinNumber: int) -> AnalogInputPin:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+virtual AnalogInputPin OpenPinCore(int32_t pinNumber) override;
+```
+
+</TabItem>
+</Tabs>
+
+**Returns** `AnalogInputPin`
+
+### SupportsAnalogInput(int pin)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public override bool SupportsAnalogInput(int pin)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def SupportsAnalogInput(self, pin: int) -> bool:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+virtual bool SupportsAnalogInput(int32_t pin) override;
+```
+
+</TabItem>
+</Tabs>
+
+Whether `pin` is one of the board's analog input constants.
+
+**Returns** `bool`
+

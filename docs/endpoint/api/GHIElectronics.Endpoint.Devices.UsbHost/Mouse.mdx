@@ -1,0 +1,490 @@
+---
+title: "Mouse Class"
+sidebar_label: "Mouse"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Mouse Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
+
+Allows a usb device to be used a mouse.
+
+```csharp
+public class Mouse : BaseDevice
+```
+
+### Remarks
+
+By default, the reported range for position is between 0 and 512, as on TinyCLR: set it to the screen with `SetCursorBounds`. The events come on the mouse's own thread.
+
+## Nested Types
+
+| Type | Kind | Summary |
+|---|---|---|
+| [Mouse.ButtonChangedEventArgs](./Mouse_ButtonChangedEventArgs.mdx) | Class | The events args for the ButtonPressed and ButtonReleased events. |
+| [Mouse.ButtonChangedEventHandler](./Mouse_ButtonChangedEventHandler.mdx) | Delegate | The delegate for when one of the mouse's button is pressed or released. |
+| [Mouse.CursorMovedEventArgs](./Mouse_CursorMovedEventArgs.mdx) | Class | The events args for the CursorMoved event. |
+| [Mouse.CursorMovedEventHandler](./Mouse_CursorMovedEventHandler.mdx) | Delegate | The delegate for when the mouse's cursor moves. |
+| [Mouse.WheelMovedEventArgs](./Mouse_WheelMovedEventArgs.mdx) | Class | The events args for the WheelMoved event. |
+| [Mouse.WheelMovedEventHandler](./Mouse_WheelMovedEventHandler.mdx) | Delegate | The delegate for when the mouse's wheel moves. |
+
+## Constructors
+
+### Mouse(string deviceName)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public Mouse(string deviceName)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def __init__(self, deviceName: str):
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Mouse(const std::string& deviceName);
+```
+
+</TabItem>
+</Tabs>
+
+Opens the mouse that UsbHostController reported ("/dev/input/event2").
+
+## Properties
+
+### AbsolutePosition
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public bool AbsolutePosition { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+AbsolutePosition: bool  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+bool AbsolutePosition() const;
+```
+
+</TabItem>
+</Tabs>
+
+Return true for absolute, false for relative mode (a USB mouse moves relative).
+
+**Returns** `bool`
+
+### CursorPosition
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public Position CursorPosition { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+CursorPosition: Position  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Position CursorPosition() const;
+```
+
+</TabItem>
+</Tabs>
+
+The current position of the cursor.
+
+**Returns** `Position`
+
+### Extended1ButtonState
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public ButtonState Extended1ButtonState { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Extended1ButtonState: ButtonState  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+ButtonState Extended1ButtonState() const;
+```
+
+</TabItem>
+</Tabs>
+
+The current state of the mouse's first extended button.
+
+**Returns** `ButtonState`
+
+### Extended2ButtonState
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public ButtonState Extended2ButtonState { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Extended2ButtonState: ButtonState  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+ButtonState Extended2ButtonState() const;
+```
+
+</TabItem>
+</Tabs>
+
+The current state of the mouse's second extended button.
+
+**Returns** `ButtonState`
+
+### LeftButtonState
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public ButtonState LeftButtonState { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+LeftButtonState: ButtonState  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+ButtonState LeftButtonState() const;
+```
+
+</TabItem>
+</Tabs>
+
+The current state of the mouse's left button.
+
+**Returns** `ButtonState`
+
+### MiddleButtonState
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public ButtonState MiddleButtonState { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+MiddleButtonState: ButtonState  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+ButtonState MiddleButtonState() const;
+```
+
+</TabItem>
+</Tabs>
+
+The current state of the mouse's middle button.
+
+**Returns** `ButtonState`
+
+### RightButtonState
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public ButtonState RightButtonState { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+RightButtonState: ButtonState  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+ButtonState RightButtonState() const;
+```
+
+</TabItem>
+</Tabs>
+
+The current state of the mouse's right button.
+
+**Returns** `ButtonState`
+
+### WheelPosition
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int WheelPosition { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+WheelPosition: int  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t WheelPosition() const;
+```
+
+</TabItem>
+</Tabs>
+
+The current position of the mouse wheel.
+
+**Returns** `int`
+
+## Methods
+
+### SetCursorBounds(Position minimum, Position maximum)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public void SetCursorBounds(Position minimum, Position maximum)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def SetCursorBounds(self, minimum: Position, maximum: Position) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+void SetCursorBounds(Position minimum, Position maximum);
+```
+
+</TabItem>
+</Tabs>
+
+Sets the cursor bounds.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `minimum` | `Position` | The minimum bound. |
+| `maximum` | `Position` | The maximum bound. |
+
+### SetCursorPosition(Position newPosition)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public void SetCursorPosition(Position newPosition)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def SetCursorPosition(self, newPosition: Position) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+void SetCursorPosition(Position newPosition);
+```
+
+</TabItem>
+</Tabs>
+
+Sets the cursor position.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `newPosition` | `Position` | The new position of the cursor. |
+
+### SetScale(float scale)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public void SetScale(float scale)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def SetScale(self, scale: float) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+void SetScale(float scale);
+```
+
+</TabItem>
+</Tabs>
+
+Scales the x, y, and wheel delta values.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `scale` | `float` | The value by which to scale the data. |
+
+## Events
+
+### ButtonChanged
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public event ButtonChangedEventHandler ButtonChanged
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+ButtonChanged  # += / -= handler
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Core::Event<...> ButtonChanged;
+```
+
+</TabItem>
+</Tabs>
+
+The event fired when one of the mouse's buttons is pressed or released.
+
+### CursorMoved
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public event CursorMovedEventHandler CursorMoved
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+CursorMoved  # += / -= handler
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Core::Event<...> CursorMoved;
+```
+
+</TabItem>
+</Tabs>
+
+The event fired when the mouse's cursor has moved.
+
+### WheelMoved
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public event WheelMovedEventHandler WheelMoved
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+WheelMoved  # += / -= handler
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+Core::Event<...> WheelMoved;
+```
+
+</TabItem>
+</Tabs>
+
+The event fired when the mouse's wheel has moved.
+

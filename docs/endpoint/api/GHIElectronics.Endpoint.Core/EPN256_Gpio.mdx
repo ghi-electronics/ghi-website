@@ -1,0 +1,26 @@
+---
+title: "EPN256.Gpio Class"
+sidebar_label: "EPN256.Gpio"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Gpio Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+GPIO pins and the module-level pin numbering scheme. Pin numbers are packed as `port * 16 + line`, where port is a `Gpio.Port` value (A..N) and line is 0..15. Most applications should use the standard `Gpio.GpioController` through `Gpio.Driver` rather than the module-level helpers.
+
+```csharp
+public static class Gpio
+```
+
+## Nested Types
+
+| Type | Kind | Summary |
+|---|---|---|
+| [EPN256.Gpio.Driver](./EPN256_Gpio_Driver.mdx) | Class | GPIO driver for .NET's `Gpio.GpioController` using the EPN256 pin numbers. Every pin mode, pull-up/down and pin change event of `Gpio.GpioController` works. One gpiochip is exposed per port (A ... N). |
+| [EPN256.Gpio.Pin](./EPN256_Gpio_Pin.mdx) | Class | The EPN256's pins (ports A to N, 16 pins per port). |
+| [EPN256.Gpio.Port](./EPN256_Gpio_Port.mdx) | Enum | GPIO ports on EPN256 (one gpiochip per port, in order). |
+

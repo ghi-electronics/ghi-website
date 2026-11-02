@@ -1,0 +1,196 @@
+---
+title: "DacChannel Class"
+sidebar_label: "DacChannel"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# DacChannel Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Dac`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Dac`
+
+A DAC channel opened with `DacController.OpenChannel`. `DacChannel.WriteValue` takes a raw value, `DacChannel.WriteValue` a 0.0 to 1.0 part of the range.
+
+```csharp
+public class DacChannel : IDisposable
+```
+
+## Properties
+
+### ChannelNumber
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int ChannelNumber { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+ChannelNumber: int  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t ChannelNumber() const;
+```
+
+</TabItem>
+</Tabs>
+
+The channel number, as given to OpenChannel
+
+**Returns** `int`
+
+### Controller
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public DacController Controller { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+Controller: DacController  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+DacController Controller() const;
+```
+
+</TabItem>
+</Tabs>
+
+The controller that opened the channel
+
+**Returns** `DacController`
+
+### LastWrittenValue
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public int LastWrittenValue { get; }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+LastWrittenValue: int  # @property
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+int32_t LastWrittenValue() const;
+```
+
+</TabItem>
+</Tabs>
+
+The last raw value written
+
+**Returns** `int`
+
+## Methods
+
+### Dispose()
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public void Dispose()
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def Dispose(self) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+void Dispose();
+```
+
+</TabItem>
+</Tabs>
+
+Switches the output off and puts the pin back as it was
+
+### WriteValue(double ratio)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public void WriteValue(double ratio)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def WriteValue(self, ratio: float) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+void WriteValue(double ratio);
+```
+
+</TabItem>
+</Tabs>
+
+Sets the output to a part of the range: 0.0 is 0 V, 1.0 is 3.3 V
+
+### WriteValue(int value)
+
+<Tabs groupId="endpoint-lang">
+<TabItem value="csharp" label="C#">
+
+```csharp
+public void WriteValue(int value)
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+def WriteValue(self, value: int) -> None:
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+void WriteValue(int32_t value);
+```
+
+</TabItem>
+</Tabs>
+
+Sets the output to a raw value from MinValue (0 V) to MaxValue (3.3 V)
+
