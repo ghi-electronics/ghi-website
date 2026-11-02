@@ -17,7 +17,7 @@ Core of the Endpoint libraries: board pin names and pin setup.
 | [NativeRpmsgHelper](./NativeRpmsgHelper.mdx) | Low-level helper used by other libraries to talk to the firmware's hardware timing helper. Data is exchanged as 32-bit words in fixed-size blocks of `NativeRpmsgHelper.BlockSize` words. Most applications never call this directly; `Core.EPM815`-based classes such as `DigitalSignalController` use it internally. |
 | [NativeUtils](./NativeUtils.mdx) | Low-level helpers backed by the native `nativeutils.so` library: a CPU wait-for-interrupt and a hardware-assisted JPEG to RGB888 decoder. |
 | [Processor](./Processor.mdx) | Identifies the processor the firmware is running on. Libraries that need board-specific behaviour read `Processor.Name` and compare against the processor-id constants exposed here. |
-| [Script](./Script.mdx) | Runs a program and collects what it prints. For the libraries' remaining uses of Linux tools; prefer a direct API where there is one. |
+| [Script](./Script.mdx) | Runs an external program and collects what it prints. Used internally by the Endpoint libraries where a direct API is not yet available; prefer the direct API where one exists. |
 
 ## Enums
 

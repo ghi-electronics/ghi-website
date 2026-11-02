@@ -104,7 +104,7 @@ std::string VolumeLabel() const;
 </TabItem>
 </Tabs>
 
-The drive's name ("LOGGER"), empty if it has none. (.NET's DriveInfo.VolumeLabel gives the folder on Linux.)
+The drive's name ("LOGGER"), empty if it has none. (On Endpoint, `DriveInfo.VolumeLabel` returns the drive's mount folder, not its label — read this property instead.)
 
 **Returns** `string`
 

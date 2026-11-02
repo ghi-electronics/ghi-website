@@ -168,7 +168,7 @@ static bool SdBoot();
 </TabItem>
 </Tabs>
 
-Returns `true` when the board booted from the SD card, detected by scanning `/boot/extlinux/extlinux.conf` for the `mmcblk1` root device.
+Returns `true` when the board booted from the SD card, `false` when it booted from the on-board eMMC.
 
 **Returns** `bool`
 
