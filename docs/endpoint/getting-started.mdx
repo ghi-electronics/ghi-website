@@ -2,8 +2,83 @@
 slug: /
 sidebar_position: 1
 title: Endpoint Getting Started
+description: Run full .NET Core, Python, and C++ on Endpoint Domino. Plug in a USB cable, pick your board, and press F5 — no SSH, keys, or IP addresses.
 ---
 
-:::info
-Endpoint docs are still at [docs.ghielectronics.com](https://docs.ghielectronics.com/endpoint/intro.html) for future reference.
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Getting Started with Endpoint
+
+Endpoint runs **full .NET Core, Python, and C++** on a circuit. All three share one set of APIs, so what you learn in one language travels with you. You debug them over a USB cable, with no keys, passwords, or IP addresses.
+
+:::note[Evaluation hardware]
+[Endpoint Domino](hardware.mdx) is the evaluation board we built for Endpoint. We have not released SoMs or dev boards yet, because we are still shaping what the commercial product should be. Tell us what you need on the [forum](https://forums.ghielectronics.com/): what form factor, which peripherals, and whether wireless is a requirement.
 :::
+
+## Languages and tools
+
+| Language | Version | VS Code | Visual Studio |
+|---|---|---|---|
+| **C#** | .NET 11 | Yes | Yes |
+| **Python** | Python 3.14 | Yes | No |
+| **C and C++** | C23 and C++23, with no toolchain to install | Yes | No |
+
+## What you'll need
+
+- **[Endpoint Domino](hardware.mdx)**
+- A **USB-C cable**
+- A **microSD card** of at least 4 GB
+- **VS Code** for any language, or **Visual Studio** for .NET
+
+## Step 1 — Prepare the board
+
+1. Download the latest Endpoint OS image from the [Downloads](downloads.mdx) page.
+2. Write the image to the microSD card with a disk imaging tool such as balenaEtcher.
+3. Insert the card into Domino and connect it to your PC with the USB-C cable.
+4. Wait for the **USER LED** to light, which shows the board has finished booting.
+
+## Step 2 — Install the extension
+
+:::warning[To be completed]
+Add the extension names and install steps for VS Code and Visual Studio.
+:::
+
+## Step 3 — Create a project
+
+<Tabs groupId="language">
+<TabItem value="csharp" label="C#" default>
+
+:::warning[To be completed]
+Add the project creation steps and a working blink for .NET.
+:::
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+:::warning[To be completed]
+Add the project creation steps and a working blink for Python.
+:::
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+:::warning[To be completed]
+Add the project creation steps and a working blink for C/C++.
+:::
+
+</TabItem>
+</Tabs>
+
+## Step 4 — Run it
+
+Plug in the USB cable, pick your board from the list, and press **F5**. There are no keys, passwords, or IP addresses to set up.
+
+A C# blink application goes from power on to running in less than three seconds.
+
+## What's next
+
+- **[Deploy and Run](deployment.mdx)** — run at boot, and install Python packages over USB.
+- **[Hardware](hardware.mdx)** — Domino's pinout, displays, cameras, and expansion headers.
+- **[Configuration](configuration.mdx)** — display and network settings.
+- **[Features](features.mdx)** — GPIO, buses, displays, networking, and more.

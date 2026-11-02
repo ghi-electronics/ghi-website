@@ -1,0 +1,84 @@
+---
+title: "Configuration"
+---
+
+## Endpoint Config Tool
+
+:::tip
+An Endpoint device must be fully booted in order for the configuration tool to work.
+:::
+
+The Endpoint Config tool is used to update & configure Endpoint Hardware. It will also give information about the device. 
+
+[**Download**](downloads.mdx)
+ and install the latest version to begin. 
+
+![Configuration tool](/img/docs/endpoint/endpoint-config.png)
+
+#### Connecting to the Device
+
+Connect the Endpoint device to the PC using a USB cable. Once the booting sequence is complete, the USER LED will be fully lit. Press **Connect** on the Config tool app. The tool will display device information once connected
+
+![Device Information](/img/docs/endpoint/device-info.png)
+
+#### Adding a BootScreen
+
+ Bootscreens can be enabled or disabled under **Utilities**. 
+
+![Enable Bootscreen](/img/docs/endpoint/enable-bootscreen.png)
+
+By default Endpoint compatible screens are already loaded, you can just select the size of the screen and the image you want to use. 
+
+![Enable Bootscreen](/img/docs/endpoint/screen-settings.png)
+
+ Once enabled the custom loaded image will display on bootup. 
+
+![Enable Bootscreen](/img/docs/endpoint/endpoint-bootscreen.png)
+
+Supported image formats are .jpeg, .png, or .bmp, in any size. Images are stretched to fit the screen's resolution. 
+
+#### Setting up a Device Password
+
+ Creating a device password is optional. To create a password for the device, select **Security -> Change Password**. 
+
+![Create Password](/img/docs/endpoint/menu-password.png)
+
+  After selecting a window will appear to enter our a new password and verify it's correct. 
+
+![Create Password](/img/docs/endpoint/password-update.png)
+
+:::tip
+We can remove an existing password from a device by leaving the fields blank and clicking OK
+:::
+
+   After creating or changing a password, the device will disconnect. To reconnect we will need to add the password we created. 
+   
+   Once the correct password is entered, Endpoint Config on the users machine will save the password in the box. Meaning you don't have to enter it every time you use the tool. If you move the device to another computer you'll need to enter the password to connect. 
+
+![Connecting with Password](/img/docs/endpoint/connecting-password.png)
+
+:::note
+There is no way to retrieve a forgotten password, the device must be completely erased and a new image created.
+:::
+
+ We also need to set up the programming IDE with our new password. 
+
+  Create or open an existing .NET project and navigate to 
+
+  **Debug -> Options**
+
+![Navigate to Debug Options](/img/docs/endpoint/debug-options.png)
+
+  Select Endpoint Debugger and highlight the SSH connection and click **Edit**
+
+  Add the newly created password and click **OK**. 
+
+![Navigate to Debug Options](/img/docs/endpoint/vs-password.png)
+
+## Display and network configuration
+
+Load, modify, and save display and network configuration from your application, or edit the JSON directly. A FAT32 partition is exposed so you can edit that file by opening the SD card image. This works from an SD card only for now.
+
+:::warning[To be completed]
+Add the configuration API, the JSON format, and the file location.
+:::

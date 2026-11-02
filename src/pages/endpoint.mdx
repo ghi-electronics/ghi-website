@@ -1,6 +1,6 @@
 ---
 title: Endpoint
-description: .NET 8 and Python 3 on a compact embedded board. Endpoint Domino runs a 650 MHz ARM processor with 512 MB DDR3 RAM — remote deploy and debug from Visual Studio or VS Code.
+description: Endpoint is a new platform that runs full .NET Core, Python, and C++ on a circuit. All three share one set of APIs, and you debug them over USB. Try it today on Endpoint Domino.
 hide_table_of_contents: true
 ---
 
@@ -9,98 +9,226 @@ import YouTubeFacade from '@site/src/components/YouTubeFacade';
 <div className="section-tinted">
 
 <div className="section-tinted__intro">
- <img src="/img/endpoint-logo.webp" alt="DUELink" style={{height: '150px', width: 'auto', margin: '0 auto 1.25rem', display: 'block'}} />
-  <h2>.NET 8 and Python 3 on a small circuit</h2>
-  <p>Endpoint Domino is a compact embedded board with a 650 MHz 32-bit ARM processor and 512 MB DDR3 RAM. Boot in ~5 seconds. Deploy and debug remotely from Visual Studio or VS Code — no extra tools, no guesswork.</p>
-  <a href="https://www.amazon.com/gp/product/B0CS6VGRSH?maas=maas_adg_CA55915BE55A9AD52BD164F3AF1756C5_afap_abs&ref_=aa_maas&tag=maas" className="btn-primary">Order Endpoint Domino →</a>
+ <img src="/img/endpoint-logo.webp" alt="Endpoint" style={{height: '150px', width: 'auto', margin: '0 auto 1.25rem', display: 'block'}} />
+  <h2>Full .NET Core, Python, and C++ on a circuit</h2>
+  <p>Endpoint is a new platform that runs the languages you use on a PC on embedded hardware. They share one set of APIs, and you debug all three over a USB cable, with direct access to the hardware.</p>
+  <ul className="hero-bullets">
+    <li>Full .NET Core</li>
+    <li>Python</li>
+    <li>C and C++</li>
+  </ul>
 </div>
 
 </div>
 
 <div className="stats">
   <div className="stat">
-    <span className="stat__value">650 MHz</span>
-    <span className="stat__label">32-bit ARM processor</span>
+    <span className="stat__value">3</span>
+    <span className="stat__label">Languages</span>
   </div>
   <div className="stat">
-    <span className="stat__value">512 MB</span>
-    <span className="stat__label">DDR3 RAM</span>
+    <span className="stat__value">1</span>
+    <span className="stat__label">Set of APIs</span>
   </div>
   <div className="stat">
-    <span className="stat__value">~5 sec</span>
-    <span className="stat__label">Boot time</span>
+    <span className="stat__value">1</span>
+    <span className="stat__label">USB cable to debug</span>
   </div>
   <div className="stat">
-    <span className="stat__value">30×–400×</span>
-    <span className="stat__label">Faster than typical MCU platforms</span>
+    <span className="stat__value">&lt;3 sec</span>
+    <span className="stat__label">C# blink, power on to running</span>
   </div>
 </div>
 
-<YouTubeFacade id="vFzyd8CKS_k" title="Endpoint Domino overview" />
+<YouTubeFacade id="rz_8dD-Q2WI" title="Endpoint: full .NET Core on embedded hardware" />
 
-## Two languages. One board
+## Why Endpoint?
 
-<div className="showcase-pair">
-  <div className="showcase-card">
-    <div className="showcase-card__body">
-      <span className="showcase-card__eyebrow">.NET 8</span>
-      <h3>Full IoT library coverage</h3>
-      <p>GPIO, I2C, PWM, SPI, CAN, and analog — all available through familiar .NET IoT libraries. NuGet packages for NeoPixel, signal processing, and signal capture are included.</p>
-    </div>
+<div className="feature-grid feature-grid--four">
+  <div className="feature-card">
+    <div className="feature-card__icon">🔍</div>
+    <div className="feature-card__title">Debug like it's your PC</div>
+    <div className="feature-card__body"><strong>Plug in USB and press F5.</strong> No network, SSH keys, or IP addresses to get through first. C and C++ need no toolchain, and Python packages install over USB with no internet on the board.</div>
   </div>
-  <div className="showcase-card">
-    <div className="showcase-card__body">
-      <span className="showcase-card__eyebrow">Python 3</span>
-      <h3>Remote deploy from VS Code</h3>
-      <p>Write Python 3, push it over the network, and see results instantly. The same remote deployment workflow works whether you're using VS Code or Visual Studio.</p>
-    </div>
+  <div className="feature-card">
+    <div className="feature-card__icon">⚡</div>
+    <div className="feature-card__title">Running in under 3 seconds</div>
+    <div className="feature-card__body"><strong>Power on to running C#.</strong> Your application starts in less than three seconds, so it behaves more like a device than a computer booting up.</div>
+  </div>
+  <div className="feature-card">
+    <div className="feature-card__icon">🧩</div>
+    <div className="feature-card__title">One API across languages</div>
+    <div className="feature-card__body"><strong>CAN, ADC, SPI and the rest.</strong> They work the same from C#, Python, and C++, so you don't need a different library for each language.</div>
+  </div>
+  <div className="feature-card">
+    <div className="feature-card__icon">🔌</div>
+    <div className="feature-card__title">Hardware that's ready to use</div>
+    <div className="feature-card__body"><strong>CAN, ADC, and a real-time co-processor.</strong> Supported from your code, including timing-critical work.</div>
   </div>
 </div>
 
-<hr className="section-divider" />
+## Plug in. Pick your board. Press F5
 
-## Built to expand
+<p className="lead-text">It's the same flow we have had in TinyCLR for years, now on a Linux-class processor, and it works for all three languages.</p>
+
+<div className="journey-grid">
+  <div className="journey-step">
+    <span className="journey-step__num">1</span>
+    <div className="journey-step__title">Plug in</div>
+    <div className="journey-step__body">Connect your board to your PC with a USB cable.</div>
+  </div>
+  <div className="journey-step">
+    <span className="journey-step__num">2</span>
+    <div className="journey-step__title">Pick your board</div>
+    <div className="journey-step__body">Select it from the list in VS Code or Visual Studio.</div>
+  </div>
+  <div className="journey-step">
+    <span className="journey-step__num">3</span>
+    <div className="journey-step__title">Press F5</div>
+    <div className="journey-step__body">Your code deploys and runs with the debugger attached.</div>
+  </div>
+</div>
+
+<YouTubeFacade id="D6PL4kPqIw8" title="Endpoint Domino: blinking an LED from C# with the debugger attached" />
+
+Blinking an LED on Endpoint Domino from C#, with the debugger attached.
+
+## Three languages. One set of APIs
+
+Learn the API once and it travels with you.
 
 <div className="feature-grid">
   <div className="feature-card">
-    <div className="feature-card__icon">🔌</div>
-    <div className="feature-card__title">2× mikroBUS sockets</div>
-    <div className="feature-card__body">Plug in any of hundreds of Click boards for wireless, sensing, storage, display, and more — no soldering, no custom drivers.</div>
+    <div className="feature-card__title">Full .NET Core</div>
+    <div className="feature-card__body">The same .NET you run on a PC, with APIs that match .NET conventions. Debug from VS Code or Visual Studio. Press Ctrl+F5 to compile in AOT mode and run at boot.</div>
   </div>
   <div className="feature-card">
-    <div className="feature-card__icon">📷</div>
-    <div className="feature-card__title">Camera-ready</div>
-    <div className="feature-card__body">40-pin expansion header accepts OV5640 5-megapixel camera boards directly. Vision projects start with hardware you can buy today.</div>
+    <div className="feature-card__title">Python</div>
+    <div className="feature-card__body">Debug from VS Code over the same USB cable, using the same APIs as C#, and install packages with pip over the debugger.</div>
   </div>
   <div className="feature-card">
-    <div className="feature-card__icon">🖥️</div>
-    <div className="feature-card__title">Display + touch</div>
-    <div className="feature-card__body">FPC connector for external displays with optional capacitive touch. Add a screen without a custom carrier board.</div>
-  </div>
-  <div className="feature-card">
-    <div className="feature-card__icon">📡</div>
-    <div className="feature-card__title">Wi-Fi ready</div>
-    <div className="feature-card__body">Wi-Fi dongle support built in. No secondary radio module required for connected applications.</div>
+    <div className="feature-card__title">C and C++</div>
+    <div className="feature-card__body">Modern C and C++ with no toolchain to install. Debug from VS Code over the same USB cable.</div>
   </div>
 </div>
 
-<hr className="section-divider" />
+## What's in the platform
 
-## A real-time co-processor included
+Click any feature to jump to its docs.
 
-Endpoint pairs a high-level application processor with a secondary real-time microcontroller for precise signal control. Run .NET or Python on the main core while the co-processor handles timing-critical peripherals — no external MCU required.
+<div className="features-grid">
 
-<YouTubeFacade id="q-CMq2IG4KM" title="Endpoint Domino in action" />
+  <div className="features-category">
+    <h3>Hardware</h3>
+    <div className="features-subgroup">
+      <span className="features-subgroup__label">Hardware I/O</span>
+      <ul>
+        <li><a href="/docs/endpoint/feature/gpio">GPIO</a></li>
+        <li><a href="/docs/endpoint/feature/pwm">PWM</a></li>
+        <li><a href="/docs/endpoint/feature/analog-in">Analog in</a></li>
+        <li><a href="/docs/endpoint/feature/analog-out">Analog out</a></li>
+        <li><a href="/docs/endpoint/feature/signal-control">Signal control</a></li>
+      </ul>
+    </div>
+    <div className="features-subgroup">
+      <span className="features-subgroup__label">Communication buses</span>
+      <ul>
+        <li><a href="/docs/endpoint/feature/spi">SPI</a></li>
+        <li><a href="/docs/endpoint/feature/i2c">I2C</a></li>
+        <li><a href="/docs/endpoint/feature/uart">UART</a></li>
+        <li><a href="/docs/endpoint/feature/usb">USB</a></li>
+        <li><a href="/docs/endpoint/feature/can">CAN</a></li>
+      </ul>
+    </div>
+  </div>
 
-<hr className="section-divider" />
+  <div className="features-category">
+    <h3>Connectivity</h3>
+    <div className="features-subgroup">
+      <span className="features-subgroup__label">Networking</span>
+      <ul>
+        <li><a href="/docs/endpoint/feature/networking">Networking</a></li>
+        <li><a href="/docs/endpoint/feature/bluetooth">Bluetooth</a></li>
+      </ul>
+    </div>
+    <div className="features-subgroup">
+      <span className="features-subgroup__label">Cloud</span>
+      <ul>
+        <li><a href="/docs/endpoint/feature/azure">Microsoft Azure</a></li>
+        <li><a href="/docs/endpoint/feature/aws">Amazon Web Services</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div className="features-category">
+    <h3>Display &amp; storage</h3>
+    <div className="features-subgroup">
+      <span className="features-subgroup__label">Display &amp; multimedia</span>
+      <ul>
+        <li><a href="/docs/endpoint/feature/displays">Displays</a></li>
+        <li><a href="/docs/endpoint/feature/touch-screen">Touch screen</a></li>
+        <li><a href="/docs/endpoint/feature/ui">User interface</a></li>
+        <li><a href="/docs/endpoint/feature/graphics">Graphics</a></li>
+        <li><a href="/docs/endpoint/feature/camera">Camera</a></li>
+        <li><a href="/docs/endpoint/feature/mjpeg-video">MJPEG video</a></li>
+      </ul>
+    </div>
+    <div className="features-subgroup">
+      <span className="features-subgroup__label">Storage</span>
+      <ul>
+        <li><a href="/docs/endpoint/feature/file-system">File system</a></li>
+        <li><a href="/docs/endpoint/feature/databases">SQLite database</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div className="features-category">
+    <h3>System services</h3>
+    <div className="features-subgroup">
+      <span className="features-subgroup__label">Device management</span>
+      <ul>
+        <li><a href="/docs/endpoint/feature/in-field-update">In-field update</a></li>
+        <li><a href="/docs/endpoint/feature/power-management">Power management</a></li>
+        <li><a href="/docs/endpoint/feature/watchdog-timer">Watchdog</a></li>
+        <li><a href="/docs/endpoint/feature/real-time-clock">Real-time clock</a></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+## A new platform, and your first taste of it
+
+Endpoint is new, and we are still shaping what the commercial product should be. We have not released SoMs or dev boards yet, because we would rather get that right than ship early. Tell us on the [forum](https://forums.ghielectronics.com/) what form factor you need, which peripherals matter, and whether wireless is a requirement or a nice to have. Those answers shape what we build next.
+
+**Endpoint Domino** is how you try the platform today. We built it for evaluation and excitement, and the board says so: "For Evaluation and Excitement Only." It's your first taste of what Endpoint can do and a look at what's to come.
+
+<div className="split">
+  <div className="split__text">
+    <ul>
+      <li>650 MHz 32-bit ARM processor with 512 MB DDR3 RAM</li>
+      <li>Secondary real-time microcontroller for timing-critical peripherals</li>
+      <li>2× mikroBUS headers, compatible with over 1000 Click boards</li>
+      <li>40-pin expansion header that accepts OV5640 camera boards</li>
+      <li>Display connector with optional capacitive touch</li>
+      <li>Wi-Fi through a USB dongle, plus USB host and a microSD slot</li>
+    </ul>
+    <p>Endpoint Domino (EP-DOMINO-24-B) is available now at $49.95.</p>
+    <p><a href="https://www.amazon.com/gp/product/B0CS6VGRSH?maas=maas_adg_CA55915BE55A9AD52BD164F3AF1756C5_afap_abs&ref_=aa_maas&tag=maas" className="btn-primary">Order on Amazon →</a></p>
+    <p><a href="/docs/endpoint/hardware/">See the hardware docs →</a></p>
+  </div>
+  <img src="/img/docs/endpoint/endpoint-domino.png" alt="Endpoint Domino board" />
+</div>
 
 <div className="cta">
 
-## Ready to build with Endpoint?
+## Ready to try Endpoint?
 
-Endpoint Domino (EP-DOMINO-24-B) is available now at $49.95.
+Two ways forward — head to the docs to get started, or talk to us about your project.
 
-<a href="/contact/" className="btn-primary cta__button">Talk to us about Endpoint →</a>
-<a href="https://www.amazon.com/gp/product/B0CS6VGRSH?maas=maas_adg_CA55915BE55A9AD52BD164F3AF1756C5_afap_abs&ref_=aa_maas&tag=maas" className="btn-primary cta__button">Order on Amazon →</a>
+<div className="cta__buttons">
+  <a href="/docs/endpoint/" className="btn-primary cta__button">Read the docs →</a>
+  <a href="/contact/" className="btn-secondary cta__button">Talk to us</a>
+</div>
 
 </div>
