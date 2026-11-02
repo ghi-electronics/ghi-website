@@ -21,10 +21,10 @@
         "vid": "0x1B9F",
         "pid": "0x5012"
       },
-      "version": "3.0.2.1000",
-      "date": "2026-09-08",
-      "url": "/bin/fw/sitcore-sc13-firmware-v3.0.2.1000.ghi",
-      "md5": "112019B490BA098D361E180E7190828F"
+      "version": "3.0.2.2000",
+      "date": "2026-10-16",
+      "url": "/bin/fw/sitcore-sc13-firmware-v3.0.2.2000.ghi",
+      "md5": "25A234CDE17A510F818E33E600F346DD"
     }
   ]
 }
