@@ -3,9 +3,6 @@ title: "CameraControlValue Class"
 sidebar_label: "CameraControlValue"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # CameraControlValue Class
 
 **Package:** `GHIElectronics.Endpoint.Devices.Camera`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Camera`
@@ -20,29 +17,9 @@ public sealed class CameraControlValue
 
 ### Control
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public CameraControl Control { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Control: CameraControl  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-CameraControl Control() const;
-```
-
-</TabItem>
-</Tabs>
 
 Which control this value describes.
 
@@ -50,29 +27,9 @@ Which control this value describes.
 
 ### DefaultValue
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int DefaultValue { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-DefaultValue: int  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t DefaultValue() const;
-```
-
-</TabItem>
-</Tabs>
 
 Camera's own default for this control.
 
@@ -80,29 +37,9 @@ Camera's own default for this control.
 
 ### Maximum
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int Maximum { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Maximum: int  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t Maximum() const;
-```
-
-</TabItem>
-</Tabs>
 
 Highest value the camera accepts.
 
@@ -110,29 +47,9 @@ Highest value the camera accepts.
 
 ### Minimum
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int Minimum { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Minimum: int  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t Minimum() const;
-```
-
-</TabItem>
-</Tabs>
 
 Lowest value the camera accepts.
 
@@ -140,29 +57,9 @@ Lowest value the camera accepts.
 
 ### Step
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int Step { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Step: int  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t Step() const;
-```
-
-</TabItem>
-</Tabs>
 
 Granularity between accepted values.
 
@@ -170,29 +67,9 @@ Granularity between accepted values.
 
 ### Value
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int Value { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Value: int  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t Value() const;
-```
-
-</TabItem>
-</Tabs>
 
 Current value.
 
@@ -202,29 +79,9 @@ Current value.
 
 ### ToString()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public override string ToString()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def ToString(self) -> str:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-virtual std::string ToString() override;
-```
-
-</TabItem>
-</Tabs>
 
 Returns a human-readable description like "Brightness 128 (0 to 255, default 128)".
 

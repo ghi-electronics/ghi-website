@@ -3,9 +3,6 @@ title: "Dropdown Class"
 sidebar_label: "Dropdown"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # Dropdown Class
 
 **Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
@@ -20,29 +17,9 @@ public class Dropdown : Widget
 
 ### Dropdown(Widget parent)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public Dropdown(Widget parent)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def __init__(self, parent: Widget):
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Dropdown(const Widget& parent);
-```
-
-</TabItem>
-</Tabs>
 
 Create a dropdown inside `parent`.
 
@@ -54,30 +31,9 @@ Create a dropdown inside `parent`.
 
 ### Selected
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int Selected { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Selected: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t Selected() const;
-void Selected(int32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 0-based index of the currently selected item.
 
@@ -87,29 +43,9 @@ void Selected(int32_t value);
 
 ### SetOptions(IEnumerable&lt;string> options)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void SetOptions(IEnumerable<string> options)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def SetOptions(self, options: IEnumerable[str]) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void SetOptions(const IEnumerable<std::string>& options);
-```
-
-</TabItem>
-</Tabs>
 
 Set the items. Internally joined with newline before passing to libendpoint.
 
@@ -117,29 +53,9 @@ Set the items. Internally joined with newline before passing to libendpoint.
 
 ### ValueChanged
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public event EventHandler ValueChanged
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-ValueChanged  # += / -= handler
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Core::Event<...> ValueChanged;
-```
-
-</TabItem>
-</Tabs>
 
 Fires when the user picks a different item. Runs on the UI thread.
 

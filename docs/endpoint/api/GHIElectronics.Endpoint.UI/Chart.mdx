@@ -3,9 +3,6 @@ title: "Chart Class"
 sidebar_label: "Chart"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # Chart Class
 
 **Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
@@ -20,29 +17,9 @@ public class Chart : Widget
 
 ### Chart(Widget parent)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public Chart(Widget parent)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def __init__(self, parent: Widget):
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Chart(const Widget& parent);
-```
-
-</TabItem>
-</Tabs>
 
 Create a chart inside `parent`.
 
@@ -54,30 +31,9 @@ Create a chart inside `parent`.
 
 ### DivisionAxisY
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int DivisionAxisY { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-DivisionAxisY: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t DivisionAxisY() const;
-void DivisionAxisY(int32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 Number of horizontal division lines on the Y axis. Getter returns the last value set.
 
@@ -85,30 +41,9 @@ Number of horizontal division lines on the Y axis. Getter returns the last value
 
 ### Mode
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public ChartMode Mode { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Mode: ChartMode  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-ChartMode Mode() const;
-void Mode(ChartMode value);
-```
-
-</TabItem>
-</Tabs>
 
 How the series is drawn. Getter returns the last value set (LVGL has no read-back).
 
@@ -118,29 +53,9 @@ How the series is drawn. Getter returns the last value set (LVGL has no read-bac
 
 ### SetColors(uint pointColor, uint areaColor, uint labelColor)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void SetColors(uint pointColor, uint areaColor, uint labelColor)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def SetColors(self, pointColor: int, areaColor: int, labelColor: int) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void SetColors(uint32_t pointColor, uint32_t areaColor, uint32_t labelColor);
-```
-
-</TabItem>
-</Tabs>
 
 Set the chart's drawing colors.
 
@@ -152,29 +67,9 @@ Set the chart's drawing colors.
 
 ### SetPoints(int[] values)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void SetPoints(int[] values)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def SetPoints(self, values: list[int]) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void SetPoints(const std::vector<int32_t>& values);
-```
-
-</TabItem>
-</Tabs>
 
 Replace the full series with `values`. The chart redraws in order left-to-right.
 

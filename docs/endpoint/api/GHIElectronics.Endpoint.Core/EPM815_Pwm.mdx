@@ -3,9 +3,6 @@ title: "EPM815.Pwm Class"
 sidebar_label: "EPM815.Pwm"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # Pwm Class
 
 **Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
@@ -26,30 +23,9 @@ public static class Pwm
 
 ### GetChannelId(int pin)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public static int GetChannelId(int pin)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-@staticmethod
-def GetChannelId(pin: int) -> int:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-static int32_t GetChannelId(int32_t pin);
-```
-
-</TabItem>
-</Tabs>
 
 The pin's channel in its PWM chip, for PwmChannel.Create
 
@@ -57,30 +33,9 @@ The pin's channel in its PWM chip, for PwmChannel.Create
 
 ### GetChipId(int pin)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public static int GetChipId(int pin)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-@staticmethod
-def GetChipId(pin: int) -> int:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-static int32_t GetChipId(int32_t pin);
-```
-
-</TabItem>
-</Tabs>
 
 The PWM chip of the pin's timer (/sys/class/pwm/pwmchipN), for PwmChannel.Create
 
@@ -88,59 +43,17 @@ The PWM chip of the pin's timer (/sys/class/pwm/pwmchipN), for PwmChannel.Create
 
 ### Initialize(int pin)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public static void Initialize(int pin)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-@staticmethod
-def Initialize(pin: int) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-static void Initialize(int32_t pin);
-```
-
-</TabItem>
-</Tabs>
 
 Connects the pin to its timer
 
 ### UnInitialize(int pin)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public static void UnInitialize(int pin)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-@staticmethod
-def UnInitialize(pin: int) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-static void UnInitialize(int32_t pin);
-```
-
-</TabItem>
-</Tabs>
 
 Gives the pin back, as it was before Initialize
 

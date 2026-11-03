@@ -3,9 +3,6 @@ title: "Grid Class"
 sidebar_label: "Grid"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # Grid Class
 
 **Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
@@ -20,29 +17,9 @@ public class Grid : Widget
 
 ### Grid(Widget parent)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public Grid(Widget parent)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def __init__(self, parent: Widget):
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Grid(const Widget& parent);
-```
-
-</TabItem>
-</Tabs>
 
 Create a grid inside `parent`.
 
@@ -54,58 +31,17 @@ Create a grid inside `parent`.
 
 ### SetCell(Widget child, int column, int row, int columnSpan, int rowSpan)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public static void SetCell(Widget child, int column, int row, int columnSpan, int rowSpan)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-@staticmethod
-def SetCell(child: Widget, column: int, row: int, columnSpan: int, rowSpan: int) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-static void SetCell(const Widget& child, int32_t column, int32_t row, int32_t columnSpan, int32_t rowSpan);
-```
-
-</TabItem>
-</Tabs>
 
 Attach `child` to a cell in the grid.
 
 ### SetDefinitions(int[] columns, int[] rows)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void SetDefinitions(int[] columns, int[] rows)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def SetDefinitions(self, columns: list[int], rows: list[int]) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void SetDefinitions(const std::vector<int32_t>& columns, const std::vector<int32_t>& rows);
-```
-
-</TabItem>
-</Tabs>
 
 Define column and row sizes. Positive values are fixed pixel widths; a negative value `-n` is a star share of weight `n` (`-1` = `*`, `-2` = `2*`, ...). Zero is treated as star.
 

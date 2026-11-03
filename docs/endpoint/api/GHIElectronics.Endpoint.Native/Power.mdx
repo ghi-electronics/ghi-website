@@ -3,9 +3,6 @@ title: "Power Class"
 sidebar_label: "Power"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # Power Class
 
 **Package:** `GHIElectronics.Endpoint.Native`<br/>**Namespace:** `GHIElectronics.Endpoint.Native`
@@ -26,30 +23,9 @@ public static class Power
 
 ### EnableWakeup(WakeupPin wakeupPin, PinEventTypes edge)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public static void EnableWakeup(WakeupPin wakeupPin, PinEventTypes edge)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-@staticmethod
-def EnableWakeup(wakeupPin: WakeupPin, edge: PinEventTypes) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-static void EnableWakeup(WakeupPin wakeupPin, PinEventTypes edge);
-```
-
-</TabItem>
-</Tabs>
 
 Arms a GPIO wake-up input so a transition on it brings the system out of standby.
 
@@ -60,30 +36,9 @@ Arms a GPIO wake-up input so a transition on it brings the system out of standby
 
 ### EnableWakeup(DateTime dtWakeup, WakeupPin wakeupPin, PinEventTypes edge)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public static void EnableWakeup(DateTime dtWakeup, WakeupPin wakeupPin, PinEventTypes edge)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-@staticmethod
-def EnableWakeup(dtWakeup: datetime.datetime, wakeupPin: WakeupPin, edge: PinEventTypes) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-static void EnableWakeup(DateTime dtWakeup, WakeupPin wakeupPin, PinEventTypes edge);
-```
-
-</TabItem>
-</Tabs>
 
 Arms an RTC alarm and, optionally, a GPIO wake-up input so either event brings the system out of standby. The RTC alarm is scheduled via `rtcwake`; pass `DateTime.MaxValue` to skip the RTC and arm only the pin.
 
@@ -95,59 +50,17 @@ Arms an RTC alarm and, optionally, a GPIO wake-up input so either event brings t
 
 ### Reboot()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public static void Reboot()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-@staticmethod
-def Reboot() -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-static void Reboot();
-```
-
-</TabItem>
-</Tabs>
 
 Reboots the board by invoking `reboot`. The call does not return once the system restarts.
 
 ### Shutdown()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public static void Shutdown()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-@staticmethod
-def Shutdown() -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-static void Shutdown();
-```
-
-</TabItem>
-</Tabs>
 
 Puts the board into standby by programming the power and clock registers directly. Blocks forever in a wait-for-interrupt loop; execution resumes only after a wake-up event resets the processor.
 

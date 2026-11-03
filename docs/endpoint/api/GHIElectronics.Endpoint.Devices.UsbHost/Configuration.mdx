@@ -3,9 +3,6 @@ title: "Configuration Class"
 sidebar_label: "Configuration"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # Configuration Class
 
 **Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost.Descriptors`
@@ -20,29 +17,9 @@ public class Configuration : BaseDescriptor
 
 ### Configuration(byte[] buffer)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public Configuration(byte[] buffer)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def __init__(self, buffer: list[int]):
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Configuration(const std::vector<uint8_t>& buffer);
-```
-
-</TabItem>
-</Tabs>
 
 Constructs a new descriptor.
 
@@ -52,29 +29,9 @@ Constructs a new descriptor.
 
 ### Configuration(byte[] buffer, int offset)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public Configuration(byte[] buffer, int offset)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def __init__(self, buffer: list[int], offset: int):
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Configuration(const std::vector<uint8_t>& buffer, int32_t offset);
-```
-
-</TabItem>
-</Tabs>
 
 Constructs a new descriptor.
 
@@ -85,29 +42,9 @@ Constructs a new descriptor.
 
 ### Configuration()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 protected Configuration()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def __init__(self):
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Configuration();
-```
-
-</TabItem>
-</Tabs>
 
 Constructs a new descriptor.
 
@@ -115,30 +52,9 @@ Constructs a new descriptor.
 
 ### Attributes
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public byte Attributes { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Attributes: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-uint8_t Attributes() const;
-void Attributes(uint8_t value);
-```
-
-</TabItem>
-</Tabs>
 
 A bitmap representing the attributes of the device.
 
@@ -146,30 +62,9 @@ A bitmap representing the attributes of the device.
 
 ### AuxiliaryDescriptors
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public Auxiliary[] AuxiliaryDescriptors { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-AuxiliaryDescriptors: list[Auxiliary]  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-std::vector<Auxiliary> AuxiliaryDescriptors() const;
-void AuxiliaryDescriptors(std::vector<Auxiliary> value);
-```
-
-</TabItem>
-</Tabs>
 
 Child auxiliary descriptors.
 
@@ -177,30 +72,9 @@ Child auxiliary descriptors.
 
 ### Index
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public byte Index { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Index: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-uint8_t Index() const;
-void Index(uint8_t value);
-```
-
-</TabItem>
-</Tabs>
 
 The configuration string descriptor index.
 
@@ -208,30 +82,9 @@ The configuration string descriptor index.
 
 ### Interfaces
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public Interface[] Interfaces { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Interfaces: list[Interface]  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-std::vector<Interface> Interfaces() const;
-void Interfaces(std::vector<Interface> value);
-```
-
-</TabItem>
-</Tabs>
 
 Child interface descriptors.
 
@@ -239,30 +92,9 @@ Child interface descriptors.
 
 ### MaxPower
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public byte MaxPower { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-MaxPower: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-uint8_t MaxPower() const;
-void MaxPower(uint8_t value);
-```
-
-</TabItem>
-</Tabs>
 
 The maximum power consumption in 2mA units.
 
@@ -270,30 +102,9 @@ The maximum power consumption in 2mA units.
 
 ### NumberOfInterfaces
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public byte NumberOfInterfaces { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-NumberOfInterfaces: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-uint8_t NumberOfInterfaces() const;
-void NumberOfInterfaces(uint8_t value);
-```
-
-</TabItem>
-</Tabs>
 
 The number of interfaces.
 
@@ -301,30 +112,9 @@ The number of interfaces.
 
 ### TotalLength
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public ushort TotalLength { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-TotalLength: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-uint16_t TotalLength() const;
-void TotalLength(uint16_t value);
-```
-
-</TabItem>
-</Tabs>
 
 Total length of the the data returned in bytes.
 
@@ -332,30 +122,9 @@ Total length of the the data returned in bytes.
 
 ### Value
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public byte Value { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Value: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-uint8_t Value() const;
-void Value(uint8_t value);
-```
-
-</TabItem>
-</Tabs>
 
 The value to be used as an argument to select this configuration.
 
@@ -365,29 +134,9 @@ The value to be used as an argument to select this configuration.
 
 ### FillChildren(byte[] bytes, int offset)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void FillChildren(byte[] bytes, int offset)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def FillChildren(self, bytes: list[int], offset: int) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void FillChildren(const std::vector<uint8_t>& bytes, int32_t offset);
-```
-
-</TabItem>
-</Tabs>
 
 Walks a config-descriptor blob from `offset` to the end and fills `Configuration.Interfaces`, the nested endpoints, and `Configuration.AuxiliaryDescriptors`.
 
@@ -400,29 +149,9 @@ Walks a config-descriptor blob from `offset` to the end and fills `Configuration
 
 ### FixedLength
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public const byte FixedLength = 9
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-FixedLength: int = 9
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-static constexpr uint8_t FixedLength = 9;
-```
-
-</TabItem>
-</Tabs>
 
 The fixed length of this descriptor type in bytes.
 

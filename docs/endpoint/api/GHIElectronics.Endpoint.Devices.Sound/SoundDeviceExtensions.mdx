@@ -3,9 +3,6 @@ title: "SoundDeviceExtensions Class"
 sidebar_label: "SoundDeviceExtensions"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # SoundDeviceExtensions Class
 
 **Package:** `GHIElectronics.Endpoint.Devices.Sound`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Sound`
@@ -20,59 +17,17 @@ public static class SoundDeviceExtensions
 
 ### PlayMp3(SoundDevice device, string mp3Path)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public static void PlayMp3(SoundDevice device, string mp3Path)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-@staticmethod
-def PlayMp3(device: SoundDevice, mp3Path: str) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-static void PlayMp3(const SoundDevice& device, const std::string& mp3Path);
-```
-
-</TabItem>
-</Tabs>
 
 Plays an MP3 file to its end (the calling thread waits).
 
 ### PlayMp3(SoundDevice device, Stream mp3Stream)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public static void PlayMp3(SoundDevice device, Stream mp3Stream)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-@staticmethod
-def PlayMp3(device: SoundDevice, mp3Stream: Stream) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-static void PlayMp3(const SoundDevice& device, const Stream& mp3Stream);
-```
-
-</TabItem>
-</Tabs>
 
 Plays an MP3 from a stream to its end (the calling thread waits).
 

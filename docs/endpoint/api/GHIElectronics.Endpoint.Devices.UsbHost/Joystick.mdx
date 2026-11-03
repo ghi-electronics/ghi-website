@@ -3,9 +3,6 @@ title: "Joystick Class"
 sidebar_label: "Joystick"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # Joystick Class
 
 **Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
@@ -36,29 +33,9 @@ By default, the reported range for position is between -512 and 512, as on TinyC
 
 ### Joystick(string deviceName)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public Joystick(string deviceName)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def __init__(self, deviceName: str):
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Joystick(const std::string& deviceName);
-```
-
-</TabItem>
-</Tabs>
 
 Opens the joystick that UsbHostController reported ("/dev/input/event3").
 
@@ -66,29 +43,9 @@ Opens the joystick that UsbHostController reported ("/dev/input/event3").
 
 ### Capabilities
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public DeviceCapabilities Capabilities { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Capabilities: DeviceCapabilities  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-DeviceCapabilities Capabilities() const;
-```
-
-</TabItem>
-</Tabs>
 
 The capabilities of the joystick.
 
@@ -96,29 +53,9 @@ The capabilities of the joystick.
 
 ### CurrentHatSwitchDirection
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public HatSwitchDirection CurrentHatSwitchDirection { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-CurrentHatSwitchDirection: HatSwitchDirection  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-HatSwitchDirection CurrentHatSwitchDirection() const;
-```
-
-</TabItem>
-</Tabs>
 
 The current direction of the hat switch.
 
@@ -126,29 +63,9 @@ The current direction of the hat switch.
 
 ### Cursor2Position
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public Position Cursor2Position { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Cursor2Position: Position  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Position Cursor2Position() const;
-```
-
-</TabItem>
-</Tabs>
 
 The current position of the second cursor.
 
@@ -156,29 +73,9 @@ The current position of the second cursor.
 
 ### CursorPosition
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public Position CursorPosition { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-CursorPosition: Position  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Position CursorPosition() const;
-```
-
-</TabItem>
-</Tabs>
 
 The current position of the first cursor.
 
@@ -188,29 +85,9 @@ The current position of the first cursor.
 
 ### GetButtonState(int buttonNumber)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public ButtonState GetButtonState(int buttonNumber)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def GetButtonState(self, buttonNumber: int) -> ButtonState:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-ButtonState GetButtonState(int32_t buttonNumber);
-```
-
-</TabItem>
-</Tabs>
 
 Gets the current button state.
 
@@ -222,29 +99,9 @@ Gets the current button state.
 
 ### SetCursorBounds(Cursor cursor, int minX, int maxX, int minY, int maxY)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void SetCursorBounds(Cursor cursor, int minX, int maxX, int minY, int maxY)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def SetCursorBounds(self, cursor: Cursor, minX: int, maxX: int, minY: int, maxY: int) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void SetCursorBounds(Cursor cursor, int32_t minX, int32_t maxX, int32_t minY, int32_t maxY);
-```
-
-</TabItem>
-</Tabs>
 
 Sets the bounds for given cursor.
 
@@ -252,85 +109,25 @@ Sets the bounds for given cursor.
 
 ### ButtonChanged
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public event ButtonChangedEventHandler ButtonChanged
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-ButtonChanged  # += / -= handler
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Core::Event<...> ButtonChanged;
-```
-
-</TabItem>
-</Tabs>
 
 The event fired when one of the joystick's buttons is pressed or released.
 
 ### CursorMoved
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public event CursorMovedEventHandler CursorMoved
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-CursorMoved  # += / -= handler
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Core::Event<...> CursorMoved;
-```
-
-</TabItem>
-</Tabs>
 
 The event fired when the joystick's cursor has moved.
 
 ### HatSwitchPressed
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public event HatSwitchPressedEventHandler HatSwitchPressed
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-HatSwitchPressed  # += / -= handler
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Core::Event<...> HatSwitchPressed;
-```
-
-</TabItem>
-</Tabs>
 
 The event fired when the joystick's hat switch has been pressed.
 

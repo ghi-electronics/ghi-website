@@ -3,9 +3,6 @@ title: "Border Class"
 sidebar_label: "Border"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # Border Class
 
 **Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
@@ -20,29 +17,9 @@ public class Border : Widget
 
 ### Border(Widget parent)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public Border(Widget parent)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def __init__(self, parent: Widget):
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Border(const Widget& parent);
-```
-
-</TabItem>
-</Tabs>
 
 Create a border inside `parent`.
 
@@ -54,30 +31,9 @@ Create a border inside `parent`.
 
 ### BorderBrush
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public uint BorderBrush { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-BorderBrush: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-uint32_t BorderBrush() const;
-void BorderBrush(uint32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 Border line color as `0x00RRGGBB`. Getter returns the last value set (LVGL has no read-back).
 
@@ -85,30 +41,9 @@ Border line color as `0x00RRGGBB`. Getter returns the last value set (LVGL has n
 
 ### CornerRadius
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int CornerRadius { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-CornerRadius: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t CornerRadius() const;
-void CornerRadius(int32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 Corner radius in pixels (0 = sharp corners). Getter returns the last value set (LVGL has no read-back).
 
@@ -116,30 +51,9 @@ Corner radius in pixels (0 = sharp corners). Getter returns the last value set (
 
 ### Padding
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int Padding { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Padding: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t Padding() const;
-void Padding(int32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 Inner padding in pixels between the border and child widgets. Getter returns the last value set (LVGL has no read-back).
 
@@ -147,30 +61,9 @@ Inner padding in pixels between the border and child widgets. Getter returns the
 
 ### Thickness
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int Thickness { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Thickness: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t Thickness() const;
-void Thickness(int32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 Border line thickness in pixels. Getter returns the last value set (LVGL has no read-back).
 

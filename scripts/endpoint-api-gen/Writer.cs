@@ -74,32 +74,14 @@ public static class Writer {
         L.AppendLine();
         L.AppendLine("# Endpoint API Reference");
         L.AppendLine();
-        L.AppendLine("Endpoint uses the standard .NET APIs wherever they exist, and adds the libraries below for hardware features .NET does not cover. Every library has three parallel bindings — **.NET** (NuGet), **Python** (pip) and **C/C++** (header). The API names match character-for-character across the three languages.");
+        L.AppendLine("Endpoint uses the standard .NET APIs wherever they exist, and adds the libraries below for hardware features .NET does not cover.");
         L.AppendLine();
         L.AppendLine("## Standard .NET");
         L.AppendLine();
         L.AppendLine("- [.NET API](https://learn.microsoft.com/en-gb/dotnet/api/)");
         L.AppendLine("- [.NET IoT API](https://learn.microsoft.com/en-gb/dotnet/api/?view=iot-dotnet-latest)");
         L.AppendLine();
-        L.AppendLine("## Standard device APIs");
-        L.AppendLine();
-        L.AppendLine(".NET's device APIs (GPIO, I²C, SPI, PWM, serial) are standard — Microsoft documents them in the links above and the C# code looks the same on any board. Python and C/C++ have no equivalent standard, so Endpoint ships wrapper packages with the SAME names and shape as the .NET API. Install the wrapper for your language; the member names (`GpioController`, `OpenPin`, `Write`, …) are identical.");
-        L.AppendLine();
-        L.AppendLine("| API | .NET | Python | C/C++ |");
-        L.AppendLine("|---|---|---|---|");
-        L.AppendLine("| GPIO | [`System.Device.Gpio`](https://learn.microsoft.com/en-us/dotnet/api/system.device.gpio) | `pip install GHIElectronics.Endpoint.Devices.Gpio` | `#include <endpoint.h>` → `GHIElectronics::Endpoint::Devices::Gpio` |");
-        L.AppendLine("| I²C | [`System.Device.I2c`](https://learn.microsoft.com/en-us/dotnet/api/system.device.i2c) | `pip install GHIElectronics.Endpoint.Devices.I2c` | `#include <endpoint.h>` → `GHIElectronics::Endpoint::Devices::I2c` |");
-        L.AppendLine("| SPI | [`System.Device.Spi`](https://learn.microsoft.com/en-us/dotnet/api/system.device.spi) | `pip install GHIElectronics.Endpoint.Devices.Spi` | `#include <endpoint.h>` → `GHIElectronics::Endpoint::Devices::Spi` |");
-        L.AppendLine("| PWM | [`System.Device.Pwm`](https://learn.microsoft.com/en-us/dotnet/api/system.device.pwm) | `pip install GHIElectronics.Endpoint.Devices.Pwm` | `#include <endpoint.h>` → `GHIElectronics::Endpoint::Devices::Pwm` |");
-        L.AppendLine("| Serial port | [`System.IO.Ports.SerialPort`](https://learn.microsoft.com/en-us/dotnet/api/system.io.ports.serialport) | `pip install pyserial` *(Python-native; use its `serial.Serial` API)* | `#include <endpoint.h>` → `GHIElectronics::Endpoint::Devices::Ports` |");
-        L.AppendLine();
-        L.AppendLine(":::note");
-        L.AppendLine("For serial, Python has an established ecosystem library — **pyserial** (`import serial`) — so the Endpoint pip package for serial is not shipped. Use pyserial directly; its API is different from .NET's `SerialPort` but it is what Python developers expect.");
-        L.AppendLine(":::");
-        L.AppendLine();
         L.AppendLine("## Endpoint libraries");
-        L.AppendLine();
-        L.AppendLine("Hardware features Microsoft's standard .NET APIs do not cover. Every library below is published for all three languages under the same name.");
         L.AppendLine();
         L.AppendLine("| Library | Description |");
         L.AppendLine("|---|---|");
@@ -162,8 +144,6 @@ public static class Writer {
         L.AppendLine($"title: {Yaml(t.SidebarPath + " " + Cap(t.Kind.ToString()))}");
         L.AppendLine($"sidebar_label: {Yaml(t.SidebarPath)}");
         L.AppendLine("---");
-        L.AppendLine();
-        L.AppendLine(TabsImport);
         L.AppendLine();
         L.AppendLine($"# {Prose(t.DisplayName)} {Cap(t.Kind.ToString())}");
         L.AppendLine();
@@ -257,7 +237,7 @@ public static class Writer {
              .AppendLine(string.IsNullOrWhiteSpace(m.ObsoleteMessage) ? "" : ProseCell(m.ObsoleteMessage))
              .AppendLine();
         }
-        L.AppendLine(SignatureTabs(m));
+        L.AppendLine(SignatureBlock(m));
         L.AppendLine();
         // No noisy "No description available." placeholder — if the summary
         // is empty, just show the signature and move on.
@@ -284,20 +264,12 @@ public static class Writer {
         }
     }
 
-    static string SignatureTabs(MemberModel m) {
-        var sb = new StringBuilder();
-        sb.AppendLine("<Tabs groupId=\"endpoint-lang\">");
-        sb.AppendLine("<TabItem value=\"csharp\" label=\"C#\">").AppendLine();
-        sb.AppendLine("```csharp").AppendLine(m.CsharpSignature).AppendLine("```").AppendLine();
-        sb.AppendLine("</TabItem>").AppendLine("<TabItem value=\"python\" label=\"Python\">").AppendLine();
-        sb.AppendLine("```python").AppendLine(m.PythonSignature).AppendLine("```").AppendLine();
-        sb.AppendLine("</TabItem>").AppendLine("<TabItem value=\"cpp\" label=\"C/C++\">").AppendLine();
-        sb.AppendLine("```cpp").AppendLine(m.CppSignature).AppendLine("```").AppendLine();
-        sb.AppendLine("</TabItem>").Append("</Tabs>");
-        return sb.ToString();
-    }
-
-    const string TabsImport = "import Tabs from '@theme/Tabs';\nimport TabItem from '@theme/TabItem';";
+    // Plain csharp code block per member (TinyCLR style). The Python and C/C++
+    // bindings are intentionally not surfaced on the site for now — the model
+    // still carries PythonSignature / CppSignature so a future revision can
+    // re-enable language tabs without re-plumbing the generator.
+    static string SignatureBlock(MemberModel m) =>
+        "```csharp\n" + m.CsharpSignature + "\n```";
 
     static Dictionary<TypeModel, string> AssignFilenames(List<TypeModel> types) {
         // SidebarPath disambiguates nested types that share a leaf name

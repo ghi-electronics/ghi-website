@@ -3,9 +3,6 @@ title: "UsbHostController Class"
 sidebar_label: "UsbHostController"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # UsbHostController Class
 
 **Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
@@ -20,114 +17,33 @@ public sealed class UsbHostController : IDisposable
 
 ### Disable()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void Disable()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def Disable(self) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void Disable();
-```
-
-</TabItem>
-</Tabs>
 
 Stops reporting devices. Already-reported devices stay accessible until they are unplugged.
 
 ### Dispose()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void Dispose()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def Dispose(self) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void Dispose();
-```
-
-</TabItem>
-</Tabs>
 
 Stops the events (one being delivered finishes first)
 
 ### Enable()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void Enable()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def Enable(self) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void Enable();
-```
-
-</TabItem>
-</Tabs>
 
 Starts reporting devices: first the ones already plugged in
 
 ### GetDefault()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public static UsbHostController GetDefault()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-@staticmethod
-def GetDefault() -> UsbHostController:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-static UsbHostController GetDefault();
-```
-
-</TabItem>
-</Tabs>
 
 A new USB host controller for the board. Call `UsbHostController.Enable` to start seeing devices.
 
@@ -137,29 +53,9 @@ A new USB host controller for the board. Call `UsbHostController.Enable` to star
 
 ### ConnectionChanged
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public event UsbConnectionChangedEventHandler ConnectionChanged
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-ConnectionChanged  # += / -= handler
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Core::Event<...> ConnectionChanged;
-```
-
-</TabItem>
-</Tabs>
 
 A device connected or disconnected
 

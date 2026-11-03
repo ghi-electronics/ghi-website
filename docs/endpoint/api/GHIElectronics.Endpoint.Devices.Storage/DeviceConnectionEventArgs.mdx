@@ -3,9 +3,6 @@ title: "DeviceConnectionEventArgs Class"
 sidebar_label: "DeviceConnectionEventArgs"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # DeviceConnectionEventArgs Class
 
 **Package:** `GHIElectronics.Endpoint.Devices.Storage`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Storage`
@@ -20,29 +17,9 @@ public sealed class DeviceConnectionEventArgs : EventArgs
 
 ### DeviceStatus
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public DeviceConnectionStatus DeviceStatus { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-DeviceStatus: DeviceConnectionStatus  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-DeviceConnectionStatus DeviceStatus() const;
-```
-
-</TabItem>
-</Tabs>
 
 Whether the drive was just connected or just disconnected.
 
@@ -50,29 +27,9 @@ Whether the drive was just connected or just disconnected.
 
 ### Hdc
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public nint Hdc { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Hdc: int  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-intptr_t Hdc() const;
-```
-
-</TabItem>
-</Tabs>
 
 The drive, for FileSystem.Mount, Flush and Unmount, until it is pulled out
 
@@ -80,29 +37,9 @@ The drive, for FileSystem.Mount, Flush and Unmount, until it is pulled out
 
 ### VolumeLabel
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public string VolumeLabel { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-VolumeLabel: str  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-std::string VolumeLabel() const;
-```
-
-</TabItem>
-</Tabs>
 
 The drive's name ("LOGGER"), empty if it has none. (On Endpoint, `DriveInfo.VolumeLabel` returns the drive's mount folder, not its label — read this property instead.)
 

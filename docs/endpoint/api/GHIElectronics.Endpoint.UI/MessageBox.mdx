@@ -3,9 +3,6 @@ title: "MessageBox Class"
 sidebar_label: "MessageBox"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # MessageBox Class
 
 **Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
@@ -20,29 +17,9 @@ public class MessageBox : Widget
 
 ### MessageBox(Widget parent)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public MessageBox(Widget parent)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def __init__(self, parent: Widget):
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-MessageBox(const Widget& parent);
-```
-
-</TabItem>
-</Tabs>
 
 Create a message box inside `parent`.
 
@@ -54,29 +31,9 @@ Create a message box inside `parent`.
 
 ### AddButton(string text)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public MessageBoxButton AddButton(string text)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def AddButton(self, text: str) -> MessageBoxButton:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-MessageBoxButton AddButton(const std::string& text);
-```
-
-</TabItem>
-</Tabs>
 
 Add a footer button; returns a handle to subscribe to its Clicked event.
 
@@ -84,57 +41,17 @@ Add a footer button; returns a handle to subscribe to its Clicked event.
 
 ### Hide()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void Hide()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def Hide(self) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void Hide();
-```
-
-</TabItem>
-</Tabs>
 
 Dismiss the dialog without destroying it; call again by making the `Widget.Visible` parent re-show it.
 
 ### SetBody(string body)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void SetBody(string body)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def SetBody(self, body: str) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void SetBody(const std::string& body);
-```
-
-</TabItem>
-</Tabs>
 
 Set the dialog body text.
 
@@ -144,29 +61,9 @@ Set the dialog body text.
 
 ### SetTitle(string title)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void SetTitle(string title)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def SetTitle(self, title: str) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void SetTitle(const std::string& title);
-```
-
-</TabItem>
-</Tabs>
 
 Set the dialog title text.
 

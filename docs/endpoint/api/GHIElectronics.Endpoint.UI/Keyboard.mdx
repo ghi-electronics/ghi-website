@@ -3,9 +3,6 @@ title: "Keyboard Class"
 sidebar_label: "Keyboard"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # Keyboard Class
 
 **Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
@@ -20,29 +17,9 @@ public class Keyboard : Widget
 
 ### Keyboard(Widget parent)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public Keyboard(Widget parent)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def __init__(self, parent: Widget):
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Keyboard(const Widget& parent);
-```
-
-</TabItem>
-</Tabs>
 
 Create a virtual keyboard inside `parent`.
 
@@ -54,57 +31,17 @@ Create a virtual keyboard inside `parent`.
 
 ### ClearTarget()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void ClearTarget()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def ClearTarget(self) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void ClearTarget();
-```
-
-</TabItem>
-</Tabs>
 
 Detach any current target so key presses go nowhere.
 
 ### SetTarget(TextBox textbox)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void SetTarget(TextBox textbox)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def SetTarget(self, textbox: TextBox) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void SetTarget(const TextBox& textbox);
-```
-
-</TabItem>
-</Tabs>
 
 Route key presses into `textbox`.
 

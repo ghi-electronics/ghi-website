@@ -3,9 +3,6 @@ title: "Widget Class"
 sidebar_label: "Widget"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # Widget Class
 
 **Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
@@ -20,30 +17,9 @@ public abstract class Widget : IDisposable
 
 ### BackgroundColor
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public uint BackgroundColor { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-BackgroundColor: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-uint32_t BackgroundColor() const;
-void BackgroundColor(uint32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 Solid background color as `0x00RRGGBB`. Getter returns the last value set (LVGL has no read-back); returns `0` if never set.
 
@@ -51,30 +27,9 @@ Solid background color as `0x00RRGGBB`. Getter returns the last value set (LVGL 
 
 ### Height
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int Height { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Height: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t Height() const;
-void Height(int32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 Height in pixels.
 
@@ -82,30 +37,9 @@ Height in pixels.
 
 ### Visible
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public bool Visible { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Visible: bool  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-bool Visible() const;
-void Visible(bool value);
-```
-
-</TabItem>
-</Tabs>
 
 Whether the widget (and its subtree) is drawn. Setting `false` hides but does not destroy it.
 
@@ -113,30 +47,9 @@ Whether the widget (and its subtree) is drawn. Setting `false` hides but does no
 
 ### Width
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int Width { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Width: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t Width() const;
-void Width(int32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 Width in pixels.
 
@@ -144,30 +57,9 @@ Width in pixels.
 
 ### X
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int X { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-X: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t X() const;
-void X(int32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 X coordinate in pixels relative to the parent's top-left corner.
 
@@ -175,30 +67,9 @@ X coordinate in pixels relative to the parent's top-left corner.
 
 ### Y
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int Y { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Y: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t Y() const;
-void Y(int32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 Y coordinate in pixels relative to the parent's top-left corner.
 
@@ -208,113 +79,33 @@ Y coordinate in pixels relative to the parent's top-left corner.
 
 ### Dispose()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public virtual void Dispose()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def Dispose(self) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-virtual void Dispose();
-```
-
-</TabItem>
-</Tabs>
 
 Destroy the native widget and release pinned event handles. Idempotent.
 
 ### SetBackgroundGradient(uint rgbStart, uint rgbEnd, GradientDirection direction)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void SetBackgroundGradient(uint rgbStart, uint rgbEnd, GradientDirection direction)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def SetBackgroundGradient(self, rgbStart: int, rgbEnd: int, direction: GradientDirection) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void SetBackgroundGradient(uint32_t rgbStart, uint32_t rgbEnd, GradientDirection direction);
-```
-
-</TabItem>
-</Tabs>
 
 Linear gradient background. direction: Vertical = top->bottom, Horizontal = left->right.
 
 ### SetBackgroundImage(byte[] rgb565Pixels, int width, int height)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void SetBackgroundImage(byte[] rgb565Pixels, int width, int height)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def SetBackgroundImage(self, rgb565Pixels: list[int], width: int, height: int) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void SetBackgroundImage(const std::vector<uint8_t>& rgb565Pixels, int32_t width, int32_t height);
-```
-
-</TabItem>
-</Tabs>
 
 Tiled background from raw RGB565 pixel bytes (little-endian).
 
 ### SetMargin(int left, int top, int right, int bottom)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void SetMargin(int left, int top, int right, int bottom)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def SetMargin(self, left: int, top: int, right: int, bottom: int) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void SetMargin(int32_t left, int32_t top, int32_t right, int32_t bottom);
-```
-
-</TabItem>
-</Tabs>
 
 WPF-style per-widget Margin. Works in any parent (flex, dock, or absolute).
 

@@ -3,9 +3,6 @@ title: "Screen Class"
 sidebar_label: "Screen"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # Screen Class
 
 **Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
@@ -20,29 +17,9 @@ public class Screen : Widget
 
 ### Screen()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public Screen()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def __init__(self):
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Screen();
-```
-
-</TabItem>
-</Tabs>
 
 Create a new standalone screen (invisible until Load()).
 
@@ -50,29 +27,9 @@ Create a new standalone screen (invisible until Load()).
 
 ### Active
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public static Screen Active { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Active: Screen  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Screen Active() const;
-```
-
-</TabItem>
-</Tabs>
 
 The screen currently displayed on the panel. The returned instance does not own its handle and should not be disposed.
 
@@ -82,29 +39,9 @@ The screen currently displayed on the panel. The returned instance does not own 
 
 ### Load()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void Load()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def Load(self) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void Load();
-```
-
-</TabItem>
-</Tabs>
 
 Make this the currently-displayed screen.
 

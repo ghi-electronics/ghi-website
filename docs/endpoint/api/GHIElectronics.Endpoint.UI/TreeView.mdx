@@ -3,9 +3,6 @@ title: "TreeView Class"
 sidebar_label: "TreeView"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # TreeView Class
 
 **Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
@@ -20,29 +17,9 @@ public class TreeView : Widget
 
 ### TreeView(Widget parent)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public TreeView(Widget parent)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def __init__(self, parent: Widget):
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-TreeView(const Widget& parent);
-```
-
-</TabItem>
-</Tabs>
 
 Create a tree view inside `parent`.
 
@@ -54,29 +31,9 @@ Create a tree view inside `parent`.
 
 ### AddNode(int depth, bool isExpanded, bool hasChildren, string header)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void AddNode(int depth, bool isExpanded, bool hasChildren, string header)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def AddNode(self, depth: int, isExpanded: bool, hasChildren: bool, header: str) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void AddNode(int32_t depth, bool isExpanded, bool hasChildren, const std::string& header);
-```
-
-</TabItem>
-</Tabs>
 
 Append a visible node at the given indent level.
 
@@ -89,29 +46,9 @@ Append a visible node at the given indent level.
 
 ### Clear()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void Clear()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def Clear(self) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void Clear();
-```
-
-</TabItem>
-</Tabs>
 
 Remove every node.
 

@@ -3,9 +3,6 @@ title: "Printer Class"
 sidebar_label: "Printer"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # Printer Class
 
 **Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
@@ -24,29 +21,9 @@ Open it with the DeviceName of a Printer from `UsbHostController` ("/dev/usb/lp0
 
 ### Printer(string deviceName)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public Printer(string deviceName)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def __init__(self, deviceName: str):
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Printer(const std::string& deviceName);
-```
-
-</TabItem>
-</Tabs>
 
 Opens the printer that UsbHostController reported ("/dev/usb/lp0").
 
@@ -54,29 +31,9 @@ Opens the printer that UsbHostController reported ("/dev/usb/lp0").
 
 ### DeviceId
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public string DeviceId { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-DeviceId: str  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-std::string DeviceId() const;
-```
-
-</TabItem>
-</Tabs>
 
 The printer's IEEE 1284 Device ID: "MFG:EPSON;CMD:ESC/POS;MDL:TM-T20II;CLS:PRINTER;"
 
@@ -84,29 +41,9 @@ The printer's IEEE 1284 Device ID: "MFG:EPSON;CMD:ESC/POS;MDL:TM-T20II;CLS:PRINT
 
 ### Status
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public PrinterStatus Status { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Status: PrinterStatus  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-PrinterStatus Status() const;
-```
-
-</TabItem>
-</Tabs>
 
 Paper out, off line or an error, as the printer reports them (Ready: none).
 
@@ -114,30 +51,9 @@ Paper out, off line or an error, as the printer reports them (Ready: none).
 
 ### WriteTimeout
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int WriteTimeout { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-WriteTimeout: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t WriteTimeout() const;
-void WriteTimeout(int32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 How long Write waits for the printer to take the data, in milliseconds (Timeout.Infinite: as long as it takes).
 
@@ -147,29 +63,9 @@ How long Write waits for the printer to take the data, in milliseconds (Timeout.
 
 ### Read(Span&lt;byte> buffer, int timeout)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int Read(Span<byte> buffer, int timeout)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def Read(self, buffer: Span[int], timeout: int) -> int:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t Read(Span<uint8_t> buffer, int32_t timeout);
-```
-
-</TabItem>
-</Tabs>
 
 Reads what the printer answers (to a status request).
 
@@ -182,29 +78,9 @@ Reads what the printer answers (to a status request).
 
 ### Write(string text)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int Write(string text)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def Write(self, text: str) -> int:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t Write(const std::string& text);
-```
-
-</TabItem>
-</Tabs>
 
 Sends text to the printer, as UTF-8.
 
@@ -212,29 +88,9 @@ Sends text to the printer, as UTF-8.
 
 ### Write(ReadOnlySpan&lt;byte> data)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int Write(ReadOnlySpan<byte> data)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def Write(self, data: ReadOnlySpan[int]) -> int:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t Write(ReadOnlySpan<uint8_t> data);
-```
-
-</TabItem>
-</Tabs>
 
 Sends bytes to the printer.
 

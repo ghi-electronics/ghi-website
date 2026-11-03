@@ -3,9 +3,6 @@ title: "Device Class"
 sidebar_label: "Device"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # Device Class
 
 **Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost.Descriptors`
@@ -20,29 +17,9 @@ public class Device : BaseDescriptor
 
 ### Device(byte[] buffer)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public Device(byte[] buffer)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def __init__(self, buffer: list[int]):
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Device(const std::vector<uint8_t>& buffer);
-```
-
-</TabItem>
-</Tabs>
 
 Constructs a new descriptor.
 
@@ -52,29 +29,9 @@ Constructs a new descriptor.
 
 ### Device(byte[] buffer, int offset)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public Device(byte[] buffer, int offset)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def __init__(self, buffer: list[int], offset: int):
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Device(const std::vector<uint8_t>& buffer, int32_t offset);
-```
-
-</TabItem>
-</Tabs>
 
 Constructs a new descriptor.
 
@@ -85,29 +42,9 @@ Constructs a new descriptor.
 
 ### Device()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 protected Device()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def __init__(self):
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Device();
-```
-
-</TabItem>
-</Tabs>
 
 Constructs a new descriptor.
 
@@ -115,30 +52,9 @@ Constructs a new descriptor.
 
 ### ClassCode
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public byte ClassCode { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-ClassCode: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-uint8_t ClassCode() const;
-void ClassCode(uint8_t value);
-```
-
-</TabItem>
-</Tabs>
 
 The class code of the device.
 
@@ -146,30 +62,9 @@ The class code of the device.
 
 ### ManufacturerIndex
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public byte ManufacturerIndex { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-ManufacturerIndex: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-uint8_t ManufacturerIndex() const;
-void ManufacturerIndex(uint8_t value);
-```
-
-</TabItem>
-</Tabs>
 
 The manufacturer string descriptor index.
 
@@ -177,30 +72,9 @@ The manufacturer string descriptor index.
 
 ### MaximumPacketSize
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public byte MaximumPacketSize { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-MaximumPacketSize: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-uint8_t MaximumPacketSize() const;
-void MaximumPacketSize(uint8_t value);
-```
-
-</TabItem>
-</Tabs>
 
 The max packet size for endpoint zero.
 
@@ -208,30 +82,9 @@ The max packet size for endpoint zero.
 
 ### NumberOfConfigurations
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public byte NumberOfConfigurations { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-NumberOfConfigurations: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-uint8_t NumberOfConfigurations() const;
-void NumberOfConfigurations(uint8_t value);
-```
-
-</TabItem>
-</Tabs>
 
 The number of possible configurations.
 
@@ -239,30 +92,9 @@ The number of possible configurations.
 
 ### ProductId
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public ushort ProductId { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-ProductId: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-uint16_t ProductId() const;
-void ProductId(uint16_t value);
-```
-
-</TabItem>
-</Tabs>
 
 The product id.
 
@@ -270,30 +102,9 @@ The product id.
 
 ### ProductIndex
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public byte ProductIndex { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-ProductIndex: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-uint8_t ProductIndex() const;
-void ProductIndex(uint8_t value);
-```
-
-</TabItem>
-</Tabs>
 
 The product string descriptor index.
 
@@ -301,30 +112,9 @@ The product string descriptor index.
 
 ### ProtocolCode
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public byte ProtocolCode { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-ProtocolCode: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-uint8_t ProtocolCode() const;
-void ProtocolCode(uint8_t value);
-```
-
-</TabItem>
-</Tabs>
 
 The protocol code.
 
@@ -332,30 +122,9 @@ The protocol code.
 
 ### ReleaseNumber
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public ushort ReleaseNumber { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-ReleaseNumber: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-uint16_t ReleaseNumber() const;
-void ReleaseNumber(uint16_t value);
-```
-
-</TabItem>
-</Tabs>
 
 The device release number as a BCD.
 
@@ -363,30 +132,9 @@ The device release number as a BCD.
 
 ### SerialNumberIndex
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public byte SerialNumberIndex { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-SerialNumberIndex: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-uint8_t SerialNumberIndex() const;
-void SerialNumberIndex(uint8_t value);
-```
-
-</TabItem>
-</Tabs>
 
 The serial number string descriptor index.
 
@@ -394,30 +142,9 @@ The serial number string descriptor index.
 
 ### SubclassCode
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public byte SubclassCode { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-SubclassCode: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-uint8_t SubclassCode() const;
-void SubclassCode(uint8_t value);
-```
-
-</TabItem>
-</Tabs>
 
 The subclass code.
 
@@ -425,30 +152,9 @@ The subclass code.
 
 ### UsbSpecificationNumber
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public ushort UsbSpecificationNumber { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-UsbSpecificationNumber: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-uint16_t UsbSpecificationNumber() const;
-void UsbSpecificationNumber(uint16_t value);
-```
-
-</TabItem>
-</Tabs>
 
 USB specification number that the device implements as a BCD.
 
@@ -456,30 +162,9 @@ USB specification number that the device implements as a BCD.
 
 ### VendorId
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public ushort VendorId { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-VendorId: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-uint16_t VendorId() const;
-void VendorId(uint16_t value);
-```
-
-</TabItem>
-</Tabs>
 
 The vendor id.
 
@@ -489,29 +174,9 @@ The vendor id.
 
 ### FixedLength
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public const byte FixedLength = 18
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-FixedLength: int = 18
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-static constexpr uint8_t FixedLength = 18;
-```
-
-</TabItem>
-</Tabs>
 
 The fixed length of this descriptor type in bytes.
 

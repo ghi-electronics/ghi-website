@@ -3,9 +3,6 @@ title: "TextBox Class"
 sidebar_label: "TextBox"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # TextBox Class
 
 **Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
@@ -20,29 +17,9 @@ public class TextBox : Widget
 
 ### TextBox(Widget parent)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public TextBox(Widget parent)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def __init__(self, parent: Widget):
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-TextBox(const Widget& parent);
-```
-
-</TabItem>
-</Tabs>
 
 Create a text box inside `parent`.
 
@@ -54,30 +31,9 @@ Create a text box inside `parent`.
 
 ### Placeholder
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public string Placeholder { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Placeholder: str  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-std::string Placeholder() const;
-void Placeholder(std::string value);
-```
-
-</TabItem>
-</Tabs>
 
 Hint text shown when `TextBox.Text` is empty. `null` is treated as empty. Getter returns the last value set.
 
@@ -85,30 +41,9 @@ Hint text shown when `TextBox.Text` is empty. `null` is treated as empty. Getter
 
 ### Text
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public string Text { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Text: str  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-std::string Text() const;
-void Text(std::string value);
-```
-
-</TabItem>
-</Tabs>
 
 Current text content. Reads back live from LVGL (up to 255 UTF-8 bytes).
 
@@ -118,29 +53,9 @@ Current text content. Reads back live from LVGL (up to 255 UTF-8 bytes).
 
 ### ValueChanged
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public event EventHandler ValueChanged
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-ValueChanged  # += / -= handler
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Core::Event<...> ValueChanged;
-```
-
-</TabItem>
-</Tabs>
 
 Fires on every character insertion or deletion. Runs on the UI thread.
 

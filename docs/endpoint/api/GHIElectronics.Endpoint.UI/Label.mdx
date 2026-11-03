@@ -3,9 +3,6 @@ title: "Label Class"
 sidebar_label: "Label"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # Label Class
 
 **Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
@@ -20,29 +17,9 @@ public class Label : Widget
 
 ### Label(Widget parent)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public Label(Widget parent)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def __init__(self, parent: Widget):
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Label(const Widget& parent);
-```
-
-</TabItem>
-</Tabs>
 
 Create a label inside `parent`.
 
@@ -54,30 +31,9 @@ Create a label inside `parent`.
 
 ### Color
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public uint Color { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Color: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-uint32_t Color() const;
-void Color(uint32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 Text color as `0x00RRGGBB`. Getter returns the last value set.
 
@@ -85,30 +41,9 @@ Text color as `0x00RRGGBB`. Getter returns the last value set.
 
 ### FontSize
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int FontSize { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-FontSize: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t FontSize() const;
-void FontSize(int32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 Font size in pixels. Getter returns the last value set.
 
@@ -116,30 +51,9 @@ Font size in pixels. Getter returns the last value set.
 
 ### Text
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public string Text { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Text: str  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-std::string Text() const;
-void Text(std::string value);
-```
-
-</TabItem>
-</Tabs>
 
 Displayed text. `null` is treated as empty. Getter returns the last value set.
 
@@ -147,30 +61,9 @@ Displayed text. `null` is treated as empty. Getter returns the last value set.
 
 ### TextAlignment
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public TextAlignment TextAlignment { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-TextAlignment: TextAlignment  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-TextAlignment TextAlignment() const;
-void TextAlignment(TextAlignment value);
-```
-
-</TabItem>
-</Tabs>
 
 Horizontal alignment of the text inside the label bounds. Getter returns the last value set.
 

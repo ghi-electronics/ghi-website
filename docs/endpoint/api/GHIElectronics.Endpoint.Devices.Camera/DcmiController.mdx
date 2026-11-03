@@ -3,9 +3,6 @@ title: "DcmiController Class"
 sidebar_label: "DcmiController"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # DcmiController Class
 
 **Package:** `GHIElectronics.Endpoint.Devices.Camera`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Camera`
@@ -26,29 +23,9 @@ public abstract class DcmiController : IDisposable
 
 ### DcmiController(string devicePath)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public DcmiController(string devicePath)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def __init__(self, devicePath: str):
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-DcmiController(const std::string& devicePath);
-```
-
-</TabItem>
-</Tabs>
 
 Reserves the camera-interface pins, starts the pixel clock, and loads the backing capture driver. The V4L2 node is not opened until `DcmiController.Open` is called.
 
@@ -60,29 +37,9 @@ Reserves the camera-interface pins, starts the pixel clock, and loads the backin
 
 ### Height
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int Height { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Height: int  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t Height() const;
-```
-
-</TabItem>
-</Tabs>
 
 Frame height in pixels, taken from the last applied `DcmiController.Setting`.
 
@@ -90,29 +47,9 @@ Frame height in pixels, taken from the last applied `DcmiController.Setting`.
 
 ### IsVideoStreaming
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public bool IsVideoStreaming { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-IsVideoStreaming: bool  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-bool IsVideoStreaming() const;
-```
-
-</TabItem>
-</Tabs>
 
 `true` while `DcmiController.VideoStreamStart` is delivering frames via `DcmiController.FrameReceived`.
 
@@ -120,30 +57,9 @@ bool IsVideoStreaming() const;
 
 ### Setting
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public CameraConfiguration Setting { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Setting: CameraConfiguration  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-CameraConfiguration Setting() const;
-void Setting(CameraConfiguration value);
-```
-
-</TabItem>
-</Tabs>
 
 Resolution, pixel format and frame rate for subsequent captures. Assigning a value re-initializes the native device at the new size, FPS and JPEG quality, and reallocates the internal frame buffer.
 
@@ -151,29 +67,9 @@ Resolution, pixel format and frame rate for subsequent captures. Assigning a val
 
 ### Width
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int Width { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Width: int  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t Width() const;
-```
-
-</TabItem>
-</Tabs>
 
 Frame width in pixels, taken from the last applied `DcmiController.Setting`.
 
@@ -183,29 +79,9 @@ Frame width in pixels, taken from the last applied `DcmiController.Setting`.
 
 ### Capture()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public byte[] Capture()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def Capture(self) -> list[int]:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-std::vector<uint8_t> Capture();
-```
-
-</TabItem>
-</Tabs>
 
 Captures a single frame synchronously and returns it in the format set by `CameraConfiguration.ImageFormat`. Throws if `DcmiController.Setting` is unset, the device is not open, or a video stream is already running.
 
@@ -213,85 +89,25 @@ Captures a single frame synchronously and returns it in the format set by `Camer
 
 ### Close()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 protected void Close()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def Close(self) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void Close();
-```
-
-</TabItem>
-</Tabs>
 
 Stops streaming (if active) and closes the V4L2 device. Safe to call when already closed.
 
 ### Dispose()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void Dispose()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def Dispose(self) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void Dispose();
-```
-
-</TabItem>
-</Tabs>
 
 Closes the device, releases the camera-interface pins, stops the pixel clock and unloads the backing capture driver.
 
 ### Dispose(bool disposing)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 protected void Dispose(bool disposing)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def Dispose(self, disposing: bool) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void Dispose(bool disposing);
-```
-
-</TabItem>
-</Tabs>
 
 Releases held resources. See `DcmiController.Dispose`.
 
@@ -301,29 +117,9 @@ Releases held resources. See `DcmiController.Dispose`.
 
 ### GetResolution()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public string[] GetResolution()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def GetResolution(self) -> list[str]:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-std::vector<std::string> GetResolution();
-```
-
-</TabItem>
-</Tabs>
 
 Lists every `WIDTHxHEIGHT` resolution the capture driver reports from `v4l2-ctl --list-formats-ext`, or `null` if none are found.
 
@@ -331,85 +127,25 @@ Lists every `WIDTHxHEIGHT` resolution the capture driver reports from `v4l2-ctl 
 
 ### Open()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 protected void Open()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def Open(self) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void Open();
-```
-
-</TabItem>
-</Tabs>
 
 Opens the V4L2 device for capture. Throws if the device is already open or the node does not exist.
 
 ### VideoStreamStart()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void VideoStreamStart()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def VideoStreamStart(self) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void VideoStreamStart();
-```
-
-</TabItem>
-</Tabs>
 
 Begins continuous capture on a background task; each frame is delivered through `DcmiController.FrameReceived`. Throws if `DcmiController.Setting` is unset or the device is not open. Call `DcmiController.VideoStreamStop` to end streaming.
 
 ### VideoStreamStop()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void VideoStreamStop()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def VideoStreamStop(self) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void VideoStreamStop();
-```
-
-</TabItem>
-</Tabs>
 
 Signals the streaming worker to stop and blocks until it has exited.
 
@@ -417,29 +153,9 @@ Signals the streaming worker to stop and blocks until it has exited.
 
 ### FrameReceived
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public event FrameReceivedEventHandler FrameReceived
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-FrameReceived  # += / -= handler
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Core::Event<...> FrameReceived;
-```
-
-</TabItem>
-</Tabs>
 
 Fires on the streaming worker thread for every frame captured by `DcmiController.VideoStreamStart`. Not raised by `DcmiController.Capture`.
 

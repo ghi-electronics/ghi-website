@@ -3,9 +3,6 @@ title: "ImageConverter Class"
 sidebar_label: "ImageConverter"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # ImageConverter Class
 
 **Package:** `GHIElectronics.Endpoint.Devices.Camera`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Camera`
@@ -20,30 +17,9 @@ public static class ImageConverter
 
 ### Convert(byte[] imageData, int width, int height, PixelFormat inPixelFormat, PixelFormat outPixelFormat)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public static byte[] Convert(byte[] imageData, int width, int height, PixelFormat inPixelFormat, PixelFormat outPixelFormat)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-@staticmethod
-def Convert(imageData: list[int], width: int, height: int, inPixelFormat: PixelFormat, outPixelFormat: PixelFormat) -> list[int]:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-static std::vector<uint8_t> Convert(const std::vector<uint8_t>& imageData, int32_t width, int32_t height, PixelFormat inPixelFormat, PixelFormat outPixelFormat);
-```
-
-</TabItem>
-</Tabs>
 
 Decodes a JPEG frame into the requested pixel format.
 

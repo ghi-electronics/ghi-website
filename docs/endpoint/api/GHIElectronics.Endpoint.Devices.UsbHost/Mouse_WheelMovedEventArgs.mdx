@@ -3,9 +3,6 @@ title: "Mouse.WheelMovedEventArgs Class"
 sidebar_label: "Mouse.WheelMovedEventArgs"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # WheelMovedEventArgs Class
 
 **Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
@@ -20,58 +17,17 @@ public class WheelMovedEventArgs : EventArgs
 
 ### WheelMovedEventArgs()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public WheelMovedEventArgs()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def __init__(self):
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-WheelMovedEventArgs();
-```
-
-</TabItem>
-</Tabs>
 
 ## Properties
 
 ### Delta
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int Delta { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Delta: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t Delta() const;
-void Delta(int32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 The change from the last position.
 
@@ -79,30 +35,9 @@ The change from the last position.
 
 ### NewPosition
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int NewPosition { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-NewPosition: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t NewPosition() const;
-void NewPosition(int32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 The new position of the wheel.
 

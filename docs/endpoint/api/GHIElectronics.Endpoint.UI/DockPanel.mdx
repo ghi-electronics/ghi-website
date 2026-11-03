@@ -3,9 +3,6 @@ title: "DockPanel Class"
 sidebar_label: "DockPanel"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # DockPanel Class
 
 **Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
@@ -20,29 +17,9 @@ public class DockPanel : Widget
 
 ### DockPanel(Widget parent)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public DockPanel(Widget parent)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def __init__(self, parent: Widget):
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-DockPanel(const Widget& parent);
-```
-
-</TabItem>
-</Tabs>
 
 Create a dock panel inside `parent`.
 
@@ -54,30 +31,9 @@ Create a dock panel inside `parent`.
 
 ### LastChildFill
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public bool LastChildFill { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-LastChildFill: bool  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-bool LastChildFill() const;
-void LastChildFill(bool value);
-```
-
-</TabItem>
-</Tabs>
 
 When `true`, the last added child fills the remaining area. Consumed by codegen, not LVGL.
 

@@ -3,9 +3,6 @@ title: "NetworkController Class"
 sidebar_label: "NetworkController"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # NetworkController Class
 
 **Package:** `GHIElectronics.Endpoint.Devices.Network`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Network`
@@ -20,29 +17,9 @@ public sealed class NetworkController
 
 ### IsConnected
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public bool IsConnected { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-IsConnected: bool  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-bool IsConnected() const;
-```
-
-</TabItem>
-</Tabs>
 
 True if the interface currently has an IPv4 address.
 
@@ -50,29 +27,9 @@ True if the interface currently has an IPv4 address.
 
 ### IsEnabled
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public bool IsEnabled { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-IsEnabled: bool  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-bool IsEnabled() const;
-```
-
-</TabItem>
-</Tabs>
 
 True if the interface is administratively up.
 
@@ -80,29 +37,9 @@ True if the interface is administratively up.
 
 ### IsPresent
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public bool IsPresent { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-IsPresent: bool  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-bool IsPresent() const;
-```
-
-</TabItem>
-</Tabs>
 
 True if an interface of this type currently exists on the board (built-in PHY detected, or USB adapter plugged in and its driver loaded). WiFi stays false until `NetworkController.Enable` is called at least once (that is what modprobes the Wi-Fi driver).
 
@@ -110,29 +47,9 @@ True if an interface of this type currently exists on the board (built-in PHY de
 
 ### Name
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public string Name { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Name: str  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-std::string Name() const;
-```
-
-</TabItem>
-</Tabs>
 
 System identifier (eth0, wlan0, ...), or empty string if no interface of this type is currently present. Reads live from the kernel on every access - it reflects the state right now, not the state at `NetworkController.FromType` time.
 
@@ -140,29 +57,9 @@ System identifier (eth0, wlan0, ...), or empty string if no interface of this ty
 
 ### NetworkInterface
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public NetworkInterface NetworkInterface { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-NetworkInterface: NetworkInterface  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-NetworkInterface NetworkInterface() const;
-```
-
-</TabItem>
-</Tabs>
 
 The standard `NetworkInformation.NetworkInterface` for this controller, or null if the interface has gone away since the controller was created.
 
@@ -170,29 +67,9 @@ The standard `NetworkInformation.NetworkInterface` for this controller, or null 
 
 ### Type
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public NetworkType Type { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Type: NetworkType  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-NetworkType Type() const;
-```
-
-</TabItem>
-</Tabs>
 
 Which kind of interface this controller represents (`NetworkType.Ethernet` or `NetworkType.Wifi`).
 
@@ -202,86 +79,25 @@ Which kind of interface this controller represents (`NetworkType.Ethernet` or `N
 
 ### Disable()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void Disable()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def Disable(self) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void Disable();
-```
-
-</TabItem>
-</Tabs>
 
 Stops DHCP and brings the interface down. Does not clear the settings file.
 
 ### Enable()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void Enable()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def Enable(self) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void Enable();
-```
-
-</TabItem>
-</Tabs>
 
 Applies the settings from `/config/network.json` to this interface: brings the link up and starts DHCP, or sets the static address, or starts wpa_supplicant (WiFi). Throws if the apply fails. Call synchronously from the user's program; nothing runs automatically at boot.
 
 ### FromType(NetworkType type)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public static NetworkController FromType(NetworkType type)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-@staticmethod
-def FromType(type: NetworkType) -> NetworkController:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-static NetworkController FromType(NetworkType type);
-```
-
-</TabItem>
-</Tabs>
 
 The controller for the given type. Always returns a valid controller: the controller represents the type (Ethernet, WiFi), not a specific interface. Hardware does not have to be present yet - call `NetworkController.SetInterfaceSettings` to configure, then `NetworkController.Enable`, which modprobes any USB driver needed and brings the matching interface up. Use `NetworkController.IsPresent` to check if the hardware is currently plugged in.
 
@@ -289,29 +105,9 @@ The controller for the given type. Always returns a valid controller: the contro
 
 ### GetInterfaceSettings()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public NetworkInterfaceSettings GetInterfaceSettings()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def GetInterfaceSettings(self) -> NetworkInterfaceSettings:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-NetworkInterfaceSettings GetInterfaceSettings();
-```
-
-</TabItem>
-</Tabs>
 
 Reads the current settings for this type from `/config/network.json`. Changes to the returned object do nothing until passed back to `NetworkController.SetInterfaceSettings`.
 
@@ -319,30 +115,9 @@ Reads the current settings for this type from `/config/network.json`. Changes to
 
 ### GetName(NetworkType type)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public static string GetName(NetworkType type)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-@staticmethod
-def GetName(type: NetworkType) -> str:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-static std::string GetName(NetworkType type);
-```
-
-</TabItem>
-</Tabs>
 
 The system identifier (eth0, wlan0, ...) for the first interface of the given type, or an empty string if none is present.
 
@@ -350,29 +125,9 @@ The system identifier (eth0, wlan0, ...) for the first interface of the given ty
 
 ### SetInterfaceSettings(NetworkInterfaceSettings settings)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void SetInterfaceSettings(NetworkInterfaceSettings settings)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def SetInterfaceSettings(self, settings: NetworkInterfaceSettings) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void SetInterfaceSettings(const NetworkInterfaceSettings& settings);
-```
-
-</TabItem>
-</Tabs>
 
 Writes the settings to `/config/network.json` (persisted across reboots). Does NOT apply them to the live interface - call `NetworkController.Enable` for that.
 

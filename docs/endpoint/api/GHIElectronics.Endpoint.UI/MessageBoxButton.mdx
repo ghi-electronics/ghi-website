@@ -3,9 +3,6 @@ title: "MessageBoxButton Class"
 sidebar_label: "MessageBoxButton"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # MessageBoxButton Class
 
 **Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
@@ -20,29 +17,9 @@ public class MessageBoxButton
 
 ### Clicked
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public event EventHandler Clicked
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Clicked  # += / -= handler
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Core::Event<...> Clicked;
-```
-
-</TabItem>
-</Tabs>
 
 Fires when the footer button is tapped. Runs on the UI thread.
 

@@ -3,9 +3,6 @@ title: "DeviceInformation Class"
 sidebar_label: "DeviceInformation"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # DeviceInformation Class
 
 **Package:** `GHIElectronics.Endpoint.Native`<br/>**Namespace:** `GHIElectronics.Endpoint.Native`
@@ -20,29 +17,9 @@ public static class DeviceInformation
 
 ### Version
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public static string Version { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Version: str  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-std::string Version() const;
-```
-
-</TabItem>
-</Tabs>
 
 Firmware version string as reported by `get_version.sh`, with any trailing newline stripped.
 
@@ -52,88 +29,25 @@ Firmware version string as reported by `get_version.sh`, with any trailing newli
 
 ### DisableAutoRun()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public static void DisableAutoRun()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-@staticmethod
-def DisableAutoRun() -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-static void DisableAutoRun();
-```
-
-</TabItem>
-</Tabs>
 
 Removes the auto-run init.d entry installed by `DeviceInformation.EnableAutoRun`.
 
 ### DisableSSH()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public static void DisableSSH()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-@staticmethod
-def DisableSSH() -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-static void DisableSSH();
-```
-
-</TabItem>
-</Tabs>
 
 Permanently removes the SSH (`S50dropbear`) and USB gadget (`S30usbgadget`) init.d entries, so neither service starts at the next boot. Intended for release builds only.
 
 ### EnableAutoRun(string applicationName)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public static void EnableAutoRun(string applicationName)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-@staticmethod
-def EnableAutoRun(applicationName: str) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-static void EnableAutoRun(const std::string& applicationName);
-```
-
-</TabItem>
-</Tabs>
 
 Installs an init.d entry (`/etc/init.d/S29custom`) that starts the given deployed .NET application at boot. The application is expected at `/root/.epdata/{applicationName}/{applicationName}.dll`.
 
@@ -143,30 +57,9 @@ Installs an init.d entry (`/etc/init.d/S29custom`) that starts the given deploye
 
 ### SdBoot()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public static bool SdBoot()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-@staticmethod
-def SdBoot() -> bool:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-static bool SdBoot();
-```
-
-</TabItem>
-</Tabs>
 
 Returns `true` when the board booted from the SD card, `false` when it booted from the on-board eMMC.
 

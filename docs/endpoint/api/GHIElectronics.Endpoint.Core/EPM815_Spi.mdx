@@ -3,9 +3,6 @@ title: "EPM815.Spi Class"
 sidebar_label: "EPM815.Spi"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # Spi Class
 
 **Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
@@ -20,30 +17,9 @@ public static class Spi
 
 ### Initialize(int bus, int bufferSize)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public static void Initialize(int bus, int bufferSize)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-@staticmethod
-def Initialize(bus: int, bufferSize: int) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-static void Initialize(int32_t bus, int32_t bufferSize);
-```
-
-</TabItem>
-</Tabs>
 
 Connects the bus's pins and loads the SPI driver (spidev) if needed
 
@@ -54,30 +30,9 @@ Connects the bus's pins and loads the SPI driver (spidev) if needed
 
 ### UnInitialize(int bus)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public static void UnInitialize(int bus)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-@staticmethod
-def UnInitialize(bus: int) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-static void UnInitialize(int32_t bus);
-```
-
-</TabItem>
-</Tabs>
 
 Gives the bus's pins back, as they were before Initialize
 
@@ -85,113 +40,33 @@ Gives the bus's pins back, as they were before Initialize
 
 ### DefaultBufferSize
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public const int DefaultBufferSize = 4096
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-DefaultBufferSize: int = 4096
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-static constexpr int32_t DefaultBufferSize = 4096;
-```
-
-</TabItem>
-</Tabs>
 
 The largest transfer when none is given (the system's default)
 
 ### Spi1
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public const int Spi1 = 0
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Spi1: int = 0
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-static constexpr int32_t Spi1 = 0;
-```
-
-</TabItem>
-</Tabs>
 
 SPI1: PZ0 (SCK), PZ1 (MISO), PZ2 (MOSI); /dev/spidev0.0
 
 ### Spi4
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public const int Spi4 = 1
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Spi4: int = 1
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-static constexpr int32_t Spi4 = 1;
-```
-
-</TabItem>
-</Tabs>
 
 SPI4: PE12 (SCK), PE13 (MISO), PE14 (MOSI); /dev/spidev1.0
 
 ### Spi5
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public const int Spi5 = 2
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Spi5: int = 2
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-static constexpr int32_t Spi5 = 2;
-```
-
-</TabItem>
-</Tabs>
 
 SPI5: PF7 (SCK), PF8 (MISO), PF9 (MOSI); /dev/spidev2.0
 

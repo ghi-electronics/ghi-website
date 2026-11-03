@@ -3,9 +3,6 @@ title: "ProgressBar Class"
 sidebar_label: "ProgressBar"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # ProgressBar Class
 
 **Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
@@ -20,29 +17,9 @@ public class ProgressBar : Widget
 
 ### ProgressBar(Widget parent)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public ProgressBar(Widget parent)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def __init__(self, parent: Widget):
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-ProgressBar(const Widget& parent);
-```
-
-</TabItem>
-</Tabs>
 
 Create a progress bar inside `parent`. Default range is 0-100.
 
@@ -54,30 +31,9 @@ Create a progress bar inside `parent`. Default range is 0-100.
 
 ### Maximum
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int Maximum { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Maximum: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t Maximum() const;
-void Maximum(int32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 Upper bound of `ProgressBar.Value`. Setting it pushes both bounds to LVGL. Getter returns the last value set.
 
@@ -85,30 +41,9 @@ Upper bound of `ProgressBar.Value`. Setting it pushes both bounds to LVGL. Gette
 
 ### Minimum
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int Minimum { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Minimum: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t Minimum() const;
-void Minimum(int32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 Lower bound of `ProgressBar.Value`. Setting it pushes both bounds to LVGL. Getter returns the last value set.
 
@@ -116,30 +51,9 @@ Lower bound of `ProgressBar.Value`. Setting it pushes both bounds to LVGL. Gette
 
 ### Value
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int Value { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Value: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t Value() const;
-void Value(int32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 Current fill between `ProgressBar.Minimum` and `ProgressBar.Maximum`. Read-back is supported by LVGL.
 

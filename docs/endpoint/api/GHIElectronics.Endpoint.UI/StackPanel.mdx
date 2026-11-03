@@ -3,9 +3,6 @@ title: "StackPanel Class"
 sidebar_label: "StackPanel"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # StackPanel Class
 
 **Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
@@ -20,29 +17,9 @@ public class StackPanel : Widget
 
 ### StackPanel(Widget parent)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public StackPanel(Widget parent)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def __init__(self, parent: Widget):
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-StackPanel(const Widget& parent);
-```
-
-</TabItem>
-</Tabs>
 
 Create a stack panel inside `parent`.
 
@@ -54,29 +31,9 @@ Create a stack panel inside `parent`.
 
 ### Orientation
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public Orientation Orientation { set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Orientation: Orientation  # @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void Orientation(Orientation value);
-```
-
-</TabItem>
-</Tabs>
 
 Direction in which children are arranged. Set-only; LVGL has no read-back.
 
@@ -84,29 +41,9 @@ Direction in which children are arranged. Set-only; LVGL has no read-back.
 
 ### Spacing
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int Spacing { set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Spacing: int  # @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void Spacing(int32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 Gap in pixels between successive children. Set-only; LVGL has no read-back.
 

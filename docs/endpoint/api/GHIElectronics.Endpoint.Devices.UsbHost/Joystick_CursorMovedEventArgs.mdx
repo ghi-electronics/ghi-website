@@ -3,9 +3,6 @@ title: "Joystick.CursorMovedEventArgs Class"
 sidebar_label: "Joystick.CursorMovedEventArgs"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # CursorMovedEventArgs Class
 
 **Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
@@ -20,57 +17,17 @@ public class CursorMovedEventArgs : EventArgs
 
 ### CursorMovedEventArgs()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public CursorMovedEventArgs()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def __init__(self):
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-CursorMovedEventArgs();
-```
-
-</TabItem>
-</Tabs>
 
 ## Properties
 
 ### Delta
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public Position Delta { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Delta: Position  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Position Delta() const;
-```
-
-</TabItem>
-</Tabs>
 
 The change from the last position.
 
@@ -78,29 +35,9 @@ The change from the last position.
 
 ### NewPosition
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public Position NewPosition { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-NewPosition: Position  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Position NewPosition() const;
-```
-
-</TabItem>
-</Tabs>
 
 The new position of the cursor.
 
@@ -108,29 +45,9 @@ The new position of the cursor.
 
 ### Which
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public Cursor Which { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Which: Cursor  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Cursor Which() const;
-```
-
-</TabItem>
-</Tabs>
 
 Which cursor moved.
 

@@ -3,9 +3,6 @@ title: "ListBoxItem Class"
 sidebar_label: "ListBoxItem"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # ListBoxItem Class
 
 **Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
@@ -20,29 +17,9 @@ public class ListBoxItem
 
 ### Clicked
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public event EventHandler Clicked
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Clicked  # += / -= handler
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Core::Event<...> Clicked;
-```
-
-</TabItem>
-</Tabs>
 
 Fires when this list item is tapped. Runs on the UI thread.
 

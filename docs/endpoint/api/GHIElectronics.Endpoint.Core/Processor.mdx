@@ -3,9 +3,6 @@ title: "Processor Class"
 sidebar_label: "Processor"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # Processor Class
 
 **Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
@@ -20,29 +17,9 @@ public static class Processor
 
 ### Name
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public static string Name { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Name: str  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-std::string Name() const;
-```
-
-</TabItem>
-</Tabs>
 
 The current processor's id. Set once at startup; defaults to `Processor.STM32MP1`.
 
@@ -52,29 +29,9 @@ The current processor's id. Set once at startup; defaults to `Processor.STM32MP1
 
 ### STM32MP1
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public const string STM32MP1 = "STM32MP1"
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-STM32MP1: str = "STM32MP1"
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-static constexpr std::string STM32MP1 = "STM32MP1";
-```
-
-</TabItem>
-</Tabs>
 
 Processor id used by the EPM815 module.
 

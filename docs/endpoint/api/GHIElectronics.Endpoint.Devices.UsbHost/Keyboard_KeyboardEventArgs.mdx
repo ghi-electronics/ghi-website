@@ -3,9 +3,6 @@ title: "Keyboard.KeyboardEventArgs Class"
 sidebar_label: "Keyboard.KeyboardEventArgs"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # KeyboardEventArgs Class
 
 **Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
@@ -20,58 +17,17 @@ public class KeyboardEventArgs : EventArgs
 
 ### KeyboardEventArgs()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public KeyboardEventArgs()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def __init__(self):
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-KeyboardEventArgs();
-```
-
-</TabItem>
-</Tabs>
 
 ## Properties
 
 ### Ascii
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public char Ascii { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Ascii: str  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-char Ascii() const;
-void Ascii(char value);
-```
-
-</TabItem>
-</Tabs>
 
 The ASCII representation of the key, if available. Otherwise, this value is 0.
 
@@ -79,30 +35,9 @@ The ASCII representation of the key, if available. Otherwise, this value is 0.
 
 ### Which
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public Key Which { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Which: Key  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Key Which() const;
-void Which(Key value);
-```
-
-</TabItem>
-</Tabs>
 
 The Key associated with the event.
 

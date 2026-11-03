@@ -3,9 +3,6 @@ title: "ParallelLcdSettings Class"
 sidebar_label: "ParallelLcdSettings"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # ParallelLcdSettings Class
 
 **Package:** `GHIElectronics.Endpoint.Devices.Display`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Display`
@@ -20,58 +17,17 @@ public sealed class ParallelLcdSettings
 
 ### ParallelLcdSettings()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public ParallelLcdSettings()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def __init__(self):
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-ParallelLcdSettings();
-```
-
-</TabItem>
-</Tabs>
 
 ## Properties
 
 ### BitsPerPixel
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int BitsPerPixel { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-BitsPerPixel: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t BitsPerPixel() const;
-void BitsPerPixel(int32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 Framebuffer bit depth (16 = RGB565, 24 = RGB888).
 
@@ -79,30 +35,9 @@ Framebuffer bit depth (16 = RGB565, 24 = RGB888).
 
 ### DataEnablePolarity
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public SignalPolarity DataEnablePolarity { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-DataEnablePolarity: SignalPolarity  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-SignalPolarity DataEnablePolarity() const;
-void DataEnablePolarity(SignalPolarity value);
-```
-
-</TabItem>
-</Tabs>
 
 Polarity of the DE (Data Enable) signal. Most RGB panels want ActiveHigh (DE high while valid pixel data is on the bus); check your panel's datasheet.
 
@@ -110,30 +45,9 @@ Polarity of the DE (Data Enable) signal. Most RGB panels want ActiveHigh (DE hig
 
 ### HBackPorch
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int HBackPorch { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-HBackPorch: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t HBackPorch() const;
-void HBackPorch(int32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 Horizontal back porch, in pixel clocks.
 
@@ -141,30 +55,9 @@ Horizontal back porch, in pixel clocks.
 
 ### HFrontPorch
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int HFrontPorch { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-HFrontPorch: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t HFrontPorch() const;
-void HFrontPorch(int32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 Horizontal front porch, in pixel clocks.
 
@@ -172,30 +65,9 @@ Horizontal front porch, in pixel clocks.
 
 ### HSync
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int HSync { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-HSync: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t HSync() const;
-void HSync(int32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 Horizontal sync pulse width, in pixel clocks.
 
@@ -203,30 +75,9 @@ Horizontal sync pulse width, in pixel clocks.
 
 ### Height
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int Height { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Height: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t Height() const;
-void Height(int32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 Visible height in pixels.
 
@@ -234,30 +85,9 @@ Visible height in pixels.
 
 ### PixelClockEdge
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public ClockEdge PixelClockEdge { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-PixelClockEdge: ClockEdge  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-ClockEdge PixelClockEdge() const;
-void PixelClockEdge(ClockEdge value);
-```
-
-</TabItem>
-</Tabs>
 
 Which edge of the pixel clock the panel latches data on. The SoC drives data on the opposite edge. Rising is the common default; try Falling if the image looks sheared or torn.
 
@@ -265,30 +95,9 @@ Which edge of the pixel clock the panel latches data on. The SoC drives data on 
 
 ### PixelClockHz
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int PixelClockHz { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-PixelClockHz: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t PixelClockHz() const;
-void PixelClockHz(int32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 Pixel clock in Hz.
 
@@ -296,30 +105,9 @@ Pixel clock in Hz.
 
 ### VBackPorch
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int VBackPorch { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-VBackPorch: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t VBackPorch() const;
-void VBackPorch(int32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 Vertical back porch, in lines.
 
@@ -327,30 +115,9 @@ Vertical back porch, in lines.
 
 ### VFrontPorch
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int VFrontPorch { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-VFrontPorch: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t VFrontPorch() const;
-void VFrontPorch(int32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 Vertical front porch, in lines.
 
@@ -358,30 +125,9 @@ Vertical front porch, in lines.
 
 ### VSync
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int VSync { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-VSync: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t VSync() const;
-void VSync(int32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 Vertical sync pulse width, in lines.
 
@@ -389,30 +135,9 @@ Vertical sync pulse width, in lines.
 
 ### Width
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int Width { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Width: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t Width() const;
-void Width(int32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 Visible width in pixels.
 

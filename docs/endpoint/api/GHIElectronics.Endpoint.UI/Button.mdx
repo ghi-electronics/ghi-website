@@ -3,9 +3,6 @@ title: "Button Class"
 sidebar_label: "Button"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # Button Class
 
 **Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
@@ -20,29 +17,9 @@ public class Button : Widget
 
 ### Button(Widget parent)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public Button(Widget parent)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def __init__(self, parent: Widget):
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Button(const Widget& parent);
-```
-
-</TabItem>
-</Tabs>
 
 Create a button inside `parent`.
 
@@ -54,30 +31,9 @@ Create a button inside `parent`.
 
 ### BackgroundColor
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public uint BackgroundColor { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-BackgroundColor: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-uint32_t BackgroundColor() const;
-void BackgroundColor(uint32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 Button background color as `0x00RRGGBB`. Getter returns the last value set.
 
@@ -85,30 +41,9 @@ Button background color as `0x00RRGGBB`. Getter returns the last value set.
 
 ### FontSize
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int FontSize { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-FontSize: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t FontSize() const;
-void FontSize(int32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 Caption font size in pixels. Getter returns the last value set.
 
@@ -116,30 +51,9 @@ Caption font size in pixels. Getter returns the last value set.
 
 ### Text
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public string Text { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Text: str  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-std::string Text() const;
-void Text(std::string value);
-```
-
-</TabItem>
-</Tabs>
 
 Button caption. `null` is treated as empty. Getter returns the last value set.
 
@@ -147,30 +61,9 @@ Button caption. `null` is treated as empty. Getter returns the last value set.
 
 ### TextColor
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public uint TextColor { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-TextColor: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-uint32_t TextColor() const;
-void TextColor(uint32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 Caption color as `0x00RRGGBB`. Getter returns the last value set.
 
@@ -180,29 +73,9 @@ Caption color as `0x00RRGGBB`. Getter returns the last value set.
 
 ### Clicked
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public event EventHandler Clicked
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Clicked  # += / -= handler
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Core::Event<...> Clicked;
-```
-
-</TabItem>
-</Tabs>
 
 Fires when the button is clicked (press-and-release inside its bounds). Runs on the UI thread.
 

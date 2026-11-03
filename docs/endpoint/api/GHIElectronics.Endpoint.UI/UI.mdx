@@ -3,9 +3,6 @@ title: "UI Class"
 sidebar_label: "UI"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # UI Class
 
 **Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
@@ -20,88 +17,25 @@ public static class UI
 
 ### Initialize()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public static void Initialize()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-@staticmethod
-def Initialize() -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-static void Initialize();
-```
-
-</TabItem>
-</Tabs>
 
 Initialize LVGL and bind it to the framebuffer. Call after the display is enabled. Safe to call multiple times (second and later calls are no-ops).
 
 ### Run()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public static void Run()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-@staticmethod
-def Run() -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-static void Run();
-```
-
-</TabItem>
-</Tabs>
 
 Run the event loop until `UI.Stop` is called. Blocks the calling thread. Pumps LVGL timers and sleeps between frames.
 
 ### Stop()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public static void Stop()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-@staticmethod
-def Stop() -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-static void Stop();
-```
-
-</TabItem>
-</Tabs>
 
 Request the event loop to exit at the next tick.
 

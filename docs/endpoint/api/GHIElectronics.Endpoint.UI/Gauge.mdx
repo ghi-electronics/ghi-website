@@ -3,9 +3,6 @@ title: "Gauge Class"
 sidebar_label: "Gauge"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # Gauge Class
 
 **Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
@@ -20,29 +17,9 @@ public class Gauge : Widget
 
 ### Gauge(Widget parent, int width, int height)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public Gauge(Widget parent, int width, int height)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def __init__(self, parent: Widget, width: int, height: int):
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Gauge(const Widget& parent, int32_t width, int32_t height);
-```
-
-</TabItem>
-</Tabs>
 
 Create a gauge inside `parent`.
 
@@ -56,30 +33,9 @@ Create a gauge inside `parent`.
 
 ### EnableScale
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public bool EnableScale { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-EnableScale: bool  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-bool EnableScale() const;
-void EnableScale(bool value);
-```
-
-</TabItem>
-</Tabs>
 
 Whether tick marks and labels are drawn around the dial. Getter returns the last value set.
 
@@ -87,30 +43,9 @@ Whether tick marks and labels are drawn around the dial. Getter returns the last
 
 ### SweepAngle
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int SweepAngle { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-SweepAngle: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t SweepAngle() const;
-void SweepAngle(int32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 Total sweep in degrees (typically 180, 270, or 360). Getter returns the last value set.
 
@@ -118,30 +53,9 @@ Total sweep in degrees (typically 180, 270, or 360). Getter returns the last val
 
 ### Value
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int Value { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Value: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t Value() const;
-void Value(int32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 Current needle value. Getter returns the last value set (LVGL has no read-back).
 
@@ -151,57 +65,17 @@ Current needle value. Getter returns the last value set (LVGL has no read-back).
 
 ### SetNeedleShape(double centerY, double length)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void SetNeedleShape(double centerY, double length)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def SetNeedleShape(self, centerY: float, length: float) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void SetNeedleShape(double centerY, double length);
-```
-
-</TabItem>
-</Tabs>
 
 Needle center-Y (0..1 of height) and length (0..1 of half min dimension).
 
 ### SetRange(int min, int max)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void SetRange(int min, int max)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def SetRange(self, min: int, max: int) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void SetRange(int32_t min, int32_t max);
-```
-
-</TabItem>
-</Tabs>
 
 Set the value range mapped onto the dial.
 

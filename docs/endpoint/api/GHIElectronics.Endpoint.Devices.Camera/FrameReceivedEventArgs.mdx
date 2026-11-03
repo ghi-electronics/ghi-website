@@ -3,9 +3,6 @@ title: "FrameReceivedEventArgs Class"
 sidebar_label: "FrameReceivedEventArgs"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # FrameReceivedEventArgs Class
 
 **Package:** `GHIElectronics.Endpoint.Devices.Camera`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Camera`
@@ -20,29 +17,9 @@ public sealed class FrameReceivedEventArgs : EventArgs
 
 ### Height
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int Height { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Height: int  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t Height() const;
-```
-
-</TabItem>
-</Tabs>
 
 Frame height in pixels.
 
@@ -50,29 +27,9 @@ Frame height in pixels.
 
 ### Jpeg
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public byte[] Jpeg { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Jpeg: list[int]  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-std::vector<uint8_t> Jpeg() const;
-```
-
-</TabItem>
-</Tabs>
 
 The frame as a JPEG byte buffer.
 
@@ -80,29 +37,9 @@ The frame as a JPEG byte buffer.
 
 ### Width
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int Width { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Width: int  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t Width() const;
-```
-
-</TabItem>
-</Tabs>
 
 Frame width in pixels.
 

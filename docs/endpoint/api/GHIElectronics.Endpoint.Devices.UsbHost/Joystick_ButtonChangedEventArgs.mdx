@@ -3,9 +3,6 @@ title: "Joystick.ButtonChangedEventArgs Class"
 sidebar_label: "Joystick.ButtonChangedEventArgs"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # ButtonChangedEventArgs Class
 
 **Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
@@ -20,57 +17,17 @@ public class ButtonChangedEventArgs : EventArgs
 
 ### ButtonChangedEventArgs()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public ButtonChangedEventArgs()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def __init__(self):
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-ButtonChangedEventArgs();
-```
-
-</TabItem>
-</Tabs>
 
 ## Properties
 
 ### State
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public ButtonState State { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-State: ButtonState  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-ButtonState State() const;
-```
-
-</TabItem>
-</Tabs>
 
 The new state of the button.
 
@@ -78,29 +35,9 @@ The new state of the button.
 
 ### Which
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int Which { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Which: int  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t Which() const;
-```
-
-</TabItem>
-</Tabs>
 
 The index of the changed button.
 

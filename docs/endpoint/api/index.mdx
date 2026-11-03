@@ -6,32 +6,14 @@ slug: /endpoint/api
 
 # Endpoint API Reference
 
-Endpoint uses the standard .NET APIs wherever they exist, and adds the libraries below for hardware features .NET does not cover. Every library has three parallel bindings — **.NET** (NuGet), **Python** (pip) and **C/C++** (header). The API names match character-for-character across the three languages.
+Endpoint uses the standard .NET APIs wherever they exist, and adds the libraries below for hardware features .NET does not cover.
 
 ## Standard .NET
 
 - [.NET API](https://learn.microsoft.com/en-gb/dotnet/api/)
 - [.NET IoT API](https://learn.microsoft.com/en-gb/dotnet/api/?view=iot-dotnet-latest)
 
-## Standard device APIs
-
-.NET's device APIs (GPIO, I²C, SPI, PWM, serial) are standard — Microsoft documents them in the links above and the C# code looks the same on any board. Python and C/C++ have no equivalent standard, so Endpoint ships wrapper packages with the SAME names and shape as the .NET API. Install the wrapper for your language; the member names (`GpioController`, `OpenPin`, `Write`, …) are identical.
-
-| API | .NET | Python | C/C++ |
-|---|---|---|---|
-| GPIO | [`System.Device.Gpio`](https://learn.microsoft.com/en-us/dotnet/api/system.device.gpio) | `pip install GHIElectronics.Endpoint.Devices.Gpio` | `#include <endpoint.h>` → `GHIElectronics::Endpoint::Devices::Gpio` |
-| I²C | [`System.Device.I2c`](https://learn.microsoft.com/en-us/dotnet/api/system.device.i2c) | `pip install GHIElectronics.Endpoint.Devices.I2c` | `#include <endpoint.h>` → `GHIElectronics::Endpoint::Devices::I2c` |
-| SPI | [`System.Device.Spi`](https://learn.microsoft.com/en-us/dotnet/api/system.device.spi) | `pip install GHIElectronics.Endpoint.Devices.Spi` | `#include <endpoint.h>` → `GHIElectronics::Endpoint::Devices::Spi` |
-| PWM | [`System.Device.Pwm`](https://learn.microsoft.com/en-us/dotnet/api/system.device.pwm) | `pip install GHIElectronics.Endpoint.Devices.Pwm` | `#include <endpoint.h>` → `GHIElectronics::Endpoint::Devices::Pwm` |
-| Serial port | [`System.IO.Ports.SerialPort`](https://learn.microsoft.com/en-us/dotnet/api/system.io.ports.serialport) | `pip install pyserial` *(Python-native; use its `serial.Serial` API)* | `#include <endpoint.h>` → `GHIElectronics::Endpoint::Devices::Ports` |
-
-:::note
-For serial, Python has an established ecosystem library — **pyserial** (`import serial`) — so the Endpoint pip package for serial is not shipped. Use pyserial directly; its API is different from .NET's `SerialPort` but it is what Python developers expect.
-:::
-
 ## Endpoint libraries
-
-Hardware features Microsoft's standard .NET APIs do not cover. Every library below is published for all three languages under the same name.
 
 | Library | Description |
 |---|---|

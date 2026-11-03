@@ -3,9 +3,6 @@ title: "UsbCamera Class"
 sidebar_label: "UsbCamera"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # UsbCamera Class
 
 **Package:** `GHIElectronics.Endpoint.Devices.Camera`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Camera`
@@ -31,29 +28,9 @@ Open it with the DeviceName of a Webcam from `UsbHostController` ("/dev/video0")
 
 ### UsbCamera(string deviceName)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public UsbCamera(string deviceName)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def __init__(self, deviceName: str):
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-UsbCamera(const std::string& deviceName);
-```
-
-</TabItem>
-</Tabs>
 
 Opens the camera that UsbHostController reported ("/dev/video0").
 
@@ -61,29 +38,9 @@ Opens the camera that UsbHostController reported ("/dev/video0").
 
 ### Connected
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public bool Connected { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Connected: bool  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-bool Connected() const;
-```
-
-</TabItem>
-</Tabs>
 
 `true` while the camera is physically present on the USB bus.
 
@@ -91,29 +48,9 @@ bool Connected() const;
 
 ### DeviceName
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public string DeviceName { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-DeviceName: str  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-std::string DeviceName() const;
-```
-
-</TabItem>
-</Tabs>
 
 What the camera was opened with: "/dev/video0"
 
@@ -121,29 +58,9 @@ What the camera was opened with: "/dev/video0"
 
 ### FrameRate
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int FrameRate { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-FrameRate: int  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t FrameRate() const;
-```
-
-</TabItem>
-</Tabs>
 
 The frame rate in use (frames per second)
 
@@ -151,29 +68,9 @@ The frame rate in use (frames per second)
 
 ### Height
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int Height { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Height: int  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t Height() const;
-```
-
-</TabItem>
-</Tabs>
 
 The picture height in use
 
@@ -181,29 +78,9 @@ The picture height in use
 
 ### IsStreaming
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public bool IsStreaming { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-IsStreaming: bool  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-bool IsStreaming() const;
-```
-
-</TabItem>
-</Tabs>
 
 Whether StartStreaming is on
 
@@ -211,30 +88,9 @@ Whether StartStreaming is on
 
 ### JpegQuality
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int JpegQuality { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-JpegQuality: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t JpegQuality() const;
-void JpegQuality(int32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 The JPEG quality (1 to 100) of pictures the library makes from raw YUYV pictures. Defaults to 85.
 
@@ -242,29 +98,9 @@ The JPEG quality (1 to 100) of pictures the library makes from raw YUYV pictures
 
 ### Name
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public string Name { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Name: str  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-std::string Name() const;
-```
-
-</TabItem>
-</Tabs>
 
 The camera's name ("USB 2.0 Camera: USB Camera")
 
@@ -272,29 +108,9 @@ The camera's name ("USB 2.0 Camera: USB Camera")
 
 ### PixelFormat
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public CameraPixelFormat PixelFormat { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-PixelFormat: CameraPixelFormat  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-CameraPixelFormat PixelFormat() const;
-```
-
-</TabItem>
-</Tabs>
 
 What the camera sends for the size in use
 
@@ -302,29 +118,9 @@ What the camera sends for the size in use
 
 ### SupportedControls
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public IReadOnlyList<CameraControl> SupportedControls { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-SupportedControls: IReadOnlyList[CameraControl]  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-IReadOnlyList<CameraControl> SupportedControls() const;
-```
-
-</TabItem>
-</Tabs>
 
 The controls this camera has
 
@@ -332,29 +128,9 @@ The controls this camera has
 
 ### SupportedFormats
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public IReadOnlyList<CameraFormat> SupportedFormats { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-SupportedFormats: IReadOnlyList[CameraFormat]  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-IReadOnlyList<CameraFormat> SupportedFormats() const;
-```
-
-</TabItem>
-</Tabs>
 
 The sizes the camera has, with what it sends for each
 
@@ -362,29 +138,9 @@ The sizes the camera has, with what it sends for each
 
 ### Width
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int Width { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Width: int  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t Width() const;
-```
-
-</TabItem>
-</Tabs>
 
 The picture width in use
 
@@ -394,29 +150,9 @@ The picture width in use
 
 ### Capture(int timeout)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public byte[] Capture(int timeout)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def Capture(self, timeout: int) -> list[int]:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-std::vector<uint8_t> Capture(int32_t timeout);
-```
-
-</TabItem>
-</Tabs>
 
 Takes a picture: a JPEG.
 
@@ -428,85 +164,25 @@ Takes a picture: a JPEG.
 
 ### Capture(string path)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void Capture(string path)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def Capture(self, path: str) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void Capture(const std::string& path);
-```
-
-</TabItem>
-</Tabs>
 
 Takes a picture and saves it as a JPEG file.
 
 ### Dispose()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void Dispose()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def Dispose(self) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void Dispose();
-```
-
-</TabItem>
-</Tabs>
 
 Stops the camera (a frame being delivered finishes first) and closes it
 
 ### GetControl(CameraControl control)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public CameraControlValue GetControl(CameraControl control)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def GetControl(self, control: CameraControl) -> CameraControlValue:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-CameraControlValue GetControl(CameraControl control);
-```
-
-</TabItem>
-</Tabs>
 
 A control's range and value.
 
@@ -514,57 +190,17 @@ A control's range and value.
 
 ### SetControl(CameraControl control, int value)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void SetControl(CameraControl control, int value)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def SetControl(self, control: CameraControl, value: int) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void SetControl(CameraControl control, int32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 Sets a control, in the camera's own units (GetControl gives its range).
 
 ### SetResolution(int width, int height, int frameRate)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void SetResolution(int width, int height, int frameRate)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def SetResolution(self, width: int, height: int, frameRate: int) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void SetResolution(int32_t width, int32_t height, int32_t frameRate);
-```
-
-</TabItem>
-</Tabs>
 
 Uses a size the camera has (MJPEG if the camera has it at that size, else YUYV).
 
@@ -576,85 +212,25 @@ Uses a size the camera has (MJPEG if the camera has it at that size, else YUYV).
 
 ### SetResolution(CameraFormat format, int frameRate)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void SetResolution(CameraFormat format, int frameRate)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def SetResolution(self, format: CameraFormat, frameRate: int) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void SetResolution(const CameraFormat& format, int32_t frameRate);
-```
-
-</TabItem>
-</Tabs>
 
 Uses one of SupportedFormats, as it is (YUYV too).
 
 ### StartStreaming()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void StartStreaming()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def StartStreaming(self) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void StartStreaming();
-```
-
-</TabItem>
-</Tabs>
 
 Starts streaming: every frame comes as a JPEG in FrameReceived.
 
 ### StopStreaming()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void StopStreaming()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def StopStreaming(self) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void StopStreaming();
-```
-
-</TabItem>
-</Tabs>
 
 Stops streaming; `UsbCamera.FrameReceived` no longer fires. A frame being delivered finishes first.
 
@@ -662,57 +238,17 @@ Stops streaming; `UsbCamera.FrameReceived` no longer fires. A frame being delive
 
 ### Disconnected
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public event DisconnectedEventHandler Disconnected
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Disconnected  # += / -= handler
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Core::Event<...> Disconnected;
-```
-
-</TabItem>
-</Tabs>
 
 The camera was unplugged
 
 ### FrameReceived
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public event FrameReceivedEventHandler FrameReceived
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-FrameReceived  # += / -= handler
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Core::Event<...> FrameReceived;
-```
-
-</TabItem>
-</Tabs>
 
 A frame while streaming (StartStreaming)
 

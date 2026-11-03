@@ -3,9 +3,6 @@ title: "RawDevice Class"
 sidebar_label: "RawDevice"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # RawDevice Class
 
 **Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
@@ -30,29 +27,9 @@ Open it with the DeviceName of an Unknown device from `UsbHostController` ("/dev
 
 ### RawDevice(string deviceName)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public RawDevice(string deviceName)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def __init__(self, deviceName: str):
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-RawDevice(const std::string& deviceName);
-```
-
-</TabItem>
-</Tabs>
 
 Opens the device that UsbHostController reported ("/dev/bus/usb/001/005").
 
@@ -60,30 +37,9 @@ Opens the device that UsbHostController reported ("/dev/bus/usb/001/005").
 
 ### SetupTimeout
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int SetupTimeout { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-SetupTimeout: int  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t SetupTimeout() const;
-void SetupTimeout(int32_t value);
-```
-
-</TabItem>
-</Tabs>
 
 The timeout of SendSetupPacket in milliseconds (0: none). Defaults to 5000 ms.
 
@@ -93,29 +49,9 @@ The timeout of SendSetupPacket in milliseconds (0: none). Defaults to 5000 ms.
 
 ### GetConfigurationDescriptor(byte configurationIndex)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public Configuration GetConfigurationDescriptor(byte configurationIndex)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def GetConfigurationDescriptor(self, configurationIndex: int) -> Configuration:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Configuration GetConfigurationDescriptor(uint8_t configurationIndex);
-```
-
-</TabItem>
-</Tabs>
 
 Gets the configuration descriptor.
 
@@ -127,29 +63,9 @@ Gets the configuration descriptor.
 
 ### GetDeviceDescriptor()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public Device GetDeviceDescriptor()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def GetDeviceDescriptor(self) -> Device:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Device GetDeviceDescriptor();
-```
-
-</TabItem>
-</Tabs>
 
 Gets the device descriptor.
 
@@ -157,29 +73,9 @@ Gets the device descriptor.
 
 ### GetString(byte index)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public string GetString(byte index)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def GetString(self, index: int) -> str:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-std::string GetString(uint8_t index);
-```
-
-</TabItem>
-</Tabs>
 
 Gets a string descriptor (the product's name...): its text, empty if the device has none.
 
@@ -191,29 +87,9 @@ Gets a string descriptor (the product's name...): its text, empty if the device 
 
 ### OpenPipe(Endpoint endpoint)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public Pipe OpenPipe(Endpoint endpoint)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def OpenPipe(self, endpoint: Endpoint) -> Pipe:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Pipe OpenPipe(const Endpoint& endpoint);
-```
-
-</TabItem>
-</Tabs>
 
 Opens a new communication pipe.
 
@@ -225,29 +101,9 @@ Opens a new communication pipe.
 
 ### SendSetupPacket(byte requestType, byte request, ushort value, ushort index)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void SendSetupPacket(byte requestType, byte request, ushort value, ushort index)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def SendSetupPacket(self, requestType: int, request: int, value: int, index: int) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void SendSetupPacket(uint8_t requestType, uint8_t request, uint16_t value, uint16_t index);
-```
-
-</TabItem>
-</Tabs>
 
 Sends a USB setup packet.
 
@@ -260,29 +116,9 @@ Sends a USB setup packet.
 
 ### SendSetupPacket(byte requestType, byte request, ushort value, ushort index, byte[] data, int dataOffset, int dataCount)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public int SendSetupPacket(byte requestType, byte request, ushort value, ushort index, byte[] data, int dataOffset, int dataCount)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def SendSetupPacket(self, requestType: int, request: int, value: int, index: int, data: list[int], dataOffset: int, dataCount: int) -> int:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-int32_t SendSetupPacket(uint8_t requestType, uint8_t request, uint16_t value, uint16_t index, const std::vector<uint8_t>& data, int32_t dataOffset, int32_t dataCount);
-```
-
-</TabItem>
-</Tabs>
 
 Sends a USB setup packet.
 

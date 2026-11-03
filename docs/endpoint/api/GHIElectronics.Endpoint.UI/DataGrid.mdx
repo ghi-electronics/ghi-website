@@ -3,9 +3,6 @@ title: "DataGrid Class"
 sidebar_label: "DataGrid"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # DataGrid Class
 
 **Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
@@ -20,29 +17,9 @@ public class DataGrid : Widget
 
 ### DataGrid(Widget parent)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public DataGrid(Widget parent)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def __init__(self, parent: Widget):
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-DataGrid(const Widget& parent);
-```
-
-</TabItem>
-</Tabs>
 
 Create a data grid inside `parent`.
 
@@ -54,29 +31,9 @@ Create a data grid inside `parent`.
 
 ### SetCell(int row, int column, string text)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void SetCell(int row, int column, string text)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def SetCell(self, row: int, column: int, text: str) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void SetCell(int32_t row, int32_t column, const std::string& text);
-```
-
-</TabItem>
-</Tabs>
 
 Set the text in a single cell.
 
@@ -88,29 +45,9 @@ Set the text in a single cell.
 
 ### SetColumnWidth(int column, int px)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void SetColumnWidth(int column, int px)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def SetColumnWidth(self, column: int, px: int) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void SetColumnWidth(int32_t column, int32_t px);
-```
-
-</TabItem>
-</Tabs>
 
 Set a single column's width in pixels.
 
@@ -121,29 +58,9 @@ Set a single column's width in pixels.
 
 ### SetSize(int columns, int rows)
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void SetSize(int columns, int rows)
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def SetSize(self, columns: int, rows: int) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void SetSize(int32_t columns, int32_t rows);
-```
-
-</TabItem>
-</Tabs>
 
 Allocate the grid dimensions. Must be called before `DataGrid.SetCell`.
 

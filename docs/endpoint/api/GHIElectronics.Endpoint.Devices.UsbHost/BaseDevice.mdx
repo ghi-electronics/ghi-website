@@ -3,9 +3,6 @@ title: "BaseDevice Class"
 sidebar_label: "BaseDevice"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # BaseDevice Class
 
 **Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
@@ -26,29 +23,9 @@ public abstract class BaseDevice : IDisposable
 
 ### Connected
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public bool Connected { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Connected: bool  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-bool Connected() const;
-```
-
-</TabItem>
-</Tabs>
 
 Whether or not the device is connected.
 
@@ -56,29 +33,9 @@ Whether or not the device is connected.
 
 ### DeviceName
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public string DeviceName { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-DeviceName: str  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-std::string DeviceName() const;
-```
-
-</TabItem>
-</Tabs>
 
 What the device was opened with: "/dev/input/event2", "/dev/hidraw0", "/dev/usb/lp0", "/dev/bus/usb/001/005"
 
@@ -86,29 +43,9 @@ What the device was opened with: "/dev/input/event2", "/dev/hidraw0", "/dev/usb/
 
 ### ProductId
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public ushort ProductId { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-ProductId: int  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-uint16_t ProductId() const;
-```
-
-</TabItem>
-</Tabs>
 
 The device's product id.
 
@@ -116,29 +53,9 @@ The device's product id.
 
 ### Type
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public DeviceType Type { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Type: DeviceType  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-DeviceType Type() const;
-```
-
-</TabItem>
-</Tabs>
 
 The device's type.
 
@@ -146,29 +63,9 @@ The device's type.
 
 ### VendorId
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public ushort VendorId { get; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-VendorId: int  # @property
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-uint16_t VendorId() const;
-```
-
-</TabItem>
-</Tabs>
 
 The device's vendor id.
 
@@ -178,29 +75,9 @@ The device's vendor id.
 
 ### Dispose()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public void Dispose()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def Dispose(self) -> None:
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-void Dispose();
-```
-
-</TabItem>
-</Tabs>
 
 Stops the device's events (one being delivered finishes first) and closes it
 
@@ -208,29 +85,9 @@ Stops the device's events (one being delivered finishes first) and closes it
 
 ### Disconnected
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public event DisconnectedEventHandler Disconnected
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Disconnected  # += / -= handler
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-Core::Event<...> Disconnected;
-```
-
-</TabItem>
-</Tabs>
 
 The event is fired when the device disconnects.
 

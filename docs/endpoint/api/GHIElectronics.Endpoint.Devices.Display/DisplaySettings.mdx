@@ -3,9 +3,6 @@ title: "DisplaySettings Class"
 sidebar_label: "DisplaySettings"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # DisplaySettings Class
 
 **Package:** `GHIElectronics.Endpoint.Devices.Display`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Display`
@@ -20,58 +17,17 @@ public sealed class DisplaySettings
 
 ### DisplaySettings()
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public DisplaySettings()
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-def __init__(self):
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-DisplaySettings();
-```
-
-</TabItem>
-</Tabs>
 
 ## Properties
 
 ### Backlight
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public BacklightSettings Backlight { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Backlight: BacklightSettings  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-BacklightSettings Backlight() const;
-void Backlight(BacklightSettings value);
-```
-
-</TabItem>
-</Tabs>
 
 GPIO pin that drives the backlight, or null for "no backlight" or "customer's external backlight controller". The DisplayController does not fail when this is null - the panel is enabled, Flush works, the backlight is simply left alone.
 
@@ -79,30 +35,9 @@ GPIO pin that drives the backlight, or null for "no backlight" or "customer's ex
 
 ### EnableAtBoot
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public bool EnableAtBoot { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-EnableAtBoot: bool  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-bool EnableAtBoot() const;
-void EnableAtBoot(bool value);
-```
-
-</TabItem>
-</Tabs>
 
 True = the board brings up the built-in display during boot so the user's program sees a ready framebuffer. Only honoured for the built-in Parallel transport; custom subclasses init from their own code.
 
@@ -110,30 +45,9 @@ True = the board brings up the built-in display during boot so the user's progra
 
 ### Logo
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public string Logo { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Logo: str  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-std::string Logo() const;
-void Logo(std::string value);
-```
-
-</TabItem>
-</Tabs>
 
 Filename of a 24-bit uncompressed BMP on the config partition to show after Enable (null = none).
 
@@ -141,30 +55,9 @@ Filename of a 24-bit uncompressed BMP on the config partition to show after Enab
 
 ### Parallel
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public ParallelLcdSettings Parallel { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Parallel: ParallelLcdSettings  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-ParallelLcdSettings Parallel() const;
-void Parallel(ParallelLcdSettings value);
-```
-
-</TabItem>
-</Tabs>
 
 Timings for the SoC's parallel RGB panel. Required when `DisplaySettings.Type` is Parallel.
 
@@ -172,30 +65,9 @@ Timings for the SoC's parallel RGB panel. Required when `DisplaySettings.Type` i
 
 ### Type
 
-<Tabs groupId="endpoint-lang">
-<TabItem value="csharp" label="C#">
-
 ```csharp
 public DisplayType Type { get; set; }
 ```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-Type: DisplayType  # @property / @setter
-```
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-```cpp
-DisplayType Type() const;
-void Type(DisplayType value);
-```
-
-</TabItem>
-</Tabs>
 
 Which transport the built-in display uses.
 
