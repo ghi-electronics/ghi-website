@@ -2,7 +2,8 @@
 slug: /
 sidebar_position: 1
 title: Endpoint Getting Started
-description: Run full .NET Core, Python, and C++ on Endpoint Domino. Plug in a USB cable, pick your board, and press F5 — no SSH, keys, or IP addresses.
+sidebar_label: Getting Started
+description: Run full .NET, Python, and C/C++ on Endpoint. Plug in a USB cable, pick your board, and press F5 — no SSH, keys, or IP addresses.
 ---
 
 import Tabs from '@theme/Tabs';
@@ -10,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 # Getting Started with Endpoint
 
-Endpoint runs **full .NET Core, Python, and C++** on a circuit. All three share one set of APIs, so what you learn in one language travels with you. You debug them over a USB cable, with no keys, passwords, or IP addresses.
+Endpoint runs **full .NET, Python, and C/C++** on a circuit. All three share one set of APIs, so what you learn in one language travels with you. You debug them over a USB cable, with no keys, passwords, or IP addresses.
 
 :::note[Evaluation hardware]
 [Endpoint Domino](hardware.mdx) is the evaluation board we built for Endpoint. We have not released SoMs or dev boards yet, because we are still shaping what the commercial product should be. Tell us what you need on the [forum](https://forums.ghielectronics.com/): what form factor, which peripherals, and whether wireless is a requirement.
@@ -40,45 +41,86 @@ Endpoint runs **full .NET Core, Python, and C++** on a circuit. All three share 
 
 ## Step 2 — Install the extension
 
-:::warning[To be completed]
-Add the extension names and install steps for VS Code and Visual Studio.
-:::
+<Tabs groupId="ide">
+<TabItem value="vs" label="Visual Studio" default>
 
-## Step 3 — Create a project
+Visual Studio supports **.NET (C#)**.
 
-<Tabs groupId="language">
-<TabItem value="csharp" label="C#" default>
-
-:::warning[To be completed]
-Add the project creation steps and a working blink for .NET.
-:::
+1. **Visual Studio 2026** (Community, Professional or Enterprise). VS 2022 17.9+ also works.
+2. The matching **.NET SDK** installed and on PATH ([download](https://dotnet.microsoft.com/download)).
+3. The **Endpoint Debugger** extension — install the latest `endpoint_vs_debugger-win32-x64-*.vsix` from the [Downloads](downloads.mdx) page.
 
 </TabItem>
-<TabItem value="python" label="Python">
+<TabItem value="vscode" label="Visual Studio Code">
 
-:::warning[To be completed]
-Add the project creation steps and a working blink for Python.
-:::
+Visual Studio Code supports **.NET (C#)**, **Python**, and **C/C++** — all three languages from the same extension.
 
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-:::warning[To be completed]
-Add the project creation steps and a working blink for C/C++.
-:::
+1. **Visual Studio Code**.
+2. The **Endpoint Debugger** extension — install the latest `endpoint_vsc_debugger-win32-x64-*.vsix` from the [Downloads](downloads.mdx) page.
+3. For each language you want to use:
+   - **.NET (C#)**: the matching [.NET SDK](https://dotnet.microsoft.com/download) and the [C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) extension.
+   - **Python**: [Python](https://www.python.org/downloads/) and the [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) + [Python Debugger](https://marketplace.visualstudio.com/items?itemName=ms-python.debugpy) extensions.
+   - **C/C++**: the [C/C++](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools) extension.
 
 </TabItem>
 </Tabs>
 
-## Step 4 — Run it
+## Step 3 — Create a project
 
-Plug in the USB cable, pick your board from the list, and press **F5**. There are no keys, passwords, or IP addresses to set up.
+<Tabs groupId="ide">
+<TabItem value="vs" label="Visual Studio" default>
 
-A C# blink application goes from power on to running in less than three seconds.
+1. **File > New > Project...** → search *"Endpoint"* → choose **Endpoint App (C#)**. Give it a name and location.
+
+   ![Endpoint App (C#) template in the Visual Studio new-project dialog](/img/docs/endpoint/vs-new-project-template.png)
+
+</TabItem>
+<TabItem value="vscode" label="Visual Studio Code">
+
+1. Plug the board in with USB. The status bar at the bottom of VS Code shows **Endpoint** when the board is detected:
+
+   ![Endpoint shown in the VS Code status bar](/img/docs/endpoint/vscode-endpoint-statusbar.png)
+
+2. **Ctrl+Shift+P** → **Endpoint: New Project...** → pick a language (**.NET**, **Python** or **C/C++**), a name and a folder. VS Code opens the new project.
+
+   ![New Endpoint Project language picker in VS Code](/img/docs/endpoint/vscode-new-project-language.png)
+
+</TabItem>
+</Tabs>
+
+## Step 4 — Deploy and run
+
+<Tabs groupId="ide">
+<TabItem value="vs" label="Visual Studio" default>
+
+Plug the board in with USB and press **F5**. Visual Studio builds the project, copies it to the board, and starts the debugger. Breakpoints, step, locals and watch work as usual.
+
+**Project settings** live under the project's **Endpoint** property page:
+
+![Endpoint project settings in Visual Studio](/img/docs/endpoint/vs-endpoint-settings.png)
+
+- **Transport** — how Visual Studio talks to the board. USB today.
+- **Device** — **Endpoint** runs the program on the board; **Desktop** runs it locally on the PC for quick checks.
+- **Firmware** — check for updates, erase the application that is set to run at boot.
+
+**Run at boot:** press **Ctrl+F5** instead of F5. The project is built in AOT mode and marked to start automatically after power-on. A C# blink app goes from power-on to running in less than three seconds.
+
+</TabItem>
+<TabItem value="vscode" label="Visual Studio Code">
+
+Press **F5**. The extension builds the project, copies it to the board, and starts the debugger. If something is wrong (board not connected, in use by another program, not answering), F5 stops with a clear message instead of running.
+
+**Run at boot:** press **Ctrl+F5** instead of F5. The project is built in AOT mode and marked to start automatically after power-on, same as in Visual Studio.
+
+</TabItem>
+</Tabs>
+
+:::tip
+Only one program at a time holds the USB connection. Close the Endpoint Config tool before using F5 in Visual Studio or VS Code, and vice versa.
+:::
 
 ## What's next
 
-- **[Deploy and Run](deployment.mdx)** — run at boot, and install Python packages over USB.
 - **[Hardware](hardware.mdx)** — Domino's pinout, displays, cameras, and expansion headers.
-- **[Configuration](configuration.mdx)** — display and network settings.
+- **[Endpoint Config](tool/endpoint-config.mdx)** — display and network settings.
 - **[Features](features.mdx)** — GPIO, buses, displays, networking, and more.

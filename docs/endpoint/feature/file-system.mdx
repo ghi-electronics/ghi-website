@@ -2,30 +2,75 @@
 title: "File System"
 ---
 
-.NET includes everything needed to access files and directories. Developers will only need to mount the device. Endpoint support USB mass storage, SD cards and on-board eMMC (if available).
+File access is standard .NET — `System.IO.File`, `Directory`, `Stream` — on
+the on-board storage, SD cards and USB drives. The Endpoint-specific
+`GHIElectronics.Endpoint.Devices.Storage` package handles the hot-plug
+events and mount folder for removable media.
 
-## Boot Media
-Endpoint can boot from eMMC or SD cards. This media device is automatically mounted and used as the destination for deployed applications.
+- **On-board storage** — always mounted and available to `System.IO` the
+  moment your program starts. The partition at `/data/` is where deployed
+  applications live.
+- **SD card** — mounts at `/media/sd/` when a card is present.
+- **USB mass storage** — each drive gets the next free `/media/usbN/` folder,
+  the same way Windows gives each one the next free drive letter.
 
-There are multiple partitions found on boot devices. The recommended partition is `\.epdata\`. This partition is used to hold the deployed application. Note that `Erase Application` option in Endpoint Config tool will format this partition.
+## SD card
 
-## USB Mass Storage
-This allows file access on USB devices with MSC class, such as USB memory sticks. See the [USB](usb.mdx) page.
-
-## SD Card
-
-The Endpoint system supports 2 SD interfaces. Note that if a device boots from SD then that boot SD is treated differently, as explained above.
+Open the SD-card controller, subscribe to `ConnectionChanged`, and mount
+the drive when it connects. Everything from `System.IO` then works against
+the returned path.
 
 ```csharp
-using GHIElectronics.Endpoint.Devices.Mmc;
-//...
+using GHIElectronics.Endpoint.Core;
+using GHIElectronics.Endpoint.Devices.Storage;
 
-var sdcard = new SdmmcController(SdmmcType.SdCard2);
-sdcard.ConnectionChanged += Sdcard_ConnectionChanged;
-sdcard.Enable();
+var sd = StorageController.FromName(EPM815.StorageController.SdCard);
 
-void Sdcard_ConnectionChanged(SdmmcController sender, DeviceConnectionEventArgs e)
-{
-    Console.WriteLine("Detect SDCard connection changed on" + e.DeviceName + ", status: " + e.DeviceStatus + ", id = " + e.DeviceId);
-}
+sd.ConnectionChanged += (sender, e) => {
+    if (e.DeviceStatus == DeviceConnectionStatus.Connected) {
+        var drive = FileSystem.Mount(e.Hdc);           // "/media/sd/"
+        File.WriteAllText(Path.Combine(drive.Name, "log.txt"), "Hello SD");
+        FileSystem.Flush(e.Hdc);                        // write everything before unmount / pull
+    }
+    else {
+        Console.WriteLine("SD card removed");
+    }
+};
+
+sd.Enable();   // the card already in the slot is reported too
 ```
+
+## USB mass storage
+
+Same shape as above, with a different controller name. Multiple USB drives
+can be plugged in at once; each one fires `ConnectionChanged` with its own
+`Hdc`, and each mounts to its own `/media/usbN/`.
+
+```csharp
+using GHIElectronics.Endpoint.Core;
+using GHIElectronics.Endpoint.Devices.Storage;
+
+var usb = StorageController.FromName(EPM815.StorageController.UsbHostMassStorage);
+
+usb.ConnectionChanged += (sender, e) => {
+    if (e.DeviceStatus == DeviceConnectionStatus.Connected) {
+        var drive = FileSystem.Mount(e.Hdc);           // "/media/usb0/", usb1, ...
+        Console.WriteLine($"Mounted {drive.Name}, label '{e.VolumeLabel}'");
+
+        foreach (var file in Directory.EnumerateFiles(drive.Name))
+            Console.WriteLine(file);
+    }
+    else {
+        Console.WriteLine("USB drive removed");
+    }
+};
+
+usb.Enable();
+```
+
+:::tip
+Always call `FileSystem.Flush(e.Hdc)` after writing and before the drive
+is pulled out. On Endpoint, as on a PC, `System.IO.DriveInfo.VolumeLabel`
+returns the drive's mount folder rather than its label — use
+`e.VolumeLabel` from the event to read the actual label.
+:::

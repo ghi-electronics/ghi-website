@@ -2,73 +2,110 @@
 title: "Displays"
 ---
 
-Graphical Displays can be grouped into two distinct interface categories, built-in parallel TFT displays and virtual displays, typically serial (SPI/I2C) displays. 
+Endpoint supports two display categories:
 
-The display drivers are meant to transfer the pixel data from memory to the actual display. The [graphics](graphics.mdx) page shows how drawing is done in memory.
+- **Parallel TFT** — a panel wired directly to the board's parallel RGB
+  controller. Fastest option; refresh runs off the hardware without any CPU
+  work.
+- **Serial (SPI / I²C)** displays and **character displays** — any panel you
+  can drive from a bus. The next sections cover both.
 
-## Native Displays
-These displays connect to special dedicated pins on the processor. Internally, the display controller automatically transfers (refreshes) the display directly from memory without any processor interaction, using DMA. When the system needs to update the display, it simply writes to memory. Neither the operating system nor the application program are burdened with display processing. The down side to this is that the system needs to have enough RAM to handle the display. An 800x600 display with 16bpp needs 960,000 bytes!
+The parallel display is driven through
+`GHIElectronics.Endpoint.Devices.Display`. Panel timings and backlight pin
+live in `/config/display.json`, so they are set once and the application
+simply opens, enables and flushes.
 
-A display must be configured inside the .NET project. To do this create a .NET project with configuration code based on the type of display being used. In the example below an [ERTFT043 display and Endpoint Domino](../hardware.mdx) are used.
+## Parallel display
 
-:::tip
-Needed NuGets: GHIElectronics.Endpoint.Core, GHIElectronics.Endpoint.Devices.Display
-:::
+### One-time configuration
+
+Write the panel's timings and backlight pin to the config partition. You
+only have to do this once per board (settings persist across reboots).
 
 ```csharp
-using System.Device.Gpio;
-using System.Device.Gpio.Drivers;
-using SkiaSharp;
 using GHIElectronics.Endpoint.Core;
 using GHIElectronics.Endpoint.Devices.Display;
 
-//Initialize Display
-var backlightPort = EPM815.Gpio.Pin.PD14 / 16;
-var backlightPin = EPM815.Gpio.Pin.PD14 % 16;
-var backlightDriver = new LibGpiodDriver((int)backlightPort);
-var backlightController = new GpioController(PinNumberingScheme.Logical, backlightDriver);
-backlightController.OpenPin(backlightPin);
-backlightController.SetPinMode(backlightPin, PinMode.Output);
-backlightController.Write(backlightPin, PinValue.High);
-var screenWidth = 480;
-var screenHeight = 272;
-
-var configuration = new FBDisplay.Configuration(){
-    Clock = 10000,
-    Width = 480,
-    Hsync_start = 480 + 2,
-    Hsync_end = 480 + 2 + 41,
-    Htotal = 480 + 2 + 41 + 2,
-    Height = 272,
-    Vsync_start = 272 + 2,
-    Vsync_end = 272 + 2 + 10,
-    Vtotal = 272 + 2 + 10 + 2,
+var settings = new DisplaySettings {
+    Type = DisplayType.Parallel,
+    EnableAtBoot = false,                     // true = board brings the panel up during boot
+    Logo = null,                              // 24-bit BMP filename on /config, or null
+    Backlight = new BacklightSettings {
+        GpioChip = "gpiochip3",               // or null — leave the backlight alone
+        GpioPin  = 14,
+        ActivePolarity = SignalPolarity.ActiveHigh,
+    },
+    Parallel = new ParallelLcdSettings {
+        Width        = 480, Height = 272,
+        PixelClockHz = 10_000_000,
+        HFrontPorch  = 2, HBackPorch = 2, HSync = 41,
+        VFrontPorch  = 2, VBackPorch = 2, VSync = 10,
+        BitsPerPixel = 16,                    // 16 = RGB565, 24 = RGB888
+    },
 };
-var fbDisplay = new FBDisplay(configuration);
-var displayController = new DisplayController(fbDisplay);
-
-//SkiaSharp Initialization
-SKBitmap bitmap = new SKBitmap(screenWidth, screenHeight, SKImageInfo.PlatformColorType, SKAlphaType.Premul);
-bitmap.Erase(SKColors.Transparent);
-
-// Setup the Canvas
-using (var screen = new SKCanvas(bitmap)){
-
-      ///////////////////////////////////////////
-     // Place SkiaSharp Graphics content here //
-    ///////////////////////////////////////////
-
-    // Flush to screen
-    var data = bitmap.Copy(SKColorType.Rgb565).Bytes;
-    displayController.Flush(data);
-    Thread.Sleep(1);
-}
+DisplayController.SetSettings(settings);
 ```
 
-## Virtual Displays
-The internal graphics services can be mapped to work with virtual display displays, such as SPI displays. See the [Graphics](graphics.mdx) page for more information and sample code.
+### Enable and show pixels
 
-## Character Displays
+Once configured, open the controller, enable it, and push a frame. The
+pixels can come from any .NET graphics library (see [Graphics](graphics.mdx))
+or from your own code.
+
+```csharp
+using var display = DisplayController.GetDefault();   // null if Type is None
+if (display == null) return;
+
+display.Enable();
+
+// Pixel buffer in RGB565 — width * height * 2 bytes
+var pixels = new byte[display.Width * display.Height * 2];
+// ... fill the buffer ...
+
+display.Flush(pixels);                                 // defaults to Rgb565
+```
+
+For other pixel formats, pass one explicitly:
+
+```csharp
+using System.Drawing.Imaging;
+display.Flush(rgb888Pixels, PixelFormat.Format24bppRgb);
+display.Flush(argb32Pixels, PixelFormat.Format32bppArgb);
+```
+
+A partial update is also supported:
+
+```csharp
+display.Flush(regionPixels, PixelFormat.Format16bppRgb565,
+              x: 100, y: 50, width: 200, height: 100);
+```
+
+### Boot logo
+
+Set `DisplaySettings.Logo` to the filename of a 24-bit BMP on the config
+partition and call `ShowLogo()` right after `Enable()` to paint it:
+
+```csharp
+display.Enable();
+display.ShowLogo();     // reads /config/<logo-filename>.bmp and flushes it
+```
+
+If `EnableAtBoot` is also true, the board does this itself during boot — the
+user's program sees the panel already lit with the logo.
+
+## Serial (SPI / I²C) displays
+
+Custom serial panels are not part of the built-in `ParallelDisplayController`.
+Subclass `DisplayController` directly and drive the panel from the standard
+`System.Device.Spi` / `System.Device.I2c` / `System.Device.Gpio` APIs — the
+abstract contract is `Enable` to run the panel's init sequence, `Disable` to
+power it down, and `Flush` to push pixels.
+
+## Character displays
+
 ![Character Display](/img/docs/endpoint/character-display.jpg)
 
-These displays are capable of only showing characters. They are available in different sizes, but two lines of 16 characters is most common. These displays types use the standard .NET [Iot.Device.CharacterLcd](https://learn.microsoft.com/en-gb/dotnet/api/iot.device.characterlcd?view=iot-dotnet-latest) library
+Character-matrix LCDs (2x16, 4x20, etc.) use the standard
+[Iot.Device.CharacterLcd](https://learn.microsoft.com/en-gb/dotnet/api/iot.device.characterlcd?view=iot-dotnet-latest)
+library from .NET IoT. Wire the panel to any GPIO/I²C/SPI pins and drive it
+with the same code you would use on any .NET IoT board.

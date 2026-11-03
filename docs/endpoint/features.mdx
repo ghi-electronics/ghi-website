@@ -2,72 +2,107 @@
 slug: /features
 sidebar_position: 1
 title: Features
-description: Everything Endpoint provides for building on embedded hardware — pin-level I/O, communication buses, networking, cloud integration, storage, displays, and system services.
+description: Everything Endpoint provides for building on embedded hardware — the breadth of a PC combined with the direct hardware control of a microcontroller, in your choice of three languages.
 ---
 
 # Features
 
-Endpoint runs full .NET Core, Python, and C++ on embedded hardware. The pages below cover the hardware and system capabilities the platform adds, from pin-level I/O and communication buses to networking, cloud integration, storage, and displays.
+Endpoint runs full .NET, Python, and C/C++ on an embedded board. It gives
+you the breadth of a PC — networking, security, databases, graphics — AND
+the direct hardware control of a microcontroller — pin-level I/O, buses,
+precise signal timing. The same library API works across all three
+languages, so your team picks whichever one it already uses.
+
+## Full-featured like a PC
+
+Standard .NET on the device: TCP/UDP sockets, HTTP/HTTPS, WebSockets, TLS
+and X.509, threads and async/await, LINQ, JSON, file system, SQLite. .NET
+IoT libraries work too: webcams, sound devices, standard GPIO/I²C/SPI/PWM
+APIs.
+
+Develop and debug on your PC, press F5, the exact same code deploys over a
+single USB cable and runs on the board with full breakpoint and
+step-through debugging.
+
+## Precise like a microcontroller
+
+Pin-level control for every peripheral: digital I/O, analog in and out,
+PWM, interrupts. High-speed buses — SPI, I²C, UART, CAN. Nanosecond-grade
+digital signal generation and capture on the real-time helper core. Pins
+are free at boot — your application claims only what it needs. A C# blink
+program is up and running in under three seconds from power-on.
+
+## One API in three languages
+
+Every Endpoint library ships for **.NET (C#)**, **Python** and **C/C++**
+with the same class names and the same method names. Where a standard .NET
+API exists (`System.Device.Gpio`, `System.Device.I2c`, …) Endpoint uses it
+directly; where no standard exists, Endpoint adds a library that is shaped
+the same across all three languages. Port between languages without
+re-learning.
+
+---
 
 Click any feature to jump to its reference page.
 
 ## Hardware I/O
 
-The basics every embedded project starts with: direct pin control, analog input and output, PWM, and timing-critical signals.
+The basics every embedded project starts with: direct pin control, analog
+input and output, PWM, and timing-critical signals.
 
-- [GPIO](feature/gpio.mdx) — digital input and output on any pin
-- [PWM](feature/pwm.mdx) — pulse-width modulation for motors, LEDs, and audio
-- [Analog In](feature/analog-in.mdx) — read voltages from sensors and analog sources
+- [GPIO](feature/gpio.mdx) — digital input and output on any pin (standard `System.Device.Gpio`)
+- [PWM](feature/pwm.mdx) — pulse-width modulation for motors, LEDs, and audio (standard `System.Device.Pwm`)
+- [Analog In](feature/analog-in.mdx) — read voltages from sensors and analog sources (standard `System.Device.Analog`)
 - [Analog Out](feature/analog-out.mdx) — produce analog voltages via DAC
-- [Signal Control](feature/signal-control.mdx) — generate and measure precise digital signals
+- **Signal Control** — generate and measure precise digital signals *(coming soon)*
 
 ## Communication Buses
 
 Talk to peripheral chips, sensors, displays, and external systems.
 
-- [SPI](feature/spi.mdx) — high-speed serial peripheral interface
-- [I2C](feature/i2c.mdx) — two-wire interface for sensors and small peripherals
-- [UART](feature/uart.mdx) — serial communication with external hardware
-- [USB](feature/usb.mdx) — USB devices and communication
-- [CAN](feature/can.mdx) — controller area network for automotive and industrial use
+- [SPI](feature/spi.mdx) — high-speed serial peripheral interface (standard `System.Device.Spi`)
+- [I²C](feature/i2c.mdx) — two-wire interface for sensors and small peripherals (standard `System.Device.I2c`)
+- [UART](feature/uart.mdx) — serial communication with external hardware (standard `System.IO.Ports.SerialPort`)
+- [USB](feature/usb.mdx) — USB host for keyboards, mice, drives, webcams, and more
+- [CAN](feature/can.mdx) — controller area network for automotive and industrial use (standard `Iot.Device.SocketCan`)
 
 ## Networking
 
 Connect your application to networks and nearby devices.
 
-- [Networking](feature/networking.mdx) — network configuration, sockets, and cloud connectivity
-- [Bluetooth](feature/bluetooth.mdx) — Bluetooth through the BlueZ stack
+- [Networking](feature/networking.mdx) — Ethernet, Wi-Fi, cellular, sockets, HTTP/HTTPS, TLS (standard `System.Net`)
+- **Bluetooth** — Bluetooth through USB adapters *(coming soon)*
 
 ## Cloud
 
 Connect to the major cloud platforms over MQTT.
 
-- [Microsoft Azure](feature/azure.mdx) — Microsoft Azure IoT Hub
-- [Amazon Web Services](feature/aws.mdx) — Amazon Web Services IoT
+- [Microsoft Azure](feature/azure.mdx) — Azure IoT Hub (Microsoft Azure SDK)
+- [Amazon Web Services](feature/aws.mdx) — AWS IoT (AWS SDK)
 
 ## Storage
 
 Persist data on SD cards, USB drives, or in a real SQL database.
 
-- [File System](feature/file-system.mdx) — read and write files on USB and SD storage
-- [SQLite Database](feature/databases.mdx) — embedded SQL database
+- [File System](feature/file-system.mdx) — read and write files on SD and USB storage (standard `System.IO`)
+- [SQLite Database](feature/databases.mdx) — embedded SQL database (`Microsoft.Data.Sqlite`)
 
 ## Display & Multimedia
 
 Drive screens, capture images, and build rich user interfaces.
 
 - [Displays](feature/displays.mdx) — parallel TFT and serial displays
-- [Touch Screen](feature/touch-screen.mdx) — capacitive touch input
-- [User Interface](feature/ui.mdx) — a UI library inspired by Windows Presentation Foundation
-- [Graphics](feature/graphics.mdx) — drawing with SkiaSharp
-- [Camera](feature/camera.mdx) — digital cameras through USB or the parallel interface
+- [Touch Screen](feature/touch-screen.mdx) — capacitive and resistive touch input
+- [User Interface](feature/ui.mdx) — a widget library with buttons, labels, images, text boxes, and more, built on an embedded graphics engine
+- [Graphics](feature/graphics.mdx) — draw into a buffer and flush to the display: SkiaSharp or System.Drawing in .NET, Pillow in Python, LVGL in C/C++
+- **Camera** — USB webcams and the on-board parallel camera interface *(coming soon)*
 - [MJPEG Video](feature/mjpeg-video.mdx) — video as a chain of JPEG images
 
 ## System Services
 
 Keep a device running, on time, and up to date.
 
-- [In-Field Update](feature/in-field-update.mdx) — update the system from SD or USB memory
-- [Power Management](feature/power-management.mdx) — power modes and shutdown
+- **In-Field Update** — update the system from SD or USB memory *(coming soon)*
+- [Power Management](feature/power-management.mdx) — reboot, shutdown, wake on pin or RTC alarm
 - [Watchdog](feature/watchdog-timer.mdx) — reset the system if it locks up
 - [Real Time Clock](feature/real-time-clock.mdx) — keep time while the system is powered off

@@ -1,0 +1,104 @@
+---
+title: "Endpoint CLI"
+---
+
+`endpoint-cli` is the command-line tool that talks between your PC and the
+Endpoint board over the single USB cable. It is the engine behind every
+IDE operation — the Visual Studio and VS Code extensions ship their own
+copy and call it under the hood for deploy, run, debug, update, pip
+install and so on. Running it directly is for scripting, CI jobs,
+headless workflows, or anywhere the IDE is not available.
+
+Everything happens over USB — no SSH, no network, no keys.
+
+## Usage
+
+```
+endpoint-cli [--board <serial number>] <command> [arguments]
+```
+
+Running `endpoint-cli` with no arguments prints the full help.
+
+With more than one board connected, pick one with `--board <serial>`
+(or set the `ENDPOINT_BOARD` environment variable). `endpoint-cli list`
+shows the serial numbers of the connected boards.
+
+## Commands
+
+### Board
+
+| Command | What it does |
+|---|---|
+| `list` | List the serial numbers of every connected Endpoint board. |
+| `info [--json]` | Print board information (model, firmware version, serial number, …). `--json` for machine-readable output. |
+| `reboot` | Reboot the board. |
+| `screenshot <file.png>` | Save the current panel contents as a PNG. |
+
+### Deploy and run
+
+| Command | What it does |
+|---|---|
+| `deploy [options] <local folder> <board folder>` | Copy a folder to the board, only transferring files that changed. |
+| `run [options] <program> [args]` | Run a program on the board and show its output. |
+| `pipe [options] <program> [args]` | Run a program with stdin/stdout passed through (stderr dropped). Used by debuggers. |
+| `stop <tag>` | Stop the programs started with the given tag. |
+| `forward <local port> [board port]` | Forward a local TCP port on your PC to the board. |
+| `autostart [options] <program> [args]` | Start this program at every power-on. |
+| `autostart --off` | Start nothing at boot. |
+| `autostart` | Show what starts at boot. |
+
+**Options for `deploy`:**
+
+| Option | What it does |
+|---|---|
+| `--rid <rid>` | Target runtime identifier (e.g. `linux-arm64`) — leave out other platforms' files from a .NET publish. |
+| `--add <folder>` | Also copy this local folder, into a folder of the same name. Repeat for more. |
+| `--exclude <name>` | Leave out files and folders with this name. `*` and `?` allowed. Repeat for more. |
+
+**Options for `run`, `pipe` and `autostart`:**
+
+| Option | What it does |
+|---|---|
+| `--cwd <folder>` | Working folder on the board. |
+| `--env NAME=VALUE` | Environment variable. Repeat for more. |
+| `--tag <tag>` | Name for `endpoint-cli stop` (applies to `run` and `pipe`). |
+| `--detach` | Keep running after `endpoint-cli` exits; output is not shown. (`run` only) |
+| `--forward <port>` | While the program runs, forward `localhost:<port>` to the same port on the board. (`run` only) |
+| `--debug-port <port>` | Like `--forward`, for a debugger: when the debugger disconnects, the program is stopped. (`run` only) |
+
+### Build
+
+| Command | What it does |
+|---|---|
+| `publish-aot <project> <output folder>` | Build a .NET project with Native AOT for the board. |
+| `cc <clang arguments>` | Compile C for the board with Zig's clang (downloaded once on first use). |
+| `c++ <clang arguments>` | Same, for C++. Example: `endpoint-cli c++ -O2 main.cpp -o bin/app`. Source files may use globs — `*.cpp`, `src/*.cpp`, `**/*.cpp`. |
+
+### Packages
+
+| Command | What it does |
+|---|---|
+| `pip [--project <folder>] <pip command> [args]` | Manage Python packages for the board (`install`, `uninstall`, `list`, `freeze`, `show`) in the project's `packages` folder, using the Python and pip on your PC. |
+| `sdk install <version> [--to <folder>]` | Download the C/C++ SDK for the given version (e.g. `0.3.0`) and extract it over the project's `endpoint` folder. |
+| `sdk current [--project <folder>]` | Print the installed C/C++ SDK version of a project. |
+| `sdk list [--prerelease]` | List SDK versions available for `sdk install`. |
+
+## Exit codes
+
+| Code | Meaning |
+|---|---|
+| `0` | Done. |
+| `1` | Failed. |
+| `2` | Wrong arguments. |
+| `3` | No board found. |
+| `4` | More than one board, none chosen (use `--board` or set `ENDPOINT_BOARD`). |
+| `5` | In use by another program. |
+| `6` | Found but cannot be opened or does not answer. |
+| `7` | The connection was lost (board unplugged or restarted). |
+
+## Where it lives
+
+`endpoint-cli.exe` is bundled with both IDE extensions and sits inside the
+extension's install folder, so no separate installation is needed when
+you have Visual Studio or VS Code set up. From a terminal you can invoke
+it via the full path, or add that folder to your `PATH`.

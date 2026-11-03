@@ -2,86 +2,92 @@
 title: "Networking"
 ---
 
-Thanks to .NET, Endpoint provides full networking support. It includes everything from a simple socket handling to full cloud support.
+Endpoint provides full networking through .NET's standard `System.Net` stack
+— sockets, HTTP/HTTPS, WebSockets, TLS. The Endpoint-specific
+`GHIElectronics.Endpoint.Devices.Network` package is only for bringing the
+network interface up and configuring it.
 
-## Configuration
+Two interface types are supported:
 
-### Wi-Fi
-The network needs to be configured properly before it can be used. For example, Wi-Fi needs SSID and password.
+- **Ethernet** — the board's built-in Ethernet, or any USB Ethernet adapter.
+- **Wi-Fi** — a built-in Wi-Fi module, or a USB Wi-Fi dongle.
 
-Wi-Fi is supported through USB Wi-Fi dongles containing the RTL8188 chipset.
+Settings persist in `/config/network.json`. Nothing starts automatically at
+boot; the application calls `Enable()` on the interfaces it wants up.
+
+## Wi-Fi
 
 ```csharp
 using GHIElectronics.Endpoint.Devices.Network;
-//...
 
-var networkType = NetworkInterfaceType.WiFi;
-var networkSetting = new WiFiNetworkInterfaceSettings
-{
-    Ssid = "Endpoint",
-    Password = "xxxxxxx",
-    DhcpEnable = true,
+var wifi = NetworkController.FromType(NetworkType.Wifi);
+
+var settings = new WiFiNetworkInterfaceSettings {
+    Ssid = "MyNetwork",
+    Password = "secret123",
+    Security = WiFiSecurityType.Wpa2,
+    IsDhcpEnabled = true,
 };
 
-var network = new NetworkController(networkType, networkSetting);
+wifi.SetInterfaceSettings(settings);   // saves to /config/network.json
+wifi.Enable();                          // brings the interface up, runs DHCP
 
-network.NetworkLinkConnectedChanged += (a, b) =>
-{
-    if (b.Connected)
-    {
-        Console.WriteLine("Connected");
+Console.WriteLine($"Connected: {wifi.IsConnected}");
+Console.WriteLine($"Interface: {wifi.Name}");
 
-    }
-    else
-    {
-        Console.WriteLine("Disconnected");
-    }
-};
-
-network.NetworkAddressChanged += (a, b) =>
-{
-    Console.WriteLine(string.Format("Address: {0}\n gateway: {1}\n DNS: {2}\n MAC: {3} ", b.Address, b.Gateway, b.Dns[0], b.MACAddress));
-};
-
-network.Enable();
+// Standard .NET info is also available
+var nic = wifi.NetworkInterface;
+if (nic != null) {
+    foreach (var ip in nic.GetIPProperties().UnicastAddresses)
+        Console.WriteLine(ip.Address);
+}
 ```
 
-### USB Ethernet
+## Ethernet
 
-```
-var networkType = NetworkInterfaceType.UsbEthernet;
-var networkSetting = new NetworkInterfaceSettings
-{
-    Address = new IPAddress(new byte[] { xx, xx, xx, xx }),
-    SubnetMask = new IPAddress(new byte[] { 255, 255, 255, 0 }),
-    GatewayAddress = new IPAddress(new byte[] { xx, xx, xx, xx }),
-    DnsAddresses = new IPAddress[] { new IPAddress(new byte[] { 75, 75, 75, 75 }) },
-    DhcpEnable = false,
+Static IP:
+
+```csharp
+using System.Net;
+using GHIElectronics.Endpoint.Devices.Network;
+
+var eth = NetworkController.FromType(NetworkType.Ethernet);
+
+var settings = new NetworkInterfaceSettings {
+    IsDhcpEnabled = false,
+    Address        = IPAddress.Parse("192.168.1.50"),
+    SubnetMask     = IPAddress.Parse("255.255.255.0"),
+    GatewayAddress = IPAddress.Parse("192.168.1.1"),
+    DnsAddresses   = new[] { IPAddress.Parse("8.8.8.8") },
 };
 
-var network = new NetworkController(networkType, networkSetting);
-
-network.NetworkLinkConnectedChanged += (a, b) =>
-{
-    if (b.Connected)
-    {
-        Console.WriteLine("Connected");
-       
-    }
-    else
-    {
-        Console.WriteLine("Disconnected");
-    }
-};
-
-network.NetworkAddressChanged += (a, b) =>
-{
-    Console.WriteLine(string.Format("Address: {0}\n gateway: {1}\n DNS: {2}\n MAC: {3} ", b.Address, b.Gateway, b.Dns[0], b.MACAddress));
-};
-
-network.Enable();
+eth.SetInterfaceSettings(settings);
+eth.Enable();
 ```
 
-## MQTT
+DHCP (the common case):
 
-MQTT, and other common protocols, are supported through one of the many available NuGet packages. `DotNetty.Codecs.Mqtt` is the one of the common ones for example.
+```csharp
+var eth = NetworkController.FromType(NetworkType.Ethernet);
+eth.SetInterfaceSettings(new NetworkInterfaceSettings { IsDhcpEnabled = true });
+eth.Enable();
+```
+
+## Using the network
+
+Once an interface is enabled, use `System.Net.Http`, `System.Net.Sockets`,
+`System.Net.WebSockets` or any .NET networking library exactly as you would
+on a PC:
+
+```csharp
+using var http = new HttpClient();
+var json = await http.GetStringAsync("https://api.example.com/status");
+Console.WriteLine(json);
+```
+
+## MQTT and other protocols
+
+MQTT and other common protocols are supported through standard NuGet
+packages — `MQTTnet`, `DotNetty.Codecs.Mqtt`, etc. See the
+[Microsoft Azure](azure.mdx) and [Amazon Web Services](aws.mdx) pages for
+cloud-specific examples.
