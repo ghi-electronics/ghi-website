@@ -82,8 +82,8 @@ const sidebars: SidebarsConfig = {
           items: [
             'feature/displays',
             'feature/touch-screen',
-            'feature/ui',
             'feature/graphics',
+            'feature/ui',
             'feature/camera',
             'feature/mjpeg-video',
           ],
