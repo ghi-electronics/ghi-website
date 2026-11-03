@@ -115,6 +115,7 @@ const sidebars: SidebarsConfig = {
       items: [
         'tool/endpoint-config',
         'tool/endpoint-cli',
+        'tool/graphics-designer',
       ],
     },
     {
