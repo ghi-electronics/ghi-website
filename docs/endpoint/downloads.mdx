@@ -2,22 +2,39 @@
 title: Downloads
 ---
 
-:::warning[To be completed]
-Add the version, date, and download link for each item in the current release.
-:::
-
 ## Endpoint OS image
 
 Write the image to a microSD card to boot Endpoint Domino.
 
-## Endpoint Config
-
-The tool used to update and configure Endpoint devices. See [Endpoint Config](tool/endpoint-config.mdx).
+File | Date | Status | MD5
+--- | --- | --- | ---
+[v0.3.0](https://ghistorage.blob.core.windows.net/downloads/Endpoint/Firmware/sdcard.img) | 2026-11-02 | Preview | A97853B1F5EC0E21DE22C5C4EDB5170F
 
 ## IDE extensions
 
-Extensions for VS Code and Visual Studio, including the project templates.
+The Endpoint Debugger extension for your IDE. The extensions also bundle
+the project templates and, during preview, the Endpoint libraries
+themselves — they are extracted into a new project the first time you
+create one.
+
+IDE | Marketplace
+--- | ---
+Visual Studio | [Endpoint Debugger](https://marketplace.visualstudio.com/items?itemName=ghielectronics.Endpoint-VS-Debugger)
+Visual Studio Code | [Endpoint Debugger](https://marketplace.visualstudio.com/items?itemName=ghielectronics.endpointvscdebugger)
 
 ## Libraries
 
-Libraries that fill gaps in the standard .NET API for hardware. NuGet.org, through your IDE's default package source, is the preferred way to get them.
+The Endpoint libraries are still in preview, so they are not yet
+published to the public package registries — **NuGet.org** for .NET and
+**PyPI** for Python. The current set for all three languages (.NET,
+Python, C/C++) is bundled inside both IDE extensions and is extracted
+into your workspace the first time you create a new Endpoint project,
+so no separate download is required.
+
+## Endpoint Config
+
+:::info[Coming soon]
+Endpoint Config — the Windows tool used to update and configure Endpoint
+devices — is not shipping yet. See [Endpoint Config](tool/endpoint-config.mdx)
+for what it will do.
+:::

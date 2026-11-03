@@ -2,11 +2,19 @@
 title: Release Notes
 ---
 
-## Latest release
+## 0.3.0 (2026-11-03) Preview
 
-:::warning[To be completed]
-Add the version number and release date.
-:::
+A **major rework** of Endpoint — the deployment story, the IDE
+integration, the libraries, and the project layout have all been
+rebuilt. Because the scope is so wide, this release is published as a
+**preview**: expect some features to be untested, incomplete, or still
+changing. That is intentional for this cycle — the goal is to get the
+new foundation in front of users and iterate quickly from your
+feedback, not to deliver a polished final build. Firmware and IDE
+extensions ship and move together, so the notes below are listed once
+for the whole release rather than split per component.
+
+### Changes
 
 - **USB debugging.** No more SSH. Plug in the USB cable, pick your board from the list, and press F5.
 - **Three languages, one set of APIs.** .NET 11, Python 3.14, and C23 and C++23 with no toolchain to install.
@@ -16,3 +24,9 @@ Add the version number and release date.
 - **Configuration.** Display and network configuration has been reworked. Load, modify, and save configuration from your application, or edit the JSON directly. A FAT32 partition is exposed so you can edit that file by opening the SD card image (SD card only for now).
 - **APIs.** All APIs were reworked to match .NET conventions.
 - **IDEs.** VS Code is fully supported for all three languages. Visual Studio supports .NET.
+
+### Known issues
+
+- **First deploy takes longer than later ones.** The initial F5 on a fresh board runs some one-time setup before the application starts; subsequent deploys are much faster.
+- **USB write timeout on slow PCs.** On some slower PCs the USB write can time out while deploying, and the deployment fails. Retry, or run on a faster machine.
+- **Not every feature is fully tested.** This is a preview — expect rough edges, and please report issues on the [forum](https://forums.ghielectronics.com/).
