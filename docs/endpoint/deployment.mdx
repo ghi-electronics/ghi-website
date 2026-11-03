@@ -1,24 +1,93 @@
 ---
 title: Deploy and Run
-description: Debug Endpoint applications over USB with F5, compile for run at boot with Ctrl+F5, and install Python packages onto the board over USB.
+description: Deploy and run applications on the Endpoint board over a single USB cable, from Visual Studio or Visual Studio Code.
 ---
 
-## Debug over USB
+Deploy and run your program on the Endpoint board over a **single USB
+cable**. Flash the SD card once with the firmware image, plug the board in
+with USB, and you are ready to go.
 
-Plug in the USB cable, pick your board from the list, and press **F5**. There's no SSH, and there are no keys, passwords, or IP addresses. This works the same for all three languages.
+Visual Studio supports **.NET (C#)**. Visual Studio Code supports **.NET
+(C#)**, **Python** and **C/C++** — all three languages from the same
+extension.
 
-VS Code supports .NET, Python, and C/C++. Visual Studio supports .NET.
+## Visual Studio
 
-## Run at boot
+**What you need on the PC:**
 
-Press **Ctrl+F5** to compile your application in AOT mode and set it to run at boot.
+1. **Visual Studio 2026** (Community, Professional or Enterprise). VS 2022
+   17.9+ also works.
+2. The matching **.NET SDK** installed and on PATH
+   ([download](https://dotnet.microsoft.com/download)).
+3. The **Endpoint Debugger** extension — install the latest
+   `endpoint_vs_debugger-win32-x64-*.vsix` from the downloads page.
 
-A C# blink application goes from power on to running in less than three seconds.
+**Create and run a project:**
 
-## Install Python packages
+1. **File > New > Project...** → search *"Endpoint"* → choose
+   **Endpoint App (C#)**. Give it a name and location.
+2. Plug the board in with USB.
+3. Press **F5**. Visual Studio builds the project, copies it to the board,
+   and starts the debugger. Breakpoints, step, locals and watch work as
+   usual.
 
-Install Python packages onto the board from VS Code, over USB, from your PC. The board doesn't need an internet connection.
+**Project settings** live under the project's **Endpoint** property page:
 
-:::warning[To be completed]
-Add the exact VS Code steps for installing a package.
+![Endpoint project settings in Visual Studio](/img/docs/endpoint/vs-endpoint-settings.png)
+
+- **Transport** — how Visual Studio talks to the board. USB today.
+- **Device** — **Endpoint** runs the program on the board; **Desktop** runs
+  it locally on the PC for quick checks.
+- **Firmware** — check for updates, erase the application that is set to
+  run at boot.
+
+**Run at boot:** press **Ctrl+F5** instead of F5. The project is built in
+AOT mode and marked to start automatically after power-on. A C# blink app
+goes from power-on to running in less than three seconds.
+
+## Visual Studio Code
+
+**What you need on the PC:**
+
+1. **Visual Studio Code**.
+2. The **Endpoint Debugger** extension — install the latest
+   `endpoint_vsc_debugger-win32-x64-*.vsix` from the downloads page.
+3. For each language you want to use:
+   - **.NET (C#)**: the matching
+     [.NET SDK](https://dotnet.microsoft.com/download) and the
+     [C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
+     extension.
+   - **Python**: [Python](https://www.python.org/downloads/) and the
+     [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
+     + [Python Debugger](https://marketplace.visualstudio.com/items?itemName=ms-python.debugpy)
+     extensions.
+   - **C/C++**: the
+     [C/C++](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools)
+     extension.
+
+**Create and run a project:**
+
+1. Plug the board in with USB. The status bar at the bottom of VS Code
+   shows **Endpoint** when the board is detected:
+
+   ![Endpoint shown in the VS Code status bar](/img/docs/endpoint/vscode-endpoint-statusbar.png)
+
+2. **Ctrl+Shift+P** → **Endpoint: New Project...** → pick a language
+   (**.NET**, **Python** or **C/C++**), a name and a folder. VS Code opens
+   the new project.
+
+   ![New Endpoint Project language picker in VS Code](/img/docs/endpoint/vscode-new-project-language.png)
+
+3. Press **F5**. The extension builds the project, copies it to the board,
+   and starts the debugger. If something is wrong (board not connected,
+   in use by another program, not answering), F5 stops with a clear
+   message instead of running.
+
+**Run at boot:** press **Ctrl+F5** instead of F5. The project is built in
+AOT mode and marked to start automatically after power-on, same as in Visual
+Studio.
+
+:::tip
+Only one program at a time holds the USB connection. Close the Endpoint
+Config tool before using F5 in Visual Studio or VS Code, and vice versa.
 :::

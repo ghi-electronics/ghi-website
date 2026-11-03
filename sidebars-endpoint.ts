@@ -6,7 +6,6 @@ const sidebars: SidebarsConfig = {
     'hardware',
     'configuration',
     'deployment',
-    'python',
     {
       type: 'category',
       label: 'Features',
