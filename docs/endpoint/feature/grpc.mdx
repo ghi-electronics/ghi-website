@@ -1,0 +1,52 @@
+---
+title: "gRPC"
+---
+
+gRPC is Google's remote-procedure-call framework over HTTP/2 with
+Protobuf message encoding. It supports unary calls as well as client,
+server, and bidirectional streaming — useful for pushing continuous
+sensor telemetry or long-lived control sessions.
+
+Endpoint can be set up as a gRPC client or a gRPC server. The same NuGet
+and pip packages used on desktop and server work on the board.
+
+## .NET
+
+Use the standard
+[`Grpc.Net.Client`](https://www.nuget.org/packages/Grpc.Net.Client)
+package — the Microsoft-supported client that ships for .NET 10. Define
+your service in a `.proto` file, let the `Grpc.Tools` NuGet generate the
+client stubs, and connect as you would on any .NET application.
+
+```csharp
+using Grpc.Net.Client;
+
+using var channel = GrpcChannel.ForAddress("https://api.example.com");
+var client = new SensorService.SensorServiceClient(channel);
+
+var reply = await client.ReportAsync(new Reading { Id = "endpoint-01", Celsius = 23.4 });
+```
+
+## Python
+
+Python code uses the official [grpcio](https://pypi.org/project/grpcio/)
+and [grpcio-tools](https://pypi.org/project/grpcio-tools/) packages.
+Generate stubs from your `.proto` with `python -m grpc_tools.protoc` and
+call the service:
+
+```python
+import grpc
+import sensor_pb2
+import sensor_pb2_grpc
+
+channel = grpc.secure_channel("api.example.com:443", grpc.ssl_channel_credentials())
+client = sensor_pb2_grpc.SensorServiceStub(channel)
+reply = client.Report(sensor_pb2.Reading(id="endpoint-01", celsius=23.4))
+```
+
+## Serving gRPC from the board
+
+Endpoint can also **host** a gRPC endpoint — an on-board service that
+local devices call into. Use `Grpc.AspNetCore` on .NET or `grpcio`'s
+server on Python. See [Endpoint as gateway](gateway.mdx) for the full
+pattern.

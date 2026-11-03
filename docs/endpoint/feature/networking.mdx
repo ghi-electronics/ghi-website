@@ -85,9 +85,8 @@ var json = await http.GetStringAsync("https://api.example.com/status");
 Console.WriteLine(json);
 ```
 
-## MQTT and other protocols
+## Higher-level protocols
 
-MQTT and other common protocols are supported through standard NuGet
-packages — `MQTTnet`, `DotNetty.Codecs.Mqtt`, etc. See the
-[Microsoft Azure](azure.mdx) and [Amazon Web Services](aws.mdx) pages for
-cloud-specific examples.
+For pub/sub messaging, RPC and edge-gateway patterns see
+[MQTT](mqtt.mdx), [gRPC](grpc.mdx), and
+[Endpoint as gateway](gateway.mdx) under **Cloud, IoT and Industrial**.

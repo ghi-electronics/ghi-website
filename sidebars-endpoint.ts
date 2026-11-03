@@ -32,7 +32,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'Communication Buses',
+          label: 'Serial Buses',
           collapsed: true,
           items: [
             'feature/spi',
@@ -44,7 +44,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'Networking',
+          label: 'Wireless and Networking',
           collapsed: true,
           items: [
             'feature/networking',
@@ -53,16 +53,22 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'Cloud',
+          label: 'Cloud, IoT and Industrial',
           collapsed: true,
           items: [
             'feature/azure',
             'feature/aws',
+            'feature/mqtt',
+            'feature/grpc',
+            'feature/modbus',
+            'feature/opcua',
+            'feature/ethernet-ip',
+            'feature/gateway',
           ],
         },
         {
           type: 'category',
-          label: 'Storage',
+          label: 'Storage and Data',
           collapsed: true,
           items: [
             'feature/file-system',
@@ -71,7 +77,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'Display & Multimedia',
+          label: 'Display and Multimedia',
           collapsed: true,
           items: [
             'feature/displays',

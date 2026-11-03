@@ -1,0 +1,53 @@
+---
+title: "Modbus"
+---
+
+Modbus is the long-standing industrial protocol for reading and writing
+holding and input registers on PLCs, sensors, and instruments. Endpoint
+supports both **Modbus RTU** (over a serial line) and **Modbus TCP**
+(over Ethernet or Wi-Fi), and the libraries used are the same
+cross-platform packages that run on desktop and server. The protocol is
+lightweight and comfortably within Endpoint's resource budget.
+
+## .NET
+
+Common choices are
+[FluentModbus](https://www.nuget.org/packages/FluentModbus) and
+[NModbus4](https://www.nuget.org/packages/NModbus4). Both cover
+client (master) and server (slave) roles, Modbus RTU and Modbus TCP.
+
+```csharp
+using FluentModbus;
+
+// Modbus TCP client
+var client = new ModbusTcpClient();
+client.Connect("192.168.1.50");
+
+short[] registers = client.ReadHoldingRegisters<short>(unitIdentifier: 1,
+                                                       startingAddress: 0,
+                                                       count: 10);
+client.WriteSingleRegister(unitIdentifier: 1, registerAddress: 10, value: 1234);
+```
+
+## Python
+
+Use [pymodbus](https://pypi.org/project/pymodbus/), the standard Python
+Modbus library, client and server, RTU and TCP.
+
+```python
+from pymodbus.client import ModbusTcpClient
+
+client = ModbusTcpClient("192.168.1.50")
+client.connect()
+
+result = client.read_holding_registers(address=0, count=10, slave=1)
+client.write_register(address=10, value=1234, slave=1)
+```
+
+## Hosting a Modbus server
+
+Endpoint can also act as the **server** (slave) side — useful when
+Endpoint sits in front of sensors that a plant SCADA system polls over
+Modbus. Both libraries above include a server implementation in the same
+package. See the [Endpoint as gateway](gateway.mdx) page for the broader
+pattern.

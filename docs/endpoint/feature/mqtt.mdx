@@ -1,0 +1,59 @@
+---
+title: "MQTT"
+---
+
+MQTT is the standard lightweight publish/subscribe protocol for
+machine-to-machine messaging. Endpoint uses the same MQTT client
+libraries that run on servers and desktops, so your application works
+against any broker — a local **Mosquitto** instance in the lab, hosted
+brokers like **HiveMQ** or **EMQX**, or the managed brokers inside
+**Azure IoT Hub**, **AWS IoT Core**, and **Google Cloud Pub/Sub**.
+
+## .NET
+
+The common choice is [MQTTnet](https://www.nuget.org/packages/MQTTnet).
+Full QoS 0 / 1 / 2 support, TLS (using the operating system's certificate
+trust store), topic filters, and persistent sessions.
+
+```csharp
+using MQTTnet;
+using MQTTnet.Client;
+
+var factory = new MqttFactory();
+using var client = factory.CreateMqttClient();
+
+var options = new MqttClientOptionsBuilder()
+    .WithTcpServer("broker.example.com", 8883)
+    .WithTls()
+    .WithCredentials("username", "password")
+    .WithClientId("endpoint-01")
+    .Build();
+
+await client.ConnectAsync(options);
+await client.SubscribeAsync("sensors/+/temperature");
+await client.PublishStringAsync("sensors/01/temperature", "23.4");
+```
+
+## Python
+
+Python code uses [paho-mqtt](https://pypi.org/project/paho-mqtt/):
+
+```python
+import paho.mqtt.client as mqtt
+
+client = mqtt.Client(client_id="endpoint-01")
+client.username_pw_set("username", "password")
+client.tls_set()
+client.connect("broker.example.com", 8883)
+client.subscribe("sensors/+/temperature")
+client.publish("sensors/01/temperature", "23.4")
+client.loop_forever()
+```
+
+## Running an MQTT broker on the board
+
+Endpoint can **host** an MQTT broker, not just connect to one. `MQTTnet`
+ships a broker component that lets a fleet of local devices publish to
+Endpoint, which can then forward aggregated or filtered data upstream to
+the cloud. See the [Endpoint as gateway](gateway.mdx) page for the full
+pattern.

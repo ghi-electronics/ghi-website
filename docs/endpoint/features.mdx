@@ -59,7 +59,7 @@ input and output, PWM, and timing-critical signals.
 - [Analog Out](feature/analog-out.mdx) — produce analog voltages via DAC
 - **Signal Control** — generate and measure precise digital signals *(coming soon)*
 
-## Communication Buses
+## Serial Buses
 
 Talk to peripheral chips, sensors, displays, and external systems.
 
@@ -69,28 +69,40 @@ Talk to peripheral chips, sensors, displays, and external systems.
 - [USB](feature/usb.mdx) — USB host for keyboards, mice, drives, webcams, and more
 - [CAN](feature/can.mdx) — controller area network for automotive and industrial use (standard `Iot.Device.SocketCan`)
 
-## Networking
+## Wireless and Networking
 
 Connect your application to networks and nearby devices.
 
 - [Networking](feature/networking.mdx) — Ethernet, Wi-Fi, cellular, sockets, HTTP/HTTPS, TLS (standard `System.Net`)
 - **Bluetooth** — Bluetooth through USB adapters *(coming soon)*
 
-## Cloud
+## Cloud, IoT and Industrial
 
-Connect to the major cloud platforms over MQTT.
+Endpoint uses the same .NET and Python networking stack that servers do —
+full TLS with the operating system's certificate trust store, async
+streaming, standard client libraries, and local storage to buffer or
+pre-process data before pushing anything upstream. General networking
+primitives (`System.Net.Http`, `System.Net.WebSockets`, …) are covered on
+the [Networking](feature/networking.mdx) page; the integrations below sit
+on top.
 
 - [Microsoft Azure](feature/azure.mdx) — Azure IoT Hub (Microsoft Azure SDK)
 - [Amazon Web Services](feature/aws.mdx) — AWS IoT (AWS SDK)
+- [MQTT](feature/mqtt.mdx) — publish/subscribe to any broker (HiveMQ, EMQX, Mosquitto, Azure/AWS/GCP managed brokers) via `MQTTnet` on .NET or `paho-mqtt` on Python
+- [gRPC](feature/grpc.mdx) — bidirectional streaming over HTTP/2 using the standard `Grpc.Net.Client` on .NET or `grpcio` on Python
+- [Modbus](feature/modbus.mdx) — industrial fieldbus, Modbus RTU and Modbus TCP, client or server, via `FluentModbus`/`NModbus4` on .NET or `pymodbus` on Python
+- [OPC UA](feature/opcua.mdx) — IEC 62541 industrial interoperability: client role and small to medium server deployments
+- **EtherNet/IP** — ODVA's industrial protocol for Rockwell/Allen-Bradley environments *(coming soon)*
+- [Endpoint as gateway](feature/gateway.mdx) — run an HTTP or MQTT server on the board itself (ASP.NET minimal API, FastAPI, `MQTTnet` broker) so sensors and small microcontrollers can offload to Endpoint before data goes upstream
 
-## Storage
+## Storage and Data
 
-Persist data on SD cards, USB drives, or in a real SQL database.
+Persist data on SD cards, USB drives, or in a real database.
 
 - [File System](feature/file-system.mdx) — read and write files on SD and USB storage (standard `System.IO`)
-- [SQLite Database](feature/databases.mdx) — embedded SQL database (`Microsoft.Data.Sqlite`)
+- [Databases](feature/databases.mdx) — embedded SQL (`Microsoft.Data.Sqlite`) and NoSQL (`LiteDB`) databases
 
-## Display & Multimedia
+## Display and Multimedia
 
 Drive screens, capture images, and build rich user interfaces.
 
