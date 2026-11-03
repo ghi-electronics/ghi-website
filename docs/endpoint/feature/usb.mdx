@@ -3,138 +3,104 @@ title: "USB"
 ---
 
 ![USB Logo](/img/docs/endpoint/usb-logo.jpg)
- 
- Both, USB Host and USB Device (Client) are utilized in any Endpoint device.
 
-## USB Device
- 
- An Endpoint device presents its USB Device as a virtual network interface. This interface is used to configure, program, and debug applications remotely. No user effort is needed to use this interface
+Endpoint uses USB in two ways: the USB-C connection to your PC is the
+**debug and deploy** channel (no user code involved — the IDE drives it),
+and a separate **USB host** port supports standard USB peripherals like
+keyboards, mice, joysticks, printers and mass-storage drives.
 
-## USB Host
+## USB host — detecting devices
 
- There are multiple way to benefit from USB Host to cover different needs.
+Open the host controller, subscribe to `ConnectionChanged`, and `Enable()`
+it. The event fires for every device plugged in now and in the future
+(and again when a device is unplugged). The devices already connected at
+`Enable()` time are reported too.
 
- ```csharp
- using GHIElectronics.Endpoint.Devices.UsbHost;
- //...
- var usbhost = new UsbHostController();
-
-usbhost.ConnectionChanged += Usbhost_ConnectionChanged;
-usbhostController.Enable();
-void Usbhost_ConnectionChanged(UsbHostController sender, DeviceConnectionEventArgs e)
-{
-    Console.WriteLine("Detect changed Id: " + e.DeviceId + ", name: " + e.DeviceName + ", status:" + e.DeviceStatus);
-
-}
- ```
-
-### Mass Storage
-
- This allows users to access files on USB memory devices. Once a `MassStorage` device is inserted and detected, it can then be mounted, returning the device path needed to access files.
-
- ```csharp
-var usbhost = new UsbHostController();
-string usbmountedPath = string.Empty;
-usbhost.ConnectionChanged += Usbhost_ConnectionChanged;
-usbhostController.Enable();
-void Usbhost_ConnectionChanged(UsbHostController sender, DeviceConnectionEventArgs e)
-{
-    Console.WriteLine("Detect changed Id: " + e.DeviceId + ", name: " + e.DeviceName + ", status:" + e.DeviceStatus);
-
-    if (e.Type == GHIElectronics.Endpoint.Devices.Usb.DeviceType.MassStorage && e.DeviceStatus == DeviceConnectionStatus.Connected)
-    {
-        usbmountedPath = GHIElectronics.Endpoint.FileSystem.Mount(e.DeviceName);
-
-        Console.WriteLine("Mounted, path " + usbmountedPath);
-    }
-    else if (e.Type == GHIElectronics.Endpoint.Devices.Usb.DeviceType.MassStorage)
-    {
-        GHIElectronics.Endpoint.FileSystem.Unmount(usbmountedPath);
-
-        Console.WriteLine("Unmounted");
-    }
-}
- ```
- 
- Files can now be accessed normally.
- 
 ```csharp
-string path = usbmountedPath + "/DataFile.txt";
-using (FileStream fs = File.Create(path))
-{
-//...
-}
+using GHIElectronics.Endpoint.Core;
+using GHIElectronics.Endpoint.Devices.UsbHost;
+
+var usb = UsbHostController.GetDefault();
+
+usb.ConnectionChanged += (sender, e) => {
+    Console.WriteLine($"{e.DeviceStatus} id={e.Id} type={e.Type} name={e.DeviceName}");
+    Console.WriteLine($"  VID={e.VendorId:X4} PID={e.ProductId:X4} '{e.Manufacturer}' '{e.Product}'");
+};
+
+usb.Enable();
 ```
 
-### HID
+`e.Type` is a [`DeviceType`](/docs/endpoint/api/GHIElectronics.Endpoint.Devices.UsbHost/DeviceType.mdx)
+value (`Hub`, `Keyboard`, `Mouse`, `Joystick`, `MassStorage`, `Printer`,
+`Serial`, `Webcam`, `Audio`, `Network`, `Bluetooth`, `Touch`, `HID`,
+`Unknown`) — use it to decide what to open the device with.
+`e.DeviceName` is the string you pass to the device-specific class
+(`"/dev/input/event1"`, `"/dev/ttyUSB0"`, etc.).
 
-Human Interface Devices, such as a Keyboards and Mice, are automatically mounted by the system.
+One USB device may show up as several types — a webcam with a microphone
+fires both `Webcam` and `Audio`, a keyboard with a built-in touchpad
+fires both `Keyboard` and `Mouse`. Handle each as a separate event.
+
+## Keyboards, mice, joysticks
+
+Each peripheral type has a small wrapper class in
+`GHIElectronics.Endpoint.Devices.UsbHost`. Create one from the
+`DeviceName` the `ConnectionChanged` event gave you.
 
 ```csharp
-using var hid = new HidInput();
+usb.ConnectionChanged += (sender, e) => {
+    if (e.DeviceStatus != DeviceConnectionStatus.Connected) return;
 
-hid.OnButtonPress += (e) => {
-    Console.WriteLine($"Code:{e.Code} State:{e.State}");
+    switch (e.Type) {
+        case DeviceType.Keyboard:
+            var kb = new Keyboard(e.DeviceName);
+            kb.CharDown += (s, a) => Console.Write(a.Ascii);
+            kb.KeyDown += (s, a) => { if (a.Which == Key.Escape) Console.WriteLine("Esc"); };
+            break;
 
-};
+        case DeviceType.Mouse:
+            var mouse = new Mouse(e.DeviceName);
+            mouse.SetCursorBounds(new Position { X = 0, Y = 0 },
+                                  new Position { X = 799, Y = 479 });
+            mouse.CursorMoved += (s, a) => Console.WriteLine($"({a.NewPosition.X}, {a.NewPosition.Y})");
+            mouse.ButtonChanged += (s, a) => Console.WriteLine($"{a.Which} {a.State}");
+            break;
 
-hid.OnMouseMove += (e) =>
-{
-    Console.WriteLine($"Axis:{e.Axis} Amount:{e.Amount}");
-};
-
-hid.OnDisconnected += () =>
-{
-    Console.WriteLine("Device HID disconnected!");
+        case DeviceType.Joystick:
+            var joy = new Joystick(e.DeviceName);
+            joy.CursorMoved += (s, a) => Console.WriteLine($"{a.Which} at {a.NewPosition.X}, {a.NewPosition.Y}");
+            joy.ButtonChanged += (s, a) => Console.WriteLine($"Button {a.Which} {a.State}");
+            joy.HatSwitchPressed += (s, a) => Console.WriteLine($"Hat {a.Direction}");
+            break;
+    }
 };
 ```
 
-### Camera
+Each class delivers its events on its own thread.
 
-The USB Camera library provides a stream of images. Note that only cameras with UVC (USB Video Class) standard are supported.
+## USB mass storage
 
-```csharp
-usbhostController.ConnectionChanged += (a, b) =>
-{
-    var arg = b;
+Files on USB drives are handled through the
+[File System](file-system.mdx) page, not through `UsbHostController`.
+The short version: open a
+`StorageController.FromName(EPM815.StorageController.UsbHostMassStorage)`,
+subscribe to its `ConnectionChanged`, and call `FileSystem.Mount(e.Hdc)`
+when a drive connects to get the `/media/usbN/` folder you can read and
+write with standard `System.IO`.
 
-    if (arg.DeviceStatus == DeviceConnectionStatus.Connected)
-    {
-        Console.WriteLine("id: " + arg.DeviceId);
-        Console.WriteLine("name: " + arg.DeviceName);
-        Console.WriteLine("type: " + arg.Type);
+See [File System](file-system.mdx) for the full example.
 
-        if (arg.Type == GHIElectronics.Endpoint.Devices.Usb.DeviceType.Webcam && arg.DeviceName.IndexOf("video0") > 0)
-        {
-            webcam = new Webcam(arg.DeviceName);
+## Printers, serial adapters, raw HID
 
-            var setting = new CameraConfiguration()
-            {
-                Width = 480,
-                Height = 272,
-                ImageFormat = PixelFormat.Rgb565,
-            };
+- **Printer** (`DeviceType.Printer`) — open with `new Printer(e.DeviceName)`.
+- **Serial** adapter (`DeviceType.Serial`) — the kernel exposes it as a
+  standard serial port; open with `new System.IO.Ports.SerialPort(e.DeviceName)`.
+- **Unknown / specialty** devices (`DeviceType.Unknown`, `DeviceType.HID`) —
+  use `new HidDevice(e.DeviceName)` for a raw HID report stream, or
+  `new RawDevice(e.DeviceName)` for raw control transfers to any USB
+  device without a standard driver.
 
-            webcam.Setting = setting;
+## Webcams
 
-            webcam.VideoStreamStart();
-            webcam.FrameReceived += (a, b) =>
-            {
-                displayController.Flush(b, 0, b.Length, webcam.Width, webcam.Height);
-            };
-        }
-    }
-    else
-    {
-        if (webcam != null)
-        {
-            if (webcam.IsVideoStreaming)
-            {
-                webcam.VideoStreamStop();
-            }
-            webcam.Dispose();
-            webcam = null;
-        }
-    }
-};
-```
+The USB camera API is part of the camera package and is marked
+**coming soon** — see the [Camera](camera.mdx) page for status.

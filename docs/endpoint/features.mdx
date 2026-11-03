@@ -34,12 +34,15 @@ program is up and running in under three seconds from power-on.
 
 ## One API in three languages
 
-Every Endpoint library ships for **.NET (C#)**, **Python** and **C/C++**
-with the same class names and the same method names. Where a standard .NET
-API exists (`System.Device.Gpio`, `System.Device.I2c`, …) Endpoint uses it
-directly; where no standard exists, Endpoint adds a library that is shaped
-the same across all three languages. Port between languages without
-re-learning.
+Endpoint libraries use the same class and method names across
+**.NET (C#)**, **Python** and **C/C++** wherever practical, so a
+developer who knows one language reads code written in another without
+re-learning the API. Where a standard .NET API exists
+(`System.Device.Gpio`, `System.Device.I2c`, …) Endpoint uses it directly
+on .NET and ships Python and C/C++ wrappers of the same shape. The few
+exceptions are domains where a language already has a well-established
+library its developers expect — serial ports, for example, follow
+`System.IO.Ports.SerialPort` on .NET but use `pyserial` in Python.
 
 ---
 
