@@ -1,0 +1,33 @@
+---
+title: "SpiController Class"
+sidebar_label: "SpiController"
+---
+
+# SpiController Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+Chip-neutral entry point for SPI setup. Call once before using `Spi.SpiDevice`: it brings up the bus and muxes its pins.
+
+```csharp
+public static class SpiController
+```
+
+## Methods
+
+### Initialize(int bus, int bufferSize)
+
+```csharp
+public static void Initialize(int bus, int bufferSize)
+```
+
+Connects the bus's SCK/MISO/MOSI pins. On EPM815, also sizes the kernel transfer buffer; on EPN256/EPN128 `bufferSize` is accepted for signature parity and otherwise ignored (the Nuvoton driver uses a fixed DMA buffer).
+
+### UnInitialize(int bus)
+
+```csharp
+public static void UnInitialize(int bus)
+```
+
+Releases the bus's pins back to free GPIO.
+

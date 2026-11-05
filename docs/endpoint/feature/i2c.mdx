@@ -2,33 +2,46 @@
 title: "I2C"
 ---
 
-I2C (pronounced eye-squared-sea, or eye-two-sea) was originally developed by Phillips as a protocol for synchronous serial communication between integrated circuits. It has a master and one or more slaves sharing the same data bus. Instead of selecting the slaves by using a dedicated chip select signal like SPI, I2C uses an addressing mechanism to communicate with the selected device. This addressing method saves one I/O pin per slave.
+I²C (pronounced *eye-squared-sea* or *eye-two-sea*) is a synchronous
+two-wire serial bus. One master shares the bus with one or more slaves;
+each slave is selected by a 7-bit address sent on the bus instead of by
+a dedicated chip-select line. The two wires are **SDA** (Serial Data)
+and **SCL** (Serial Clock).
 
-Before data is transferred, the master transmits the 7-bit address of the slave device it wants to communicate with. It also sends one bit indicating whether it wants to send data to the slave or receive data from the slave. When a slave sees its address on the bus, it will acknowledge its presence. At this point, the master can send or receive data. The master will start data transfers with a "start condition" before sending an address or data. The master ends the data transfer with a "stop condition."
-
-The two wires for I2C communication are called the SDA and SCL lines. SDA stands for Serial Data, and SCL is Serial Clock.
-
-Endpoint uses the standard .NET API for I2C (System.Device.I2c) but first we need to **Initialize** the pin for I2C. 
-
-```csharp
-EPM815.I2c.Intialize(EPM815.I2c.I2c6);
-```
-
-This method also allows the user to set clock speed, which 400KHz by default. 
+Endpoint uses the standard **`System.Device.I2c`** API for the data
+transfer. The only Endpoint-specific step is calling
+`I2cController.Initialize(bus)` first — this claims the bus's pins and
+sets the clock speed. The default speed is 400 kHz; pass a second
+argument to change it.
 
 ```csharp
-EPM815.I2c.Intialize(EPM815.I2c.I2c6,100_000);
+using System.Device.I2c;
+using GHIElectronics.Endpoint.Core;
+
+// Bring up I²C6 at the default 400 kHz
+I2cController.Initialize(EPDomino24.I2c.I2c6);
+
+// Open the device and talk to it with the standard API
+var settings = new I2cConnectionSettings(EPDomino24.I2c.I2c6, deviceAddress: 0x1C);
+using var i2c = I2cDevice.Create(settings);
+
+// Write a byte to a register
+i2c.Write(new byte[] { 0x2A, 0x01 });
+
+// Read a register (write the register address, then read the value)
+var read = new byte[1];
+i2c.WriteRead(new byte[] { 0x2A }, read);
+Console.WriteLine($"0x2A = {read[0]:X2}");
 ```
 
-I2C is a standard .NET IoT feature. This is a partial demo showing the use of I2C.
+Change the clock speed if the device needs it:
 
 ```csharp
-EPM815.I2c.Intialize(EPM815.I2c.I2c6);
-var i2cConnectionSetting = new I2cConnectionSettings(EPM815.I2c.I2c6, 0x1C);
-var i2cDev = I2cDevice.Create(i2cConnectionSetting);
-
-WriteToRegister(0x2A, 1);
-
-i2cDev.Write(new byte[] { 1, 2 }); //Write something
-i2cDev.WriteRead(...); //This is good for reading register
+I2cController.Initialize(EPDomino24.I2c.I2c6, frequency: 100_000);   // 100 kHz
 ```
+
+:::tip
+`I2cController` is chip-neutral — the same call works on any supported
+module. The bus constant (`EPDomino24.I2c.I2c6`) is board-specific and
+lists only the buses actually bonded on EP-Domino 24.
+:::

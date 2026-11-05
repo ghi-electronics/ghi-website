@@ -9,7 +9,7 @@ before pushing it upstream. This is the classic edge-gateway pattern.
 
 What makes this straightforward on Endpoint:
 
-- Full **.NET** and **Python** stacks that host standard HTTP/MQTT/gRPC
+- Full **.NET** and **Python** stacks that host standard HTTP and MQTT
   servers out of the box.
 - Full **TLS 1.3** with the operating system's certificate trust store —
   no hand-managed cert pinning per client.
@@ -29,8 +29,6 @@ What makes this straightforward on Endpoint:
 - **MQTT broker** — [`MQTTnet`](https://www.nuget.org/packages/MQTTnet)
   includes a broker component in the same package as the client; drop it
   into any .NET application.
-- **gRPC server** — [`Grpc.AspNetCore`](https://www.nuget.org/packages/Grpc.AspNetCore)
-  on .NET, [`grpcio`](https://pypi.org/project/grpcio/) on Python.
 - **WebSocket server** — standard
   `System.Net.WebSockets.WebSocket` on .NET, `websockets` on Python.
 - **Local store** — [SQLite](databases.mdx) for deduplication, buffering
@@ -45,5 +43,4 @@ that drains the local queue toward the cloud whenever the uplink is
 healthy. All three share the same TLS stack, the same connection pool,
 and the same SQLite instance.
 
-See [MQTT](mqtt.mdx) and [gRPC](grpc.mdx) for the specific protocol
-details on each side.
+See [MQTT](mqtt.mdx) for the specific protocol details on each side.

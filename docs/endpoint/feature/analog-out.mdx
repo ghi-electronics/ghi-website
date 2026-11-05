@@ -3,47 +3,41 @@ title: "Analog Out"
 ---
 
 ## DAC
-A Digital to Analog Converter (DAC) will convert a digital input (number) to an analog output (voltage). 
 
-The voltage of a DAC usually swings from very close to zero volts up to nearly the voltage of the microcontroller (usually 3.3 volts). This output voltage is only a weak signal and is not meant to drive a load. An op-amp or similar circuit can be added to drive a load, such as a speaker.
+A digital-to-analog converter (DAC) turns a numeric sample into a voltage
+between 0 V and the chip's reference voltage (3.3 V on Endpoint, 12-bit
+resolution). The output is a weak signal — it is not meant to drive a
+load directly. Add an op-amp or similar buffer to drive something like a
+speaker.
 
-The param accepted by the api is from 0.0 to 1.0. This is ratio from 0V to the microcontroller's voltage source, 3.3V on EPM815.
-
-:::note
-EPM815 supports 12 bit resolution.
-:::
+`WriteValue` accepts either a raw 12-bit integer (0 to 4095) or a
+`double` in the range 0.0 to 1.0.
 
 ```csharp
-var dac = new DacController(EPM815.Dac.Pin.PA5);
+using GHIElectronics.Endpoint.Core;
+using GHIElectronics.Endpoint.Devices.Dac;
 
-double start = 0;
-double offset = 0.1;
-var dir = 1;
+var dac = DacController.FromName(EPDomino24.Dac.Id);
+using var output = dac.OpenChannel(EPDomino24.Dac.PA5);
 
-while (true)
-{
+double level = 0, step = 0.1;
+int direction = 1;
 
-    dac.WriteValue(start);
-
-    
-
-    if (start >=0.9)
-        dir = -1;
-    if (start <=0.1)
-        dir = 1;
-
-    start += (offset * dir);
-
+while (true) {
+    output.WriteValue(level);
+    if (level >= 0.9) direction = -1;
+    if (level <= 0.1) direction = 1;
+    level += step * direction;
     Thread.Sleep(1000);
 }
 ```
 
 :::tip
-Do not use analog outputs to control the power of an LED or a motor. Use [PWM](pwm.mdx) for that.
+Do not use analog outputs to control the power of an LED or a motor. Use
+[PWM](pwm.mdx) for that.
 :::
 
 ## PWM
-PWM can also be used to output an analog voltage. [Click here](pwm.mdx) for details.
 
-## Audio Playback
-WAV audio playback can be done using an analog output pin. See [Audio Playback](/docs/tinyclr/feature/audio-playback).
+PWM can also simulate an analog voltage when filtered or driving a
+duty-cycle-responsive load (motor, LED). See [PWM](pwm.mdx) for details.

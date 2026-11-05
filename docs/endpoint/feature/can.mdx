@@ -2,81 +2,51 @@
 title: "CAN"
 ---
 
-Controller Area Network (CAN) bus is a serial communication protocol with built-in error checking and retransmission. It is generally a two wire bus, but other transceivers with one wire or LSFT (Low Speed Fault Tolerant) are used.
-
-The common high-speed two-wire CAN requires termination resistors at the end of the wires, typically 120 ohm.
+Controller Area Network (CAN) is a serial bus with built-in error
+checking and retransmission, commonly used in automotive and industrial
+systems. The wiring is typically two differential wires (CAN-H and
+CAN-L); the bus needs a 120 Ω termination resistor at each end.
 
 ![CAN linear bus](/img/docs/endpoint/can-bus.png)
 
-Endpoint supports standard CAN and CAN-FD.
+Endpoint uses **`Iot.Device.SocketCan.CanRaw`** from .NET IoT for the
+actual send/receive. The only Endpoint-specific step is calling
+`CanController.Initialize(port, bitrate)` first — this muxes the port's
+TX/RX pins and brings the `canN` interface up at the chosen bitrate.
 
 ```csharp
-var canController = new CanController(EPM815.Can.Can2, 250_000);
-// When 2 baudrates are needed
-//var canController = new CanController(EPM815.Can.Can2, 250_000, 500_000);
-canController.Enable();
+using System.Device.Can;
+using Iot.Device.SocketCan;
+using GHIElectronics.Endpoint.Core;
 
-// Send a message
-var msg = new CanMessage(0x123, new byte[] { 11, 22, 33 });
-canController.Write(msg);
+// Bring up CAN1 at 500 kbit/s
+CanController.Initialize(EPDomino24.Can.Can1, bitrate: 500_000);
+
+// Send a frame with the standard .NET IoT API
+using var can = new CanRaw(EPDomino24.Can.Can1);
+can.WriteFrame(new byte[] { 11, 22, 33 }, new CanId { Standard = 0x123 });
 ```
 
-Errors can be monitored as well
+Read frames in a loop:
 
 ```csharp
-canController.EnableErrorEvent(CanError.ErrorTxTimeout | CanError.ErrorBusOff);
-
-canController.ErrorReceived += (a, b) =>
-{
-    uint error = (uint)b.Error;
-    if ((error & (uint)CanError.ErrorBusOff) == (uint)CanError.ErrorBusOff)
-    {
-        Console.WriteLine("Error bus off");
+using var can = new CanRaw(EPDomino24.Can.Can1);
+while (true) {
+    var data = new byte[8];
+    if (can.TryReadFrame(data, out int length, out CanId id)) {
+        Console.WriteLine($"ID=0x{id.Value:X3} len={length} data={BitConverter.ToString(data, 0, length)}");
     }
-    else
-    {
-        Console.WriteLine("Receving error: 0x" + error.ToString("x8"));
-    }
-};
-```
-
-The library includes a message receive event but it is only for notifications and it does not include the message.
-
-```csharp
-int messageCount = 0;
-canController.MessageReceived += (a) =>
-{
-    messageCount++;
-    Console.WriteLine("Receving message: " + messageCount);
-};
-```
-
-Receiving messages can be handled in a loop.
-
-```csharp
-while (true)
-{
-    if (canController.MessagesToRead > 0)
-    {
-        var msgRead = canController.Read();
-
-        if (msgRead != null)
-        {
-            Console.WriteLine("ID: " + msgRead.ArbitrationId.ToString("x8"));
-            Console.WriteLine("Ext: " + msgRead.ExtendedFrameFormat);
-            Console.WriteLine("Remote: " + msgRead.RemoteTransmissionRequest);
-        }
-    }
-    Thread.Sleep(2);
 }
 ```
 
-## Filter
-
-CAN messages can overwhelm the system with traffic. Filters can be used so only desired messages are received. It is a good practice to set the filters before enabling the system.
-
-The first argument of the filter is the ArbID we are looking for. The second argument is the mask of what bits we are interested in. A 0x03 for mask means we are only interested in checking the low 2 bits. The last argument is to invert the entire filter from a messages to receive to a filter to receive everything except what is in the filter. 
+When you are done, release the port's pins:
 
 ```csharp
-canController.EnableFilter(new uint[] { 0x123 }, new uint[] { 0x000007FF }, true);
+CanController.UnInitialize(EPDomino24.Can.Can1);
 ```
+
+:::tip
+`CanController` is chip-neutral — the same call works on any supported
+module. The port constant (`EPDomino24.Can.Can1`) is board-specific and
+lists only the ports actually bonded on EP-Domino 24.
+:::

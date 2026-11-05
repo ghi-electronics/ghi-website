@@ -2,108 +2,99 @@
 title: "GPIO"
 ---
 
-Microcontrollers include pins that can be controlled through software. They can be logical inputs or outputs, hence the name "general purpose input/output".
+Endpoint uses the standard .NET **`System.Device.Gpio`** API for pin I/O.
+You get a `GpioController`, open the pins you want, and read or write
+them. Endpoint plugs into this standard API by providing a per-board
+`Gpio.Driver` — pass it to the controller constructor and use the board's
+pin constants (e.g. `EPDomino24.Led`, `EPDomino24.Gpio.Pin.PF3`) directly.
 
-:::tip
-GPIO is found in the System.Device.Gpio and System.Device.Gpio.Drivers of the standard .NET API. These libraries are automatically imported when installing NuGet package GHIElectronics.Endpoint.Core
-:::
+## Digital outputs
 
-## Digital Outputs
-A digital output pin can be set to either high or low.  High means that there is approx. 3.3V on the output pin. When the pin is set to low, it's voltage will be very close to zero.
+A digital output pin can be driven high (approx. 3.3 V) or low (approx. 0 V).
 
 :::warning
-Never connect two output pins together. If they are connected and one is high and the other is low, the entire processor can be damaged.
+Never connect two output pins together. If they are connected and one is
+high and the other is low, the entire processor can be damaged.
 :::
 
 :::tip
-Digital pins on microcontrollers are weak. They can only be used to control small LEDs or drive transistors. Those transistors can, in turn, control devices with high power needs like a motor.
+Digital pins on microcontrollers are weak. Use them to control small LEDs
+or to drive transistors, which in turn switch devices with higher current
+needs such as a motor.
 :::
+
+Blink the on-board LED:
 
 ```csharp
 using System.Device.Gpio;
-using System.Device.Gpio.Drivers;
 using GHIElectronics.Endpoint.Core;
 
-var port = EPM815.Gpio.Pin.PC0 / 16;
-var pin = EPM815.Gpio.Pin.PC0 % 16;
-var gpioDriver = new LibGpiodDriver((int)port);
-var gpioController = new GpioController(PinNumberingScheme.
-    Logical, gpioDriver);
+using var gpio = new GpioController(new EPDomino24.Gpio.Driver());
+gpio.OpenPin(EPDomino24.Led, PinMode.Output);
 
-gpioController.OpenPin(pin);
-gpioController.SetPinMode(pin, PinMode.Output);
-
-while (true){
-    gpioController.Write(pin, PinValue.High);
-    Thread.Sleep(100);
-    gpioController.Write(pin, PinValue.Low);
+var on = false;
+while (true) {
+    gpio.Write(EPDomino24.Led, (on = !on) ? PinValue.High : PinValue.Low);
     Thread.Sleep(100);
 }
 ```
 
-## Digital Inputs
-Digital inputs sense the state of a pin based on its voltage. Minimum voltage on most pins is 0 volts; a negative voltage may damage the pin or the processor. Most processors run on 3.3V, the highest voltage a pin should see is 3.3V. However, some processors that are powered by 3.3V are 5V tolerant -- they can withstand up to 5V on their inputs. SITCore is 5V tolerant.
+## Digital inputs
 
-:::warning
-5V tolerant doesn't mean the processor can be powered by 5V, only that the input pins can tolerate 5V.
-:::
+Digital inputs sense the state of a pin based on its voltage. Minimum
+voltage on most pins is 0 V; a negative voltage may damage the pin or the
+processor. The maximum tolerated voltage depends on the module — check
+the datasheet for your board.
 
-Unconnected input pins are called "floating." A resistor can be added to pull the pin high or low. Modern processors include internal pull-up and pull-down resistors that are controlled by software.
-
-The code sample below uses an internal pull-up resistor to set the button high. When the button is pressed the `GpioPinValue` goes low. 
+Unconnected input pins are called "floating." A resistor can pull the pin
+high or low; modern processors include internal pull-up and pull-down
+resistors that are controlled by software. The example below uses the
+internal pull-up on the F1 user button — pressing it drives the pin low.
 
 ```csharp
 using System.Device.Gpio;
-using System.Device.Gpio.Drivers;
 using GHIElectronics.Endpoint.Core;
 
-var buttonPort = EPM815.Gpio.Pin.PF3 / 16;
-var buttonPin = EPM815.Gpio.Pin.PF3 % 16;
-var buttonDriver = new LibGpiodDriver((int)buttonPort);
-var button = new GpioController(PinNumberingScheme.Logical, buttonDriver);
+using var gpio = new GpioController(new EPDomino24.Gpio.Driver());
+gpio.OpenPin(EPDomino24.ButtonF1, PinMode.InputPullUp);
 
-button.OpenPin(buttonPin, PinMode.InputPullUp);
-
-while (true){
-    if (button.Read(buttonPin) == PinValue.Low) {
+while (true) {
+    if (gpio.Read(EPDomino24.ButtonF1) == PinValue.Low)
         Console.WriteLine("Button is pressed");
-    }
-    Thread.Sleep(10);  
+    Thread.Sleep(10);
 }
 ```
 
-## Digital Input Events
+## Digital input events
 
-Using events to check an input instead of polling the input (using a loop) is often preferred. The following code demonstrates a GPIO pin event (interrupt) using the F1 user button on Endpoint Domino
-
-You will see a reference to a ```PinEventTypes.Falling``` in the following code. A falling occurs when the state of a pin goes from high to low. A rising is just the opposite -- it occurs when a pin goes from low to high. 
+Events avoid polling. The code below fires a callback on every button edge:
 
 ```csharp
 using System.Device.Gpio;
-using System.Device.Gpio.Drivers;
 using GHIElectronics.Endpoint.Core;
 
-var buttonPort = EPM815.Gpio.Pin.PF3 / 16;
-var buttonPin = EPM815.Gpio.Pin.PF3 % 16;
-var buttonDriver = new LibGpiodDriver((int)buttonPort);
-var button = new GpioController(PinNumberingScheme.Logical, buttonDriver);
-
-button.OpenPin(buttonPin, PinMode.InputPullUp);
-button.RegisterCallbackForPinValueChangedEvent(
-    buttonPin,
+using var gpio = new GpioController(new EPDomino24.Gpio.Driver());
+gpio.OpenPin(EPDomino24.ButtonF1, PinMode.InputPullUp);
+gpio.RegisterCallbackForPinValueChangedEvent(
+    EPDomino24.ButtonF1,
     PinEventTypes.Falling | PinEventTypes.Rising,
     OnPinEvent);
 
-//Do other tasks here
 await Task.Delay(Timeout.Infinite);
 
-static void OnPinEvent(object sender, PinValueChangedEventArgs args){
-    Console.WriteLine("Button Pressed");
+static void OnPinEvent(object sender, PinValueChangedEventArgs args) {
+    Console.WriteLine($"Button {args.ChangeType}");
 }
 ```
 
-When a mechanical button is pressed it generates multiple edges that are caused by the contact physically bouncing. If debounce is an issue use the [GpioButton Class](https://learn.microsoft.com/en-us/dotnet/api/iot.device.button.gpiobutton?view=iot-dotnet-latest).
+Mechanical buttons generate multiple edges from contact bounce. If
+debounce is an issue, use the standard .NET IoT
+[`GpioButton`](https://learn.microsoft.com/en-us/dotnet/api/iot.device.button.gpiobutton?view=iot-dotnet-latest).
 
-## Endpoint Interrupt limitation
+## Interrupt limitation
 
-Digital input events rely on internal GPIO interrupts to work. On Endpoint, these interrupts are only available on 16 pins at any given time, the pin number must be unique, over all of the available ports. For example: PA1 and PB1 cannot both be used as interrupts at the same time. However, PA1 and PB2, or even PA1 and PA2, can be used simultaneously.
+Digital input events rely on internal GPIO interrupts. On Endpoint only
+**16 pin-change interrupts** are available at a time, and the pin number
+must be unique across all ports — for example, `PA1` and `PB1` cannot
+both be used as interrupts simultaneously, but `PA1` and `PB2` (or even
+`PA1` and `PA2`) can.

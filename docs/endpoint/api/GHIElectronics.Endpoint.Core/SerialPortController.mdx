@@ -1,0 +1,33 @@
+---
+title: "SerialPortController Class"
+sidebar_label: "SerialPortController"
+---
+
+# SerialPortController Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+Chip-neutral entry point for UART / serial-port setup. Call once before using `System.IO.Ports.SerialPort`: it muxes the TX/RX pins (plus RTS/CTS when flow control is on) and makes `/dev/ttyS*` usable.
+
+```csharp
+public static class SerialPortController
+```
+
+## Methods
+
+### Initialize(string portName, bool enableHardwareFlowControl)
+
+```csharp
+public static void Initialize(string portName, bool enableHardwareFlowControl)
+```
+
+Muxes the port's pins. When `enableHardwareFlowControl` is set, RTS and (where bonded out) CTS are muxed too.
+
+### UnInitialize(string portName)
+
+```csharp
+public static void UnInitialize(string portName)
+```
+
+Releases the port's pins back to free GPIO.
+

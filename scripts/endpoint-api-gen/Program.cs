@@ -37,10 +37,11 @@ var skipAssemblies = new HashSet<string>(StringComparer.OrdinalIgnoreCase) {
 // Individual top-level types intentionally hidden from the docs (and all
 // their nested types). Matched against the type's outermost enclosing class
 // name — e.g. "EPN256" hides EPN256, EPN256.Adc, EPN256.Gpio.Driver, etc.
-// EPN256 is the working name for the unreleased Nuvoton MA35D1 module;
-// remove this entry once the chip ships.
+// EPN256 (MA35D1) and EPN128 (MA35D0) are working names for the unreleased
+// Nuvoton modules; remove these entries once the chips ship.
 var skipTopLevelTypes = new HashSet<string>(StringComparer.Ordinal) {
     "EPN256",
+    "EPN128",
 };
 
 // Discover DLLs: skip bin\Debug\...\ref\ and anything inside obj\

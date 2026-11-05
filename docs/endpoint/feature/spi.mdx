@@ -2,37 +2,53 @@
 title: "SPI"
 ---
 
-SPI uses three or four wires for transferring data. A SPI bus consists of a single master and one or more slaves. The master will send the clock signal to the slaves over the SCK (Serial Clock) pin. It will also send data over MOSI (Master Out Slave In) pin, while reading incoming data on the MISO (Master In Slave Out) pin. The SCK line is used to determine how fast the data is moved. If you know electronics, this is simply a shift register.
+SPI uses three or four wires for data transfer. A SPI bus has one master
+and one or more slaves. The master drives the clock on **SCK**, sends
+data on **MOSI** (Master Out Slave In), and reads incoming data on
+**MISO** (Master In Slave Out). The master picks which slave to talk to
+with a per-slave **SSEL** / **CS** (chip-select) pin.
 
-The master selects which slave it will swap the data with using the SSEL (Slave SeLect) pin, sometimes called CS (Chip Select).
-
-In its simplest terms, the master will swap data between itself and the slave. You cannot write data without reading data at the same time. However, often you want to write data and don't care about the incoming data. To do this you can use the Write method. Keep in mind that the Write method is discarding whatever data the slave is sending back.
+In the simplest case the master always exchanges data with the slave
+simultaneously — you cannot write without reading at the same time. If
+the incoming bytes do not matter, use the plain `Write` method and
+discard the return.
 
 :::tip
-Note that an Endpoint device is always the SPI master, not the slave.
+Endpoint is always the SPI master, not the slave.
 :::
 
 :::tip
-Some SPI devices (slaves) can have more than one select pin, like the VS1053 MP3 decoder chip that uses one select pin for data and the other for commands. Both share the three data transfer pins (SCK, MOSI, MISO).
+Some SPI devices (such as the VS1053 MP3 decoder) have more than one
+select pin — one for commands and one for data. Both share the same SCK
+/ MOSI / MISO lines.
 :::
 
-First, the desired appropriate pins needs to be set to use the SPI function `EPM815.Spi.Initialize(EPM815.Spi.Spi4);` and then SPI is a standard .NET IoT feature.
+Endpoint uses the standard **`System.Device.Spi`** API. The only
+Endpoint-specific step is calling `SpiController.Initialize(bus)` first —
+this claims the bus's pins.
 
 ```csharp
-// Map pins to use SPI
-EPM815.Spi.Initialize(EPM815.Spi.Spi4);
-// Get settings ready
-var setting = new SpiConnectionSettings(EPM815.Spi.Spi4)
-{
+using System.Device.Spi;
+using GHIElectronics.Endpoint.Core;
+
+// Bring up SPI4 and claim its pins
+SpiController.Initialize(EPDomino24.Spi.Spi4);
+
+// Standard .NET IoT from here
+var settings = new SpiConnectionSettings(EPDomino24.Spi.Spi4) {
     ClockFrequency = 4_000_000,
     Mode = SpiMode.Mode0,
-    ChipSelectLine = 0
+    ChipSelectLine = 0,
 };
-// Create the SPI device
-var spiDev = SpiDevice.Create(setting);
+using var spi = SpiDevice.Create(settings);
 
-// read and write SPI
-var writebuff = new byte[2];
-var readbuff = new byte[10];
-spiDev.TransferFullDuplex(writebuff, readbuff);
+var write = new byte[2];
+var read  = new byte[10];
+spi.TransferFullDuplex(write, read);
 ```
+
+:::tip
+`SpiController` is chip-neutral — the same call works on any supported
+module. The bus constant (`EPDomino24.Spi.Spi4`) is board-specific and
+lists only the buses actually bonded on EP-Domino 24.
+:::

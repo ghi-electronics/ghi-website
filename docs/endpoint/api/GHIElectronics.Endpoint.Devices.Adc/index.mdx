@@ -12,5 +12,5 @@ Endpoint's analog inputs for .NET's System.Device.Analog.
 
 | Class | Summary |
 |---|---|
-| [AdcController](./AdcController.mdx) | Endpoint's analog inputs, for .NET's `System.Device.Analog`. The pins are the per-board `Adc.Pin` constants (for example `EPM815.Adc.Pin`). Opening a pin makes it an analog input; closing it puts the pin back as it was. The inputs measure 0 V to `AnalogController.VoltageReference`. |
+| [AdcController](./AdcController.mdx) | Endpoint's analog inputs, for .NET's `System.Device.Analog`. The pin argument is a per-board `Adc.Pin` constant (for example `EPM815.Adc.Pin.PA0` or `EPN256.Adc.Pin.PB0`). Opening a pin makes it an analog input; closing it returns the pin as it was. The inputs measure 0 V to `AnalogController.VoltageReference`. |
 

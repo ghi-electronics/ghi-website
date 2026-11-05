@@ -2,37 +2,42 @@
 title: "UART"
 ---
 
-UART is supported through the standard `SerialPort` class in `System.IO.Ports` but first we need to **Initialize** the serial port. 
+Endpoint exposes serial ports through the standard
+**`System.IO.Ports.SerialPort`** class. The only Endpoint-specific step
+is calling `SerialPortController.Initialize(port)` first — this claims
+the port's TX / RX (and optionally RTS / CTS) pins.
 
 ```csharp
-EPM815.SerialPort.Initialize(EPM815.SerialPort.Uart3);
-```
+using System.IO.Ports;
+using System.Text;
+using GHIElectronics.Endpoint.Core;
 
-After initializing the port, create a buffer to read the data into and configure a new **SerialPort** and **Open** it. 
+// Claim the port's pins
+SerialPortController.Initialize(EPDomino24.SerialPort.Uart3);
 
-```csharp
-static byte[] buffer = new byte[64];
-
-var serial = new SerialPort{
-    PortName = EPM815.SerialPort.Uart3,
+// Open with the standard .NET API
+using var serial = new SerialPort {
+    PortName = EPDomino24.SerialPort.Uart3,
     BaudRate = 9600,
     DataBits = 8,
-    Parity = Parity.None,
+    Parity   = Parity.None,
     StopBits = StopBits.One,
 };
-
 serial.Open();
-```
 
-Once configured, the device is ready to write & read the serial data. 
-
-```csharp
-while(true){
-    //Check for data
-    if(serial.BytesToRead > 0){
-        var data = serial.Read(buffer,0,serial.BytesToRead)
-        Console.Writeline(Encoding.UTF8.GetString(buffer,0,data));   
+// Read whatever arrives
+var buffer = new byte[64];
+while (true) {
+    if (serial.BytesToRead > 0) {
+        var n = serial.Read(buffer, 0, serial.BytesToRead);
+        Console.WriteLine(Encoding.UTF8.GetString(buffer, 0, n));
     }
     Thread.Sleep(20);
 }
 ```
+
+:::tip
+`SerialPortController` is chip-neutral — the same call works on any
+supported module. The port constant (`EPDomino24.SerialPort.Uart3`) is
+board-specific and lists only the ports actually bonded on EP-Domino 24.
+:::

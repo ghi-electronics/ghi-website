@@ -10,7 +10,7 @@ sidebar_label: "EPM815.Gpio.Driver"
 GPIO driver for .NET's `Gpio.GpioController` using the EPM815 pin numbers, on every port. Open pins are reserved so the other libraries (I2C, UART, ...) cannot take them by mistake. Every pin mode, pull-up/down and pin change event of `Gpio.GpioController` works.
 
 ```csharp
-public sealed class Driver : GpioDriver
+public class Driver : GpioDriver
 ```
 
 ## Constructors

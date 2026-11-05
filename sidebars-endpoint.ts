@@ -59,9 +59,7 @@ const sidebars: SidebarsConfig = {
             'feature/azure',
             'feature/aws',
             'feature/mqtt',
-            'feature/grpc',
             'feature/modbus',
-            'feature/opcua',
             'feature/ethernet-ip',
             'feature/gateway',
           ],
@@ -85,7 +83,6 @@ const sidebars: SidebarsConfig = {
             'feature/graphics',
             'feature/ui',
             'feature/camera',
-            'feature/mjpeg-video',
           ],
         },
         {
