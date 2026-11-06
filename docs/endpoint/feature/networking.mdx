@@ -2,15 +2,15 @@
 title: "Networking"
 ---
 
-Endpoint provides full networking through .NET's standard `System.Net` stack
-— sockets, HTTP/HTTPS, WebSockets, TLS. The Endpoint-specific
+Endpoint provides full networking through .NET's standard `System.Net`
+stack (sockets, HTTP/HTTPS, WebSockets, TLS). The Endpoint-specific
 `GHIElectronics.Endpoint.Devices.Network` package is only for bringing the
 network interface up and configuring it.
 
 Two interface types are supported:
 
-- **Ethernet** — the board's built-in Ethernet, or any USB Ethernet adapter.
-- **Wi-Fi** — a built-in Wi-Fi module, or a USB Wi-Fi dongle.
+- **Ethernet**: the board's built-in Ethernet, or any USB Ethernet adapter.
+- **Wi-Fi**: a built-in Wi-Fi module, or a USB Wi-Fi dongle.
 
 Settings persist in `/config/network.json`. Nothing starts automatically at
 boot; the application calls `Enable()` on the interfaces it wants up.

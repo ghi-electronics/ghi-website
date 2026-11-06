@@ -4,7 +4,7 @@ title: "UART"
 
 Endpoint exposes serial ports through the standard
 **`System.IO.Ports.SerialPort`** class. The only Endpoint-specific step
-is calling `SerialPortController.Initialize(port)` first — this claims
+is calling `SerialPortController.Initialize(port)` first, which claims
 the port's TX / RX (and optionally RTS / CTS) pins.
 
 ```csharp
@@ -37,7 +37,7 @@ while (true) {
 ```
 
 :::tip
-`SerialPortController` is chip-neutral — the same call works on any
+`SerialPortController` is chip-neutral; the same call works on any
 supported module. The port constant (`EPDomino24.SerialPort.Uart3`) is
 board-specific and lists only the ports actually bonded on EP-Domino 24.
 :::

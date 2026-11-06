@@ -3,7 +3,7 @@ slug: /
 sidebar_position: 1
 title: Endpoint Getting Started
 sidebar_label: Getting Started
-description: Run full .NET, Python, and C/C++ on Endpoint. Plug in a USB cable, pick your board, and press F5 — no SSH, keys, or IP addresses.
+description: Run full .NET, Python, and C/C++ on Endpoint. Plug in a USB cable, pick your board, and press F5. No SSH, keys, or IP addresses.
 ---
 
 import Tabs from '@theme/Tabs';
@@ -32,14 +32,14 @@ Endpoint runs **full .NET, Python, and C/C++** on a circuit. All three share one
 - A **microSD card** of at least 4 GB
 - **VS Code** for any language, or **Visual Studio** for .NET
 
-## Step 1 — Prepare the board
+## Step 1: Prepare the board
 
 1. Download the latest Endpoint OS image from the [Downloads](downloads.mdx) page.
 2. Write the image to the microSD card with a disk imaging tool such as balenaEtcher.
 3. Insert the card into Domino and connect it to your PC with the USB-C cable.
 4. Wait for the **USER LED** to light, which shows the board has finished booting.
 
-## Step 2 — Install the extension
+## Step 2: Install the extension
 
 <Tabs groupId="ide">
 <TabItem value="vs" label="Visual Studio" default>
@@ -48,15 +48,15 @@ Visual Studio supports **.NET (C#)**.
 
 1. **Visual Studio 2026** (Community, Professional or Enterprise). VS 2022 17.9+ also works.
 2. The matching **.NET SDK** installed and on PATH ([download](https://dotnet.microsoft.com/download)).
-3. The **Endpoint Debugger** extension — install the latest `endpoint_vs_debugger-win32-x64-*.vsix` from the [Downloads](downloads.mdx) page.
+3. The **Endpoint Debugger** extension. Install the latest `endpoint_vs_debugger-win32-x64-*.vsix` from the [Downloads](downloads.mdx) page.
 
 </TabItem>
 <TabItem value="vscode" label="Visual Studio Code">
 
-Visual Studio Code supports **.NET (C#)**, **Python**, and **C/C++** — all three languages from the same extension.
+Visual Studio Code supports **.NET (C#)**, **Python**, and **C/C++**, all three languages from the same extension.
 
 1. **Visual Studio Code**.
-2. The **Endpoint Debugger** extension — install the latest `endpoint_vsc_debugger-win32-x64-*.vsix` from the [Downloads](downloads.mdx) page.
+2. The **Endpoint Debugger** extension. Install the latest `endpoint_vsc_debugger-win32-x64-*.vsix` from the [Downloads](downloads.mdx) page.
 3. For each language you want to use:
    - **.NET (C#)**: the matching [.NET SDK](https://dotnet.microsoft.com/download) and the [C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) extension.
    - **Python**: [Python](https://www.python.org/downloads/) and the [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) + [Python Debugger](https://marketplace.visualstudio.com/items?itemName=ms-python.debugpy) extensions.
@@ -65,7 +65,7 @@ Visual Studio Code supports **.NET (C#)**, **Python**, and **C/C++** — all thr
 </TabItem>
 </Tabs>
 
-## Step 3 — Create a project
+## Step 3: Create a project
 
 <Tabs groupId="ide">
 <TabItem value="vs" label="Visual Studio" default>
@@ -88,7 +88,7 @@ Visual Studio Code supports **.NET (C#)**, **Python**, and **C/C++** — all thr
 </TabItem>
 </Tabs>
 
-## Step 4 — Deploy and run
+## Step 4: Deploy and run
 
 <Tabs groupId="ide">
 <TabItem value="vs" label="Visual Studio" default>
@@ -99,9 +99,9 @@ Plug the board in with USB and press **F5**. Visual Studio builds the project, c
 
 ![Endpoint project settings in Visual Studio](/img/docs/endpoint/vs-endpoint-settings.png)
 
-- **Transport** — how Visual Studio talks to the board. USB today.
-- **Device** — **Endpoint** runs the program on the board; **Desktop** runs it locally on the PC for quick checks.
-- **Firmware** — check for updates, erase the application that is set to run at boot.
+- **Transport**: how Visual Studio talks to the board. USB today.
+- **Device**: **Endpoint** runs the program on the board; **Desktop** runs it locally on the PC for quick checks.
+- **Firmware**: check for updates, erase the application that is set to run at boot.
 
 **Run at boot:** press **Ctrl+F5** instead of F5. The project is built in AOT mode and marked to start automatically after power-on. A C# blink app goes from power-on to running in less than three seconds.
 
@@ -121,6 +121,6 @@ Only one program at a time holds the USB connection. Close the Endpoint Config t
 
 ## What's next
 
-- **[Hardware](hardware.mdx)** — Domino's pinout, displays, cameras, and expansion headers.
-- **[Endpoint Config](tool/endpoint-config.mdx)** — display and network settings.
-- **[Features](features.mdx)** — GPIO, buses, displays, networking, and more.
+- **[Hardware](hardware.mdx)**: Domino's pinout, displays, cameras, and expansion headers.
+- **[Endpoint Config](tool/endpoint-config.mdx)**: display and network settings.
+- **[Features](features.mdx)**: GPIO, buses, displays, networking, and more.

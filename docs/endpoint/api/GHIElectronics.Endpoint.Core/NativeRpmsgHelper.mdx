@@ -51,7 +51,7 @@ public static int Acquire()
 
 Opens the helper endpoint and reserves it for this process. Call before `NativeRpmsgHelper.Send` or `NativeRpmsgHelper.StartReceiving`.
 
-**Returns** `int` — Zero on success, a negative error code otherwise.
+**Returns** `int`: zero on success, a negative error code otherwise.
 
 ### Ping()
 
@@ -61,7 +61,7 @@ public static int Ping()
 
 Sends a ping message to the remote core and waits for a reply, as a quick link check.
 
-**Returns** `int` — Zero when the remote responds, a negative error code otherwise.
+**Returns** `int`: zero when the remote responds, a negative error code otherwise.
 
 ### Release()
 
@@ -71,7 +71,7 @@ public static int Release()
 
 Releases the helper endpoint previously opened by `NativeRpmsgHelper.Acquire`.
 
-**Returns** `int` — Zero on success, a negative error code otherwise.
+**Returns** `int`: zero on success, a negative error code otherwise.
 
 ### Send(uint[] data, int offset, int count)
 
@@ -81,7 +81,7 @@ public static int Send(uint[] data, int offset, int count)
 
 Sends `count` 32-bit words from `data` starting at `offset`. The transfer is split into blocks of `NativeRpmsgHelper.BlockSize` words with `NativeRpmsgHelper.BlockDelay` milliseconds between blocks.
 
-**Returns** `int` — The number of words actually written.
+**Returns** `int`: the number of words actually written.
 
 ### StartReceiving()
 

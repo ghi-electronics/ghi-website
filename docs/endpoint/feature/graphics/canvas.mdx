@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 A `Canvas` is a pixel buffer plus the primitives to draw into it: lines,
 rectangles, circles, arcs, text, and images. You pick the size and
 pixel format at creation time. When you're done drawing, hand the
-buffer to whatever output you want — the on-board display, an SPI
+buffer to whatever output you want: the on-board display, an SPI
 screen, an I2C OLED, a file.
 
 Canvas owns the pixel format so there's only one place to pick it. The
@@ -88,7 +88,7 @@ display->Flush(canvas.Buffer());
 </Tabs>
 
 If the Canvas's `PixelFormat` doesn't match the panel's (RGB565),
-`display.Flush` throws — no silent format conversion.
+`display.Flush` throws; no silent format conversion.
 
 ## Draw to an external SPI display (ILI9341, 240×320)
 
@@ -220,7 +220,7 @@ oled.Write(canvas.Buffer());
 | Member | Purpose |
 |---|---|
 | `Canvas.Create(w, h, PixelFormat)` | New Canvas of any size and pixel format. |
-| `Buffer` | Raw pixel bytes — hand to `display.Flush`, `SpiDevice.Write`, `I2cDevice.Write`, a file, anywhere. |
+| `Buffer` | Raw pixel bytes. Hand to `display.Flush`, `SpiDevice.Write`, `I2cDevice.Write`, a file, anywhere. |
 | `Width` / `Height` / `PixelFormat` | Dimensions and format the Canvas was created with. |
 | `Clear(Color)` | Fill the whole buffer with a single color. |
 | `SetPixel(x, y, Color)` | Single pixel. |
@@ -248,6 +248,6 @@ The same drawing calls work in any format; the only difference is what
 ## Using Canvas with Widget
 
 Canvas and [Widget](widget.mdx) share the same LVGL engine, so you can
-use both in the same program — a full-screen widget layout on the
-on-board panel plus a Canvas that renders into a separate SSD1306
+use both in the same program. For example, a full-screen widget layout
+on the on-board panel plus a Canvas that renders into a separate SSD1306
 driven over I2C.

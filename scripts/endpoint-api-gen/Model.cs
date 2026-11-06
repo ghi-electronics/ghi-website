@@ -15,7 +15,7 @@ public sealed class TypeModel {
     public required string Namespace { get; init; }
     public required string Name { get; init; }           // "GpioController" (no generic params)
     public required string DisplayName { get; init; }    // "GpioController<T>" (with generic params if any)
-    public required string SidebarPath { get; init; }    // "EPM815.Gpio.Driver" — enclosing type path for nested
+    public required string SidebarPath { get; init; }    // "EPM815.Gpio.Driver": enclosing type path for nested
     public required TypeKind Kind { get; init; }
     public required string CsharpSignature { get; init; }
     public required string? Summary { get; init; }
@@ -33,7 +33,7 @@ public enum TypeKind { Class, Struct, Interface, Enum, Delegate, Record }
 public sealed class MemberModel {
     public required MemberKind Kind { get; init; }
     public required string Name { get; init; }           // "OpenPin"
-    public required string DisplayName { get; init; }    // "OpenPin(int pinNumber)" — disambiguates overloads
+    public required string DisplayName { get; init; }    // "OpenPin(int pinNumber)": disambiguates overloads
     public required string CsharpSignature { get; init; }
     public required string PythonSignature { get; init; }
     public required string CppSignature { get; init; }

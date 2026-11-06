@@ -19,17 +19,17 @@ public sealed class Loader : IDisposable {
         //   1. the Endpoint DLLs the caller passed,
         //   2. the current runtime's shared framework (System.*, mscorlib),
         //   3. any sibling DLLs the Endpoint projects dropped into their
-        //      bin\Debug\...\ folders when they built — System.Device.Gpio
-        //      and similar NuGet references land there.
+        //      bin\Debug\...\ folders when they built, where System.Device.Gpio
+        //      and similar NuGet references land.
         var runtimeAssemblies = Directory.GetFiles(RuntimeEnvironment(), "*.dll");
 
         // Collect sibling DLLs from every unique directory the user's DLL
-        // paths live in. Overlaps are fine — PathAssemblyResolver dedupes.
+        // paths live in. Overlaps are fine; PathAssemblyResolver dedupes.
         var siblingDirs = assemblyPaths.Select(p => Path.GetDirectoryName(p)!).Distinct();
         var siblings = siblingDirs.SelectMany(d => Directory.GetFiles(d, "*.dll"));
 
         // NuGet packages (System.Device.Gpio etc.) are not next to the project
-        // DLLs — they stay in ~/.nuget/packages. Read each project's deps.json
+        // DLLs; they stay in ~/.nuget/packages. Read each project's deps.json
         // and pull in every runtime assembly listed there.
         var nugetAssemblies = assemblyPaths
             .Select(p => Path.ChangeExtension(p, ".deps.json"))

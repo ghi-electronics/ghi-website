@@ -5,7 +5,7 @@ title: "GPIO"
 Endpoint uses the standard .NET **`System.Device.Gpio`** API for pin I/O.
 You get a `GpioController`, open the pins you want, and read or write
 them. Endpoint plugs into this standard API by providing a per-board
-`Gpio.Driver` — pass it to the controller constructor and use the board's
+`Gpio.Driver`. Pass it to the controller constructor and use the board's
 pin constants (e.g. `EPDomino24.Led`, `EPDomino24.Gpio.Pin.PF3`) directly.
 
 ## Digital outputs
@@ -43,13 +43,13 @@ while (true) {
 
 Digital inputs sense the state of a pin based on its voltage. Minimum
 voltage on most pins is 0 V; a negative voltage may damage the pin or the
-processor. The maximum tolerated voltage depends on the module — check
+processor. The maximum tolerated voltage depends on the module, so check
 the datasheet for your board.
 
 Unconnected input pins are called "floating." A resistor can pull the pin
 high or low; modern processors include internal pull-up and pull-down
 resistors that are controlled by software. The example below uses the
-internal pull-up on the F1 user button — pressing it drives the pin low.
+internal pull-up on the F1 user button, so pressing it drives the pin low.
 
 ```csharp
 using System.Device.Gpio;
@@ -95,6 +95,6 @@ debounce is an issue, use the standard .NET IoT
 
 Digital input events rely on internal GPIO interrupts. On Endpoint only
 **16 pin-change interrupts** are available at a time, and the pin number
-must be unique across all ports — for example, `PA1` and `PB1` cannot
+must be unique across all ports. For example, `PA1` and `PB1` cannot
 both be used as interrupts simultaneously, but `PA1` and `PB2` (or even
 `PA1` and `PA2`) can.

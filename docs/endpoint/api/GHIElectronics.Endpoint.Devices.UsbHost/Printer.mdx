@@ -74,7 +74,7 @@ Reads what the printer answers (to a status request).
 | `buffer` | `Span<byte>` | Where the answer goes. |
 | `timeout` | `int` | How long to wait, in milliseconds (Timeout.Infinite: as long as it takes). |
 
-**Returns** `int` — The answer's length, 0 if none came in time.
+**Returns** `int`: the answer's length, 0 if none came in time.
 
 ### Write(string text)
 
@@ -94,5 +94,5 @@ public int Write(ReadOnlySpan<byte> data)
 
 Sends bytes to the printer.
 
-**Returns** `int` — The number of bytes sent: all of them.
+**Returns** `int`: the number of bytes sent (all of them).
 

@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 Endpoint doesn't force you to use its [Canvas](canvas.mdx) or
 [Widget](widget.mdx) APIs. Any standard 2D graphics library that renders
-to an in-memory buffer works — draw into the buffer, hand it to a
+to an in-memory buffer works. Draw into the buffer, hand it to a
 `DisplayController`, SPI / I2C device, or the Endpoint `Canvas` as a
 bitmap source.
 
@@ -46,7 +46,7 @@ Runtime footprint ≈ 10 MB (native Skia library).
 
 ### ImageSharp
 
-Pure-managed image processing — resize, encode, filter. No native
+Pure-managed image processing: resize, encode, filter. No native
 dependencies. Great when you're decoding JPEGs or compositing images
 rather than drawing primitives interactively.
 
@@ -119,7 +119,7 @@ spi.write(img.tobytes())
 ### numpy + matplotlib
 
 For scientific and data-visualisation workloads, `numpy` and
-`matplotlib` work the same way they do on a desktop — render into an
+`matplotlib` work the same way they do on a desktop: render into an
 off-screen canvas and flush the resulting pixel buffer.
 
 ```python
@@ -159,7 +159,7 @@ spi.Write(cairo_image_surface_get_data(surf), 240 * 320 * 2);
 
 | Need | Pick |
 |---|---|
-| Lines / text / circles on the panel or an external display | [Canvas](canvas.mdx) (ours — smallest footprint) |
+| Lines / text / circles on the panel or an external display | [Canvas](canvas.mdx) (ours, smallest footprint) |
 | Vector paths, SVG, complex text layout, gradients | SkiaSharp (.NET) |
 | Image resize / encode / filter | ImageSharp (.NET) · Pillow (Python) |
 | Already-written MAUI.Graphics code | Microsoft.Maui.Graphics (.NET) |

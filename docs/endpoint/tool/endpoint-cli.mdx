@@ -4,12 +4,12 @@ title: "Endpoint CLI"
 
 `endpoint-cli` is the command-line tool that talks between your PC and the
 Endpoint board over the single USB cable. It is the engine behind every
-IDE operation — the Visual Studio and VS Code extensions ship their own
+IDE operation. The Visual Studio and VS Code extensions ship their own
 copy and call it under the hood for deploy, run, debug, update, pip
 install and so on. Running it directly is for scripting, CI jobs,
 headless workflows, or anywhere the IDE is not available.
 
-Everything happens over USB — no SSH, no network, no keys.
+Everything happens over USB: no SSH, no network, no keys.
 
 ## Usage
 
@@ -51,7 +51,7 @@ shows the serial numbers of the connected boards.
 
 | Option | What it does |
 |---|---|
-| `--rid <rid>` | Target runtime identifier (e.g. `linux-arm64`) — leave out other platforms' files from a .NET publish. |
+| `--rid <rid>` | Target runtime identifier (e.g. `linux-arm64`). Leaves out other platforms' files from a .NET publish. |
 | `--add <folder>` | Also copy this local folder, into a folder of the same name. Repeat for more. |
 | `--exclude <name>` | Leave out files and folders with this name. `*` and `?` allowed. Repeat for more. |
 
@@ -72,7 +72,7 @@ shows the serial numbers of the connected boards.
 |---|---|
 | `publish-aot <project> <output folder>` | Build a .NET project with Native AOT for the board. |
 | `cc <clang arguments>` | Compile C for the board with Zig's clang (downloaded once on first use). |
-| `c++ <clang arguments>` | Same, for C++. Example: `endpoint-cli c++ -O2 main.cpp -o bin/app`. Source files may use globs — `*.cpp`, `src/*.cpp`, `**/*.cpp`. |
+| `c++ <clang arguments>` | Same, for C++. Example: `endpoint-cli c++ -O2 main.cpp -o bin/app`. Source files may use globs such as `*.cpp`, `src/*.cpp`, or `**/*.cpp`. |
 
 ### Packages
 

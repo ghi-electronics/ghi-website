@@ -8,8 +8,8 @@ analog voltage, drive a servo, control LED brightness, and generate
 simple tones. Both the frequency and the duty cycle are set in software.
 
 Endpoint uses the standard **`System.Device.Pwm`** API. The only
-Endpoint-specific step is calling `PwmController.Initialize(pin)` first —
-this claims the pin for its timer channel and gives you the chip and
+Endpoint-specific step is calling `PwmController.Initialize(pin)` first,
+which claims the pin for its timer channel and gives you the chip and
 channel ids that `PwmChannel.Create` needs.
 
 ```csharp

@@ -10,7 +10,7 @@ and **SCL** (Serial Clock).
 
 Endpoint uses the standard **`System.Device.I2c`** API for the data
 transfer. The only Endpoint-specific step is calling
-`I2cController.Initialize(bus)` first — this claims the bus's pins and
+`I2cController.Initialize(bus)` first, which claims the bus's pins and
 sets the clock speed. The default speed is 400 kHz; pass a second
 argument to change it.
 
@@ -41,7 +41,7 @@ I2cController.Initialize(EPDomino24.I2c.I2c6, frequency: 100_000);   // 100 kHz
 ```
 
 :::tip
-`I2cController` is chip-neutral — the same call works on any supported
+`I2cController` is chip-neutral; the same call works on any supported
 module. The bus constant (`EPDomino24.I2c.I2c6`) is board-specific and
 lists only the buses actually bonded on EP-Domino 24.
 :::

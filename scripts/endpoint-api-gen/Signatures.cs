@@ -217,7 +217,7 @@ public static class Signatures {
     }
 
     public static string PythonProperty(PropertyInfo p) {
-        // Python wrappers expose these as @property / @setter — we show the symbolic access form.
+        // Python wrappers expose these as @property / @setter; we show the symbolic access form.
         var get = p.GetGetMethod() is not null;
         var set = p.GetSetMethod() is not null;
         var access = (get, set) switch {

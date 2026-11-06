@@ -4,10 +4,10 @@ title: "Displays"
 
 Endpoint supports two display categories:
 
-- **Parallel TFT** — a panel wired directly to the board's parallel RGB
+- **Parallel TFT**: a panel wired directly to the board's parallel RGB
   controller. Fastest option; refresh runs off the hardware without any CPU
   work.
-- **Serial (SPI / I2C)** displays and **character displays** — any panel you
+- **Serial (SPI / I2C)** displays and **character displays**: any panel you
   can drive from a bus. The next sections cover both.
 
 The parallel display is driven through
@@ -31,7 +31,7 @@ var settings = new DisplaySettings {
     EnableAtBoot = false,                     // true = board brings the panel up during boot
     Logo = null,                              // 24-bit BMP filename on /config, or null
     Backlight = new BacklightSettings {
-        Pin = EPDomino24.Backlight,           // or -1 — leave the backlight alone
+        Pin = EPDomino24.Backlight,           // or -1 to leave the backlight alone
         ActivePolarity = SignalPolarity.ActiveHigh,
     },
     Parallel = new ParallelLcdSettings {
@@ -48,7 +48,7 @@ DisplayController.SetSettings(settings);
 ### Enable and show pixels
 
 Once configured, open the controller, enable it, and push a frame. The
-pixels can come from any .NET graphics library (see [Graphics](graphics.mdx))
+pixels can come from any .NET graphics library (see [Graphics](graphics/index.mdx))
 or from your own code.
 
 ```csharp
@@ -57,7 +57,7 @@ if (display == null) return;
 
 display.Enable();
 
-// Pixel buffer in RGB565 — width * height * 2 bytes
+// Pixel buffer in RGB565 (width * height * 2 bytes)
 var pixels = new byte[display.Width * display.Height * 2];
 // ... fill the buffer ...
 
@@ -89,16 +89,114 @@ display.Enable();
 display.ShowLogo();     // reads /config/<logo-filename>.bmp and flushes it
 ```
 
-If `EnableAtBoot` is also true, the board does this itself during boot — the
-user's program sees the panel already lit with the logo.
+If `EnableAtBoot` is also true, the board does this itself during boot, so
+the user's program sees the panel already lit with the logo.
 
 ## Serial (SPI / I2C) displays
 
-Custom serial panels are not part of the built-in `ParallelDisplayController`.
-Subclass `DisplayController` directly and drive the panel from the standard
-`System.Device.Spi` / `System.Device.I2c` / `System.Device.Gpio` APIs — the
-abstract contract is `Enable` to run the panel's init sequence, `Disable` to
-power it down, and `Flush` to push pixels.
+SPI and I2C panels (and any other non-parallel panel such as UART or an
+HDMI bridge) are driven by their own `DisplayController` subclass. The
+abstract contract is small:
+
+- `Enable`: run the panel's power-up / init sequence
+- `Disable`: power it down
+- `Flush`: push pixels
+- `Width` / `Height` / `IsEnabled`: visible panel size and state
+
+Application code uses the same `Enable` / `Flush` pattern as the built-in
+parallel panel, so a graphics stack written against `DisplayController` works
+against either. `GetDefault()` only returns the parallel panel; a serial
+driver is constructed directly.
+
+### Using a ready-made driver
+
+GHI publishes drivers for common panels as NuGet packages
+([source on GitHub](https://github.com/ghi-electronics/endpoint-drivers)).
+For example, the HiLetgo ILI9341 240×320 SPI TFT:
+
+```csharp
+using System.Device.Gpio;
+using System.Device.Spi;
+using GHIElectronics.Endpoint.Core;
+using GHIElectronics.Endpoint.Drivers.HiLetgo.ILI9341;
+
+using var gpio = new GpioController(new EPDomino24.Gpio.Driver());
+using var spi  = SpiDevice.Create(ILI9341Controller.GetConnectionSettings(EPDomino24.Spi.Spi1));
+
+using var tft = new ILI9341Controller(
+    spi:   spi,
+    cs:    EPDomino24.Gpio.Pin.PA14,
+    dc:    EPDomino24.Gpio.Pin.PA10,
+    reset: EPDomino24.Gpio.Pin.PF4,
+    gpio:  gpio);
+
+tft.Enable();
+
+// Pixel buffer in RGB565 (width * height * 2 bytes)
+var pixels = new byte[tft.Width * tft.Height * 2];
+// ... fill the buffer ...
+tft.Flush(pixels);
+```
+
+### Writing your own driver
+
+To support a panel we do not ship a driver for, subclass `DisplayController`
+and drive the hardware through the standard `System.Device.Spi` /
+`System.Device.I2c` / `System.Device.Gpio` APIs. The skeleton is small:
+
+```csharp
+using System;
+using System.Device.Gpio;
+using System.Device.Spi;
+using GHIElectronics.Endpoint.Devices.Display;
+using PixelFormat = System.Drawing.Imaging.PixelFormat;
+
+public sealed class MyPanelController : DisplayController {
+    private readonly SpiDevice spi;
+    private readonly GpioController gpio;
+    private readonly int dcPin, resetPin;
+    private bool enabled;
+
+    public MyPanelController(SpiDevice spi, int dc, int reset, GpioController gpio) {
+        this.spi = spi;
+        this.gpio = gpio;
+        this.dcPin = dc;
+        this.resetPin = reset;
+        this.gpio.OpenPin(dc, PinMode.Output);
+        this.gpio.OpenPin(reset, PinMode.Output);
+    }
+
+    public override int  Width     => 240;
+    public override int  Height    => 320;
+    public override bool IsEnabled => this.enabled;
+
+    public override void Enable() {
+        // reset pulse + vendor init sequence over SPI ...
+        this.enabled = true;
+    }
+
+    public override void Disable() {
+        // put the panel to sleep
+        this.enabled = false;
+    }
+
+    public override void Flush(ReadOnlySpan<byte> pixels, PixelFormat format,
+                               int x, int y, int width, int height) {
+        // 1) set the panel's draw window to (x, y, width, height)
+        // 2) send pixels over SPI in the panel's native format
+    }
+
+    public override void Dispose() {
+        try { this.Disable(); } catch { }
+        this.gpio.ClosePin(this.dcPin);
+        this.gpio.ClosePin(this.resetPin);
+        this.spi.Dispose();
+    }
+}
+```
+
+The open-source [ILI9341 driver source](https://github.com/ghi-electronics/endpoint-drivers)
+is a complete working example of this pattern.
 
 ## Character displays
 

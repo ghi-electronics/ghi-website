@@ -2,16 +2,16 @@
 title: "File System"
 ---
 
-File access is standard .NET — `System.IO.File`, `Directory`, `Stream` — on
+File access is standard .NET (`System.IO.File`, `Directory`, `Stream`) on
 the on-board storage, SD cards and USB drives. The Endpoint-specific
 `GHIElectronics.Endpoint.Devices.Storage` package handles the hot-plug
 events and mount folder for removable media.
 
-- **On-board storage** — always mounted and available to `System.IO` the
+- **On-board storage**: always mounted and available to `System.IO` the
   moment your program starts. The partition at `/data/` is where deployed
   applications live.
-- **SD card** — mounts at `/media/sd/` when a card is present.
-- **USB mass storage** — each drive gets the next free `/media/usbN/` folder,
+- **SD card**: mounts at `/media/sd/` when a card is present.
+- **USB mass storage**: each drive gets the next free `/media/usbN/` folder,
   the same way Windows gives each one the next free drive letter.
 
 ## SD card
@@ -71,6 +71,6 @@ usb.Enable();
 :::tip
 Always call `FileSystem.Flush(e.Hdc)` after writing and before the drive
 is pulled out. On Endpoint, as on a PC, `System.IO.DriveInfo.VolumeLabel`
-returns the drive's mount folder rather than its label — use
+returns the drive's mount folder rather than its label. Use
 `e.VolumeLabel` from the event to read the actual label.
 :::

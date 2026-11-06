@@ -15,13 +15,13 @@ UI widgets for Endpoint: Button, Label, Container, Image, TextBox, Slider, Check
 | [Border](./Border.mdx) | Container with WPF-style `Border.Thickness`, `Border.BorderBrush`, `Border.CornerRadius`, and `Border.Padding`. Children are positioned relative to this border, same as `UI.Container`. Background is set via the inherited `Widget.BackgroundColor`. |
 | [Button](./Button.mdx) | Clickable push button with text, color, and font-size properties. |
 | [Calendar](./Calendar.mdx) | Month calendar. |
-| [Chart](./Chart.mdx) | Simple chart with a single series. Not a standard .NET widget — the API mirrors TinyCLR's Chart for ease of porting. |
+| [Chart](./Chart.mdx) | Simple chart with a single series. Not a standard .NET widget; the API mirrors TinyCLR's Chart for ease of porting. |
 | [CheckBox](./CheckBox.mdx) | Two-state check box with a label. `CheckBox.ValueChanged` fires on each toggle. |
 | [Container](./Container.mdx) | Groups child widgets. Children are positioned relative to the container. |
 | [DataGrid](./DataGrid.mdx) | Simple grid of text cells (standard WPF widget name; TinyCLR-shape API). Call `DataGrid.SetSize` to allocate rows and columns, then `DataGrid.SetCell` to fill each cell. |
 | [DockPanel](./DockPanel.mdx) | WPF-style DockPanel. LVGL has no dock layout; the caller (or codegen) computes each child's absolute position from its Dock side plus the remaining area, then uses the child's X/Y/Width/Height properties. |
 | [Dropdown](./Dropdown.mdx) | Select one item from a list. ValueChanged fires when the selection changes. |
-| [Gauge](./Gauge.mdx) | Radial dial with a needle. Not a standard .NET widget — the API mirrors TinyCLR's Gauge. SweepAngle is 180/270/360 degrees. |
+| [Gauge](./Gauge.mdx) | Radial dial with a needle. Not a standard .NET widget; the API mirrors TinyCLR's Gauge. SweepAngle is 180/270/360 degrees. |
 | [Grid](./Grid.mdx) | WPF-style Grid with ColumnDefinitions + RowDefinitions. Call `Grid.SetDefinitions` once with the column + row sizes, then call `Grid.SetCell` on each child. Sizes: positive = fixed pixels; 0 or negative = star (-1 = "*", -2 = "2*", ...). |
 | [Image](./Image.mdx) | Displays a raster image fed as raw RGB565 pixel bytes. |
 | [Keyboard](./Keyboard.mdx) | Virtual on-screen keyboard. Attach to a `UI.TextBox` via `Keyboard.SetTarget` so taps on keys type into it. Positions itself at the bottom half of the display by default; override via inherited X / Y / Width / Height. |
@@ -40,7 +40,7 @@ UI widgets for Endpoint: Button, Label, Container, Image, TextBox, Slider, Check
 | [Switch](./Switch.mdx) | Binary on/off toggle. ValueChanged fires on each flip. |
 | [TextBox](./TextBox.mdx) | Single-line editable text input. Pair with a `UI.Keyboard` for on-screen typing. |
 | [TouchBridge](./TouchBridge.mdx) | Touch input bridge. Call `TouchBridge.Attach` once after `UI.Initialize`, then call `TouchBridge.Feed` from your touch chip's event handler. LVGL will dispatch Clicked / ValueChanged accordingly on its event loop. |
-| [TreeView](./TreeView.mdx) | Hierarchical list. Nodes are added imperatively via `TreeView.AddNode` with a depth value — codegen walks the tree and emits one AddNode call per visible node. |
+| [TreeView](./TreeView.mdx) | Hierarchical list. Nodes are added imperatively via `TreeView.AddNode` with a depth value; codegen walks the tree and emits one AddNode call per visible node. |
 | [UI](./UI.mdx) | LVGL subsystem lifecycle. Call `UI.Initialize` once after the display is enabled, then `UI.Run` on your UI thread. LVGL is built single-threaded (`LV_USE_OS=LV_OS_NONE`); use `UI.UiTimer` for periodic work that must touch widgets. |
 | [UiTimer](./UiTimer.mdx) | Thread-safe periodic callback that runs on the UI thread. The `callback` fires inside `UI.Run`'s LVGL pump every `periodMs` milliseconds, so widget updates in it are safe (LVGL itself is single- threaded). Dispose cancels the timer. Create / SetPeriod / Dispose are safe from any thread; the body runs on the UI thread. |
 | [Widget](./Widget.mdx) | Abstract base class for every UI widget. Holds the opaque libendpoint handle and exposes geometry, visibility, and background styling shared by all widget types. All setters and events run on the UI thread; do not touch widgets from background threads (LVGL is built with `LV_USE_OS=LV_OS_NONE`). |

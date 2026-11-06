@@ -3,8 +3,8 @@ title: "Endpoint Config"
 ---
 
 Endpoint Config is a small Windows tool for the Endpoint board. It connects
-to the board **over a single USB cable** — no network, no SSH, nothing to
-install on the board — and gives you one place to configure the device,
+to the board **over a single USB cable** (no network, no SSH, nothing to
+install on the board) and gives you one place to configure the device,
 manage the apps on it, and watch the running program's output.
 
 ### Configure the device
@@ -12,13 +12,13 @@ manage the apps on it, and watch the running program's output.
 Load, set and save the settings that live on the board's `/config`
 partition, directly from your PC:
 
-- **Wi-Fi** — SSID, password, security (WPA2 / WPA3), DHCP or static IP.
-- **Ethernet** — DHCP or static IP, netmask, gateway, DNS.
-- **Display** — resolution, orientation, backlight, boot logo.
-- **Date & time** — set the real-time clock, pick the time zone.
+- **Wi-Fi**: SSID, password, security (WPA2 / WPA3), DHCP or static IP.
+- **Ethernet**: DHCP or static IP, netmask, gateway, DNS.
+- **Display**: resolution, orientation, backlight, boot logo.
+- **Date & time**: set the real-time clock, pick the time zone.
 
 The same settings can also be read and written from your application
-through the Configuration API in `GHIElectronics.Endpoint.Core` — Endpoint
+through the Configuration API in `GHIElectronics.Endpoint.Core`. Endpoint
 Config just gives you a GUI for the same JSON files.
 
 ### Manage applications
@@ -39,12 +39,12 @@ you can:
 
 - Boot source (SD card or eMMC), firmware version, .NET version, status.
 - **Ping** the board, **Reboot** the board.
-- **Live Output** — stream the running app's stdout, including the last
+- **Live Output**: stream the running app's stdout, including the last
   lines it printed before you connected.
 
 ### Coming soon
 
-- **Firmware update** — install a new firmware image through this tool.
+- **Firmware update**: install a new firmware image through this tool.
 - **Lock device**.
 
 :::note

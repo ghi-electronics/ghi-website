@@ -11,7 +11,7 @@ CAN-L); the bus needs a 120 Ω termination resistor at each end.
 
 Endpoint uses **`Iot.Device.SocketCan.CanRaw`** from .NET IoT for the
 actual send/receive. The only Endpoint-specific step is calling
-`CanController.Initialize(port, bitrate)` first — this muxes the port's
+`CanController.Initialize(port, bitrate)` first, which muxes the port's
 TX/RX pins and brings the `canN` interface up at the chosen bitrate.
 
 ```csharp
@@ -46,7 +46,7 @@ CanController.UnInitialize(EPDomino24.Can.Can1);
 ```
 
 :::tip
-`CanController` is chip-neutral — the same call works on any supported
+`CanController` is chip-neutral; the same call works on any supported
 module. The port constant (`EPDomino24.Can.Can1`) is board-specific and
 lists only the ports actually bonded on EP-Domino 24.
 :::

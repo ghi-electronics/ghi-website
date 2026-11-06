@@ -9,7 +9,7 @@ data on **MOSI** (Master Out Slave In), and reads incoming data on
 with a per-slave **SSEL** / **CS** (chip-select) pin.
 
 In the simplest case the master always exchanges data with the slave
-simultaneously — you cannot write without reading at the same time. If
+simultaneously; you cannot write without reading at the same time. If
 the incoming bytes do not matter, use the plain `Write` method and
 discard the return.
 
@@ -19,13 +19,13 @@ Endpoint is always the SPI master, not the slave.
 
 :::tip
 Some SPI devices (such as the VS1053 MP3 decoder) have more than one
-select pin — one for commands and one for data. Both share the same SCK
+select pin, one for commands and one for data. Both share the same SCK
 / MOSI / MISO lines.
 :::
 
 Endpoint uses the standard **`System.Device.Spi`** API. The only
-Endpoint-specific step is calling `SpiController.Initialize(bus)` first —
-this claims the bus's pins.
+Endpoint-specific step is calling `SpiController.Initialize(bus)` first,
+which claims the bus's pins.
 
 ```csharp
 using System.Device.Spi;
@@ -48,7 +48,7 @@ spi.TransferFullDuplex(write, read);
 ```
 
 :::tip
-`SpiController` is chip-neutral — the same call works on any supported
+`SpiController` is chip-neutral; the same call works on any supported
 module. The bus constant (`EPDomino24.Spi.Spi4`) is board-specific and
 lists only the buses actually bonded on EP-Domino 24.
 :::

@@ -5,5 +5,5 @@ title: Limitations
 Endpoint runs full .NET, Python, and C/C++, but it is still an embedded
 board. A few practical limits to keep in mind:
 
-- **Memory and processing power** — still an embedded board, not a desktop; the CPU and RAM budget are a small fraction of what a PC gives you, so watch allocations in tight loops and prefer streaming over loading everything at once.
-- **Python packages that build at install time** — packages distributed only as source (no pre-built `aarch64` wheel on PyPI) cannot be installed, because the board does not include a build toolchain; pure-Python packages and anything that ships an `aarch64` wheel install normally.
+- **Memory and processing power**: still an embedded board, not a desktop; the CPU and RAM budget are a small fraction of what a PC gives you, so watch allocations in tight loops and prefer streaming over loading everything at once.
+- **Python packages that build at install time**: packages distributed only as source (no pre-built `aarch64` wheel on PyPI) cannot be installed, because the board does not include a build toolchain; pure-Python packages and anything that ships an `aarch64` wheel install normally.

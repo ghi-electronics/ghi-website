@@ -49,7 +49,7 @@ public int GetFeatureReport(Span<byte> buffer)
 
 Gets a feature report. buffer[0] is the report ID (0 if the device has none).
 
-**Returns** `int` — The report's length, with its report ID.
+**Returns** `int`: the report's length, including its report ID.
 
 ### GetReportDescriptor()
 
@@ -74,7 +74,7 @@ Reads an input report (its first byte is its report ID if the device numbers its
 | `buffer` | `Span<byte>` | Where the report goes. |
 | `timeout` | `int` | How long to wait for one, in milliseconds (Timeout.Infinite: as long as it takes). |
 
-**Returns** `int` — The report's length, 0 if none came in time.
+**Returns** `int`: the report's length, 0 if none came in time.
 
 ### SendFeatureReport(ReadOnlySpan&lt;byte> report)
 
@@ -92,5 +92,5 @@ public int Write(ReadOnlySpan<byte> report)
 
 Sends an output report. Its first byte is the report ID (0 if the device has none).
 
-**Returns** `int` — The number of bytes written.
+**Returns** `int`: the number of bytes written.
 

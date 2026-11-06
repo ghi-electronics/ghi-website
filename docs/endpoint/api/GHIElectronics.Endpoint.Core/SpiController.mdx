@@ -21,7 +21,7 @@ public static class SpiController
 public static void Initialize(int bus, int bufferSize)
 ```
 
-Connects the bus's SCK/MISO/MOSI pins. On EPM815, also sizes the kernel transfer buffer; on EPN256/EPN128 `bufferSize` is accepted for signature parity and otherwise ignored (the Nuvoton driver uses a fixed DMA buffer).
+Connects the bus's SCK/MISO/MOSI pins. On EPM815, also sizes the kernel transfer buffer; on EPN256/EPN128 `bufferSize` is accepted for signature parity and otherwise ignored (those chips use a fixed DMA buffer).
 
 ### UnInitialize(int bus)
 

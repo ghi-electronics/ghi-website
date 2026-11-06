@@ -16,7 +16,7 @@ public static class Writer {
     public static void WritePackage(string outRoot, AssemblyModel a, string version) {
         // Packages with no public types (e.g. GHIElectronics.Endpoint.Devices.Can,
         // which only exists to pull in .NET IoT's CanRaw) are rendered as a
-        // single top-level .mdx — a stray folder with only "Overview" inside
+        // single top-level .mdx. A stray folder with only "Overview" inside
         // reads badly in the sidebar.
         if (a.Types.Count == 0) {
             File.WriteAllText(Path.Combine(outRoot, a.Name + ".mdx"), RenderEmptyPackage(a));
@@ -26,7 +26,7 @@ public static class Writer {
         var folder = Path.Combine(outRoot, a.Name);
         Directory.CreateDirectory(folder);
 
-        // _category_.json — label stripped of "GHIElectronics." for a tidier sidebar
+        // _category_.json: label stripped of "GHIElectronics." for a tidier sidebar
         var label = a.Name.StartsWith("GHIElectronics.") ? a.Name["GHIElectronics.".Length..] : a.Name;
         File.WriteAllText(Path.Combine(folder, "_category_.json"),
             JsonSerializer.Serialize(new { label }, new JsonSerializerOptions { WriteIndented = true }));
@@ -111,7 +111,7 @@ public static class Writer {
 
         // Only top-level types in the package overview. Nested types (e.g.
         // EPM815.Can inside EPM815) show up on their enclosing type's own
-        // page under a "Nested Types" section — and in the sidebar — so the
+        // page under a "Nested Types" section, and in the sidebar, so the
         // overview stays short and surveys the primary API surface.
         var topLevel = a.Types.Where(t => !t.SidebarPath.Contains('.')).ToList();
 
@@ -239,7 +239,7 @@ public static class Writer {
         }
         L.AppendLine(SignatureBlock(m));
         L.AppendLine();
-        // No noisy "No description available." placeholder — if the summary
+        // No noisy "No description available." placeholder. If the summary
         // is empty, just show the signature and move on.
         if (!string.IsNullOrWhiteSpace(m.Summary)) {
             L.AppendLine(Prose(m.Summary!));
@@ -259,13 +259,13 @@ public static class Writer {
         if ((m.Kind == MemberKind.Method || m.Kind == MemberKind.Property) &&
             m.ReturnTypeDisplay is { Length: > 0 } rt && rt != "void") {
             L.Append("**Returns** `").Append(rt).Append('`');
-            if (!string.IsNullOrWhiteSpace(m.Returns)) L.Append(" — ").Append(Prose(m.Returns!));
+            if (!string.IsNullOrWhiteSpace(m.Returns)) L.Append(": ").Append(Prose(m.Returns!));
             L.AppendLine().AppendLine();
         }
     }
 
     // Plain csharp code block per member (TinyCLR style). The Python and C/C++
-    // bindings are intentionally not surfaced on the site for now — the model
+    // bindings are intentionally not surfaced on the site for now. The model
     // still carries PythonSignature / CppSignature so a future revision can
     // re-enable language tabs without re-plumbing the generator.
     static string SignatureBlock(MemberModel m) =>
@@ -298,8 +298,21 @@ public static class Writer {
             if (isCode) sb.Append(text);
             else sb.Append(text.Replace("<", "&lt;").Replace("{", "&#123;").Replace("}", "&#125;"));
         }
-        return sb.ToString();
+        var result = sb.ToString();
+        // Em-dash guard. Em-dashes read as AI-generated; the project rule is
+        // never to ship one in docs. If a stray one slips into a /// comment
+        // in the library source, warn loudly and strip it so the published
+        // MDX stays clean. Fix the source comment to make the warning go
+        // away.
+        if (result.Contains('—')) {
+            Console.Error.WriteLine($"[gen] WARNING: em-dash (—) found in doc comment, stripping. Fix the source /// comment. Context: \"{Preview(result)}\"");
+            result = result.Replace(" — ", ": ").Replace('—', ',');
+        }
+        return result;
     }
+
+    static string Preview(string s) =>
+        s.Length <= 80 ? s : s[..80] + "...";
 
     public static string ProseCell(string? s) => Prose(s ?? "").Replace("|", "\\|").Replace("\n", " ");
 

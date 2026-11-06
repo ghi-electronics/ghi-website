@@ -31,5 +31,5 @@ Decodes a JPEG frame into the requested pixel format.
 | `inPixelFormat` | `PixelFormat` | Must be `PixelFormat.Jpeg`; other formats throw `System.ArgumentException`. |
 | `outPixelFormat` | `PixelFormat` | Target format: `PixelFormat.Jpeg` returns the trimmed JPEG, `PixelFormat.Rgb888` returns 3 bytes per pixel, `PixelFormat.Rgb565` returns 2 bytes per pixel. |
 
-**Returns** `byte[]` — The converted frame, or `null` if the input does not start with the JPEG SOI marker (`FF D8`) or no end-of-image marker is found.
+**Returns** `byte[]`: the converted frame, or `null` if the input does not start with the JPEG SOI marker (`FF D8`) or no end-of-image marker is found.
 

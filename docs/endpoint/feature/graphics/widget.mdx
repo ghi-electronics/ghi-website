@@ -6,8 +6,8 @@ sidebar_label: "Widget"
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-The Widget API is a retained-mode UI library — Button, Label, Image,
-Border, CheckBox, Slider, Chart, DockPanel and more — built on the same
+The Widget API is a retained-mode UI library (Button, Label, Image,
+Border, CheckBox, Slider, Chart, DockPanel and more) built on the same
 embedded graphics engine [Canvas](canvas.mdx) uses. Create widgets from
 a `Screen`, wire events, let the library handle hit-testing and
 repainting.
@@ -184,12 +184,12 @@ endpoint::UI::Run();
 ## Running widgets on an external display
 
 `UI.Initialize()` with no arguments drives the on-board panel. A
-planned overload lets you target any output — small SPI / I2C screens
-included — by giving it the dimensions, pixel format, and a flush
+planned overload lets you target any output (small SPI / I2C screens
+included) by giving it the dimensions, pixel format, and a flush
 callback that writes the LVGL buffer to your device:
 
 ```csharp
-// Planned — runs the full Widget event loop against an SSD1306 OLED over I2C.
+// Planned: runs the full Widget event loop against an SSD1306 OLED over I2C.
 UI.Initialize(
     width:  128,
     height: 64,
@@ -201,4 +201,4 @@ new Label(screen) { Text = "Hello", FontSize = 14 };
 UI.Run();
 ```
 
-Same `Widget`s, same event loop — only the destination changes.
+Same `Widget`s, same event loop; only the destination changes.

@@ -36,9 +36,9 @@ var skipAssemblies = new HashSet<string>(StringComparer.OrdinalIgnoreCase) {
 
 // Individual top-level types intentionally hidden from the docs (and all
 // their nested types). Matched against the type's outermost enclosing class
-// name — e.g. "EPN256" hides EPN256, EPN256.Adc, EPN256.Gpio.Driver, etc.
-// EPN256 (MA35D1) and EPN128 (MA35D0) are working names for the unreleased
-// Nuvoton modules; remove these entries once the chips ship.
+// name, e.g. "EPN256" hides EPN256, EPN256.Adc, EPN256.Gpio.Driver, etc.
+// EPN256 and EPN128 are working names for unreleased modules; remove these
+// entries once the chips ship.
 var skipTopLevelTypes = new HashSet<string>(StringComparer.Ordinal) {
     "EPN256",
     "EPN128",
@@ -49,7 +49,7 @@ var dllPaths = Directory.EnumerateFiles(libsRoot, "GHIElectronics.Endpoint.*.dll
     .Where(p => !p.Contains(Path.DirectorySeparatorChar + "obj" + Path.DirectorySeparatorChar))
     .Where(p => !p.Contains(Path.DirectorySeparatorChar + "ref" + Path.DirectorySeparatorChar))
     .Where(p => !skipAssemblies.Contains(Path.GetFileNameWithoutExtension(p)))
-    // Deduplicate by assembly name — pick the first one found per name
+    // Deduplicate by assembly name (pick the first one found per name)
     .GroupBy(p => Path.GetFileNameWithoutExtension(p))
     .Select(g => g.First())
     .OrderBy(p => Path.GetFileName(p))
@@ -76,7 +76,7 @@ model = model.OrderBy(a => a.Name, StringComparer.Ordinal).ToList();
 
 // Write out
 if (Directory.Exists(outRoot)) {
-    // Preserve nothing — the full tree is regenerated. Retry a few times to
+    // Preserve nothing; the full tree is regenerated. Retry a few times to
     // defeat Windows file watchers (VS Code, Docusaurus dev server).
     for (var i = 0; ; i++) {
         try { Directory.Delete(outRoot, recursive: true); break; }
@@ -129,7 +129,7 @@ static string OutermostName(Type t) {
 static bool IsPublicApiType(Type t) {
     if (t.IsNested) {
         // A public nested inside an internal enclosing type is unreachable
-        // from outside the assembly — don't document it.
+        // from outside the assembly, so don't document it.
         if (!IsPublicApiType(t.DeclaringType!)) return false;
         return t.IsNestedPublic || t.IsNestedFamily || t.IsNestedFamORAssem;
     }
@@ -223,7 +223,7 @@ static string SidebarPathOf(Type t) {
 static TypeKind ClassifyKind(Type t) {
     if (t.IsEnum) return TypeKind.Enum;
     if (t.IsInterface) return TypeKind.Interface;
-    // Compare by FullName — MetadataLoadContext types are distinct from the
+    // Compare by FullName, because MetadataLoadContext types are distinct from the
     // host runtime's typeof(MulticastDelegate), so IsAssignableFrom fails.
     for (var b = t.BaseType; b != null; b = b.BaseType) {
         if (b.FullName == "System.MulticastDelegate") return TypeKind.Delegate;

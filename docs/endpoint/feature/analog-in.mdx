@@ -2,14 +2,14 @@
 title: "Analog In"
 ---
 
-Unlike digital input pins — which only read high or low — analog pins
+Unlike digital input pins, which only read high or low, analog pins
 read a range of voltages between 0 V and the chip's reference voltage
 (3.3 V on Endpoint). Each pin connects internally to an analog-to-digital
 converter (ADC) that samples the voltage and returns a digital value.
 
 The resolution of the ADC determines the smallest voltage change that
 registers. A 12-bit ADC has 4096 steps, so one step is roughly 0.8 mV at
-a 3.3 V reference — smaller changes are indistinguishable.
+a 3.3 V reference, and smaller changes are indistinguishable.
 
 Endpoint uses the standard **`System.Device.Analog`** API through the
 `AdcController` class. Open the pin with a board-level `Adc.Pin`
