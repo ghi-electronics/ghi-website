@@ -5,20 +5,20 @@ title: "Touch Screen"
 Endpoint supports capacitive and resistive touchscreens through the
 `GHIElectronics.Endpoint.Devices.Touch` package. The `Touch` class is
 abstract: you write a small subclass for your touch chip (SPI chips like
-XPT2046, I²C chips like FT5x06 or GT911, or a resistive panel driven by
+XPT2046, I2C chips like FT5x06 or GT911, or a resistive panel driven by
 the on-board ADC), reading the chip through the standard
 `System.Device.Spi` / `System.Device.I2c` / `System.Device.Gpio` APIs. The
 subclass raises `OnChangedEvent` whenever a finger goes down, moves, or
 lifts.
 
-The [UI library](ui.mdx) consumes those events through a tiny bridge —
+The [Widget library](graphics/widget.mdx) consumes those events through a tiny bridge —
 `TouchBridge.Feed(x, y, pressed)` — so touches drive `Clicked` /
 `ValueChanged` on the widgets automatically.
 
 ## Writing a touch driver
 
 A minimal driver fits in one small class. The pattern is: configure the
-chip (I²C/SPI + reset + IRQ) in the constructor, read the chip from the
+chip (I2C/SPI + reset + IRQ) in the constructor, read the chip from the
 IRQ handler, and call `RaiseChanged` with the fingers currently on screen.
 
 ```csharp
@@ -81,7 +81,7 @@ it to track multi-touch.
 
 ## Feeding touches into the UI
 
-If you use the [UI library](ui.mdx), wire your driver's events into
+If you use the [Widget library](graphics/widget.mdx), wire your driver's events into
 `TouchBridge.Feed` and LVGL does the rest — the right widget gets a
 `Clicked` or `ValueChanged` event.
 

@@ -17,7 +17,7 @@ languages, so your team picks whichever one it already uses.
 
 Standard .NET on the device: TCP/UDP sockets, HTTP/HTTPS, WebSockets, TLS
 and X.509, threads and async/await, LINQ, JSON, file system, SQLite. .NET
-IoT libraries work too: webcams, sound devices, standard GPIO/I²C/SPI/PWM
+IoT libraries work too: webcams, sound devices, standard GPIO/I2C/SPI/PWM
 APIs.
 
 Develop and debug on your PC, press F5, the exact same code deploys over a
@@ -27,7 +27,7 @@ step-through debugging.
 ## Precise like a microcontroller
 
 Pin-level control for every peripheral: digital I/O, analog in and out,
-PWM, interrupts. High-speed buses — SPI, I²C, UART, CAN. Nanosecond-grade
+PWM, interrupts. High-speed buses — SPI, I2C, UART, CAN. Nanosecond-grade
 digital signal generation and capture on the real-time helper core. Pins
 are free at boot — your application claims only what it needs. A C# blink
 program is up and running in under three seconds from power-on.
@@ -64,7 +64,7 @@ input and output, PWM, and timing-critical signals.
 Talk to peripheral chips, sensors, displays, and external systems.
 
 - [SPI](feature/spi.mdx) — high-speed serial peripheral interface (standard `System.Device.Spi`)
-- [I²C](feature/i2c.mdx) — two-wire interface for sensors and small peripherals (standard `System.Device.I2c`)
+- [I2C](feature/i2c.mdx) — two-wire interface for sensors and small peripherals (standard `System.Device.I2c`)
 - [UART](feature/uart.mdx) — serial communication with external hardware (standard `System.IO.Ports.SerialPort`)
 - [USB](feature/usb.mdx) — USB host for keyboards, mice, drives, webcams, and more
 - [CAN](feature/can.mdx) — controller area network for automotive and industrial use (standard `Iot.Device.SocketCan`)
@@ -105,9 +105,8 @@ Persist data on SD cards, USB drives, or in a real database.
 Drive screens, capture images, and build rich user interfaces.
 
 - [Displays](feature/displays.mdx) — parallel TFT and serial displays
+- [Graphics](feature/graphics/index.mdx) — **Canvas** (primitives + raw buffer export to the panel or an SPI/I2C display), **Widget** (Button, Label, Chart, …), **Alternatives** (SkiaSharp, ImageSharp, Pillow, Microsoft.Maui.Graphics)
 - [Touch Screen](feature/touch-screen.mdx) — capacitive and resistive touch input
-- [Graphics](feature/graphics.mdx) — draw into a buffer and flush to the display: SkiaSharp or System.Drawing in .NET, Pillow in Python, LVGL in C/C++
-- [UI](feature/ui.mdx) — a widget library with buttons, labels, images, text boxes, and more, built on an embedded graphics engine
 - **Camera** — USB webcams and the on-board parallel camera interface *(coming soon)*
 
 ## System Services

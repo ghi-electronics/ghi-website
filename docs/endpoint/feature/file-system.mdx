@@ -24,7 +24,7 @@ the returned path.
 using GHIElectronics.Endpoint.Core;
 using GHIElectronics.Endpoint.Devices.Storage;
 
-var sd = StorageController.FromName(EPM815.StorageController.SdCard);
+var sd = StorageController.FromName(EPDomino24.StorageController.SdCard);
 
 sd.ConnectionChanged += (sender, e) => {
     if (e.DeviceStatus == DeviceConnectionStatus.Connected) {
@@ -50,7 +50,7 @@ can be plugged in at once; each one fires `ConnectionChanged` with its own
 using GHIElectronics.Endpoint.Core;
 using GHIElectronics.Endpoint.Devices.Storage;
 
-var usb = StorageController.FromName(EPM815.StorageController.UsbHostMassStorage);
+var usb = StorageController.FromName(EPDomino24.StorageController.UsbHostMassStorage);
 
 usb.ConnectionChanged += (sender, e) => {
     if (e.DeviceStatus == DeviceConnectionStatus.Connected) {

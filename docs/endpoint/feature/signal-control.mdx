@@ -16,7 +16,7 @@ documentation will follow here once it is ready.
 
 The DigitalSignal is used to handle digital signals! Unlike the other features on this page, DigitalSignal is accurate because it is hardware-backed and runs in a non-blocking manner.
 
-Being hardware backed, this feature only runs on two specific pins: `EPM815.Gpio.Pin.PH10` (Timer5) and `EPM815.Gpio.Pin.PA5` (Timer2)
+Being hardware backed, this feature only runs on two specific pins: `EPDomino24.Gpio.Pin.PH10` (Timer5) and `EPDomino24.Gpio.Pin.PA5` (Timer2)
 
 :::tip
 Timers are also used with other features, such as PWM. Once a `Timer` is reserved for DigitalSignal, it is no longer available for other features.
@@ -72,7 +72,7 @@ Digital Signal is limited to the timer max value, which comes to be about 17.89 
 :::
 
 ```csharp
-var digitalSignal = new DigitalSignalController(EPM815.Gpio.Pin.PA5);
+var digitalSignal = new DigitalSignalController(EPDomino24.Gpio.Pin.PA5);
 
 bool waitForEdge = false;// Start capturing as soon as Capture is called
 
@@ -85,7 +85,7 @@ digitalSignal.ErrorReceived += (a,b) => {
 };
                       
 // start capture 100 samples, timeout is 15seconds
-digitalSignal.Capture(100, EPM815.Gpio.Edge.Rising | EPM815.Gpio.Edge.Falling, waitForEdge, TimeSpan.FromSeconds(15));
+digitalSignal.Capture(100, EPDomino24.Gpio.Edge.Rising | EPDomino24.Gpio.Edge.Falling, waitForEdge, TimeSpan.FromSeconds(15));
 
 // Wait for finish capture
 // do other work
@@ -112,7 +112,7 @@ The first captured pulse will likely have an inaccurate (shorter) value due to s
 ReadPulse can be used to measure frequency and other analyses that require measuring time duration for specific pulse count.
 
 ```csharp
-var digitalSignal = new DigitalSignalController(EPM815.Gpio.Pin.PH10);
+var digitalSignal = new DigitalSignalController(EPDomino24.Gpio.Pin.PH10);
 
 bool waitForEdge = true;// wait for first pulse before starting the measurement
 
@@ -125,7 +125,7 @@ digitalSignal.ErrorReceived += (a,b) => {
 };        
 
 // Start reading 1000 pulses
-digitalSignal.ReadPulse(1000, EPM815.Gpio.Edge.Rising, waitForEdge);
+digitalSignal.ReadPulse(1000, EPDomino24.Gpio.Edge.Rising, waitForEdge);
 
 // do other work...
 Thread.Sleep(Timeout.Infinite);
@@ -151,7 +151,7 @@ void Digital_OnReadPulseFinished(DigitalSignal sender, TimeSpan duration, uint c
 An event is fired when any `DigitalSignal` operation is completed. In some cases, it may be desired to terminate the operation early, using `Abort`. When aborted, an event is still triggered, which will contain whatever data/pulses was collected from the trigger to the time `Abort` was called.
 
 ```csharp
-var digitalSignal = new DigitalSignal(EPM815.Gpio.Pin.PH10);
+var digitalSignal = new DigitalSignal(EPDomino24.Gpio.Pin.PH10);
 
 var waitForEdge = false;
 
@@ -159,7 +159,7 @@ digitalSignal.OnReadPulseFinished += Digital_OnReadPulseFinished
 
 while (true) {
     if (digitalSignal.CanReadPulse) {
-        digitalSignal.ReadPulse(1000, EPM815.Gpio.Edge.Rising, waitForEdge);                  
+        digitalSignal.ReadPulse(1000, EPDomino24.Gpio.Edge.Rising, waitForEdge);                  
         Thread.Sleep(1000);                    
         digitalSignal.Abort();
         Console.WriteLine("Aborted");

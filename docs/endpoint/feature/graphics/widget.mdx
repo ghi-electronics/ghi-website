@@ -1,0 +1,204 @@
+---
+title: "Widget"
+sidebar_label: "Widget"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+The Widget API is a retained-mode UI library — Button, Label, Image,
+Border, CheckBox, Slider, Chart, DockPanel and more — built on the same
+embedded graphics engine [Canvas](canvas.mdx) uses. Create widgets from
+a `Screen`, wire events, let the library handle hit-testing and
+repainting.
+
+All widget updates must happen on the UI thread; the library runs
+single-threaded so a background thread cannot touch widgets directly
+(use `UiTimer` for periodic updates).
+
+## Getting started
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+using GHIElectronics.Endpoint.Devices.Display;
+using GHIElectronics.Endpoint.Devices.Touch;
+using GHIElectronics.Endpoint.UI;
+
+using var display = DisplayController.GetDefault();
+display.Enable();
+
+UI.Initialize();
+TouchBridge.Attach();
+
+var screen = Screen.Active;
+screen.BackgroundColor = 0x101828;
+
+var hello = new Label(screen) {
+    Text = "Hello Endpoint",
+    Color = 0xFFFFFF,
+    FontSize = 24,
+    X = 20, Y = 20,
+};
+
+var button = new Button(screen) {
+    Text = "Click me",
+    X = 20, Y = 80,
+    Width = 160, Height = 48,
+};
+button.Clicked += (s, e) => hello.Text = "Clicked!";
+
+UI.Run();
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+from GHIElectronics.Endpoint.Devices.Display import DisplayController
+from GHIElectronics.Endpoint.Devices.Touch import TouchBridge
+from GHIElectronics.Endpoint.UI import UI, Screen, Label, Button
+
+display = DisplayController.GetDefault()
+display.Enable()
+
+UI.Initialize()
+TouchBridge.Attach()
+
+screen = Screen.Active
+screen.BackgroundColor = 0x101828
+
+hello = Label(screen, Text="Hello Endpoint", Color=0xFFFFFF, FontSize=24, X=20, Y=20)
+button = Button(screen, Text="Click me", X=20, Y=80, Width=160, Height=48)
+button.Clicked += lambda s, e: setattr(hello, "Text", "Clicked!")
+
+UI.Run()
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+#include <endpoint/Display.h>
+#include <endpoint/Touch.h>
+#include <endpoint/UI.h>
+
+auto display = endpoint::DisplayController::GetDefault();
+display->Enable();
+
+endpoint::UI::Initialize();
+endpoint::TouchBridge::Attach();
+
+auto screen = endpoint::Screen::Active();
+screen.BackgroundColor(0x101828);
+
+endpoint::Label hello(screen);
+hello.Text("Hello Endpoint").Color(0xFFFFFF).FontSize(24).X(20).Y(20);
+
+endpoint::Button button(screen);
+button.Text("Click me").X(20).Y(80).Width(160).Height(48);
+button.Clicked([&](auto&) { hello.Text("Clicked!"); });
+
+endpoint::UI::Run();
+```
+
+</TabItem>
+</Tabs>
+
+Call `UI.Stop()` from any thread to exit the loop and let `UI.Run()`
+return.
+
+## Widgets
+
+Full reference in the [UI API](../../api/GHIElectronics.Endpoint.UI/index.mdx).
+Common widgets:
+
+| Widget | Purpose |
+|---|---|
+| `Label` | Static or dynamic text. |
+| `Button` | Clickable button with optional icon. |
+| `Image` | Bitmap display (raw, PNG, JPEG via the on-board decoder). |
+| `Border` | Container with optional rounded corners, used for cards and panels. |
+| `CheckBox` / `RadioButton` | Boolean / single-choice input. |
+| `TextBox` | Single or multi-line text input with virtual keyboard. |
+| `Slider` | Analog value picker. |
+| `ProgressBar` / `Gauge` | Progress and value visualization. |
+| `Chart` | Line and bar charts. |
+| `DockPanel` / `Stack` / `Grid` | Layout containers. |
+
+## Widget + Canvas together
+
+Need a chart widget on the panel PLUS raw pixels to a small OLED on I2C?
+Both APIs share the same LVGL engine; you can run them in the same
+program.
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+UI.Initialize();
+var screen = Screen.Active;
+new Chart(screen) { /* ... */ };
+
+using var oled = Canvas.Create(128, 64, PixelFormat.Monochrome);
+oled.DrawText("CPU 42%", 5, 5, Color.White, size: 12);
+i2cDevice.Write(oled.Buffer);
+
+UI.Run();
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+UI.Initialize()
+screen = Screen.Active
+Chart(screen)  # ...
+
+with Canvas.Create(128, 64, PixelFormat.Monochrome) as oled:
+    oled.DrawText("CPU 42%", 5, 5, Color.White, size=12)
+    i2c_device.write(oled.Buffer)
+
+UI.Run()
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+endpoint::UI::Initialize();
+auto screen = endpoint::Screen::Active();
+endpoint::Chart chart(screen);
+
+auto oled = endpoint::Canvas::Create(128, 64, endpoint::PixelFormat::Monochrome);
+oled.DrawText("CPU 42%", 5, 5, endpoint::Color::White, 12);
+i2cDevice.Write(oled.Buffer());
+
+endpoint::UI::Run();
+```
+
+</TabItem>
+</Tabs>
+
+## Running widgets on an external display
+
+`UI.Initialize()` with no arguments drives the on-board panel. A
+planned overload lets you target any output — small SPI / I2C screens
+included — by giving it the dimensions, pixel format, and a flush
+callback that writes the LVGL buffer to your device:
+
+```csharp
+// Planned — runs the full Widget event loop against an SSD1306 OLED over I2C.
+UI.Initialize(
+    width:  128,
+    height: 64,
+    format: PixelFormat.Monochrome,
+    flush:  buffer => i2c.Write(buffer));
+
+var screen = Screen.Active;
+new Label(screen) { Text = "Hello", FontSize = 14 };
+UI.Run();
+```
+
+Same `Widget`s, same event loop — only the destination changes.

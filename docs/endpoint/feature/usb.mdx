@@ -83,7 +83,7 @@ Each class delivers its events on its own thread.
 Files on USB drives are handled through the
 [File System](file-system.mdx) page, not through `UsbHostController`.
 The short version: open a
-`StorageController.FromName(EPM815.StorageController.UsbHostMassStorage)`,
+`StorageController.FromName(EPDomino24.StorageController.UsbHostMassStorage)`,
 subscribe to its `ConnectionChanged`, and call `FileSystem.Mount(e.Hdc)`
 when a drive connects to get the `/media/usbN/` folder you can read and
 write with standard `System.IO`.

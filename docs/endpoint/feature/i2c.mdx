@@ -2,7 +2,7 @@
 title: "I2C"
 ---
 
-I²C (pronounced *eye-squared-sea* or *eye-two-sea*) is a synchronous
+I2C (pronounced *eye-squared-sea* or *eye-two-sea*) is a synchronous
 two-wire serial bus. One master shares the bus with one or more slaves;
 each slave is selected by a 7-bit address sent on the bus instead of by
 a dedicated chip-select line. The two wires are **SDA** (Serial Data)
@@ -18,7 +18,7 @@ argument to change it.
 using System.Device.I2c;
 using GHIElectronics.Endpoint.Core;
 
-// Bring up I²C6 at the default 400 kHz
+// Bring up I2C6 at the default 400 kHz
 I2cController.Initialize(EPDomino24.I2c.I2c6);
 
 // Open the device and talk to it with the standard API

@@ -1,0 +1,253 @@
+---
+title: "Canvas"
+sidebar_label: "Canvas"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+A `Canvas` is a pixel buffer plus the primitives to draw into it: lines,
+rectangles, circles, arcs, text, and images. You pick the size and
+pixel format at creation time. When you're done drawing, hand the
+buffer to whatever output you want — the on-board display, an SPI
+screen, an I2C OLED, a file.
+
+Canvas owns the pixel format so there's only one place to pick it. The
+output device just takes bytes:
+
+```csharp
+display.Flush(canvas.Buffer);   // the on-board panel
+spi.Write(canvas.Buffer);       // SPI display
+i2c.Write(canvas.Buffer);       // I2C display
+```
+
+## Draw on the on-board panel
+
+The on-board panel is always RGB565, so create the Canvas in that
+format and pass its buffer straight to `DisplayController.Flush`.
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+using GHIElectronics.Endpoint.Devices.Display;
+using GHIElectronics.Endpoint.UI.Drawing;
+
+using var display = DisplayController.GetDefault();
+display.Enable();
+
+using var canvas = Canvas.Create(display.Width, display.Height, PixelFormat.Rgb565);
+
+canvas.Clear(Color.Black);
+canvas.DrawLine(10, 10, 200, 200, Color.Red, thickness: 2);
+canvas.FillCircle(100, 100, 40, Color.Blue);
+canvas.DrawText("Hello Endpoint", 20, 20, Color.White, size: 24);
+
+display.Flush(canvas.Buffer);
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+from GHIElectronics.Endpoint.Devices.Display import DisplayController
+from GHIElectronics.Endpoint.UI.Drawing import Canvas, Color, PixelFormat
+
+display = DisplayController.GetDefault()
+display.Enable()
+
+with Canvas.Create(display.Width, display.Height, PixelFormat.Rgb565) as canvas:
+    canvas.Clear(Color.Black)
+    canvas.DrawLine(10, 10, 200, 200, Color.Red, thickness=2)
+    canvas.FillCircle(100, 100, 40, Color.Blue)
+    canvas.DrawText("Hello Endpoint", 20, 20, Color.White, size=24)
+    display.Flush(canvas.Buffer)
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+#include <endpoint/Display.h>
+#include <endpoint/Canvas.h>
+
+auto display = endpoint::DisplayController::GetDefault();
+display->Enable();
+
+auto canvas = endpoint::Canvas::Create(display->Width(), display->Height(),
+                                       endpoint::PixelFormat::Rgb565);
+canvas.Clear(endpoint::Color::Black);
+canvas.DrawLine(10, 10, 200, 200, endpoint::Color::Red, /*thickness*/ 2);
+canvas.FillCircle(100, 100, 40, endpoint::Color::Blue);
+canvas.DrawText("Hello Endpoint", 20, 20, endpoint::Color::White, /*size*/ 24);
+
+display->Flush(canvas.Buffer());
+```
+
+</TabItem>
+</Tabs>
+
+If the Canvas's `PixelFormat` doesn't match the panel's (RGB565),
+`display.Flush` throws — no silent format conversion.
+
+## Draw to an external SPI display (ILI9341, 240×320)
+
+Same Canvas, different destination. Pick the format the device expects
+(RGB565 for most colour SPI TFTs) and write the buffer out through
+`SpiDevice`.
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+using System.Device.Spi;
+using GHIElectronics.Endpoint.Core;
+using GHIElectronics.Endpoint.UI.Drawing;
+
+SpiController.Initialize(EPN256.Spi.Spi0);
+using var spi = SpiDevice.Create(new SpiConnectionSettings(0, 0) {
+    ClockFrequency = 40_000_000,
+});
+
+using var canvas = Canvas.Create(240, 320, PixelFormat.Rgb565);
+canvas.FillRectangle(0, 0, 240, 320, Color.Navy);
+canvas.DrawText("240 × 320 ILI9341", 10, 10, Color.White, size: 16);
+canvas.DrawLine(0, 160, 240, 160, Color.Yellow);
+
+spi.Write(canvas.Buffer);
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import spidev
+from GHIElectronics.Endpoint.Core import EPN256, SpiController
+from GHIElectronics.Endpoint.UI.Drawing import Canvas, Color, PixelFormat
+
+SpiController.Initialize(EPN256.Spi.Spi0)
+spi = spidev.SpiDev(); spi.open(0, 0); spi.max_speed_hz = 40_000_000
+
+with Canvas.Create(240, 320, PixelFormat.Rgb565) as canvas:
+    canvas.FillRectangle(0, 0, 240, 320, Color.Navy)
+    canvas.DrawText("240 × 320 ILI9341", 10, 10, Color.White, size=16)
+    canvas.DrawLine(0, 160, 240, 160, Color.Yellow)
+    spi.xfer3(canvas.Buffer)
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+#include <endpoint/Core.h>
+#include <endpoint/Spi.h>
+#include <endpoint/Canvas.h>
+
+endpoint::SpiController::Initialize(endpoint::EPN256::Spi::Spi0);
+endpoint::SpiDevice spi(0, 0, /*hz*/ 40'000'000);
+
+auto canvas = endpoint::Canvas::Create(240, 320, endpoint::PixelFormat::Rgb565);
+canvas.FillRectangle(0, 0, 240, 320, endpoint::Color::Navy);
+canvas.DrawText("240 x 320 ILI9341", 10, 10, endpoint::Color::White, 16);
+canvas.DrawLine(0, 160, 240, 160, endpoint::Color::Yellow);
+
+spi.Write(canvas.Buffer());
+```
+
+</TabItem>
+</Tabs>
+
+## Draw to an I2C OLED (SSD1306, 128×64 monochrome)
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+using System.Device.I2c;
+using GHIElectronics.Endpoint.Core;
+using GHIElectronics.Endpoint.UI.Drawing;
+
+I2cController.Initialize(EPN256.I2c.I2c5);
+using var oled = I2cDevice.Create(new I2cConnectionSettings(5, 0x3C));
+
+using var canvas = Canvas.Create(128, 64, PixelFormat.Monochrome);
+canvas.DrawText("Hello", 5, 5, Color.White, size: 12);
+canvas.FillCircle(100, 32, 10, Color.White);
+
+oled.Write(canvas.Buffer);
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+from smbus2 import SMBus
+from GHIElectronics.Endpoint.Core import EPN256, I2cController
+from GHIElectronics.Endpoint.UI.Drawing import Canvas, Color, PixelFormat
+
+I2cController.Initialize(EPN256.I2c.I2c5)
+oled = SMBus(5)
+
+with Canvas.Create(128, 64, PixelFormat.Monochrome) as canvas:
+    canvas.DrawText("Hello", 5, 5, Color.White, size=12)
+    canvas.FillCircle(100, 32, 10, Color.White)
+    oled.write_i2c_block_data(0x3C, 0x40, list(canvas.Buffer))
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+#include <endpoint/Core.h>
+#include <endpoint/I2c.h>
+#include <endpoint/Canvas.h>
+
+endpoint::I2cController::Initialize(endpoint::EPN256::I2c::I2c5);
+endpoint::I2cDevice oled(5, 0x3C);
+
+auto canvas = endpoint::Canvas::Create(128, 64, endpoint::PixelFormat::Monochrome);
+canvas.DrawText("Hello", 5, 5, endpoint::Color::White, 12);
+canvas.FillCircle(100, 32, 10, endpoint::Color::White);
+
+oled.Write(canvas.Buffer());
+```
+
+</TabItem>
+</Tabs>
+
+## API at a glance
+
+| Member | Purpose |
+|---|---|
+| `Canvas.Create(w, h, PixelFormat)` | New Canvas of any size and pixel format. |
+| `Buffer` | Raw pixel bytes — hand to `display.Flush`, `SpiDevice.Write`, `I2cDevice.Write`, a file, anywhere. |
+| `Width` / `Height` / `PixelFormat` | Dimensions and format the Canvas was created with. |
+| `Clear(Color)` | Fill the whole buffer with a single color. |
+| `SetPixel(x, y, Color)` | Single pixel. |
+| `DrawLine(x0, y0, x1, y1, Color, thickness)` | Straight line. |
+| `DrawRectangle(x, y, w, h, Color, thickness)` | Stroked rectangle. |
+| `FillRectangle(x, y, w, h, Color)` | Filled rectangle. |
+| `DrawCircle(cx, cy, r, Color, thickness)` | Stroked circle. |
+| `FillCircle(cx, cy, r, Color)` | Filled circle. |
+| `DrawArc(cx, cy, r, startDeg, endDeg, Color, thickness)` | Arc segment. |
+| `DrawText(text, x, y, Color, size)` | Rasterized text (Montserrat 14/20/32). |
+| `DrawImage(bytes, x, y, w, h, PixelFormat)` | Blit an RGB565 / Mono / RGB888 image. |
+
+## Pixel formats
+
+| `PixelFormat` | Bytes / pixel | Typical use |
+|---|---|---|
+| `Monochrome` | 1 bit (packed) | SSD1306, SH1106 OLEDs |
+| `Rgb565` | 2 | ILI9341, ST7735, the on-board panel |
+| `Rgb888` | 3 | Parallel RGB panels at 24 bpp |
+| `Argb8888` | 4 | Off-screen compositing |
+
+The same drawing calls work in any format; the only difference is what
+`Buffer` contains and what the destination device expects.
+
+## Using Canvas with Widget
+
+Canvas and [Widget](widget.mdx) share the same LVGL engine, so you can
+use both in the same program — a full-screen widget layout on the
+on-board panel plus a Canvas that renders into a separate SSD1306
+driven over I2C.

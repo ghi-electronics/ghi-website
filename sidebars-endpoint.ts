@@ -79,9 +79,18 @@ const sidebars: SidebarsConfig = {
           collapsed: true,
           items: [
             'feature/displays',
+            {
+              type: 'category',
+              label: 'Graphics',
+              collapsed: true,
+              link: { type: 'doc', id: 'feature/graphics/index' },
+              items: [
+                'feature/graphics/canvas',
+                'feature/graphics/widget',
+                'feature/graphics/alternatives',
+              ],
+            },
             'feature/touch-screen',
-            'feature/graphics',
-            'feature/ui',
             'feature/camera',
           ],
         },

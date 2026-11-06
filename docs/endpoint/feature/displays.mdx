@@ -7,7 +7,7 @@ Endpoint supports two display categories:
 - **Parallel TFT** — a panel wired directly to the board's parallel RGB
   controller. Fastest option; refresh runs off the hardware without any CPU
   work.
-- **Serial (SPI / I²C)** displays and **character displays** — any panel you
+- **Serial (SPI / I2C)** displays and **character displays** — any panel you
   can drive from a bus. The next sections cover both.
 
 The parallel display is driven through
@@ -31,8 +31,7 @@ var settings = new DisplaySettings {
     EnableAtBoot = false,                     // true = board brings the panel up during boot
     Logo = null,                              // 24-bit BMP filename on /config, or null
     Backlight = new BacklightSettings {
-        GpioChip = "gpiochip3",               // or null — leave the backlight alone
-        GpioPin  = 14,
+        Pin = EPDomino24.Backlight,           // or -1 — leave the backlight alone
         ActivePolarity = SignalPolarity.ActiveHigh,
     },
     Parallel = new ParallelLcdSettings {
@@ -93,7 +92,7 @@ display.ShowLogo();     // reads /config/<logo-filename>.bmp and flushes it
 If `EnableAtBoot` is also true, the board does this itself during boot — the
 user's program sees the panel already lit with the logo.
 
-## Serial (SPI / I²C) displays
+## Serial (SPI / I2C) displays
 
 Custom serial panels are not part of the built-in `ParallelDisplayController`.
 Subclass `DisplayController` directly and drive the panel from the standard
@@ -107,5 +106,5 @@ power it down, and `Flush` to push pixels.
 
 Character-matrix LCDs (2x16, 4x20, etc.) use the standard
 [Iot.Device.CharacterLcd](https://learn.microsoft.com/en-gb/dotnet/api/iot.device.characterlcd?view=iot-dotnet-latest)
-library from .NET IoT. Wire the panel to any GPIO/I²C/SPI pins and drive it
+library from .NET IoT. Wire the panel to any GPIO/I2C/SPI pins and drive it
 with the same code you would use on any .NET IoT board.
