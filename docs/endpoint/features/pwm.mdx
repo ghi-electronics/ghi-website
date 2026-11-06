@@ -1,0 +1,88 @@
+---
+title: "PWM"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Pulse-Width Modulation (PWM) generates a square-wave signal of fixed
+frequency and variable duty cycle. It is commonly used to simulate an
+analog voltage, drive a servo, control LED brightness, and generate
+simple tones. Both the frequency and the duty cycle are set in software.
+
+Endpoint uses the standard **`System.Device.Pwm`** API. The only
+Endpoint-specific step is calling `PwmController.Initialize(pin)` first,
+which claims the pin for its timer channel and gives you the chip and
+channel ids that `PwmChannel.Create` needs.
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+using System.Device.Pwm;
+using GHIElectronics.Endpoint.Core;
+
+// Buzzer pin on EP-Domino24
+var pin = EPDomino24.Pwm.Pin.PF9;
+
+PwmController.Initialize(pin);
+
+using var pwm = PwmChannel.Create(
+    PwmController.GetChipId(pin),
+    PwmController.GetChannelId(pin),
+    frequency: 1000,
+    dutyCyclePercentage: 0.25);
+
+pwm.Start();
+Thread.Sleep(1000);
+pwm.Stop();
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import time
+from GHIElectronics.Endpoint.Core import EPM815, EPDomino24
+from GHIElectronics.Endpoint.Devices.Pwm import PwmChannel
+
+# Buzzer pin on EP-Domino24
+pin = EPDomino24.Pwm.Pin.PF9
+
+EPM815.Pwm.Initialize(pin)
+
+with PwmChannel.Create(EPM815.Pwm.GetChipId(pin),
+                      EPM815.Pwm.GetChannelId(pin),
+                      1000, 0.25) as pwm:
+    pwm.Start()
+    time.sleep(1)
+    pwm.Stop()
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+#include <chrono>
+#include <thread>
+#include <endpoint/Pwm.h>
+#include <endpoint/EPDomino24.h>
+
+using namespace GHIElectronics::Endpoint::Core;
+using namespace GHIElectronics::Endpoint::Devices::Pwm;
+
+// Buzzer pin on EP-Domino24
+constexpr int pin = EPDomino24::Pwm::Pin::PF9;
+
+EPM815::Pwm::Initialize(pin);
+
+auto pwm = PwmChannel::Create(EPM815::Pwm::GetChipId(pin),
+                              EPM815::Pwm::GetChannelId(pin),
+                              1000, 0.25);
+pwm.Start();
+std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+pwm.Stop();
+```
+
+</TabItem>
+</Tabs>

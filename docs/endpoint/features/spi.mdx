@@ -2,6 +2,9 @@
 title: "SPI"
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 SPI uses three or four wires for data transfer. A SPI bus has one master
 and one or more slaves. The master drives the clock on **SCK**, sends
 data on **MOSI** (Master Out Slave In), and reads incoming data on
@@ -27,6 +30,9 @@ Endpoint uses the standard **`System.Device.Spi`** API. The only
 Endpoint-specific step is calling `SpiController.Initialize(bus)` first,
 which claims the bus's pins.
 
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
 ```csharp
 using System.Device.Spi;
 using GHIElectronics.Endpoint.Core;
@@ -46,6 +52,57 @@ var write = new byte[2];
 var read  = new byte[10];
 spi.TransferFullDuplex(write, read);
 ```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+from GHIElectronics.Endpoint.Core import EPM815, EPDomino24
+from GHIElectronics.Endpoint.Devices.Spi import SpiDevice, SpiConnectionSettings, SpiMode
+
+# Bring up SPI4 and claim its pins
+EPM815.Spi.Initialize(EPDomino24.Spi.Spi4)
+
+# Standard System.Device.Spi shape from here
+settings = SpiConnectionSettings(EPDomino24.Spi.Spi4, chipSelectLine=0)
+settings.ClockFrequency = 4_000_000
+settings.Mode = SpiMode.Mode0
+
+with SpiDevice.Create(settings) as spi:
+    write = bytes(2)
+    read = bytearray(10)
+    spi.TransferFullDuplex(write, read)
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+#include <array>
+#include <cstdint>
+#include <endpoint/Spi.h>
+#include <endpoint/EPDomino24.h>
+
+using namespace GHIElectronics::Endpoint::Core;
+using namespace GHIElectronics::Endpoint::Devices::Spi;
+
+// Bring up SPI4 and claim its pins
+EPM815::Spi::Initialize(EPDomino24::Spi::Spi4);
+
+// Standard System.Device.Spi shape from here
+SpiConnectionSettings settings(EPDomino24::Spi::Spi4, 0);
+settings.ClockFrequency = 4'000'000;
+settings.Mode = SpiMode::Mode0;
+
+auto spi = SpiDevice::Create(settings);
+
+std::array<uint8_t, 2> write{};
+std::array<uint8_t, 10> read{};
+spi.TransferFullDuplex(write, read);
+```
+
+</TabItem>
+</Tabs>
 
 :::tip
 `SpiController` is chip-neutral; the same call works on any supported

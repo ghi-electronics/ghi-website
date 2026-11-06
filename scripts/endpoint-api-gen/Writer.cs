@@ -69,7 +69,7 @@ public static class Writer {
         L.AppendLine("---");
         L.AppendLine("title: API Reference");
         L.AppendLine("sidebar_label: Overview");
-        L.AppendLine("slug: /endpoint/api");
+        L.AppendLine("slug: /endpoint/api-reference");
         L.AppendLine("---");
         L.AppendLine();
         L.AppendLine("# Endpoint API Reference");

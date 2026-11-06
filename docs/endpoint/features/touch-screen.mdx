@@ -1,0 +1,299 @@
+---
+title: "Touch Screen"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Endpoint supports capacitive and resistive touchscreens through the
+`GHIElectronics.Endpoint.Devices.Touch` package. The `Touch` class is
+abstract: you write a small subclass for your touch chip (SPI chips like
+XPT2046, I2C chips like FT5xx6 or GT911, or a resistive panel driven by
+the on-board ADC), reading the chip through the standard
+`System.Device.Spi` / `System.Device.I2c` / `System.Device.Gpio` APIs. The
+subclass raises its touch event whenever a finger goes down, moves, or
+lifts.
+
+The [Widget library](graphics/widget.mdx) consumes those events through a tiny bridge,
+`TouchBridge.Feed(x, y, pressed)`, so touches drive `Clicked` /
+`ValueChanged` on the widgets automatically.
+
+## Writing a touch driver
+
+A minimal driver fits in one small class. The pattern is: configure the
+chip (I2C/SPI + reset + IRQ) in the constructor, read the chip from the
+IRQ handler, and call `RaiseChanged` with the fingers currently on screen.
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+using System.Device.Gpio;
+using System.Device.I2c;
+using GHIElectronics.Endpoint.Devices.Touch;
+
+public sealed class FT5xx6 : Touch {
+    private readonly I2cDevice _i2c;
+    private readonly GpioController _gpio;
+    private readonly int _irqPin;
+
+    public override int Width  => 480;
+    public override int Height => 272;
+    public override bool Connected => true;
+
+    public FT5xx6(I2cDevice i2c, GpioController gpio, int resetPin, int irqPin) {
+        this._i2c = i2c;
+        this._gpio = gpio;
+        this._irqPin = irqPin;
+
+        // reset the chip
+        gpio.OpenPin(resetPin, PinMode.Output);
+        gpio.Write(resetPin, PinValue.Low);
+        Thread.Sleep(10);
+        gpio.Write(resetPin, PinValue.High);
+
+        // wake up on IRQ
+        gpio.OpenPin(irqPin, PinMode.InputPullUp);
+        gpio.RegisterCallbackForPinValueChangedEvent(irqPin, PinEventTypes.Falling, OnIrq);
+    }
+
+    private void OnIrq(object sender, PinValueChangedEventArgs e) {
+        // read the FT5xx6 touch registers, build the point array
+        var buffer = new byte[32];
+        this._i2c.WriteRead(new byte[] { 0x00 }, buffer);
+        int count = buffer[2] & 0x0F;
+
+        var points = new TouchPoint[count];
+        for (int i = 0; i < count; i++) {
+            int x = ((buffer[3 + i * 6] & 0x0F) << 8) | buffer[4 + i * 6];
+            int y = ((buffer[5 + i * 6] & 0x0F) << 8) | buffer[6 + i * 6];
+            int id = buffer[5 + i * 6] >> 4;
+            points[i] = new TouchPoint(id, x, y);
+        }
+
+        var type = count == 0 ? TouchEventType.Released : TouchEventType.Moved;
+        RaiseChanged(new TouchEventArgs(type, points));
+    }
+
+    public override void Dispose() {
+        this._gpio.UnregisterCallbackForPinValueChangedEvent(this._irqPin, OnIrq);
+        this._i2c.Dispose();
+    }
+}
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import time
+from GHIElectronics.Endpoint.Devices.Gpio import GpioController, PinMode, PinValue, PinEventTypes
+from GHIElectronics.Endpoint.Devices.Touch import Touch, TouchEventArgs, TouchEventType, TouchPoint
+
+class FT5xx6(Touch):
+    def __init__(self, i2c, gpio, resetPin, irqPin):
+        self._i2c = i2c
+        self._gpio = gpio
+        self._irqPin = irqPin
+
+        # reset the chip
+        gpio.OpenPin(resetPin, PinMode.Output)
+        gpio.Write(resetPin, PinValue.Low)
+        time.sleep(0.01)
+        gpio.Write(resetPin, PinValue.High)
+
+        # wake up on IRQ
+        gpio.OpenPin(irqPin, PinMode.InputPullUp)
+        gpio.RegisterCallbackForPinValueChangedEvent(irqPin, PinEventTypes.Falling, self._on_irq)
+
+    @property
+    def Width(self): return 480
+
+    @property
+    def Height(self): return 272
+
+    @property
+    def Connected(self): return True
+
+    def _on_irq(self, sender, args):
+        # read the FT5xx6 touch registers, build the point list
+        buffer = bytearray(32)
+        self._i2c.WriteRead(bytes([0x00]), buffer)
+        count = buffer[2] & 0x0F
+
+        points = []
+        for i in range(count):
+            x = ((buffer[3 + i * 6] & 0x0F) << 8) | buffer[4 + i * 6]
+            y = ((buffer[5 + i * 6] & 0x0F) << 8) | buffer[6 + i * 6]
+            id_ = buffer[5 + i * 6] >> 4
+            points.append(TouchPoint(id_, x, y))
+
+        type_ = TouchEventType.Released if count == 0 else TouchEventType.Moved
+        self._RaiseChanged(TouchEventArgs(type_, points))
+
+    def Dispose(self):
+        self._gpio.UnregisterCallbackForPinValueChangedEvent(self._irqPin, self._on_irq)
+        self._i2c.Dispose()
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+#include <array>
+#include <chrono>
+#include <thread>
+#include <vector>
+#include <endpoint/Gpio.h>
+#include <endpoint/I2c.h>
+#include <endpoint/Touch.h>
+
+using namespace GHIElectronics::Endpoint::Devices::Gpio;
+using namespace GHIElectronics::Endpoint::Devices::I2c;
+using namespace GHIElectronics::Endpoint::Devices::Touch;
+
+class FT5xx6 : public Touch {
+public:
+    FT5xx6(I2cDevice& i2c, GpioController& gpio, int resetPin, int irqPin)
+        : i2c_(i2c), gpio_(gpio), irqPin_(irqPin) {
+        // reset the chip
+        gpio.OpenPin(resetPin, PinMode::Output);
+        gpio.Write(resetPin, PinValue::Low);
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        gpio.Write(resetPin, PinValue::High);
+
+        // wake up on IRQ
+        gpio.OpenPin(irqPin, PinMode::InputPullUp);
+        gpio.RegisterCallbackForPinValueChangedEvent(
+            irqPin, PinEventTypes::Falling,
+            [this](GpioController&, const PinValueChangedEventArgs&) { this->OnIrq(); });
+    }
+
+    int  Width()     const override { return 480; }
+    int  Height()    const override { return 272; }
+    bool Connected() const override { return true; }
+
+private:
+    void OnIrq() {
+        // read the FT5xx6 touch registers, build the point list
+        std::array<uint8_t, 1> reg{0x00};
+        std::array<uint8_t, 32> buffer{};
+        this->i2c_.WriteRead(reg, buffer);
+        int count = buffer[2] & 0x0F;
+
+        std::vector<TouchPoint> points;
+        points.reserve(count);
+        for (int i = 0; i < count; i++) {
+            int x  = ((buffer[3 + i * 6] & 0x0F) << 8) | buffer[4 + i * 6];
+            int y  = ((buffer[5 + i * 6] & 0x0F) << 8) | buffer[6 + i * 6];
+            int id = buffer[5 + i * 6] >> 4;
+            points.push_back({id, x, y});
+        }
+
+        auto type = count == 0 ? TouchEventType::Released : TouchEventType::Moved;
+        this->RaiseChanged(TouchEventArgs(type, std::move(points)));
+    }
+
+    I2cDevice&     i2c_;
+    GpioController& gpio_;
+    int            irqPin_;
+};
+```
+
+</TabItem>
+</Tabs>
+
+`TouchPoint.Id` is stable per finger across moves within one gesture, so
+use it to track multi-touch.
+
+## Feeding touches into the UI
+
+If you use the [Widget library](graphics/widget.mdx), wire your driver's events into
+`TouchBridge.Feed` and LVGL does the rest. The right widget gets a
+`Clicked` or `ValueChanged` event.
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+using GHIElectronics.Endpoint.UI;
+using GHIElectronics.Endpoint.Devices.Touch;
+
+UI.Initialize();           // after DisplayController.Enable()
+TouchBridge.Attach();
+
+var touch = new FT5xx6(...);
+touch.OnChangedEvent += (sender, e) => {
+    if (e.Points.Length > 0)
+        TouchBridge.Feed(e.Points[0].X, e.Points[0].Y, pressed: e.EventType != TouchEventType.Released);
+    else
+        TouchBridge.Feed(0, 0, pressed: false);
+};
+
+UI.Run();                  // blocks on the UI thread
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+from GHIElectronics.Endpoint.UI import UI, TouchBridge
+from GHIElectronics.Endpoint.Devices.Touch import TouchEventType
+
+UI.Initialize()            # after DisplayController.Enable()
+TouchBridge.Attach()
+
+touch = FT5xx6(...)
+def on_changed(sender, e):
+    if len(e.Points) > 0:
+        TouchBridge.Feed(e.Points[0].X, e.Points[0].Y, e.EventType != TouchEventType.Released)
+    else:
+        TouchBridge.Feed(0, 0, False)
+touch.OnChangedEvent += on_changed
+
+UI.Run()                   # blocks on the UI thread
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+#include <endpoint/UI.h>
+#include <endpoint/Touch.h>
+
+using namespace GHIElectronics::Endpoint;
+
+UI::Initialize();          // after DisplayController::Enable()
+UI::Touch::Attach();
+
+FT5xx6 touch(/* ... */);
+touch.SetOnEvent([](Devices::Touch::Touch&, const Devices::Touch::TouchEventArgs& e) {
+    if (!e.Points().empty()) {
+        const auto& p = e.Points().front();
+        UI::Touch::Feed(p.X, p.Y, e.EventType() != Devices::Touch::TouchEventType::Released);
+    }
+    else {
+        UI::Touch::Feed(0, 0, false);
+    }
+});
+
+UI::Run();                 // blocks on the UI thread
+```
+
+</TabItem>
+</Tabs>
+
+## Coordinates
+
+Event coordinates are in **display pixels** (0 at the top-left), so no
+scaling is needed as long as the touchscreen matches the display
+resolution. If the chip reports its own coordinate space, convert inside
+your driver before calling `RaiseChanged`.
+
+## Full FT5xx6 driver
+
+The snippets above are a condensed version of the driver to keep the
+example short. The complete, tested FT5xx6 driver is published on GitHub
+at [GHIElectronics.Endpoint.Drivers.FocalTech.FT5xx6](https://github.com/ghi-electronics/endpoint-drivers/tree/main/dotnet/GHIElectronics.Endpoint.Drivers/FocalTech/GHIElectronics.Endpoint.Drivers.FocalTech.FT5xx6)
+and is also available as a NuGet package. Use it directly in production
+instead of copying the tutorial.

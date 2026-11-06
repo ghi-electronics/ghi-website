@@ -1,0 +1,151 @@
+---
+title: "Real Time Clock"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+The Real Time Clock (RTC) is a circuit that runs off a small battery or a super capacitor connected to VBAT. It needs its own crystal and keeps running even when the main system and its clocks are powered off.
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+using var rtc = new RtcController();
+
+var time = new DateTime(2024, 1, 1, 10, 59, 50, DateTimeKind.Utc);
+rtc.DateTime = time;
+
+// Read some time later
+var rtc_time = rtc.DateTime;
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import datetime
+from GHIElectronics.Endpoint.Devices.Rtc import RtcController
+
+rtc = RtcController()
+
+time_ = datetime.datetime(2024, 1, 1, 10, 59, 50, tzinfo=datetime.timezone.utc)
+rtc.DateTime = time_
+
+# Read some time later
+rtc_time = rtc.DateTime
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+#include <chrono>
+#include <endpoint/Rtc.h>
+
+using namespace GHIElectronics::Endpoint::Devices::Rtc;
+
+RtcController rtc;
+
+auto time = std::chrono::system_clock::now();
+rtc.DateTime(time);
+
+// Read some time later
+auto rtcTime = rtc.DateTime();
+```
+
+</TabItem>
+</Tabs>
+
+## VBAT
+
+VBAT mode can be set in "charger mode" where it can charge an attached supercap.
+
+:::info
+Make sure the RTC battery charge mode is correctly set. Charging a lithium coin cell may cause damage to the cell and could cause it to leak.
+:::
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+using var rtc = new RtcController();
+
+rtc.SetChargeMode(BatteryChargeMode.Fast);
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+from GHIElectronics.Endpoint.Devices.Rtc import RtcController, BatteryChargeMode
+
+rtc = RtcController()
+
+rtc.SetChargeMode(BatteryChargeMode.Fast)
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+#include <endpoint/Rtc.h>
+
+using namespace GHIElectronics::Endpoint::Devices::Rtc;
+
+RtcController rtc;
+
+rtc.SetChargeMode(BatteryChargeMode::Fast);
+```
+
+</TabItem>
+</Tabs>
+
+## System clock
+
+The system clock is seeded from the RTC at boot: once the RTC is set and
+VBAT keeps it running, `DateTime.Now` (or the equivalent Python / C++
+clock) returns the right time on every subsequent boot without any extra
+setup. Set the RTC once:
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+using var rtc = new RtcController();
+if (!rtc.IsValid) {
+    rtc.DateTime = new DateTime(2024, 1, 30, 15, 0, 0, DateTimeKind.Utc);
+}
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import datetime
+from GHIElectronics.Endpoint.Devices.Rtc import RtcController
+
+rtc = RtcController()
+if not rtc.IsValid:
+    rtc.DateTime = datetime.datetime(2024, 1, 30, 15, 0, 0, tzinfo=datetime.timezone.utc)
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+#include <chrono>
+#include <endpoint/Rtc.h>
+
+using namespace GHIElectronics::Endpoint::Devices::Rtc;
+
+RtcController rtc;
+if (!rtc.IsValid()) {
+    auto t = std::chrono::sys_days{std::chrono::January / 30 / 2024}
+           + std::chrono::hours(15);
+    rtc.DateTime(t);
+}
+```
+
+</TabItem>
+</Tabs>

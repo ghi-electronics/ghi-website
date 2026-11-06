@@ -1,0 +1,96 @@
+---
+title: "MQTT"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+MQTT is the standard lightweight publish/subscribe protocol for
+machine-to-machine messaging. Endpoint uses the same MQTT client
+libraries that run on servers and desktops, so your application works
+against any broker, whether a local **Mosquitto** instance in the lab, hosted
+brokers like **HiveMQ** or **EMQX**, or the managed brokers inside
+**Azure IoT Hub**, **AWS IoT Core**, and **Google Cloud Pub/Sub**.
+
+## Client
+
+The .NET choice is [MQTTnet](https://www.nuget.org/packages/MQTTnet):
+full QoS 0 / 1 / 2 support, TLS (using the operating system's certificate
+trust store), topic filters, and persistent sessions. On Python the
+standard library is [paho-mqtt](https://pypi.org/project/paho-mqtt/). On
+C/C++ use the [Eclipse Mosquitto](https://mosquitto.org/) client library
+that Endpoint firmware already ships.
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+using MQTTnet;
+using MQTTnet.Client;
+
+var factory = new MqttFactory();
+using var client = factory.CreateMqttClient();
+
+var options = new MqttClientOptionsBuilder()
+    .WithTcpServer("broker.example.com", 8883)
+    .WithTls()
+    .WithCredentials("username", "password")
+    .WithClientId("endpoint-01")
+    .Build();
+
+await client.ConnectAsync(options);
+await client.SubscribeAsync("sensors/+/temperature");
+await client.PublishStringAsync("sensors/01/temperature", "23.4");
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import paho.mqtt.client as mqtt
+
+client = mqtt.Client(client_id="endpoint-01")
+client.username_pw_set("username", "password")
+client.tls_set()
+client.connect("broker.example.com", 8883)
+client.subscribe("sensors/+/temperature")
+client.publish("sensors/01/temperature", "23.4")
+client.loop_forever()
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+// Link with -lmosquitto.
+#include <cstdio>
+#include <mosquitto.h>
+
+mosquitto_lib_init();
+struct mosquitto* client = mosquitto_new("endpoint-01", true, nullptr);
+
+mosquitto_username_pw_set(client, "username", "password");
+mosquitto_tls_set(client, nullptr, "/etc/ssl/certs", nullptr, nullptr, nullptr);
+
+mosquitto_connect(client, "broker.example.com", 8883, 60);
+mosquitto_subscribe(client, nullptr, "sensors/+/temperature", 0);
+mosquitto_publish(client, nullptr, "sensors/01/temperature",
+                  4, "23.4", 0, false);
+
+mosquitto_loop_forever(client, -1, 1);
+mosquitto_destroy(client);
+mosquitto_lib_cleanup();
+```
+
+</TabItem>
+</Tabs>
+
+## Running an MQTT broker on the board
+
+Endpoint can **host** an MQTT broker, not just connect to one. On .NET the
+`MQTTnet` package also ships a broker component in the same assembly. On
+Linux, the Mosquitto broker daemon (`mosquitto`) is available over the
+package manager and can be launched from any language. A fleet of local
+devices can publish to Endpoint, which then forwards aggregated or
+filtered data upstream to the cloud. See the
+[Endpoint as gateway](gateway.mdx) page for the full pattern.

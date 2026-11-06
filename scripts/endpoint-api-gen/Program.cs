@@ -3,7 +3,7 @@ using EndpointApiGen;
 
 // Endpoint API docs generator. Reads built GHIElectronics.Endpoint.*.dll files
 // (together with their compiler-emitted .xml docs), and emits Docusaurus MDX
-// into docs/endpoint/api/, one folder per NuGet. Each type page has csharp /
+// into docs/endpoint/api-reference/, one folder per NuGet. Each type page has csharp /
 // python / c++ language tabs synthesized from the .NET metadata, matching the
 // three-language-mirror design.
 
@@ -11,11 +11,11 @@ var args_ = ParseArgs(args);
 
 if (args_.ShowHelp) {
     Console.WriteLine("""
-        endpoint-api-gen --libs <path-to-dll-root> --out <path-to-docs/endpoint/api> [--version 0.4.0]
+        endpoint-api-gen --libs <path-to-dll-root> --out <path-to-docs/endpoint/api-reference> [--version 0.4.0]
 
         <path-to-dll-root>  is scanned recursively for GHIElectronics.Endpoint.*.dll
                             plus a matching .xml next to each one.
-        <path-to-docs/endpoint/api>  is cleaned and rewritten.
+        <path-to-docs/endpoint/api-reference>  is cleaned and rewritten.
         """);
     return 0;
 }

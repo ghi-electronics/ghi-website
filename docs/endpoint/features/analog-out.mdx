@@ -1,0 +1,101 @@
+---
+title: "Analog Out"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+## DAC
+
+A digital-to-analog converter (DAC) turns a numeric sample into a voltage
+between 0 V and the chip's reference voltage (3.3 V on Endpoint, 12-bit
+resolution). The output is a weak signal and is not meant to drive a
+load directly. Add an op-amp or similar buffer to drive something like a
+speaker.
+
+`WriteValue` accepts either a raw 12-bit integer (0 to 4095) or a
+`double` in the range 0.0 to 1.0.
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+using GHIElectronics.Endpoint.Core;
+using GHIElectronics.Endpoint.Devices.Dac;
+
+var dac = DacController.FromName(EPDomino24.Dac.Id);
+using var output = dac.OpenChannel(EPDomino24.Dac.PA5);
+
+double level = 0, step = 0.1;
+int direction = 1;
+
+while (true) {
+    output.WriteValue(level);
+    if (level >= 0.9) direction = -1;
+    if (level <= 0.1) direction = 1;
+    level += step * direction;
+    Thread.Sleep(1000);
+}
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import time
+from GHIElectronics.Endpoint.Core import EPDomino24
+from GHIElectronics.Endpoint.Devices.Dac import DacController
+
+dac = DacController.FromName(EPDomino24.Dac.Id)
+with dac.OpenChannel(EPDomino24.Dac.PA5) as output:
+    level = 0.0
+    step = 0.1
+    direction = 1
+
+    while True:
+        output.WriteValue(level)
+        if level >= 0.9: direction = -1
+        if level <= 0.1: direction = 1
+        level += step * direction
+        time.sleep(1)
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+#include <chrono>
+#include <thread>
+#include <endpoint/Dac.h>
+#include <endpoint/EPDomino24.h>
+
+using namespace GHIElectronics::Endpoint::Core;
+using namespace GHIElectronics::Endpoint::Devices::Dac;
+
+auto dac = DacController::FromName(EPDomino24::Dac::Id);
+auto output = dac.OpenChannel(EPDomino24::Dac::PA5);
+
+double level = 0.0, step = 0.1;
+int direction = 1;
+
+while (true) {
+    output.WriteValue(level);
+    if (level >= 0.9) direction = -1;
+    if (level <= 0.1) direction = 1;
+    level += step * direction;
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+}
+```
+
+</TabItem>
+</Tabs>
+
+:::tip
+Do not use analog outputs to control the power of an LED or a motor. Use
+[PWM](pwm.mdx) for that.
+:::
+
+## PWM
+
+PWM can also simulate an analog voltage when filtered or driving a
+duty-cycle-responsive load (motor, LED). See [PWM](pwm.mdx) for details.

@@ -1,0 +1,126 @@
+---
+title: "I2C"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+I2C (pronounced *eye-squared-sea* or *eye-two-sea*) is a synchronous
+two-wire serial bus. One master shares the bus with one or more slaves;
+each slave is selected by a 7-bit address sent on the bus instead of by
+a dedicated chip-select line. The two wires are **SDA** (Serial Data)
+and **SCL** (Serial Clock).
+
+Endpoint uses the standard **`System.Device.I2c`** API for the data
+transfer. The only Endpoint-specific step is calling
+`I2cController.Initialize(bus)` first, which claims the bus's pins and
+sets the clock speed. The default speed is 400 kHz; pass a second
+argument to change it.
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+using System.Device.I2c;
+using GHIElectronics.Endpoint.Core;
+
+// Bring up I2C6 at the default 400 kHz
+I2cController.Initialize(EPDomino24.I2c.I2c6);
+
+// Open the device and talk to it with the standard API
+var settings = new I2cConnectionSettings(EPDomino24.I2c.I2c6, deviceAddress: 0x1C);
+using var i2c = I2cDevice.Create(settings);
+
+// Write a byte to a register
+i2c.Write(new byte[] { 0x2A, 0x01 });
+
+// Read a register (write the register address, then read the value)
+var read = new byte[1];
+i2c.WriteRead(new byte[] { 0x2A }, read);
+Console.WriteLine($"0x2A = {read[0]:X2}");
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+from GHIElectronics.Endpoint.Core import EPM815, EPDomino24
+from GHIElectronics.Endpoint.Devices.I2c import I2cDevice, I2cConnectionSettings
+
+# Bring up I2C6 at the default 400 kHz
+EPM815.I2c.Initialize(EPDomino24.I2c.I2c6)
+
+# Open the device and talk to it with the standard API
+settings = I2cConnectionSettings(EPDomino24.I2c.I2c6, 0x1C)
+with I2cDevice.Create(settings) as i2c:
+    # Write a byte to a register
+    i2c.Write(bytes([0x2A, 0x01]))
+
+    # Read a register (write the register address, then read the value)
+    read = bytearray(1)
+    i2c.WriteRead(bytes([0x2A]), read)
+    print(f"0x2A = {read[0]:02X}")
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+#include <array>
+#include <cstdint>
+#include <cstdio>
+#include <endpoint/I2c.h>
+#include <endpoint/EPDomino24.h>
+
+using namespace GHIElectronics::Endpoint::Core;
+using namespace GHIElectronics::Endpoint::Devices::I2c;
+
+// Bring up I2C6 at the default 400 kHz
+EPM815::I2c::Initialize(EPDomino24::I2c::I2c6);
+
+// Open the device and talk to it with the standard API
+auto i2c = I2cDevice::Create(I2cConnectionSettings(EPDomino24::I2c::I2c6, 0x1C));
+
+// Write a byte to a register
+i2c.Write(std::array<uint8_t, 2>{0x2A, 0x01});
+
+// Read a register (write the register address, then read the value)
+std::array<uint8_t, 1> read{};
+i2c.WriteRead(std::array<uint8_t, 1>{0x2A}, read);
+std::printf("0x2A = %02X\n", read[0]);
+```
+
+</TabItem>
+</Tabs>
+
+Change the clock speed if the device needs it:
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+I2cController.Initialize(EPDomino24.I2c.I2c6, frequency: 100_000);   // 100 kHz
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+EPM815.I2c.Initialize(EPDomino24.I2c.I2c6, 100_000)   # 100 kHz
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+EPM815::I2c::Initialize(EPDomino24::I2c::I2c6, 100'000);   // 100 kHz
+```
+
+</TabItem>
+</Tabs>
+
+:::tip
+`I2cController` is chip-neutral; the same call works on any supported
+module. The bus constant (`EPDomino24.I2c.I2c6`) is board-specific and
+lists only the buses actually bonded on EP-Domino24.
+:::

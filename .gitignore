@@ -11,7 +11,7 @@
 # .NET build output of the Endpoint API generator (scripts/endpoint-api-gen).
 # The compiled dlls / exe / pdb / deps.json land under bin/ and obj/ when the
 # generator is built or run via `dotnet run`. Only the .cs sources + .csproj
-# belong in git; the generated API pages under docs/endpoint/api/ ARE committed
+# belong in git; the generated API pages under docs/endpoint/api-reference/ ARE committed
 # (see build_endpoint_api.bat).
 bin/
 obj/

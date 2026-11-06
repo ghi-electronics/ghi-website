@@ -1,0 +1,274 @@
+---
+title: "Networking"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Endpoint provides full networking through .NET's standard `System.Net`
+stack (sockets, HTTP/HTTPS, WebSockets, TLS). The Endpoint-specific
+`GHIElectronics.Endpoint.Devices.Network` package is only for bringing the
+network interface up and configuring it. The same package is shipped for
+Python and C/C++, with the same class and method names.
+
+Two interface types are supported:
+
+- **Ethernet**: the board's built-in Ethernet, or any USB Ethernet adapter.
+- **Wi-Fi**: a built-in Wi-Fi module, or a USB Wi-Fi dongle.
+
+Settings persist in `/config/network.json`. Nothing starts automatically at
+boot; the application calls `Enable()` on the interfaces it wants up.
+
+## Wi-Fi
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+using GHIElectronics.Endpoint.Devices.Network;
+
+var wifi = NetworkController.FromType(NetworkType.Wifi);
+
+var settings = new WiFiNetworkInterfaceSettings {
+    Ssid = "MyNetwork",
+    Password = "secret123",
+    Security = WiFiSecurityType.Wpa2,
+    IsDhcpEnabled = true,
+};
+
+wifi.SetInterfaceSettings(settings);   // saves to /config/network.json
+wifi.Enable();                          // brings the interface up, runs DHCP
+
+Console.WriteLine($"Connected: {wifi.IsConnected}");
+Console.WriteLine($"Interface: {wifi.Name}");
+
+// Standard .NET info is also available
+var nic = wifi.NetworkInterface;
+if (nic != null) {
+    foreach (var ip in nic.GetIPProperties().UnicastAddresses)
+        Console.WriteLine(ip.Address);
+}
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import socket
+from GHIElectronics.Endpoint.Devices.Network import (
+    NetworkController, NetworkType,
+    WiFiNetworkInterfaceSettings, WiFiSecurityType,
+)
+
+wifi = NetworkController.FromType(NetworkType.Wifi)
+
+settings = WiFiNetworkInterfaceSettings()
+settings.Ssid = "MyNetwork"
+settings.Password = "secret123"
+settings.Security = WiFiSecurityType.Wpa2
+settings.IsDhcpEnabled = True
+
+wifi.SetInterfaceSettings(settings)    # saves to /config/network.json
+wifi.Enable()                           # brings the interface up, runs DHCP
+
+print(f"Connected: {wifi.IsConnected}")
+print(f"Interface: {wifi.Name}")
+
+# Standard Python info is also available via the socket module
+if wifi.Name:
+    print(socket.gethostbyname(socket.gethostname()))
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+#include <cstdio>
+#include <endpoint/Network.h>
+
+using namespace GHIElectronics::Endpoint::Devices::Network;
+
+auto wifi = NetworkController::FromType(NetworkType::Wifi);
+
+WiFiNetworkInterfaceSettings settings;
+settings.Ssid = "MyNetwork";
+settings.Password = "secret123";
+settings.Security = WiFiSecurityType::Wpa2;
+settings.IsDhcpEnabled = true;
+
+wifi->SetInterfaceSettings(settings);   // saves to /config/network.json
+wifi->Enable();                          // brings the interface up, runs DHCP
+
+std::printf("Connected: %d\n", wifi->IsConnected() ? 1 : 0);
+std::printf("Interface: %s\n", wifi->Name().c_str());
+```
+
+</TabItem>
+</Tabs>
+
+## Ethernet
+
+Static IP:
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+using System.Net;
+using GHIElectronics.Endpoint.Devices.Network;
+
+var eth = NetworkController.FromType(NetworkType.Ethernet);
+
+var settings = new NetworkInterfaceSettings {
+    IsDhcpEnabled = false,
+    Address        = IPAddress.Parse("192.168.1.50"),
+    SubnetMask     = IPAddress.Parse("255.255.255.0"),
+    GatewayAddress = IPAddress.Parse("192.168.1.1"),
+    DnsAddresses   = new[] { IPAddress.Parse("8.8.8.8") },
+};
+
+eth.SetInterfaceSettings(settings);
+eth.Enable();
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+from GHIElectronics.Endpoint.Devices.Network import (
+    NetworkController, NetworkType, NetworkInterfaceSettings,
+)
+
+eth = NetworkController.FromType(NetworkType.Ethernet)
+
+settings = NetworkInterfaceSettings()
+settings.IsDhcpEnabled = False
+settings.Address        = "192.168.1.50"
+settings.SubnetMask     = "255.255.255.0"
+settings.GatewayAddress = "192.168.1.1"
+settings.DnsAddresses   = ["8.8.8.8"]
+
+eth.SetInterfaceSettings(settings)
+eth.Enable()
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+#include <endpoint/Network.h>
+
+using namespace GHIElectronics::Endpoint::Devices::Network;
+
+auto eth = NetworkController::FromType(NetworkType::Ethernet);
+
+NetworkInterfaceSettings settings;
+settings.IsDhcpEnabled = false;
+settings.Address        = "192.168.1.50";
+settings.SubnetMask     = "255.255.255.0";
+settings.GatewayAddress = "192.168.1.1";
+settings.DnsAddresses   = {"8.8.8.8"};
+
+eth->SetInterfaceSettings(settings);
+eth->Enable();
+```
+
+</TabItem>
+</Tabs>
+
+DHCP (the common case):
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+var eth = NetworkController.FromType(NetworkType.Ethernet);
+eth.SetInterfaceSettings(new NetworkInterfaceSettings { IsDhcpEnabled = true });
+eth.Enable();
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+from GHIElectronics.Endpoint.Devices.Network import (
+    NetworkController, NetworkType, NetworkInterfaceSettings,
+)
+
+eth = NetworkController.FromType(NetworkType.Ethernet)
+settings = NetworkInterfaceSettings()
+settings.IsDhcpEnabled = True
+eth.SetInterfaceSettings(settings)
+eth.Enable()
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+#include <endpoint/Network.h>
+
+using namespace GHIElectronics::Endpoint::Devices::Network;
+
+auto eth = NetworkController::FromType(NetworkType::Ethernet);
+NetworkInterfaceSettings settings;
+settings.IsDhcpEnabled = true;
+eth->SetInterfaceSettings(settings);
+eth->Enable();
+```
+
+</TabItem>
+</Tabs>
+
+## Using the network
+
+Once an interface is enabled, use the standard networking surface of your
+language (HTTP, sockets, WebSockets, TLS) exactly as you would on a PC:
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+using var http = new HttpClient();
+var json = await http.GetStringAsync("https://api.example.com/status");
+Console.WriteLine(json);
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import urllib.request
+
+with urllib.request.urlopen("https://api.example.com/status") as resp:
+    print(resp.read().decode())
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+// The Endpoint firmware ships libcurl. Link with -lcurl.
+#include <cstdio>
+#include <curl/curl.h>
+
+static size_t WriteCallback(void* data, size_t size, size_t count, void*) {
+    std::fwrite(data, size, count, stdout);
+    return size * count;
+}
+
+CURL* curl = curl_easy_init();
+curl_easy_setopt(curl, CURLOPT_URL, "https://api.example.com/status");
+curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+curl_easy_perform(curl);
+curl_easy_cleanup(curl);
+```
+
+</TabItem>
+</Tabs>
+
+## Higher-level protocols
+
+For pub/sub messaging and edge-gateway patterns see
+[MQTT](mqtt.mdx) and [Endpoint as gateway](gateway.mdx) under
+**Cloud, IoT and Industrial**.

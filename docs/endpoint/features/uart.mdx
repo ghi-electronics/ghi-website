@@ -1,0 +1,124 @@
+---
+title: "UART"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Endpoint exposes serial ports through the standard
+**`System.IO.Ports.SerialPort`** class. The only Endpoint-specific step
+is calling `SerialPortController.Initialize(port)` first, which claims
+the port's TX / RX (and optionally RTS / CTS) pins.
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+using System.IO.Ports;
+using System.Text;
+using GHIElectronics.Endpoint.Core;
+
+// Claim the port's pins
+SerialPortController.Initialize(EPDomino24.SerialPort.Uart3);
+
+// Open with the standard .NET API
+using var serial = new SerialPort {
+    PortName = EPDomino24.SerialPort.Uart3,
+    BaudRate = 9600,
+    DataBits = 8,
+    Parity   = Parity.None,
+    StopBits = StopBits.One,
+};
+serial.Open();
+
+// Read whatever arrives
+var buffer = new byte[64];
+while (true) {
+    if (serial.BytesToRead > 0) {
+        var n = serial.Read(buffer, 0, serial.BytesToRead);
+        Console.WriteLine(Encoding.UTF8.GetString(buffer, 0, n));
+    }
+    Thread.Sleep(20);
+}
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+Python uses **pyserial** for the actual I/O. Endpoint only has to claim
+the port's pins first with `EPM815.SerialPort.Initialize`.
+
+```python
+import time
+import serial
+from GHIElectronics.Endpoint.Core import EPM815, EPDomino24
+
+# Claim the port's pins
+EPM815.SerialPort.Initialize(EPDomino24.SerialPort.Uart3)
+
+# Open with pyserial
+with serial.Serial(EPDomino24.SerialPort.Uart3, baudrate=9600,
+                   bytesize=8, parity=serial.PARITY_NONE,
+                   stopbits=serial.STOPBITS_ONE) as port:
+    while True:
+        if port.in_waiting > 0:
+            data = port.read(port.in_waiting)
+            print(data.decode("utf-8", errors="replace"))
+        time.sleep(0.02)
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+C/C++ has no dedicated Endpoint serial wrapper: call `EPM815::SerialPort::Initialize`
+to claim the pins, then use the POSIX **termios** API on the port's
+device node (the port constant, e.g. `/dev/ttySTM2`, is what you pass
+to `open`).
+
+```cpp
+#include <chrono>
+#include <cstdio>
+#include <cstring>
+#include <thread>
+#include <fcntl.h>
+#include <termios.h>
+#include <unistd.h>
+#include <endpoint/Core.h>
+#include <endpoint/EPDomino24.h>
+
+using namespace GHIElectronics::Endpoint::Core;
+
+// Claim the port's pins
+EPM815::SerialPort::Initialize(EPDomino24::SerialPort::Uart3);
+
+int fd = ::open(EPDomino24::SerialPort::Uart3, O_RDWR | O_NOCTTY | O_NONBLOCK);
+
+termios tio{};
+tcgetattr(fd, &tio);
+cfsetispeed(&tio, B9600);
+cfsetospeed(&tio, B9600);
+tio.c_cflag = (tio.c_cflag & ~CSIZE) | CS8;    // 8 data bits
+tio.c_cflag &= ~PARENB;                         // no parity
+tio.c_cflag &= ~CSTOPB;                         // 1 stop bit
+tio.c_cflag |= CLOCAL | CREAD;
+tio.c_lflag = 0;
+tio.c_iflag = 0;
+tio.c_oflag = 0;
+tcsetattr(fd, TCSANOW, &tio);
+
+uint8_t buffer[64];
+while (true) {
+    ssize_t n = ::read(fd, buffer, sizeof(buffer));
+    if (n > 0) std::fwrite(buffer, 1, n, stdout);
+    std::this_thread::sleep_for(std::chrono::milliseconds(20));
+}
+```
+
+</TabItem>
+</Tabs>
+
+:::tip
+`SerialPortController` is chip-neutral; the same call works on any
+supported module. The port constant (`EPDomino24.SerialPort.Uart3`) is
+board-specific and lists only the ports actually bonded on EP-Domino24.
+:::

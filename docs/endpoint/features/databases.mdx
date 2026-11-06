@@ -2,15 +2,23 @@
 title: "Databases"
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 ## SQLite Database
 
 According to the SQLite homepage, "SQLite is a software library that implements a self-contained, server-less, zero-configuration, transactional SQL database engine. SQLite is the most widely deployed SQL database engine in the world." SQLite lets you set up a database that resides entirely in a single file on a persistent storage device.
 
 :::tip
-Needed NuGet: Microsoft.Data.Sqlite
+Needed .NET NuGet: Microsoft.Data.Sqlite. Python ships `sqlite3` in the
+standard library. C/C++ uses the SQLite amalgamation (link with
+`-lsqlite3`).
 :::
 
 The code below is a simple example that creates an SQLite database file.
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
 
 ```csharp
 using Microsoft.Data.Sqlite;
@@ -55,7 +63,85 @@ try{
 catch(Exception ex){
     Console.WriteLine("Unable to delete the data file"+ex.Message);
 }
-``` 
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import os
+import sqlite3
+
+user_id = 1
+data_file = "sqltest.db"
+
+# Create a new database file
+with sqlite3.connect(data_file) as connection:
+    cursor = connection.cursor()
+
+    # Create a new table
+    cursor.execute("CREATE TABLE IF NOT EXISTS user (id INTEGER PRIMARY KEY, name TEXT)")
+
+    # Insert a new row
+    cursor.execute("INSERT INTO user (name) VALUES ('World 1')")
+
+    # Query the database
+    cursor.execute("SELECT name FROM user WHERE id = :id", {"id": user_id})
+
+    # Print the result
+    for row in cursor.fetchall():
+        print(f"Hello, {row[0]}!")
+
+# Delete the data file when done
+try:
+    if os.path.exists(data_file):
+        os.remove(data_file)
+except OSError as ex:
+    print("Unable to delete the data file" + str(ex))
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+// Link with -lsqlite3.
+#include <cstdio>
+#include <cstdlib>
+#include <sqlite3.h>
+
+int id = 1;
+const char* dataFile = "sqltest.db";
+
+sqlite3* db = nullptr;
+sqlite3_open(dataFile, &db);
+
+// Create a new table
+sqlite3_exec(db,
+    "CREATE TABLE IF NOT EXISTS user (id INTEGER PRIMARY KEY, name TEXT)",
+    nullptr, nullptr, nullptr);
+
+// Insert a new row
+sqlite3_exec(db, "INSERT INTO user (name) VALUES ('World 1')",
+             nullptr, nullptr, nullptr);
+
+// Query the database
+sqlite3_stmt* stmt = nullptr;
+sqlite3_prepare_v2(db, "SELECT name FROM user WHERE id = ?", -1, &stmt, nullptr);
+sqlite3_bind_int(stmt, 1, id);
+
+while (sqlite3_step(stmt) == SQLITE_ROW) {
+    const unsigned char* name = sqlite3_column_text(stmt, 0);
+    std::printf("Hello, %s!\n", name);
+}
+sqlite3_finalize(stmt);
+sqlite3_close(db);
+
+// Delete the data file when done
+std::remove(dataFile);
+```
+
+</TabItem>
+</Tabs>
 
 ### More Info
 Further details on SQLite can be found at the official SQLite website http://www.sqlite.org/
@@ -64,10 +150,14 @@ Further details on SQLite can be found at the official SQLite website http://www
 Often applications need a way to store unstructured or semi-structured data. Using a NonSQL database could be a solution.
 
 :::tip
-Needed NuGet: LiteDB
+Needed NuGet: LiteDB. LiteDB is a .NET library and has no direct Python
+or C/C++ port.
 :::
 
 The code below is a simple example that creates an LiteDB database file. LiteDB offers several features that makes it useful for an embedded device.
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
 
 ```csharp
 using LiteDB;
@@ -138,6 +228,51 @@ public class Sensor{
     public bool IsActive { get; set; }
 }
 ```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+:::note
+LiteDB is a .NET-only database. For document-style storage on Python,
+use [TinyDB](https://tinydb.readthedocs.io/) (`pip install tinydb`) or
+stick to `sqlite3` with JSON columns.
+:::
+
+```python
+# Example sketch using TinyDB, installed via pip.
+from tinydb import TinyDB, Query
+
+db = TinyDB("SensorData.json")
+sensors = db.table("sensors")
+
+sensors.insert({
+    "Name": "MEMS12",
+    "ConfigValues": ["0x00", "0xAA"],
+    "IsActive": True,
+})
+
+Sensor = Query()
+for s in sensors.search(Sensor.Name.matches("M.*")):
+    print(s["Name"])
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+:::note
+LiteDB is a .NET-only database. For document-style storage on C/C++,
+either store JSON in a SQLite column or use an embedded document store
+such as [UnQLite](https://unqlite.org/) (link with `-lunqlite`).
+:::
+
+```cpp
+// Sketch only: use SQLite with a JSON column, or an embedded document
+// store such as UnQLite. See the SQLite sample above for the simpler
+// path on Endpoint.
+```
+
+</TabItem>
+</Tabs>
 
 ### More Info
 Further details on SQLite can be found at the official SQLite website http://www.litedb.org/

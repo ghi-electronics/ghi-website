@@ -53,27 +53,27 @@ Click any feature to jump to its reference page.
 The basics every embedded project starts with: direct pin control, analog
 input and output, PWM, and timing-critical signals.
 
-- [GPIO](feature/gpio.mdx): digital input and output on any pin (standard `System.Device.Gpio`)
-- [PWM](feature/pwm.mdx): pulse-width modulation for motors, LEDs, and audio (standard `System.Device.Pwm`)
-- [Analog In](feature/analog-in.mdx): read voltages from sensors and analog sources (standard `System.Device.Analog`)
-- [Analog Out](feature/analog-out.mdx): produce analog voltages via DAC
+- [GPIO](features/gpio.mdx): digital input and output on any pin (standard `System.Device.Gpio`)
+- [PWM](features/pwm.mdx): pulse-width modulation for motors, LEDs, and audio (standard `System.Device.Pwm`)
+- [Analog In](features/analog-in.mdx): read voltages from sensors and analog sources (standard `System.Device.Analog`)
+- [Analog Out](features/analog-out.mdx): produce analog voltages via DAC
 - **Signal Control**: generate and measure precise digital signals *(coming soon)*
 
 ## Serial Buses
 
 Talk to peripheral chips, sensors, displays, and external systems.
 
-- [SPI](feature/spi.mdx): high-speed serial peripheral interface (standard `System.Device.Spi`)
-- [I2C](feature/i2c.mdx): two-wire interface for sensors and small peripherals (standard `System.Device.I2c`)
-- [UART](feature/uart.mdx): serial communication with external hardware (standard `System.IO.Ports.SerialPort`)
-- [USB](feature/usb.mdx): USB host for keyboards, mice, drives, webcams, and more
-- [CAN](feature/can.mdx): controller area network for automotive and industrial use (standard `Iot.Device.SocketCan`)
+- [SPI](features/spi.mdx): high-speed serial peripheral interface (standard `System.Device.Spi`)
+- [I2C](features/i2c.mdx): two-wire interface for sensors and small peripherals (standard `System.Device.I2c`)
+- [UART](features/uart.mdx): serial communication with external hardware (standard `System.IO.Ports.SerialPort`)
+- [USB](features/usb.mdx): USB host for keyboards, mice, drives, webcams, and more
+- [CAN](features/can.mdx): controller area network for automotive and industrial use (standard `Iot.Device.SocketCan`)
 
 ## Wireless and Networking
 
 Connect your application to networks and nearby devices.
 
-- [Networking](feature/networking.mdx): Ethernet, Wi-Fi, cellular, sockets, HTTP/HTTPS, TLS (standard `System.Net`)
+- [Networking](features/networking.mdx): Ethernet, Wi-Fi, cellular, sockets, HTTP/HTTPS, TLS (standard `System.Net`)
 - **Bluetooth**: Bluetooth through USB adapters *(coming soon)*
 
 ## Cloud, IoT and Industrial
@@ -83,30 +83,30 @@ full TLS with the operating system's certificate trust store, async
 streaming, standard client libraries, and local storage to buffer or
 pre-process data before pushing anything upstream. General networking
 primitives (`System.Net.Http`, `System.Net.WebSockets`, and so on) are
-covered on the [Networking](feature/networking.mdx) page; the
+covered on the [Networking](features/networking.mdx) page; the
 integrations below sit on top.
 
-- [Microsoft Azure](feature/azure.mdx): Azure IoT Hub (Microsoft Azure SDK)
-- [Amazon Web Services](feature/aws.mdx): AWS IoT (AWS SDK)
-- [MQTT](feature/mqtt.mdx): publish/subscribe to any broker (HiveMQ, EMQX, Mosquitto, Azure/AWS/GCP managed brokers) via `MQTTnet` on .NET or `paho-mqtt` on Python
-- [Modbus](feature/modbus.mdx): industrial fieldbus, Modbus RTU and Modbus TCP, client or server, via `FluentModbus`/`NModbus4` on .NET or `pymodbus` on Python
+- [Microsoft Azure](features/azure.mdx): Azure IoT Hub (Microsoft Azure SDK)
+- [Amazon Web Services](features/aws.mdx): AWS IoT (AWS SDK)
+- [MQTT](features/mqtt.mdx): publish/subscribe to any broker (HiveMQ, EMQX, Mosquitto, Azure/AWS/GCP managed brokers) via `MQTTnet` on .NET or `paho-mqtt` on Python
+- [Modbus](features/modbus.mdx): industrial fieldbus, Modbus RTU and Modbus TCP, client or server, via `FluentModbus`/`NModbus4` on .NET or `pymodbus` on Python
 - **EtherNet/IP**: ODVA's industrial protocol for Rockwell/Allen-Bradley environments *(coming soon)*
-- [Endpoint as gateway](feature/gateway.mdx): run an HTTP or MQTT server on the board itself (ASP.NET minimal API, FastAPI, `MQTTnet` broker) so sensors and small microcontrollers can offload to Endpoint before data goes upstream
+- [Endpoint as gateway](features/gateway.mdx): run an HTTP or MQTT server on the board itself (ASP.NET minimal API, FastAPI, `MQTTnet` broker) so sensors and small microcontrollers can offload to Endpoint before data goes upstream
 
 ## Storage and Data
 
 Persist data on SD cards, USB drives, or in a real database.
 
-- [File System](feature/file-system.mdx): read and write files on SD and USB storage (standard `System.IO`)
-- [Databases](feature/databases.mdx): embedded SQL (`Microsoft.Data.Sqlite`) and NoSQL (`LiteDB`) databases
+- [File System](features/file-system.mdx): read and write files on SD and USB storage (standard `System.IO`)
+- [Databases](features/databases.mdx): embedded SQL (`Microsoft.Data.Sqlite`) and NoSQL (`LiteDB`) databases
 
 ## Display and Multimedia
 
 Drive screens, capture images, and build rich user interfaces.
 
-- [Displays](feature/displays.mdx): parallel TFT and serial displays
-- [Graphics](feature/graphics/index.mdx): **Canvas** (primitives + raw buffer export to the panel or an SPI/I2C display), **Widget** (Button, Label, Chart, and more), **Alternatives** (SkiaSharp, ImageSharp, Pillow, Microsoft.Maui.Graphics)
-- [Touch Screen](feature/touch-screen.mdx): capacitive and resistive touch input
+- [Displays](features/displays.mdx): parallel TFT and serial displays
+- [Graphics](features/graphics/index.mdx): **Canvas** (primitives + raw buffer export to the panel or an SPI/I2C display), **Widget** (Button, Label, Chart, and more), **Alternatives** (SkiaSharp, ImageSharp, Pillow, Microsoft.Maui.Graphics)
+- [Touch Screen](features/touch-screen.mdx): capacitive and resistive touch input
 - **Camera**: USB webcams and the on-board parallel camera interface *(coming soon)*
 
 ## System Services
@@ -114,6 +114,6 @@ Drive screens, capture images, and build rich user interfaces.
 Keep a device running, on time, and up to date.
 
 - **In-Field Update**: update the system from SD or USB memory *(coming soon)*
-- [Power Management](feature/power-management.mdx): reboot, shutdown, wake on pin or RTC alarm
-- [Watchdog](feature/watchdog-timer.mdx): reset the system if it locks up
-- [Real Time Clock](feature/real-time-clock.mdx): keep time while the system is powered off
+- [Power Management](features/power-management.mdx): reboot, shutdown, wake on pin or RTC alarm
+- [Watchdog](features/watchdog-timer.mdx): reset the system if it locks up
+- [Real Time Clock](features/real-time-clock.mdx): keep time while the system is powered off

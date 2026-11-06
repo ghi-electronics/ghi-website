@@ -1,0 +1,152 @@
+---
+title: "CAN"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Controller Area Network (CAN) is a serial bus with built-in error
+checking and retransmission, commonly used in automotive and industrial
+systems. The wiring is typically two differential wires (CAN-H and
+CAN-L); the bus needs a 120 Ω termination resistor at each end.
+
+![CAN linear bus](/img/docs/endpoint/can-bus.png)
+
+Endpoint uses **`Iot.Device.SocketCan.CanRaw`** from .NET IoT for the
+actual send/receive. The only Endpoint-specific step is calling
+`CanController.Initialize(port, bitrate)` first, which muxes the port's
+TX/RX pins and brings the `canN` interface up at the chosen bitrate.
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+using System.Device.Can;
+using Iot.Device.SocketCan;
+using GHIElectronics.Endpoint.Core;
+
+// Bring up CAN1 at 500 kbit/s
+CanController.Initialize(EPDomino24.Can.Can1, bitrate: 500_000);
+
+// Send a frame with the standard .NET IoT API
+using var can = new CanRaw(EPDomino24.Can.Can1);
+can.WriteFrame(new byte[] { 11, 22, 33 }, new CanId { Standard = 0x123 });
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+Python has no Endpoint CAN device package: use **python-can** for the
+I/O. Endpoint only has to claim the port's pins and set the bitrate
+with `EPM815.Can.Initialize`.
+
+```python
+import can
+from GHIElectronics.Endpoint.Core import EPM815, EPDomino24
+
+# Bring up CAN1 at 500 kbit/s
+EPM815.Can.Initialize(EPDomino24.Can.Can1, 500_000)
+
+# Send a frame with python-can
+with can.Bus(interface="socketcan", channel=EPDomino24.Can.Can1) as bus:
+    bus.send(can.Message(arbitration_id=0x123, data=[11, 22, 33],
+                         is_extended_id=False))
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+#include <array>
+#include <cstdint>
+#include <endpoint/Can.h>
+#include <endpoint/EPDomino24.h>
+
+using namespace GHIElectronics::Endpoint::Core;
+using namespace GHIElectronics::Endpoint::Devices::Can;
+
+// Bring up CAN1 at 500 kbit/s
+EPM815::Can::Initialize(EPDomino24::Can::Can1, 500'000);
+
+// Send a frame
+CanRaw can(EPDomino24::Can::Can1);
+can.WriteFrame(std::array<uint8_t, 3>{11, 22, 33}, CanId{.Standard = 0x123});
+```
+
+</TabItem>
+</Tabs>
+
+Read frames in a loop:
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+using var can = new CanRaw(EPDomino24.Can.Can1);
+while (true) {
+    var data = new byte[8];
+    if (can.TryReadFrame(data, out int length, out CanId id)) {
+        Console.WriteLine($"ID=0x{id.Value:X3} len={length} data={BitConverter.ToString(data, 0, length)}");
+    }
+}
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+with can.Bus(interface="socketcan", channel=EPDomino24.Can.Can1) as bus:
+    for message in bus:
+        print(f"ID=0x{message.arbitration_id:X3} len={message.dlc} "
+              f"data={message.data.hex('-')}")
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+CanRaw can(EPDomino24::Can::Can1);
+while (true) {
+    std::array<uint8_t, 8> data{};
+    int length = 0;
+    CanId id;
+    if (can.TryReadFrame(data, length, id)) {
+        std::printf("ID=0x%03X len=%d\n", id.Value(), length);
+    }
+}
+```
+
+</TabItem>
+</Tabs>
+
+When you are done, release the port's pins:
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+CanController.UnInitialize(EPDomino24.Can.Can1);
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+EPM815.Can.UnInitialize(EPDomino24.Can.Can1)
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+EPM815::Can::UnInitialize(EPDomino24::Can::Can1);
+```
+
+</TabItem>
+</Tabs>
+
+:::tip
+`CanController` is chip-neutral; the same call works on any supported
+module. The port constant (`EPDomino24.Can.Can1`) is board-specific and
+lists only the ports actually bonded on EP-Domino24.
+:::

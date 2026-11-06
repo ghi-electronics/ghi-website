@@ -1,0 +1,61 @@
+---
+title: "Power Management"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+There are multiple ways to put a system in different power modes to save on power consumption.
+
+Endpoint currently only support complete shutdown.
+
+Both [Real Time Clock](real-time-clock.mdx) and one of the wakeup pins can be used to wakeup the system from shutdown.
+
+:::note
+Power shutdown and wake-up is currently exposed only through the .NET
+`GHIElectronics.Endpoint.Native.Power` API. A Python / C++ equivalent is
+planned; for now, use .NET from any of the three language workflows (or
+drive it from a short C# helper).
+:::
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+using GHIElectronics.Endpoint.Native;
+using GHIElectronics.Endpoint.Devices.Rtc;
+
+var rtc = new RtcController();
+var dt = DateTime.Now;
+rtc.Now = dt;
+Console.WriteLine("rtc = " + rtc.Now);
+Console.WriteLine("system = " + DateTime.Now);
+Power.EnableWakeup(DateTime.Now.AddSeconds(30), WakeupPin.PA0);
+Console.WriteLine("Wakeup = " + DateTime.Now.AddSeconds(30).ToString());
+Power.Shutdown();
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+# Power.Shutdown / Power.EnableWakeup are not yet exposed in the Python
+# GHIElectronics.Endpoint.Core package. Use the .NET API, or invoke a
+# short C# helper from Python until the Python binding ships.
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+// Power::Shutdown / Power::EnableWakeup are not yet exposed in the C++
+// endpoint headers. Use the .NET API, or invoke a short C# helper from
+// C++ until the C++ binding ships.
+```
+
+</TabItem>
+</Tabs>
+
+:::tip
+Shutdown is brings the system down completely. Any unsaved files will be lost.
+:::

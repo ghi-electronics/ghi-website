@@ -1,0 +1,79 @@
+---
+title: "Watchdog"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+A watchdog timer is used to reset the system if the system fails or locks up.
+
+It is recommended to run the watchdog inside a thread in the application.
+
+Max timeout is 131 seconds.
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+using GHIElectronics.Endpoint.Core;
+using GHIElectronics.Endpoint.Devices.Watchdog;
+
+using var watchdog = WatchdogController.FromName(EPM815.Watchdog.Id);
+
+watchdog.Enable(TimeSpan.FromSeconds(10));   // 10 seconds
+var cnt = 0;
+while (true) {
+    Console.WriteLine("cnt: " + cnt++);
+    Thread.Sleep(1000);
+
+    watchdog.Reset();
+}
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import datetime, time
+from GHIElectronics.Endpoint.Core import EPM815
+from GHIElectronics.Endpoint.Devices.Watchdog import WatchdogController
+
+watchdog = WatchdogController.FromName(EPM815.Watchdog.Id)
+
+watchdog.Enable(datetime.timedelta(seconds=10))   # 10 seconds
+cnt = 0
+while True:
+    print("cnt:", cnt)
+    cnt += 1
+    time.sleep(1)
+
+    watchdog.Reset()
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+#include <chrono>
+#include <cstdio>
+#include <thread>
+#include <endpoint/Watchdog.h>
+#include <endpoint/EPDomino24.h>
+
+using namespace GHIElectronics::Endpoint::Core;
+using namespace GHIElectronics::Endpoint::Devices::Watchdog;
+
+auto watchdog = WatchdogController::FromName(EPM815::Watchdog::Id);
+
+watchdog.Enable(std::chrono::seconds(10));   // 10 seconds
+int cnt = 0;
+while (true) {
+    std::printf("cnt: %d\n", cnt++);
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+
+    watchdog.Reset();
+}
+```
+
+</TabItem>
+</Tabs>

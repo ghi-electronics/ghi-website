@@ -2,8 +2,29 @@
 title: Limitations
 ---
 
-Endpoint runs full .NET, Python, and C/C++, but it is still an embedded
-board. A few practical limits to keep in mind:
+Endpoint is designed to give you the full developer experience of .NET,
+Python, and C/C++ on a small, production-ready board. Depending on where
+you are coming from, the shape of the system feels different:
 
-- **Memory and processing power**: still an embedded board, not a desktop; the CPU and RAM budget are a small fraction of what a PC gives you, so watch allocations in tight loops and prefer streaming over loading everything at once.
-- **Python packages that build at install time**: packages distributed only as source (no pre-built `aarch64` wheel on PyPI) cannot be installed, because the board does not include a build toolchain; pure-Python packages and anything that ships an `aarch64` wheel install normally.
+- **Coming from microcontrollers**: Endpoint gives you what feels like
+  **unlimited resources**. A full operating system, a managed runtime
+  (.NET and Python), a complete standard library, a real file system, a
+  TCP/IP stack, and multithreading are all available out of the box.
+  Projects that would require careful byte-counting on a traditional MCU
+  typically fit comfortably without any special tuning.
+
+- **Coming from desktop or server development**: you get the **full
+  language experience** you already know. The same .NET, Python, and
+  C/C++ toolchains, the same standard libraries, the same debugging
+  flow. The one difference worth planning for is **available memory**:
+  it is generous for embedded workloads but smaller than a PC, so keep
+  memory use in mind for in-memory caches, image processing, or large
+  data structures, and prefer streaming over loading an entire dataset
+  at once.
+
+## Python package installation
+
+Python packages that are distributed only as source (no pre-built
+`aarch64` wheel on PyPI) cannot be installed on the board, because the
+board does not ship with a build toolchain. Pure-Python packages and
+anything that provides an `aarch64` wheel install normally with `pip`.
