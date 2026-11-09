@@ -298,9 +298,17 @@ driver is constructed directly.
 
 ### Using a ready-made driver
 
-GHI Electronics publishes drivers for common panels as .NET NuGet packages
-([source on GitHub](https://github.com/ghi-electronics/endpoint-drivers)).
-For example, the HiLetgo ILI9341 240x320 SPI TFT:
+GHI Electronics publishes a driver for the HiLetgo ILI9341 240x320 SPI
+TFT in all three languages. Source on GitHub:
+
+- **.NET** &mdash; [`GHIElectronics.Endpoint.Drivers.HiLetgo.ILI9341`](https://github.com/ghi-electronics/endpoint-drivers/tree/main/dotnet/GHIElectronics.Endpoint.Drivers/HiLetgo/GHIElectronics.Endpoint.Drivers.HiLetgo.ILI9341) (NuGet package)
+- **Python** &mdash; [`ili9341.py`](https://github.com/ghi-electronics/endpoint-drivers/tree/main/python/GHIElectronics.Endpoint.Drivers/HiLetgo/GHIElectronics.Endpoint.Drivers.HiLetgo.ILI9341) (drop the file into the project)
+- **C/C++** &mdash; [`Ili9341.h`](https://github.com/ghi-electronics/endpoint-drivers/tree/main/cpp/GHIElectronics.Endpoint.Drivers/HiLetgo/GHIElectronics.Endpoint.Drivers.HiLetgo.ILI9341) (header-only, drop the file into the project)
+
+All three use the same `Initialize` + `Flush` pattern.
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
 
 ```csharp
 using System.Device.Gpio;
@@ -317,7 +325,7 @@ using var tft = new ILI9341Controller(
     dc:    EPDomino24.Gpio.Pin.PA10,
     reset: EPDomino24.Gpio.Pin.PF4,
     gpio:  gpio);
-
+tft.SwapRedBlue = true;        // set for modules where yellow shows as cyan
 tft.Enable();
 
 // Pixel buffer in RGB565 (width * height * 2 bytes)
@@ -326,9 +334,93 @@ var pixels = new byte[tft.Width * tft.Height * 2];
 tft.Flush(pixels);
 ```
 
-From Python or C/C++, drive the same panel by writing a custom
-`DisplayController` subclass (next section) on top of the standard SPI
-APIs.
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+from GHIElectronics.Endpoint.Core import EPDomino24, EPM815, SpiController
+from GHIElectronics.Endpoint.Devices.Spi import SpiDevice, SpiConnectionSettings, SpiMode
+from GHIElectronics.Endpoint.Devices.Gpio import GpioController
+
+from ili9341 import Ili9341        # see driver section below
+
+SpiController.Initialize(EPDomino24.Spi.Spi1, bufferSize=4096)
+settings = SpiConnectionSettings(EPDomino24.Spi.Spi1)
+settings.Mode = SpiMode.Mode0
+settings.ClockFrequency = 10_000_000
+spi = SpiDevice.Create(settings)
+
+gpio = GpioController()
+tft = Ili9341(gpio, spi,
+              cs_pin=EPM815.Gpio.Pin.PA14,
+              dc_pin=EPM815.Gpio.Pin.PA10,
+              rst_pin=EPM815.Gpio.Pin.PF4,
+              swap_red_blue=True)   # set for modules where yellow shows as cyan
+tft.initialize()
+
+# Pixel buffer in RGB565 (width * height * 2 bytes)
+pixels = bytes(tft.width * tft.height * 2)
+# ... fill the buffer ...
+tft.flush(pixels)
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+#include <endpoint.h>
+#include <endpoint/SpiController.h>
+#include "Ili9341.h"                // see driver section below
+
+namespace Core = GHIElectronics::Endpoint::Core;
+namespace Gpio = GHIElectronics::Endpoint::Devices::Gpio;
+namespace Spi  = GHIElectronics::Endpoint::Devices::Spi;
+
+Core::SpiController::Initialize(Core::EPDomino24::Spi::Spi1, /*bufferSize*/ 4096);
+Spi::SpiConnectionSettings settings(Core::EPDomino24::Spi::Spi1);
+settings.Mode = Spi::SpiMode::Mode0;
+settings.ClockFrequency = 10'000'000;
+auto spi = Spi::SpiDevice::Create(settings);
+
+Gpio::GpioController gpio;
+Ili9341 tft(gpio, spi,
+            /*cs*/  Core::EPM815::Gpio::Pin::PA14,
+            /*dc*/  Core::EPM815::Gpio::Pin::PA10,
+            /*rst*/ Core::EPM815::Gpio::Pin::PF4);
+tft.SwapRedBlue(true);              // set for modules where yellow shows as cyan
+tft.Initialize();
+
+// Pixel buffer in RGB565 (width * height * 2 bytes)
+std::vector<uint8_t> pixels(tft.Width() * tft.Height() * 2);
+// ... fill the buffer ...
+tft.Flush(pixels);
+```
+
+</TabItem>
+</Tabs>
+
+:::note Wiring gotchas (worth knowing even with the driver)
+- **Chip select** is driven by a GPIO, not by the SPI controller's hardware NSS.
+  The driver opens the pin you pass and toggles it around each transaction.
+  On .NET, `SpiConnectionSettings` needs `chipSelectLine: 0` explicitly —
+  Microsoft's Linux SPI stack does not accept `-1`.
+- **Data / Command** pin: ILI9341 distinguishes commands from pixel data
+  by a separate GPIO (D/C). Low = command byte, high = data byte.
+- **Reset** pin: an active-low pulse brings the chip out of reset
+  reliably at startup. Tie to 3.3 V or leave unwired only if your module
+  has an on-board reset circuit.
+- **Pixel format** on the wire is 16 bpp **big-endian**, but Canvas
+  writes RGB565 **little-endian** (ready for `/dev/fb0`). The driver
+  byte-swaps each pixel in `Flush`; you never see the raw bytes.
+- **Red / Blue swap**: some HiLetgo and eBay modules have the physical
+  color filter wired as BGR regardless of what the chip's MADCTL bit
+  says, so yellow renders as cyan and red as blue. Set
+  `SwapRedBlue = true` for those modules.
+- **Backlight** on most 2.2"–2.8" ILI9341 modules has a current-limit
+  resistor on board; tie LED to +3.3 V for always-on, or drive from a
+  PWM pin if you want to dim it.
+:::
+
 
 ### Writing your own driver
 
