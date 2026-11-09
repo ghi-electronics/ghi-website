@@ -46,15 +46,15 @@ while (true) {
 <TabItem value="python" label="Python">
 
 Python uses **pyserial** for the actual I/O. Endpoint only has to claim
-the port's pins first with `EPM815.SerialPort.Initialize`.
+the port's pins first with `SerialPortController.Initialize`.
 
 ```python
 import time
 import serial
-from GHIElectronics.Endpoint.Core import EPM815, EPDomino24
+from GHIElectronics.Endpoint.Core import EPDomino24, SerialPortController
 
 # Claim the port's pins
-EPM815.SerialPort.Initialize(EPDomino24.SerialPort.Uart3)
+SerialPortController.Initialize(EPDomino24.SerialPort.Uart3)
 
 # Open with pyserial
 with serial.Serial(EPDomino24.SerialPort.Uart3, baudrate=9600,
@@ -70,7 +70,7 @@ with serial.Serial(EPDomino24.SerialPort.Uart3, baudrate=9600,
 </TabItem>
 <TabItem value="cpp" label="C/C++">
 
-C/C++ has no dedicated Endpoint serial wrapper: call `EPM815::SerialPort::Initialize`
+C/C++ has no dedicated Endpoint serial wrapper: call `SerialPortController::Initialize`
 to claim the pins, then use the POSIX **termios** API on the port's
 device node (the port constant, e.g. `/dev/ttySTM2`, is what you pass
 to `open`).
@@ -83,13 +83,13 @@ to `open`).
 #include <fcntl.h>
 #include <termios.h>
 #include <unistd.h>
-#include <endpoint/Core.h>
+#include <endpoint/SerialPortController.h>
 #include <endpoint/EPDomino24.h>
 
 using namespace GHIElectronics::Endpoint::Core;
 
 // Claim the port's pins
-EPM815::SerialPort::Initialize(EPDomino24::SerialPort::Uart3);
+SerialPortController::Initialize(EPDomino24::SerialPort::Uart3);
 
 int fd = ::open(EPDomino24::SerialPort::Uart3, O_RDWR | O_NOCTTY | O_NONBLOCK);
 

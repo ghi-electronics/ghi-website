@@ -57,11 +57,11 @@ spi.TransferFullDuplex(write, read);
 <TabItem value="python" label="Python">
 
 ```python
-from GHIElectronics.Endpoint.Core import EPM815, EPDomino24
+from GHIElectronics.Endpoint.Core import EPDomino24, SpiController
 from GHIElectronics.Endpoint.Devices.Spi import SpiDevice, SpiConnectionSettings, SpiMode
 
 # Bring up SPI4 and claim its pins
-EPM815.Spi.Initialize(EPDomino24.Spi.Spi4)
+SpiController.Initialize(EPDomino24.Spi.Spi4)
 
 # Standard System.Device.Spi shape from here
 settings = SpiConnectionSettings(EPDomino24.Spi.Spi4, chipSelectLine=0)
@@ -80,14 +80,14 @@ with SpiDevice.Create(settings) as spi:
 ```cpp
 #include <array>
 #include <cstdint>
-#include <endpoint/Spi.h>
+#include <endpoint/SpiController.h>
 #include <endpoint/EPDomino24.h>
 
 using namespace GHIElectronics::Endpoint::Core;
 using namespace GHIElectronics::Endpoint::Devices::Spi;
 
 // Bring up SPI4 and claim its pins
-EPM815::Spi::Initialize(EPDomino24::Spi::Spi4);
+SpiController::Initialize(EPDomino24::Spi::Spi4);
 
 // Standard System.Device.Spi shape from here
 SpiConnectionSettings settings(EPDomino24::Spi::Spi4, 0);

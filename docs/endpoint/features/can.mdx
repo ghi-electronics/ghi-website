@@ -38,14 +38,14 @@ can.WriteFrame(new byte[] { 11, 22, 33 }, new CanId { Standard = 0x123 });
 
 Python has no Endpoint CAN device package: use **python-can** for the
 I/O. Endpoint only has to claim the port's pins and set the bitrate
-with `EPM815.Can.Initialize`.
+with `CanController.Initialize`.
 
 ```python
 import can
-from GHIElectronics.Endpoint.Core import EPM815, EPDomino24
+from GHIElectronics.Endpoint.Core import EPDomino24, CanController
 
 # Bring up CAN1 at 500 kbit/s
-EPM815.Can.Initialize(EPDomino24.Can.Can1, 500_000)
+CanController.Initialize(EPDomino24.Can.Can1, 500_000)
 
 # Send a frame with python-can
 with can.Bus(interface="socketcan", channel=EPDomino24.Can.Can1) as bus:
@@ -59,14 +59,14 @@ with can.Bus(interface="socketcan", channel=EPDomino24.Can.Can1) as bus:
 ```cpp
 #include <array>
 #include <cstdint>
-#include <endpoint/Can.h>
+#include <endpoint/CanController.h>
 #include <endpoint/EPDomino24.h>
 
 using namespace GHIElectronics::Endpoint::Core;
 using namespace GHIElectronics::Endpoint::Devices::Can;
 
 // Bring up CAN1 at 500 kbit/s
-EPM815::Can::Initialize(EPDomino24::Can::Can1, 500'000);
+CanController::Initialize(EPDomino24::Can::Can1, 500'000);
 
 // Send a frame
 CanRaw can(EPDomino24::Can::Can1);
@@ -132,14 +132,14 @@ CanController.UnInitialize(EPDomino24.Can.Can1);
 <TabItem value="python" label="Python">
 
 ```python
-EPM815.Can.UnInitialize(EPDomino24.Can.Can1)
+CanController.UnInitialize(EPDomino24.Can.Can1)
 ```
 
 </TabItem>
 <TabItem value="cpp" label="C/C++">
 
 ```cpp
-EPM815::Can::UnInitialize(EPDomino24::Can::Can1);
+CanController::UnInitialize(EPDomino24::Can::Can1);
 ```
 
 </TabItem>

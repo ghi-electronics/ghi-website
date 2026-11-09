@@ -44,11 +44,11 @@ Console.WriteLine($"0x2A = {read[0]:X2}");
 <TabItem value="python" label="Python">
 
 ```python
-from GHIElectronics.Endpoint.Core import EPM815, EPDomino24
+from GHIElectronics.Endpoint.Core import EPDomino24, I2cController
 from GHIElectronics.Endpoint.Devices.I2c import I2cDevice, I2cConnectionSettings
 
 # Bring up I2C6 at the default 400 kHz
-EPM815.I2c.Initialize(EPDomino24.I2c.I2c6)
+I2cController.Initialize(EPDomino24.I2c.I2c6)
 
 # Open the device and talk to it with the standard API
 settings = I2cConnectionSettings(EPDomino24.I2c.I2c6, 0x1C)
@@ -69,14 +69,14 @@ with I2cDevice.Create(settings) as i2c:
 #include <array>
 #include <cstdint>
 #include <cstdio>
-#include <endpoint/I2c.h>
+#include <endpoint/I2cController.h>
 #include <endpoint/EPDomino24.h>
 
 using namespace GHIElectronics::Endpoint::Core;
 using namespace GHIElectronics::Endpoint::Devices::I2c;
 
 // Bring up I2C6 at the default 400 kHz
-EPM815::I2c::Initialize(EPDomino24::I2c::I2c6);
+I2cController::Initialize(EPDomino24::I2c::I2c6);
 
 // Open the device and talk to it with the standard API
 auto i2c = I2cDevice::Create(I2cConnectionSettings(EPDomino24::I2c::I2c6, 0x1C));
@@ -106,14 +106,14 @@ I2cController.Initialize(EPDomino24.I2c.I2c6, frequency: 100_000);   // 100 kHz
 <TabItem value="python" label="Python">
 
 ```python
-EPM815.I2c.Initialize(EPDomino24.I2c.I2c6, 100_000)   # 100 kHz
+I2cController.Initialize(EPDomino24.I2c.I2c6, 100_000)   # 100 kHz
 ```
 
 </TabItem>
 <TabItem value="cpp" label="C/C++">
 
 ```cpp
-EPM815::I2c::Initialize(EPDomino24::I2c::I2c6, 100'000);   // 100 kHz
+I2cController::Initialize(EPDomino24::I2c::I2c6, 100'000);   // 100 kHz
 ```
 
 </TabItem>

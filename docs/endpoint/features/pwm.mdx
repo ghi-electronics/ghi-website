@@ -43,16 +43,16 @@ pwm.Stop();
 
 ```python
 import time
-from GHIElectronics.Endpoint.Core import EPM815, EPDomino24
+from GHIElectronics.Endpoint.Core import EPDomino24, PwmController
 from GHIElectronics.Endpoint.Devices.Pwm import PwmChannel
 
 # Buzzer pin on EP-Domino24
 pin = EPDomino24.Pwm.Pin.PF9
 
-EPM815.Pwm.Initialize(pin)
+PwmController.Initialize(pin)
 
-with PwmChannel.Create(EPM815.Pwm.GetChipId(pin),
-                      EPM815.Pwm.GetChannelId(pin),
+with PwmChannel.Create(PwmController.GetChipId(pin),
+                      PwmController.GetChannelId(pin),
                       1000, 0.25) as pwm:
     pwm.Start()
     time.sleep(1)
@@ -65,7 +65,7 @@ with PwmChannel.Create(EPM815.Pwm.GetChipId(pin),
 ```cpp
 #include <chrono>
 #include <thread>
-#include <endpoint/Pwm.h>
+#include <endpoint/PwmController.h>
 #include <endpoint/EPDomino24.h>
 
 using namespace GHIElectronics::Endpoint::Core;
@@ -74,10 +74,10 @@ using namespace GHIElectronics::Endpoint::Devices::Pwm;
 // Buzzer pin on EP-Domino24
 constexpr int pin = EPDomino24::Pwm::Pin::PF9;
 
-EPM815::Pwm::Initialize(pin);
+PwmController::Initialize(pin);
 
-auto pwm = PwmChannel::Create(EPM815::Pwm::GetChipId(pin),
-                              EPM815::Pwm::GetChannelId(pin),
+auto pwm = PwmChannel::Create(PwmController::GetChipId(pin),
+                              PwmController::GetChannelId(pin),
                               1000, 0.25);
 pwm.Start();
 std::this_thread::sleep_for(std::chrono::milliseconds(1000));
