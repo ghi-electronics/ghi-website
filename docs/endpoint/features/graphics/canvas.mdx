@@ -95,17 +95,17 @@ If the Canvas's `PixelFormat` doesn't match the panel's (RGB565),
 Same Canvas, different destination. The sample below uses an
 `Ili9341` driver class that wraps the chip-select / data-command / reset
 pins, the init sequence, and the per-frame pixel re-encode behind a
-single `Flush` call — your Canvas code looks the same as it does for
+single `Flush` call. Your Canvas code looks the same as it does for
 the on-board panel. Source on GitHub:
 
-- **.NET** &mdash; [`GHIElectronics.Endpoint.Drivers.HiLetgo.ILI9341`](https://github.com/ghi-electronics/endpoint-drivers/tree/main/dotnet/GHIElectronics.Endpoint.Drivers/HiLetgo/GHIElectronics.Endpoint.Drivers.HiLetgo.ILI9341) (NuGet package)
-- **Python** &mdash; [`ili9341.py`](https://github.com/ghi-electronics/endpoint-drivers/tree/main/python/GHIElectronics.Endpoint.Drivers/HiLetgo/GHIElectronics.Endpoint.Drivers.HiLetgo.ILI9341) (drop the file into the project)
-- **C/C++** &mdash; [`Ili9341.h`](https://github.com/ghi-electronics/endpoint-drivers/tree/main/cpp/GHIElectronics.Endpoint.Drivers/HiLetgo/GHIElectronics.Endpoint.Drivers.HiLetgo.ILI9341) (header-only, drop the file into the project)
+- **.NET**: [`GHIElectronics.Endpoint.Drivers.HiLetgo.ILI9341`](https://github.com/ghi-electronics/endpoint-drivers/tree/main/dotnet/GHIElectronics.Endpoint.Drivers/HiLetgo/GHIElectronics.Endpoint.Drivers.HiLetgo.ILI9341) (NuGet package)
+- **Python**: [`ili9341.py`](https://github.com/ghi-electronics/endpoint-drivers/tree/main/python/GHIElectronics.Endpoint.Drivers/HiLetgo/GHIElectronics.Endpoint.Drivers.HiLetgo.ILI9341) (drop the file into the project)
+- **C/C++**: [`Ili9341.h`](https://github.com/ghi-electronics/endpoint-drivers/tree/main/cpp/GHIElectronics.Endpoint.Drivers/HiLetgo/GHIElectronics.Endpoint.Drivers.HiLetgo.ILI9341) (header-only, drop the file into the project)
 
 :::note Wiring an SPI display, gotchas
 - **Chip select** is driven by a GPIO, not by the SPI controller's hardware NSS.
   The driver opens the pin you pass and toggles it around each transaction.
-  On .NET, `SpiConnectionSettings` needs `chipSelectLine: 0` explicitly —
+  On .NET, `SpiConnectionSettings` needs `chipSelectLine: 0` explicitly;
   Microsoft's Linux SPI stack does not accept `-1`.
 - **Data / Command** pin: ILI9341 distinguishes commands from pixel data
   by a separate GPIO (D/C). Low = command byte, high = data byte.

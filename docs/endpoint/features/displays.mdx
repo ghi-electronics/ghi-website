@@ -301,9 +301,9 @@ driver is constructed directly.
 GHI Electronics publishes a driver for the HiLetgo ILI9341 240x320 SPI
 TFT in all three languages. Source on GitHub:
 
-- **.NET** &mdash; [`GHIElectronics.Endpoint.Drivers.HiLetgo.ILI9341`](https://github.com/ghi-electronics/endpoint-drivers/tree/main/dotnet/GHIElectronics.Endpoint.Drivers/HiLetgo/GHIElectronics.Endpoint.Drivers.HiLetgo.ILI9341) (NuGet package)
-- **Python** &mdash; [`ili9341.py`](https://github.com/ghi-electronics/endpoint-drivers/tree/main/python/GHIElectronics.Endpoint.Drivers/HiLetgo/GHIElectronics.Endpoint.Drivers.HiLetgo.ILI9341) (drop the file into the project)
-- **C/C++** &mdash; [`Ili9341.h`](https://github.com/ghi-electronics/endpoint-drivers/tree/main/cpp/GHIElectronics.Endpoint.Drivers/HiLetgo/GHIElectronics.Endpoint.Drivers.HiLetgo.ILI9341) (header-only, drop the file into the project)
+- **.NET**: [`GHIElectronics.Endpoint.Drivers.HiLetgo.ILI9341`](https://github.com/ghi-electronics/endpoint-drivers/tree/main/dotnet/GHIElectronics.Endpoint.Drivers/HiLetgo/GHIElectronics.Endpoint.Drivers.HiLetgo.ILI9341) (NuGet package)
+- **Python**: [`ili9341.py`](https://github.com/ghi-electronics/endpoint-drivers/tree/main/python/GHIElectronics.Endpoint.Drivers/HiLetgo/GHIElectronics.Endpoint.Drivers.HiLetgo.ILI9341) (drop the file into the project)
+- **C/C++**: [`Ili9341.h`](https://github.com/ghi-electronics/endpoint-drivers/tree/main/cpp/GHIElectronics.Endpoint.Drivers/HiLetgo/GHIElectronics.Endpoint.Drivers.HiLetgo.ILI9341) (header-only, drop the file into the project)
 
 All three use the same `Initialize` + `Flush` pattern.
 
@@ -402,7 +402,7 @@ tft.Flush(pixels);
 :::note Wiring gotchas (worth knowing even with the driver)
 - **Chip select** is driven by a GPIO, not by the SPI controller's hardware NSS.
   The driver opens the pin you pass and toggles it around each transaction.
-  On .NET, `SpiConnectionSettings` needs `chipSelectLine: 0` explicitly —
+  On .NET, `SpiConnectionSettings` needs `chipSelectLine: 0` explicitly;
   Microsoft's Linux SPI stack does not accept `-1`.
 - **Data / Command** pin: ILI9341 distinguishes commands from pixel data
   by a separate GPIO (D/C). Low = command byte, high = data byte.
