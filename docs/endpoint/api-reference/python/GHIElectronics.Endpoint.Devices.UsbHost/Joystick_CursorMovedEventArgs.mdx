@@ -1,0 +1,55 @@
+---
+title: "Joystick.CursorMovedEventArgs Class"
+sidebar_label: "Joystick.CursorMovedEventArgs"
+---
+
+# CursorMovedEventArgs Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
+
+The events args for the CursorMoved event.
+
+```python
+class CursorMovedEventArgs(EventArgs): ...
+```
+
+## Constructors
+
+### CursorMovedEventArgs()
+
+```python
+def __init__(self):
+```
+
+## Properties
+
+### Delta
+
+```python
+Delta: Position  # @property
+```
+
+The change from the last position.
+
+**Returns** `Position`
+
+### NewPosition
+
+```python
+NewPosition: Position  # @property
+```
+
+The new position of the cursor.
+
+**Returns** `Position`
+
+### Which
+
+```python
+Which: Cursor  # @property
+```
+
+Which cursor moved.
+
+**Returns** `Cursor`
+

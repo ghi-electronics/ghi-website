@@ -1,0 +1,110 @@
+---
+title: "NativeRpmsgHelper Class"
+sidebar_label: "NativeRpmsgHelper"
+---
+
+# NativeRpmsgHelper Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+Low-level helper used by other libraries to talk to the firmware's hardware timing helper. Data is exchanged as 32-bit words in fixed-size blocks of `NativeRpmsgHelper.BlockSize` words. Most applications never call this directly; `Core.EPM815`-based classes such as `DigitalSignalController` use it internally.
+
+```python
+class NativeRpmsgHelper: ...
+```
+
+## Nested Types
+
+| Type | Kind | Summary |
+|---|---|---|
+| [NativeRpmsgHelper.DataReceivedEventHandler](./NativeRpmsgHelper_DataReceivedEventHandler.mdx) | Delegate | Signature for the `NativeRpmsgHelper.DataReceived` event. |
+
+## Properties
+
+### BlockDelay
+
+```python
+BlockDelay: int  # @property / @setter
+```
+
+Delay in milliseconds between consecutive `NativeRpmsgHelper.Send` blocks (default 5).
+
+**Returns** `int`
+
+### BlockSize
+
+```python
+BlockSize: int  # @property
+```
+
+Number of 32-bit words in one message block (64).
+
+**Returns** `int`
+
+## Methods
+
+### Acquire()
+
+```python
+@staticmethod
+def Acquire() -> int:
+```
+
+Opens the helper endpoint and reserves it for this process. Call before `NativeRpmsgHelper.Send` or `NativeRpmsgHelper.StartReceiving`.
+
+**Returns** `int`: Zero on success, a negative error code otherwise.
+
+### Ping()
+
+```python
+@staticmethod
+def Ping() -> int:
+```
+
+Sends a ping message to the remote core and waits for a reply, as a quick link check.
+
+**Returns** `int`: Zero when the remote responds, a negative error code otherwise.
+
+### Release()
+
+```python
+@staticmethod
+def Release() -> int:
+```
+
+Releases the helper endpoint previously opened by `NativeRpmsgHelper.Acquire`.
+
+**Returns** `int`: Zero on success, a negative error code otherwise.
+
+### Send(uint[] data, int offset, int count)
+
+```python
+@staticmethod
+def Send(data: list[int], offset: int, count: int) -> int:
+```
+
+Sends `count` 32-bit words from `data` starting at `offset`. The transfer is split into blocks of `NativeRpmsgHelper.BlockSize` words with `NativeRpmsgHelper.BlockDelay` milliseconds between blocks.
+
+**Returns** `int`: The number of words actually written.
+
+### StartReceiving()
+
+```python
+@staticmethod
+def StartReceiving() -> Task:
+```
+
+Starts the background receive loop. The loop reads whole messages from the helper endpoint and raises `NativeRpmsgHelper.DataReceived` for each. Safe to call more than once: only the first call starts a loop; subsequent calls return a completed task.
+
+**Returns** `Task`
+
+## Events
+
+### DataReceived
+
+```python
+DataReceived  # += / -= handler
+```
+
+Raised from the receive loop started by `NativeRpmsgHelper.StartReceiving`.
+

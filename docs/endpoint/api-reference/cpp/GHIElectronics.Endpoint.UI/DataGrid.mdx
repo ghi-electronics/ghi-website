@@ -1,0 +1,71 @@
+---
+title: "DataGrid Class"
+sidebar_label: "DataGrid"
+---
+
+# DataGrid Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Simple grid of text cells (standard WPF widget name; TinyCLR-shape API). Call `DataGrid.SetSize` to allocate rows and columns, then `DataGrid.SetCell` to fill each cell.
+
+```cpp
+class DataGrid : public Widget {};
+```
+
+## Constructors
+
+### DataGrid(Widget parent)
+
+```cpp
+DataGrid(const Widget& parent);
+```
+
+Create a data grid inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Methods
+
+### SetCell(int row, int column, string text)
+
+```cpp
+void SetCell(int32_t row, int32_t column, const std::string& text);
+```
+
+Set the text in a single cell.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `row` | `int` | 0-based row index. |
+| `column` | `int` | 0-based column index. |
+| `text` | `string` | Cell contents; `null` is treated as empty. |
+
+### SetColumnWidth(int column, int px)
+
+```cpp
+void SetColumnWidth(int32_t column, int32_t px);
+```
+
+Set a single column's width in pixels.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `column` | `int` | 0-based column index. |
+| `px` | `int` | Width in pixels. |
+
+### SetSize(int columns, int rows)
+
+```cpp
+void SetSize(int32_t columns, int32_t rows);
+```
+
+Allocate the grid dimensions. Must be called before `DataGrid.SetCell`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `columns` | `int` | Number of columns. |
+| `rows` | `int` | Number of rows. |
+

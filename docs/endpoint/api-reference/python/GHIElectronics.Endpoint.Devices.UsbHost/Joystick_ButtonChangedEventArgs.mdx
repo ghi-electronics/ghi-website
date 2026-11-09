@@ -1,0 +1,45 @@
+---
+title: "Joystick.ButtonChangedEventArgs Class"
+sidebar_label: "Joystick.ButtonChangedEventArgs"
+---
+
+# ButtonChangedEventArgs Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
+
+The events args for the ButtonPressed and ButtonReleased events.
+
+```python
+class ButtonChangedEventArgs(EventArgs): ...
+```
+
+## Constructors
+
+### ButtonChangedEventArgs()
+
+```python
+def __init__(self):
+```
+
+## Properties
+
+### State
+
+```python
+State: ButtonState  # @property
+```
+
+The new state of the button.
+
+**Returns** `ButtonState`
+
+### Which
+
+```python
+Which: int  # @property
+```
+
+The index of the changed button.
+
+**Returns** `int`
+

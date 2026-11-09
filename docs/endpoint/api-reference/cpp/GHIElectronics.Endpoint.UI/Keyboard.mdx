@@ -1,0 +1,51 @@
+---
+title: "Keyboard Class"
+sidebar_label: "Keyboard"
+---
+
+# Keyboard Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Virtual on-screen keyboard. Attach to a `UI.TextBox` via `Keyboard.SetTarget` so taps on keys type into it. Positions itself at the bottom half of the display by default; override via inherited X / Y / Width / Height.
+
+```cpp
+class Keyboard : public Widget {};
+```
+
+## Constructors
+
+### Keyboard(Widget parent)
+
+```cpp
+Keyboard(const Widget& parent);
+```
+
+Create a virtual keyboard inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Methods
+
+### ClearTarget()
+
+```cpp
+void ClearTarget();
+```
+
+Detach any current target so key presses go nowhere.
+
+### SetTarget(TextBox textbox)
+
+```cpp
+void SetTarget(const TextBox& textbox);
+```
+
+Route key presses into `textbox`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `textbox` | `TextBox` | Target text box; its text updates on each key. |
+

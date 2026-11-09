@@ -1,0 +1,89 @@
+---
+title: "CameraControlValue Class"
+sidebar_label: "CameraControlValue"
+---
+
+# CameraControlValue Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Camera`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Camera`
+
+A camera control's range and value, in the camera's own units.
+
+```cpp
+class CameraControlValue {};
+```
+
+## Properties
+
+### Control
+
+```cpp
+CameraControl Control() const;
+```
+
+Which control this value describes.
+
+**Returns** `CameraControl`
+
+### DefaultValue
+
+```cpp
+int32_t DefaultValue() const;
+```
+
+Camera's own default for this control.
+
+**Returns** `int`
+
+### Maximum
+
+```cpp
+int32_t Maximum() const;
+```
+
+Highest value the camera accepts.
+
+**Returns** `int`
+
+### Minimum
+
+```cpp
+int32_t Minimum() const;
+```
+
+Lowest value the camera accepts.
+
+**Returns** `int`
+
+### Step
+
+```cpp
+int32_t Step() const;
+```
+
+Granularity between accepted values.
+
+**Returns** `int`
+
+### Value
+
+```cpp
+int32_t Value() const;
+```
+
+Current value.
+
+**Returns** `int`
+
+## Methods
+
+### ToString()
+
+```cpp
+virtual std::string ToString() override;
+```
+
+Returns a human-readable description like "Brightness 128 (0 to 255, default 128)".
+
+**Returns** `string`
+

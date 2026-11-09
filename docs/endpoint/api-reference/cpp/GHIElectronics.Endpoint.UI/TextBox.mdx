@@ -1,0 +1,63 @@
+---
+title: "TextBox Class"
+sidebar_label: "TextBox"
+---
+
+# TextBox Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Single-line editable text input. Pair with a `UI.Keyboard` for on-screen typing.
+
+```cpp
+class TextBox : public Widget {};
+```
+
+## Constructors
+
+### TextBox(Widget parent)
+
+```cpp
+TextBox(const Widget& parent);
+```
+
+Create a text box inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Properties
+
+### Placeholder
+
+```cpp
+std::string Placeholder() const;
+void Placeholder(std::string value);
+```
+
+Hint text shown when `TextBox.Text` is empty. `null` is treated as empty. Getter returns the last value set.
+
+**Returns** `string`
+
+### Text
+
+```cpp
+std::string Text() const;
+void Text(std::string value);
+```
+
+Current text content. Reads back live from LVGL (up to 255 UTF-8 bytes).
+
+**Returns** `string`
+
+## Events
+
+### ValueChanged
+
+```cpp
+Core::Event<...> ValueChanged;
+```
+
+Fires on every character insertion or deletion. Runs on the UI thread.
+

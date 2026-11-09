@@ -1,0 +1,72 @@
+---
+title: "EPM815.Spi Class"
+sidebar_label: "EPM815.Spi"
+---
+
+# Spi Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+The SPI buses bundled with EPM815, for .NET's `System.Device.Spi`. `Spi.Initialize` connects the bus's pins and loads the SPI driver; then use `SpiDevice` as usual. Each constant is the bus number for `SpiConnectionSettings` (`/dev/spidevN.0`), fixed by the firmware. Chip select is not driven by the bus: use any GPIO pin.
+
+```cpp
+class Spi {};
+```
+
+## Methods
+
+### Initialize(int bus, int bufferSize)
+
+```cpp
+static void Initialize(int32_t bus, int32_t bufferSize);
+```
+
+Connects the bus's pins and loads the SPI driver (spidev) if needed
+
+| Parameter | Type | Description |
+|---|---|---|
+| `bus` | `int` | Spi1, Spi4 or Spi5 |
+| `bufferSize` | `int` | The largest transfer in bytes. It is set when the driver loads, so for all buses: the first Initialize after boot decides it. |
+
+### UnInitialize(int bus)
+
+```cpp
+static void UnInitialize(int32_t bus);
+```
+
+Gives the bus's pins back, as they were before Initialize
+
+## Fields
+
+### DefaultBufferSize
+
+```cpp
+static constexpr int32_t DefaultBufferSize = 4096;
+```
+
+The largest transfer when none is given (the system's default)
+
+### Spi1
+
+```cpp
+static constexpr int32_t Spi1 = 0;
+```
+
+SPI1: PZ0 (SCK), PZ1 (MISO), PZ2 (MOSI); /dev/spidev0.0
+
+### Spi4
+
+```cpp
+static constexpr int32_t Spi4 = 1;
+```
+
+SPI4: PE12 (SCK), PE13 (MISO), PE14 (MOSI); /dev/spidev1.0
+
+### Spi5
+
+```cpp
+static constexpr int32_t Spi5 = 2;
+```
+
+SPI5: PF7 (SCK), PF8 (MISO), PF9 (MOSI); /dev/spidev2.0
+

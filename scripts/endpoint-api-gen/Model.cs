@@ -18,6 +18,8 @@ public sealed class TypeModel {
     public required string SidebarPath { get; init; }    // "EPM815.Gpio.Driver": enclosing type path for nested
     public required TypeKind Kind { get; init; }
     public required string CsharpSignature { get; init; }
+    public required string PythonSignature { get; init; }
+    public required string CppSignature    { get; init; }
     public required string? Summary { get; init; }
     public required string? Remarks { get; init; }
     public List<MemberModel> Constructors { get; } = new();

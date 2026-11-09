@@ -1,0 +1,106 @@
+---
+title: "EPM815.I2c Class"
+sidebar_label: "EPM815.I2c"
+---
+
+# I2c Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+The I2C buses bundled with EPM815. Use with .NET's `System.Device.I2c`. `I2c.Initialize` connects the bus's pins and sets its speed; then use `I2cDevice` as usual. Each constant is the bus number for `I2cConnectionSettings` (`/dev/i2c-N`), fixed by the firmware.
+
+```cpp
+class I2c {};
+```
+
+## Methods
+
+### GetFrequency(int bus)
+
+```cpp
+static int32_t GetFrequency(int32_t bus);
+```
+
+The bus speed in use, in Hz
+
+**Returns** `int`
+
+### Initialize(int bus, int frequency)
+
+```cpp
+static void Initialize(int32_t bus, int32_t frequency);
+```
+
+Connects the bus's pins (open drain, with the internal pull-ups on for boards without their own) and sets its speed, until the next boot
+
+| Parameter | Type | Description |
+|---|---|---|
+| `bus` | `int` | I2c1, I2c4, I2c5 or I2c6 |
+| `frequency` | `int` | The bus speed in Hz, from 10 kHz to 1 MHz |
+
+### UnInitialize(int bus)
+
+```cpp
+static void UnInitialize(int32_t bus);
+```
+
+Gives the bus's pins back, as they were before Initialize
+
+## Fields
+
+### DefaultFrequency
+
+```cpp
+static constexpr int32_t DefaultFrequency = 400000;
+```
+
+The speed when none is given: 400 kHz (fast mode)
+
+### I2c1
+
+```cpp
+static constexpr int32_t I2c1 = 0;
+```
+
+I2C1: PD12 (SCL), PD13 (SDA); /dev/i2c-0
+
+### I2c4
+
+```cpp
+static constexpr int32_t I2c4 = 2;
+```
+
+I2C4: PB6 (SCL), PF15 (SDA); /dev/i2c-2
+
+### I2c5
+
+```cpp
+static constexpr int32_t I2c5 = 1;
+```
+
+I2C5: PZ4 (SCL), PZ5 (SDA); /dev/i2c-1
+
+### I2c6
+
+```cpp
+static constexpr int32_t I2c6 = 3;
+```
+
+I2C6: PD1 (SCL), PD0 (SDA); /dev/i2c-3
+
+### MaxFrequency
+
+```cpp
+static constexpr int32_t MaxFrequency = 1000000;
+```
+
+1 MHz (fast mode plus)
+
+### MinFrequency
+
+```cpp
+static constexpr int32_t MinFrequency = 10000;
+```
+
+The slowest supported bus speed: 10 kHz.
+

@@ -1,0 +1,115 @@
+---
+title: "EPM815.Gpio.Driver Class"
+sidebar_label: "EPM815.Gpio.Driver"
+---
+
+# Driver Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+GPIO driver for .NET's `Gpio.GpioController` using the EPM815 pin numbers, on every port. Open pins are reserved so the other libraries (I2C, UART, ...) cannot take them by mistake. Every pin mode, pull-up/down and pin change event of `Gpio.GpioController` works.
+
+```cpp
+class Driver : public GpioDriver {};
+```
+
+## Constructors
+
+### Driver()
+
+```cpp
+Driver();
+```
+
+## Properties
+
+### PinCount
+
+```cpp
+
+```
+
+**Returns** `int`
+
+## Methods
+
+### AddCallbackForPinValueChangedEvent(int pinNumber, PinEventTypes eventTypes, PinChangeEventHandler callback)
+
+```cpp
+virtual void AddCallbackForPinValueChangedEvent(int32_t pinNumber, PinEventTypes eventTypes, const PinChangeEventHandler& callback) override;
+```
+
+### ClosePin(int pinNumber)
+
+```cpp
+virtual void ClosePin(int32_t pinNumber) override;
+```
+
+### Dispose(bool disposing)
+
+```cpp
+virtual void Dispose(bool disposing) override;
+```
+
+### GetPinMode(int pinNumber)
+
+```cpp
+virtual PinMode GetPinMode(int32_t pinNumber) override;
+```
+
+**Returns** `PinMode`
+
+### IsPinModeSupported(int pinNumber, PinMode mode)
+
+```cpp
+virtual bool IsPinModeSupported(int32_t pinNumber, PinMode mode) override;
+```
+
+**Returns** `bool`
+
+### OpenPin(int pinNumber)
+
+```cpp
+virtual void OpenPin(int32_t pinNumber) override;
+```
+
+### Read(int pinNumber)
+
+```cpp
+virtual PinValue Read(int32_t pinNumber) override;
+```
+
+**Returns** `PinValue`
+
+### RemoveCallbackForPinValueChangedEvent(int pinNumber, PinChangeEventHandler callback)
+
+```cpp
+virtual void RemoveCallbackForPinValueChangedEvent(int32_t pinNumber, const PinChangeEventHandler& callback) override;
+```
+
+### SetPinMode(int pinNumber, PinMode mode)
+
+```cpp
+virtual void SetPinMode(int32_t pinNumber, PinMode mode) override;
+```
+
+### SetPinMode(int pinNumber, PinMode mode, PinValue initialValue)
+
+```cpp
+virtual void SetPinMode(int32_t pinNumber, PinMode mode, PinValue initialValue) override;
+```
+
+### WaitForEvent(int pinNumber, PinEventTypes eventTypes, CancellationToken cancellationToken)
+
+```cpp
+virtual WaitForEventResult WaitForEvent(int32_t pinNumber, PinEventTypes eventTypes, CancellationToken cancellationToken) override;
+```
+
+**Returns** `WaitForEventResult`
+
+### Write(int pinNumber, PinValue value)
+
+```cpp
+virtual void Write(int32_t pinNumber, PinValue value) override;
+```
+

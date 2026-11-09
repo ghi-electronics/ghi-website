@@ -1,0 +1,47 @@
+---
+title: "Image Class"
+sidebar_label: "Image"
+---
+
+# Image Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Displays a raster image fed as raw RGB565 pixel bytes.
+
+```python
+class Image(Widget): ...
+```
+
+## Constructors
+
+### Image(Widget parent)
+
+```python
+def __init__(self, parent: Widget):
+```
+
+Create an image inside `parent`. Call `Image.SetSource` to supply pixels.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Methods
+
+### Dispose()
+
+```python
+def Dispose(self) -> None:
+```
+
+Release the pinned pixel buffer, then destroy the widget. Idempotent.
+
+### SetSource(byte[] rgb565Pixels, int width, int height)
+
+```python
+def SetSource(self, rgb565Pixels: list[int], width: int, height: int) -> None:
+```
+
+Set the image from RGB565 pixel bytes (little-endian). Width and height describe the source bitmap; use `Widget.Width`/ `Widget.Height` for displayed size (LVGL scales).
+

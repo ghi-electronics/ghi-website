@@ -1,0 +1,93 @@
+---
+title: "BaseDevice Class"
+sidebar_label: "BaseDevice"
+---
+
+# BaseDevice Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
+
+A USB device that the program uses: Keyboard, Mouse, Joystick, HidDevice, Printer or RawDevice, opened with the DeviceName that its UsbHostController event gives. Its events come on the device's own thread. When the device is unplugged, Disconnected is raised. A device stays alive until it is disposed.
+
+```python
+class BaseDevice(IDisposable): ...
+```
+
+## Nested Types
+
+| Type | Kind | Summary |
+|---|---|---|
+| [BaseDevice.DisconnectedEventHandler](./BaseDevice_DisconnectedEventHandler.mdx) | Delegate | The event handler type for when the device disconnects. |
+
+## Properties
+
+### Connected
+
+```python
+Connected: bool  # @property
+```
+
+Whether or not the device is connected.
+
+**Returns** `bool`
+
+### DeviceName
+
+```python
+DeviceName: str  # @property
+```
+
+What the device was opened with: "/dev/input/event2", "/dev/hidraw0", "/dev/usb/lp0", "/dev/bus/usb/001/005"
+
+**Returns** `string`
+
+### ProductId
+
+```python
+ProductId: int  # @property
+```
+
+The device's product id.
+
+**Returns** `ushort`
+
+### Type
+
+```python
+Type: DeviceType  # @property
+```
+
+The device's type.
+
+**Returns** `DeviceType`
+
+### VendorId
+
+```python
+VendorId: int  # @property
+```
+
+The device's vendor id.
+
+**Returns** `ushort`
+
+## Methods
+
+### Dispose()
+
+```python
+def Dispose(self) -> None:
+```
+
+Stops the device's events (one being delivered finishes first) and closes it
+
+## Events
+
+### Disconnected
+
+```python
+Disconnected  # += / -= handler
+```
+
+The event is fired when the device disconnects.
+

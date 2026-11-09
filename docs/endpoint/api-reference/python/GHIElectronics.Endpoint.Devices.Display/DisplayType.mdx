@@ -1,0 +1,22 @@
+---
+title: "DisplayType Enum"
+sidebar_label: "DisplayType"
+---
+
+# DisplayType Enum
+
+**Package:** `GHIElectronics.Endpoint.Devices.Display`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Display`
+
+Which built-in transport the display uses. `DisplayType.None` means the board has no built-in display and either (a) nothing is attached or (b) a customer subclass of `Display.DisplayController` owns the panel directly over SPI/I2C/anything else.
+
+```python
+class DisplayType(IntEnum): ...
+```
+
+## Fields
+
+| Name | Value | Description |
+|---|---|---|
+| `None` | `0` | No built-in display is attached, or a customer subclass owns the panel directly. |
+| `Parallel` | `1` | The SoC's parallel-RGB controller drives the panel through `/dev/fb0`. |
+

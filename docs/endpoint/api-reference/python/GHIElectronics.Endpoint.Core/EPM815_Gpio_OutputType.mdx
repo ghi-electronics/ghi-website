@@ -1,0 +1,22 @@
+---
+title: "EPM815.Gpio.OutputType Enum"
+sidebar_label: "EPM815.Gpio.OutputType"
+---
+
+# OutputType Enum
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+Values for the GPIO OTYPER register.
+
+```python
+class OutputType(IntEnum): ...
+```
+
+## Fields
+
+| Name | Value | Description |
+|---|---|---|
+| `PushPull` | `0` | Push-pull output (actively drives both high and low). |
+| `OpenDrain` | `1` | Open-drain output (actively drives low; released for the external pull-up to drive high). |
+

@@ -297,6 +297,71 @@ public static class Signatures {
         _ => "public"
     };
 
+    // Ordered list of a type's base-class + interfaces, filtered to ones that
+    // actually carry information (System.Object, System.ValueType, System.Enum,
+    // System.Delegate are implicit). Shared by the three per-language headers.
+    static List<Type> InterestingBases(Type t) {
+        var bases = new List<Type>();
+        if (t.BaseType is Type bt
+            && bt.FullName != "System.Object"
+            && bt.FullName != "System.ValueType"
+            && bt.FullName != "System.Enum"
+            && bt.FullName != "System.MulticastDelegate"
+            && bt.FullName != "System.Delegate") {
+            bases.Add(bt);
+        }
+        foreach (var i in t.GetInterfaces()) {
+            if (t.BaseType is Type pbt && pbt.GetInterfaces().Contains(i)) continue;
+            bases.Add(i);
+        }
+        return bases;
+    }
+
+    static bool IsDelegate(Type t) {
+        for (var b = t.BaseType; b != null; b = b.BaseType) {
+            if (b.FullName == "System.MulticastDelegate") return true;
+            if (b.FullName == "System.Delegate") return true;
+        }
+        return false;
+    }
+
+    public static string PythonTypeHeader(Type t) {
+        var name = t.Name.Split('`')[0];
+        if (t.IsEnum) {
+            var underlying = Enum.GetUnderlyingType(t);
+            var baseCls = underlying.Name is "Int64" or "UInt64" or "UInt32" ? "IntFlag" : "IntEnum";
+            return $"class {name}({baseCls}): ...";
+        }
+        if (IsDelegate(t)) {
+            var invoke = t.GetMethod("Invoke");
+            var args = invoke is null ? "" : string.Join(", ", invoke.GetParameters().Select(p => Python(p.ParameterType)));
+            var ret  = invoke is null || invoke.ReturnType.FullName == "System.Void" ? "None" : Python(invoke.ReturnType);
+            return $"{name} = Callable[[{args}], {ret}]";
+        }
+        var bases = InterestingBases(t).Select(b => Python(b)).ToList();
+        if (t.IsInterface && bases.Count == 0) bases.Add("Protocol");
+        var parents = bases.Count == 0 ? "" : "(" + string.Join(", ", bases) + ")";
+        return $"class {name}{parents}: ...";
+    }
+
+    public static string CppTypeHeader(Type t) {
+        var name = t.Name.Split('`')[0];
+        if (t.IsEnum) {
+            var u = Enum.GetUnderlyingType(t);
+            return $"enum class {name} : {Cpp(u)} {{}};";
+        }
+        if (IsDelegate(t)) {
+            var invoke = t.GetMethod("Invoke");
+            var args = invoke is null ? "" : string.Join(", ", invoke.GetParameters().Select(p => Cpp(p.ParameterType)));
+            var ret  = invoke is null ? "void" : Cpp(invoke.ReturnType);
+            return $"using {name} = std::function<{ret}({args})>;";
+        }
+        var keyword = t.IsValueType ? "struct" : "class";
+        var bases = InterestingBases(t).Select(b => "public " + Cpp(b)).ToList();
+        var parents = bases.Count == 0 ? "" : " : " + string.Join(", ", bases);
+        return $"{keyword} {name}{parents} {{}};";
+    }
+
     public static string CsharpTypeHeader(Type t) {
         var sb = new StringBuilder();
         sb.Append(t.IsPublic || t.IsNestedPublic ? "public " : "");

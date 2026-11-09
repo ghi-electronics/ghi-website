@@ -1,0 +1,32 @@
+---
+title: "API Reference (C/C++)"
+sidebar_label: Overview
+---
+
+# C/C++ API Reference
+
+Endpoint on **C/C++**: the same libraries as .NET and Python, with identical class and method names, exposed as a C++23 header library.
+
+## Standard .NET
+
+- [.NET API](https://learn.microsoft.com/en-gb/dotnet/api/)
+- [.NET IoT API](https://learn.microsoft.com/en-gb/dotnet/api/?view=iot-dotnet-latest)
+
+## Endpoint libraries
+
+| Library | Description |
+|---|---|
+| [GHIElectronics.Endpoint.Core](./GHIElectronics.Endpoint.Core/index.mdx) | Core of the Endpoint libraries: board pin names and pin setup. |
+| [GHIElectronics.Endpoint.Devices.Adc](./GHIElectronics.Endpoint.Devices.Adc/index.mdx) | Endpoint's analog inputs for .NET's System.Device.Analog. |
+| [GHIElectronics.Endpoint.Devices.Camera](./GHIElectronics.Endpoint.Devices.Camera/index.mdx) | USB webcams, parallel-port cameras (DCMI), and shared camera settings and image conversion for Endpoint. |
+| [GHIElectronics.Endpoint.Devices.Can](./GHIElectronics.Endpoint.Devices.Can.mdx) | CAN for Endpoint: .NET IoT's CanRaw (Iot.Device.SocketCan) on the board's CAN ports. EPM815.Can.Initialize sets a port up. |
+| [GHIElectronics.Endpoint.Devices.Dac](./GHIElectronics.Endpoint.Devices.Dac/index.mdx) | The DAC driver for Endpoint. |
+| [GHIElectronics.Endpoint.Devices.Display](./GHIElectronics.Endpoint.Devices.Display/index.mdx) | The display driver for Endpoint. |
+| [GHIElectronics.Endpoint.Devices.Network](./GHIElectronics.Endpoint.Devices.Network/index.mdx) | The network driver for Endpoint. |
+| [GHIElectronics.Endpoint.Devices.Rtc](./GHIElectronics.Endpoint.Devices.Rtc/index.mdx) | The RTC driver for Endpoint. |
+| [GHIElectronics.Endpoint.Devices.Storage](./GHIElectronics.Endpoint.Devices.Storage/index.mdx) | Endpoint's SD cards and USB drives: insert and remove events, mounting (System.IO's DriveInfo). |
+| [GHIElectronics.Endpoint.Devices.Touch](./GHIElectronics.Endpoint.Devices.Touch/index.mdx) | Touchscreen support for Endpoint. The Touch class is abstract: subclass it for your panel's chip (I2C, SPI, custom). Ships one concrete subclass, InputTouch, that wraps a kernel /dev/input/eventN (used for USB touchscreens). |
+| [GHIElectronics.Endpoint.Devices.UsbHost](./GHIElectronics.Endpoint.Devices.UsbHost/index.mdx) | Endpoint's USB devices: connected and disconnected events, what each device is and its port or network interface. |
+| [GHIElectronics.Endpoint.Devices.Watchdog](./GHIElectronics.Endpoint.Devices.Watchdog/index.mdx) | The watchdog driver for Endpoint. |
+| [GHIElectronics.Endpoint.Native](./GHIElectronics.Endpoint.Native/index.mdx) | Power and device information for Endpoint. |
+| [GHIElectronics.Endpoint.UI](./GHIElectronics.Endpoint.UI/index.mdx) | UI widgets for Endpoint: Button, Label, Container, Image, TextBox, Slider, CheckBox on top of the embedded LVGL in libendpoint. Pair with the GHI UI designer. |

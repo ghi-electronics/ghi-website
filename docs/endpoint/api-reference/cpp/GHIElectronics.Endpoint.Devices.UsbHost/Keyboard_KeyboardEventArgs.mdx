@@ -1,0 +1,47 @@
+---
+title: "Keyboard.KeyboardEventArgs Class"
+sidebar_label: "Keyboard.KeyboardEventArgs"
+---
+
+# KeyboardEventArgs Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
+
+Event arguments for the keyboard events.
+
+```cpp
+class KeyboardEventArgs : public EventArgs {};
+```
+
+## Constructors
+
+### KeyboardEventArgs()
+
+```cpp
+KeyboardEventArgs();
+```
+
+## Properties
+
+### Ascii
+
+```cpp
+char Ascii() const;
+void Ascii(char value);
+```
+
+The ASCII representation of the key, if available. Otherwise, this value is 0.
+
+**Returns** `char`
+
+### Which
+
+```cpp
+Key Which() const;
+void Which(Key value);
+```
+
+The Key associated with the event.
+
+**Returns** `Key`
+

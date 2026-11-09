@@ -1,0 +1,77 @@
+---
+title: "UiTimer Class"
+sidebar_label: "UiTimer"
+---
+
+# UiTimer Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Thread-safe periodic callback that runs on the UI thread. The `callback` fires inside `UI.Run`'s LVGL pump every `periodMs` milliseconds, so widget updates in it are safe (LVGL itself is single- threaded). Dispose cancels the timer. Create / SetPeriod / Dispose are safe from any thread; the body runs on the UI thread.
+
+```cpp
+class UiTimer : public IDisposable {};
+```
+
+## Constructors
+
+### UiTimer(uint periodMs, Action callback)
+
+```cpp
+UiTimer(uint32_t periodMs, const Action& callback);
+```
+
+Create a periodic timer that fires `callback` on the UI thread.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `periodMs` | `uint` | Period in milliseconds between callbacks. |
+| `callback` | `Action` | Delegate to invoke on each tick; runs on LVGL's event thread so widget updates are safe. |
+
+### UiTimer(TimeSpan period, Action callback)
+
+```cpp
+UiTimer(Core::TimeSpan period, const Action& callback);
+```
+
+Create a periodic timer with a `System.TimeSpan` period (clamped to at least 1 ms).
+
+| Parameter | Type | Description |
+|---|---|---|
+| `period` | `TimeSpan` | Period between callbacks. |
+| `callback` | `Action` | Delegate to invoke on each tick; runs on the UI thread. |
+
+## Methods
+
+### Dispose()
+
+```cpp
+void Dispose();
+```
+
+Cancel the timer and release its pinned callback. Idempotent.
+
+### SetPeriod(TimeSpan period)
+
+```cpp
+void SetPeriod(Core::TimeSpan period);
+```
+
+Change the timer period (clamped to at least 1 ms). Safe to call from any thread.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `period` | `TimeSpan` | New period. |
+
+### SetPeriod(uint periodMs)
+
+```cpp
+void SetPeriod(uint32_t periodMs);
+```
+
+Change the timer period in milliseconds. Safe to call from any thread.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `periodMs` | `uint` | New period in milliseconds. |
+

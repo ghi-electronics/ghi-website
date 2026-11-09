@@ -34,6 +34,14 @@ var skipAssemblies = new HashSet<string>(StringComparer.OrdinalIgnoreCase) {
     "GHIElectronics.Endpoint.Update",
 };
 
+// Packages that intentionally exist only on .NET and are deliberately NOT
+// mirrored in Python or C/C++ (USB-device class drivers in particular are
+// .NET-only today). They appear in the .NET tree but are hidden from the
+// Python and C/C++ trees.
+var dotnetOnlyAssemblies = new HashSet<string>(StringComparer.OrdinalIgnoreCase) {
+    "GHIElectronics.Endpoint.Devices.Usb",
+};
+
 // Individual top-level types intentionally hidden from the docs (and all
 // their nested types). Matched against the type's outermost enclosing class
 // name, e.g. "EPN256" hides EPN256, EPN256.Adc, EPN256.Gpio.Driver, etc.
@@ -85,10 +93,16 @@ if (Directory.Exists(outRoot)) {
 }
 Directory.CreateDirectory(outRoot);
 
-foreach (var a in model) {
-    Writer.WritePackage(outRoot, a, version);
+foreach (var lang in new[] { Language.Csharp, Language.Python, Language.Cpp }) {
+    var visible = (lang == Language.Csharp)
+        ? model
+        : model.Where(a => !dotnetOnlyAssemblies.Contains(a.Name)).ToList();
+    foreach (var a in visible) {
+        Writer.WritePackage(outRoot, a, lang, version);
+    }
+    Writer.WriteLanguageIndex(outRoot, lang, visible);
 }
-Writer.WriteTopIndex(outRoot, model);
+Writer.WriteHubIndex(outRoot);
 
 var typeCount = model.Sum(a => a.Types.Count);
 var memCount  = model.Sum(a => a.Types.Sum(t => t.Constructors.Count + t.Properties.Count + t.Methods.Count + t.Events.Count + t.Fields.Count + t.EnumMembers.Count));
@@ -156,6 +170,8 @@ static TypeModel BuildTypeModel(Type t, XmlDocReader? docs) {
         SidebarPath = SidebarPathOf(t),
         Kind = kind,
         CsharpSignature = Signatures.CsharpTypeHeader(t),
+        PythonSignature = Signatures.PythonTypeHeader(t),
+        CppSignature    = Signatures.CppTypeHeader(t),
         Summary = Xml.Summary(typeDoc),
         Remarks = Xml.Remarks(typeDoc),
     };

@@ -1,0 +1,145 @@
+---
+title: "ParallelLcdSettings Class"
+sidebar_label: "ParallelLcdSettings"
+---
+
+# ParallelLcdSettings Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Display`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Display`
+
+Timings for the SoC's built-in parallel RGB panel controller.
+
+```python
+class ParallelLcdSettings: ...
+```
+
+## Constructors
+
+### ParallelLcdSettings()
+
+```python
+def __init__(self):
+```
+
+## Properties
+
+### BitsPerPixel
+
+```python
+BitsPerPixel: int  # @property / @setter
+```
+
+Framebuffer bit depth (16 = RGB565, 24 = RGB888).
+
+**Returns** `int`
+
+### DataEnablePolarity
+
+```python
+DataEnablePolarity: SignalPolarity  # @property / @setter
+```
+
+Polarity of the DE (Data Enable) signal. Most RGB panels want ActiveHigh (DE high while valid pixel data is on the bus); check your panel's datasheet.
+
+**Returns** `SignalPolarity`
+
+### HBackPorch
+
+```python
+HBackPorch: int  # @property / @setter
+```
+
+Horizontal back porch, in pixel clocks.
+
+**Returns** `int`
+
+### HFrontPorch
+
+```python
+HFrontPorch: int  # @property / @setter
+```
+
+Horizontal front porch, in pixel clocks.
+
+**Returns** `int`
+
+### HSync
+
+```python
+HSync: int  # @property / @setter
+```
+
+Horizontal sync pulse width, in pixel clocks.
+
+**Returns** `int`
+
+### Height
+
+```python
+Height: int  # @property / @setter
+```
+
+Visible height in pixels.
+
+**Returns** `int`
+
+### PixelClockEdge
+
+```python
+PixelClockEdge: ClockEdge  # @property / @setter
+```
+
+Which edge of the pixel clock the panel latches data on. The SoC drives data on the opposite edge. Rising is the common default; try Falling if the image looks sheared or torn.
+
+**Returns** `ClockEdge`
+
+### PixelClockHz
+
+```python
+PixelClockHz: int  # @property / @setter
+```
+
+Pixel clock in Hz.
+
+**Returns** `int`
+
+### VBackPorch
+
+```python
+VBackPorch: int  # @property / @setter
+```
+
+Vertical back porch, in lines.
+
+**Returns** `int`
+
+### VFrontPorch
+
+```python
+VFrontPorch: int  # @property / @setter
+```
+
+Vertical front porch, in lines.
+
+**Returns** `int`
+
+### VSync
+
+```python
+VSync: int  # @property / @setter
+```
+
+Vertical sync pulse width, in lines.
+
+**Returns** `int`
+
+### Width
+
+```python
+Width: int  # @property / @setter
+```
+
+Visible width in pixels.
+
+**Returns** `int`
+

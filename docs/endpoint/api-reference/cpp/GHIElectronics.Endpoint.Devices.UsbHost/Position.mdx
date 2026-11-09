@@ -1,0 +1,62 @@
+---
+title: "Position Struct"
+sidebar_label: "Position"
+---
+
+# Position Struct
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
+
+Represents the a generic position.
+
+```cpp
+struct Position {};
+```
+
+## Properties
+
+### X
+
+```cpp
+int32_t X() const;
+void X(int32_t value);
+```
+
+The X coordinate.
+
+**Returns** `int`
+
+### Y
+
+```cpp
+int32_t Y() const;
+void Y(int32_t value);
+```
+
+The Y coordinate.
+
+**Returns** `int`
+
+### Z
+
+```cpp
+int32_t Z() const;
+void Z(int32_t value);
+```
+
+The Z coordinate.
+
+**Returns** `int`
+
+## Methods
+
+### ToString()
+
+```cpp
+virtual std::string ToString() override;
+```
+
+Returns a string representation of the position.
+
+**Returns** `string`: The position.
+

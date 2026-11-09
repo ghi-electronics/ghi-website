@@ -1,0 +1,41 @@
+---
+title: "TouchBridge Class"
+sidebar_label: "TouchBridge"
+---
+
+# TouchBridge Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Touch input bridge. Call `TouchBridge.Attach` once after `UI.Initialize`, then call `TouchBridge.Feed` from your touch chip's event handler. LVGL will dispatch Clicked / ValueChanged accordingly on its event loop.
+
+```python
+class TouchBridge: ...
+```
+
+## Methods
+
+### Attach()
+
+```python
+@staticmethod
+def Attach() -> None:
+```
+
+Register the touch input device with LVGL. Call once after `UI.Initialize`.
+
+### Feed(int x, int y, bool pressed)
+
+```python
+@staticmethod
+def Feed(x: int, y: int, pressed: bool) -> None:
+```
+
+Submit one touch sample. Call from the touch driver's event handler.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `x` | `int` | Touch X coordinate in pixels. |
+| `y` | `int` | Touch Y coordinate in pixels. |
+| `pressed` | `bool` | `true` while the finger is down; `false` on release. |
+

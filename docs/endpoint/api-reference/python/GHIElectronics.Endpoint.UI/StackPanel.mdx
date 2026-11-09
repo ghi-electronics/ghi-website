@@ -1,0 +1,51 @@
+---
+title: "StackPanel Class"
+sidebar_label: "StackPanel"
+---
+
+# StackPanel Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+WPF-style StackPanel: stacks children vertically (default) or horizontally via LVGL flex layout. `StackPanel.Spacing` is the gap between children; each child's `Widget.SetMargin` stacks on top of that.
+
+```python
+class StackPanel(Widget): ...
+```
+
+## Constructors
+
+### StackPanel(Widget parent)
+
+```python
+def __init__(self, parent: Widget):
+```
+
+Create a stack panel inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Properties
+
+### Orientation
+
+```python
+Orientation: Orientation  # @setter
+```
+
+Direction in which children are arranged. Set-only; LVGL has no read-back.
+
+**Returns** `Orientation`
+
+### Spacing
+
+```python
+Spacing: int  # @setter
+```
+
+Gap in pixels between successive children. Set-only; LVGL has no read-back.
+
+**Returns** `int`
+

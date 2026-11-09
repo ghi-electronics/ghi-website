@@ -1,0 +1,36 @@
+---
+title: "GHIElectronics.Endpoint.Devices.Touch"
+hide_title: true
+sidebar_label: Overview
+---
+
+<h1 className="api-package-heading">GHIElectronics.Endpoint.Devices.Touch</h1>
+
+Touchscreen support for Endpoint. The Touch class is abstract: subclass it for your panel's chip (I2C, SPI, custom). Ships one concrete subclass, InputTouch, that wraps a kernel /dev/input/eventN (used for USB touchscreens).
+
+## Classes
+
+| Class | Summary |
+|---|---|
+| [InputTouch](./InputTouch.mdx) | Touchscreen backed by a kernel input device at `/dev/input/eventN`. USB HID touchscreens show up this way automatically. |
+| [Touch](./Touch.mdx) | A touchscreen on the board. This class is abstract: the library ships one concrete subclass, `Touch.InputTouch`, for touchscreens the kernel exposes at `/dev/input/eventN` (USB HID touchscreens). All other touch controllers (SPI chips like XPT2046, I2C chips like FT5x06 or GT911, custom boards) are the customer's own subclass code using the Core Spi/I2c/Gpio APIs. Interrupt-based drivers are first class: `GpioPin.ValueChanged` wakes the touch thread the moment the chip pulls the IRQ line. Subclasses raise `Touch.OnChangedEvent` by calling `Touch.RaiseChanged` from their reader loop or interrupt handler. |
+| [TouchEventArgs](./TouchEventArgs.mdx) | Event data for `Touch.OnChangedEvent`: how the fingers changed since the last event. |
+
+## Structs
+
+| Struct | Summary |
+|---|---|
+| [TouchPoint](./TouchPoint.mdx) | One finger on the touchscreen. |
+
+## Enums
+
+| Enum | Summary |
+|---|---|
+| [TouchEventType](./TouchEventType.mdx) | How the Points changed between frames. |
+
+## Delegates
+
+| Delegate | Summary |
+|---|---|
+| [TouchChangedEventHandler](./TouchChangedEventHandler.mdx) | Handler for `Touch.OnChangedEvent`. Called on the touch reader thread (`Touch.InputTouch` uses the kernel evdev reader thread; custom subclasses decide their own). |
+

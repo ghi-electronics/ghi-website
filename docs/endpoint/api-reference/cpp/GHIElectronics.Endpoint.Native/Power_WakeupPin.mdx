@@ -1,0 +1,27 @@
+---
+title: "Power.WakeupPin Enum"
+sidebar_label: "Power.WakeupPin"
+---
+
+# WakeupPin Enum
+
+**Package:** `GHIElectronics.Endpoint.Native`<br/>**Namespace:** `GHIElectronics.Endpoint.Native`
+
+GPIO pins the power block can monitor to wake the system from standby.
+
+```cpp
+enum class WakeupPin : uint32_t {};
+```
+
+## Fields
+
+| Name | Value | Description |
+|---|---|---|
+| `PA0` | `0` | Wake-up input 1 (PA0). |
+| `PA2` | `1` | Wake-up input 2 (PA2). |
+| `PC13` | `2` | Wake-up input 3 (PC13). |
+| `PI8` | `3` | Wake-up input 4 (PI8). |
+| `PI11` | `4` | Wake-up input 5 (PI11). |
+| `PC1` | `5` | Wake-up input 6 (PC1). |
+| `None` | `255` | No wake-up pin selected; only an RTC alarm can wake the system. |
+

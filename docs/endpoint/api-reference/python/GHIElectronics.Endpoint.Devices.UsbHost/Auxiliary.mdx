@@ -1,0 +1,54 @@
+---
+title: "Auxiliary Class"
+sidebar_label: "Auxiliary"
+---
+
+# Auxiliary Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost.Descriptors`
+
+Represents additional auxiliary descriptors.
+
+```python
+class Auxiliary(BaseDescriptor): ...
+```
+
+## Constructors
+
+### Auxiliary(byte[] buffer)
+
+```python
+def __init__(self, buffer: list[int]):
+```
+
+Constructs a new descriptor.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `buffer` | `byte[]` | The buffer with which to populate the descriptor. |
+
+### Auxiliary(byte[] buffer, int offset)
+
+```python
+def __init__(self, buffer: list[int], offset: int):
+```
+
+Constructs a new descriptor.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `buffer` | `byte[]` | The buffer with which to populate the descriptor. |
+| `offset` | `int` | The offset into the buffer at which to start. |
+
+## Properties
+
+### Payload
+
+```python
+Payload: list[int]  # @property / @setter
+```
+
+The payload of the descriptor excluding length and type.
+
+**Returns** `byte[]`
+

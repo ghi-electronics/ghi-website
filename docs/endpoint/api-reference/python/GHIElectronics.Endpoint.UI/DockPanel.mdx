@@ -1,0 +1,41 @@
+---
+title: "DockPanel Class"
+sidebar_label: "DockPanel"
+---
+
+# DockPanel Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+WPF-style DockPanel. LVGL has no dock layout; the caller (or codegen) computes each child's absolute position from its Dock side plus the remaining area, then uses the child's X/Y/Width/Height properties.
+
+```python
+class DockPanel(Widget): ...
+```
+
+## Constructors
+
+### DockPanel(Widget parent)
+
+```python
+def __init__(self, parent: Widget):
+```
+
+Create a dock panel inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Properties
+
+### LastChildFill
+
+```python
+LastChildFill: bool  # @property / @setter
+```
+
+When `true`, the last added child fills the remaining area. Consumed by codegen, not LVGL.
+
+**Returns** `bool`
+

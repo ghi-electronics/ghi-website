@@ -1,0 +1,111 @@
+---
+title: "Widget Class"
+sidebar_label: "Widget"
+---
+
+# Widget Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Abstract base class for every UI widget. Holds the opaque libendpoint handle and exposes geometry, visibility, and background styling shared by all widget types. All setters and events run on the UI thread; do not touch widgets from background threads (LVGL is built with `LV_USE_OS=LV_OS_NONE`).
+
+```python
+class Widget(IDisposable): ...
+```
+
+## Properties
+
+### BackgroundColor
+
+```python
+BackgroundColor: int  # @property / @setter
+```
+
+Solid background color as `0x00RRGGBB`. Getter returns the last value set (LVGL has no read-back); returns `0` if never set.
+
+**Returns** `uint`
+
+### Height
+
+```python
+Height: int  # @property / @setter
+```
+
+Height in pixels.
+
+**Returns** `int`
+
+### Visible
+
+```python
+Visible: bool  # @property / @setter
+```
+
+Whether the widget (and its subtree) is drawn. Setting `false` hides but does not destroy it.
+
+**Returns** `bool`
+
+### Width
+
+```python
+Width: int  # @property / @setter
+```
+
+Width in pixels.
+
+**Returns** `int`
+
+### X
+
+```python
+X: int  # @property / @setter
+```
+
+X coordinate in pixels relative to the parent's top-left corner.
+
+**Returns** `int`
+
+### Y
+
+```python
+Y: int  # @property / @setter
+```
+
+Y coordinate in pixels relative to the parent's top-left corner.
+
+**Returns** `int`
+
+## Methods
+
+### Dispose()
+
+```python
+def Dispose(self) -> None:
+```
+
+Destroy the native widget and release pinned event handles. Idempotent.
+
+### SetBackgroundGradient(uint rgbStart, uint rgbEnd, GradientDirection direction)
+
+```python
+def SetBackgroundGradient(self, rgbStart: int, rgbEnd: int, direction: GradientDirection) -> None:
+```
+
+Linear gradient background. direction: Vertical = top->bottom, Horizontal = left->right.
+
+### SetBackgroundImage(byte[] rgb565Pixels, int width, int height)
+
+```python
+def SetBackgroundImage(self, rgb565Pixels: list[int], width: int, height: int) -> None:
+```
+
+Tiled background from raw RGB565 pixel bytes (little-endian).
+
+### SetMargin(int left, int top, int right, int bottom)
+
+```python
+def SetMargin(self, left: int, top: int, right: int, bottom: int) -> None:
+```
+
+WPF-style per-widget Margin. Works in any parent (flex, dock, or absolute).
+

@@ -3,49 +3,66 @@ using System.Text.Json;
 
 namespace EndpointApiGen;
 
-// Writes Docusaurus MDX for one package: an index.mdx with linked tables of
-// types grouped by kind, a _category_.json for sidebar label, and one Type.mdx
-// per public type. Each type page has csharp / python / cpp language tabs
-// (both for the install snippet at the top and for the signature of every
-// member).
+// Writes Docusaurus MDX for one package in ONE target language. The site has
+// three parallel API-reference trees (dotnet/, python/, cpp/) so a reader
+// picks the language once from the sidebar and sees every type and member
+// rendered in that language's syntax. The underlying API names are identical
+// across the three languages by design, so only the signatures change.
+
+public enum Language { Csharp, Python, Cpp }
 
 public static class Writer {
 
     const string NoDesc = "_No description available._";
 
-    public static void WritePackage(string outRoot, AssemblyModel a, string version) {
-        // Packages with no public types (e.g. GHIElectronics.Endpoint.Devices.Can,
-        // which only exists to pull in .NET IoT's CanRaw) are rendered as a
-        // single top-level .mdx. A stray folder with only "Overview" inside
-        // reads badly in the sidebar.
+    public static string LangFolder(Language l) => l switch {
+        Language.Csharp => "dotnet",
+        Language.Python => "python",
+        Language.Cpp    => "cpp",
+        _ => throw new ArgumentOutOfRangeException(nameof(l)),
+    };
+
+    public static string LangDisplay(Language l) => l switch {
+        Language.Csharp => ".NET",
+        Language.Python => "Python",
+        Language.Cpp    => "C/C++",
+        _ => throw new ArgumentOutOfRangeException(nameof(l)),
+    };
+
+    public static string FenceLang(Language l) => l switch {
+        Language.Csharp => "csharp",
+        Language.Python => "python",
+        Language.Cpp    => "cpp",
+        _ => throw new ArgumentOutOfRangeException(nameof(l)),
+    };
+
+    public static void WritePackage(string outRoot, AssemblyModel a, Language lang, string version) {
+        var langRoot = Path.Combine(outRoot, LangFolder(lang));
+        Directory.CreateDirectory(langRoot);
+
         if (a.Types.Count == 0) {
-            File.WriteAllText(Path.Combine(outRoot, a.Name + ".mdx"), RenderEmptyPackage(a));
+            File.WriteAllText(Path.Combine(langRoot, a.Name + ".mdx"), RenderEmptyPackage(a));
             return;
         }
 
-        var folder = Path.Combine(outRoot, a.Name);
+        var folder = Path.Combine(langRoot, a.Name);
         Directory.CreateDirectory(folder);
 
-        // _category_.json: label stripped of "GHIElectronics." for a tidier sidebar
         var label = a.Name.StartsWith("GHIElectronics.") ? a.Name["GHIElectronics.".Length..] : a.Name;
         File.WriteAllText(Path.Combine(folder, "_category_.json"),
             JsonSerializer.Serialize(new { label }, new JsonSerializerOptions { WriteIndented = true }));
 
-        // Per-type unique filenames (duplicate type names across namespaces are
-        // rare in Endpoint but we still guard with a numeric suffix).
         var fileOf = AssignFilenames(a.Types);
 
-        // Pre-compute parent → children map, so each type's page can list its
-        // nested types in a section with correct links.
         var nestedBy = a.Types
             .Where(t => t.SidebarPath.Contains('.'))
             .GroupBy(t => t.SidebarPath[..t.SidebarPath.LastIndexOf('.')])
             .ToDictionary(g => g.Key, g => g.OrderBy(x => x.SidebarPath, StringComparer.Ordinal).ToList());
 
-        WritePackageIndex(folder, a, version, fileOf);
+        WritePackageIndex(folder, a, fileOf);
         foreach (var t in a.Types) {
             nestedBy.TryGetValue(t.SidebarPath, out var children);
-            File.WriteAllText(Path.Combine(folder, fileOf[t] + ".mdx"), RenderType(a, t, version, children, fileOf));
+            File.WriteAllText(Path.Combine(folder, fileOf[t] + ".mdx"), RenderType(a, t, lang, children, fileOf));
         }
     }
 
@@ -64,17 +81,26 @@ public static class Writer {
         return L.ToString();
     }
 
-    public static void WriteTopIndex(string outRoot, List<AssemblyModel> model) {
+    // Per-language overview page for api-reference/<lang>/index.mdx. Lists the
+    // packages visible in this language. Called once per language.
+    public static void WriteLanguageIndex(string outRoot, Language lang, List<AssemblyModel> model) {
+        var langRoot = Path.Combine(outRoot, LangFolder(lang));
+        Directory.CreateDirectory(langRoot);
+
         var L = new StringBuilder();
         L.AppendLine("---");
-        L.AppendLine("title: API Reference");
+        L.AppendLine($"title: {Yaml("API Reference (" + LangDisplay(lang) + ")")}");
         L.AppendLine("sidebar_label: Overview");
-        L.AppendLine("slug: /endpoint/api-reference");
         L.AppendLine("---");
         L.AppendLine();
-        L.AppendLine("# Endpoint API Reference");
+        L.AppendLine($"# {LangDisplay(lang)} API Reference");
         L.AppendLine();
-        L.AppendLine("Endpoint uses the standard .NET APIs wherever they exist, and adds the libraries below for hardware features .NET does not cover.");
+        L.AppendLine(lang switch {
+            Language.Csharp => "Endpoint on **.NET**: standard `System.Device.*` and .NET IoT APIs, plus the libraries below for hardware features .NET does not cover.",
+            Language.Python => "Endpoint on **Python**: the same libraries as .NET, with identical class and method names, so code reads the same between the two.",
+            Language.Cpp    => "Endpoint on **C/C++**: the same libraries as .NET and Python, with identical class and method names, exposed as a C++23 header library.",
+            _ => "",
+        });
         L.AppendLine();
         L.AppendLine("## Standard .NET");
         L.AppendLine();
@@ -87,17 +113,41 @@ public static class Writer {
         L.AppendLine("|---|---|");
         foreach (var a in model) {
             var desc = ProseCell(a.Description);
-            // Empty packages are a single top-level .mdx; others are a folder
-            // with an index.mdx. Link accordingly.
             var href = a.Types.Count == 0
                 ? $"./{Uri.EscapeDataString(a.Name)}.mdx"
                 : $"./{Uri.EscapeDataString(a.Name)}/index.mdx";
             L.AppendLine($"| [{a.Name}]({href}) | {desc} |");
         }
+        File.WriteAllText(Path.Combine(langRoot, "index.mdx"), L.ToString());
+    }
+
+    // Top-level api-reference/index.mdx: a short hub that points at the three
+    // per-language trees and sells the fact that the API is the same in all
+    // three. Written once, by Program.cs, after each language has been
+    // generated.
+    public static void WriteHubIndex(string outRoot) {
+        var L = new StringBuilder();
+        L.AppendLine("---");
+        L.AppendLine("title: API Reference");
+        L.AppendLine("sidebar_label: Overview");
+        L.AppendLine("slug: /endpoint/api-reference");
+        L.AppendLine("---");
+        L.AppendLine();
+        L.AppendLine("# Endpoint API Reference");
+        L.AppendLine();
+        L.AppendLine("Endpoint runs **.NET, Python, and C/C++** with the same API. Classes, methods, and properties share the same names in all three languages, so code you read in one language is the code you write in another. Pick your language below.");
+        L.AppendLine();
+        L.AppendLine("| Language | Reference |");
+        L.AppendLine("|---|---|");
+        L.AppendLine($"| **.NET (C#)**  | [{LangDisplay(Language.Csharp)} API](./dotnet/index.mdx) |");
+        L.AppendLine($"| **Python**     | [{LangDisplay(Language.Python)} API](./python/index.mdx) |");
+        L.AppendLine($"| **C/C++**      | [{LangDisplay(Language.Cpp)} API](./cpp/index.mdx)    |");
+        L.AppendLine();
+        L.AppendLine("Where a standard .NET API exists (`System.Device.Gpio`, `System.Device.I2c`, …) Endpoint uses it as-is on .NET and mirrors the same class and method names in Python and C/C++, so the three references stay aligned. A handful of domains where a language has a long-standing library its developers already use (serial ports in Python, for instance) follow that convention instead.");
         File.WriteAllText(Path.Combine(outRoot, "index.mdx"), L.ToString());
     }
 
-    static void WritePackageIndex(string folder, AssemblyModel a, string version, IReadOnlyDictionary<TypeModel, string> fileOf) {
+    static void WritePackageIndex(string folder, AssemblyModel a, IReadOnlyDictionary<TypeModel, string> fileOf) {
         var L = new StringBuilder();
         L.AppendLine("---");
         L.AppendLine($"title: {Yaml(a.Name)}");
@@ -109,10 +159,6 @@ public static class Writer {
         L.AppendLine();
         if (!string.IsNullOrWhiteSpace(a.Description)) L.AppendLine(Prose(a.Description!)).AppendLine();
 
-        // Only top-level types in the package overview. Nested types (e.g.
-        // EPM815.Can inside EPM815) show up on their enclosing type's own
-        // page under a "Nested Types" section, and in the sidebar, so the
-        // overview stays short and surveys the primary API surface.
         var topLevel = a.Types.Where(t => !t.SidebarPath.Contains('.')).ToList();
 
         var sections = new (string Head, string Singular, TypeKind Kind)[] {
@@ -138,7 +184,7 @@ public static class Writer {
         File.WriteAllText(Path.Combine(folder, "index.mdx"), L.ToString());
     }
 
-    static string RenderType(AssemblyModel a, TypeModel t, string version, List<TypeModel>? nested, IReadOnlyDictionary<TypeModel, string> fileOf) {
+    static string RenderType(AssemblyModel a, TypeModel t, Language lang, List<TypeModel>? nested, IReadOnlyDictionary<TypeModel, string> fileOf) {
         var L = new StringBuilder();
         L.AppendLine("---");
         L.AppendLine($"title: {Yaml(t.SidebarPath + " " + Cap(t.Kind.ToString()))}");
@@ -151,8 +197,8 @@ public static class Writer {
         L.AppendLine();
         L.AppendLine(string.IsNullOrWhiteSpace(t.Summary) ? NoDesc : Prose(t.Summary!));
         L.AppendLine();
-        L.AppendLine("```csharp");
-        L.AppendLine(t.CsharpSignature);
+        L.Append("```").AppendLine(FenceLang(lang));
+        L.AppendLine(TypeHeaderFor(t, lang));
         L.AppendLine("```");
         L.AppendLine();
         if (!string.IsNullOrWhiteSpace(t.Remarks)) {
@@ -181,13 +227,20 @@ public static class Writer {
         }
 
         RenderNestedTypesSection(L, nested, fileOf);
-        Section(L, "Constructors", t.Constructors);
-        Section(L, "Properties",   t.Properties);
-        Section(L, "Methods",      t.Methods);
-        Section(L, "Events",       t.Events);
-        RenderFieldsSection(L, t.Fields);
+        Section(L, "Constructors", t.Constructors, lang);
+        Section(L, "Properties",   t.Properties,   lang);
+        Section(L, "Methods",      t.Methods,      lang);
+        Section(L, "Events",       t.Events,       lang);
+        RenderFieldsSection(L, t.Fields, lang);
         return L.ToString();
     }
+
+    static string TypeHeaderFor(TypeModel t, Language lang) => lang switch {
+        Language.Csharp => t.CsharpSignature,
+        Language.Python => t.PythonSignature,
+        Language.Cpp    => t.CppSignature,
+        _ => t.CsharpSignature,
+    };
 
     static void RenderNestedTypesSection(StringBuilder L, List<TypeModel>? nested, IReadOnlyDictionary<TypeModel, string> fileOf) {
         if (nested is null || nested.Count == 0) return;
@@ -201,23 +254,19 @@ public static class Writer {
         L.AppendLine();
     }
 
-    static void Section(StringBuilder L, string heading, IReadOnlyList<MemberModel> items) {
+    static void Section(StringBuilder L, string heading, IReadOnlyList<MemberModel> items, Language lang) {
         if (items.Count == 0) return;
         L.AppendLine($"## {heading}").AppendLine();
-        foreach (var m in items) RenderMember(L, m);
+        foreach (var m in items) RenderMember(L, m, lang);
     }
 
-    // Fields section: documented fields get the full h3 + language-tabs
-    // treatment; undocumented ones collapse into a compact table at the
-    // bottom. Keeps pages like EPM815.Gpio.Pin (150+ bare constants plus one
-    // NONE with a <summary>) readable without hiding the documented members.
-    static void RenderFieldsSection(StringBuilder L, IReadOnlyList<MemberModel> fields) {
+    static void RenderFieldsSection(StringBuilder L, IReadOnlyList<MemberModel> fields, Language lang) {
         if (fields.Count == 0) return;
         L.AppendLine("## Fields").AppendLine();
         var documented = fields.Where(f => !string.IsNullOrWhiteSpace(f.Summary)).ToList();
         var undocumented = fields.Where(f => string.IsNullOrWhiteSpace(f.Summary)).ToList();
 
-        foreach (var m in documented) RenderMember(L, m);
+        foreach (var m in documented) RenderMember(L, m, lang);
 
         if (undocumented.Count > 0) {
             if (documented.Count > 0) L.AppendLine("### Other fields").AppendLine();
@@ -230,17 +279,15 @@ public static class Writer {
         }
     }
 
-    static void RenderMember(StringBuilder L, MemberModel m) {
+    static void RenderMember(StringBuilder L, MemberModel m, Language lang) {
         L.AppendLine($"### {Prose(m.DisplayName)}").AppendLine();
         if (m.Obsolete) {
             L.Append("> ⚠️ **Obsolete.** ")
              .AppendLine(string.IsNullOrWhiteSpace(m.ObsoleteMessage) ? "" : ProseCell(m.ObsoleteMessage))
              .AppendLine();
         }
-        L.AppendLine(SignatureBlock(m));
+        L.AppendLine(SignatureBlock(m, lang));
         L.AppendLine();
-        // No noisy "No description available." placeholder. If the summary
-        // is empty, just show the signature and move on.
         if (!string.IsNullOrWhiteSpace(m.Summary)) {
             L.AppendLine(Prose(m.Summary!));
             L.AppendLine();
@@ -264,17 +311,17 @@ public static class Writer {
         }
     }
 
-    // Plain csharp code block per member (TinyCLR style). The Python and C/C++
-    // bindings are intentionally not surfaced on the site for now. The model
-    // still carries PythonSignature / CppSignature so a future revision can
-    // re-enable language tabs without re-plumbing the generator.
-    static string SignatureBlock(MemberModel m) =>
-        "```csharp\n" + m.CsharpSignature + "\n```";
+    static string SignatureBlock(MemberModel m, Language lang) {
+        var sig = lang switch {
+            Language.Csharp => m.CsharpSignature,
+            Language.Python => m.PythonSignature,
+            Language.Cpp    => m.CppSignature,
+            _ => m.CsharpSignature,
+        };
+        return "```" + FenceLang(lang) + "\n" + sig + "\n```";
+    }
 
     static Dictionary<TypeModel, string> AssignFilenames(List<TypeModel> types) {
-        // SidebarPath disambiguates nested types that share a leaf name
-        // (EPM815.Can vs EPN256.Can). Use "_" to separate for file-system
-        // friendliness, falling back to a numeric suffix if even that collides.
         var used = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         var map  = new Dictionary<TypeModel, string>();
         foreach (var t in types) {
@@ -288,8 +335,6 @@ public static class Writer {
     }
 
     // ─────────────────────────────── MDX escaping helpers ───────────────────
-    // Prose: escape `<` and `{` outside of inline-code spans so MDX doesn't try
-    // to interpret them as JSX. Inline code (`…`) passes through untouched.
     public static string Prose(string s) {
         if (string.IsNullOrEmpty(s)) return "";
         var parts = SplitInlineCode(s);
@@ -299,11 +344,6 @@ public static class Writer {
             else sb.Append(text.Replace("<", "&lt;").Replace("{", "&#123;").Replace("}", "&#125;"));
         }
         var result = sb.ToString();
-        // Em-dash guard. Em-dashes read as AI-generated; the project rule is
-        // never to ship one in docs. If a stray one slips into a /// comment
-        // in the library source, warn loudly and strip it so the published
-        // MDX stays clean. Fix the source comment to make the warning go
-        // away.
         if (result.Contains('—')) {
             Console.Error.WriteLine($"[gen] WARNING: em-dash (—) found in doc comment, stripping. Fix the source /// comment. Context: \"{Preview(result)}\"");
             result = result.Replace(" — ", ": ").Replace('—', ',');

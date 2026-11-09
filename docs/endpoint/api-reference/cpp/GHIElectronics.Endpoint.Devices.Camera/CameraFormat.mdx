@@ -1,0 +1,69 @@
+---
+title: "CameraFormat Class"
+sidebar_label: "CameraFormat"
+---
+
+# CameraFormat Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Camera`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Camera`
+
+A picture size a camera has, what it sends for it, and its highest frame rate.
+
+```cpp
+class CameraFormat {};
+```
+
+## Properties
+
+### Height
+
+```cpp
+int32_t Height() const;
+```
+
+Picture height in pixels.
+
+**Returns** `int`
+
+### MaxFrameRate
+
+```cpp
+int32_t MaxFrameRate() const;
+```
+
+Frames per second
+
+**Returns** `int`
+
+### PixelFormat
+
+```cpp
+CameraPixelFormat PixelFormat() const;
+```
+
+What the camera sends for this size.
+
+**Returns** `CameraPixelFormat`
+
+### Width
+
+```cpp
+int32_t Width() const;
+```
+
+Picture width in pixels.
+
+**Returns** `int`
+
+## Methods
+
+### ToString()
+
+```cpp
+virtual std::string ToString() override;
+```
+
+Returns a human-readable description like "640x480 Mjpeg 30 fps".
+
+**Returns** `string`
+

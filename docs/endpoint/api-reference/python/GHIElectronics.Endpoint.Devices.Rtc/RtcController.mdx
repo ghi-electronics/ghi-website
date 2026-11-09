@@ -1,0 +1,139 @@
+---
+title: "RtcController Class"
+sidebar_label: "RtcController"
+---
+
+# RtcController Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Rtc`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Rtc`
+
+The board's real-time clock, for .NET IoT's `RtcBase` (`Iot.Device.Rtc`). It counts UTC: at boot, the system time is set from it. `RtcController.IsValid` and `RtcController.SetChargeMode` are the same as TinyCLR's.
+
+```python
+class RtcController(RtcBase): ...
+```
+
+## Constructors
+
+### RtcController()
+
+```python
+def __init__(self):
+```
+
+The chip's RTC
+
+## Properties
+
+### BackupMemorySize
+
+```python
+BackupMemorySize: int  # @property
+```
+
+Not implemented yet: the size of the backup memory in bytes
+
+**Returns** `uint`
+
+### IsValid
+
+```python
+IsValid: bool  # @property
+```
+
+Whether the RTC has been set since it last lost power. Without power it starts again at 2000-01-01.
+
+**Returns** `bool`
+
+## Methods
+
+### Calibrate(int pulse)
+
+```python
+def Calibrate(self, pulse: int) -> None:
+```
+
+Not implemented yet
+
+### Dispose(bool disposing)
+
+```python
+def Dispose(self, disposing: bool) -> None:
+```
+
+### ReadBackupMemory(byte[] destinationData)
+
+```python
+def ReadBackupMemory(self, destinationData: list[int]) -> int:
+```
+
+Not implemented yet
+
+**Returns** `int`
+
+### ReadBackupMemory(byte[] destinationData, uint sourceOffset)
+
+```python
+def ReadBackupMemory(self, destinationData: list[int], sourceOffset: int) -> int:
+```
+
+Not implemented yet
+
+**Returns** `int`
+
+### ReadBackupMemory(byte[] destinationData, uint destinationOffset, uint sourceOffset, int count)
+
+```python
+def ReadBackupMemory(self, destinationData: list[int], destinationOffset: int, sourceOffset: int, count: int) -> int:
+```
+
+Not implemented yet
+
+**Returns** `int`
+
+### ReadTime()
+
+```python
+def ReadTime(self) -> datetime.datetime:
+```
+
+**Returns** `DateTime`
+
+### SetChargeMode(BatteryChargeMode chargeMode)
+
+```python
+def SetChargeMode(self, chargeMode: BatteryChargeMode) -> None:
+```
+
+Charges the backup battery or supercapacitor on VBAT, or stops charging
+
+### SetTime(DateTime time)
+
+```python
+def SetTime(self, time: datetime.datetime) -> None:
+```
+
+### WriteBackupMemory(byte[] sourceData)
+
+```python
+def WriteBackupMemory(self, sourceData: list[int]) -> None:
+```
+
+Not implemented yet
+
+### WriteBackupMemory(byte[] sourceData, uint destinationOffset)
+
+```python
+def WriteBackupMemory(self, sourceData: list[int], destinationOffset: int) -> None:
+```
+
+Not implemented yet
+
+### WriteBackupMemory(byte[] sourceData, uint sourceOffset, uint destinationOffset, int count)
+
+```python
+def WriteBackupMemory(self, sourceData: list[int], sourceOffset: int, destinationOffset: int, count: int) -> None:
+```
+
+Not implemented yet
+

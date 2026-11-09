@@ -1,0 +1,24 @@
+---
+title: "PrinterStatus Enum"
+sidebar_label: "PrinterStatus"
+---
+
+# PrinterStatus Enum
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
+
+What a printer reports about itself.
+
+```cpp
+enum class PrinterStatus : int32_t {};
+```
+
+## Fields
+
+| Name | Value | Description |
+|---|---|---|
+| `Ready` | `0` | Ready to print. |
+| `PaperOut` | `1` | Out of paper. |
+| `Offline` | `2` | Not online (switched off line, cover open...). |
+| `Error` | `4` | An error the printer reports. |
+

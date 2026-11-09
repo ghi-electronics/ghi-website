@@ -1,0 +1,47 @@
+---
+title: "DeviceConnectionEventArgs Class"
+sidebar_label: "DeviceConnectionEventArgs"
+---
+
+# DeviceConnectionEventArgs Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Storage`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Storage`
+
+Event data for `StorageController.ConnectionChanged`: one drive attached or detached.
+
+```cpp
+class DeviceConnectionEventArgs : public EventArgs {};
+```
+
+## Properties
+
+### DeviceStatus
+
+```cpp
+DeviceConnectionStatus DeviceStatus() const;
+```
+
+Whether the drive was just connected or just disconnected.
+
+**Returns** `DeviceConnectionStatus`
+
+### Hdc
+
+```cpp
+intptr_t Hdc() const;
+```
+
+The drive, for FileSystem.Mount, Flush and Unmount, until it is pulled out
+
+**Returns** `nint`
+
+### VolumeLabel
+
+```cpp
+std::string VolumeLabel() const;
+```
+
+The drive's name ("LOGGER"), empty if it has none. (On Endpoint, `DriveInfo.VolumeLabel` returns the drive's mount folder, not its label: read this property instead.)
+
+**Returns** `string`
+

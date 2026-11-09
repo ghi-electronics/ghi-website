@@ -1,0 +1,81 @@
+---
+title: "Chart Class"
+sidebar_label: "Chart"
+---
+
+# Chart Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Simple chart with a single series. Not a standard .NET widget: the API mirrors TinyCLR's Chart for ease of porting.
+
+```cpp
+class Chart : public Widget {};
+```
+
+## Constructors
+
+### Chart(Widget parent)
+
+```cpp
+Chart(const Widget& parent);
+```
+
+Create a chart inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Properties
+
+### DivisionAxisY
+
+```cpp
+int32_t DivisionAxisY() const;
+void DivisionAxisY(int32_t value);
+```
+
+Number of horizontal division lines on the Y axis. Getter returns the last value set.
+
+**Returns** `int`
+
+### Mode
+
+```cpp
+ChartMode Mode() const;
+void Mode(ChartMode value);
+```
+
+How the series is drawn. Getter returns the last value set (LVGL has no read-back).
+
+**Returns** `ChartMode`
+
+## Methods
+
+### SetColors(uint pointColor, uint areaColor, uint labelColor)
+
+```cpp
+void SetColors(uint32_t pointColor, uint32_t areaColor, uint32_t labelColor);
+```
+
+Set the chart's drawing colors.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `pointColor` | `uint` | Line / column color as `0x00RRGGBB`. |
+| `areaColor` | `uint` | Fill color under the line as `0x00RRGGBB` (used when `Chart.Mode` is `ChartMode.Area`). |
+| `labelColor` | `uint` | Axis label color as `0x00RRGGBB`. |
+
+### SetPoints(int[] values)
+
+```cpp
+void SetPoints(const std::vector<int32_t>& values);
+```
+
+Replace the full series with `values`. The chart redraws in order left-to-right.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `values` | `int[]` | Point values; may be `null` or empty to clear. |
+

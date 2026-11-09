@@ -1,0 +1,22 @@
+---
+title: "ClockEdge Enum"
+sidebar_label: "ClockEdge"
+---
+
+# ClockEdge Enum
+
+**Package:** `GHIElectronics.Endpoint.Devices.Display`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Display`
+
+Which edge of the pixel clock the panel latches pixel data on.
+
+```cpp
+enum class ClockEdge : int32_t {};
+```
+
+## Fields
+
+| Name | Value | Description |
+|---|---|---|
+| `Rising` | `0` | Panel latches on the rising edge (SoC drives on the falling edge). |
+| `Falling` | `1` | Panel latches on the falling edge (SoC drives on the rising edge). |
+

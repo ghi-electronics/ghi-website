@@ -1,0 +1,16 @@
+---
+title: "GHIElectronics.Endpoint.Devices.Watchdog"
+hide_title: true
+sidebar_label: Overview
+---
+
+<h1 className="api-package-heading">GHIElectronics.Endpoint.Devices.Watchdog</h1>
+
+The watchdog driver for Endpoint.
+
+## Classes
+
+| Class | Summary |
+|---|---|
+| [WatchdogController](./WatchdogController.mdx) | Endpoint's watchdog, with the same API as TinyCLR. After `WatchdogController.Enable`, `WatchdogController.Reset` must be called more often than the timeout, or the board restarts. The watchdog cannot be stopped once it runs. `WatchdogController.Disable` hands it to the system, which then keeps it fed. If the program ends or crashes without `WatchdogController.Disable`, the board restarts after the timeout, also when debugging stops. |
+

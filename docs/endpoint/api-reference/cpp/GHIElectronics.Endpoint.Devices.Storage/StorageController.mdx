@@ -1,0 +1,73 @@
+---
+title: "StorageController Class"
+sidebar_label: "StorageController"
+---
+
+# StorageController Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Storage`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Storage`
+
+The SD card slot or the USB drives. Events come on the library's storage thread. A drive that is pulled out is unmounted by the library. The SD card is at `/media/sd/`; USB drives get the first free `/media/usbN/`, as Windows gives the first free drive letter. A controller stays alive until it is disposed.
+
+```cpp
+class StorageController : public IDisposable {};
+```
+
+## Properties
+
+### Name
+
+```cpp
+std::string Name() const;
+```
+
+The name this controller was created with (e.g. `EPM815.StorageController.SdCard`).
+
+**Returns** `string`
+
+## Methods
+
+### Disable()
+
+```cpp
+void Disable();
+```
+
+Stops reporting drives. Already-reported drives stay mounted; call `FileSystem.Unmount` to unmount them.
+
+### Dispose()
+
+```cpp
+void Dispose();
+```
+
+Stops the events (one being delivered finishes first)
+
+### Enable()
+
+```cpp
+void Enable();
+```
+
+Starts reporting drives: first the ones already plugged in
+
+### FromName(string name)
+
+```cpp
+static StorageController FromName(const std::string& name);
+```
+
+EPM815.StorageController.SdCard or EPM815.StorageController.UsbHostMassStorage
+
+**Returns** `StorageController`
+
+## Events
+
+### ConnectionChanged
+
+```cpp
+Core::Event<...> ConnectionChanged;
+```
+
+A drive connected or disconnected
+

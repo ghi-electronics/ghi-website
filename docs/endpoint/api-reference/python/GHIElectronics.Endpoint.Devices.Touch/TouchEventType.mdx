@@ -1,0 +1,23 @@
+---
+title: "TouchEventType Enum"
+sidebar_label: "TouchEventType"
+---
+
+# TouchEventType Enum
+
+**Package:** `GHIElectronics.Endpoint.Devices.Touch`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Touch`
+
+How the Points changed between frames.
+
+```python
+class TouchEventType(IntEnum): ...
+```
+
+## Fields
+
+| Name | Value | Description |
+|---|---|---|
+| `Pressed` | `0` | First finger down (points went from 0 to one or more). |
+| `Released` | `1` | Last finger up (points went from one or more to 0). |
+| `Moved` | `2` | A point moved, or a finger landed/lifted while others remain. |
+

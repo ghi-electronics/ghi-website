@@ -1,0 +1,61 @@
+---
+title: "CheckBox Class"
+sidebar_label: "CheckBox"
+---
+
+# CheckBox Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Two-state check box with a label. `CheckBox.ValueChanged` fires on each toggle.
+
+```python
+class CheckBox(Widget): ...
+```
+
+## Constructors
+
+### CheckBox(Widget parent)
+
+```python
+def __init__(self, parent: Widget):
+```
+
+Create a check box inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Properties
+
+### IsChecked
+
+```python
+IsChecked: bool  # @property / @setter
+```
+
+Checked state. Read-back is supported by LVGL.
+
+**Returns** `bool`
+
+### Text
+
+```python
+Text: str  # @property / @setter
+```
+
+Label text shown next to the check box. `null` is treated as empty. Getter returns the last value set.
+
+**Returns** `string`
+
+## Events
+
+### ValueChanged
+
+```python
+ValueChanged  # += / -= handler
+```
+
+Fires when `CheckBox.IsChecked` toggles via user interaction. Runs on the UI thread.
+

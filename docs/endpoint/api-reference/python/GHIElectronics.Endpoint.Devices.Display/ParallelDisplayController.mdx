@@ -1,0 +1,92 @@
+---
+title: "ParallelDisplayController Class"
+sidebar_label: "ParallelDisplayController"
+---
+
+# ParallelDisplayController Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Display`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Display`
+
+The built-in display driven by the SoC's parallel RGB LCD controller (DRM "DPI" / parallel-RGB). Opens `/dev/fb0` inside `ParallelDisplayController.Enable`, respects the real framebuffer stride, converts source pixel formats to the panel's bit depth, and blits with `ParallelDisplayController.Flush`.
+
+```python
+class ParallelDisplayController(DisplayController): ...
+```
+
+## Constructors
+
+### ParallelDisplayController()
+
+```python
+def __init__(self):
+```
+
+## Properties
+
+### Height
+
+```python
+Height: int  # @property
+```
+
+**Returns** `int`
+
+### IsEnabled
+
+```python
+IsEnabled: bool  # @property
+```
+
+**Returns** `bool`
+
+### Width
+
+```python
+Width: int  # @property
+```
+
+**Returns** `int`
+
+## Methods
+
+### Disable()
+
+```python
+def Disable(self) -> None:
+```
+
+Closes `/dev/fb0` and turns the parallel-RGB controller off.
+
+### Dispose()
+
+```python
+def Dispose(self) -> None:
+```
+
+Calls `ParallelDisplayController.Disable` (best-effort - swallows any exception).
+
+### Enable()
+
+```python
+def Enable(self) -> None:
+```
+
+Programs the parallel-RGB controller from `/config/display.json`, opens `/dev/fb0`, and reads the live stride and bits-per-pixel from `/sys/class/graphics/fb0` (overriding the configured values if the kernel pinned a different format).
+
+### Flush(ReadOnlySpan&lt;byte> pixels, PixelFormat format, int x, int y, int width, int height)
+
+```python
+def Flush(self, pixels: ReadOnlySpan[int], format: PixelFormat, x: int, y: int, width: int, height: int) -> None:
+```
+
+Writes `pixels` to the region (`x`, `y`, `width`, `height`), converting from `format` to the framebuffer's native depth (16, 24, or 32 bpp) one row at a time.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `pixels` | `ReadOnlySpan<byte>` | Source pixels in `format`, laid out row by row with no padding. |
+| `format` | `PixelFormat` | Source pixel format: Rgb565, Rgb24, Rgb32 or Argb32. |
+| `x` | `int` | Left edge of the target region in pixels. |
+| `y` | `int` | Top edge of the target region in pixels. |
+| `width` | `int` | Region width in pixels. |
+| `height` | `int` | Region height in pixels. |
+

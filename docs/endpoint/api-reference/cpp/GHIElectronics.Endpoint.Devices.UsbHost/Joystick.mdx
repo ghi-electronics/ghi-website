@@ -1,0 +1,133 @@
+---
+title: "Joystick Class"
+sidebar_label: "Joystick"
+---
+
+# Joystick Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
+
+Allows a usb device to be used as a joystick.
+
+```cpp
+class Joystick : public BaseDevice {};
+```
+
+### Remarks
+
+By default, the reported range for position is between -512 and 512, as on TinyCLR. Cursor1 is the left stick; Cursor2 is the right stick of a game pad. Buttons are numbered from 0. The events come on the joystick's own thread.
+
+## Nested Types
+
+| Type | Kind | Summary |
+|---|---|---|
+| [Joystick.ButtonChangedEventArgs](./Joystick_ButtonChangedEventArgs.mdx) | Class | The events args for the ButtonPressed and ButtonReleased events. |
+| [Joystick.ButtonChangedEventHandler](./Joystick_ButtonChangedEventHandler.mdx) | Delegate | The delegate for when one of the joystick's button is pressed or released. |
+| [Joystick.CursorMovedEventArgs](./Joystick_CursorMovedEventArgs.mdx) | Class | The events args for the CursorMoved event. |
+| [Joystick.CursorMovedEventHandler](./Joystick_CursorMovedEventHandler.mdx) | Delegate | The delegate for when one of the joystick's cursors moves. |
+| [Joystick.DeviceCapabilities](./Joystick_DeviceCapabilities.mdx) | Enum | Joystick capabilities. |
+| [Joystick.HatSwitchPressedEventArgs](./Joystick_HatSwitchPressedEventArgs.mdx) | Class | The events args for the HatSwitchPressed event. |
+| [Joystick.HatSwitchPressedEventHandler](./Joystick_HatSwitchPressedEventHandler.mdx) | Delegate | The delegate for when the joystick's hat switch is pressed. |
+
+## Constructors
+
+### Joystick(string deviceName)
+
+```cpp
+Joystick(const std::string& deviceName);
+```
+
+Opens the joystick that UsbHostController reported ("/dev/input/event3").
+
+## Properties
+
+### Capabilities
+
+```cpp
+DeviceCapabilities Capabilities() const;
+```
+
+The capabilities of the joystick.
+
+**Returns** `DeviceCapabilities`
+
+### CurrentHatSwitchDirection
+
+```cpp
+HatSwitchDirection CurrentHatSwitchDirection() const;
+```
+
+The current direction of the hat switch.
+
+**Returns** `HatSwitchDirection`
+
+### Cursor2Position
+
+```cpp
+Position Cursor2Position() const;
+```
+
+The current position of the second cursor.
+
+**Returns** `Position`
+
+### CursorPosition
+
+```cpp
+Position CursorPosition() const;
+```
+
+The current position of the first cursor.
+
+**Returns** `Position`
+
+## Methods
+
+### GetButtonState(int buttonNumber)
+
+```cpp
+ButtonState GetButtonState(int32_t buttonNumber);
+```
+
+Gets the current button state.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `buttonNumber` | `int` | The button number to query (0 to 31). |
+
+**Returns** `ButtonState`: The state of the button.
+
+### SetCursorBounds(Cursor cursor, int minX, int maxX, int minY, int maxY)
+
+```cpp
+void SetCursorBounds(Cursor cursor, int32_t minX, int32_t maxX, int32_t minY, int32_t maxY);
+```
+
+Sets the bounds for given cursor.
+
+## Events
+
+### ButtonChanged
+
+```cpp
+Core::Event<...> ButtonChanged;
+```
+
+The event fired when one of the joystick's buttons is pressed or released.
+
+### CursorMoved
+
+```cpp
+Core::Event<...> CursorMoved;
+```
+
+The event fired when the joystick's cursor has moved.
+
+### HatSwitchPressed
+
+```cpp
+Core::Event<...> HatSwitchPressed;
+```
+
+The event fired when the joystick's hat switch has been pressed.
+

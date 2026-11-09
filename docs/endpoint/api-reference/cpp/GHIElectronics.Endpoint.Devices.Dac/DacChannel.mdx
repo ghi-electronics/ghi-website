@@ -1,0 +1,73 @@
+---
+title: "DacChannel Class"
+sidebar_label: "DacChannel"
+---
+
+# DacChannel Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Dac`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Dac`
+
+A DAC channel opened with `DacController.OpenChannel`. `DacChannel.WriteValue` takes a raw value, `DacChannel.WriteValue` a 0.0 to 1.0 part of the range.
+
+```cpp
+class DacChannel : public IDisposable {};
+```
+
+## Properties
+
+### ChannelNumber
+
+```cpp
+int32_t ChannelNumber() const;
+```
+
+The channel number, as given to OpenChannel
+
+**Returns** `int`
+
+### Controller
+
+```cpp
+DacController Controller() const;
+```
+
+The controller that opened the channel
+
+**Returns** `DacController`
+
+### LastWrittenValue
+
+```cpp
+int32_t LastWrittenValue() const;
+```
+
+The last raw value written
+
+**Returns** `int`
+
+## Methods
+
+### Dispose()
+
+```cpp
+void Dispose();
+```
+
+Switches the output off and puts the pin back as it was
+
+### WriteValue(double ratio)
+
+```cpp
+void WriteValue(double ratio);
+```
+
+Sets the output to a part of the range: 0.0 is 0 V, 1.0 is 3.3 V
+
+### WriteValue(int value)
+
+```cpp
+void WriteValue(int32_t value);
+```
+
+Sets the output to a raw value from MinValue (0 V) to MaxValue (3.3 V)
+

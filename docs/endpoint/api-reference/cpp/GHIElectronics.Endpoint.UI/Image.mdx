@@ -1,0 +1,47 @@
+---
+title: "Image Class"
+sidebar_label: "Image"
+---
+
+# Image Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Displays a raster image fed as raw RGB565 pixel bytes.
+
+```cpp
+class Image : public Widget {};
+```
+
+## Constructors
+
+### Image(Widget parent)
+
+```cpp
+Image(const Widget& parent);
+```
+
+Create an image inside `parent`. Call `Image.SetSource` to supply pixels.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Methods
+
+### Dispose()
+
+```cpp
+virtual void Dispose() override;
+```
+
+Release the pinned pixel buffer, then destroy the widget. Idempotent.
+
+### SetSource(byte[] rgb565Pixels, int width, int height)
+
+```cpp
+void SetSource(const std::vector<uint8_t>& rgb565Pixels, int32_t width, int32_t height);
+```
+
+Set the image from RGB565 pixel bytes (little-endian). Width and height describe the source bitmap; use `Widget.Width`/ `Widget.Height` for displayed size (LVGL scales).
+

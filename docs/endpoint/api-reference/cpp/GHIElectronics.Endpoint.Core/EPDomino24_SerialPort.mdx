@@ -1,0 +1,73 @@
+---
+title: "EPDomino24.SerialPort Class"
+sidebar_label: "EPDomino24.SerialPort"
+---
+
+# SerialPort Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+Serial ports bonded on EP-Domino24.
+
+```cpp
+class SerialPort {};
+```
+
+## Fields
+
+### Uart1
+
+```cpp
+static constexpr std::string Uart1 = "/dev/ttySTM0";
+```
+
+UART1: PZ7 (TX), PZ6 (RX), PA12 (RTS), PZ3 (CTS); mikroBUS #1 CS/INT/RST pins.
+
+### Uart2
+
+```cpp
+static constexpr std::string Uart2 = "/dev/ttySTM1";
+```
+
+UART2: PF5 (TX), PD6 (RX), PD4 (RTS), PD3 (CTS); mikroBUS #1.
+
+### Uart3
+
+```cpp
+static constexpr std::string Uart3 = "/dev/ttySTM2";
+```
+
+UART3: PD8 (TX), PD9 (RX), PD12 (RTS), PD11 (CTS); mikroBUS #2.
+
+### Uart4
+
+```cpp
+static constexpr std::string Uart4 = "/dev/ttySTM3";
+```
+
+UART4: PD1 (TX), PD0 (RX); 40-pin header (shares pins with I2C6 and CAN1).
+
+### Uart5
+
+```cpp
+static constexpr std::string Uart5 = "/dev/ttySTM4";
+```
+
+UART5: PB13 (TX), PB12 (RX); 40-pin header (shares pins with CAN2).
+
+### Uart7
+
+```cpp
+static constexpr std::string Uart7 = "/dev/ttySTM6";
+```
+
+UART7: PE8 (TX), PF6 (RX), PE9 (RTS), PE10 (CTS); 40-pin header.
+
+### Uart8
+
+```cpp
+static constexpr std::string Uart8 = "/dev/ttySTM7";
+```
+
+UART8: PE1 (TX), PE0 (RX); 40-pin header.
+

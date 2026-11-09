@@ -1,0 +1,135 @@
+---
+title: "NetworkController Class"
+sidebar_label: "NetworkController"
+---
+
+# NetworkController Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Network`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Network`
+
+One of the board's network interfaces, by type (Ethernet, WiFi, PC-shared). The system takes care of the hardware - an Ethernet controller matches the built-in PHY or any USB Ethernet adapter; a WiFi controller matches a built-in WiFi module or any WiFi USB stick. Enable / Disable apply synchronously and throw on failure (no interface present, bad settings, wpa_supplicant / udhcpc failure). Settings persist in `/config/network.json` through `NetworkController.GetInterfaceSettings` / `NetworkController.SetInterfaceSettings`. Status (addresses, link, DNS, speed) is the standard `NetworkInformation.NetworkInterface` this controller exposes.
+
+```python
+class NetworkController: ...
+```
+
+## Properties
+
+### IsConnected
+
+```python
+IsConnected: bool  # @property
+```
+
+True if the interface currently has an IPv4 address.
+
+**Returns** `bool`
+
+### IsEnabled
+
+```python
+IsEnabled: bool  # @property
+```
+
+True if the interface is administratively up.
+
+**Returns** `bool`
+
+### IsPresent
+
+```python
+IsPresent: bool  # @property
+```
+
+True if an interface of this type currently exists on the board (built-in PHY detected, or USB adapter plugged in and its driver loaded). WiFi stays false until `NetworkController.Enable` is called at least once (that is what modprobes the Wi-Fi driver).
+
+**Returns** `bool`
+
+### Name
+
+```python
+Name: str  # @property
+```
+
+System identifier (eth0, wlan0, ...), or empty string if no interface of this type is currently present. Reads live from the kernel on every access - it reflects the state right now, not the state at `NetworkController.FromType` time.
+
+**Returns** `string`
+
+### NetworkInterface
+
+```python
+NetworkInterface: NetworkInterface  # @property
+```
+
+The standard `NetworkInformation.NetworkInterface` for this controller, or null if the interface has gone away since the controller was created.
+
+**Returns** `NetworkInterface`
+
+### Type
+
+```python
+Type: NetworkType  # @property
+```
+
+Which kind of interface this controller represents (`NetworkType.Ethernet` or `NetworkType.Wifi`).
+
+**Returns** `NetworkType`
+
+## Methods
+
+### Disable()
+
+```python
+def Disable(self) -> None:
+```
+
+Stops DHCP and brings the interface down. Does not clear the settings file.
+
+### Enable()
+
+```python
+def Enable(self) -> None:
+```
+
+Applies the settings from `/config/network.json` to this interface: brings the link up and starts DHCP, or sets the static address, or starts wpa_supplicant (WiFi). Throws if the apply fails. Call synchronously from the user's program; nothing runs automatically at boot.
+
+### FromType(NetworkType type)
+
+```python
+@staticmethod
+def FromType(type: NetworkType) -> NetworkController:
+```
+
+The controller for the given type. Always returns a valid controller: the controller represents the type (Ethernet, WiFi), not a specific interface. Hardware does not have to be present yet - call `NetworkController.SetInterfaceSettings` to configure, then `NetworkController.Enable`, which modprobes any USB driver needed and brings the matching interface up. Use `NetworkController.IsPresent` to check if the hardware is currently plugged in.
+
+**Returns** `NetworkController`
+
+### GetInterfaceSettings()
+
+```python
+def GetInterfaceSettings(self) -> NetworkInterfaceSettings:
+```
+
+Reads the current settings for this type from `/config/network.json`. Changes to the returned object do nothing until passed back to `NetworkController.SetInterfaceSettings`.
+
+**Returns** `NetworkInterfaceSettings`
+
+### GetName(NetworkType type)
+
+```python
+@staticmethod
+def GetName(type: NetworkType) -> str:
+```
+
+The system identifier (eth0, wlan0, ...) for the first interface of the given type, or an empty string if none is present.
+
+**Returns** `string`
+
+### SetInterfaceSettings(NetworkInterfaceSettings settings)
+
+```python
+def SetInterfaceSettings(self, settings: NetworkInterfaceSettings) -> None:
+```
+
+Writes the settings to `/config/network.json` (persisted across reboots). Does NOT apply them to the live interface - call `NetworkController.Enable` for that.
+

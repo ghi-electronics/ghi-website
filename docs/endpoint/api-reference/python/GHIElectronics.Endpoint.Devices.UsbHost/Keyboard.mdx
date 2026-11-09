@@ -1,0 +1,86 @@
+---
+title: "Keyboard Class"
+sidebar_label: "Keyboard"
+---
+
+# Keyboard Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
+
+Allows a usb device to be used as a keyboard.
+
+```python
+class Keyboard(BaseDevice): ...
+```
+
+### Remarks
+
+The CharUp and CharDown events are only fired when a given key press has a corresponding ASCII key code (a US keyboard; Ctrl+A to Ctrl+Z give 1 to 26). A key held down gives one KeyDown. The events come on the keyboard's own thread.
+
+## Nested Types
+
+| Type | Kind | Summary |
+|---|---|---|
+| [Keyboard.KeyboardEventArgs](./Keyboard_KeyboardEventArgs.mdx) | Class | Event arguments for the keyboard events. |
+| [Keyboard.KeyboardEventHandler](./Keyboard_KeyboardEventHandler.mdx) | Delegate | The handler for used for keyboard callbacks. |
+
+## Constructors
+
+### Keyboard(string deviceName)
+
+```python
+def __init__(self, deviceName: str):
+```
+
+Opens the keyboard that UsbHostController reported ("/dev/input/event1").
+
+## Methods
+
+### IsKeyPressed(Key key)
+
+```python
+def IsKeyPressed(self, key: Key) -> KeyState:
+```
+
+Gets the current state of a key.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `key` | `Key` | The key to query. |
+
+**Returns** `KeyState`: The state of the key.
+
+## Events
+
+### CharDown
+
+```python
+CharDown  # += / -= handler
+```
+
+Fired when a key is pressed and it can be converted to ASCII.
+
+### CharUp
+
+```python
+CharUp  # += / -= handler
+```
+
+Fired when a key is released and it can be converted to ASCII.
+
+### KeyDown
+
+```python
+KeyDown  # += / -= handler
+```
+
+Fired when a key is pressed.
+
+### KeyUp
+
+```python
+KeyUp  # += / -= handler
+```
+
+Fired when a key is released.
+

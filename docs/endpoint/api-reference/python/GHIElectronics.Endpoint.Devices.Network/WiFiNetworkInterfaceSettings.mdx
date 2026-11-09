@@ -1,0 +1,55 @@
+---
+title: "WiFiNetworkInterfaceSettings Class"
+sidebar_label: "WiFiNetworkInterfaceSettings"
+---
+
+# WiFiNetworkInterfaceSettings Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Network`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Network`
+
+Settings for a WiFi interface. Inherits IP / DNS / MAC fields from `Network.NetworkInterfaceSettings` and adds the SSID and password used to associate with the access point.
+
+```python
+class WiFiNetworkInterfaceSettings(NetworkInterfaceSettings): ...
+```
+
+## Constructors
+
+### WiFiNetworkInterfaceSettings()
+
+```python
+def __init__(self):
+```
+
+## Properties
+
+### Password
+
+```python
+Password: str  # @property / @setter
+```
+
+Plain-text passphrase. Ignored when `WiFiNetworkInterfaceSettings.Security` is `WiFiSecurityType.None`.
+
+**Returns** `string`
+
+### Security
+
+```python
+Security: WiFiSecurityType  # @property / @setter
+```
+
+Which WPA variant the access point uses. Default: WPA2.
+
+**Returns** `WiFiSecurityType`
+
+### Ssid
+
+```python
+Ssid: str  # @property / @setter
+```
+
+The network name to connect to.
+
+**Returns** `string`
+

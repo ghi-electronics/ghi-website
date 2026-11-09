@@ -1,0 +1,73 @@
+---
+title: "EPDomino24.SerialPort Class"
+sidebar_label: "EPDomino24.SerialPort"
+---
+
+# SerialPort Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+Serial ports bonded on EP-Domino24.
+
+```python
+class SerialPort: ...
+```
+
+## Fields
+
+### Uart1
+
+```python
+Uart1: str = "/dev/ttySTM0"
+```
+
+UART1: PZ7 (TX), PZ6 (RX), PA12 (RTS), PZ3 (CTS); mikroBUS #1 CS/INT/RST pins.
+
+### Uart2
+
+```python
+Uart2: str = "/dev/ttySTM1"
+```
+
+UART2: PF5 (TX), PD6 (RX), PD4 (RTS), PD3 (CTS); mikroBUS #1.
+
+### Uart3
+
+```python
+Uart3: str = "/dev/ttySTM2"
+```
+
+UART3: PD8 (TX), PD9 (RX), PD12 (RTS), PD11 (CTS); mikroBUS #2.
+
+### Uart4
+
+```python
+Uart4: str = "/dev/ttySTM3"
+```
+
+UART4: PD1 (TX), PD0 (RX); 40-pin header (shares pins with I2C6 and CAN1).
+
+### Uart5
+
+```python
+Uart5: str = "/dev/ttySTM4"
+```
+
+UART5: PB13 (TX), PB12 (RX); 40-pin header (shares pins with CAN2).
+
+### Uart7
+
+```python
+Uart7: str = "/dev/ttySTM6"
+```
+
+UART7: PE8 (TX), PF6 (RX), PE9 (RTS), PE10 (CTS); 40-pin header.
+
+### Uart8
+
+```python
+Uart8: str = "/dev/ttySTM7"
+```
+
+UART8: PE1 (TX), PE0 (RX); 40-pin header.
+

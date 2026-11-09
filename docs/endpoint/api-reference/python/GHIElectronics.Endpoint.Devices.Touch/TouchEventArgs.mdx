@@ -1,0 +1,52 @@
+---
+title: "TouchEventArgs Class"
+sidebar_label: "TouchEventArgs"
+---
+
+# TouchEventArgs Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Touch`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Touch`
+
+Event data for `Touch.OnChangedEvent`: how the fingers changed since the last event.
+
+```python
+class TouchEventArgs(EventArgs): ...
+```
+
+## Constructors
+
+### TouchEventArgs(TouchEventType eventType, TouchPoint[] points)
+
+```python
+def __init__(self, eventType: TouchEventType, points: list[TouchPoint]):
+```
+
+Builds a touch-event payload.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `eventType` | `TouchEventType` | What changed (pressed, moved, released). |
+| `points` | `TouchPoint[]` | Every finger currently on the screen; empty when `eventType` is `TouchEventType.Released`. |
+
+## Properties
+
+### EventType
+
+```python
+EventType: TouchEventType  # @property
+```
+
+Kind of change this event represents.
+
+**Returns** `TouchEventType`
+
+### Points
+
+```python
+Points: list[TouchPoint]  # @property
+```
+
+Every finger currently on the screen. Empty for Released.
+
+**Returns** `TouchPoint[]`
+

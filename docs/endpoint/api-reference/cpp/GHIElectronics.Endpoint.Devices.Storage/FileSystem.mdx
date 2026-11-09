@@ -1,0 +1,43 @@
+---
+title: "FileSystem Class"
+sidebar_label: "FileSystem"
+---
+
+# FileSystem Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Storage`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Storage`
+
+Mount / flush / unmount a drive the `Storage.StorageController` reported. Pass the `DeviceConnectionEventArgs.Hdc` from the event.
+
+```cpp
+class FileSystem {};
+```
+
+## Methods
+
+### Flush(nint hdc)
+
+```cpp
+static void Flush(intptr_t hdc);
+```
+
+Writes everything to the drive: call it before the drive is pulled out
+
+### Mount(nint hdc)
+
+```cpp
+static DriveInfo Mount(intptr_t hdc);
+```
+
+Mounts the drive (if it is not yet) and gives its folder, "/media/usb0/"
+
+**Returns** `DriveInfo`
+
+### Unmount(nint hdc)
+
+```cpp
+static void Unmount(intptr_t hdc);
+```
+
+Unmounts the drive. Call `FileSystem.Flush` first if data was written and the drive is about to be pulled out.
+

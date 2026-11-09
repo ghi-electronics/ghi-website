@@ -1,0 +1,95 @@
+---
+title: "WatchdogController Class"
+sidebar_label: "WatchdogController"
+---
+
+# WatchdogController Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Watchdog`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Watchdog`
+
+Endpoint's watchdog, with the same API as TinyCLR. After `WatchdogController.Enable`, `WatchdogController.Reset` must be called more often than the timeout, or the board restarts. The watchdog cannot be stopped once it runs. `WatchdogController.Disable` hands it to the system, which then keeps it fed. If the program ends or crashes without `WatchdogController.Disable`, the board restarts after the timeout, also when debugging stops.
+
+```cpp
+class WatchdogController : public IDisposable {};
+```
+
+## Properties
+
+### IsEnabled
+
+```cpp
+bool IsEnabled() const;
+```
+
+Whether this controller has enabled the watchdog (and not disabled it)
+
+**Returns** `bool`
+
+### MaxTimeout
+
+```cpp
+Core::TimeSpan MaxTimeout() const;
+```
+
+The longest timeout the hardware supports.
+
+**Returns** `TimeSpan`
+
+## Methods
+
+### Disable()
+
+```cpp
+void Disable();
+```
+
+Stops watching this program: the system keeps the watchdog fed from now on (the chip's watchdog itself cannot stop)
+
+### Dispose()
+
+```cpp
+void Dispose();
+```
+
+Releases the controller. An enabled watchdog stays enabled: with nobody to reset it, the board restarts after the timeout. Call `WatchdogController.Disable` first to avoid that.
+
+### Enable(TimeSpan timeout)
+
+```cpp
+void Enable(Core::TimeSpan timeout);
+```
+
+Starts the watchdog, or changes its timeout. The system counts whole seconds, so the timeout is rounded up to the next second.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `timeout` | `TimeSpan` | More than 0 and at most `WatchdogController.MaxTimeout` |
+
+### FromName(string name)
+
+```cpp
+static WatchdogController FromName(const std::string& name);
+```
+
+The watchdog named `name`: EPM815.Watchdog.Id, EPN256.Watchdog.Id, or EPN128.Watchdog.Id.
+
+**Returns** `WatchdogController`
+
+### GetDefault()
+
+```cpp
+static WatchdogController GetDefault();
+```
+
+The board's watchdog
+
+**Returns** `WatchdogController`
+
+### Reset()
+
+```cpp
+void Reset();
+```
+
+Starts the timeout again. Call it more often than the timeout.
+

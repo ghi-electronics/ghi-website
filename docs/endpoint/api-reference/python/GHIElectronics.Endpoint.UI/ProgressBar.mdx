@@ -1,0 +1,61 @@
+---
+title: "ProgressBar Class"
+sidebar_label: "ProgressBar"
+---
+
+# ProgressBar Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Horizontal progress bar. No events; the owner drives it via `ProgressBar.Value`.
+
+```python
+class ProgressBar(Widget): ...
+```
+
+## Constructors
+
+### ProgressBar(Widget parent)
+
+```python
+def __init__(self, parent: Widget):
+```
+
+Create a progress bar inside `parent`. Default range is 0-100.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Properties
+
+### Maximum
+
+```python
+Maximum: int  # @property / @setter
+```
+
+Upper bound of `ProgressBar.Value`. Setting it pushes both bounds to LVGL. Getter returns the last value set.
+
+**Returns** `int`
+
+### Minimum
+
+```python
+Minimum: int  # @property / @setter
+```
+
+Lower bound of `ProgressBar.Value`. Setting it pushes both bounds to LVGL. Getter returns the last value set.
+
+**Returns** `int`
+
+### Value
+
+```python
+Value: int  # @property / @setter
+```
+
+Current fill between `ProgressBar.Minimum` and `ProgressBar.Maximum`. Read-back is supported by LVGL.
+
+**Returns** `int`
+

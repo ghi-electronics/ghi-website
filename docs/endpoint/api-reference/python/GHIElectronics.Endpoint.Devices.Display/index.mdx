@@ -1,0 +1,28 @@
+---
+title: "GHIElectronics.Endpoint.Devices.Display"
+hide_title: true
+sidebar_label: Overview
+---
+
+<h1 className="api-package-heading">GHIElectronics.Endpoint.Devices.Display</h1>
+
+The display driver for Endpoint.
+
+## Classes
+
+| Class | Summary |
+|---|---|
+| [BacklightSettings](./BacklightSettings.mdx) | GPIO pin that drives the panel's backlight. |
+| [DisplayController](./DisplayController.mdx) | A display on the board. This class is abstract: the library ships one concrete subclass, `Display.ParallelDisplayController`, for the built-in parallel RGB panel into `/dev/fb0`. Customers wiring any other kind of panel (SPI, I2C, custom) subclass this directly and drive the hardware through the Core `Spi`/`I2c`/`Gpio` APIs. The abstract contract is: open the panel on `DisplayController.Enable`, close it on `DisplayController.Disable`, push pixels on `DisplayController.Flush`. |
+| [DisplaySettings](./DisplaySettings.mdx) | Everything in /config/display.json. Read with `DisplayController.GetSettings` and apply with `DisplayController.SetSettings`. Only the built-in Parallel transport has schema here; custom panels live in the customer's own `Display.DisplayController` subclass. |
+| [ParallelDisplayController](./ParallelDisplayController.mdx) | The built-in display driven by the SoC's parallel RGB LCD controller (DRM "DPI" / parallel-RGB). Opens `/dev/fb0` inside `ParallelDisplayController.Enable`, respects the real framebuffer stride, converts source pixel formats to the panel's bit depth, and blits with `ParallelDisplayController.Flush`. |
+| [ParallelLcdSettings](./ParallelLcdSettings.mdx) | Timings for the SoC's built-in parallel RGB panel controller. |
+
+## Enums
+
+| Enum | Summary |
+|---|---|
+| [ClockEdge](./ClockEdge.mdx) | Which edge of the pixel clock the panel latches pixel data on. |
+| [DisplayType](./DisplayType.mdx) | Which built-in transport the display uses. `DisplayType.None` means the board has no built-in display and either (a) nothing is attached or (b) a customer subclass of `Display.DisplayController` owns the panel directly over SPI/I2C/anything else. |
+| [SignalPolarity](./SignalPolarity.mdx) | Polarity of a logic-level control signal. |
+

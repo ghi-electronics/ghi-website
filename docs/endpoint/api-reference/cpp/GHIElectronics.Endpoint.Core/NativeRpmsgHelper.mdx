@@ -1,0 +1,106 @@
+---
+title: "NativeRpmsgHelper Class"
+sidebar_label: "NativeRpmsgHelper"
+---
+
+# NativeRpmsgHelper Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+Low-level helper used by other libraries to talk to the firmware's hardware timing helper. Data is exchanged as 32-bit words in fixed-size blocks of `NativeRpmsgHelper.BlockSize` words. Most applications never call this directly; `Core.EPM815`-based classes such as `DigitalSignalController` use it internally.
+
+```cpp
+class NativeRpmsgHelper {};
+```
+
+## Nested Types
+
+| Type | Kind | Summary |
+|---|---|---|
+| [NativeRpmsgHelper.DataReceivedEventHandler](./NativeRpmsgHelper_DataReceivedEventHandler.mdx) | Delegate | Signature for the `NativeRpmsgHelper.DataReceived` event. |
+
+## Properties
+
+### BlockDelay
+
+```cpp
+int32_t BlockDelay() const;
+void BlockDelay(int32_t value);
+```
+
+Delay in milliseconds between consecutive `NativeRpmsgHelper.Send` blocks (default 5).
+
+**Returns** `int`
+
+### BlockSize
+
+```cpp
+int32_t BlockSize() const;
+```
+
+Number of 32-bit words in one message block (64).
+
+**Returns** `int`
+
+## Methods
+
+### Acquire()
+
+```cpp
+static int32_t Acquire();
+```
+
+Opens the helper endpoint and reserves it for this process. Call before `NativeRpmsgHelper.Send` or `NativeRpmsgHelper.StartReceiving`.
+
+**Returns** `int`: Zero on success, a negative error code otherwise.
+
+### Ping()
+
+```cpp
+static int32_t Ping();
+```
+
+Sends a ping message to the remote core and waits for a reply, as a quick link check.
+
+**Returns** `int`: Zero when the remote responds, a negative error code otherwise.
+
+### Release()
+
+```cpp
+static int32_t Release();
+```
+
+Releases the helper endpoint previously opened by `NativeRpmsgHelper.Acquire`.
+
+**Returns** `int`: Zero on success, a negative error code otherwise.
+
+### Send(uint[] data, int offset, int count)
+
+```cpp
+static int32_t Send(const std::vector<uint32_t>& data, int32_t offset, int32_t count);
+```
+
+Sends `count` 32-bit words from `data` starting at `offset`. The transfer is split into blocks of `NativeRpmsgHelper.BlockSize` words with `NativeRpmsgHelper.BlockDelay` milliseconds between blocks.
+
+**Returns** `int`: The number of words actually written.
+
+### StartReceiving()
+
+```cpp
+static Task StartReceiving();
+```
+
+Starts the background receive loop. The loop reads whole messages from the helper endpoint and raises `NativeRpmsgHelper.DataReceived` for each. Safe to call more than once: only the first call starts a loop; subsequent calls return a completed task.
+
+**Returns** `Task`
+
+## Events
+
+### DataReceived
+
+```cpp
+Core::Event<...> DataReceived;
+```
+
+Raised from the receive loop started by `NativeRpmsgHelper.StartReceiving`.
+

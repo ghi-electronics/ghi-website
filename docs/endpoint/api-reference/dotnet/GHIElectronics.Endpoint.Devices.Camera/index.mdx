@@ -1,0 +1,30 @@
+---
+title: "GHIElectronics.Endpoint.Devices.Camera"
+hide_title: true
+sidebar_label: Overview
+---
+
+<h1 className="api-package-heading">GHIElectronics.Endpoint.Devices.Camera</h1>
+
+USB webcams, parallel-port cameras (DCMI), and shared camera settings and image conversion for Endpoint.
+
+## Classes
+
+| Class | Summary |
+|---|---|
+| [CameraConfiguration](./CameraConfiguration.mdx) | Resolution, pixel format and frame rate requested from a camera. |
+| [CameraControlValue](./CameraControlValue.mdx) | A camera control's range and value, in the camera's own units. |
+| [CameraFormat](./CameraFormat.mdx) | A picture size a camera has, what it sends for it, and its highest frame rate. |
+| [DcmiController](./DcmiController.mdx) | Base controller for the board's parallel camera-interface port. Reserves the camera data and sync pins, drives the pixel clock, loads the backing kernel module, and exposes single-frame capture and streaming. Concrete sensor drivers derive from this type. |
+| [FrameReceivedEventArgs](./FrameReceivedEventArgs.mdx) | A camera's frame while streaming: a JPEG. |
+| [ImageConverter](./ImageConverter.mdx) | Converts a camera frame between pixel formats. Only JPEG input is supported today. |
+| [UsbCamera](./UsbCamera.mdx) | A webcam: any USB Video Class camera. Pictures come as JPEG files, whether the camera sends MJPEG or raw YUYV pictures. |
+
+## Enums
+
+| Enum | Summary |
+|---|---|
+| [CameraControl](./CameraControl.mdx) | A camera's picture controls (each camera has some of them). |
+| [CameraPixelFormat](./CameraPixelFormat.mdx) | What a camera sends (pictures always come out as JPEG). |
+| [PixelFormat](./PixelFormat.mdx) | Pixel layout of a camera frame. |
+

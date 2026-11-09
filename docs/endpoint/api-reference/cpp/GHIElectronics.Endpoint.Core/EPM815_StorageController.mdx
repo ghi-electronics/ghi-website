@@ -1,0 +1,33 @@
+---
+title: "EPM815.StorageController Class"
+sidebar_label: "EPM815.StorageController"
+---
+
+# StorageController Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+SD cards and USB drives on EPM815. Use with the `GHIElectronics.Endpoint.Devices.Storage` package.
+
+```cpp
+class StorageController {};
+```
+
+## Fields
+
+### SdCard
+
+```cpp
+static constexpr std::string SdCard = "EPM815.StorageController.SdCard";
+```
+
+The SD card slot (mounted on `/media/sd/`).
+
+### UsbHostMassStorage
+
+```cpp
+static constexpr std::string UsbHostMassStorage = "EPM815.StorageController.UsbHostMassStorage";
+```
+
+The USB drives (mounted on `/media/usb0/`, `usb1`, ...; the first free number).
+

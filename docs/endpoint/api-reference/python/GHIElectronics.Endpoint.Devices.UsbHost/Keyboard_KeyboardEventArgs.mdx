@@ -1,0 +1,45 @@
+---
+title: "Keyboard.KeyboardEventArgs Class"
+sidebar_label: "Keyboard.KeyboardEventArgs"
+---
+
+# KeyboardEventArgs Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
+
+Event arguments for the keyboard events.
+
+```python
+class KeyboardEventArgs(EventArgs): ...
+```
+
+## Constructors
+
+### KeyboardEventArgs()
+
+```python
+def __init__(self):
+```
+
+## Properties
+
+### Ascii
+
+```python
+Ascii: str  # @property / @setter
+```
+
+The ASCII representation of the key, if available. Otherwise, this value is 0.
+
+**Returns** `char`
+
+### Which
+
+```python
+Which: Key  # @property / @setter
+```
+
+The Key associated with the event.
+
+**Returns** `Key`
+

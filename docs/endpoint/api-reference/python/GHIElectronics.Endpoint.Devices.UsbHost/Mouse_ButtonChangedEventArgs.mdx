@@ -1,0 +1,45 @@
+---
+title: "Mouse.ButtonChangedEventArgs Class"
+sidebar_label: "Mouse.ButtonChangedEventArgs"
+---
+
+# ButtonChangedEventArgs Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
+
+The events args for the ButtonPressed and ButtonReleased events.
+
+```python
+class ButtonChangedEventArgs(EventArgs): ...
+```
+
+## Constructors
+
+### ButtonChangedEventArgs()
+
+```python
+def __init__(self):
+```
+
+## Properties
+
+### State
+
+```python
+State: ButtonState  # @property / @setter
+```
+
+The new state of the button.
+
+**Returns** `ButtonState`
+
+### Which
+
+```python
+Which: Buttons  # @property / @setter
+```
+
+Which button changed its state.
+
+**Returns** `Buttons`
+

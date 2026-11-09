@@ -1,0 +1,53 @@
+---
+title: "ListBox Class"
+sidebar_label: "ListBox"
+---
+
+# ListBox Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Vertical scrollable list. `ListBox.AddItem` returns a handle whose Clicked event you subscribe to.
+
+```cpp
+class ListBox : public Widget {};
+```
+
+## Constructors
+
+### ListBox(Widget parent)
+
+```cpp
+ListBox(const Widget& parent);
+```
+
+Create a list box inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Methods
+
+### AddItem(string text)
+
+```cpp
+ListBoxItem AddItem(const std::string& text);
+```
+
+Append an item.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `text` | `string` | Row text. |
+
+**Returns** `ListBoxItem`: Handle for subscribing to the row's `ListBoxItem.Clicked` event.
+
+### Clear()
+
+```cpp
+void Clear();
+```
+
+Remove every item.
+

@@ -1,0 +1,55 @@
+---
+title: "Joystick.CursorMovedEventArgs Class"
+sidebar_label: "Joystick.CursorMovedEventArgs"
+---
+
+# CursorMovedEventArgs Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
+
+The events args for the CursorMoved event.
+
+```cpp
+class CursorMovedEventArgs : public EventArgs {};
+```
+
+## Constructors
+
+### CursorMovedEventArgs()
+
+```cpp
+CursorMovedEventArgs();
+```
+
+## Properties
+
+### Delta
+
+```cpp
+Position Delta() const;
+```
+
+The change from the last position.
+
+**Returns** `Position`
+
+### NewPosition
+
+```cpp
+Position NewPosition() const;
+```
+
+The new position of the cursor.
+
+**Returns** `Position`
+
+### Which
+
+```cpp
+Cursor Which() const;
+```
+
+Which cursor moved.
+
+**Returns** `Cursor`
+

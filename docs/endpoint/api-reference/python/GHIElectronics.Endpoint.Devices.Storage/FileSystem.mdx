@@ -1,0 +1,46 @@
+---
+title: "FileSystem Class"
+sidebar_label: "FileSystem"
+---
+
+# FileSystem Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Storage`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Storage`
+
+Mount / flush / unmount a drive the `Storage.StorageController` reported. Pass the `DeviceConnectionEventArgs.Hdc` from the event.
+
+```python
+class FileSystem: ...
+```
+
+## Methods
+
+### Flush(nint hdc)
+
+```python
+@staticmethod
+def Flush(hdc: int) -> None:
+```
+
+Writes everything to the drive: call it before the drive is pulled out
+
+### Mount(nint hdc)
+
+```python
+@staticmethod
+def Mount(hdc: int) -> DriveInfo:
+```
+
+Mounts the drive (if it is not yet) and gives its folder, "/media/usb0/"
+
+**Returns** `DriveInfo`
+
+### Unmount(nint hdc)
+
+```python
+@staticmethod
+def Unmount(hdc: int) -> None:
+```
+
+Unmounts the drive. Call `FileSystem.Flush` first if data was written and the drive is about to be pulled out.
+

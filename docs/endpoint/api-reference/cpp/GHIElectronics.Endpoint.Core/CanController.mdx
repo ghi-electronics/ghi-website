@@ -1,0 +1,38 @@
+---
+title: "CanController Class"
+sidebar_label: "CanController"
+---
+
+# CanController Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+Chip-neutral entry point for CAN-bus setup. Call once before using the CAN device package: it muxes the TX/RX pins and brings the `canN` network interface up at the chosen bitrate.
+
+```cpp
+class CanController {};
+```
+
+## Methods
+
+### Initialize(string port, int bitrate)
+
+```cpp
+static void Initialize(const std::string& port, int32_t bitrate);
+```
+
+Muxes the CAN pins and configures the bitrate.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `port` | `string` | A CAN port name (for example `EPN256.Can.Can0`). |
+| `bitrate` | `int` | Bus bitrate in bits per second (default 500 kbit/s). |
+
+### UnInitialize(string port)
+
+```cpp
+static void UnInitialize(const std::string& port);
+```
+
+Takes the interface down and releases its pins.
+
