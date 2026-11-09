@@ -241,6 +241,10 @@ display->Flush(regionPixels.data(), regionPixels.size(),
 </TabItem>
 </Tabs>
 
+Python does not support method overloading, so the binding exposes a single
+`Flush(pixels, format=PixelFormat.Format16bppRgb565, x=0, y=0, width=None, height=None)`;
+the three call sites above supply different trailing arguments to that one method.
+
 ### Boot logo
 
 Set `DisplaySettings.Logo` to the filename of a 24-bit BMP on the config
