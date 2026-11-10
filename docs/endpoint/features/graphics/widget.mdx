@@ -132,12 +132,13 @@ UI.Run()
 
 namespace Core = GHIElectronics::Endpoint::Core;
 namespace Dev  = GHIElectronics::Endpoint::Devices;
+namespace Ui   = GHIElectronics::Endpoint::UI;
 
-auto display = endpoint::DisplayController::GetDefault();
+auto display = Dev::Display::DisplayController::GetDefault();
 display->Enable();
 
-endpoint::UI::Initialize();
-endpoint::TouchBridge::Attach();
+Ui::Initialize();
+Ui::Touch::Attach();
 
 // Touch: FT5xx6 on I2C5, reset PF2, interrupt PB11
 Core::I2cController::Initialize(Core::EPDomino24::I2c::I2c5);
@@ -148,24 +149,24 @@ FT5xx6 touch(i2c, gpio, Core::EPDomino24::Gpio::Pin::PF2, Core::EPDomino24::Gpio
 touch.SetOnEvent([](Dev::Touch::Touch&, const Dev::Touch::TouchEventArgs& e) {
     if (!e.Points().empty()) {
         const auto& p = e.Points().front();
-        endpoint::TouchBridge::Feed(p.X, p.Y, e.EventType() != Dev::Touch::TouchEventType::Released);
+        Ui::Touch::Feed(p.X, p.Y, e.EventType() != Dev::Touch::TouchEventType::Released);
     }
     else {
-        endpoint::TouchBridge::Feed(0, 0, false);
+        Ui::Touch::Feed(0, 0, false);
     }
 });
 
-auto screen = endpoint::Screen::Active();
+auto screen = Ui::Screen::Active();
 screen.BackgroundColor(0x101828);
 
-endpoint::Label hello(screen);
+Ui::Label hello(screen);
 hello.Text("Hello Endpoint").Color(0xFFFFFF).FontSize(24).X(20).Y(20);
 
-endpoint::Button button(screen);
+Ui::Button button(screen);
 button.Text("Click me").X(20).Y(80).Width(160).Height(48);
 button.Clicked([&](auto&) { hello.Text("Clicked!"); });
 
-endpoint::UI::Run();
+Ui::Run();
 ```
 
 </TabItem>
