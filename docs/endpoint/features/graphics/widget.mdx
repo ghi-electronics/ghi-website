@@ -16,6 +16,15 @@ All widget updates must happen on the UI thread; the library runs
 single-threaded so a background thread cannot touch widgets directly
 (use `UiTimer` for periodic updates).
 
+## Touch input
+
+`TouchBridge.Attach()` registers touch input with the UI, but it does not
+read the touch chip. Widgets respond to touch only when your touch
+driver's events are passed to `TouchBridge.Feed(x, y, pressed)`. Without
+that, the code runs and the screen draws, but buttons never raise
+`Clicked`. The [Touch Screen](../touch-screen.mdx#feeding-touches-into-the-ui)
+page shows how to connect a touch driver to `TouchBridge`.
+
 ## Getting started
 
 <Tabs groupId="lang">
@@ -57,8 +66,7 @@ UI.Run();
 
 ```python
 from GHIElectronics.Endpoint.Devices.Display import DisplayController
-from GHIElectronics.Endpoint.Devices.Touch import TouchBridge
-from GHIElectronics.Endpoint.UI import UI, Screen, Label, Button
+from GHIElectronics.Endpoint.UI import UI, TouchBridge, Screen, Label, Button
 
 display = DisplayController.GetDefault()
 display.Enable()

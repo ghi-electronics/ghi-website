@@ -264,16 +264,16 @@ UI.Run()                   # blocks on the UI thread
 using namespace GHIElectronics::Endpoint;
 
 UI::Initialize();          // after DisplayController::Enable()
-UI::Touch::Attach();
+UI::TouchBridge::Attach();
 
 FT5xx6 touch(/* ... */);
 touch.SetOnEvent([](Devices::Touch::Touch&, const Devices::Touch::TouchEventArgs& e) {
     if (!e.Points().empty()) {
         const auto& p = e.Points().front();
-        UI::Touch::Feed(p.X, p.Y, e.EventType() != Devices::Touch::TouchEventType::Released);
+        UI::TouchBridge::Feed(p.X, p.Y, e.EventType() != Devices::Touch::TouchEventType::Released);
     }
     else {
-        UI::Touch::Feed(0, 0, false);
+        UI::TouchBridge::Feed(0, 0, false);
     }
 });
 
