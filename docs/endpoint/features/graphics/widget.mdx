@@ -31,6 +31,9 @@ page shows how to connect a touch driver to `TouchBridge`.
 <TabItem value="dotnet" label=".NET" default>
 
 ```csharp
+using System.Device.Gpio;
+using System.Device.I2c;
+using GHIElectronics.Endpoint.Core;
 using GHIElectronics.Endpoint.Devices.Display;
 using GHIElectronics.Endpoint.Devices.Touch;
 using GHIElectronics.Endpoint.UI;
@@ -40,6 +43,18 @@ display.Enable();
 
 UI.Initialize();
 TouchBridge.Attach();
+
+// Touch: FT5xx6 class from the Touch Screen page, on I2C5, reset PF2, interrupt PB11
+I2cController.Initialize(EPDomino24.I2c.I2c5);
+var i2c = I2cDevice.Create(new I2cConnectionSettings(EPDomino24.I2c.I2c5, 0x38));
+using var gpio  = new GpioController(new EPDomino24.Gpio.Driver());
+using var touch = new FT5xx6(i2c, gpio, resetPin: EPDomino24.Gpio.Pin.PF2, irqPin: EPDomino24.Gpio.Pin.PB11);
+touch.OnChangedEvent += (sender, e) => {
+    if (e.Points.Length > 0)
+        TouchBridge.Feed(e.Points[0].X, e.Points[0].Y, pressed: e.EventType != TouchEventType.Released);
+    else
+        TouchBridge.Feed(0, 0, pressed: false);
+};
 
 var screen = Screen.Active;
 screen.BackgroundColor = 0x101828;
@@ -65,14 +80,32 @@ UI.Run();
 <TabItem value="python" label="Python">
 
 ```python
+from GHIElectronics.Endpoint.Core import EPDomino24, I2cController
 from GHIElectronics.Endpoint.Devices.Display import DisplayController
+from GHIElectronics.Endpoint.Devices.Gpio import GpioController
+from GHIElectronics.Endpoint.Devices.I2c import I2cDevice, I2cConnectionSettings
+from GHIElectronics.Endpoint.Devices.Touch import TouchEventType
 from GHIElectronics.Endpoint.UI import UI, TouchBridge, Screen, Label, Button
+
+from ft5xx6 import FT5xx6            # FT5xx6 class from the Touch Screen page
 
 display = DisplayController.GetDefault()
 display.Enable()
 
 UI.Initialize()
 TouchBridge.Attach()
+
+# Touch: FT5xx6 on I2C5, reset PF2, interrupt PB11
+I2cController.Initialize(EPDomino24.I2c.I2c5)
+i2c = I2cDevice.Create(I2cConnectionSettings(EPDomino24.I2c.I2c5, 0x38))
+gpio = GpioController()
+touch = FT5xx6(i2c, gpio, EPDomino24.Gpio.Pin.PF2, EPDomino24.Gpio.Pin.PB11)
+def on_touch(sender, e):
+    if len(e.Points) > 0:
+        TouchBridge.Feed(e.Points[0].X, e.Points[0].Y, e.EventType != TouchEventType.Released)
+    else:
+        TouchBridge.Feed(0, 0, False)
+touch.OnChangedEvent += on_touch
 
 screen = Screen.Active
 screen.BackgroundColor = 0x101828
@@ -89,14 +122,38 @@ UI.Run()
 
 ```cpp
 #include <endpoint/Display.h>
+#include <endpoint/EPDomino24.h>
+#include <endpoint/Gpio.h>
+#include <endpoint/I2c.h>
+#include <endpoint/I2cController.h>
 #include <endpoint/Touch.h>
 #include <endpoint/UI.h>
+#include "FT5xx6.h"                   // FT5xx6 class from the Touch Screen page
+
+namespace Core = GHIElectronics::Endpoint::Core;
+namespace Dev  = GHIElectronics::Endpoint::Devices;
 
 auto display = endpoint::DisplayController::GetDefault();
 display->Enable();
 
 endpoint::UI::Initialize();
 endpoint::TouchBridge::Attach();
+
+// Touch: FT5xx6 on I2C5, reset PF2, interrupt PB11
+Core::I2cController::Initialize(Core::EPDomino24::I2c::I2c5);
+auto i2c = Dev::I2c::I2cDevice::Create(
+    Dev::I2c::I2cConnectionSettings(Core::EPDomino24::I2c::I2c5, 0x38));
+Dev::Gpio::GpioController gpio;
+FT5xx6 touch(i2c, gpio, Core::EPDomino24::Gpio::Pin::PF2, Core::EPDomino24::Gpio::Pin::PB11);
+touch.SetOnEvent([](Dev::Touch::Touch&, const Dev::Touch::TouchEventArgs& e) {
+    if (!e.Points().empty()) {
+        const auto& p = e.Points().front();
+        endpoint::TouchBridge::Feed(p.X, p.Y, e.EventType() != Dev::Touch::TouchEventType::Released);
+    }
+    else {
+        endpoint::TouchBridge::Feed(0, 0, false);
+    }
+});
 
 auto screen = endpoint::Screen::Active();
 screen.BackgroundColor(0x101828);

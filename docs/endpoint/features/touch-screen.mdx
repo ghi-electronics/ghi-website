@@ -212,17 +212,30 @@ If you use the [Widget library](graphics/widget.mdx), wire your driver's events 
 `TouchBridge.Feed` and LVGL does the rest. The right widget gets a
 `Clicked` or `ValueChanged` event.
 
+On Endpoint Domino24, the touch chip on the display connector is on
+**I2C5**, with reset on **PF2** and interrupt on **PB11** (see the
+[display pinout](../endpoint-domino24.mdx#displays)). The FT5xx6 answers at
+I2C address `0x38`.
+
 <Tabs groupId="lang">
 <TabItem value="dotnet" label=".NET" default>
 
 ```csharp
-using GHIElectronics.Endpoint.UI;
+using System.Device.Gpio;
+using System.Device.I2c;
+using GHIElectronics.Endpoint.Core;
 using GHIElectronics.Endpoint.Devices.Touch;
+using GHIElectronics.Endpoint.UI;
 
 UI.Initialize();           // after DisplayController.Enable()
 TouchBridge.Attach();
 
-var touch = new FT5xx6(...);
+// Touch chip on the display connector: I2C5, reset PF2, interrupt PB11
+I2cController.Initialize(EPDomino24.I2c.I2c5);
+var i2c = I2cDevice.Create(new I2cConnectionSettings(EPDomino24.I2c.I2c5, 0x38));
+using var gpio  = new GpioController(new EPDomino24.Gpio.Driver());
+using var touch = new FT5xx6(i2c, gpio, resetPin: EPDomino24.Gpio.Pin.PF2, irqPin: EPDomino24.Gpio.Pin.PB11);
+
 touch.OnChangedEvent += (sender, e) => {
     if (e.Points.Length > 0)
         TouchBridge.Feed(e.Points[0].X, e.Points[0].Y, pressed: e.EventType != TouchEventType.Released);
@@ -237,13 +250,21 @@ UI.Run();                  // blocks on the UI thread
 <TabItem value="python" label="Python">
 
 ```python
-from GHIElectronics.Endpoint.UI import UI, TouchBridge
+from GHIElectronics.Endpoint.Core import EPDomino24, I2cController
+from GHIElectronics.Endpoint.Devices.Gpio import GpioController
+from GHIElectronics.Endpoint.Devices.I2c import I2cDevice, I2cConnectionSettings
 from GHIElectronics.Endpoint.Devices.Touch import TouchEventType
+from GHIElectronics.Endpoint.UI import UI, TouchBridge
 
 UI.Initialize()            # after DisplayController.Enable()
 TouchBridge.Attach()
 
-touch = FT5xx6(...)
+# Touch chip on the display connector: I2C5, reset PF2, interrupt PB11
+I2cController.Initialize(EPDomino24.I2c.I2c5)
+i2c = I2cDevice.Create(I2cConnectionSettings(EPDomino24.I2c.I2c5, 0x38))
+gpio = GpioController()
+touch = FT5xx6(i2c, gpio, EPDomino24.Gpio.Pin.PF2, EPDomino24.Gpio.Pin.PB11)
+
 def on_changed(sender, e):
     if len(e.Points) > 0:
         TouchBridge.Feed(e.Points[0].X, e.Points[0].Y, e.EventType != TouchEventType.Released)
@@ -258,15 +279,24 @@ UI.Run()                   # blocks on the UI thread
 <TabItem value="cpp" label="C/C++">
 
 ```cpp
-#include <endpoint/UI.h>
+#include <endpoint/EPDomino24.h>
+#include <endpoint/Gpio.h>
+#include <endpoint/I2c.h>
+#include <endpoint/I2cController.h>
 #include <endpoint/Touch.h>
+#include <endpoint/UI.h>
 
 using namespace GHIElectronics::Endpoint;
 
 UI::Initialize();          // after DisplayController::Enable()
 UI::TouchBridge::Attach();
 
-FT5xx6 touch(/* ... */);
+// Touch chip on the display connector: I2C5, reset PF2, interrupt PB11
+Core::I2cController::Initialize(Core::EPDomino24::I2c::I2c5);
+auto i2c = Devices::I2c::I2cDevice::Create(
+    Devices::I2c::I2cConnectionSettings(Core::EPDomino24::I2c::I2c5, 0x38));
+Devices::Gpio::GpioController gpio;
+FT5xx6 touch(i2c, gpio, Core::EPDomino24::Gpio::Pin::PF2, Core::EPDomino24::Gpio::Pin::PB11);
 touch.SetOnEvent([](Devices::Touch::Touch&, const Devices::Touch::TouchEventArgs& e) {
     if (!e.Points().empty()) {
         const auto& p = e.Points().front();
