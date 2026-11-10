@@ -12,10 +12,7 @@ File | Date | Status | MD5
 
 ## IDE extensions
 
-The Endpoint Debugger extension for your IDE. The extensions also bundle
-the project templates and, during preview, the Endpoint libraries
-themselves. They are extracted into a new project the first time you
-create one.
+The Endpoint Debugger extension for your IDE.
 
 IDE | Marketplace
 --- | ---
@@ -24,9 +21,12 @@ Visual Studio Code | [Endpoint Debugger](https://marketplace.visualstudio.com/it
 
 ## Libraries
 
-The Endpoint libraries are still in preview, so they are not yet
-published to the public package registries (**NuGet.org** for .NET and
-**PyPI** for Python). The current set for all three languages (.NET,
-Python, C/C++) is bundled inside both IDE extensions and is extracted
-into your workspace the first time you create a new Endpoint project,
-so no separate download is required.
+The Endpoint libraries are on the public package registries. New projects
+created from the IDE templates reference them already, so no separate
+download is required.
+
+Language | Registry | Package
+--- | --- | ---
+.NET | [NuGet.org](https://www.nuget.org/packages/GHIElectronics.Endpoint.Core/) | `GHIElectronics.Endpoint.Core` (and `Devices.*`, `UI`)
+Python | [PyPI](https://pypi.org/project/GHIElectronics.Endpoint.Core/) | `GHIElectronics.Endpoint.Core` (and `Devices.*`, `UI`)
+C/C++ | bundled in the VS Code extension | `endpoint/` folder with `libendpoint.a` + headers
