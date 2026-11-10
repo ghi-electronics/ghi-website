@@ -1,6 +1,6 @@
 ---
 title: Endpoint
-description: Endpoint is a new platform that runs full .NET Core, Python, and C++ on a circuit. All three share one set of APIs, and you debug them over USB. Try it today on Endpoint Domino.
+description: Endpoint is a new platform that runs full .NET, Python, and C++ on a circuit. All three share one set of APIs, and you debug them over USB. Try it today on Endpoint Domino24.
 hide_table_of_contents: true
 ---
 
@@ -10,12 +10,12 @@ import YouTubeFacade from '@site/src/components/YouTubeFacade';
 
 <div className="section-tinted__intro">
  <img src="/img/endpoint-logo.webp" alt="Endpoint" style={{height: '150px', width: 'auto', margin: '0 auto 1.25rem', display: 'block'}} />
-  <h2>Full .NET Core, Python, and C++ on a circuit</h2>
+  <h2>Full .NET, Python, and C++ on a circuit</h2>
   <p>Endpoint is a new platform that runs the languages you use on a PC on embedded hardware. They share one set of APIs, and you debug all three over a USB cable, with direct access to the hardware.</p>
   <ul className="hero-bullets">
-    <li>Full .NET Core</li>
-    <li>Python</li>
-    <li>C and C++</li>
+    <li>.NET 11</li>
+    <li>Python 3.14</li>
+    <li>C++23</li>
   </ul>
 </div>
 
@@ -40,7 +40,7 @@ import YouTubeFacade from '@site/src/components/YouTubeFacade';
   </div>
 </div>
 
-<YouTubeFacade id="rz_8dD-Q2WI" title="Endpoint: full .NET Core on embedded hardware" />
+<YouTubeFacade id="rz_8dD-Q2WI" title="Endpoint: full .NET on embedded hardware" />
 
 ## Why Endpoint?
 
@@ -89,9 +89,9 @@ import YouTubeFacade from '@site/src/components/YouTubeFacade';
   </div>
 </div>
 
-<YouTubeFacade id="D6PL4kPqIw8" title="Endpoint Domino: blinking an LED from C# with the debugger attached" />
+<YouTubeFacade id="D6PL4kPqIw8" title="Endpoint Domino24: blinking an LED from C# with the debugger attached" />
 
-Blinking an LED on Endpoint Domino from C#, with the debugger attached.
+Blinking an LED on Endpoint Domino24 from C#, with the debugger attached.
 
 ## Three languages. One set of APIs
 
@@ -99,7 +99,7 @@ Learn the API once and it travels with you.
 
 <div className="feature-grid">
   <div className="feature-card">
-    <div className="feature-card__title">Full .NET Core</div>
+    <div className="feature-card__title">Full .NET</div>
     <div className="feature-card__body">The same .NET you run on a PC, with APIs that match .NET conventions. Debug from VS Code or Visual Studio. Press Ctrl+F5 to compile in AOT mode and run at boot.</div>
   </div>
   <div className="feature-card">
@@ -125,13 +125,13 @@ Click any feature to jump to its docs.
       <ul>
         <li><a href="/docs/endpoint/features/gpio">GPIO</a></li>
         <li><a href="/docs/endpoint/features/pwm">PWM</a></li>
-        <li><a href="/docs/endpoint/features/analog-in">Analog in</a></li>
-        <li><a href="/docs/endpoint/features/analog-out">Analog out</a></li>
-        <li><a href="/docs/endpoint/features/signal-control">Signal control</a></li>
+        <li><a href="/docs/endpoint/features/analog-in">Analog In</a></li>
+        <li><a href="/docs/endpoint/features/analog-out">Analog Out</a></li>
+        <li><a href="/docs/endpoint/features/signal-control">Signal Control</a></li>
       </ul>
     </div>
     <div className="features-subgroup">
-      <span className="features-subgroup__label">Communication buses</span>
+      <span className="features-subgroup__label">Serial Buses</span>
       <ul>
         <li><a href="/docs/endpoint/features/spi">SPI</a></li>
         <li><a href="/docs/endpoint/features/i2c">I2C</a></li>
@@ -145,52 +145,54 @@ Click any feature to jump to its docs.
   <div className="features-category">
     <h3>Connectivity</h3>
     <div className="features-subgroup">
-      <span className="features-subgroup__label">Networking</span>
+      <span className="features-subgroup__label">Wireless and Networking</span>
       <ul>
         <li><a href="/docs/endpoint/features/networking">Networking</a></li>
         <li><a href="/docs/endpoint/features/bluetooth">Bluetooth</a></li>
       </ul>
     </div>
     <div className="features-subgroup">
-      <span className="features-subgroup__label">Cloud</span>
+      <span className="features-subgroup__label">Cloud, IoT and Industrial</span>
       <ul>
         <li><a href="/docs/endpoint/features/azure">Microsoft Azure</a></li>
         <li><a href="/docs/endpoint/features/aws">Amazon Web Services</a></li>
+        <li><a href="/docs/endpoint/features/mqtt">MQTT</a></li>
+        <li><a href="/docs/endpoint/features/modbus">Modbus</a></li>
+        <li><a href="/docs/endpoint/features/ethernet-ip">EtherNet/IP</a></li>
+        <li><a href="/docs/endpoint/features/gateway">Endpoint as gateway</a></li>
       </ul>
     </div>
   </div>
 
   <div className="features-category">
-    <h3>Display &amp; storage</h3>
+    <h3>Display and storage</h3>
     <div className="features-subgroup">
-      <span className="features-subgroup__label">Display &amp; multimedia</span>
+      <span className="features-subgroup__label">Display and Multimedia</span>
       <ul>
         <li><a href="/docs/endpoint/features/displays">Displays</a></li>
-        <li><a href="/docs/endpoint/features/touch-screen">Touch screen</a></li>
-        <li><a href="/docs/endpoint/features/ui">User interface</a></li>
-        <li><a href="/docs/endpoint/features/graphics">Graphics</a></li>
+        <li><a href="/docs/endpoint/features/graphics/">Graphics</a></li>
+        <li><a href="/docs/endpoint/features/touch-screen">Touch Screen</a></li>
         <li><a href="/docs/endpoint/features/camera">Camera</a></li>
-        <li><a href="/docs/endpoint/features/mjpeg-video">MJPEG video</a></li>
       </ul>
     </div>
     <div className="features-subgroup">
-      <span className="features-subgroup__label">Storage</span>
+      <span className="features-subgroup__label">Storage and Data</span>
       <ul>
-        <li><a href="/docs/endpoint/features/file-system">File system</a></li>
-        <li><a href="/docs/endpoint/features/databases">SQLite database</a></li>
+        <li><a href="/docs/endpoint/features/file-system">File System</a></li>
+        <li><a href="/docs/endpoint/features/databases">Databases</a></li>
       </ul>
     </div>
   </div>
 
   <div className="features-category">
-    <h3>System services</h3>
+    <h3>System Services</h3>
     <div className="features-subgroup">
       <span className="features-subgroup__label">Device management</span>
       <ul>
-        <li><a href="/docs/endpoint/features/in-field-update">In-field update</a></li>
-        <li><a href="/docs/endpoint/features/power-management">Power management</a></li>
+        <li><a href="/docs/endpoint/features/in-field-update">In-Field Update</a></li>
+        <li><a href="/docs/endpoint/features/power-management">Power Management</a></li>
         <li><a href="/docs/endpoint/features/watchdog-timer">Watchdog</a></li>
-        <li><a href="/docs/endpoint/features/real-time-clock">Real-time clock</a></li>
+        <li><a href="/docs/endpoint/features/real-time-clock">Real Time Clock</a></li>
       </ul>
     </div>
   </div>
@@ -199,9 +201,9 @@ Click any feature to jump to its docs.
 
 ## A new platform, and your first taste of it
 
-Endpoint is new, and we are still shaping what the commercial product should be. We have not released SoMs or dev boards yet, because we would rather get that right than ship early. Tell us on the [forum](https://forums.ghielectronics.com/) what form factor you need, which peripherals matter, and whether wireless is a requirement or a nice to have. Those answers shape what we build next.
+Endpoint is new, and we are still shaping what the commercial product should be. We have not released SoMs or dev boards yet, because we would rather get that right than ship early. Tell us on the [forum](https://forums.ghielectronics.com/c/endpoint/34) what form factor you need, which peripherals matter, and whether wireless is a requirement or a nice to have. Those answers shape what we build next.
 
-**Endpoint Domino** is how you try the platform today. We built it for evaluation and excitement, and the board says so: "For Evaluation and Excitement Only." It's your first taste of what Endpoint can do and a look at what's to come.
+**Endpoint Domino24** is how you try the platform today. We built it for evaluation and excitement, and the board says so: "For Evaluation and Excitement Only." It's your first taste of what Endpoint can do and a look at what's to come.
 
 <div className="split">
   <div className="split__text">
@@ -213,11 +215,11 @@ Endpoint is new, and we are still shaping what the commercial product should be.
       <li>Display connector with optional capacitive touch</li>
       <li>Wi-Fi through a USB dongle, plus USB host and a microSD slot</li>
     </ul>
-    <p>Endpoint Domino (EP-DOMINO-24-B) is available now.</p>
+    <p>Endpoint Domino24 (EP-DOMINO-24-B) is available now.</p>
     <p><a href="https://www.amazon.com/gp/product/B0CS6VGRSH?maas=maas_adg_CA55915BE55A9AD52BD164F3AF1756C5_afap_abs&ref_=aa_maas&tag=maas" className="btn-primary">Order on Amazon →</a></p>
     <p><a href="/docs/endpoint/hardware/">See the hardware docs →</a></p>
   </div>
-  <img src="/img/docs/endpoint/endpoint-domino.png" alt="Endpoint Domino board" />
+  <img src="/img/docs/endpoint/endpoint-domino.png" alt="Endpoint Domino24 board" />
 </div>
 
 <div className="cta">

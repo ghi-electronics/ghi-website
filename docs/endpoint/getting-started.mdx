@@ -14,7 +14,7 @@ import TabItem from '@theme/TabItem';
 Endpoint runs **full .NET, Python, and C/C++** on a circuit. All three share one set of APIs, so what you learn in one language travels with you. You debug them over a USB cable, no SSH, with no keys, passwords, or IP addresses.
 
 :::note[Evaluation hardware]
-[Endpoint Domino24](hardware.mdx) is the evaluation board we built for Endpoint. We have not released SoMs or dev boards yet, because we are still shaping what the commercial product should be. Tell us what you need on the [forum](https://forums.ghielectronics.com/): what form factor, which peripherals, and whether wireless is a requirement.
+[Endpoint Domino24](hardware.mdx) is the evaluation board we built for Endpoint. We have not released SoMs or dev boards yet, because we are still shaping what the commercial product should be. Tell us what you need on the [forum](https://forums.ghielectronics.com/c/endpoint/34): what form factor, which peripherals, and whether wireless is a requirement.
 :::
 
 ## Languages and tools
@@ -48,7 +48,7 @@ Visual Studio supports **.NET (C#)**.
 
 1. **Visual Studio 2026** (Community, Professional or Enterprise). VS 2022 17.9+ also works.
 2. The matching **.NET SDK** installed and on PATH ([download](https://dotnet.microsoft.com/download)).
-3. The **Endpoint Debugger** extension. Install the latest `endpoint_vs_debugger-win32-x64-*.vsix` from the [Downloads](downloads.mdx) page.
+3. The **Endpoint Debugger** extension from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=ghielectronics.Endpoint-VS-Debugger). In Visual Studio, open **Extensions > Manage Extensions** and search for *"Endpoint"*.
 
 </TabItem>
 <TabItem value="vscode" label="Visual Studio Code">
@@ -56,7 +56,7 @@ Visual Studio supports **.NET (C#)**.
 Visual Studio Code supports **.NET (C#)**, **Python**, and **C/C++**, all three languages from the same extension.
 
 1. **Visual Studio Code**.
-2. The **Endpoint Debugger** extension. Install the latest `endpoint_vsc_debugger-win32-x64-*.vsix` from the [Downloads](downloads.mdx) page.
+2. The **Endpoint Debugger** extension from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=ghielectronics.endpointvscdebugger). In VS Code, open the **Extensions** view and search for *"Endpoint"*.
 3. For each language you want to use:
    - **.NET (C#)**: the matching [.NET SDK](https://dotnet.microsoft.com/download) and the [C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) extension.
    - **Python**: [Python](https://www.python.org/downloads/) and the [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) + [Python Debugger](https://marketplace.visualstudio.com/items?itemName=ms-python.debugpy) extensions.
@@ -114,10 +114,6 @@ Press **F5**. The extension builds the project, copies it to the board, and star
 
 </TabItem>
 </Tabs>
-
-:::tip
-Only one program at a time holds the USB connection. Close the Endpoint Config tool before using F5 in Visual Studio or VS Code, and vice versa.
-:::
 
 ## What's next
 

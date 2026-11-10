@@ -18,7 +18,7 @@ Max timeout is 131 seconds.
 using GHIElectronics.Endpoint.Core;
 using GHIElectronics.Endpoint.Devices.Watchdog;
 
-using var watchdog = WatchdogController.FromName(EPM815.Watchdog.Id);
+using var watchdog = WatchdogController.FromName(EPDomino24.Watchdog.Id);
 
 watchdog.Enable(TimeSpan.FromSeconds(10));   // 10 seconds
 var cnt = 0;
@@ -35,10 +35,10 @@ while (true) {
 
 ```python
 import datetime, time
-from GHIElectronics.Endpoint.Core import EPM815
+from GHIElectronics.Endpoint.Core import EPDomino24
 from GHIElectronics.Endpoint.Devices.Watchdog import WatchdogController
 
-watchdog = WatchdogController.FromName(EPM815.Watchdog.Id)
+watchdog = WatchdogController.FromName(EPDomino24.Watchdog.Id)
 
 watchdog.Enable(datetime.timedelta(seconds=10))   # 10 seconds
 cnt = 0
@@ -63,7 +63,7 @@ while True:
 using namespace GHIElectronics::Endpoint::Core;
 using namespace GHIElectronics::Endpoint::Devices::Watchdog;
 
-auto watchdog = WatchdogController::FromName(EPM815::Watchdog::Id);
+auto watchdog = WatchdogController::FromName(EPDomino24::Watchdog::Id);
 
 watchdog.Enable(std::chrono::seconds(10));   // 10 seconds
 int cnt = 0;

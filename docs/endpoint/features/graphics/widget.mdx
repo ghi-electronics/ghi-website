@@ -177,12 +177,12 @@ using GHIElectronics.Endpoint.UI.Drawing;
 SpiController.Initialize(EPDomino24.Spi.Spi1, bufferSize: 4096);
 using var spi = SpiDevice.Create(ILI9341Controller.GetConnectionSettings(EPDomino24.Spi.Spi1));
 
-using var gpio = new GpioController(new EPM815.Gpio.Driver());
+using var gpio = new GpioController(new EPDomino24.Gpio.Driver());
 using var tft  = new ILI9341Controller(
     spi:   spi,
-    cs:    EPM815.Gpio.Pin.PA14,
-    dc:    EPM815.Gpio.Pin.PF14,
-    reset: EPM815.Gpio.Pin.PF4,
+    cs:    EPDomino24.Gpio.Pin.PA14,
+    dc:    EPDomino24.Gpio.Pin.PF14,
+    reset: EPDomino24.Gpio.Pin.PF4,
     gpio:  gpio);
 tft.SwapRedBlue = true;        // set for modules where yellow shows as cyan
 tft.Enable();
@@ -205,7 +205,7 @@ UI.Run();
 <TabItem value="python" label="Python">
 
 ```python
-from GHIElectronics.Endpoint.Core import EPDomino24, EPM815, SpiController
+from GHIElectronics.Endpoint.Core import EPDomino24, SpiController
 from GHIElectronics.Endpoint.Devices.Spi import SpiDevice, SpiConnectionSettings, SpiMode
 from GHIElectronics.Endpoint.Devices.Gpio import GpioController
 from GHIElectronics.Endpoint.UI import UI, Screen, Label, TextAlignment
@@ -221,9 +221,9 @@ spi = SpiDevice.Create(settings)
 
 gpio = GpioController()
 tft = Ili9341(gpio, spi,
-              cs_pin=EPM815.Gpio.Pin.PA14,
-              dc_pin=EPM815.Gpio.Pin.PF14,
-              rst_pin=EPM815.Gpio.Pin.PF4,
+              cs_pin=EPDomino24.Gpio.Pin.PA14,
+              dc_pin=EPDomino24.Gpio.Pin.PF14,
+              rst_pin=EPDomino24.Gpio.Pin.PF4,
               swap_red_blue=True)     # set for modules where yellow shows as cyan
 tft.initialize()
 
@@ -264,9 +264,9 @@ auto spi = Spi::SpiDevice::Create(settings);
 
 Gpio::GpioController gpio;
 Ili9341 tft(gpio, spi,
-            /*cs*/  Core::EPM815::Gpio::Pin::PA14,
-            /*dc*/  Core::EPM815::Gpio::Pin::PF14,
-            /*rst*/ Core::EPM815::Gpio::Pin::PF4);
+            /*cs*/  Core::EPDomino24::Gpio::Pin::PA14,
+            /*dc*/  Core::EPDomino24::Gpio::Pin::PF14,
+            /*rst*/ Core::EPDomino24::Gpio::Pin::PF4);
 tft.SwapRedBlue(true);                // set for modules where yellow shows as cyan
 tft.Initialize();
 
