@@ -67,6 +67,8 @@ Visual Studio Code supports **.NET (C#)**, **Python**, and **C/C++**, all three 
 
 ## Step 3: Create a project
 
+Every Endpoint template is a ready-to-run blink application: it blinks the USER LED and prints a counter. Core and GPIO are referenced out of the box, so the project builds and runs without any extra setup.
+
 <Tabs groupId="ide">
 <TabItem value="vs" label="Visual Studio" default>
 
@@ -90,10 +92,23 @@ Visual Studio Code supports **.NET (C#)**, **Python**, and **C/C++**, all three 
 
 ## Step 4: Deploy and run
 
+Make sure the **USER LED** on the board is on. A lit USER LED means the board has finished booting and is ready to accept a new program. If the LED is still off, wait a few seconds; a cold boot takes about three.
+
+Press **F5** or **Ctrl+F5**. Either command stops any application currently running on the board — including one set to run at boot — before deploying the new build, so you never need to disable the previous program by hand.
+
 <Tabs groupId="ide">
 <TabItem value="vs" label="Visual Studio" default>
 
-Plug the board in with USB and press **F5**. Visual Studio builds the project, copies it to the board, and starts the debugger. Breakpoints, step, locals and watch work as usual.
+Press **F5**. Visual Studio builds the project, deploys it to the board over USB, and starts it under the debugger. Breakpoints, step, locals, and watch work as usual.
+
+The **USER LED** blinks every 500 ms, and the Output window prints one counter line per blink:
+
+```
+Hello Endpoint. Counter: 1
+Hello Endpoint. Counter: 2
+Hello Endpoint. Counter: 3
+...
+```
 
 **Project settings** live under the project's **Endpoint** property page:
 
@@ -103,14 +118,73 @@ Plug the board in with USB and press **F5**. Visual Studio builds the project, c
 - **Device**: **Endpoint** runs the program on the board; **Desktop** runs it locally on the PC for quick checks.
 - **Firmware**: check for updates, erase the application that is set to run at boot.
 
-**Run at boot:** press **Ctrl+F5** instead of F5. The project is built in AOT mode and marked to start automatically after power-on. A C# blink app goes from power-on to running in less than three seconds.
+**Run at boot:** press **Ctrl+F5** instead of F5. The project is compiled with Native AOT and set to start automatically on power-on. A C# blink application goes from power-on to running in under three seconds.
 
 </TabItem>
 <TabItem value="vscode" label="Visual Studio Code">
 
-Press **F5**. The extension builds the project, copies it to the board, and starts the debugger. If something is wrong (board not connected, in use by another program, not answering), F5 stops with a clear message instead of running.
+Press **F5**. The extension builds the project, deploys it to the board over USB, and starts it under the debugger.
 
-**Run at boot:** press **Ctrl+F5** instead of F5. The project is built in AOT mode and marked to start automatically after power-on, same as in Visual Studio.
+The **USER LED** blinks every 500 ms, and the Debug Console prints one counter line per blink:
+
+```
+Hello Endpoint. Counter: 1
+Hello Endpoint. Counter: 2
+Hello Endpoint. Counter: 3
+...
+```
+
+If the board is not connected, is in use by another program, or is not responding, F5 stops with a clear message instead of running silently.
+
+**Run at boot:** press **Ctrl+F5** instead of F5. The project is compiled with Native AOT and set to start automatically on power-on. A C# blink application goes from power-on to running in under three seconds.
+
+</TabItem>
+</Tabs>
+
+## Step 5: Add a package
+
+A new project already references **Core** and **GPIO**. Add the other Endpoint drivers (ADC, DAC, PWM, Display, Touch, Camera, Network, UI, and more) or any third-party library when you need them, and update to a newer version the same way.
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET (C#)" default>
+
+From the project folder, add or update a package with `dotnet add package`:
+
+```
+dotnet add package GHIElectronics.Endpoint.Devices.Adc --prerelease
+```
+
+In Visual Studio, use **Manage NuGet Packages...** on the project and check **Include prerelease** during the 0.5.x preview. Every third-party NuGet package installs the same way.
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+Open a terminal in VS Code (**Terminal > New Terminal**) and run `pip install`:
+
+```
+pip install GHIElectronics.Endpoint.Devices.Adc
+pip install pyserial
+```
+
+Packages install into the project's `packages/` folder and are copied with your program on F5. Third-party packages such as `pyserial`, `numpy`, and `pillow` install the same way.
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+The full C/C++ API is bundled with the extension — no package step. Include the header and use the namespace that matches each driver:
+
+```cpp
+#include <endpoint.h>
+
+using namespace GHIElectronics::Endpoint::Core;
+using namespace GHIElectronics::Endpoint::Devices::Adc;
+
+AdcController adc;
+auto pin = adc.OpenPin(EPDomino24::Adc::PA0);
+double volts = pin.ReadVoltage().Volts();
+```
+
+Third-party C/C++ source can be dropped into the project folder; every `.cpp` next to `main.cpp` is built into the program.
 
 </TabItem>
 </Tabs>
