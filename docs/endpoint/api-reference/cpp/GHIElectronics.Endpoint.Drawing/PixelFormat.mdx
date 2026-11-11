@@ -1,0 +1,28 @@
+---
+title: "PixelFormat Enum"
+sidebar_label: "PixelFormat"
+---
+
+# PixelFormat Enum
+
+**Header:** `endpoint/Drawing.h`<br/>**Namespace:** `GHIElectronics::Endpoint::Drawing`
+
+Pixel layout of a `Canvas` buffer. Also the layout written to the destination device (on-board panel, SPI TFT, I2C OLED, ...) when `Canvas::Buffer()` is handed to it.
+
+```cpp
+enum class PixelFormat : int {
+    Monochrome = 1,
+    Rgb565     = 2,
+    Rgb888     = 3,
+    Argb8888   = 4,
+};
+```
+
+## Fields
+
+| Name | Value | Description |
+|---|---|---|
+| `Monochrome` | `1` | 1 bit per pixel, packed MSB-first in each byte. Typical for SSD1306 / SH1106 OLEDs. |
+| `Rgb565` | `2` | 16 bits per pixel, 5-6-5 big-endian. Native format of the on-board panel and most SPI TFTs (ILI9341, ST7735). |
+| `Rgb888` | `3` | 24 bits per pixel, R-G-B byte order. Common for parallel RGB panels at 24 bpp. |
+| `Argb8888` | `4` | 32 bits per pixel, A-R-G-B byte order. Off-screen compositing; alpha is respected by blit operations. |

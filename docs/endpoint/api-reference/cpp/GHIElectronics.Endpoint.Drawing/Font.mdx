@@ -1,0 +1,33 @@
+---
+title: "Font Class"
+sidebar_label: "Font"
+---
+
+# Font Class
+
+**Header:** `endpoint/Drawing.h`<br/>**Namespace:** `GHIElectronics::Endpoint::Drawing`
+
+A TrueType / OpenType font loaded from raw file bytes. Pass to `Canvas::DrawText` to render strings at any pixel size.
+
+```cpp
+class Font {};
+```
+
+## Methods
+
+### Load(std::span&lt;const uint8_t&gt; ttfBytes)
+
+```cpp
+static Font Load(std::span<const uint8_t> ttfBytes);
+```
+
+Loads a TTF / OTF font from raw file bytes. The bytes are copied into the native font handle, so the caller's buffer can be released as soon as this returns.
+
+### GetMetrics(int sizePx)
+
+```cpp
+struct Metrics { int Ascent; int Descent; int LineGap; };
+Metrics GetMetrics(int sizePx) const;
+```
+
+Font-wide vertical metrics at the given pixel height. `LineHeight = Ascent - Descent + LineGap`.

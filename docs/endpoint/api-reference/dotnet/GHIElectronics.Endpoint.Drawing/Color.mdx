@@ -1,0 +1,118 @@
+---
+title: "Color Struct"
+sidebar_label: "Color"
+---
+
+# Color Struct
+
+**Package:** `GHIElectronics.Endpoint.Drawing`<br/>**Namespace:** `GHIElectronics.Endpoint.Drawing`
+
+A 32-bit color with 8 bits each of alpha, red, green, blue. `Canvas` maps it to its `PixelFormat` at draw time: Monochrome treats non-zero as "lit", Rgb565 drops the low bits, Rgb888 drops alpha, Argb8888 keeps everything.
+
+```csharp
+public readonly struct Color
+```
+
+## Constructors
+
+### Color(byte r, byte g, byte b)
+
+```csharp
+public Color(byte r, byte g, byte b)
+```
+
+Opaque color from R/G/B.
+
+### Color(byte r, byte g, byte b, byte a)
+
+```csharp
+public Color(byte r, byte g, byte b, byte a)
+```
+
+Color from R/G/B and alpha.
+
+## Properties
+
+### R
+
+```csharp
+public byte R { get; }
+```
+
+Red component, 0..255.
+
+**Returns** `byte`
+
+### G
+
+```csharp
+public byte G { get; }
+```
+
+Green component, 0..255.
+
+**Returns** `byte`
+
+### B
+
+```csharp
+public byte B { get; }
+```
+
+Blue component, 0..255.
+
+**Returns** `byte`
+
+### A
+
+```csharp
+public byte A { get; }
+```
+
+Alpha, 0 (transparent) .. 255 (opaque). Only Argb8888 canvases use it.
+
+**Returns** `byte`
+
+## Methods
+
+### FromArgb(uint argb)
+
+```csharp
+public static Color FromArgb(uint argb)
+```
+
+Color from a 0xAARRGGBB value.
+
+**Returns** `Color`
+
+### FromRgb(uint rgb)
+
+```csharp
+public static Color FromRgb(uint rgb)
+```
+
+Color from a 0xRRGGBB value, opaque.
+
+**Returns** `Color`
+
+## Named Colors
+
+Static properties. Names match `System.Drawing` / CSS where they overlap.
+
+| Name | Value |
+|---|---|
+| `Transparent` | `0x00000000` |
+| `Black` | `0x000000` |
+| `White` | `0xFFFFFF` |
+| `Red` | `0xFF0000` |
+| `Green` | `0x00FF00` |
+| `Blue` | `0x0000FF` |
+| `Yellow` | `0xFFFF00` |
+| `Cyan` | `0x00FFFF` |
+| `Magenta` | `0xFF00FF` |
+| `Navy` | `0x000080` |
+| `Maroon` | `0x800000` |
+| `Olive` | `0x808000` |
+| `Gray` | `0x808080` |
+| `Silver` | `0xC0C0C0` |
+| `Orange` | `0xFFA500` |

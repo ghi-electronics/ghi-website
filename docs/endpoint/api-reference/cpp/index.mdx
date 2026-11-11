@@ -5,15 +5,7 @@ sidebar_label: Overview
 
 # C/C++ API Reference
 
-Endpoint on **C/C++**: the same libraries as .NET and Python, with identical class and method names, exposed as a C++23 header library.
-
-## Standard
-
-C/C++ has no standard peripheral API, so GPIO, I2C, SPI, PWM, and the rest are published by GHI with class and method names identical to .NET. The UI library embeds LVGL; for widgets and graphics features beyond what the Endpoint UI wrappers expose, the full LVGL API is available directly.
-
-| Library | Description |
-|---|---|
-| [LVGL](https://docs.lvgl.io/master/) | The graphics and UI library embedded in `libendpoint`. Used directly from C/C++ when you need features beyond the Endpoint UI wrappers. |
+Endpoint on **C/C++**: the same libraries as .NET and Python, with identical class and method names, exposed as a C++23 header library. Everything is published by GHI; there is no external dependency and no third-party API to call directly.
 
 ## Endpoint libraries
 
@@ -36,4 +28,5 @@ C/C++ has no standard peripheral API, so GPIO, I2C, SPI, PWM, and the rest are p
 | [GHIElectronics.Endpoint.Devices.Touch](./GHIElectronics.Endpoint.Devices.Touch/index.mdx) | Touchscreen support. The Touch class is abstract: subclass it for your panel's chip (I2C, SPI, custom). Ships one concrete subclass, InputTouch, that wraps a kernel /dev/input/eventN (used for USB touchscreens). |
 | [GHIElectronics.Endpoint.Devices.UsbHost](./GHIElectronics.Endpoint.Devices.UsbHost/index.mdx) | USB devices: connected and disconnected events, what each device is and its port or network interface. |
 | [GHIElectronics.Endpoint.Devices.Watchdog](./GHIElectronics.Endpoint.Devices.Watchdog/index.mdx) | The watchdog driver for Endpoint. |
+| [GHIElectronics.Endpoint.Drawing](./GHIElectronics.Endpoint.Drawing/index.mdx) | Off-screen 2D drawing primitives: Canvas, Color, Font, Image, PixelFormat. Pure pixel drawing, independent of the LVGL-backed UI widget library. |
 | [GHIElectronics.Endpoint.UI](./GHIElectronics.Endpoint.UI/index.mdx) | UI widgets for Endpoint: Button, Label, Container, Image, TextBox, Slider, CheckBox on top of the embedded LVGL in libendpoint. Pair with the GHI UI designer. |

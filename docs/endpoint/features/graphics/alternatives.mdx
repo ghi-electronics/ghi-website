@@ -136,11 +136,10 @@ spi.write(fig.canvas.tostring_rgb())
 </TabItem>
 <TabItem value="cpp" label="C/C++">
 
-The C/C++ runtime already bundles LVGL inside `libendpoint`, so the
-built-in [Canvas](canvas.mdx) covers most needs with zero extra
-dependencies. If you want something else, link any standard C/C++ 2D
-toolkit (Cairo, STB image, Skia C API) and feed the resulting pixel
-buffer to the display the same way.
+The built-in [Canvas](canvas.mdx) ships inside `libendpoint` and
+covers most needs with zero extra dependencies. If you want something
+else, link any standard C/C++ 2D toolkit (Cairo, STB image, Skia C API)
+and feed the resulting pixel buffer to the display the same way.
 
 ```cpp
 // Cairo example (apt install libcairo2-dev)

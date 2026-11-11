@@ -1,0 +1,29 @@
+---
+title: "DisplayControllerExtensions Class"
+sidebar_label: "DisplayControllerExtensions"
+---
+
+# DisplayControllerExtensions Class
+
+**Package:** `GHIElectronics.Endpoint.Drawing`<br/>**Namespace:** `GHIElectronics.Endpoint.Drawing`
+
+Shortcut extensions so a `Canvas` can be handed to a `DisplayController` in one call without the caller spelling out the `(Buffer, PixelFormat)` tuple. The pixel format is looked up from `Canvas.PixelFormat`.
+
+```csharp
+public static class DisplayControllerExtensions
+```
+
+## Methods
+
+### Flush(this DisplayController display, Canvas canvas)
+
+```csharp
+public static void Flush(this DisplayController display, Canvas canvas)
+```
+
+Push the whole `Canvas` to the display. Equivalent to `display.Flush(canvas.Buffer, mappedFormat)` with the format derived from `Canvas.PixelFormat`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `display` | `DisplayController` | Target display. |
+| `canvas` | `Canvas` | Source buffer. |

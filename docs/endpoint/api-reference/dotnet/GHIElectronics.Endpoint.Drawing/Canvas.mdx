@@ -1,0 +1,181 @@
+---
+title: "Canvas Class"
+sidebar_label: "Canvas"
+---
+
+# Canvas Class
+
+**Package:** `GHIElectronics.Endpoint.Drawing`<br/>**Namespace:** `GHIElectronics.Endpoint.Drawing`
+
+A pixel buffer plus the primitives to draw into it. Pick the size and `PixelFormat` at `Create` time; when done, hand `Buffer` to whichever device accepts bytes: `DisplayController.Flush`, `SpiDevice.Write`, `I2cDevice.Write`, a file, anywhere.
+
+```csharp
+public sealed class Canvas : IDisposable
+```
+
+### Example
+
+```csharp
+using var canvas = Canvas.Create(240, 320, PixelFormat.Rgb565);
+canvas.Clear(Color.Black);
+canvas.DrawLine(10, 10, 230, 310, Color.Red, thickness: 2);
+canvas.FillCircle(120, 160, 40, Color.Blue);
+canvas.DrawText("Hello Endpoint", font, 10, 30, 20, Color.White);
+spi.Write(canvas.Buffer);
+```
+
+## Properties
+
+### Buffer
+
+```csharp
+public byte[] Buffer { get; }
+```
+
+Raw pixel bytes. Length and layout match `Width`, `Height`, and `PixelFormat`. Hand this to any device that accepts a byte buffer.
+
+**Returns** `byte[]`
+
+### Height
+
+```csharp
+public int Height { get; }
+```
+
+Height in pixels.
+
+**Returns** `int`
+
+### PixelFormat
+
+```csharp
+public PixelFormat PixelFormat { get; }
+```
+
+Pixel layout of `Buffer`.
+
+**Returns** `PixelFormat`
+
+### Width
+
+```csharp
+public int Width { get; }
+```
+
+Width in pixels.
+
+**Returns** `int`
+
+## Methods
+
+### Create(int width, int height, PixelFormat format)
+
+```csharp
+public static Canvas Create(int width, int height, PixelFormat format)
+```
+
+Allocate a new `Canvas` of the given size and pixel format. Dispose it when done to release the buffer promptly.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `width` | `int` | Width in pixels. |
+| `height` | `int` | Height in pixels. |
+| `format` | `PixelFormat` | Pixel layout of the new buffer. |
+
+**Returns** `Canvas`
+
+### Clear(Color color)
+
+```csharp
+public void Clear(Color color)
+```
+
+Fill the whole buffer with a single color.
+
+### SetPixel(int x, int y, Color color)
+
+```csharp
+public void SetPixel(int x, int y, Color color)
+```
+
+Set a single pixel. No-op if (x, y) is outside the canvas.
+
+### DrawLine(int x0, int y0, int x1, int y1, Color color, int thickness)
+
+```csharp
+public void DrawLine(int x0, int y0, int x1, int y1, Color color, int thickness = 1)
+```
+
+Bresenham line, honoring thickness by stamping an r-pixel disc at each step.
+
+### DrawRectangle(int x, int y, int width, int height, Color color, int thickness)
+
+```csharp
+public void DrawRectangle(int x, int y, int width, int height, Color color, int thickness = 1)
+```
+
+Stroke a rectangle outline.
+
+### FillRectangle(int x, int y, int width, int height, Color color)
+
+```csharp
+public void FillRectangle(int x, int y, int width, int height, Color color)
+```
+
+Fill a rectangle.
+
+### DrawCircle(int cx, int cy, int radius, Color color, int thickness)
+
+```csharp
+public void DrawCircle(int cx, int cy, int radius, Color color, int thickness = 1)
+```
+
+Midpoint-algorithm circle outline.
+
+### FillCircle(int cx, int cy, int radius, Color color)
+
+```csharp
+public void FillCircle(int cx, int cy, int radius, Color color)
+```
+
+Filled circle.
+
+### DrawText(string text, Font font, int x, int y, int sizePx, Color color)
+
+```csharp
+public void DrawText(string text, Font font, int x, int y, int sizePx, Color color)
+```
+
+Rasterize `text` with `font` at `sizePx`, with the top-left of the text box at (`x`, `y`). Alpha-blends against whatever is already in the canvas. The font is rasterized on every call; cache into a `Canvas` and re-blit if you need high FPS. Rgb565 and Monochrome targets only.
+
+### DrawImage(Image image, int x, int y)
+
+```csharp
+public void DrawImage(Image image, int x, int y)
+```
+
+Blit a pre-decoded `Image` into this canvas at (`x`, `y`). The image's internal pixels are converted to this canvas's `PixelFormat` on the fly. Prefer this over the raw-bytes overload in redraw loops: decoding a JPG is ~150 ms; blitting a cached `Image` is a few ms.
+
+### DrawImage(byte[] fileBytes, int x, int y)
+
+```csharp
+public void DrawImage(byte[] fileBytes, int x, int y)
+```
+
+Decode an image file (JPEG / PNG / BMP / GIF / TGA, detected from the file's magic bytes) and blit it into this canvas at (`x`, `y`). Clips to the canvas bounds. Convenience one-shot. For repeated draws, cache the decode via `Image.Load` and call the `Image` overload.
+
+### DrawImage(byte[] pixels, int x, int y, int width, int height, PixelFormat format)
+
+```csharp
+public void DrawImage(byte[] pixels, int x, int y, int width, int height, PixelFormat format)
+```
+
+Blit a decoded pixel buffer into this canvas at (x, y). Pixels outside the canvas bounds are clipped.
+
+### Dispose()
+
+```csharp
+public void Dispose()
+```
+
+Release the pixel buffer.

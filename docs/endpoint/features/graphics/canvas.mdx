@@ -1,4 +1,4 @@
----
+﻿---
 title: "Canvas"
 sidebar_label: "Canvas"
 ---
@@ -31,7 +31,7 @@ format and pass its buffer straight to `DisplayController.Flush`.
 
 ```csharp
 using GHIElectronics.Endpoint.Devices.Display;
-using GHIElectronics.Endpoint.UI.Drawing;
+using GHIElectronics.Endpoint.Drawing;
 
 using var display = DisplayController.GetDefault();
 display.Enable();
@@ -51,7 +51,7 @@ display.Flush(canvas.Buffer);
 
 ```python
 from GHIElectronics.Endpoint.Devices.Display import DisplayController
-from GHIElectronics.Endpoint.UI.Drawing import Canvas, Color, PixelFormat
+from GHIElectronics.Endpoint.Drawing import Canvas, Color, PixelFormat
 
 display = DisplayController.GetDefault()
 display.Enable()
@@ -69,7 +69,7 @@ with Canvas.Create(display.Width, display.Height, PixelFormat.Rgb565) as canvas:
 
 ```cpp
 #include <endpoint/Display.h>
-#include <endpoint/Canvas.h>
+#include <endpoint/Drawing.h>
 
 auto display = endpoint::DisplayController::GetDefault();
 display->Enable();
@@ -90,7 +90,7 @@ display->Flush(canvas.Buffer());
 If the Canvas's `PixelFormat` doesn't match the panel's (RGB565),
 `display.Flush` throws; no silent format conversion.
 
-## Draw to an external SPI display (ILI9341, 240×320)
+## Draw to an external SPI display (ILI9341, 240Ã—320)
 
 Same Canvas, different destination. The sample below uses an
 `Ili9341` driver class that wraps the chip-select / data-command / reset
@@ -119,7 +119,7 @@ the on-board panel. Source on GitHub:
   color filter wired as BGR regardless of what the chip's MADCTL bit
   says, so yellow renders as cyan and red as blue. Set
   `SwapRedBlue = true` for those modules.
-- **Backlight** on most 2.2"–2.8" ILI9341 modules has a current-limit
+- **Backlight** on most 2.2"â€“2.8" ILI9341 modules has a current-limit
   resistor on board; tie LED to +3.3 V for always-on, or drive from a
   PWM pin if you want to dim it.
 :::
@@ -133,7 +133,7 @@ using System.Device.Spi;
 
 using GHIElectronics.Endpoint.Core;
 using GHIElectronics.Endpoint.Drivers.HiLetgo.ILI9341;
-using GHIElectronics.Endpoint.UI.Drawing;
+using GHIElectronics.Endpoint.Drawing;
 
 SpiController.Initialize(EPDomino24.Spi.Spi1);
 using var spi = SpiDevice.Create(ILI9341Controller.GetConnectionSettings(EPDomino24.Spi.Spi1));
@@ -163,7 +163,7 @@ tft.Flush(canvas.Buffer);
 from GHIElectronics.Endpoint.Core import EPDomino24, SpiController
 from GHIElectronics.Endpoint.Devices.Spi import SpiDevice, SpiConnectionSettings, SpiMode
 from GHIElectronics.Endpoint.Devices.Gpio import GpioController
-from GHIElectronics.Endpoint.UI.Drawing import Canvas, Color, PixelFormat
+from GHIElectronics.Endpoint.Drawing import Canvas, Color, PixelFormat
 
 from ili9341 import Ili9341        # driver file, link above
 
@@ -200,7 +200,7 @@ tft.flush(canvas.Buffer)
 namespace Core    = GHIElectronics::Endpoint::Core;
 namespace Gpio    = GHIElectronics::Endpoint::Devices::Gpio;
 namespace Spi     = GHIElectronics::Endpoint::Devices::Spi;
-namespace Drawing = GHIElectronics::Endpoint::UI::Drawing;
+namespace Drawing = GHIElectronics::Endpoint::Drawing;
 
 Core::SpiController::Initialize(Core::EPDomino24::Spi::Spi1, /*bufferSize*/ 4096);
 Spi::SpiConnectionSettings settings(Core::EPDomino24::Spi::Spi1);
@@ -227,7 +227,7 @@ tft.Flush(canvas.Buffer());
 </TabItem>
 </Tabs>
 
-## Draw to an I2C OLED (SSD1306, 128×64 monochrome)
+## Draw to an I2C OLED (SSD1306, 128Ã—64 monochrome)
 
 <Tabs groupId="lang">
 <TabItem value="dotnet" label=".NET" default>
@@ -235,7 +235,7 @@ tft.Flush(canvas.Buffer());
 ```csharp
 using System.Device.I2c;
 using GHIElectronics.Endpoint.Core;
-using GHIElectronics.Endpoint.UI.Drawing;
+using GHIElectronics.Endpoint.Drawing;
 
 I2cController.Initialize(EPN256.I2c.I2c5);
 using var oled = I2cDevice.Create(new I2cConnectionSettings(5, 0x3C));
@@ -253,7 +253,7 @@ oled.Write(canvas.Buffer);
 ```python
 from smbus2 import SMBus
 from GHIElectronics.Endpoint.Core import EPN256, I2cController
-from GHIElectronics.Endpoint.UI.Drawing import Canvas, Color, PixelFormat
+from GHIElectronics.Endpoint.Drawing import Canvas, Color, PixelFormat
 
 I2cController.Initialize(EPN256.I2c.I2c5)
 oled = SMBus(5)
@@ -270,7 +270,7 @@ with Canvas.Create(128, 64, PixelFormat.Monochrome) as canvas:
 ```cpp
 #include <endpoint/Core.h>
 #include <endpoint/I2c.h>
-#include <endpoint/Canvas.h>
+#include <endpoint/Drawing.h>
 
 endpoint::I2cController::Initialize(endpoint::EPN256::I2c::I2c5);
 endpoint::I2cDevice oled(5, 0x3C);
@@ -314,10 +314,3 @@ oled.Write(canvas.Buffer());
 
 The same drawing calls work in any format; the only difference is what
 `Buffer` contains and what the destination device expects.
-
-## Using Canvas with Widget
-
-Canvas and [Widget](widget.mdx) share the same LVGL engine, so you can
-use both in the same program. For example, a full-screen widget layout
-on the on-board panel plus a Canvas that renders into a separate SSD1306
-driven over I2C.
