@@ -9,8 +9,16 @@ Endpoint on **.NET**: standard `System.Device.*` and .NET IoT APIs, plus the lib
 
 ## Standard .NET
 
-- [.NET API](https://learn.microsoft.com/en-gb/dotnet/api/)
-- [.NET IoT API](https://learn.microsoft.com/en-gb/dotnet/api/?view=iot-dotnet-latest)
+Endpoint's device libraries build on these standard Microsoft APIs. Code written against them on any platform ports to Endpoint unchanged.
+
+| Microsoft .NET API | Description |
+|---|---|
+| [System.Device.Gpio](https://learn.microsoft.com/en-gb/dotnet/api/system.device.gpio?view=iot-dotnet-latest) | Digital inputs and outputs: pin modes, read, write, interrupts. |
+| [System.Device.I2c](https://learn.microsoft.com/en-gb/dotnet/api/system.device.i2c?view=iot-dotnet-latest) | I2C bus master: read and write to devices by address. |
+| [System.Device.Spi](https://learn.microsoft.com/en-gb/dotnet/api/system.device.spi?view=iot-dotnet-latest) | SPI bus master: full-duplex transfers with configurable clock and mode. |
+| [System.Device.Pwm](https://learn.microsoft.com/en-gb/dotnet/api/system.device.pwm?view=iot-dotnet-latest) | PWM channels: configurable frequency and duty cycle. |
+| [System.Device.Analog](https://learn.microsoft.com/en-gb/dotnet/api/system.device.analog?view=iot-dotnet-latest) | Analog inputs (ADC): read voltages from analog pins. |
+| [System.IO.Ports](https://learn.microsoft.com/en-gb/dotnet/api/system.io.ports) | Serial ports (UART): the standard `SerialPort` class. |
 
 ## Endpoint libraries
 
@@ -19,7 +27,7 @@ Endpoint on **.NET**: standard `System.Device.*` and .NET IoT APIs, plus the lib
 | [GHIElectronics.Endpoint.Core](./GHIElectronics.Endpoint.Core/index.mdx) | Core of the Endpoint libraries: board pin names and pin setup. |
 | [GHIElectronics.Endpoint.Devices.Adc](./GHIElectronics.Endpoint.Devices.Adc/index.mdx) | Endpoint's analog inputs for .NET's System.Device.Analog. |
 | [GHIElectronics.Endpoint.Devices.Camera](./GHIElectronics.Endpoint.Devices.Camera/index.mdx) | USB webcams, parallel-port cameras (DCMI), and shared camera settings and image conversion for Endpoint. |
-| [GHIElectronics.Endpoint.Devices.Can](./GHIElectronics.Endpoint.Devices.Can.mdx) | CAN for Endpoint: .NET IoT's CanRaw (Iot.Device.SocketCan) on the board's CAN ports. EPM815.Can.Initialize sets a port up. |
+| [GHIElectronics.Endpoint.Devices.Can](./GHIElectronics.Endpoint.Devices.Can.mdx) | CAN for Endpoint: .NET IoT's CanRaw (Iot.Device.SocketCan) on the board's CAN ports. CanController.Initialize sets a port up. |
 | [GHIElectronics.Endpoint.Devices.Dac](./GHIElectronics.Endpoint.Devices.Dac/index.mdx) | The DAC driver for Endpoint. |
 | [GHIElectronics.Endpoint.Devices.Display](./GHIElectronics.Endpoint.Devices.Display/index.mdx) | The display driver for Endpoint. |
 | [GHIElectronics.Endpoint.Devices.Network](./GHIElectronics.Endpoint.Devices.Network/index.mdx) | The network driver for Endpoint. |

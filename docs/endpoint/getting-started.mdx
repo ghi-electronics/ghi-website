@@ -94,7 +94,7 @@ Every Endpoint template is a ready-to-run blink application: it blinks the USER 
 
 Make sure the **USER LED** on the board is on. A lit USER LED means the board has finished booting and is ready to accept a new program. If the LED is still off, wait a few seconds; a cold boot takes about three.
 
-Press **F5** or **Ctrl+F5**. Either command stops any application currently running on the board — including one set to run at boot — before deploying the new build, so you never need to disable the previous program by hand.
+Press **F5** or **Ctrl+F5**. Either command stops any application currently running on the board, including one set to run at boot, before deploying the new build, so you never need to disable the previous program by hand.
 
 <Tabs groupId="ide">
 <TabItem value="vs" label="Visual Studio" default>
@@ -159,7 +159,11 @@ In Visual Studio, use **Manage NuGet Packages...** on the project and check **In
 </TabItem>
 <TabItem value="python" label="Python">
 
-Open a terminal in VS Code (**Terminal > New Terminal**) and run `pip install`:
+Open the integrated terminal in VS Code with **Terminal > New Terminal**:
+
+![VS Code menu: Terminal > New Terminal](/img/docs/endpoint/vscode-terminal-new.png)
+
+Then run `pip install`:
 
 ```
 pip install GHIElectronics.Endpoint.Devices.Adc
@@ -168,10 +172,18 @@ pip install pyserial
 
 Packages install into the project's `packages/` folder and are copied with your program on F5. Third-party packages such as `pyserial`, `numpy`, and `pillow` install the same way.
 
+:::caution[Use the VS Code integrated terminal, not Command Prompt or PowerShell]
+
+`pip install` only installs packages for the Endpoint board when it runs in VS Code's **integrated terminal** on an open Endpoint Python project. The VS Code extension intercepts `pip` in that terminal and routes the install into the project's `packages/` folder.
+
+Running `pip install` from an external Command Prompt, PowerShell, or Windows Terminal window installs into your PC's own Python instead, which does nothing for the board and will not be copied on F5.
+
+:::
+
 </TabItem>
 <TabItem value="cpp" label="C/C++">
 
-The full C/C++ API is bundled with the extension — no package step. Include the header and use the namespace that matches each driver:
+The full C/C++ API is bundled with the extension, no package step. Include the header and use the namespace that matches each driver:
 
 ```cpp
 #include <endpoint.h>
