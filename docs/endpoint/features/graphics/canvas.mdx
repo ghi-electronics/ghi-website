@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Canvas"
 sidebar_label: "Canvas"
 ---
@@ -90,7 +90,7 @@ display->Flush(canvas.Buffer());
 If the Canvas's `PixelFormat` doesn't match the panel's (RGB565),
 `display.Flush` throws; no silent format conversion.
 
-## Draw to an external SPI display (ILI9341, 240Ã—320)
+## Draw to an external SPI display (ILI9341, 240x320)
 
 Same Canvas, different destination. The sample below uses an
 `Ili9341` driver class that wraps the chip-select / data-command / reset
@@ -227,7 +227,7 @@ tft.Flush(canvas.Buffer());
 </TabItem>
 </Tabs>
 
-## Draw to an I2C OLED (SSD1306, 128Ã—64 monochrome)
+## Draw to an I2C OLED (SSD1306, 128x64 monochrome)
 
 <Tabs groupId="lang">
 <TabItem value="dotnet" label=".NET" default>
