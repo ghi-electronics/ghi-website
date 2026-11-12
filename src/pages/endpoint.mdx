@@ -10,8 +10,8 @@ import YouTubeFacade from '@site/src/components/YouTubeFacade';
 
 <div className="section-tinted__intro">
  <img src="/img/endpoint-logo.webp" alt="Endpoint" style={{height: '150px', width: 'auto', margin: '0 auto 1.25rem', display: 'block'}} />
-  <h2>Full .NET, Python, and C++ on a circuit</h2>
-  <p>Endpoint is a new platform that runs the languages you use on a PC on embedded hardware. They share one set of APIs, and you debug all three over a USB cable, with direct access to the hardware.</p>
+  <h2>.NET, Python, and C++ on a circuit</h2>
+  <p>Endpoint brings <strong>full modern languages</strong> to embedded hardware.<br/>Share a common set of hardware APIs and <strong>debug over a USB cable</strong>.</p>
   <ul className="hero-bullets">
     <li>.NET 11</li>
     <li>Python 3.14</li>
@@ -21,24 +21,6 @@ import YouTubeFacade from '@site/src/components/YouTubeFacade';
 
 </div>
 
-<div className="stats">
-  <div className="stat">
-    <span className="stat__value">3</span>
-    <span className="stat__label">Languages</span>
-  </div>
-  <div className="stat">
-    <span className="stat__value">1</span>
-    <span className="stat__label">Set of APIs</span>
-  </div>
-  <div className="stat">
-    <span className="stat__value">1</span>
-    <span className="stat__label">USB cable to debug</span>
-  </div>
-  <div className="stat">
-    <span className="stat__value">&lt;3 sec</span>
-    <span className="stat__label">C# blink, power on to running</span>
-  </div>
-</div>
 
 <YouTubeFacade id="rz_8dD-Q2WI" title="Endpoint: full .NET on embedded hardware" />
 
@@ -48,12 +30,12 @@ import YouTubeFacade from '@site/src/components/YouTubeFacade';
   <div className="feature-card">
     <div className="feature-card__icon">🔍</div>
     <div className="feature-card__title">Debug like it's your PC</div>
-    <div className="feature-card__body"><strong>Plug in USB and press F5.</strong> No network, SSH keys, or IP addresses to get through first. C and C++ need no toolchain, and Python packages install over USB with no internet on the board.</div>
+    <div className="feature-card__body"><strong>Plug in USB and press F5.</strong> No network to get through first. C and C++ need no toolchain, and Python packages install over USB.</div>
   </div>
   <div className="feature-card">
     <div className="feature-card__icon">⚡</div>
-    <div className="feature-card__title">Running in under 3 seconds</div>
-    <div className="feature-card__body"><strong>Power on to running C#.</strong> Your application starts in less than three seconds, so it behaves more like a device than a computer booting up.</div>
+    <div className="feature-card__title">Running in a few seconds</div>
+    <div className="feature-card__body"><strong>Power on to running application.</strong> Your application starts in seconds, so it behaves more like a device than a computer booting up.</div>
   </div>
   <div className="feature-card">
     <div className="feature-card__icon">🧩</div>
@@ -95,20 +77,18 @@ Blinking an LED on Endpoint Domino24 from C#, with the debugger attached.
 
 ## Three languages. One set of APIs
 
-Learn the API once and it travels with you.
-
 <div className="feature-grid">
   <div className="feature-card">
-    <div className="feature-card__title">Full .NET</div>
-    <div className="feature-card__body">The same .NET you run on a PC, with APIs that match .NET conventions. Debug from VS Code or Visual Studio. Press Ctrl+F5 to compile in AOT mode and run at boot.</div>
+    <div className="feature-card__title">.NET</div>
+    <div className="feature-card__body">The same .NET you run on a PC, with APIs that match .NET conventions. Debug from VS Code or Visual Studio.</div>
   </div>
   <div className="feature-card">
     <div className="feature-card__title">Python</div>
-    <div className="feature-card__body">Debug from VS Code over the same USB cable, using the same APIs as C#, and install packages with pip over the debugger.</div>
+    <div className="feature-card__body">Debug from VS Code over a USB cable, use a friendly hardware API, and install packages with pip over the debugger.</div>
   </div>
   <div className="feature-card">
     <div className="feature-card__title">C and C++</div>
-    <div className="feature-card__body">Modern C and C++ with no toolchain to install. Debug from VS Code over the same USB cable.</div>
+    <div className="feature-card__body">Modern C and C++ with no toolchain to install. Debug from VS Code a USB cable and use the provided hardware-layer API.</div>
   </div>
 </div>
 
