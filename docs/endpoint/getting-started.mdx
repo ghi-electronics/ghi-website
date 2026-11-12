@@ -324,8 +324,6 @@ Files next to `main.cpp` deploy automatically on F5, no project-file edit.
 </TabItem>
 </Tabs>
 
-Same pattern for **TLS certificates** — load the `.crt` with the same file read, then hand the bytes or path to your HTTP client as shown in [Step 7](#step-7-tls-certificates).
-
 ### Embedded Resource (.NET only)
 
 .NET lets you bake files into the compiled DLL so your app ships as a single binary. Python and C/C++ do not have this; use the file approach above.
@@ -370,73 +368,6 @@ The resource name is `<RootNamespace>.<folder-with-dots>.<filename>`. To see the
 foreach (var n in Assembly.GetExecutingAssembly().GetManifestResourceNames())
     Console.WriteLine(n);
 ```
-
-## Step 7: TLS certificates
-
-HTTPS clients on Endpoint trust the public CA bundle out of the box, same as any desktop. If your server uses a **self-signed certificate** or a **private CA**, ship the CA certificate (PEM file) with your app and tell the HTTP client to trust it.
-
-<Tabs groupId="lang">
-<TabItem value="dotnet" label=".NET (C#)" default>
-
-```csharp
-using System.IO;
-using System.Net.Http;
-using System.Security.Cryptography.X509Certificates;
-
-var ca = new X509Certificate2(Path.Combine(AppContext.BaseDirectory, "ca.crt"));
-
-var handler = new HttpClientHandler {
-    ServerCertificateCustomValidationCallback = (msg, chain, errors) => {
-        chain.ChainPolicy.CustomTrustStore.Add(ca);
-        chain.ChainPolicy.TrustMode = X509ChainTrustMode.CustomRootTrust;
-        return chain.Build(chain.ChainElements[0].Certificate);
-    },
-};
-
-using var http = new HttpClient(handler);
-var body = await http.GetStringAsync("https://my-server.local/");
-```
-
-For mutual TLS (client certificate too), add `handler.ClientCertificates.Add(new X509Certificate2("client.pfx", password));`.
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-import requests
-from pathlib import Path
-
-cert = str(Path(__file__).parent / "ca.crt")
-r = requests.get("https://my-server.local/", verify=cert)
-print(r.text)
-```
-
-For mutual TLS, pass the client cert + key: `requests.get(url, verify=ca, cert=(client_cert, client_key))`.
-
-Install `requests` the usual way: `pip install requests`.
-
-</TabItem>
-<TabItem value="cpp" label="C/C++">
-
-The firmware ships with libcurl + its OpenSSL backend. Drop the curl headers into your project (download from [curl.se](https://curl.se/download.html) or copy from a Linux `libcurl4-openssl-dev` package), then:
-
-```cpp
-#include <curl/curl.h>
-#include <filesystem>
-
-auto cert = std::filesystem::canonical("/proc/self/exe").parent_path() / "ca.crt";
-
-CURL* curl = curl_easy_init();
-curl_easy_setopt(curl, CURLOPT_URL, "https://my-server.local/");
-curl_easy_setopt(curl, CURLOPT_CAINFO, cert.c_str());
-curl_easy_perform(curl);
-curl_easy_cleanup(curl);
-```
-
-For mutual TLS, add `curl_easy_setopt(curl, CURLOPT_SSLCERT, "client.crt")` and `CURLOPT_SSLKEY` for the private key.
-
-</TabItem>
-</Tabs>
 
 ## What's next
 
