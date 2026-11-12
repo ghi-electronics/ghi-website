@@ -4,6 +4,33 @@ title: Release Notes
 
 ![TinyCLR Logo](/img/docs/tinyclr-logo.png)
 
+## 3.0.2.3000 (2026-11-12) RTW
+
+Firmware, CLR, and networking fixes. Update the firmware, the extensions, and the libraries together.
+
+### Firmware
+
+- **SPI**: fixed a boundary case where requesting a target clock below the slowest valid prescaler produced an invalid baud-rate setting that could leave the SPI clock stuck at the wrong frequency when switching between devices on the same controller.
+- **SPI**: switched the SPI kernel clock source on SC20xxx to the 64 MHz internal oscillator so that every SPI bus produces consistent, round-number clock outputs (`32M, 16M, 8M, 4M, 2M, 1M, 500k, 250k`). Maximum SPI SCK on SC20xxx SPI4/5 drops from 60 MHz to 32 MHz; all other SPI buses are unchanged or slightly faster.
+- **TLS (`SslStream.Read`)**: fixed an issue where consecutive single-byte reads from an authenticated `SslStream` would block after the first byte when the server kept the connection open. The managed gate now sees plaintext that mbedTLS has already decrypted and buffered.
+
+### Libraries
+
+- `GHIElectronics.TinyCLR.Core` (mscorlib): fixed `List<T>.AddRange(T[])` producing wrong values for value-type arrays (`int[]`, `byte[]`, byte-backed and int-backed enums).
+- All other libraries: version updated to match this release. No API or behavior changes.
+
+### Visual Studio Extension
+
+- Version updated to match this release. Bundled offline NuGet packages refreshed to 3.0.2.3000.
+
+### TinyCLR Config
+
+- No change. 3.0.2.2000 remains the current release.
+
+### Visual Studio Code extension
+
+- Version bumped to 3.0.12. Project templates now reference 3.0.2.3000 NuGet packages. No functional changes beyond the version bump.
+
 ## 3.0.2.2000 (2026-10-16) RTW
 
 Partial release — a critical SC13xxx flash fix, on-screen keyboard improvements in the UI library, a new CLI command in TinyCLR Config, and fixes in both extensions. SC20xxx firmware and all other libraries are unchanged.
