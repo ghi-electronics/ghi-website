@@ -203,7 +203,240 @@ Third-party C/C++ source can be dropped into the project folder; every `.cpp` ne
 
 ## Step 6: Resources
 
-In progress: This section will explain how to add resources.
+Apps often need to ship data files: images for the UI, fonts for text, binary blobs for an attached chip, configuration text, TLS certificates. Endpoint gives you two ways to carry them with your program.
+
+### Load from file
+
+The portable approach: drop the file into your project folder, F5 copies it to the board alongside your program, read it at runtime from the folder next to your app. Works identically in .NET, Python, and C/C++.
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET (C#)" default>
+
+```csharp
+using System.IO;
+using GHIElectronics.Endpoint.Drawing;
+
+var dir = AppContext.BaseDirectory;
+
+// JPG
+var imgBytes = File.ReadAllBytes(Path.Combine(dir, "resource_bg.jpg"));
+var img = Image.Load(imgBytes);
+canvas.DrawImage(img, 0, 0);
+
+// Font
+var fontBytes = File.ReadAllBytes(Path.Combine(dir, "Montserrat.ttf"));
+using var font = Font.Load(fontBytes);
+canvas.DrawText("Hello", font, 20, 60, 32, Color.White);
+
+// Binary (push to SPI)
+spi.Write(File.ReadAllBytes(Path.Combine(dir, "data.bin")));
+
+// Text
+var text = File.ReadAllText(Path.Combine(dir, "message.txt"));
+Console.WriteLine(text);
+```
+
+Add this once to your `.csproj` so the files land next to the DLL:
+
+```xml
+<ItemGroup>
+    <Content Include="Resources\**\*" CopyToOutputDirectory="PreserveNewest" />
+</ItemGroup>
+```
+
+Everything under `Resources\` is now deployed automatically.
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+from pathlib import Path
+from GHIElectronics.Endpoint.Drawing import Canvas, Color, Font, Image, PixelFormat
+
+here = Path(__file__).parent
+
+# JPG
+img_bytes = (here / "resource_bg.jpg").read_bytes()
+img = Image.Load(img_bytes)
+canvas.DrawImage(img, 0, 0)
+
+# Font
+font_bytes = (here / "Montserrat.ttf").read_bytes()
+font = Font.Load(font_bytes)
+canvas.DrawText("Hello", font, 20, 60, 32, Color.White)
+
+# Binary (push to SPI)
+spi.Write((here / "data.bin").read_bytes())
+
+# Text
+text = (here / "message.txt").read_text(encoding="utf-8")
+print(text)
+```
+
+Files next to your `.py` script deploy automatically on F5, no project-file edit.
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+#include <endpoint.h>
+#include <endpoint/Drawing.h>
+#include <filesystem>
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <vector>
+
+namespace Drawing = GHIElectronics::Endpoint::Drawing;
+
+static std::vector<uint8_t> ReadAll(const std::filesystem::path& p) {
+    std::ifstream f(p, std::ios::binary | std::ios::ate);
+    std::vector<uint8_t> buf(f.tellg());
+    f.seekg(0);
+    f.read(reinterpret_cast<char*>(buf.data()), buf.size());
+    return buf;
+}
+
+auto here = std::filesystem::canonical("/proc/self/exe").parent_path();
+
+// JPG
+auto imgBytes = ReadAll(here / "resource_bg.jpg");
+auto img = Drawing::Image::Load(imgBytes);
+canvas.DrawImage(img, 0, 0);
+
+// Font
+auto fontBytes = ReadAll(here / "Montserrat.ttf");
+auto font = Drawing::Font::Load(fontBytes);
+canvas.DrawText("Hello", font, 20, 60, 32, Drawing::Color::White());
+
+// Binary (push to SPI)
+auto blob = ReadAll(here / "data.bin");
+spi.Write(blob.data(), blob.size());
+
+// Text
+std::ifstream t(here / "message.txt");
+std::string text((std::istreambuf_iterator<char>(t)), {});
+std::cout << text << std::endl;
+```
+
+Files next to `main.cpp` deploy automatically on F5, no project-file edit.
+
+</TabItem>
+</Tabs>
+
+Same pattern for **TLS certificates** — load the `.crt` with the same file read, then hand the bytes or path to your HTTP client as shown in [Step 7](#step-7-tls-certificates).
+
+### Embedded Resource (.NET only)
+
+.NET lets you bake files into the compiled DLL so your app ships as a single binary. Python and C/C++ do not have this; use the file approach above.
+
+In Visual Studio, right-click the file in Solution Explorer, **Properties**, **Build Action** = `Embedded Resource`. In VS Code, edit the `.csproj` directly:
+
+```xml
+<ItemGroup>
+    <EmbeddedResource Include="logo.jpg" />
+    <EmbeddedResource Include="Montserrat.ttf" />
+    <EmbeddedResource Include="data.bin" />
+    <EmbeddedResource Include="config.txt" />
+</ItemGroup>
+```
+
+Tip: `<EmbeddedResource Include="Resources\**\*" />` embeds everything under a `Resources\` folder without listing files individually.
+
+Read at runtime with `Assembly.GetManifestResourceStream`:
+
+```csharp
+using System.IO;
+using System.Reflection;
+using System.Text;
+
+static byte[] ReadResource(string name) {
+    using var s = Assembly.GetExecutingAssembly().GetManifestResourceStream(name)
+        ?? throw new InvalidOperationException($"Resource '{name}' not found");
+    var buf = new byte[s.Length];
+    s.ReadExactly(buf);
+    return buf;
+}
+
+var jpg  = ReadResource("MyApp.logo.jpg");
+var ttf  = ReadResource("MyApp.Montserrat.ttf");
+var blob = ReadResource("MyApp.data.bin");
+var text = Encoding.UTF8.GetString(ReadResource("MyApp.config.txt"));
+```
+
+The resource name is `<RootNamespace>.<folder-with-dots>.<filename>`. To see the exact names baked into your DLL:
+
+```csharp
+foreach (var n in Assembly.GetExecutingAssembly().GetManifestResourceNames())
+    Console.WriteLine(n);
+```
+
+## Step 7: TLS certificates
+
+HTTPS clients on Endpoint trust the public CA bundle out of the box, same as any desktop. If your server uses a **self-signed certificate** or a **private CA**, ship the CA certificate (PEM file) with your app and tell the HTTP client to trust it.
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET (C#)" default>
+
+```csharp
+using System.IO;
+using System.Net.Http;
+using System.Security.Cryptography.X509Certificates;
+
+var ca = new X509Certificate2(Path.Combine(AppContext.BaseDirectory, "ca.crt"));
+
+var handler = new HttpClientHandler {
+    ServerCertificateCustomValidationCallback = (msg, chain, errors) => {
+        chain.ChainPolicy.CustomTrustStore.Add(ca);
+        chain.ChainPolicy.TrustMode = X509ChainTrustMode.CustomRootTrust;
+        return chain.Build(chain.ChainElements[0].Certificate);
+    },
+};
+
+using var http = new HttpClient(handler);
+var body = await http.GetStringAsync("https://my-server.local/");
+```
+
+For mutual TLS (client certificate too), add `handler.ClientCertificates.Add(new X509Certificate2("client.pfx", password));`.
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+from pathlib import Path
+
+cert = str(Path(__file__).parent / "ca.crt")
+r = requests.get("https://my-server.local/", verify=cert)
+print(r.text)
+```
+
+For mutual TLS, pass the client cert + key: `requests.get(url, verify=ca, cert=(client_cert, client_key))`.
+
+Install `requests` the usual way: `pip install requests`.
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+The firmware ships with libcurl + its OpenSSL backend. Drop the curl headers into your project (download from [curl.se](https://curl.se/download.html) or copy from a Linux `libcurl4-openssl-dev` package), then:
+
+```cpp
+#include <curl/curl.h>
+#include <filesystem>
+
+auto cert = std::filesystem::canonical("/proc/self/exe").parent_path() / "ca.crt";
+
+CURL* curl = curl_easy_init();
+curl_easy_setopt(curl, CURLOPT_URL, "https://my-server.local/");
+curl_easy_setopt(curl, CURLOPT_CAINFO, cert.c_str());
+curl_easy_perform(curl);
+curl_easy_cleanup(curl);
+```
+
+For mutual TLS, add `curl_easy_setopt(curl, CURLOPT_SSLCERT, "client.crt")` and `CURLOPT_SSLKEY` for the private key.
+
+</TabItem>
+</Tabs>
 
 ## What's next
 
