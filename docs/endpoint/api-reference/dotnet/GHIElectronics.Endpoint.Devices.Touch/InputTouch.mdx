@@ -1,0 +1,91 @@
+---
+title: "InputTouch Class"
+sidebar_label: "InputTouch"
+---
+
+# InputTouch Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Touch`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Touch`
+
+Touchscreen backed by a kernel input device at `/dev/input/eventN`. USB HID touchscreens show up this way automatically.
+
+```csharp
+public sealed class InputTouch : Touch
+```
+
+## Constructors
+
+### InputTouch(string deviceName)
+
+```csharp
+public InputTouch(string deviceName)
+```
+
+Opens a specific /dev/input/eventN path.
+
+## Properties
+
+### Connected
+
+```csharp
+public bool Connected { get; }
+```
+
+**Returns** `bool`
+
+### DeviceName
+
+```csharp
+public string DeviceName { get; }
+```
+
+The `/dev/input/eventN` path the touchscreen was opened on.
+
+**Returns** `string`
+
+### Height
+
+```csharp
+public int Height { get; }
+```
+
+**Returns** `int`
+
+### ProductId
+
+```csharp
+public int ProductId { get; }
+```
+
+USB product id (0 if the touchscreen is not a USB device).
+
+**Returns** `int`
+
+### VendorId
+
+```csharp
+public int VendorId { get; }
+```
+
+USB vendor id (0 if the touchscreen is not a USB device).
+
+**Returns** `int`
+
+### Width
+
+```csharp
+public int Width { get; }
+```
+
+**Returns** `int`
+
+## Methods
+
+### Dispose()
+
+```csharp
+public override void Dispose()
+```
+
+Closes the kernel input device and stops the reader thread.
+

@@ -1,0 +1,168 @@
+---
+title: "Alternatives"
+sidebar_label: "Alternatives"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Endpoint doesn't force you to use its [Canvas](canvas.mdx) or
+[Widget](widget.mdx) APIs. Any standard 2D graphics library that renders
+to an in-memory buffer works. Draw into the buffer, hand it to a
+`DisplayController`, SPI / I2C device, or the Endpoint `Canvas` as a
+bitmap source.
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+### SkiaSharp
+
+Full-featured 2D canvas with text, paths, gradients and image decoding.
+De-facto standard cross-platform drawing library for .NET; used inside
+Microsoft MAUI.
+
+```bash
+dotnet add package SkiaSharp
+dotnet add package SkiaSharp.NativeAssets.Linux
+```
+
+```csharp
+using SkiaSharp;
+
+using var bmp = new SKBitmap(240, 320, SKColorType.Rgb565, SKAlphaType.Opaque);
+using var canvas = new SKCanvas(bmp);
+
+canvas.Clear(SKColors.Black);
+using var red = new SKPaint { Color = SKColors.Red, StrokeWidth = 2 };
+canvas.DrawLine(10, 10, 230, 310, red);
+canvas.DrawCircle(120, 160, 40, new SKPaint { Color = SKColors.Blue });
+canvas.DrawText("Hello Endpoint", 10, 30,
+    new SKPaint { Color = SKColors.White, TextSize = 20 });
+
+spi.Write(bmp.Bytes);     // raw RGB565 to the display
+```
+
+Runtime footprint ≈ 10 MB (native Skia library).
+
+### ImageSharp
+
+Pure-managed image processing: resize, encode, filter. No native
+dependencies. Great when you're decoding JPEGs or compositing images
+rather than drawing primitives interactively.
+
+```bash
+dotnet add package SixLabors.ImageSharp
+dotnet add package SixLabors.ImageSharp.Drawing
+```
+
+```csharp
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Drawing.Processing;
+using SixLabors.ImageSharp.PixelFormats;
+
+using var image = new Image<Bgr565>(240, 320);
+image.Mutate(ctx => {
+    ctx.Fill(Color.Black);
+    ctx.DrawLine(Color.Red, 2, new PointF(10, 10), new PointF(230, 310));
+    ctx.Fill(Color.Blue, new EllipsePolygon(120, 160, 40));
+    ctx.DrawText("Hello Endpoint", font, Color.White, new PointF(10, 30));
+});
+image.CopyPixelDataTo(buffer);
+spi.Write(buffer);
+```
+
+### Microsoft.Maui.Graphics
+
+Microsoft's cross-platform 2D API with a pluggable backend. Lightweight
+(~100 KB) if you only use the drawing primitives.
+
+```bash
+dotnet add package Microsoft.Maui.Graphics
+```
+
+```csharp
+using Microsoft.Maui.Graphics;
+
+using var bitmap = new BitmapExportContext(240, 320);
+ICanvas canvas = bitmap.Canvas;
+
+canvas.FillColor = Colors.Black;
+canvas.FillRectangle(0, 0, 240, 320);
+canvas.StrokeColor = Colors.Red;
+canvas.DrawLine(10, 10, 230, 310);
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+### Pillow
+
+The standard Python imaging library. Prebuilt wheels for 64-bit ARM;
+no cross-compilation needed.
+
+```bash
+pip install Pillow
+```
+
+```python
+from PIL import Image, ImageDraw, ImageFont
+
+img = Image.new("RGB", (240, 320), "black")
+draw = ImageDraw.Draw(img)
+draw.line((10, 10, 230, 310), fill="red", width=2)
+draw.ellipse((80, 120, 160, 200), fill="blue")
+draw.text((10, 30), "Hello Endpoint", fill="white")
+
+spi.write(img.tobytes())
+```
+
+### numpy + matplotlib
+
+For scientific and data-visualisation workloads, `numpy` and
+`matplotlib` work the same way they do on a desktop: render into an
+off-screen canvas and flush the resulting pixel buffer.
+
+```python
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots(figsize=(2.4, 3.2), dpi=100)
+ax.plot([1, 2, 3], [4, 1, 7])
+fig.canvas.draw()
+spi.write(fig.canvas.tostring_rgb())
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+The built-in [Canvas](canvas.mdx) ships inside `libendpoint` and
+covers most needs with zero extra dependencies. If you want something
+else, link any standard C/C++ 2D toolkit (Cairo, STB image, Skia C API)
+and feed the resulting pixel buffer to the display the same way.
+
+```cpp
+// Cairo example (apt install libcairo2-dev)
+#include <cairo/cairo.h>
+cairo_surface_t* surf = cairo_image_surface_create(CAIRO_FORMAT_RGB16_565, 240, 320);
+cairo_t* cr = cairo_create(surf);
+cairo_set_source_rgb(cr, 1, 0, 0);
+cairo_move_to(cr, 10, 10); cairo_line_to(cr, 230, 310); cairo_stroke(cr);
+spi.Write(cairo_image_surface_get_data(surf), 240 * 320 * 2);
+```
+
+</TabItem>
+</Tabs>
+
+## Choose based on what you need
+
+| Need | Pick |
+|---|---|
+| Lines / text / circles on the panel or an external display | [Canvas](canvas.mdx) (ours, smallest footprint) |
+| Vector paths, SVG, complex text layout, gradients | SkiaSharp (.NET) |
+| Image resize / encode / filter | ImageSharp (.NET) · Pillow (Python) |
+| Already-written MAUI.Graphics code | Microsoft.Maui.Graphics (.NET) |
+| Charts, plots, scientific plots | matplotlib (Python) |
+
+Canvas is the lightweight default; the alternatives let you reach
+deeper when the problem calls for it.

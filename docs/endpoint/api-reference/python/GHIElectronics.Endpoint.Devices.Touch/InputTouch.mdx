@@ -1,0 +1,91 @@
+---
+title: "InputTouch Class"
+sidebar_label: "InputTouch"
+---
+
+# InputTouch Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Touch`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Touch`
+
+Touchscreen backed by a kernel input device at `/dev/input/eventN`. USB HID touchscreens show up this way automatically.
+
+```python
+class InputTouch(Touch): ...
+```
+
+## Constructors
+
+### InputTouch(string deviceName)
+
+```python
+def __init__(self, deviceName: str):
+```
+
+Opens a specific /dev/input/eventN path.
+
+## Properties
+
+### Connected
+
+```python
+Connected: bool  # @property
+```
+
+**Returns** `bool`
+
+### DeviceName
+
+```python
+DeviceName: str  # @property
+```
+
+The `/dev/input/eventN` path the touchscreen was opened on.
+
+**Returns** `string`
+
+### Height
+
+```python
+Height: int  # @property
+```
+
+**Returns** `int`
+
+### ProductId
+
+```python
+ProductId: int  # @property
+```
+
+USB product id (0 if the touchscreen is not a USB device).
+
+**Returns** `int`
+
+### VendorId
+
+```python
+VendorId: int  # @property
+```
+
+USB vendor id (0 if the touchscreen is not a USB device).
+
+**Returns** `int`
+
+### Width
+
+```python
+Width: int  # @property
+```
+
+**Returns** `int`
+
+## Methods
+
+### Dispose()
+
+```python
+def Dispose(self) -> None:
+```
+
+Closes the kernel input device and stops the reader thread.
+

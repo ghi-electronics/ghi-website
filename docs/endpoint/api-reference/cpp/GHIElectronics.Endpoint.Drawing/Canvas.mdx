@@ -1,0 +1,150 @@
+---
+title: "Canvas Class"
+sidebar_label: "Canvas"
+---
+
+# Canvas Class
+
+**Header:** `endpoint/Drawing.h`<br/>**Namespace:** `GHIElectronics::Endpoint::Drawing`
+
+A pixel buffer plus the primitives to draw into it. Pick the size and `PixelFormat` at `Create` time; when done, hand `Buffer()` to whichever device accepts bytes.
+
+```cpp
+class Canvas {};
+```
+
+### Example
+
+```cpp
+auto canvas = Canvas::Create(240, 320, PixelFormat::Rgb565);
+canvas.Clear(Color::Black());
+canvas.DrawLine(10, 10, 230, 310, Color::Red(), /*thickness=*/2);
+canvas.FillCircle(120, 160, 40, Color::Blue());
+canvas.DrawText("Hello Endpoint", font, 10, 30, 20, Color::White());
+spi.Write(canvas.Buffer().data(), canvas.Buffer().size());
+```
+
+## Properties
+
+### Buffer
+
+```cpp
+std::span<const uint8_t> Buffer() const;
+```
+
+Raw pixel bytes. Length and layout match `Width()`, `Height()`, and `PixelFormat()`.
+
+### Width
+
+```cpp
+int Width() const;
+```
+
+Width in pixels.
+
+### Height
+
+```cpp
+int Height() const;
+```
+
+Height in pixels.
+
+### PixelFormat
+
+```cpp
+Drawing::PixelFormat PixelFormat() const;
+```
+
+Pixel layout of `Buffer()`.
+
+## Methods
+
+### Create(int width, int height, PixelFormat format)
+
+```cpp
+static Canvas Create(int width, int height, Drawing::PixelFormat format);
+```
+
+Allocate a new `Canvas` of the given size and pixel format.
+
+### Clear(Color color)
+
+```cpp
+void Clear(Color color);
+```
+
+Fill the whole buffer with a single color.
+
+### SetPixel(int x, int y, Color color)
+
+```cpp
+void SetPixel(int x, int y, Color color);
+```
+
+Set a single pixel. No-op if (x, y) is outside the canvas.
+
+### DrawLine(int x0, int y0, int x1, int y1, Color color, int thickness)
+
+```cpp
+void DrawLine(int x0, int y0, int x1, int y1, Color color, int thickness = 1);
+```
+
+Bresenham line, honoring thickness by stamping an r-pixel disc at each step.
+
+### DrawRectangle(int x, int y, int width, int height, Color color, int thickness)
+
+```cpp
+void DrawRectangle(int x, int y, int width, int height, Color color, int thickness = 1);
+```
+
+Stroke a rectangle outline.
+
+### FillRectangle(int x, int y, int width, int height, Color color)
+
+```cpp
+void FillRectangle(int x, int y, int width, int height, Color color);
+```
+
+Fill a rectangle.
+
+### DrawCircle(int cx, int cy, int radius, Color color, int thickness)
+
+```cpp
+void DrawCircle(int cx, int cy, int radius, Color color, int thickness = 1);
+```
+
+Midpoint-algorithm circle outline.
+
+### FillCircle(int cx, int cy, int radius, Color color)
+
+```cpp
+void FillCircle(int cx, int cy, int radius, Color color);
+```
+
+Filled circle.
+
+### DrawText(const std::string& text, const Font& font, int x, int y, int sizePx, Color color)
+
+```cpp
+void DrawText(const std::string& text, const Font& font,
+              int x, int y, int sizePx, Color color);
+```
+
+Rasterize `text` with `font` at `sizePx`, with the top-left of the text box at (`x`, `y`). Alpha-blends against whatever is already in the canvas. Rgb565 and Monochrome targets only.
+
+### DrawImage(const Image& image, int x, int y)
+
+```cpp
+void DrawImage(const Image& image, int x, int y);
+```
+
+Blit a pre-decoded `Image` into this canvas at (`x`, `y`). Converts to the canvas's `PixelFormat` on the fly.
+
+### DrawImage(std::span&lt;const uint8_t&gt; fileBytes, int x, int y)
+
+```cpp
+void DrawImage(std::span<const uint8_t> fileBytes, int x, int y);
+```
+
+Decode an image file (JPEG / PNG / BMP / GIF / TGA) and blit it into this canvas at (`x`, `y`). For repeated draws, cache the decode via `Image::Load` instead.

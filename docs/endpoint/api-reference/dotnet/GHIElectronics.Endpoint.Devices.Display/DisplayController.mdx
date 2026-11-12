@@ -1,0 +1,141 @@
+---
+title: "DisplayController Class"
+sidebar_label: "DisplayController"
+---
+
+# DisplayController Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Display`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Display`
+
+A display on the board. This class is abstract: the library ships one concrete subclass, `Display.ParallelDisplayController`, for the built-in parallel RGB panel into `/dev/fb0`. Customers wiring any other kind of panel (SPI, I2C, custom) subclass this directly and drive the hardware through the Core `Spi`/`I2c`/`Gpio` APIs. The abstract contract is: open the panel on `DisplayController.Enable`, close it on `DisplayController.Disable`, push pixels on `DisplayController.Flush`.
+
+```csharp
+public abstract class DisplayController : IDisposable
+```
+
+## Constructors
+
+### DisplayController()
+
+```csharp
+protected DisplayController()
+```
+
+## Properties
+
+### Height
+
+```csharp
+public int Height { get; }
+```
+
+Visible height of the panel in pixels.
+
+**Returns** `int`
+
+### IsEnabled
+
+```csharp
+public bool IsEnabled { get; }
+```
+
+True once the panel driver / init path has run and the panel is ready to receive pixels.
+
+**Returns** `bool`
+
+### Width
+
+```csharp
+public int Width { get; }
+```
+
+Visible width of the panel in pixels.
+
+**Returns** `int`
+
+## Methods
+
+### Disable()
+
+```csharp
+public abstract void Disable()
+```
+
+Reverse of `DisplayController.Enable`. Safe to call when nothing is enabled.
+
+### Dispose()
+
+```csharp
+public abstract void Dispose()
+```
+
+Calls `DisplayController.Disable` and releases any resources the subclass holds.
+
+### Enable()
+
+```csharp
+public abstract void Enable()
+```
+
+Loads the panel driver / runs the init sequence. Throws if the apply fails.
+
+### Flush(ReadOnlySpan&lt;byte> pixels)
+
+```csharp
+public void Flush(ReadOnlySpan<byte> pixels)
+```
+
+Push a full-screen frame. Pixel format defaults to `PixelFormat.Format16bppRgb565`.
+
+### Flush(ReadOnlySpan&lt;byte> pixels, PixelFormat format)
+
+```csharp
+public void Flush(ReadOnlySpan<byte> pixels, PixelFormat format)
+```
+
+Push a full-screen frame in the given format.
+
+### Flush(ReadOnlySpan&lt;byte> pixels, PixelFormat format, int x, int y, int width, int height)
+
+```csharp
+public abstract void Flush(ReadOnlySpan<byte> pixels, PixelFormat format, int x, int y, int width, int height)
+```
+
+Push a region of the panel. The subclass handles any pixel-format conversion.
+
+### GetDefault()
+
+```csharp
+public static DisplayController GetDefault()
+```
+
+The built-in display controller for this board, or null if `/config/display.json` says the type is `DisplayType.None`. Customers using a custom (SPI/I2C/other) panel instantiate their own subclass of `Display.DisplayController` directly instead.
+
+**Returns** `DisplayController`
+
+### GetSettings()
+
+```csharp
+public static DisplaySettings GetSettings()
+```
+
+Reads the built-in display's settings from `/config/display.json`. Changes to the returned object do nothing until passed back to `DisplayController.SetSettings`.
+
+**Returns** `DisplaySettings`
+
+### SetSettings(DisplaySettings settings)
+
+```csharp
+public static void SetSettings(DisplaySettings settings)
+```
+
+Writes the settings to `/config/display.json` (persisted across reboots). Does NOT apply them to the live panel - call `DisplayController.Enable` for that.
+
+### ShowLogo()
+
+```csharp
+public virtual void ShowLogo()
+```
+
+Reads the `logo` filename from `/config/display.json`, decodes the 24-bit BMP file from `/config`, and calls `DisplayController.Flush` with it. No-op if the file is missing or not a 24-bit uncompressed BMP. Virtual so a subclass can replace the behaviour (e.g. pre-convert to the panel's native format once instead of on every call).
+

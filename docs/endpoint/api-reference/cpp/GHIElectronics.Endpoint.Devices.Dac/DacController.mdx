@@ -1,0 +1,97 @@
+---
+title: "DacController Class"
+sidebar_label: "DacController"
+---
+
+# DacController Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Dac`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Dac`
+
+Endpoint's DAC (analog outputs), with the same API as TinyCLR. Opening a channel makes its pin an analog output; closing it switches the output off and puts the pin back as it was.
+
+```cpp
+class DacController : public IDisposable {};
+```
+
+## Properties
+
+### ChannelCount
+
+```cpp
+int32_t ChannelCount() const;
+```
+
+The number of channels in the chip (channel numbers start at 0)
+
+**Returns** `int`
+
+### MaxValue
+
+```cpp
+int32_t MaxValue() const;
+```
+
+The value for the reference voltage (3.3 V)
+
+**Returns** `int`
+
+### MinValue
+
+```cpp
+int32_t MinValue() const;
+```
+
+The value for 0 V
+
+**Returns** `int`
+
+### ResolutionInBits
+
+```cpp
+int32_t ResolutionInBits() const;
+```
+
+Sample width in bits
+
+**Returns** `int`
+
+## Methods
+
+### Dispose()
+
+```cpp
+void Dispose();
+```
+
+Nothing to release: each channel is released when it is disposed
+
+### FromName(string name)
+
+```cpp
+static DacController FromName(const std::string& name);
+```
+
+The DAC named `name`: EPM815.Dac.Id
+
+**Returns** `DacController`
+
+### GetDefault()
+
+```cpp
+static DacController GetDefault();
+```
+
+The board's DAC
+
+**Returns** `DacController`
+
+### OpenChannel(int channelNumber)
+
+```cpp
+DacChannel OpenChannel(int32_t channelNumber);
+```
+
+Opens a channel for output: EPM815.Dac.PA4 or EPM815.Dac.PA5
+
+**Returns** `DacChannel`
+

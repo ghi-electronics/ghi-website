@@ -1,0 +1,152 @@
+---
+title: "Interface Class"
+sidebar_label: "Interface"
+---
+
+# Interface Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost.Descriptors`
+
+Interface descriptor.
+
+```csharp
+public class Interface : BaseDescriptor
+```
+
+## Constructors
+
+### Interface(byte[] buffer)
+
+```csharp
+public Interface(byte[] buffer)
+```
+
+Constructs a new descriptor.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `buffer` | `byte[]` | The buffer with which to populate the descriptor. |
+
+### Interface(byte[] buffer, int offset)
+
+```csharp
+public Interface(byte[] buffer, int offset)
+```
+
+Constructs a new descriptor.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `buffer` | `byte[]` | The buffer with which to populate the descriptor. |
+| `offset` | `int` | The offset into the buffer at which to start. |
+
+### Interface()
+
+```csharp
+protected Interface()
+```
+
+Constructs a new descriptor.
+
+## Properties
+
+### AlternateSetting
+
+```csharp
+public byte AlternateSetting { get; set; }
+```
+
+The value used to select alternate settings.
+
+**Returns** `byte`
+
+### AuxiliaryDescriptors
+
+```csharp
+public Auxiliary[] AuxiliaryDescriptors { get; set; }
+```
+
+Child auxiliary descriptors.
+
+**Returns** `Auxiliary[]`
+
+### ClassCode
+
+```csharp
+public byte ClassCode { get; set; }
+```
+
+The class code.
+
+**Returns** `byte`
+
+### Endpoints
+
+```csharp
+public Endpoint[] Endpoints { get; set; }
+```
+
+Child endpoint descriptors.
+
+**Returns** `Endpoint[]`
+
+### Index
+
+```csharp
+public byte Index { get; set; }
+```
+
+The interface string descriptor index.
+
+**Returns** `byte`
+
+### Number
+
+```csharp
+public byte Number { get; set; }
+```
+
+The number of the interface.
+
+**Returns** `byte`
+
+### NumberEndpoints
+
+```csharp
+public byte NumberEndpoints { get; set; }
+```
+
+The number of endpoints for this interface.
+
+**Returns** `byte`
+
+### ProtocolCode
+
+```csharp
+public byte ProtocolCode { get; set; }
+```
+
+The protocal code.
+
+**Returns** `byte`
+
+### SubclassCode
+
+```csharp
+public byte SubclassCode { get; set; }
+```
+
+The subclass code.
+
+**Returns** `byte`
+
+## Fields
+
+### FixedLength
+
+```csharp
+public const byte FixedLength = 9
+```
+
+The fixed length of this descriptor type in bytes.
+

@@ -1,0 +1,53 @@
+---
+title: "PwmController Class"
+sidebar_label: "PwmController"
+---
+
+# PwmController Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+Chip-neutral entry point for PWM setup. Call once before using `Pwm.PwmChannel`: it brings up the PWM channel and muxes its pin.
+
+```csharp
+public static class PwmController
+```
+
+## Methods
+
+### GetChannelId(int pin)
+
+```csharp
+public static int GetChannelId(int pin)
+```
+
+Channel index within the PWM chip to pass to `PwmChannel.Create`.
+
+**Returns** `int`
+
+### GetChipId(int pin)
+
+```csharp
+public static int GetChipId(int pin)
+```
+
+Kernel `pwmchipN` index to pass to `PwmChannel.Create`.
+
+**Returns** `int`
+
+### Initialize(int pin)
+
+```csharp
+public static void Initialize(int pin)
+```
+
+Brings up a PWM channel. The argument is a pin constant from the chip's namespace (for example `EPM815.Pwm.Pin.PA8` or `EPN256.Pwm.Pin.PK5`); only that pin is claimed.
+
+### UnInitialize(int pin)
+
+```csharp
+public static void UnInitialize(int pin)
+```
+
+Releases the PWM pin back to free GPIO.
+

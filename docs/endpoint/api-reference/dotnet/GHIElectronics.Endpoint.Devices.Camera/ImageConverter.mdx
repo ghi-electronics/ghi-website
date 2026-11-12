@@ -1,0 +1,35 @@
+---
+title: "ImageConverter Class"
+sidebar_label: "ImageConverter"
+---
+
+# ImageConverter Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Camera`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Camera`
+
+Converts a camera frame between pixel formats. Only JPEG input is supported today.
+
+```csharp
+public static class ImageConverter
+```
+
+## Methods
+
+### Convert(byte[] imageData, int width, int height, PixelFormat inPixelFormat, PixelFormat outPixelFormat)
+
+```csharp
+public static byte[] Convert(byte[] imageData, int width, int height, PixelFormat inPixelFormat, PixelFormat outPixelFormat)
+```
+
+Decodes a JPEG frame into the requested pixel format.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `imageData` | `byte[]` | Raw JPEG bytes. The buffer may be longer than the actual JPEG; the end-of-image marker (`FF D9`) is located automatically. |
+| `width` | `int` | Decoded frame width in pixels. |
+| `height` | `int` | Decoded frame height in pixels. |
+| `inPixelFormat` | `PixelFormat` | Must be `PixelFormat.Jpeg`; other formats throw `System.ArgumentException`. |
+| `outPixelFormat` | `PixelFormat` | Target format: `PixelFormat.Jpeg` returns the trimmed JPEG, `PixelFormat.Rgb888` returns 3 bytes per pixel, `PixelFormat.Rgb565` returns 2 bytes per pixel. |
+
+**Returns** `byte[]`: The converted frame, or `null` if the input does not start with the JPEG SOI marker (`FF D8`) or no end-of-image marker is found.
+

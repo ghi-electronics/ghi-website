@@ -1,0 +1,136 @@
+---
+title: "RawDevice Class"
+sidebar_label: "RawDevice"
+---
+
+# RawDevice Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
+
+Provides low level access functionalities for the connected USB device. This is useful if there is not already a predefined driver for that device.
+
+```python
+class RawDevice(BaseDevice): ...
+```
+
+### Remarks
+
+Open it with the DeviceName of an Unknown device from `UsbHostController` ("/dev/bus/usb/001/005"). An interface that a driver of the board has is taken from it while the program uses it, and given back when the device is disposed.
+
+## Nested Types
+
+| Type | Kind | Summary |
+|---|---|---|
+| [RawDevice.Pipe](./RawDevice_Pipe.mdx) | Class | A USB communication pipe. |
+
+## Constructors
+
+### RawDevice(string deviceName)
+
+```python
+def __init__(self, deviceName: str):
+```
+
+Opens the device that UsbHostController reported ("/dev/bus/usb/001/005").
+
+## Properties
+
+### SetupTimeout
+
+```python
+SetupTimeout: int  # @property / @setter
+```
+
+The timeout of SendSetupPacket in milliseconds (0: none). Defaults to 5000 ms.
+
+**Returns** `int`
+
+## Methods
+
+### GetConfigurationDescriptor(byte configurationIndex)
+
+```python
+def GetConfigurationDescriptor(self, configurationIndex: int) -> Configuration:
+```
+
+Gets the configuration descriptor.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `configurationIndex` | `byte` | The configuration index. |
+
+**Returns** `Configuration`: The configuration descriptor.
+
+### GetDeviceDescriptor()
+
+```python
+def GetDeviceDescriptor(self) -> Device:
+```
+
+Gets the device descriptor.
+
+**Returns** `Device`: The device descriptor.
+
+### GetString(byte index)
+
+```python
+def GetString(self, index: int) -> str:
+```
+
+Gets a string descriptor (the product's name...): its text, empty if the device has none.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `index` | `byte` | The string's index (Descriptors.Device.ProductIndex...). |
+
+**Returns** `string`
+
+### OpenPipe(Endpoint endpoint)
+
+```python
+def OpenPipe(self, endpoint: Endpoint) -> Pipe:
+```
+
+Opens a new communication pipe.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `endpoint` | `Endpoint` | The descriptor for the communication endpoint (bulk or interrupt). |
+
+**Returns** `Pipe`: The new pipe.
+
+### SendSetupPacket(byte requestType, byte request, ushort value, ushort index)
+
+```python
+def SendSetupPacket(self, requestType: int, request: int, value: int, index: int) -> None:
+```
+
+Sends a USB setup packet.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `requestType` | `byte` | The request type, recipient, and direction. |
+| `request` | `byte` | The request to make. |
+| `value` | `ushort` | The value of the request. |
+| `index` | `ushort` | The index of the request. |
+
+### SendSetupPacket(byte requestType, byte request, ushort value, ushort index, byte[] data, int dataOffset, int dataCount)
+
+```python
+def SendSetupPacket(self, requestType: int, request: int, value: int, index: int, data: list[int], dataOffset: int, dataCount: int) -> int:
+```
+
+Sends a USB setup packet.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `requestType` | `byte` | The request type, recipient, and direction. |
+| `request` | `byte` | The request to make. |
+| `value` | `ushort` | The value of the request. |
+| `index` | `ushort` | The index of the request. |
+| `data` | `byte[]` | The data to send or receive. |
+| `dataOffset` | `int` | The offset into data at which to send or receive the data. |
+| `dataCount` | `int` | The number of bytes to send or receive into data starting at offset. |
+
+**Returns** `int`: The number of bytes sent or received.
+

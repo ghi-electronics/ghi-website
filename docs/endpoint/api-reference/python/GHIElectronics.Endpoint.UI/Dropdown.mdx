@@ -1,0 +1,61 @@
+---
+title: "Dropdown Class"
+sidebar_label: "Dropdown"
+---
+
+# Dropdown Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Select one item from a list. ValueChanged fires when the selection changes.
+
+```python
+class Dropdown(Widget): ...
+```
+
+## Constructors
+
+### Dropdown(Widget parent)
+
+```python
+def __init__(self, parent: Widget):
+```
+
+Create a dropdown inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Properties
+
+### Selected
+
+```python
+Selected: int  # @property / @setter
+```
+
+0-based index of the currently selected item.
+
+**Returns** `int`
+
+## Methods
+
+### SetOptions(IEnumerable&lt;string> options)
+
+```python
+def SetOptions(self, options: IEnumerable[str]) -> None:
+```
+
+Set the items. Internally joined with newline before passing to libendpoint.
+
+## Events
+
+### ValueChanged
+
+```python
+ValueChanged  # += / -= handler
+```
+
+Fires when the user picks a different item. Runs on the UI thread.
+

@@ -1,0 +1,99 @@
+---
+title: "Printer Class"
+sidebar_label: "Printer"
+---
+
+# Printer Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
+
+A USB printer: the bytes it understands (ESC/POS for receipt printers, ZPL or EPL for label printers, PCL or PostScript for office printers) go to it as they are.
+
+```cpp
+class Printer : public BaseDevice {};
+```
+
+### Remarks
+
+Open it with the DeviceName of a Printer from `UsbHostController` ("/dev/usb/lp0").
+
+## Constructors
+
+### Printer(string deviceName)
+
+```cpp
+Printer(const std::string& deviceName);
+```
+
+Opens the printer that UsbHostController reported ("/dev/usb/lp0").
+
+## Properties
+
+### DeviceId
+
+```cpp
+std::string DeviceId() const;
+```
+
+The printer's IEEE 1284 Device ID: "MFG:EPSON;CMD:ESC/POS;MDL:TM-T20II;CLS:PRINTER;"
+
+**Returns** `string`
+
+### Status
+
+```cpp
+PrinterStatus Status() const;
+```
+
+Paper out, off line or an error, as the printer reports them (Ready: none).
+
+**Returns** `PrinterStatus`
+
+### WriteTimeout
+
+```cpp
+int32_t WriteTimeout() const;
+void WriteTimeout(int32_t value);
+```
+
+How long Write waits for the printer to take the data, in milliseconds (Timeout.Infinite: as long as it takes).
+
+**Returns** `int`
+
+## Methods
+
+### Read(Span&lt;byte> buffer, int timeout)
+
+```cpp
+int32_t Read(Span<uint8_t> buffer, int32_t timeout);
+```
+
+Reads what the printer answers (to a status request).
+
+| Parameter | Type | Description |
+|---|---|---|
+| `buffer` | `Span<byte>` | Where the answer goes. |
+| `timeout` | `int` | How long to wait, in milliseconds (Timeout.Infinite: as long as it takes). |
+
+**Returns** `int`: The answer's length, 0 if none came in time.
+
+### Write(string text)
+
+```cpp
+int32_t Write(const std::string& text);
+```
+
+Sends text to the printer, as UTF-8.
+
+**Returns** `int`
+
+### Write(ReadOnlySpan&lt;byte> data)
+
+```cpp
+int32_t Write(ReadOnlySpan<uint8_t> data);
+```
+
+Sends bytes to the printer.
+
+**Returns** `int`: The number of bytes sent: all of them.
+

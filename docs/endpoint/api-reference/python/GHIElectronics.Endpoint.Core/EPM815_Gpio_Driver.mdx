@@ -1,0 +1,115 @@
+---
+title: "EPM815.Gpio.Driver Class"
+sidebar_label: "EPM815.Gpio.Driver"
+---
+
+# Driver Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+GPIO driver for .NET's `Gpio.GpioController` using the EPM815 pin numbers, on every port. Open pins are reserved so the other libraries (I2C, UART, ...) cannot take them by mistake. Every pin mode, pull-up/down and pin change event of `Gpio.GpioController` works.
+
+```python
+class Driver(GpioDriver): ...
+```
+
+## Constructors
+
+### Driver()
+
+```python
+def __init__(self):
+```
+
+## Properties
+
+### PinCount
+
+```python
+PinCount: int  # 
+```
+
+**Returns** `int`
+
+## Methods
+
+### AddCallbackForPinValueChangedEvent(int pinNumber, PinEventTypes eventTypes, PinChangeEventHandler callback)
+
+```python
+def AddCallbackForPinValueChangedEvent(self, pinNumber: int, eventTypes: PinEventTypes, callback: PinChangeEventHandler) -> None:
+```
+
+### ClosePin(int pinNumber)
+
+```python
+def ClosePin(self, pinNumber: int) -> None:
+```
+
+### Dispose(bool disposing)
+
+```python
+def Dispose(self, disposing: bool) -> None:
+```
+
+### GetPinMode(int pinNumber)
+
+```python
+def GetPinMode(self, pinNumber: int) -> PinMode:
+```
+
+**Returns** `PinMode`
+
+### IsPinModeSupported(int pinNumber, PinMode mode)
+
+```python
+def IsPinModeSupported(self, pinNumber: int, mode: PinMode) -> bool:
+```
+
+**Returns** `bool`
+
+### OpenPin(int pinNumber)
+
+```python
+def OpenPin(self, pinNumber: int) -> None:
+```
+
+### Read(int pinNumber)
+
+```python
+def Read(self, pinNumber: int) -> PinValue:
+```
+
+**Returns** `PinValue`
+
+### RemoveCallbackForPinValueChangedEvent(int pinNumber, PinChangeEventHandler callback)
+
+```python
+def RemoveCallbackForPinValueChangedEvent(self, pinNumber: int, callback: PinChangeEventHandler) -> None:
+```
+
+### SetPinMode(int pinNumber, PinMode mode)
+
+```python
+def SetPinMode(self, pinNumber: int, mode: PinMode) -> None:
+```
+
+### SetPinMode(int pinNumber, PinMode mode, PinValue initialValue)
+
+```python
+def SetPinMode(self, pinNumber: int, mode: PinMode, initialValue: PinValue) -> None:
+```
+
+### WaitForEvent(int pinNumber, PinEventTypes eventTypes, CancellationToken cancellationToken)
+
+```python
+def WaitForEvent(self, pinNumber: int, eventTypes: PinEventTypes, cancellationToken: CancellationToken) -> WaitForEventResult:
+```
+
+**Returns** `WaitForEventResult`
+
+### Write(int pinNumber, PinValue value)
+
+```python
+def Write(self, pinNumber: int, value: PinValue) -> None:
+```
+

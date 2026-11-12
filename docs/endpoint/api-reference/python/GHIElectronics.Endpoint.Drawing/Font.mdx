@@ -1,0 +1,41 @@
+---
+title: "Font Class"
+sidebar_label: "Font"
+---
+
+# Font Class
+
+**Package:** `GHIElectronics.Endpoint.Drawing`<br/>**Module:** `GHIElectronics.Endpoint.Drawing`
+
+A TrueType / OpenType font loaded from raw file bytes. Pass to `Canvas.DrawText` to render strings at any pixel size.
+
+```python
+class Font: ...
+```
+
+## Methods
+
+### Load(ttf_bytes)
+
+```python
+@staticmethod
+def Load(ttf_bytes: bytes) -> Font:
+```
+
+Loads a TTF / OTF font from raw file bytes.
+
+### GetMetrics(size_px)
+
+```python
+def GetMetrics(self, size_px: int) -> tuple[int, int, int]:
+```
+
+Font-wide vertical metrics at the given pixel height. Returns `(ascent, descent, line_gap)`. `line_height = ascent - descent + line_gap`.
+
+### Dispose()
+
+```python
+def Dispose(self) -> None:
+```
+
+Releases the native font handle.

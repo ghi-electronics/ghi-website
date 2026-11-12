@@ -1,0 +1,59 @@
+---
+title: "Image Class"
+sidebar_label: "Image"
+---
+
+# Image Class
+
+**Package:** `GHIElectronics.Endpoint.Drawing`<br/>**Module:** `GHIElectronics.Endpoint.Drawing`
+
+A decoded image, ready to blit into a `Canvas`. Decoding (JPEG / PNG / BMP / GIF / TGA, picked from the file's magic bytes) happens once at `Load`; `Canvas.DrawImage` then blits + converts.
+
+```python
+class Image: ...
+```
+
+### Example
+
+```python
+with open("background.jpg", "rb") as f:
+    bytes_ = f.read()
+background = Image.Load(bytes_)  # decode once
+
+while running:
+    canvas.DrawImage(background, 0, 0)  # many frames, no re-decode
+    display.Flush(canvas.Buffer)
+```
+
+## Properties
+
+### Width
+
+```python
+Width: int
+```
+
+### Height
+
+```python
+Height: int
+```
+
+### PixelFormat
+
+```python
+PixelFormat: int
+```
+
+Internal storage format of the decoded pixels (currently always `Rgb888`). `Canvas.DrawImage` converts to the target canvas's `PixelFormat` on draw.
+
+## Methods
+
+### Load(file_bytes)
+
+```python
+@staticmethod
+def Load(file_bytes: bytes) -> Image:
+```
+
+Decodes an image file (JPEG / PNG / BMP / GIF / TGA, detected from the file's magic bytes) into an in-memory bitmap.

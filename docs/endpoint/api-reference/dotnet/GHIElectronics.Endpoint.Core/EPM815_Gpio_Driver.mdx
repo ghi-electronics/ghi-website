@@ -1,0 +1,115 @@
+---
+title: "EPM815.Gpio.Driver Class"
+sidebar_label: "EPM815.Gpio.Driver"
+---
+
+# Driver Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+GPIO driver for .NET's `Gpio.GpioController` using the EPM815 pin numbers, on every port. Open pins are reserved so the other libraries (I2C, UART, ...) cannot take them by mistake. Every pin mode, pull-up/down and pin change event of `Gpio.GpioController` works.
+
+```csharp
+public class Driver : GpioDriver
+```
+
+## Constructors
+
+### Driver()
+
+```csharp
+public Driver()
+```
+
+## Properties
+
+### PinCount
+
+```csharp
+protected int PinCount { }
+```
+
+**Returns** `int`
+
+## Methods
+
+### AddCallbackForPinValueChangedEvent(int pinNumber, PinEventTypes eventTypes, PinChangeEventHandler callback)
+
+```csharp
+protected override void AddCallbackForPinValueChangedEvent(int pinNumber, PinEventTypes eventTypes, PinChangeEventHandler callback)
+```
+
+### ClosePin(int pinNumber)
+
+```csharp
+protected override void ClosePin(int pinNumber)
+```
+
+### Dispose(bool disposing)
+
+```csharp
+protected override void Dispose(bool disposing)
+```
+
+### GetPinMode(int pinNumber)
+
+```csharp
+protected override PinMode GetPinMode(int pinNumber)
+```
+
+**Returns** `PinMode`
+
+### IsPinModeSupported(int pinNumber, PinMode mode)
+
+```csharp
+protected override bool IsPinModeSupported(int pinNumber, PinMode mode)
+```
+
+**Returns** `bool`
+
+### OpenPin(int pinNumber)
+
+```csharp
+protected override void OpenPin(int pinNumber)
+```
+
+### Read(int pinNumber)
+
+```csharp
+protected override PinValue Read(int pinNumber)
+```
+
+**Returns** `PinValue`
+
+### RemoveCallbackForPinValueChangedEvent(int pinNumber, PinChangeEventHandler callback)
+
+```csharp
+protected override void RemoveCallbackForPinValueChangedEvent(int pinNumber, PinChangeEventHandler callback)
+```
+
+### SetPinMode(int pinNumber, PinMode mode)
+
+```csharp
+protected override void SetPinMode(int pinNumber, PinMode mode)
+```
+
+### SetPinMode(int pinNumber, PinMode mode, PinValue initialValue)
+
+```csharp
+protected override void SetPinMode(int pinNumber, PinMode mode, PinValue initialValue)
+```
+
+### WaitForEvent(int pinNumber, PinEventTypes eventTypes, CancellationToken cancellationToken)
+
+```csharp
+protected override WaitForEventResult WaitForEvent(int pinNumber, PinEventTypes eventTypes, CancellationToken cancellationToken)
+```
+
+**Returns** `WaitForEventResult`
+
+### Write(int pinNumber, PinValue value)
+
+```csharp
+protected override void Write(int pinNumber, PinValue value)
+```
+

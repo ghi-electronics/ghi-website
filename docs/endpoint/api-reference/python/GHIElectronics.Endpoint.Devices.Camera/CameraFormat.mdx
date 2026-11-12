@@ -1,0 +1,69 @@
+---
+title: "CameraFormat Class"
+sidebar_label: "CameraFormat"
+---
+
+# CameraFormat Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Camera`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Camera`
+
+A picture size a camera has, what it sends for it, and its highest frame rate.
+
+```python
+class CameraFormat: ...
+```
+
+## Properties
+
+### Height
+
+```python
+Height: int  # @property
+```
+
+Picture height in pixels.
+
+**Returns** `int`
+
+### MaxFrameRate
+
+```python
+MaxFrameRate: int  # @property
+```
+
+Frames per second
+
+**Returns** `int`
+
+### PixelFormat
+
+```python
+PixelFormat: CameraPixelFormat  # @property
+```
+
+What the camera sends for this size.
+
+**Returns** `CameraPixelFormat`
+
+### Width
+
+```python
+Width: int  # @property
+```
+
+Picture width in pixels.
+
+**Returns** `int`
+
+## Methods
+
+### ToString()
+
+```python
+def ToString(self) -> str:
+```
+
+Returns a human-readable description like "640x480 Mjpeg 30 fps".
+
+**Returns** `string`
+

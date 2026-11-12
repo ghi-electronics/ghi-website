@@ -1,0 +1,125 @@
+---
+slug: /features
+sidebar_position: 1
+title: Features
+description: Everything Endpoint provides for building on embedded hardware, combining the breadth of a PC with the direct hardware control of a microcontroller, in your choice of three languages.
+---
+
+# Features
+
+Endpoint runs full .NET, Python, and C/C++ on an embedded board. It gives
+you the breadth of a PC (networking, security, databases, graphics) AND
+the direct hardware control of a microcontroller (pin-level I/O, buses,
+precise signal timing). The same library API works across all three
+languages, so your team picks whichever one it already uses.
+
+## Full-featured like a PC
+
+Standard **.NET** on the device: TCP/UDP sockets, HTTP/HTTPS, WebSockets,
+TLS and X.509, threads and async/await, LINQ, JSON, file system, SQLite.
+.NET IoT libraries work too: webcams, sound devices, standard
+GPIO/I2C/SPI/PWM APIs.
+
+**Python** and **C/C++** get the same deal. Python runs with `requests`,
+`asyncio`, `sqlite3`, `cryptography`, `numpy`, and anything installable
+from PyPI. C/C++ compiles with a modern C23/C++23 toolchain backed by the
+full standard library (filesystem, threads, regex, sockets), and can
+link any native library the board supports.
+
+Develop and debug on your PC, press F5, the exact same code deploys over a
+single USB cable and runs on the board with full breakpoint and
+step-through debugging.
+
+## Precise like a microcontroller
+
+Pin-level control for every peripheral: digital I/O, analog in and out,
+PWM, interrupts. High-speed buses (SPI, I2C, UART, CAN). Nanosecond-grade
+digital signal generation and capture on the real-time helper core. Pins
+are free at boot; your application claims only what it needs. A C# blink
+program is up and running in under three seconds from power-on.
+
+## One API in three languages
+
+Endpoint libraries use the same class and method names across
+**.NET (C#)**, **Python** and **C/C++** wherever practical, so a
+developer who knows one language reads code written in another without
+re-learning the API. Where a standard .NET API exists
+(`System.Device.Gpio`, `System.Device.I2c`, …) Endpoint uses it directly
+on .NET and ships Python and C/C++ wrappers of the same shape. The few
+exceptions are domains where a language already has a well-established
+library its developers expect. Serial ports, for example, follow
+`System.IO.Ports.SerialPort` on .NET but use `pyserial` in Python.
+
+---
+
+Click any feature to jump to its reference page.
+
+## Hardware I/O
+
+The basics every embedded project starts with: direct pin control, analog
+input and output, PWM, and timing-critical signals.
+
+- [GPIO](features/gpio.mdx): digital input and output on any pin (standard `System.Device.Gpio`)
+- [PWM](features/pwm.mdx): pulse-width modulation for motors, LEDs, and audio (standard `System.Device.Pwm`)
+- [Analog In](features/analog-in.mdx): read voltages from sensors and analog sources (standard `System.Device.Analog`)
+- [Analog Out](features/analog-out.mdx): produce analog voltages via DAC
+- **Signal Control**: generate and measure precise digital signals *(coming soon)*
+
+## Serial Buses
+
+Talk to peripheral chips, sensors, displays, and external systems.
+
+- [SPI](features/spi.mdx): high-speed serial peripheral interface (standard `System.Device.Spi`)
+- [I2C](features/i2c.mdx): two-wire interface for sensors and small peripherals (standard `System.Device.I2c`)
+- [UART](features/uart.mdx): serial communication with external hardware (standard `System.IO.Ports.SerialPort`)
+- [USB](features/usb.mdx): USB host for keyboards, mice, drives, webcams, and more
+- [CAN](features/can.mdx): controller area network for automotive and industrial use (standard `Iot.Device.SocketCan`)
+
+## Wireless and Networking
+
+Connect your application to networks and nearby devices.
+
+- [Networking](features/networking.mdx): Ethernet, Wi-Fi, cellular, sockets, HTTP/HTTPS, TLS (standard `System.Net`)
+- **Bluetooth**: Bluetooth through USB adapters *(coming soon)*
+
+## Cloud, IoT and Industrial
+
+Endpoint uses the same .NET and Python networking stack that servers do:
+full TLS with the operating system's certificate trust store, async
+streaming, standard client libraries, and local storage to buffer or
+pre-process data before pushing anything upstream. General networking
+primitives (`System.Net.Http`, `System.Net.WebSockets`, and so on) are
+covered on the [Networking](features/networking.mdx) page; the
+integrations below sit on top.
+
+- [Microsoft Azure](features/azure.mdx): Azure IoT Hub (Microsoft Azure SDK)
+- [Amazon Web Services](features/aws.mdx): AWS IoT (AWS SDK)
+- [MQTT](features/mqtt.mdx): publish/subscribe to any broker (HiveMQ, EMQX, Mosquitto, Azure/AWS/GCP managed brokers) via `MQTTnet` on .NET or `paho-mqtt` on Python
+- [Modbus](features/modbus.mdx): industrial fieldbus, Modbus RTU and Modbus TCP, client or server, via `FluentModbus`/`NModbus4` on .NET or `pymodbus` on Python
+- **EtherNet/IP**: ODVA's industrial protocol for Rockwell/Allen-Bradley environments *(coming soon)*
+- [Endpoint as gateway](features/gateway.mdx): run an HTTP or MQTT server on the board itself (ASP.NET minimal API, FastAPI, `MQTTnet` broker) so sensors and small microcontrollers can offload to Endpoint before data goes upstream
+
+## Storage and Data
+
+Persist data on SD cards, USB drives, or in a real database.
+
+- [File System](features/file-system.mdx): read and write files on SD and USB storage (standard `System.IO`)
+- [Databases](features/databases.mdx): embedded SQL (`Microsoft.Data.Sqlite`) and NoSQL (`LiteDB`) databases
+
+## Display and Multimedia
+
+Drive screens, capture images, and build rich user interfaces.
+
+- [Displays](features/displays.mdx): parallel TFT and serial displays
+- [Graphics](features/graphics/index.mdx): **Canvas** (primitives + raw buffer export to the panel or an SPI/I2C display), **Widget** (Button, Label, Chart, and more), **Alternatives** (SkiaSharp, ImageSharp, Pillow, Microsoft.Maui.Graphics)
+- [Touch Screen](features/touch-screen.mdx): capacitive and resistive touch input
+- **Camera**: USB webcams and the on-board parallel camera interface *(coming soon)*
+
+## System Services
+
+Keep a device running, on time, and up to date.
+
+- **In-Field Update**: update the system from SD or USB memory *(coming soon)*
+- [Power Management](features/power-management.mdx): reboot, shutdown, wake on pin or RTC alarm
+- [Watchdog](features/watchdog-timer.mdx): reset the system if it locks up
+- [Real Time Clock](features/real-time-clock.mdx): keep time while the system is powered off

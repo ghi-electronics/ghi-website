@@ -1,0 +1,57 @@
+---
+title: "PwmController Class"
+sidebar_label: "PwmController"
+---
+
+# PwmController Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+Chip-neutral entry point for PWM setup. Call once before using `Pwm.PwmChannel`: it brings up the PWM channel and muxes its pin.
+
+```python
+class PwmController: ...
+```
+
+## Methods
+
+### GetChannelId(int pin)
+
+```python
+@staticmethod
+def GetChannelId(pin: int) -> int:
+```
+
+Channel index within the PWM chip to pass to `PwmChannel.Create`.
+
+**Returns** `int`
+
+### GetChipId(int pin)
+
+```python
+@staticmethod
+def GetChipId(pin: int) -> int:
+```
+
+Kernel `pwmchipN` index to pass to `PwmChannel.Create`.
+
+**Returns** `int`
+
+### Initialize(int pin)
+
+```python
+@staticmethod
+def Initialize(pin: int) -> None:
+```
+
+Brings up a PWM channel. The argument is a pin constant from the chip's namespace (for example `EPM815.Pwm.Pin.PA8` or `EPN256.Pwm.Pin.PK5`); only that pin is claimed.
+
+### UnInitialize(int pin)
+
+```python
+@staticmethod
+def UnInitialize(pin: int) -> None:
+```
+
+Releases the PWM pin back to free GPIO.
+

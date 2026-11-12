@@ -1,0 +1,356 @@
+---
+title: "Widget"
+sidebar_label: "Widget"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+The Widget API is a retained-mode UI library (Button, Label, Image,
+Border, CheckBox, Slider, Chart, DockPanel and more). Create widgets
+from a `Screen`, wire events, let the library handle hit-testing and
+repainting. Widget and [Canvas](canvas.mdx) are independent; Canvas is
+pure pixel drawing you manage yourself, Widget is a managed scene tree.
+
+All widget updates must happen on the UI thread; the library runs
+single-threaded so a background thread cannot touch widgets directly
+(use `UiTimer` for periodic updates).
+
+## Touch input
+
+`TouchBridge.Attach()` registers touch input with the UI, but it does not
+read the touch chip. Widgets respond to touch only when your touch
+driver's events are passed to `TouchBridge.Feed(x, y, pressed)`. Without
+that, the code runs and the screen draws, but buttons never raise
+`Clicked`. The [Touch Screen](../touch-screen.mdx#feeding-touches-into-the-ui)
+page shows how to connect a touch driver to `TouchBridge`.
+
+## Getting started
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+using System.Device.Gpio;
+using System.Device.I2c;
+using GHIElectronics.Endpoint.Core;
+using GHIElectronics.Endpoint.Devices.Display;
+using GHIElectronics.Endpoint.Devices.Touch;
+using GHIElectronics.Endpoint.UI;
+
+using var display = DisplayController.GetDefault();
+display.Enable();
+
+UI.Initialize();
+TouchBridge.Attach();
+
+// Touch: FT5xx6 class from the Touch Screen page, on I2C5, reset PF2, interrupt PB11
+I2cController.Initialize(EPDomino24.I2c.I2c5);
+var i2c = I2cDevice.Create(new I2cConnectionSettings(EPDomino24.I2c.I2c5, 0x38));
+using var gpio  = new GpioController(new EPDomino24.Gpio.Driver());
+using var touch = new FT5xx6(i2c, gpio, resetPin: EPDomino24.Gpio.Pin.PF2, irqPin: EPDomino24.Gpio.Pin.PB11);
+touch.OnChangedEvent += (sender, e) => {
+    if (e.Points.Length > 0)
+        TouchBridge.Feed(e.Points[0].X, e.Points[0].Y, pressed: e.EventType != TouchEventType.Released);
+    else
+        TouchBridge.Feed(0, 0, pressed: false);
+};
+
+var screen = Screen.Active;
+screen.BackgroundColor = 0x101828;
+
+var hello = new Label(screen) {
+    Text = "Hello Endpoint",
+    Color = 0xFFFFFF,
+    FontSize = 24,
+    X = 20, Y = 20,
+};
+
+var button = new Button(screen) {
+    Text = "Click me",
+    X = 20, Y = 80,
+    Width = 160, Height = 48,
+};
+button.Clicked += (s, e) => hello.Text = "Clicked!";
+
+UI.Run();
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+from GHIElectronics.Endpoint.Core import EPDomino24, I2cController
+from GHIElectronics.Endpoint.Devices.Display import DisplayController
+from GHIElectronics.Endpoint.Devices.Gpio import GpioController
+from GHIElectronics.Endpoint.Devices.I2c import I2cDevice, I2cConnectionSettings
+from GHIElectronics.Endpoint.Devices.Touch import TouchEventType
+from GHIElectronics.Endpoint.UI import UI, TouchBridge, Screen, Label, Button
+
+from ft5xx6 import FT5xx6            # FT5xx6 class from the Touch Screen page
+
+display = DisplayController.GetDefault()
+display.Enable()
+
+UI.Initialize()
+TouchBridge.Attach()
+
+# Touch: FT5xx6 on I2C5, reset PF2, interrupt PB11
+I2cController.Initialize(EPDomino24.I2c.I2c5)
+i2c = I2cDevice.Create(I2cConnectionSettings(EPDomino24.I2c.I2c5, 0x38))
+gpio = GpioController()
+touch = FT5xx6(i2c, gpio, EPDomino24.Gpio.Pin.PF2, EPDomino24.Gpio.Pin.PB11)
+def on_touch(sender, e):
+    if len(e.Points) > 0:
+        TouchBridge.Feed(e.Points[0].X, e.Points[0].Y, e.EventType != TouchEventType.Released)
+    else:
+        TouchBridge.Feed(0, 0, False)
+touch.OnChangedEvent += on_touch
+
+screen = Screen.Active
+screen.BackgroundColor = 0x101828
+
+hello = Label(screen, Text="Hello Endpoint", Color=0xFFFFFF, FontSize=24, X=20, Y=20)
+button = Button(screen, Text="Click me", X=20, Y=80, Width=160, Height=48)
+button.Clicked += lambda s, e: setattr(hello, "Text", "Clicked!")
+
+UI.Run()
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+#include <endpoint/Display.h>
+#include <endpoint/EPDomino24.h>
+#include <endpoint/Gpio.h>
+#include <endpoint/I2c.h>
+#include <endpoint/I2cController.h>
+#include <endpoint/Touch.h>
+#include <endpoint/UI.h>
+#include "FT5xx6.h"                   // FT5xx6 class from the Touch Screen page
+
+namespace Core = GHIElectronics::Endpoint::Core;
+namespace Dev  = GHIElectronics::Endpoint::Devices;
+namespace Ui   = GHIElectronics::Endpoint::UI;
+
+auto display = Dev::Display::DisplayController::GetDefault();
+display->Enable();
+
+Ui::Initialize();
+Ui::TouchBridge::Attach();
+
+// Touch: FT5xx6 on I2C5, reset PF2, interrupt PB11
+Core::I2cController::Initialize(Core::EPDomino24::I2c::I2c5);
+auto i2c = Dev::I2c::I2cDevice::Create(
+    Dev::I2c::I2cConnectionSettings(Core::EPDomino24::I2c::I2c5, 0x38));
+Dev::Gpio::GpioController gpio;
+FT5xx6 touch(i2c, gpio, Core::EPDomino24::Gpio::Pin::PF2, Core::EPDomino24::Gpio::Pin::PB11);
+touch.SetOnEvent([](Dev::Touch::Touch&, const Dev::Touch::TouchEventArgs& e) {
+    if (!e.Points().empty()) {
+        const auto& p = e.Points().front();
+        Ui::TouchBridge::Feed(p.X, p.Y, e.EventType() != Dev::Touch::TouchEventType::Released);
+    }
+    else {
+        Ui::TouchBridge::Feed(0, 0, false);
+    }
+});
+
+auto screen = Ui::Screen::Active();
+screen.BackgroundColor(0x101828);
+
+Ui::Label hello(screen);
+hello.Text("Hello Endpoint").Color(0xFFFFFF).FontSize(24).X(20).Y(20);
+
+Ui::Button button(screen);
+button.Text("Click me").X(20).Y(80).Width(160).Height(48);
+button.Clicked([&](auto&) { hello.Text("Clicked!"); });
+
+Ui::Run();
+```
+
+</TabItem>
+</Tabs>
+
+Call `UI.Stop()` from any thread to exit the loop and let `UI.Run()`
+return.
+
+## Widgets
+
+Full reference in the [UI API](../../api-reference/dotnet/GHIElectronics.Endpoint.UI/index.mdx).
+Common widgets:
+
+| Widget | Purpose |
+|---|---|
+| `Label` | Static or dynamic text. |
+| `Button` | Clickable button with optional icon. |
+| `Image` | Bitmap display (raw, PNG, JPEG via the on-board decoder). |
+| `Border` | Container with optional rounded corners, used for cards and panels. |
+| `CheckBox` / `RadioButton` | Boolean / single-choice input. |
+| `TextBox` | Single or multi-line text input with virtual keyboard. |
+| `Slider` | Analog value picker. |
+| `ProgressBar` / `Gauge` | Progress and value visualization. |
+| `Chart` | Line and bar charts. |
+| `DockPanel` / `Stack` / `Grid` | Layout containers. |
+
+## Running widgets on an external display
+
+`UI.Initialize()` with no arguments drives the on-board panel. A second
+overload binds the Endpoint UI to any output (SPI / I2C screens, HDMI bridge, file,
+network socket) by giving it the dimensions, pixel format, and a flush
+callback that writes the rendered pixel buffer to your device. Same `Widget`s,
+same event loop; only the destination changes.
+
+Verified end-to-end with the HiLetgo ILI9341 240x320 SPI TFT wired to
+mikroBUS #2. The driver sits between the UI flush callback and SPI
+(same driver as the [Canvas example](canvas.mdx#draw-to-an-external-spi-display-ili9341-240x320)):
+
+- **.NET**: [`GHIElectronics.Endpoint.Drivers.HiLetgo.ILI9341`](https://github.com/ghi-electronics/endpoint-drivers/tree/main/dotnet/GHIElectronics.Endpoint.Drivers/HiLetgo/GHIElectronics.Endpoint.Drivers.HiLetgo.ILI9341) (NuGet package)
+- **Python**: [`ili9341.py`](https://github.com/ghi-electronics/endpoint-drivers/tree/main/python/GHIElectronics.Endpoint.Drivers/HiLetgo/GHIElectronics.Endpoint.Drivers.HiLetgo.ILI9341) (drop the file into the project)
+- **C/C++**: [`Ili9341.h`](https://github.com/ghi-electronics/endpoint-drivers/tree/main/cpp/GHIElectronics.Endpoint.Drivers/HiLetgo/GHIElectronics.Endpoint.Drivers.HiLetgo.ILI9341) (header-only, drop the file into the project)
+
+:::note Wiring an SPI display, gotchas
+- **Chip select** is driven by a GPIO, not by the SPI controller's hardware NSS.
+  The driver opens the pin you pass and toggles it around each transaction.
+  On .NET, `SpiConnectionSettings` needs `chipSelectLine: 0` explicitly;
+  Microsoft's Linux SPI stack does not accept `-1`.
+- **Data / Command** pin: ILI9341 distinguishes commands from pixel data
+  by a separate GPIO (D/C). Low = command byte, high = data byte.
+- **Reset** pin: an active-low pulse brings the chip out of reset
+  reliably at startup.
+- **Pixel format** on the wire is 16 bpp **big-endian**, but the UI
+  pipeline renders RGB565 **little-endian**. The driver byte-swaps in `Flush`.
+- **Red / Blue swap**: some HiLetgo and eBay modules have the physical
+  color filter wired as BGR, so yellow renders as cyan and red as blue.
+  Set `SwapRedBlue = true` for those modules.
+- **Touch** is not wired in this example; add a touch chip driver and
+  call `TouchBridge.Feed(x, y, pressed)` to make widgets clickable.
+:::
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+using System.Device.Gpio;
+using System.Device.Spi;
+
+using GHIElectronics.Endpoint.Core;
+using GHIElectronics.Endpoint.Drivers.HiLetgo.ILI9341;
+using GHIElectronics.Endpoint.UI;
+using GHIElectronics.Endpoint.Drawing;
+
+// Open SPI + driver.
+SpiController.Initialize(EPDomino24.Spi.Spi1, bufferSize: 4096);
+using var spi = SpiDevice.Create(ILI9341Controller.GetConnectionSettings(EPDomino24.Spi.Spi1));
+
+using var gpio = new GpioController(new EPDomino24.Gpio.Driver());
+using var tft  = new ILI9341Controller(
+    spi:   spi,
+    cs:    EPDomino24.Gpio.Pin.PA14,
+    dc:    EPDomino24.Gpio.Pin.PF14,
+    reset: EPDomino24.Gpio.Pin.PF4,
+    gpio:  gpio);
+tft.SwapRedBlue = true;        // set for modules where yellow shows as cyan
+tft.Enable();
+
+// Bind the Endpoint UI to the ILI9341 via a flush callback.
+UI.Initialize(tft.Width, tft.Height, PixelFormat.Rgb565, buffer => tft.Flush(buffer));
+
+var screen = Screen.Active;
+screen.BackgroundColor = 0x101828;
+new Label(screen) {
+    X = 0, Y = 20, Width = tft.Width, Height = 30,
+    FontSize = 20, Color = 0xFFFFFF,
+    TextAlignment = TextAlignment.Center,
+    Text = "Hello from ILI9341",
+};
+UI.Run();
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+from GHIElectronics.Endpoint.Core import EPDomino24, SpiController
+from GHIElectronics.Endpoint.Devices.Spi import SpiDevice, SpiConnectionSettings, SpiMode
+from GHIElectronics.Endpoint.Devices.Gpio import GpioController
+from GHIElectronics.Endpoint.UI import UI, Screen, Label, TextAlignment
+from GHIElectronics.Endpoint.Drawing import PixelFormat
+
+from ili9341 import Ili9341          # driver file, link above
+
+SpiController.Initialize(EPDomino24.Spi.Spi1, bufferSize=4096)
+settings = SpiConnectionSettings(EPDomino24.Spi.Spi1)
+settings.Mode = SpiMode.Mode0
+settings.ClockFrequency = 10_000_000
+spi = SpiDevice.Create(settings)
+
+gpio = GpioController()
+tft = Ili9341(gpio, spi,
+              cs_pin=EPDomino24.Gpio.Pin.PA14,
+              dc_pin=EPDomino24.Gpio.Pin.PF14,
+              rst_pin=EPDomino24.Gpio.Pin.PF4,
+              swap_red_blue=True)     # set for modules where yellow shows as cyan
+tft.initialize()
+
+# Bind the Endpoint UI to the ILI9341 via a flush callback.
+UI.Initialize(tft.width, tft.height, PixelFormat.Rgb565, tft.flush)
+
+screen = Screen.Active()
+screen.BackgroundColor = 0x101828
+label = Label(screen)
+label.X, label.Y = 0, 20
+label.Width, label.Height = tft.width, 30
+label.FontSize = 20
+label.Color = 0xFFFFFF
+label.TextAlignment = TextAlignment.Center
+label.Text = "Hello from ILI9341"
+UI.Run()
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+#include <endpoint.h>
+#include <endpoint/SpiController.h>
+#include "Ili9341.h"                  // driver file, link above
+
+namespace Core    = GHIElectronics::Endpoint::Core;
+namespace Gpio    = GHIElectronics::Endpoint::Devices::Gpio;
+namespace Spi     = GHIElectronics::Endpoint::Devices::Spi;
+namespace Ui      = GHIElectronics::Endpoint::UI;
+namespace Drawing = GHIElectronics::Endpoint::Drawing;
+
+Core::SpiController::Initialize(Core::EPDomino24::Spi::Spi1, /*bufferSize*/ 4096);
+Spi::SpiConnectionSettings settings(Core::EPDomino24::Spi::Spi1);
+settings.Mode = Spi::SpiMode::Mode0;
+settings.ClockFrequency = 10'000'000;
+auto spi = Spi::SpiDevice::Create(settings);
+
+Gpio::GpioController gpio;
+Ili9341 tft(gpio, spi,
+            /*cs*/  Core::EPDomino24::Gpio::Pin::PA14,
+            /*dc*/  Core::EPDomino24::Gpio::Pin::PF14,
+            /*rst*/ Core::EPDomino24::Gpio::Pin::PF4);
+tft.SwapRedBlue(true);                // set for modules where yellow shows as cyan
+tft.Initialize();
+
+// Bind the Endpoint UI to the ILI9341 via a flush callback.
+Ui::Initialize(tft.Width(), tft.Height(), Drawing::PixelFormat::Rgb565,
+    [&](const uint8_t* pixels, int byteCount) {
+        tft.Flush(std::span<const uint8_t>(pixels, byteCount));
+    });
+
+Ui::Screen& screen = Ui::Screen::Active();
+screen.SetBackgroundColor(0x101828);
+Ui::Label label(screen);
+label.X(0); label.Y(20); label.Width(tft.Width()); label.Height(30);
+label.FontSize(20); label.Color(0xFFFFFF);
+label.TextAlignment(Ui::TextAlignment::Center);
+label.Text("Hello from ILI9341");
+Ui::Run();
+```
+
+</TabItem>
+</Tabs>

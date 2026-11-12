@@ -1,0 +1,23 @@
+---
+title: "BatteryChargeMode Enum"
+sidebar_label: "BatteryChargeMode"
+---
+
+# BatteryChargeMode Enum
+
+**Package:** `GHIElectronics.Endpoint.Devices.Rtc`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Rtc`
+
+How the RTC's backup battery or supercapacitor (VBAT) is charged (as in TinyCLR)
+
+```python
+class BatteryChargeMode(IntEnum): ...
+```
+
+## Fields
+
+| Name | Value | Description |
+|---|---|---|
+| `None` | `0` | No charging |
+| `Fast` | `1` | Charging through 1.5 kΩ |
+| `Slow` | `2` | Charging through 5 kΩ |
+

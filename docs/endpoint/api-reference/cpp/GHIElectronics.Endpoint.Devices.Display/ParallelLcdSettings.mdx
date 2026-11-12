@@ -1,0 +1,157 @@
+---
+title: "ParallelLcdSettings Class"
+sidebar_label: "ParallelLcdSettings"
+---
+
+# ParallelLcdSettings Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Display`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Display`
+
+Timings for the SoC's built-in parallel RGB panel controller.
+
+```cpp
+class ParallelLcdSettings {};
+```
+
+## Constructors
+
+### ParallelLcdSettings()
+
+```cpp
+ParallelLcdSettings();
+```
+
+## Properties
+
+### BitsPerPixel
+
+```cpp
+int32_t BitsPerPixel() const;
+void BitsPerPixel(int32_t value);
+```
+
+Framebuffer bit depth (16 = RGB565, 24 = RGB888).
+
+**Returns** `int`
+
+### DataEnablePolarity
+
+```cpp
+SignalPolarity DataEnablePolarity() const;
+void DataEnablePolarity(SignalPolarity value);
+```
+
+Polarity of the DE (Data Enable) signal. Most RGB panels want ActiveHigh (DE high while valid pixel data is on the bus); check your panel's datasheet.
+
+**Returns** `SignalPolarity`
+
+### HBackPorch
+
+```cpp
+int32_t HBackPorch() const;
+void HBackPorch(int32_t value);
+```
+
+Horizontal back porch, in pixel clocks.
+
+**Returns** `int`
+
+### HFrontPorch
+
+```cpp
+int32_t HFrontPorch() const;
+void HFrontPorch(int32_t value);
+```
+
+Horizontal front porch, in pixel clocks.
+
+**Returns** `int`
+
+### HSync
+
+```cpp
+int32_t HSync() const;
+void HSync(int32_t value);
+```
+
+Horizontal sync pulse width, in pixel clocks.
+
+**Returns** `int`
+
+### Height
+
+```cpp
+int32_t Height() const;
+void Height(int32_t value);
+```
+
+Visible height in pixels.
+
+**Returns** `int`
+
+### PixelClockEdge
+
+```cpp
+ClockEdge PixelClockEdge() const;
+void PixelClockEdge(ClockEdge value);
+```
+
+Which edge of the pixel clock the panel latches data on. The SoC drives data on the opposite edge. Rising is the common default; try Falling if the image looks sheared or torn.
+
+**Returns** `ClockEdge`
+
+### PixelClockHz
+
+```cpp
+int32_t PixelClockHz() const;
+void PixelClockHz(int32_t value);
+```
+
+Pixel clock in Hz.
+
+**Returns** `int`
+
+### VBackPorch
+
+```cpp
+int32_t VBackPorch() const;
+void VBackPorch(int32_t value);
+```
+
+Vertical back porch, in lines.
+
+**Returns** `int`
+
+### VFrontPorch
+
+```cpp
+int32_t VFrontPorch() const;
+void VFrontPorch(int32_t value);
+```
+
+Vertical front porch, in lines.
+
+**Returns** `int`
+
+### VSync
+
+```cpp
+int32_t VSync() const;
+void VSync(int32_t value);
+```
+
+Vertical sync pulse width, in lines.
+
+**Returns** `int`
+
+### Width
+
+```cpp
+int32_t Width() const;
+void Width(int32_t value);
+```
+
+Visible width in pixels.
+
+**Returns** `int`
+

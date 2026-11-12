@@ -1,0 +1,107 @@
+---
+title: "UsbDeviceConnectionEventArgs Class"
+sidebar_label: "UsbDeviceConnectionEventArgs"
+---
+
+# UsbDeviceConnectionEventArgs Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
+
+Event data for `UsbHostController.ConnectionChanged`: one USB device attached or detached.
+
+```python
+class UsbDeviceConnectionEventArgs(EventArgs): ...
+```
+
+## Properties
+
+### DeviceName
+
+```python
+DeviceName: str  # @property
+```
+
+What to open: "/dev/ttyUSB0", "eth1"... (see DeviceType)
+
+**Returns** `string`
+
+### DeviceStatus
+
+```python
+DeviceStatus: DeviceConnectionStatus  # @property
+```
+
+Whether the device was just connected or just disconnected.
+
+**Returns** `DeviceConnectionStatus`
+
+### Id
+
+```python
+Id: int  # @property
+```
+
+The device's number: the same for all its events, a new one when it is plugged in again
+
+**Returns** `uint`
+
+### Manufacturer
+
+```python
+Manufacturer: str  # @property
+```
+
+The device's own name for its maker ("Logitech"), empty if it has none
+
+**Returns** `string`
+
+### Product
+
+```python
+Product: str  # @property
+```
+
+The device's own name ("USB Receiver"), empty if it has none
+
+**Returns** `string`
+
+### ProductId
+
+```python
+ProductId: int  # @property
+```
+
+USB product id (PID) from the device descriptor.
+
+**Returns** `ushort`
+
+### SerialNumber
+
+```python
+SerialNumber: str  # @property
+```
+
+Empty if the device has none
+
+**Returns** `string`
+
+### Type
+
+```python
+Type: DeviceType  # @property
+```
+
+What the device gives (see `UsbHost.DeviceType`); hints what to open `UsbDeviceConnectionEventArgs.DeviceName` with.
+
+**Returns** `DeviceType`
+
+### VendorId
+
+```python
+VendorId: int  # @property
+```
+
+USB vendor id (VID) from the device descriptor.
+
+**Returns** `ushort`
+

@@ -1,0 +1,75 @@
+---
+title: "Border Class"
+sidebar_label: "Border"
+---
+
+# Border Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Container with WPF-style `Border.Thickness`, `Border.BorderBrush`, `Border.CornerRadius`, and `Border.Padding`. Children are positioned relative to this border, same as `UI.Container`. Background is set via the inherited `Widget.BackgroundColor`.
+
+```cpp
+class Border : public Widget {};
+```
+
+## Constructors
+
+### Border(Widget parent)
+
+```cpp
+Border(const Widget& parent);
+```
+
+Create a border inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Properties
+
+### BorderBrush
+
+```cpp
+uint32_t BorderBrush() const;
+void BorderBrush(uint32_t value);
+```
+
+Border line color as `0x00RRGGBB`. Getter returns the last value set (LVGL has no read-back).
+
+**Returns** `uint`
+
+### CornerRadius
+
+```cpp
+int32_t CornerRadius() const;
+void CornerRadius(int32_t value);
+```
+
+Corner radius in pixels (0 = sharp corners). Getter returns the last value set (LVGL has no read-back).
+
+**Returns** `int`
+
+### Padding
+
+```cpp
+int32_t Padding() const;
+void Padding(int32_t value);
+```
+
+Inner padding in pixels between the border and child widgets. Getter returns the last value set (LVGL has no read-back).
+
+**Returns** `int`
+
+### Thickness
+
+```cpp
+int32_t Thickness() const;
+void Thickness(int32_t value);
+```
+
+Border line thickness in pixels. Getter returns the last value set (LVGL has no read-back).
+
+**Returns** `int`
+

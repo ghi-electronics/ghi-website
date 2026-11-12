@@ -1,0 +1,67 @@
+---
+title: "AdcController Class"
+sidebar_label: "AdcController"
+---
+
+# AdcController Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Adc`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Adc`
+
+Endpoint's analog inputs, for .NET's `System.Device.Analog`. The pin argument is a per-board `Adc.Pin` constant (for example `EPM815.Adc.Pin.PA0` or `EPN256.Adc.Pin.PB0`). Opening a pin makes it an analog input; closing it returns the pin as it was. The inputs measure 0 V to `AnalogController.VoltageReference`.
+
+```python
+class AdcController(AnalogController): ...
+```
+
+## Constructors
+
+### AdcController()
+
+```python
+def __init__(self):
+```
+
+A controller for all of Endpoint's analog inputs.
+
+## Properties
+
+### PinCount
+
+```python
+PinCount: int  # @property
+```
+
+The number of analog inputs available.
+
+**Returns** `int`
+
+## Methods
+
+### ConvertPinNumberToAnalogChannelNumber(int pinNumber)
+
+```python
+def ConvertPinNumberToAnalogChannelNumber(self, pinNumber: int) -> int:
+```
+
+The pin's channel within its converter.
+
+**Returns** `int`
+
+### OpenPinCore(int pinNumber)
+
+```python
+def OpenPinCore(self, pinNumber: int) -> AnalogInputPin:
+```
+
+**Returns** `AnalogInputPin`
+
+### SupportsAnalogInput(int pin)
+
+```python
+def SupportsAnalogInput(self, pin: int) -> bool:
+```
+
+Whether `pin` is one of the board's analog input constants.
+
+**Returns** `bool`
+

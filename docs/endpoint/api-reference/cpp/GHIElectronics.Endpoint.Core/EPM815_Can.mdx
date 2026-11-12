@@ -1,0 +1,64 @@
+---
+title: "EPM815.Can Class"
+sidebar_label: "EPM815.Can"
+---
+
+# Can Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+The CAN ports bundled with EPM815. Use with .NET IoT's `CanRaw` (`Iot.Device.SocketCan`, which the `GHIElectronics.Endpoint.Devices.Can` package brings). `Can.Initialize` connects the port's pins, sets its bitrate and starts it; then use `CanRaw` as usual. Each constant is the port's name for `CanRaw`, fixed by the firmware. A port that goes bus-off after too many errors restarts by itself after 100 ms.
+
+```cpp
+class Can {};
+```
+
+## Methods
+
+### Initialize(string port, int bitrate)
+
+```cpp
+static void Initialize(const std::string& port, int32_t bitrate);
+```
+
+Connects the port's pins, sets its bitrate and starts it
+
+| Parameter | Type | Description |
+|---|---|---|
+| `port` | `string` | Can1 or Can2 |
+| `bitrate` | `int` | Bits per second, up to 1,000,000; all devices on the bus must use the same |
+
+### UnInitialize(string port)
+
+```cpp
+static void UnInitialize(const std::string& port);
+```
+
+Stops the port and gives its pins back, as they were before Initialize
+
+## Fields
+
+### Can1
+
+```cpp
+static constexpr std::string Can1 = "can0";
+```
+
+FDCAN1: PD1 (TX), PD0 (RX)
+
+### Can2
+
+```cpp
+static constexpr std::string Can2 = "can1";
+```
+
+FDCAN2: PB13 (TX), PB12 (RX)
+
+### MaxBitrate
+
+```cpp
+static constexpr int32_t MaxBitrate = 1000000;
+```
+
+The highest bitrate (1 Mbit/s)
+

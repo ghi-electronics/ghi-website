@@ -1,0 +1,67 @@
+---
+title: "DeviceInformation Class"
+sidebar_label: "DeviceInformation"
+---
+
+# DeviceInformation Class
+
+**Package:** `GHIElectronics.Endpoint.Native`<br/>**Namespace:** `GHIElectronics.Endpoint.Native`
+
+Board identity, firmware version, and boot/auto-run configuration helpers.
+
+```cpp
+class DeviceInformation {};
+```
+
+## Properties
+
+### Version
+
+```cpp
+std::string Version() const;
+```
+
+Firmware version string as reported by `get_version.sh`, with any trailing newline stripped.
+
+**Returns** `string`
+
+## Methods
+
+### DisableAutoRun()
+
+```cpp
+static void DisableAutoRun();
+```
+
+Removes the auto-run init.d entry installed by `DeviceInformation.EnableAutoRun`.
+
+### DisableSSH()
+
+```cpp
+static void DisableSSH();
+```
+
+Permanently removes the SSH (`S50dropbear`) and USB gadget (`S30usbgadget`) init.d entries, so neither service starts at the next boot. Intended for release builds only.
+
+### EnableAutoRun(string applicationName)
+
+```cpp
+static void EnableAutoRun(const std::string& applicationName);
+```
+
+Installs an init.d entry (`/etc/init.d/S29custom`) that starts the given deployed .NET application at boot. The application is expected at `/root/.epdata/{applicationName}/{applicationName}.dll`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `applicationName` | `string` | Folder and assembly name (without `.dll`) under `/root/.epdata/`. |
+
+### SdBoot()
+
+```cpp
+static bool SdBoot();
+```
+
+Returns `true` when the board booted from the SD card, `false` when it booted from the on-board eMMC.
+
+**Returns** `bool`
+

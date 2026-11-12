@@ -1,0 +1,98 @@
+---
+title: "Color Class"
+sidebar_label: "Color"
+---
+
+# Color Class
+
+**Package:** `GHIElectronics.Endpoint.Drawing`<br/>**Module:** `GHIElectronics.Endpoint.Drawing`
+
+A 32-bit color with 8 bits each of alpha, red, green, blue. `Canvas` maps it to its `PixelFormat` at draw time.
+
+```python
+class Color: ...
+```
+
+## Constructors
+
+### Color(r, g, b, a=0xFF)
+
+```python
+def __init__(self, r: int, g: int, b: int, a: int = 0xFF):
+```
+
+## Properties
+
+### R
+
+```python
+R: int
+```
+
+Red component, 0..255.
+
+### G
+
+```python
+G: int
+```
+
+Green component, 0..255.
+
+### B
+
+```python
+B: int
+```
+
+Blue component, 0..255.
+
+### A
+
+```python
+A: int
+```
+
+Alpha, 0 (transparent) .. 255 (opaque). Only Argb8888 canvases use it.
+
+## Methods
+
+### FromArgb(argb)
+
+```python
+@staticmethod
+def FromArgb(argb: int) -> Color:
+```
+
+Color from a 0xAARRGGBB value.
+
+### FromRgb(rgb)
+
+```python
+@staticmethod
+def FromRgb(rgb: int) -> Color:
+```
+
+Color from a 0xRRGGBB value, opaque.
+
+## Named Colors
+
+Class-level attributes. Names match `System.Drawing` / CSS where they overlap.
+
+| Name | Value |
+|---|---|
+| `Transparent` | `0x00000000` |
+| `Black` | `0x000000` |
+| `White` | `0xFFFFFF` |
+| `Red` | `0xFF0000` |
+| `Green` | `0x00FF00` |
+| `Blue` | `0x0000FF` |
+| `Yellow` | `0xFFFF00` |
+| `Cyan` | `0x00FFFF` |
+| `Magenta` | `0xFF00FF` |
+| `Navy` | `0x000080` |
+| `Maroon` | `0x800000` |
+| `Olive` | `0x808000` |
+| `Gray` | `0x808080` |
+| `Silver` | `0xC0C0C0` |
+| `Orange` | `0xFFA500` |

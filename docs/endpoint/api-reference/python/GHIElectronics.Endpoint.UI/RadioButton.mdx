@@ -1,0 +1,61 @@
+---
+title: "RadioButton Class"
+sidebar_label: "RadioButton"
+---
+
+# RadioButton Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Circular-indicator CheckBox. Grouping (mutual exclusion) is up to the caller: subscribe to ValueChanged on each radio and clear the others when one gets selected.
+
+```python
+class RadioButton(Widget): ...
+```
+
+## Constructors
+
+### RadioButton(Widget parent)
+
+```python
+def __init__(self, parent: Widget):
+```
+
+Create a radio button inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Properties
+
+### IsChecked
+
+```python
+IsChecked: bool  # @property / @setter
+```
+
+Selected state. Read-back is supported by LVGL.
+
+**Returns** `bool`
+
+### Text
+
+```python
+Text: str  # @property / @setter
+```
+
+Label text shown next to the radio button. `null` is treated as empty. Getter returns the last value set.
+
+**Returns** `string`
+
+## Events
+
+### ValueChanged
+
+```python
+ValueChanged  # += / -= handler
+```
+
+Fires when the radio button is toggled via user interaction. Runs on the UI thread.
+

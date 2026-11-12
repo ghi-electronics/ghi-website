@@ -1,0 +1,61 @@
+---
+title: "UsbHostController Class"
+sidebar_label: "UsbHostController"
+---
+
+# UsbHostController Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
+
+The USB devices plugged into the board, directly or through hubs. One event for each thing a device gives: a keyboard with a touchpad gives Keyboard and Mouse, a webcam gives Webcam and Audio (its microphone). `DeviceName` is what to open it with (see `UsbHost.DeviceType`). The events come on the library's USB thread. USB drives come as MassStorage: use `StorageController` (`GHIElectronics.Endpoint.Devices.Storage`) for them. A controller stays alive until it is disposed.
+
+```csharp
+public sealed class UsbHostController : IDisposable
+```
+
+## Methods
+
+### Disable()
+
+```csharp
+public void Disable()
+```
+
+Stops reporting devices. Already-reported devices stay accessible until they are unplugged.
+
+### Dispose()
+
+```csharp
+public void Dispose()
+```
+
+Stops the events (one being delivered finishes first)
+
+### Enable()
+
+```csharp
+public void Enable()
+```
+
+Starts reporting devices: first the ones already plugged in
+
+### GetDefault()
+
+```csharp
+public static UsbHostController GetDefault()
+```
+
+A new USB host controller for the board. Call `UsbHostController.Enable` to start seeing devices.
+
+**Returns** `UsbHostController`
+
+## Events
+
+### ConnectionChanged
+
+```csharp
+public event UsbConnectionChangedEventHandler ConnectionChanged
+```
+
+A device connected or disconnected
+

@@ -1,0 +1,81 @@
+---
+title: "Button Class"
+sidebar_label: "Button"
+---
+
+# Button Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Clickable push button with text, color, and font-size properties.
+
+```csharp
+public class Button : Widget
+```
+
+## Constructors
+
+### Button(Widget parent)
+
+```csharp
+public Button(Widget parent)
+```
+
+Create a button inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Properties
+
+### BackgroundColor
+
+```csharp
+public uint BackgroundColor { get; set; }
+```
+
+Button background color as `0x00RRGGBB`. Getter returns the last value set.
+
+**Returns** `uint`
+
+### FontSize
+
+```csharp
+public int FontSize { get; set; }
+```
+
+Caption font size in pixels. Getter returns the last value set.
+
+**Returns** `int`
+
+### Text
+
+```csharp
+public string Text { get; set; }
+```
+
+Button caption. `null` is treated as empty. Getter returns the last value set.
+
+**Returns** `string`
+
+### TextColor
+
+```csharp
+public uint TextColor { get; set; }
+```
+
+Caption color as `0x00RRGGBB`. Getter returns the last value set.
+
+**Returns** `uint`
+
+## Events
+
+### Clicked
+
+```csharp
+public event EventHandler Clicked
+```
+
+Fires when the button is clicked (press-and-release inside its bounds). Runs on the UI thread.
+

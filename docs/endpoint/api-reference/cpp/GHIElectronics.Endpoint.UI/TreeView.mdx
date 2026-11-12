@@ -1,0 +1,54 @@
+---
+title: "TreeView Class"
+sidebar_label: "TreeView"
+---
+
+# TreeView Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Hierarchical list. Nodes are added imperatively via `TreeView.AddNode` with a depth value: codegen walks the tree and emits one AddNode call per visible node.
+
+```cpp
+class TreeView : public Widget {};
+```
+
+## Constructors
+
+### TreeView(Widget parent)
+
+```cpp
+TreeView(const Widget& parent);
+```
+
+Create a tree view inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Methods
+
+### AddNode(int depth, bool isExpanded, bool hasChildren, string header)
+
+```cpp
+void AddNode(int32_t depth, bool isExpanded, bool hasChildren, const std::string& header);
+```
+
+Append a visible node at the given indent level.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `depth` | `int` | Indent depth, 0-based (0 = root level). |
+| `isExpanded` | `bool` | Whether this node currently shows its children (visual only; the caller feeds the children themselves). |
+| `hasChildren` | `bool` | Whether to draw an expand/collapse chevron. |
+| `header` | `string` | Row text; `null` is treated as empty. |
+
+### Clear()
+
+```cpp
+void Clear();
+```
+
+Remove every node.
+

@@ -1,0 +1,41 @@
+---
+title: "EPM815.Dac Class"
+sidebar_label: "EPM815.Dac"
+---
+
+# Dac Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+The analog outputs bundled with EPM815. Use with the `GHIElectronics.Endpoint.Devices.Dac` package (same API as TinyCLR).
+
+```python
+class Dac: ...
+```
+
+## Fields
+
+### Id
+
+```python
+Id: str = "EPM815.Dac"
+```
+
+The DAC's name, for `DacController.FromName`.
+
+### PA4
+
+```python
+PA4: int = 0
+```
+
+DAC channel 1, on PA4.
+
+### PA5
+
+```python
+PA5: int = 1
+```
+
+DAC channel 2, on PA5.
+

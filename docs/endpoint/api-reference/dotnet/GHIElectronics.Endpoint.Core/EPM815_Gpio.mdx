@@ -1,0 +1,137 @@
+---
+title: "EPM815.Gpio Class"
+sidebar_label: "EPM815.Gpio"
+---
+
+# Gpio Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+GPIO pins and the register-level pin configuration (mode, alternate function, pull, speed, output type) for EPM815. Most applications should use the standard `Gpio.GpioController` through `Gpio.Driver`; the enums and setters here are for the low-level peripheral libraries in this package.
+
+```csharp
+public static class Gpio
+```
+
+## Nested Types
+
+| Type | Kind | Summary |
+|---|---|---|
+| [EPM815.Gpio.Alternate](./EPM815_Gpio_Alternate.mdx) | Enum | Alternate functions AF0..AF15 for the pin's AFRL / AFRH register. |
+| [EPM815.Gpio.Driver](./EPM815_Gpio_Driver.mdx) | Class | GPIO driver for .NET's `Gpio.GpioController` using the EPM815 pin numbers, on every port. Open pins are reserved so the other libraries (I2C, UART, ...) cannot take them by mistake. Every pin mode, pull-up/down and pin change event of `Gpio.GpioController` works. |
+| [EPM815.Gpio.Edge](./EPM815_Gpio_Edge.mdx) | Enum | Edge-trigger direction for pin change events. |
+| [EPM815.Gpio.Moder](./EPM815_Gpio_Moder.mdx) | Enum | Values for the GPIO MODER register. |
+| [EPM815.Gpio.OutputType](./EPM815_Gpio_OutputType.mdx) | Enum | Values for the GPIO OTYPER register. |
+| [EPM815.Gpio.Pin](./EPM815_Gpio_Pin.mdx) | Class | The EPM815's pins (ports A to I and Z) |
+| [EPM815.Gpio.Port](./EPM815_Gpio_Port.mdx) | Enum | GPIO ports on EPM815 (A..I plus the always-on Z bank). |
+| [EPM815.Gpio.Pull](./EPM815_Gpio_Pull.mdx) | Enum | Values for the GPIO PUPDR register. |
+| [EPM815.Gpio.Speed](./EPM815_Gpio_Speed.mdx) | Enum | Values for the GPIO OSPEEDR register (slew rate). |
+
+## Methods
+
+### GetPin(int pin)
+
+```csharp
+public static int GetPin(int pin)
+```
+
+The line within the port for the pin (0 to 15).
+
+**Returns** `int`
+
+### GetPort(int pin)
+
+```csharp
+public static int GetPort(int pin)
+```
+
+The port index for the pin (0 = A ... 8 = I; 9 = Z).
+
+**Returns** `int`
+
+### IsPinReserved(int pin)
+
+```csharp
+public static bool IsPinReserved(int pin)
+```
+
+True if the pin is currently reserved (by the app or by any library).
+
+**Returns** `bool`
+
+### Name(int pin)
+
+```csharp
+public static string Name(int pin)
+```
+
+The pin's name, for example "PC0"
+
+**Returns** `string`
+
+### PinRelease(int pin)
+
+```csharp
+public static void PinRelease(int pin)
+```
+
+Releases a reservation made with `Gpio.PinReserve`.
+
+### PinReserve(int pin)
+
+```csharp
+public static void PinReserve(int pin)
+```
+
+Marks the pin as used by the app, so the libraries do not use it too
+
+### SetAlternate(int pin, Alternate alternate)
+
+```csharp
+public static void SetAlternate(int pin, Alternate alternate)
+```
+
+Writes the pin's alternate function (AFRL / AFRH).
+
+| Parameter | Type | Description |
+|---|---|---|
+| `pin` | `int` | EPM815 pin number. |
+| `alternate` | `Alternate` | The AF to select; `Alternate.NONE` is not allowed. |
+
+### SetModer(int pin, Moder moder)
+
+```csharp
+public static void SetModer(int pin, Moder moder)
+```
+
+Writes the pin's MODER register field.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `pin` | `int` | EPM815 pin number. |
+| `moder` | `Moder` | The mode to apply; `Moder.NONE` is not allowed. |
+
+### SetOutputType(int pin, OutputType type)
+
+```csharp
+public static void SetOutputType(int pin, OutputType type)
+```
+
+Writes the pin's OTYPER register bit (push-pull or open-drain).
+
+### SetPull(int pin, Pull pull)
+
+```csharp
+public static void SetPull(int pin, Pull pull)
+```
+
+Writes the pin's PUPDR register field (pull-up / pull-down).
+
+### SetSpeed(int pin, Speed speed)
+
+```csharp
+public static void SetSpeed(int pin, Speed speed)
+```
+
+Writes the pin's OSPEEDR register field (slew rate).
+

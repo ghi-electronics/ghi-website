@@ -1,0 +1,81 @@
+---
+title: "Button Class"
+sidebar_label: "Button"
+---
+
+# Button Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Clickable push button with text, color, and font-size properties.
+
+```python
+class Button(Widget): ...
+```
+
+## Constructors
+
+### Button(Widget parent)
+
+```python
+def __init__(self, parent: Widget):
+```
+
+Create a button inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Properties
+
+### BackgroundColor
+
+```python
+BackgroundColor: int  # @property / @setter
+```
+
+Button background color as `0x00RRGGBB`. Getter returns the last value set.
+
+**Returns** `uint`
+
+### FontSize
+
+```python
+FontSize: int  # @property / @setter
+```
+
+Caption font size in pixels. Getter returns the last value set.
+
+**Returns** `int`
+
+### Text
+
+```python
+Text: str  # @property / @setter
+```
+
+Button caption. `null` is treated as empty. Getter returns the last value set.
+
+**Returns** `string`
+
+### TextColor
+
+```python
+TextColor: int  # @property / @setter
+```
+
+Caption color as `0x00RRGGBB`. Getter returns the last value set.
+
+**Returns** `uint`
+
+## Events
+
+### Clicked
+
+```python
+Clicked  # += / -= handler
+```
+
+Fires when the button is clicked (press-and-release inside its bounds). Runs on the UI thread.
+

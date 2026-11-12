@@ -1,0 +1,139 @@
+---
+title: "RtcController Class"
+sidebar_label: "RtcController"
+---
+
+# RtcController Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Rtc`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Rtc`
+
+The board's real-time clock, for .NET IoT's `RtcBase` (`Iot.Device.Rtc`). It counts UTC: at boot, the system time is set from it. `RtcController.IsValid` and `RtcController.SetChargeMode` are the same as TinyCLR's.
+
+```csharp
+public class RtcController : RtcBase
+```
+
+## Constructors
+
+### RtcController()
+
+```csharp
+public RtcController()
+```
+
+The chip's RTC
+
+## Properties
+
+### BackupMemorySize
+
+```csharp
+public uint BackupMemorySize { get; }
+```
+
+Not implemented yet: the size of the backup memory in bytes
+
+**Returns** `uint`
+
+### IsValid
+
+```csharp
+public bool IsValid { get; }
+```
+
+Whether the RTC has been set since it last lost power. Without power it starts again at 2000-01-01.
+
+**Returns** `bool`
+
+## Methods
+
+### Calibrate(int pulse)
+
+```csharp
+public void Calibrate(int pulse)
+```
+
+Not implemented yet
+
+### Dispose(bool disposing)
+
+```csharp
+protected override void Dispose(bool disposing)
+```
+
+### ReadBackupMemory(byte[] destinationData)
+
+```csharp
+public int ReadBackupMemory(byte[] destinationData)
+```
+
+Not implemented yet
+
+**Returns** `int`
+
+### ReadBackupMemory(byte[] destinationData, uint sourceOffset)
+
+```csharp
+public int ReadBackupMemory(byte[] destinationData, uint sourceOffset)
+```
+
+Not implemented yet
+
+**Returns** `int`
+
+### ReadBackupMemory(byte[] destinationData, uint destinationOffset, uint sourceOffset, int count)
+
+```csharp
+public int ReadBackupMemory(byte[] destinationData, uint destinationOffset, uint sourceOffset, int count)
+```
+
+Not implemented yet
+
+**Returns** `int`
+
+### ReadTime()
+
+```csharp
+protected override DateTime ReadTime()
+```
+
+**Returns** `DateTime`
+
+### SetChargeMode(BatteryChargeMode chargeMode)
+
+```csharp
+public void SetChargeMode(BatteryChargeMode chargeMode)
+```
+
+Charges the backup battery or supercapacitor on VBAT, or stops charging
+
+### SetTime(DateTime time)
+
+```csharp
+protected override void SetTime(DateTime time)
+```
+
+### WriteBackupMemory(byte[] sourceData)
+
+```csharp
+public void WriteBackupMemory(byte[] sourceData)
+```
+
+Not implemented yet
+
+### WriteBackupMemory(byte[] sourceData, uint destinationOffset)
+
+```csharp
+public void WriteBackupMemory(byte[] sourceData, uint destinationOffset)
+```
+
+Not implemented yet
+
+### WriteBackupMemory(byte[] sourceData, uint sourceOffset, uint destinationOffset, int count)
+
+```csharp
+public void WriteBackupMemory(byte[] sourceData, uint sourceOffset, uint destinationOffset, int count)
+```
+
+Not implemented yet
+

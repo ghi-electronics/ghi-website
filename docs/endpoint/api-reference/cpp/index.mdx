@@ -1,0 +1,32 @@
+---
+title: "API Reference (C/C++)"
+sidebar_label: Overview
+---
+
+# C/C++ API Reference
+
+Endpoint on **C/C++**: the same libraries as .NET and Python, with identical class and method names, exposed as a C++23 header library. Everything is published by GHI; there is no external dependency and no third-party API to call directly.
+
+## Endpoint libraries
+
+| Library | Description |
+|---|---|
+| [GHIElectronics.Endpoint.Core](./GHIElectronics.Endpoint.Core/index.mdx) | Core of the Endpoint libraries: board pin names and pin setup. |
+| [GHIElectronics.Endpoint.Devices.Adc](./GHIElectronics.Endpoint.Devices.Adc/index.mdx) | Analog inputs. |
+| [GHIElectronics.Endpoint.Devices.Camera](./GHIElectronics.Endpoint.Devices.Camera/index.mdx) | USB webcams, parallel-port cameras (DCMI), and shared camera settings and image conversion. |
+| [GHIElectronics.Endpoint.Devices.Can](./GHIElectronics.Endpoint.Devices.Can/index.mdx) | CAN on the board's CAN ports. `CanController.Initialize` sets a port up. |
+| [GHIElectronics.Endpoint.Devices.Dac](./GHIElectronics.Endpoint.Devices.Dac/index.mdx) | The DAC driver for Endpoint. |
+| [GHIElectronics.Endpoint.Devices.Display](./GHIElectronics.Endpoint.Devices.Display/index.mdx) | The display driver for Endpoint. |
+| [GHIElectronics.Endpoint.Devices.Gpio](./GHIElectronics.Endpoint.Devices.Gpio/index.mdx) | Digital inputs and outputs. |
+| [GHIElectronics.Endpoint.Devices.I2c](./GHIElectronics.Endpoint.Devices.I2c/index.mdx) | I2C bus master. |
+| [GHIElectronics.Endpoint.Devices.Network](./GHIElectronics.Endpoint.Devices.Network/index.mdx) | The network driver for Endpoint. |
+| [GHIElectronics.Endpoint.Devices.Pwm](./GHIElectronics.Endpoint.Devices.Pwm/index.mdx) | PWM channels. |
+| [GHIElectronics.Endpoint.Devices.Rtc](./GHIElectronics.Endpoint.Devices.Rtc/index.mdx) | The RTC driver for Endpoint. |
+| [GHIElectronics.Endpoint.Devices.SerialPort](./GHIElectronics.Endpoint.Devices.SerialPort/index.mdx) | Serial ports (UART). |
+| [GHIElectronics.Endpoint.Devices.Spi](./GHIElectronics.Endpoint.Devices.Spi/index.mdx) | SPI bus master. |
+| [GHIElectronics.Endpoint.Devices.Storage](./GHIElectronics.Endpoint.Devices.Storage/index.mdx) | SD cards and USB drives: insert and remove events, mounting. |
+| [GHIElectronics.Endpoint.Devices.Touch](./GHIElectronics.Endpoint.Devices.Touch/index.mdx) | Touchscreen support. The Touch class is abstract: subclass it for your panel's chip (I2C, SPI, custom). Ships one concrete subclass, InputTouch, that wraps a kernel /dev/input/eventN (used for USB touchscreens). |
+| [GHIElectronics.Endpoint.Devices.UsbHost](./GHIElectronics.Endpoint.Devices.UsbHost/index.mdx) | USB devices: connected and disconnected events, what each device is and its port or network interface. |
+| [GHIElectronics.Endpoint.Devices.Watchdog](./GHIElectronics.Endpoint.Devices.Watchdog/index.mdx) | The watchdog driver for Endpoint. |
+| [GHIElectronics.Endpoint.Drawing](./GHIElectronics.Endpoint.Drawing/index.mdx) | Off-screen 2D drawing primitives: Canvas, Color, Font, Image, PixelFormat. Pure pixel drawing, independent of the LVGL-backed UI widget library. |
+| [GHIElectronics.Endpoint.UI](./GHIElectronics.Endpoint.UI/index.mdx) | UI widgets for Endpoint: Button, Label, Container, Image, TextBox, Slider, CheckBox on top of the embedded LVGL in libendpoint. Pair with the GHI UI designer. |

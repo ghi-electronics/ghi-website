@@ -1,0 +1,137 @@
+---
+title: "RawDevice Class"
+sidebar_label: "RawDevice"
+---
+
+# RawDevice Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
+
+Provides low level access functionalities for the connected USB device. This is useful if there is not already a predefined driver for that device.
+
+```cpp
+class RawDevice : public BaseDevice {};
+```
+
+### Remarks
+
+Open it with the DeviceName of an Unknown device from `UsbHostController` ("/dev/bus/usb/001/005"). An interface that a driver of the board has is taken from it while the program uses it, and given back when the device is disposed.
+
+## Nested Types
+
+| Type | Kind | Summary |
+|---|---|---|
+| [RawDevice.Pipe](./RawDevice_Pipe.mdx) | Class | A USB communication pipe. |
+
+## Constructors
+
+### RawDevice(string deviceName)
+
+```cpp
+RawDevice(const std::string& deviceName);
+```
+
+Opens the device that UsbHostController reported ("/dev/bus/usb/001/005").
+
+## Properties
+
+### SetupTimeout
+
+```cpp
+int32_t SetupTimeout() const;
+void SetupTimeout(int32_t value);
+```
+
+The timeout of SendSetupPacket in milliseconds (0: none). Defaults to 5000 ms.
+
+**Returns** `int`
+
+## Methods
+
+### GetConfigurationDescriptor(byte configurationIndex)
+
+```cpp
+Configuration GetConfigurationDescriptor(uint8_t configurationIndex);
+```
+
+Gets the configuration descriptor.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `configurationIndex` | `byte` | The configuration index. |
+
+**Returns** `Configuration`: The configuration descriptor.
+
+### GetDeviceDescriptor()
+
+```cpp
+Device GetDeviceDescriptor();
+```
+
+Gets the device descriptor.
+
+**Returns** `Device`: The device descriptor.
+
+### GetString(byte index)
+
+```cpp
+std::string GetString(uint8_t index);
+```
+
+Gets a string descriptor (the product's name...): its text, empty if the device has none.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `index` | `byte` | The string's index (Descriptors.Device.ProductIndex...). |
+
+**Returns** `string`
+
+### OpenPipe(Endpoint endpoint)
+
+```cpp
+Pipe OpenPipe(const Endpoint& endpoint);
+```
+
+Opens a new communication pipe.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `endpoint` | `Endpoint` | The descriptor for the communication endpoint (bulk or interrupt). |
+
+**Returns** `Pipe`: The new pipe.
+
+### SendSetupPacket(byte requestType, byte request, ushort value, ushort index)
+
+```cpp
+void SendSetupPacket(uint8_t requestType, uint8_t request, uint16_t value, uint16_t index);
+```
+
+Sends a USB setup packet.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `requestType` | `byte` | The request type, recipient, and direction. |
+| `request` | `byte` | The request to make. |
+| `value` | `ushort` | The value of the request. |
+| `index` | `ushort` | The index of the request. |
+
+### SendSetupPacket(byte requestType, byte request, ushort value, ushort index, byte[] data, int dataOffset, int dataCount)
+
+```cpp
+int32_t SendSetupPacket(uint8_t requestType, uint8_t request, uint16_t value, uint16_t index, const std::vector<uint8_t>& data, int32_t dataOffset, int32_t dataCount);
+```
+
+Sends a USB setup packet.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `requestType` | `byte` | The request type, recipient, and direction. |
+| `request` | `byte` | The request to make. |
+| `value` | `ushort` | The value of the request. |
+| `index` | `ushort` | The index of the request. |
+| `data` | `byte[]` | The data to send or receive. |
+| `dataOffset` | `int` | The offset into data at which to send or receive the data. |
+| `dataCount` | `int` | The number of bytes to send or receive into data starting at offset. |
+
+**Returns** `int`: The number of bytes sent or received.
+

@@ -1,0 +1,55 @@
+---
+title: "BacklightSettings Class"
+sidebar_label: "BacklightSettings"
+---
+
+# BacklightSettings Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Display`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Display`
+
+GPIO pin that drives the panel's backlight.
+
+```csharp
+public sealed class BacklightSettings
+```
+
+## Constructors
+
+### BacklightSettings()
+
+```csharp
+public BacklightSettings()
+```
+
+## Properties
+
+### ActivePolarity
+
+```csharp
+public SignalPolarity ActivePolarity { get; set; }
+```
+
+Which GPIO level turns the backlight ON. ActiveHigh (default) = pulled high to light the panel. ActiveLow is common when the pin drives the gate of a PNP transistor.
+
+**Returns** `SignalPolarity`
+
+### GpioChip
+
+```csharp
+public string GpioChip { get; set; }
+```
+
+Gpiochip name as the kernel exposes it (e.g. "gpiochip7").
+
+**Returns** `string`
+
+### GpioPin
+
+```csharp
+public Nullable<int> GpioPin { get; set; }
+```
+
+Line number on the chip.
+
+**Returns** `Nullable<int>`
+

@@ -1,0 +1,250 @@
+---
+title: "GPIO"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Endpoint uses the standard **`System.Device.Gpio`** API shape for pin I/O
+across all three languages. You get a `GpioController`, open the pins you
+want, and read or write them. In .NET, Endpoint plugs into the standard
+API by providing a per-board `Gpio.Driver`; Python and C++ ship the same
+API in their own `GHIElectronics.Endpoint.Devices.Gpio` module. In every
+language you use the board's pin constants (e.g. `EPDomino24.Led`,
+`EPDomino24.Gpio.Pin.PF3`) directly.
+
+## Digital outputs
+
+A digital output pin can be driven high (approx. 3.3 V) or low (approx. 0 V).
+
+:::warning
+Never connect two output pins together. If they are connected and one is
+high and the other is low, the entire processor can be damaged.
+:::
+
+:::tip
+Digital pins on microcontrollers are weak. Use them to control small LEDs
+or to drive transistors, which in turn switch devices with higher current
+needs such as a motor.
+:::
+
+Blink the on-board LED:
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+using System.Device.Gpio;
+using GHIElectronics.Endpoint.Core;
+
+using var gpio = new GpioController(new EPDomino24.Gpio.Driver());
+gpio.OpenPin(EPDomino24.Led, PinMode.Output);
+
+var on = false;
+while (true) {
+    gpio.Write(EPDomino24.Led, (on = !on) ? PinValue.High : PinValue.Low);
+    Thread.Sleep(100);
+}
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import time
+from GHIElectronics.Endpoint.Core import EPDomino24
+from GHIElectronics.Endpoint.Devices.Gpio import GpioController, PinMode, PinValue
+
+gpio = GpioController()
+gpio.OpenPin(EPDomino24.Led, PinMode.Output)
+
+on = False
+while True:
+    on = not on
+    gpio.Write(EPDomino24.Led, PinValue.High if on else PinValue.Low)
+    time.sleep(0.1)
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+#include <chrono>
+#include <thread>
+#include <endpoint/Gpio.h>
+#include <endpoint/EPDomino24.h>
+
+using namespace GHIElectronics::Endpoint::Core;
+using namespace GHIElectronics::Endpoint::Devices::Gpio;
+
+GpioController gpio;
+gpio.OpenPin(EPDomino24::Led, PinMode::Output);
+
+bool on = false;
+while (true) {
+    on = !on;
+    gpio.Write(EPDomino24::Led, on ? PinValue::High : PinValue::Low);
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+}
+```
+
+</TabItem>
+</Tabs>
+
+## Digital inputs
+
+Digital inputs sense the state of a pin based on its voltage. Minimum
+voltage on most pins is 0 V; a negative voltage may damage the pin or the
+processor. The maximum tolerated voltage depends on the module, so check
+the datasheet for your board.
+
+Unconnected input pins are called "floating." A resistor can pull the pin
+high or low; modern processors include internal pull-up and pull-down
+resistors that are controlled by software. The example below uses the
+internal pull-up on the F1 user button, so pressing it drives the pin low.
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+using System.Device.Gpio;
+using GHIElectronics.Endpoint.Core;
+
+using var gpio = new GpioController(new EPDomino24.Gpio.Driver());
+gpio.OpenPin(EPDomino24.ButtonF1, PinMode.InputPullUp);
+
+while (true) {
+    if (gpio.Read(EPDomino24.ButtonF1) == PinValue.Low)
+        Console.WriteLine("Button is pressed");
+    Thread.Sleep(10);
+}
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import time
+from GHIElectronics.Endpoint.Core import EPDomino24
+from GHIElectronics.Endpoint.Devices.Gpio import GpioController, PinMode, PinValue
+
+gpio = GpioController()
+gpio.OpenPin(EPDomino24.ButtonF1, PinMode.InputPullUp)
+
+while True:
+    if gpio.Read(EPDomino24.ButtonF1) == PinValue.Low:
+        print("Button is pressed")
+    time.sleep(0.01)
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+#include <chrono>
+#include <cstdio>
+#include <thread>
+#include <endpoint/Gpio.h>
+#include <endpoint/EPDomino24.h>
+
+using namespace GHIElectronics::Endpoint::Core;
+using namespace GHIElectronics::Endpoint::Devices::Gpio;
+
+GpioController gpio;
+gpio.OpenPin(EPDomino24::ButtonF1, PinMode::InputPullUp);
+
+while (true) {
+    if (gpio.Read(EPDomino24::ButtonF1) == PinValue::Low)
+        std::printf("Button is pressed\n");
+    std::this_thread::sleep_for(std::chrono::milliseconds(10));
+}
+```
+
+</TabItem>
+</Tabs>
+
+## Digital input events
+
+Events avoid polling. The code below fires a callback on every button edge:
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+using System.Device.Gpio;
+using GHIElectronics.Endpoint.Core;
+
+using var gpio = new GpioController(new EPDomino24.Gpio.Driver());
+gpio.OpenPin(EPDomino24.ButtonF1, PinMode.InputPullUp);
+gpio.RegisterCallbackForPinValueChangedEvent(
+    EPDomino24.ButtonF1,
+    PinEventTypes.Falling | PinEventTypes.Rising,
+    OnPinEvent);
+
+await Task.Delay(Timeout.Infinite);
+
+static void OnPinEvent(object sender, PinValueChangedEventArgs args) {
+    Console.WriteLine($"Button {args.ChangeType}");
+}
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import threading
+from GHIElectronics.Endpoint.Core import EPDomino24
+from GHIElectronics.Endpoint.Devices.Gpio import GpioController, PinMode, PinEventTypes
+
+def OnPinEvent(sender, args):
+    print(f"Button {args.ChangeType!r}")
+
+gpio = GpioController()
+gpio.OpenPin(EPDomino24.ButtonF1, PinMode.InputPullUp)
+gpio.RegisterCallbackForPinValueChangedEvent(
+    EPDomino24.ButtonF1,
+    PinEventTypes.Falling | PinEventTypes.Rising,
+    OnPinEvent)
+
+threading.Event().wait()   # sleep forever
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+#include <chrono>
+#include <cstdio>
+#include <thread>
+#include <endpoint/Gpio.h>
+#include <endpoint/EPDomino24.h>
+
+using namespace GHIElectronics::Endpoint::Core;
+using namespace GHIElectronics::Endpoint::Devices::Gpio;
+
+GpioController gpio;
+gpio.OpenPin(EPDomino24::ButtonF1, PinMode::InputPullUp);
+gpio.RegisterCallbackForPinValueChangedEvent(
+    EPDomino24::ButtonF1,
+    PinEventTypes::Falling | PinEventTypes::Rising,
+    [](GpioController&, const PinValueChangedEventArgs& e) {
+        std::printf("Button %d\n", static_cast<int>(e.ChangeType));
+    });
+
+std::this_thread::sleep_for(std::chrono::hours(24 * 365));   // sleep forever
+```
+
+</TabItem>
+</Tabs>
+
+Mechanical buttons generate multiple edges from contact bounce. If
+debounce is an issue, use the standard .NET IoT
+[`GpioButton`](https://learn.microsoft.com/en-us/dotnet/api/iot.device.button.gpiobutton?view=iot-dotnet-latest).
+
+## Interrupt limitation
+
+Digital input events rely on internal GPIO interrupts. On Endpoint only
+**16 pin-change interrupts** are available at a time, and the pin number
+must be unique across all ports. For example, `PA1` and `PB1` cannot
+both be used as interrupts simultaneously, but `PA1` and `PB2` (or even
+`PA1` and `PA2`) can.

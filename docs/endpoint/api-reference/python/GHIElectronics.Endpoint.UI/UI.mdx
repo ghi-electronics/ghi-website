@@ -1,0 +1,44 @@
+---
+title: "UI Class"
+sidebar_label: "UI"
+---
+
+# UI Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+LVGL subsystem lifecycle. Call `UI.Initialize` once after the display is enabled, then `UI.Run` on your UI thread. LVGL is built single-threaded (`LV_USE_OS=LV_OS_NONE`); use `UI.UiTimer` for periodic work that must touch widgets.
+
+```python
+class UI: ...
+```
+
+## Methods
+
+### Initialize()
+
+```python
+@staticmethod
+def Initialize() -> None:
+```
+
+Initialize LVGL and bind it to the framebuffer. Call after the display is enabled. Safe to call multiple times (second and later calls are no-ops).
+
+### Run()
+
+```python
+@staticmethod
+def Run() -> None:
+```
+
+Run the event loop until `UI.Stop` is called. Blocks the calling thread. Pumps LVGL timers and sleeps between frames.
+
+### Stop()
+
+```python
+@staticmethod
+def Stop() -> None:
+```
+
+Request the event loop to exit at the next tick.
+

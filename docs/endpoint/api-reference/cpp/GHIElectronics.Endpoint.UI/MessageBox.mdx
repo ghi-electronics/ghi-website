@@ -1,0 +1,73 @@
+---
+title: "MessageBox Class"
+sidebar_label: "MessageBox"
+---
+
+# MessageBox Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Modal dialog with title, body text, and footer buttons. Add buttons with `MessageBox.AddButton`; each returns a handle whose Clicked event you subscribe to. Call `MessageBox.Hide` to dismiss.
+
+```cpp
+class MessageBox : public Widget {};
+```
+
+## Constructors
+
+### MessageBox(Widget parent)
+
+```cpp
+MessageBox(const Widget& parent);
+```
+
+Create a message box inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget (typically the active `UI.Screen`). |
+
+## Methods
+
+### AddButton(string text)
+
+```cpp
+MessageBoxButton AddButton(const std::string& text);
+```
+
+Add a footer button; returns a handle to subscribe to its Clicked event.
+
+**Returns** `MessageBoxButton`
+
+### Hide()
+
+```cpp
+void Hide();
+```
+
+Dismiss the dialog without destroying it; call again by making the `Widget.Visible` parent re-show it.
+
+### SetBody(string body)
+
+```cpp
+void SetBody(const std::string& body);
+```
+
+Set the dialog body text.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `body` | `string` | Body string. |
+
+### SetTitle(string title)
+
+```cpp
+void SetTitle(const std::string& title);
+```
+
+Set the dialog title text.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `title` | `string` | Title string. |
+

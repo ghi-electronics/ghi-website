@@ -1,0 +1,36 @@
+---
+title: "GHIElectronics.Endpoint.Drawing"
+hide_title: true
+sidebar_label: Overview
+---
+
+<h1 className="api-package-heading">GHIElectronics.Endpoint.Drawing</h1>
+
+Off-screen 2D drawing primitives for Endpoint: `Canvas`, `Color`, `Font`, `Image`, `PixelFormat`. Header-only C++ wrapper over the same `libendpoint` primitives the .NET and Python packages call. Pure pixel drawing, independent of the LVGL-backed UI widget library.
+
+Include once:
+
+```cpp
+#include <endpoint/Drawing.h>
+namespace Drawing = GHIElectronics::Endpoint::Drawing;
+```
+
+## Classes
+
+| Class | Summary |
+|---|---|
+| [Canvas](./Canvas.mdx) | A pixel buffer plus the primitives to draw into it. Pick the size and `PixelFormat` at `Create` time; when done, hand `Buffer()` to whichever device accepts bytes. |
+| [Font](./Font.mdx) | A TrueType / OpenType font loaded from raw file bytes. Pass to `Canvas::DrawText` to render strings at any pixel size. |
+| [Image](./Image.mdx) | A decoded image, ready to blit into a `Canvas`. Decoding (JPEG / PNG / BMP / GIF / TGA) happens once at `Load`; `Canvas::DrawImage` blits + converts on the fly. |
+
+## Structs
+
+| Struct | Summary |
+|---|---|
+| [Color](./Color.mdx) | A 32-bit color with 8 bits each of alpha, red, green, blue. `Canvas` maps it to its `PixelFormat` at draw time. |
+
+## Enums
+
+| Enum | Summary |
+|---|---|
+| [PixelFormat](./PixelFormat.mdx) | Pixel layout of a `Canvas` buffer, and the layout written to the destination device when `Canvas::Buffer()` is handed to it. |

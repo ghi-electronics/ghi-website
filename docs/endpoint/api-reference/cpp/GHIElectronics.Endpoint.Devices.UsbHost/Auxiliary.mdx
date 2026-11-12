@@ -1,0 +1,55 @@
+---
+title: "Auxiliary Class"
+sidebar_label: "Auxiliary"
+---
+
+# Auxiliary Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost.Descriptors`
+
+Represents additional auxiliary descriptors.
+
+```cpp
+class Auxiliary : public BaseDescriptor {};
+```
+
+## Constructors
+
+### Auxiliary(byte[] buffer)
+
+```cpp
+Auxiliary(const std::vector<uint8_t>& buffer);
+```
+
+Constructs a new descriptor.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `buffer` | `byte[]` | The buffer with which to populate the descriptor. |
+
+### Auxiliary(byte[] buffer, int offset)
+
+```cpp
+Auxiliary(const std::vector<uint8_t>& buffer, int32_t offset);
+```
+
+Constructs a new descriptor.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `buffer` | `byte[]` | The buffer with which to populate the descriptor. |
+| `offset` | `int` | The offset into the buffer at which to start. |
+
+## Properties
+
+### Payload
+
+```cpp
+std::vector<uint8_t> Payload() const;
+void Payload(std::vector<uint8_t> value);
+```
+
+The payload of the descriptor excluding length and type.
+
+**Returns** `byte[]`
+

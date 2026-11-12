@@ -1,0 +1,187 @@
+---
+title: "Mouse Class"
+sidebar_label: "Mouse"
+---
+
+# Mouse Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
+
+Allows a usb device to be used a mouse.
+
+```python
+class Mouse(BaseDevice): ...
+```
+
+### Remarks
+
+By default, the reported range for position is between 0 and 512, as on TinyCLR: set it to the screen with `SetCursorBounds`. The events come on the mouse's own thread.
+
+## Nested Types
+
+| Type | Kind | Summary |
+|---|---|---|
+| [Mouse.ButtonChangedEventArgs](./Mouse_ButtonChangedEventArgs.mdx) | Class | The events args for the ButtonPressed and ButtonReleased events. |
+| [Mouse.ButtonChangedEventHandler](./Mouse_ButtonChangedEventHandler.mdx) | Delegate | The delegate for when one of the mouse's button is pressed or released. |
+| [Mouse.CursorMovedEventArgs](./Mouse_CursorMovedEventArgs.mdx) | Class | The events args for the CursorMoved event. |
+| [Mouse.CursorMovedEventHandler](./Mouse_CursorMovedEventHandler.mdx) | Delegate | The delegate for when the mouse's cursor moves. |
+| [Mouse.WheelMovedEventArgs](./Mouse_WheelMovedEventArgs.mdx) | Class | The events args for the WheelMoved event. |
+| [Mouse.WheelMovedEventHandler](./Mouse_WheelMovedEventHandler.mdx) | Delegate | The delegate for when the mouse's wheel moves. |
+
+## Constructors
+
+### Mouse(string deviceName)
+
+```python
+def __init__(self, deviceName: str):
+```
+
+Opens the mouse that UsbHostController reported ("/dev/input/event2").
+
+## Properties
+
+### AbsolutePosition
+
+```python
+AbsolutePosition: bool  # @property
+```
+
+Return true for absolute, false for relative mode (a USB mouse moves relative).
+
+**Returns** `bool`
+
+### CursorPosition
+
+```python
+CursorPosition: Position  # @property
+```
+
+The current position of the cursor.
+
+**Returns** `Position`
+
+### Extended1ButtonState
+
+```python
+Extended1ButtonState: ButtonState  # @property
+```
+
+The current state of the mouse's first extended button.
+
+**Returns** `ButtonState`
+
+### Extended2ButtonState
+
+```python
+Extended2ButtonState: ButtonState  # @property
+```
+
+The current state of the mouse's second extended button.
+
+**Returns** `ButtonState`
+
+### LeftButtonState
+
+```python
+LeftButtonState: ButtonState  # @property
+```
+
+The current state of the mouse's left button.
+
+**Returns** `ButtonState`
+
+### MiddleButtonState
+
+```python
+MiddleButtonState: ButtonState  # @property
+```
+
+The current state of the mouse's middle button.
+
+**Returns** `ButtonState`
+
+### RightButtonState
+
+```python
+RightButtonState: ButtonState  # @property
+```
+
+The current state of the mouse's right button.
+
+**Returns** `ButtonState`
+
+### WheelPosition
+
+```python
+WheelPosition: int  # @property
+```
+
+The current position of the mouse wheel.
+
+**Returns** `int`
+
+## Methods
+
+### SetCursorBounds(Position minimum, Position maximum)
+
+```python
+def SetCursorBounds(self, minimum: Position, maximum: Position) -> None:
+```
+
+Sets the cursor bounds.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `minimum` | `Position` | The minimum bound. |
+| `maximum` | `Position` | The maximum bound. |
+
+### SetCursorPosition(Position newPosition)
+
+```python
+def SetCursorPosition(self, newPosition: Position) -> None:
+```
+
+Sets the cursor position.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `newPosition` | `Position` | The new position of the cursor. |
+
+### SetScale(float scale)
+
+```python
+def SetScale(self, scale: float) -> None:
+```
+
+Scales the x, y, and wheel delta values.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `scale` | `float` | The value by which to scale the data. |
+
+## Events
+
+### ButtonChanged
+
+```python
+ButtonChanged  # += / -= handler
+```
+
+The event fired when one of the mouse's buttons is pressed or released.
+
+### CursorMoved
+
+```python
+CursorMoved  # += / -= handler
+```
+
+The event fired when the mouse's cursor has moved.
+
+### WheelMoved
+
+```python
+WheelMoved  # += / -= handler
+```
+
+The event fired when the mouse's wheel has moved.
+

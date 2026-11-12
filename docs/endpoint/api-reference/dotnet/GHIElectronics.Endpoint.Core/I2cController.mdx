@@ -1,0 +1,48 @@
+---
+title: "I2cController Class"
+sidebar_label: "I2cController"
+---
+
+# I2cController Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+Chip-neutral entry point for I²C setup. Call once before using `I2c.I2cDevice`: it brings up the bus and muxes its pins. Dispatches to the right chip helper based on the board detected at startup.
+
+```csharp
+public static class I2cController
+```
+
+## Methods
+
+### GetFrequency(int bus)
+
+```csharp
+public static int GetFrequency(int bus)
+```
+
+Current bus speed in Hz.
+
+**Returns** `int`
+
+### Initialize(int bus, int frequency)
+
+```csharp
+public static void Initialize(int bus, int frequency)
+```
+
+Connects the bus's pins and sets its speed. Only the two pins of this bus are claimed; every other bus's pins stay free.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `bus` | `int` | A bus constant (for example `EPN256.I2c.I2c5`). |
+| `frequency` | `int` | Bus speed in Hz (default 400 kHz). |
+
+### UnInitialize(int bus)
+
+```csharp
+public static void UnInitialize(int bus)
+```
+
+Releases the bus's pins back to free GPIO.
+

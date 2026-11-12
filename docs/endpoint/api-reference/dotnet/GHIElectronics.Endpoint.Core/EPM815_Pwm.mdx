@@ -1,0 +1,59 @@
+---
+title: "EPM815.Pwm Class"
+sidebar_label: "EPM815.Pwm"
+---
+
+# Pwm Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+PWM pins bundled with EPM815, for .NET's `System.Device.Pwm`. `Pwm.Initialize` connects the pin to its timer; `Pwm.GetChipId` and `Pwm.GetChannelId` give what `PwmChannel` needs. Channels of one timer share its frequency.
+
+```csharp
+public static class Pwm
+```
+
+## Nested Types
+
+| Type | Kind | Summary |
+|---|---|---|
+| [EPM815.Pwm.Pin](./EPM815_Pwm_Pin.mdx) | Class | The pins with PWM (the timer and channel are in the comments) |
+
+## Methods
+
+### GetChannelId(int pin)
+
+```csharp
+public static int GetChannelId(int pin)
+```
+
+The pin's channel in its PWM chip, for PwmChannel.Create
+
+**Returns** `int`
+
+### GetChipId(int pin)
+
+```csharp
+public static int GetChipId(int pin)
+```
+
+The PWM chip of the pin's timer (/sys/class/pwm/pwmchipN), for PwmChannel.Create
+
+**Returns** `int`
+
+### Initialize(int pin)
+
+```csharp
+public static void Initialize(int pin)
+```
+
+Connects the pin to its timer
+
+### UnInitialize(int pin)
+
+```csharp
+public static void UnInitialize(int pin)
+```
+
+Gives the pin back, as it was before Initialize
+

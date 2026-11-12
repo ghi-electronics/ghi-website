@@ -1,0 +1,70 @@
+---
+title: "Image Class"
+sidebar_label: "Image"
+---
+
+# Image Class
+
+**Package:** `GHIElectronics.Endpoint.Drawing`<br/>**Namespace:** `GHIElectronics.Endpoint.Drawing`
+
+A decoded image, ready to blit into a `Canvas`. Decoding (JPEG / PNG / BMP / GIF / TGA, picked from the file's magic bytes) happens once at `Load`; `Canvas.DrawImage(Image, int, int)` then blits + converts to whatever `PixelFormat` the target canvas uses. The same `Image` instance is reusable across multiple canvases and multiple frames.
+
+```csharp
+public sealed class Image
+```
+
+### Example
+
+```csharp
+var bytes = ... // load the resource stream
+var background = Image.Load(bytes);  // decode once
+
+while (running) {
+    canvas.DrawImage(background, 0, 0);  // many frames, no re-decode
+    display.Flush(canvas.Buffer);
+}
+```
+
+## Properties
+
+### Height
+
+```csharp
+public int Height { get; }
+```
+
+Height in pixels.
+
+**Returns** `int`
+
+### PixelFormat
+
+```csharp
+public PixelFormat PixelFormat { get; }
+```
+
+Internal storage format of the decoded pixels. Currently always `PixelFormat.Rgb888`, the decoder's native output. This does NOT dictate the canvas format; `Canvas.DrawImage` converts to the target canvas's `PixelFormat` on draw.
+
+**Returns** `PixelFormat`
+
+### Width
+
+```csharp
+public int Width { get; }
+```
+
+Width in pixels.
+
+**Returns** `int`
+
+## Methods
+
+### Load(byte[] fileBytes)
+
+```csharp
+public static Image Load(byte[] fileBytes)
+```
+
+Decodes an image file (JPEG / PNG / BMP / GIF / TGA, detected from the file's magic bytes) into an in-memory bitmap.
+
+**Returns** `Image`

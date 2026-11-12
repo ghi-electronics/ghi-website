@@ -1,0 +1,86 @@
+---
+title: "Gauge Class"
+sidebar_label: "Gauge"
+---
+
+# Gauge Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Radial dial with a needle. Not a standard .NET widget: the API mirrors TinyCLR's Gauge. SweepAngle is 180/270/360 degrees.
+
+```python
+class Gauge(Widget): ...
+```
+
+## Constructors
+
+### Gauge(Widget parent, int width, int height)
+
+```python
+def __init__(self, parent: Widget, width: int, height: int):
+```
+
+Create a gauge inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+| `width` | `int` | Width in pixels. |
+| `height` | `int` | Height in pixels. |
+
+## Properties
+
+### EnableScale
+
+```python
+EnableScale: bool  # @property / @setter
+```
+
+Whether tick marks and labels are drawn around the dial. Getter returns the last value set.
+
+**Returns** `bool`
+
+### SweepAngle
+
+```python
+SweepAngle: int  # @property / @setter
+```
+
+Total sweep in degrees (typically 180, 270, or 360). Getter returns the last value set.
+
+**Returns** `int`
+
+### Value
+
+```python
+Value: int  # @property / @setter
+```
+
+Current needle value. Getter returns the last value set (LVGL has no read-back).
+
+**Returns** `int`
+
+## Methods
+
+### SetNeedleShape(double centerY, double length)
+
+```python
+def SetNeedleShape(self, centerY: float, length: float) -> None:
+```
+
+Needle center-Y (0..1 of height) and length (0..1 of half min dimension).
+
+### SetRange(int min, int max)
+
+```python
+def SetRange(self, min: int, max: int) -> None:
+```
+
+Set the value range mapped onto the dial.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `min` | `int` | Value shown at the start of the sweep. |
+| `max` | `int` | Value shown at the end of the sweep. |
+

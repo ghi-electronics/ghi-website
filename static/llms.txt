@@ -92,4 +92,4 @@ Common searches that should land here: *running C# on a microcontroller*, *.NET 
 ## Also from GHI Electronics
 
 - [DUELink](https://www.ghielectronics.com/duelink/): Self-contained mini-computers that speak plain text — tether or daisylink from any board in any language. For makers, educators, and rapid prototyping.
-- [Endpoint](https://www.ghielectronics.com/endpoint/): .NET 8 on Hardware — another GHI Electronics embedded .NET product line.
+- [Endpoint](https://www.ghielectronics.com/endpoint/): Full .NET, Python, and C/C++ on a circuit, debugged over USB — another GHI Electronics embedded product line. [Endpoint docs](https://www.ghielectronics.com/docs/endpoint/).

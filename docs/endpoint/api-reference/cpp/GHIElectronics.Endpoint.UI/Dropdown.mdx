@@ -1,0 +1,62 @@
+---
+title: "Dropdown Class"
+sidebar_label: "Dropdown"
+---
+
+# Dropdown Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Select one item from a list. ValueChanged fires when the selection changes.
+
+```cpp
+class Dropdown : public Widget {};
+```
+
+## Constructors
+
+### Dropdown(Widget parent)
+
+```cpp
+Dropdown(const Widget& parent);
+```
+
+Create a dropdown inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Properties
+
+### Selected
+
+```cpp
+int32_t Selected() const;
+void Selected(int32_t value);
+```
+
+0-based index of the currently selected item.
+
+**Returns** `int`
+
+## Methods
+
+### SetOptions(IEnumerable&lt;string> options)
+
+```cpp
+void SetOptions(const IEnumerable<std::string>& options);
+```
+
+Set the items. Internally joined with newline before passing to libendpoint.
+
+## Events
+
+### ValueChanged
+
+```cpp
+Core::Event<...> ValueChanged;
+```
+
+Fires when the user picks a different item. Runs on the UI thread.
+

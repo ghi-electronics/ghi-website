@@ -1,0 +1,45 @@
+---
+title: "Mouse.WheelMovedEventArgs Class"
+sidebar_label: "Mouse.WheelMovedEventArgs"
+---
+
+# WheelMovedEventArgs Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
+
+The events args for the WheelMoved event.
+
+```csharp
+public class WheelMovedEventArgs : EventArgs
+```
+
+## Constructors
+
+### WheelMovedEventArgs()
+
+```csharp
+public WheelMovedEventArgs()
+```
+
+## Properties
+
+### Delta
+
+```csharp
+public int Delta { get; set; }
+```
+
+The change from the last position.
+
+**Returns** `int`
+
+### NewPosition
+
+```csharp
+public int NewPosition { get; set; }
+```
+
+The new position of the wheel.
+
+**Returns** `int`
+

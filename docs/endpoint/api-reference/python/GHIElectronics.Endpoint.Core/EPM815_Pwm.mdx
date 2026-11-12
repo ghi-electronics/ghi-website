@@ -1,0 +1,63 @@
+---
+title: "EPM815.Pwm Class"
+sidebar_label: "EPM815.Pwm"
+---
+
+# Pwm Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+PWM pins bundled with EPM815, for .NET's `System.Device.Pwm`. `Pwm.Initialize` connects the pin to its timer; `Pwm.GetChipId` and `Pwm.GetChannelId` give what `PwmChannel` needs. Channels of one timer share its frequency.
+
+```python
+class Pwm: ...
+```
+
+## Nested Types
+
+| Type | Kind | Summary |
+|---|---|---|
+| [EPM815.Pwm.Pin](./EPM815_Pwm_Pin.mdx) | Class | The pins with PWM (the timer and channel are in the comments) |
+
+## Methods
+
+### GetChannelId(int pin)
+
+```python
+@staticmethod
+def GetChannelId(pin: int) -> int:
+```
+
+The pin's channel in its PWM chip, for PwmChannel.Create
+
+**Returns** `int`
+
+### GetChipId(int pin)
+
+```python
+@staticmethod
+def GetChipId(pin: int) -> int:
+```
+
+The PWM chip of the pin's timer (/sys/class/pwm/pwmchipN), for PwmChannel.Create
+
+**Returns** `int`
+
+### Initialize(int pin)
+
+```python
+@staticmethod
+def Initialize(pin: int) -> None:
+```
+
+Connects the pin to its timer
+
+### UnInitialize(int pin)
+
+```python
+@staticmethod
+def UnInitialize(pin: int) -> None:
+```
+
+Gives the pin back, as it was before Initialize
+

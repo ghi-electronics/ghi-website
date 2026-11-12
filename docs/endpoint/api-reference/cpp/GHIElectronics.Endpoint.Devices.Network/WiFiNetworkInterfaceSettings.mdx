@@ -1,0 +1,58 @@
+---
+title: "WiFiNetworkInterfaceSettings Class"
+sidebar_label: "WiFiNetworkInterfaceSettings"
+---
+
+# WiFiNetworkInterfaceSettings Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Network`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Network`
+
+Settings for a WiFi interface. Inherits IP / DNS / MAC fields from `Network.NetworkInterfaceSettings` and adds the SSID and password used to associate with the access point.
+
+```cpp
+class WiFiNetworkInterfaceSettings : public NetworkInterfaceSettings {};
+```
+
+## Constructors
+
+### WiFiNetworkInterfaceSettings()
+
+```cpp
+WiFiNetworkInterfaceSettings();
+```
+
+## Properties
+
+### Password
+
+```cpp
+std::string Password() const;
+void Password(std::string value);
+```
+
+Plain-text passphrase. Ignored when `WiFiNetworkInterfaceSettings.Security` is `WiFiSecurityType.None`.
+
+**Returns** `string`
+
+### Security
+
+```cpp
+WiFiSecurityType Security() const;
+void Security(WiFiSecurityType value);
+```
+
+Which WPA variant the access point uses. Default: WPA2.
+
+**Returns** `WiFiSecurityType`
+
+### Ssid
+
+```cpp
+std::string Ssid() const;
+void Ssid(std::string value);
+```
+
+The network name to connect to.
+
+**Returns** `string`
+

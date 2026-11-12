@@ -1,0 +1,111 @@
+---
+title: "SPI"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+SPI uses three or four wires for data transfer. A SPI bus has one master
+and one or more slaves. The master drives the clock on **SCK**, sends
+data on **MOSI** (Master Out Slave In), and reads incoming data on
+**MISO** (Master In Slave Out). The master picks which slave to talk to
+with a per-slave **SSEL** / **CS** (chip-select) pin.
+
+In the simplest case the master always exchanges data with the slave
+simultaneously; you cannot write without reading at the same time. If
+the incoming bytes do not matter, use the plain `Write` method and
+discard the return.
+
+:::tip
+Endpoint is always the SPI master, not the slave.
+:::
+
+:::tip
+Some SPI devices (such as the VS1053 MP3 decoder) have more than one
+select pin, one for commands and one for data. Both share the same SCK
+/ MOSI / MISO lines.
+:::
+
+Endpoint uses the standard **`System.Device.Spi`** API. The only
+Endpoint-specific step is calling `SpiController.Initialize(bus)` first,
+which claims the bus's pins.
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+using System.Device.Spi;
+using GHIElectronics.Endpoint.Core;
+
+// Bring up SPI4 and claim its pins
+SpiController.Initialize(EPDomino24.Spi.Spi4);
+
+// Standard .NET IoT from here
+var settings = new SpiConnectionSettings(EPDomino24.Spi.Spi4) {
+    ClockFrequency = 4_000_000,
+    Mode = SpiMode.Mode0,
+    ChipSelectLine = 0,
+};
+using var spi = SpiDevice.Create(settings);
+
+var write = new byte[2];
+var read  = new byte[10];
+spi.TransferFullDuplex(write, read);
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+from GHIElectronics.Endpoint.Core import EPDomino24, SpiController
+from GHIElectronics.Endpoint.Devices.Spi import SpiDevice, SpiConnectionSettings, SpiMode
+
+# Bring up SPI4 and claim its pins
+SpiController.Initialize(EPDomino24.Spi.Spi4)
+
+# Standard System.Device.Spi shape from here
+settings = SpiConnectionSettings(EPDomino24.Spi.Spi4, chipSelectLine=0)
+settings.ClockFrequency = 4_000_000
+settings.Mode = SpiMode.Mode0
+
+with SpiDevice.Create(settings) as spi:
+    write = bytes(2)
+    read = bytearray(10)
+    spi.TransferFullDuplex(write, read)
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+#include <array>
+#include <cstdint>
+#include <endpoint/SpiController.h>
+#include <endpoint/EPDomino24.h>
+
+using namespace GHIElectronics::Endpoint::Core;
+using namespace GHIElectronics::Endpoint::Devices::Spi;
+
+// Bring up SPI4 and claim its pins
+SpiController::Initialize(EPDomino24::Spi::Spi4);
+
+// Standard System.Device.Spi shape from here
+SpiConnectionSettings settings(EPDomino24::Spi::Spi4, 0);
+settings.ClockFrequency = 4'000'000;
+settings.Mode = SpiMode::Mode0;
+
+auto spi = SpiDevice::Create(settings);
+
+std::array<uint8_t, 2> write{};
+std::array<uint8_t, 10> read{};
+spi.TransferFullDuplex(write, read);
+```
+
+</TabItem>
+</Tabs>
+
+:::tip
+`SpiController` is chip-neutral; the same call works on any supported
+module. The bus constant (`EPDomino24.Spi.Spi4`) is board-specific and
+lists only the buses actually bonded on EP-Domino24.
+:::

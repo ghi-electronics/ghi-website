@@ -1,0 +1,17 @@
+---
+title: API Reference
+sidebar_label: Overview
+slug: /endpoint/api-reference
+---
+
+# Endpoint API Reference
+
+Endpoint runs **.NET, Python, and C/C++** with the same API. Classes, methods, and properties share the same names in all three languages, so code you read in one language is the code you write in another. Pick your language below.
+
+| Language | Reference |
+|---|---|
+| **.NET (C#)**  | [.NET API](./dotnet/index.mdx) |
+| **Python**     | [Python API](./python/index.mdx) |
+| **C/C++**      | [C/C++ API](./cpp/index.mdx)    |
+
+Where a standard .NET API exists (`System.Device.Gpio`, `System.Device.I2c`, …) Endpoint uses it as-is on .NET and mirrors the same class and method names in Python and C/C++, so the three references stay aligned. A handful of domains where a language has a long-standing library its developers already use (serial ports in Python, for instance) follow that convention instead.

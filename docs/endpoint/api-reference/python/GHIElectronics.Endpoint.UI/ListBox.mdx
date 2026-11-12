@@ -1,0 +1,53 @@
+---
+title: "ListBox Class"
+sidebar_label: "ListBox"
+---
+
+# ListBox Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Vertical scrollable list. `ListBox.AddItem` returns a handle whose Clicked event you subscribe to.
+
+```python
+class ListBox(Widget): ...
+```
+
+## Constructors
+
+### ListBox(Widget parent)
+
+```python
+def __init__(self, parent: Widget):
+```
+
+Create a list box inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Methods
+
+### AddItem(string text)
+
+```python
+def AddItem(self, text: str) -> ListBoxItem:
+```
+
+Append an item.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `text` | `string` | Row text. |
+
+**Returns** `ListBoxItem`: Handle for subscribing to the row's `ListBoxItem.Clicked` event.
+
+### Clear()
+
+```python
+def Clear(self) -> None:
+```
+
+Remove every item.
+

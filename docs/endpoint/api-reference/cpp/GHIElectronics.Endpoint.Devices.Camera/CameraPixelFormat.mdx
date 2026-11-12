@@ -1,0 +1,22 @@
+---
+title: "CameraPixelFormat Enum"
+sidebar_label: "CameraPixelFormat"
+---
+
+# CameraPixelFormat Enum
+
+**Package:** `GHIElectronics.Endpoint.Devices.Camera`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Camera`
+
+What a camera sends (pictures always come out as JPEG).
+
+```cpp
+enum class CameraPixelFormat : int32_t {};
+```
+
+## Fields
+
+| Name | Value | Description |
+|---|---|---|
+| `Mjpeg` | `0` | Motion JPEG: small and fast, the way most webcams send large pictures. |
+| `Yuyv` | `1` | Raw YUYV pictures: every webcam has them; the library makes the JPEG. |
+

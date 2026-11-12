@@ -1,0 +1,117 @@
+---
+title: "Widget Class"
+sidebar_label: "Widget"
+---
+
+# Widget Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Abstract base class for every UI widget. Holds the opaque libendpoint handle and exposes geometry, visibility, and background styling shared by all widget types. All setters and events run on the UI thread; do not touch widgets from background threads (LVGL is built with `LV_USE_OS=LV_OS_NONE`).
+
+```cpp
+class Widget : public IDisposable {};
+```
+
+## Properties
+
+### BackgroundColor
+
+```cpp
+uint32_t BackgroundColor() const;
+void BackgroundColor(uint32_t value);
+```
+
+Solid background color as `0x00RRGGBB`. Getter returns the last value set (LVGL has no read-back); returns `0` if never set.
+
+**Returns** `uint`
+
+### Height
+
+```cpp
+int32_t Height() const;
+void Height(int32_t value);
+```
+
+Height in pixels.
+
+**Returns** `int`
+
+### Visible
+
+```cpp
+bool Visible() const;
+void Visible(bool value);
+```
+
+Whether the widget (and its subtree) is drawn. Setting `false` hides but does not destroy it.
+
+**Returns** `bool`
+
+### Width
+
+```cpp
+int32_t Width() const;
+void Width(int32_t value);
+```
+
+Width in pixels.
+
+**Returns** `int`
+
+### X
+
+```cpp
+int32_t X() const;
+void X(int32_t value);
+```
+
+X coordinate in pixels relative to the parent's top-left corner.
+
+**Returns** `int`
+
+### Y
+
+```cpp
+int32_t Y() const;
+void Y(int32_t value);
+```
+
+Y coordinate in pixels relative to the parent's top-left corner.
+
+**Returns** `int`
+
+## Methods
+
+### Dispose()
+
+```cpp
+virtual void Dispose();
+```
+
+Destroy the native widget and release pinned event handles. Idempotent.
+
+### SetBackgroundGradient(uint rgbStart, uint rgbEnd, GradientDirection direction)
+
+```cpp
+void SetBackgroundGradient(uint32_t rgbStart, uint32_t rgbEnd, GradientDirection direction);
+```
+
+Linear gradient background. direction: Vertical = top->bottom, Horizontal = left->right.
+
+### SetBackgroundImage(byte[] rgb565Pixels, int width, int height)
+
+```cpp
+void SetBackgroundImage(const std::vector<uint8_t>& rgb565Pixels, int32_t width, int32_t height);
+```
+
+Tiled background from raw RGB565 pixel bytes (little-endian).
+
+### SetMargin(int left, int top, int right, int bottom)
+
+```cpp
+void SetMargin(int32_t left, int32_t top, int32_t right, int32_t bottom);
+```
+
+WPF-style per-widget Margin. Works in any parent (flex, dock, or absolute).
+

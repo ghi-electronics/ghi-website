@@ -1,0 +1,187 @@
+---
+title: "Mouse Class"
+sidebar_label: "Mouse"
+---
+
+# Mouse Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
+
+Allows a usb device to be used a mouse.
+
+```csharp
+public class Mouse : BaseDevice
+```
+
+### Remarks
+
+By default, the reported range for position is between 0 and 512, as on TinyCLR: set it to the screen with `SetCursorBounds`. The events come on the mouse's own thread.
+
+## Nested Types
+
+| Type | Kind | Summary |
+|---|---|---|
+| [Mouse.ButtonChangedEventArgs](./Mouse_ButtonChangedEventArgs.mdx) | Class | The events args for the ButtonPressed and ButtonReleased events. |
+| [Mouse.ButtonChangedEventHandler](./Mouse_ButtonChangedEventHandler.mdx) | Delegate | The delegate for when one of the mouse's button is pressed or released. |
+| [Mouse.CursorMovedEventArgs](./Mouse_CursorMovedEventArgs.mdx) | Class | The events args for the CursorMoved event. |
+| [Mouse.CursorMovedEventHandler](./Mouse_CursorMovedEventHandler.mdx) | Delegate | The delegate for when the mouse's cursor moves. |
+| [Mouse.WheelMovedEventArgs](./Mouse_WheelMovedEventArgs.mdx) | Class | The events args for the WheelMoved event. |
+| [Mouse.WheelMovedEventHandler](./Mouse_WheelMovedEventHandler.mdx) | Delegate | The delegate for when the mouse's wheel moves. |
+
+## Constructors
+
+### Mouse(string deviceName)
+
+```csharp
+public Mouse(string deviceName)
+```
+
+Opens the mouse that UsbHostController reported ("/dev/input/event2").
+
+## Properties
+
+### AbsolutePosition
+
+```csharp
+public bool AbsolutePosition { get; }
+```
+
+Return true for absolute, false for relative mode (a USB mouse moves relative).
+
+**Returns** `bool`
+
+### CursorPosition
+
+```csharp
+public Position CursorPosition { get; }
+```
+
+The current position of the cursor.
+
+**Returns** `Position`
+
+### Extended1ButtonState
+
+```csharp
+public ButtonState Extended1ButtonState { get; }
+```
+
+The current state of the mouse's first extended button.
+
+**Returns** `ButtonState`
+
+### Extended2ButtonState
+
+```csharp
+public ButtonState Extended2ButtonState { get; }
+```
+
+The current state of the mouse's second extended button.
+
+**Returns** `ButtonState`
+
+### LeftButtonState
+
+```csharp
+public ButtonState LeftButtonState { get; }
+```
+
+The current state of the mouse's left button.
+
+**Returns** `ButtonState`
+
+### MiddleButtonState
+
+```csharp
+public ButtonState MiddleButtonState { get; }
+```
+
+The current state of the mouse's middle button.
+
+**Returns** `ButtonState`
+
+### RightButtonState
+
+```csharp
+public ButtonState RightButtonState { get; }
+```
+
+The current state of the mouse's right button.
+
+**Returns** `ButtonState`
+
+### WheelPosition
+
+```csharp
+public int WheelPosition { get; }
+```
+
+The current position of the mouse wheel.
+
+**Returns** `int`
+
+## Methods
+
+### SetCursorBounds(Position minimum, Position maximum)
+
+```csharp
+public void SetCursorBounds(Position minimum, Position maximum)
+```
+
+Sets the cursor bounds.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `minimum` | `Position` | The minimum bound. |
+| `maximum` | `Position` | The maximum bound. |
+
+### SetCursorPosition(Position newPosition)
+
+```csharp
+public void SetCursorPosition(Position newPosition)
+```
+
+Sets the cursor position.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `newPosition` | `Position` | The new position of the cursor. |
+
+### SetScale(float scale)
+
+```csharp
+public void SetScale(float scale)
+```
+
+Scales the x, y, and wheel delta values.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `scale` | `float` | The value by which to scale the data. |
+
+## Events
+
+### ButtonChanged
+
+```csharp
+public event ButtonChangedEventHandler ButtonChanged
+```
+
+The event fired when one of the mouse's buttons is pressed or released.
+
+### CursorMoved
+
+```csharp
+public event CursorMovedEventHandler CursorMoved
+```
+
+The event fired when the mouse's cursor has moved.
+
+### WheelMoved
+
+```csharp
+public event WheelMovedEventHandler WheelMoved
+```
+
+The event fired when the mouse's wheel has moved.
+

@@ -1,0 +1,149 @@
+---
+title: "Canvas Class"
+sidebar_label: "Canvas"
+---
+
+# Canvas Class
+
+**Package:** `GHIElectronics.Endpoint.Drawing`<br/>**Module:** `GHIElectronics.Endpoint.Drawing`
+
+A pixel buffer plus the primitives to draw into it. Pick the size and `PixelFormat` at `Create` time; when done, hand `Buffer` to whichever device accepts bytes.
+
+```python
+class Canvas: ...
+```
+
+### Example
+
+```python
+canvas = Canvas.Create(240, 320, PixelFormat.Rgb565)
+canvas.Clear(Color.Black)
+canvas.DrawLine(10, 10, 230, 310, Color.Red, 2)
+canvas.FillCircle(120, 160, 40, Color.Blue)
+canvas.DrawText("Hello Endpoint", font, 10, 30, 20, Color.White)
+spi.Write(canvas.Buffer)
+```
+
+## Properties
+
+### Buffer
+
+```python
+Buffer: bytearray  # @property
+```
+
+Raw pixel bytes. Length and layout match `Width`, `Height`, and `PixelFormat`.
+
+### Width
+
+```python
+Width: int
+```
+
+### Height
+
+```python
+Height: int
+```
+
+### PixelFormat
+
+```python
+PixelFormat: int
+```
+
+## Methods
+
+### Create(width, height, pixel_format)
+
+```python
+@staticmethod
+def Create(width: int, height: int, pixel_format: int) -> Canvas:
+```
+
+Allocate a new `Canvas` of the given size and pixel format.
+
+### Clear(color)
+
+```python
+def Clear(self, color: Color) -> None:
+```
+
+Fill the whole buffer with a single color.
+
+### SetPixel(x, y, color)
+
+```python
+def SetPixel(self, x: int, y: int, color: Color) -> None:
+```
+
+Set a single pixel. No-op if (x, y) is outside the canvas.
+
+### DrawLine(x0, y0, x1, y1, color, thickness=1)
+
+```python
+def DrawLine(self, x0: int, y0: int, x1: int, y1: int, color: Color, thickness: int = 1) -> None:
+```
+
+Bresenham line.
+
+### DrawRectangle(x, y, width, height, color, thickness=1)
+
+```python
+def DrawRectangle(self, x: int, y: int, width: int, height: int, color: Color, thickness: int = 1) -> None:
+```
+
+Stroke a rectangle outline.
+
+### FillRectangle(x, y, width, height, color)
+
+```python
+def FillRectangle(self, x: int, y: int, width: int, height: int, color: Color) -> None:
+```
+
+Fill a rectangle.
+
+### DrawCircle(cx, cy, radius, color, thickness=1)
+
+```python
+def DrawCircle(self, cx: int, cy: int, radius: int, color: Color, thickness: int = 1) -> None:
+```
+
+Midpoint-algorithm circle outline.
+
+### FillCircle(cx, cy, radius, color)
+
+```python
+def FillCircle(self, cx: int, cy: int, radius: int, color: Color) -> None:
+```
+
+Filled circle.
+
+### DrawText(text, font, x, y, size_px, color)
+
+```python
+def DrawText(self, text: str, font: Font, x: int, y: int, size_px: int, color: Color) -> None:
+```
+
+Rasterize `text` with `font` at `size_px`, with the top-left of the text box at (x, y). Alpha-blends against whatever is already in the canvas. Rgb565 and Monochrome targets only.
+
+### DrawImage(source, x, y, width=None, height=None, pixel_format=None)
+
+```python
+def DrawImage(self, source, x: int, y: int,
+              width: int = None, height: int = None, pixel_format: int = None) -> None:
+```
+
+Blit an image into this canvas at (x, y). Overloads:
+
+- `source` is an `Image`: use its cached decoded pixels (fast path).
+- `source` is bytes-like and the other args are `None`: treat as encoded file bytes (JPG / PNG / BMP / GIF / TGA), decode once and blit.
+- `source` is bytes-like and `width`/`height`/`pixel_format` are given: treat as a raw pixel buffer of that size and format.
+
+### Dispose()
+
+```python
+def Dispose(self) -> None:
+```
+
+Release the pixel buffer.

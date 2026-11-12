@@ -1,0 +1,79 @@
+---
+title: "Chart Class"
+sidebar_label: "Chart"
+---
+
+# Chart Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Simple chart with a single series. Not a standard .NET widget: the API mirrors TinyCLR's Chart for ease of porting.
+
+```python
+class Chart(Widget): ...
+```
+
+## Constructors
+
+### Chart(Widget parent)
+
+```python
+def __init__(self, parent: Widget):
+```
+
+Create a chart inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Properties
+
+### DivisionAxisY
+
+```python
+DivisionAxisY: int  # @property / @setter
+```
+
+Number of horizontal division lines on the Y axis. Getter returns the last value set.
+
+**Returns** `int`
+
+### Mode
+
+```python
+Mode: ChartMode  # @property / @setter
+```
+
+How the series is drawn. Getter returns the last value set (LVGL has no read-back).
+
+**Returns** `ChartMode`
+
+## Methods
+
+### SetColors(uint pointColor, uint areaColor, uint labelColor)
+
+```python
+def SetColors(self, pointColor: int, areaColor: int, labelColor: int) -> None:
+```
+
+Set the chart's drawing colors.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `pointColor` | `uint` | Line / column color as `0x00RRGGBB`. |
+| `areaColor` | `uint` | Fill color under the line as `0x00RRGGBB` (used when `Chart.Mode` is `ChartMode.Area`). |
+| `labelColor` | `uint` | Axis label color as `0x00RRGGBB`. |
+
+### SetPoints(int[] values)
+
+```python
+def SetPoints(self, values: list[int]) -> None:
+```
+
+Replace the full series with `values`. The chart redraws in order left-to-right.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `values` | `int[]` | Point values; may be `null` or empty to clear. |
+

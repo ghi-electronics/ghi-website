@@ -1,0 +1,47 @@
+---
+title: "FrameReceivedEventArgs Class"
+sidebar_label: "FrameReceivedEventArgs"
+---
+
+# FrameReceivedEventArgs Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Camera`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Camera`
+
+A camera's frame while streaming: a JPEG.
+
+```cpp
+class FrameReceivedEventArgs : public EventArgs {};
+```
+
+## Properties
+
+### Height
+
+```cpp
+int32_t Height() const;
+```
+
+Frame height in pixels.
+
+**Returns** `int`
+
+### Jpeg
+
+```cpp
+std::vector<uint8_t> Jpeg() const;
+```
+
+The frame as a JPEG byte buffer.
+
+**Returns** `byte[]`
+
+### Width
+
+```cpp
+int32_t Width() const;
+```
+
+Frame width in pixels.
+
+**Returns** `int`
+

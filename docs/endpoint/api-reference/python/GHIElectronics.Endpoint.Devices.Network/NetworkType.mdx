@@ -1,0 +1,22 @@
+---
+title: "NetworkType Enum"
+sidebar_label: "NetworkType"
+---
+
+# NetworkType Enum
+
+**Package:** `GHIElectronics.Endpoint.Devices.Network`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Network`
+
+What a network interface is, as the user sees it in network.json. The driver takes care of the hardware: an Ethernet value matches the board's built-in PHY or any USB Ethernet adapter; a WiFi value matches a built-in WiFi module or any WiFi USB stick.
+
+```python
+class NetworkType(IntEnum): ...
+```
+
+## Fields
+
+| Name | Value | Description |
+|---|---|---|
+| `Ethernet` | `0` | Wired Ethernet: the board's built-in PHY or any USB Ethernet adapter. |
+| `Wifi` | `1` | WiFi: a built-in WiFi module or any WiFi USB stick. |
+

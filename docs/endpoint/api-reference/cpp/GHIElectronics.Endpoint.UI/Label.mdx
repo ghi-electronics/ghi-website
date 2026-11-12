@@ -1,0 +1,75 @@
+---
+title: "Label Class"
+sidebar_label: "Label"
+---
+
+# Label Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Static text display. For an interactive text input, use `UI.TextBox`.
+
+```cpp
+class Label : public Widget {};
+```
+
+## Constructors
+
+### Label(Widget parent)
+
+```cpp
+Label(const Widget& parent);
+```
+
+Create a label inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Properties
+
+### Color
+
+```cpp
+uint32_t Color() const;
+void Color(uint32_t value);
+```
+
+Text color as `0x00RRGGBB`. Getter returns the last value set.
+
+**Returns** `uint`
+
+### FontSize
+
+```cpp
+int32_t FontSize() const;
+void FontSize(int32_t value);
+```
+
+Font size in pixels. Getter returns the last value set.
+
+**Returns** `int`
+
+### Text
+
+```cpp
+std::string Text() const;
+void Text(std::string value);
+```
+
+Displayed text. `null` is treated as empty. Getter returns the last value set.
+
+**Returns** `string`
+
+### TextAlignment
+
+```cpp
+TextAlignment TextAlignment() const;
+void TextAlignment(TextAlignment value);
+```
+
+Horizontal alignment of the text inside the label bounds. Getter returns the last value set.
+
+**Returns** `TextAlignment`
+

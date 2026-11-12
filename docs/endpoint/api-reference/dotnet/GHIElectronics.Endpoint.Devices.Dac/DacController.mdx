@@ -1,0 +1,97 @@
+---
+title: "DacController Class"
+sidebar_label: "DacController"
+---
+
+# DacController Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Dac`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Dac`
+
+Endpoint's DAC (analog outputs), with the same API as TinyCLR. Opening a channel makes its pin an analog output; closing it switches the output off and puts the pin back as it was.
+
+```csharp
+public class DacController : IDisposable
+```
+
+## Properties
+
+### ChannelCount
+
+```csharp
+public int ChannelCount { get; }
+```
+
+The number of channels in the chip (channel numbers start at 0)
+
+**Returns** `int`
+
+### MaxValue
+
+```csharp
+public int MaxValue { get; }
+```
+
+The value for the reference voltage (3.3 V)
+
+**Returns** `int`
+
+### MinValue
+
+```csharp
+public int MinValue { get; }
+```
+
+The value for 0 V
+
+**Returns** `int`
+
+### ResolutionInBits
+
+```csharp
+public int ResolutionInBits { get; }
+```
+
+Sample width in bits
+
+**Returns** `int`
+
+## Methods
+
+### Dispose()
+
+```csharp
+public void Dispose()
+```
+
+Nothing to release: each channel is released when it is disposed
+
+### FromName(string name)
+
+```csharp
+public static DacController FromName(string name)
+```
+
+The DAC named `name`: EPM815.Dac.Id
+
+**Returns** `DacController`
+
+### GetDefault()
+
+```csharp
+public static DacController GetDefault()
+```
+
+The board's DAC
+
+**Returns** `DacController`
+
+### OpenChannel(int channelNumber)
+
+```csharp
+public DacChannel OpenChannel(int channelNumber)
+```
+
+Opens a channel for output: EPM815.Dac.PA4 or EPM815.Dac.PA5
+
+**Returns** `DacChannel`
+

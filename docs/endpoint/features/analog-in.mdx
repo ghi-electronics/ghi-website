@@ -1,0 +1,79 @@
+---
+title: "Analog In"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Unlike digital input pins, which only read high or low, analog pins
+read a range of voltages between 0 V and the chip's reference voltage
+(3.3 V on Endpoint). Each pin connects internally to an analog-to-digital
+converter (ADC) that samples the voltage and returns a digital value.
+
+The resolution of the ADC determines the smallest voltage change that
+registers. A 12-bit ADC has 4096 steps, so one step is roughly 0.8 mV at
+a 3.3 V reference, and smaller changes are indistinguishable.
+
+Endpoint uses the standard **`System.Device.Analog`** API through the
+`AdcController` class. Open the pin with a board-level `Adc.Pin`
+constant and read voltage or raw samples.
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+using GHIElectronics.Endpoint.Core;
+using GHIElectronics.Endpoint.Devices.Adc;
+
+using var adc = new AdcController();
+using var input = adc.OpenPin(EPDomino24.Adc.Pin.PC3);   // mikroBUS #1 ADC
+
+while (true) {
+    Console.WriteLine($"{input.ReadVoltage().Volts:0.000} V  (raw {input.ReadRaw()})");
+    Thread.Sleep(1000);
+}
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import time
+from GHIElectronics.Endpoint.Core import EPDomino24
+from GHIElectronics.Endpoint.Devices.Adc import AdcController
+
+with AdcController() as adc:
+    with adc.OpenPin(EPDomino24.Adc.Pin.PC3) as input:   # mikroBUS #1 ADC
+        while True:
+            print(f"{input.ReadVoltage().Volts:.3f} V  (raw {input.ReadRaw()})")
+            time.sleep(1)
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+#include <chrono>
+#include <cstdio>
+#include <thread>
+#include <endpoint/Adc.h>
+#include <endpoint/EPDomino24.h>
+
+using namespace GHIElectronics::Endpoint::Core;
+using namespace GHIElectronics::Endpoint::Devices::Adc;
+
+AdcController adc;
+auto input = adc.OpenPin(EPDomino24::Adc::Pin::PC3);   // mikroBUS #1 ADC
+
+while (true) {
+    std::printf("%.3f V  (raw %u)\n", input.ReadVoltage().Volts(), input.ReadRaw());
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+}
+```
+
+</TabItem>
+</Tabs>
+
+`ReadVoltage()` returns a `UnitsNet.ElectricPotential`; `ReadRaw()`
+returns the integer sample straight from the ADC. The reference voltage
+is `AdcController.VoltageReference`.

@@ -1,0 +1,54 @@
+---
+title: "BaseDescriptor Class"
+sidebar_label: "BaseDescriptor"
+---
+
+# BaseDescriptor Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost.Descriptors`
+
+The base USB descriptor.
+
+```cpp
+class BaseDescriptor {};
+```
+
+## Constructors
+
+### BaseDescriptor(DescriptorType type, byte length)
+
+```cpp
+BaseDescriptor(DescriptorType type, uint8_t length);
+```
+
+Creates a new base descriptor
+
+| Parameter | Type | Description |
+|---|---|---|
+| `type` | `DescriptorType` | The type of the derived descriptor |
+| `length` | `byte` | The length of the descriptor. |
+
+## Properties
+
+### Length
+
+```cpp
+uint8_t Length() const;
+void Length(uint8_t value);
+```
+
+Length of descriptor in bytes.
+
+**Returns** `byte`
+
+### Type
+
+```cpp
+DescriptorType Type() const;
+void Type(DescriptorType value);
+```
+
+The type of the descriptor.
+
+**Returns** `DescriptorType`
+

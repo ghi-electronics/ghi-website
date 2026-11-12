@@ -1,0 +1,37 @@
+---
+title: "Processor Class"
+sidebar_label: "Processor"
+---
+
+# Processor Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+Identifies the processor the firmware is running on. Libraries that need board-specific behaviour read `Processor.Name` and compare against the processor-id constants exposed here.
+
+```cpp
+class Processor {};
+```
+
+## Properties
+
+### Name
+
+```cpp
+std::string Name() const;
+```
+
+The current processor's id. Set once at startup; defaults to `Processor.STM32MP1`.
+
+**Returns** `string`
+
+## Fields
+
+### STM32MP1
+
+```cpp
+static constexpr std::string STM32MP1 = "STM32MP1";
+```
+
+Processor id used by the EPM815 module.
+

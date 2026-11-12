@@ -1,0 +1,145 @@
+---
+title: "ParallelLcdSettings Class"
+sidebar_label: "ParallelLcdSettings"
+---
+
+# ParallelLcdSettings Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Display`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Display`
+
+Timings for the SoC's built-in parallel RGB panel controller.
+
+```csharp
+public sealed class ParallelLcdSettings
+```
+
+## Constructors
+
+### ParallelLcdSettings()
+
+```csharp
+public ParallelLcdSettings()
+```
+
+## Properties
+
+### BitsPerPixel
+
+```csharp
+public int BitsPerPixel { get; set; }
+```
+
+Framebuffer bit depth (16 = RGB565, 24 = RGB888).
+
+**Returns** `int`
+
+### DataEnablePolarity
+
+```csharp
+public SignalPolarity DataEnablePolarity { get; set; }
+```
+
+Polarity of the DE (Data Enable) signal. Most RGB panels want ActiveHigh (DE high while valid pixel data is on the bus); check your panel's datasheet.
+
+**Returns** `SignalPolarity`
+
+### HBackPorch
+
+```csharp
+public int HBackPorch { get; set; }
+```
+
+Horizontal back porch, in pixel clocks.
+
+**Returns** `int`
+
+### HFrontPorch
+
+```csharp
+public int HFrontPorch { get; set; }
+```
+
+Horizontal front porch, in pixel clocks.
+
+**Returns** `int`
+
+### HSync
+
+```csharp
+public int HSync { get; set; }
+```
+
+Horizontal sync pulse width, in pixel clocks.
+
+**Returns** `int`
+
+### Height
+
+```csharp
+public int Height { get; set; }
+```
+
+Visible height in pixels.
+
+**Returns** `int`
+
+### PixelClockEdge
+
+```csharp
+public ClockEdge PixelClockEdge { get; set; }
+```
+
+Which edge of the pixel clock the panel latches data on. The SoC drives data on the opposite edge. Rising is the common default; try Falling if the image looks sheared or torn.
+
+**Returns** `ClockEdge`
+
+### PixelClockHz
+
+```csharp
+public int PixelClockHz { get; set; }
+```
+
+Pixel clock in Hz.
+
+**Returns** `int`
+
+### VBackPorch
+
+```csharp
+public int VBackPorch { get; set; }
+```
+
+Vertical back porch, in lines.
+
+**Returns** `int`
+
+### VFrontPorch
+
+```csharp
+public int VFrontPorch { get; set; }
+```
+
+Vertical front porch, in lines.
+
+**Returns** `int`
+
+### VSync
+
+```csharp
+public int VSync { get; set; }
+```
+
+Vertical sync pulse width, in lines.
+
+**Returns** `int`
+
+### Width
+
+```csharp
+public int Width { get; set; }
+```
+
+Visible width in pixels.
+
+**Returns** `int`
+

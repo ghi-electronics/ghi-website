@@ -1,0 +1,109 @@
+---
+title: "EPM815.SerialPort Class"
+sidebar_label: "EPM815.SerialPort"
+---
+
+# SerialPort Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+The serial ports (UARTs) bundled with EPM815, for .NET's `System.IO.Ports`. `SerialPort.Initialize` connects the port's pins; then use `SerialPort` as usual.
+
+```python
+class SerialPort: ...
+```
+
+## Methods
+
+### Initialize(string portName, bool enableHardwareFlowControl)
+
+```python
+@staticmethod
+def Initialize(portName: str, enableHardwareFlowControl: bool) -> None:
+```
+
+Connects the port's TX and RX pins, and RTS and CTS for hardware flow control
+
+| Parameter | Type | Description |
+|---|---|---|
+| `portName` | `string` | Uart1 ... Uart8 |
+| `enableHardwareFlowControl` | `bool` | Also connect RTS and CTS (UART1, 2, 3 and 7) |
+
+### UnInitialize(string portName)
+
+```python
+@staticmethod
+def UnInitialize(portName: str) -> None:
+```
+
+Gives the port's pins back, as they were before Initialize
+
+### UnInitialize(string portName, bool enabledHardwareFlowControl)
+
+> ⚠️ **Obsolete.** The flow control setting is remembered from Initialize: use UnInitialize(portName)
+
+```python
+@staticmethod
+def UnInitialize(portName: str, enabledHardwareFlowControl: bool) -> None:
+```
+
+Gives the port's pins back, as they were before Initialize
+
+## Fields
+
+### Uart1
+
+```python
+Uart1: str = "/dev/ttySTM0"
+```
+
+UART1: PZ7 (TX), PZ6 (RX), PA12 (RTS), PZ3 (CTS)
+
+### Uart2
+
+```python
+Uart2: str = "/dev/ttySTM1"
+```
+
+UART2: PF5 (TX), PD6 (RX), PD4 (RTS), PD3 (CTS)
+
+### Uart3
+
+```python
+Uart3: str = "/dev/ttySTM2"
+```
+
+UART3: PD8 (TX), PD9 (RX), PD12 (RTS), PD11 (CTS)
+
+### Uart4
+
+```python
+Uart4: str = "/dev/ttySTM3"
+```
+
+UART4: PD1 (TX), PD0 (RX)
+
+### Uart5
+
+```python
+Uart5: str = "/dev/ttySTM4"
+```
+
+UART5: PB13 (TX), PB12 (RX)
+
+### Uart7
+
+```python
+Uart7: str = "/dev/ttySTM6"
+```
+
+UART7: PE8 (TX), PF6 (RX), PE9 (RTS), PE10 (CTS)
+
+### Uart8
+
+```python
+Uart8: str = "/dev/ttySTM7"
+```
+
+UART8: PE1 (TX), PE0 (RX)
+

@@ -1,0 +1,47 @@
+---
+title: "Screen Class"
+sidebar_label: "Screen"
+---
+
+# Screen Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+A top-level container with no parent. Multiple screens can exist at once; only one is active at a time. Call `Screen.Load` to make this the currently-displayed screen.
+
+```csharp
+public class Screen : Widget
+```
+
+## Constructors
+
+### Screen()
+
+```csharp
+public Screen()
+```
+
+Create a new standalone screen (invisible until Load()).
+
+## Properties
+
+### Active
+
+```csharp
+public static Screen Active { get; }
+```
+
+The screen currently displayed on the panel. The returned instance does not own its handle and should not be disposed.
+
+**Returns** `Screen`
+
+## Methods
+
+### Load()
+
+```csharp
+public void Load()
+```
+
+Make this the currently-displayed screen.
+

@@ -1,0 +1,15 @@
+---
+title: "ConnectionChangedEventHandler Delegate"
+sidebar_label: "ConnectionChangedEventHandler"
+---
+
+# ConnectionChangedEventHandler Delegate
+
+**Package:** `GHIElectronics.Endpoint.Devices.Storage`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Storage`
+
+Handler for `StorageController.ConnectionChanged`. Called on the library's storage thread when a drive is attached or detached; the drives already plugged in at `StorageController.Enable` time are reported too.
+
+```csharp
+public delegate void ConnectionChangedEventHandler(StorageController sender, DeviceConnectionEventArgs e);
+```
+

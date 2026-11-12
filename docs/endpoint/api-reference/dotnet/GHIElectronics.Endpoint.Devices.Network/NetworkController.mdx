@@ -1,0 +1,133 @@
+---
+title: "NetworkController Class"
+sidebar_label: "NetworkController"
+---
+
+# NetworkController Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Network`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Network`
+
+One of the board's network interfaces, by type (Ethernet, WiFi, PC-shared). The system takes care of the hardware - an Ethernet controller matches the built-in PHY or any USB Ethernet adapter; a WiFi controller matches a built-in WiFi module or any WiFi USB stick. Enable / Disable apply synchronously and throw on failure (no interface present, bad settings, wpa_supplicant / udhcpc failure). Settings persist in `/config/network.json` through `NetworkController.GetInterfaceSettings` / `NetworkController.SetInterfaceSettings`. Status (addresses, link, DNS, speed) is the standard `NetworkInformation.NetworkInterface` this controller exposes.
+
+```csharp
+public sealed class NetworkController
+```
+
+## Properties
+
+### IsConnected
+
+```csharp
+public bool IsConnected { get; }
+```
+
+True if the interface currently has an IPv4 address.
+
+**Returns** `bool`
+
+### IsEnabled
+
+```csharp
+public bool IsEnabled { get; }
+```
+
+True if the interface is administratively up.
+
+**Returns** `bool`
+
+### IsPresent
+
+```csharp
+public bool IsPresent { get; }
+```
+
+True if an interface of this type currently exists on the board (built-in PHY detected, or USB adapter plugged in and its driver loaded). WiFi stays false until `NetworkController.Enable` is called at least once (that is what modprobes the Wi-Fi driver).
+
+**Returns** `bool`
+
+### Name
+
+```csharp
+public string Name { get; }
+```
+
+System identifier (eth0, wlan0, ...), or empty string if no interface of this type is currently present. Reads live from the kernel on every access - it reflects the state right now, not the state at `NetworkController.FromType` time.
+
+**Returns** `string`
+
+### NetworkInterface
+
+```csharp
+public NetworkInterface NetworkInterface { get; }
+```
+
+The standard `NetworkInformation.NetworkInterface` for this controller, or null if the interface has gone away since the controller was created.
+
+**Returns** `NetworkInterface`
+
+### Type
+
+```csharp
+public NetworkType Type { get; }
+```
+
+Which kind of interface this controller represents (`NetworkType.Ethernet` or `NetworkType.Wifi`).
+
+**Returns** `NetworkType`
+
+## Methods
+
+### Disable()
+
+```csharp
+public void Disable()
+```
+
+Stops DHCP and brings the interface down. Does not clear the settings file.
+
+### Enable()
+
+```csharp
+public void Enable()
+```
+
+Applies the settings from `/config/network.json` to this interface: brings the link up and starts DHCP, or sets the static address, or starts wpa_supplicant (WiFi). Throws if the apply fails. Call synchronously from the user's program; nothing runs automatically at boot.
+
+### FromType(NetworkType type)
+
+```csharp
+public static NetworkController FromType(NetworkType type)
+```
+
+The controller for the given type. Always returns a valid controller: the controller represents the type (Ethernet, WiFi), not a specific interface. Hardware does not have to be present yet - call `NetworkController.SetInterfaceSettings` to configure, then `NetworkController.Enable`, which modprobes any USB driver needed and brings the matching interface up. Use `NetworkController.IsPresent` to check if the hardware is currently plugged in.
+
+**Returns** `NetworkController`
+
+### GetInterfaceSettings()
+
+```csharp
+public NetworkInterfaceSettings GetInterfaceSettings()
+```
+
+Reads the current settings for this type from `/config/network.json`. Changes to the returned object do nothing until passed back to `NetworkController.SetInterfaceSettings`.
+
+**Returns** `NetworkInterfaceSettings`
+
+### GetName(NetworkType type)
+
+```csharp
+public static string GetName(NetworkType type)
+```
+
+The system identifier (eth0, wlan0, ...) for the first interface of the given type, or an empty string if none is present.
+
+**Returns** `string`
+
+### SetInterfaceSettings(NetworkInterfaceSettings settings)
+
+```csharp
+public void SetInterfaceSettings(NetworkInterfaceSettings settings)
+```
+
+Writes the settings to `/config/network.json` (persisted across reboots). Does NOT apply them to the live interface - call `NetworkController.Enable` for that.
+

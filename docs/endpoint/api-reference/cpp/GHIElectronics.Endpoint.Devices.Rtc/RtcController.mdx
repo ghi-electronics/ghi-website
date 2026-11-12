@@ -1,0 +1,139 @@
+---
+title: "RtcController Class"
+sidebar_label: "RtcController"
+---
+
+# RtcController Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Rtc`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Rtc`
+
+The board's real-time clock, for .NET IoT's `RtcBase` (`Iot.Device.Rtc`). It counts UTC: at boot, the system time is set from it. `RtcController.IsValid` and `RtcController.SetChargeMode` are the same as TinyCLR's.
+
+```cpp
+class RtcController : public RtcBase {};
+```
+
+## Constructors
+
+### RtcController()
+
+```cpp
+RtcController();
+```
+
+The chip's RTC
+
+## Properties
+
+### BackupMemorySize
+
+```cpp
+uint32_t BackupMemorySize() const;
+```
+
+Not implemented yet: the size of the backup memory in bytes
+
+**Returns** `uint`
+
+### IsValid
+
+```cpp
+bool IsValid() const;
+```
+
+Whether the RTC has been set since it last lost power. Without power it starts again at 2000-01-01.
+
+**Returns** `bool`
+
+## Methods
+
+### Calibrate(int pulse)
+
+```cpp
+void Calibrate(int32_t pulse);
+```
+
+Not implemented yet
+
+### Dispose(bool disposing)
+
+```cpp
+virtual void Dispose(bool disposing) override;
+```
+
+### ReadBackupMemory(byte[] destinationData)
+
+```cpp
+int32_t ReadBackupMemory(const std::vector<uint8_t>& destinationData);
+```
+
+Not implemented yet
+
+**Returns** `int`
+
+### ReadBackupMemory(byte[] destinationData, uint sourceOffset)
+
+```cpp
+int32_t ReadBackupMemory(const std::vector<uint8_t>& destinationData, uint32_t sourceOffset);
+```
+
+Not implemented yet
+
+**Returns** `int`
+
+### ReadBackupMemory(byte[] destinationData, uint destinationOffset, uint sourceOffset, int count)
+
+```cpp
+int32_t ReadBackupMemory(const std::vector<uint8_t>& destinationData, uint32_t destinationOffset, uint32_t sourceOffset, int32_t count);
+```
+
+Not implemented yet
+
+**Returns** `int`
+
+### ReadTime()
+
+```cpp
+virtual DateTime ReadTime() override;
+```
+
+**Returns** `DateTime`
+
+### SetChargeMode(BatteryChargeMode chargeMode)
+
+```cpp
+void SetChargeMode(BatteryChargeMode chargeMode);
+```
+
+Charges the backup battery or supercapacitor on VBAT, or stops charging
+
+### SetTime(DateTime time)
+
+```cpp
+virtual void SetTime(DateTime time) override;
+```
+
+### WriteBackupMemory(byte[] sourceData)
+
+```cpp
+void WriteBackupMemory(const std::vector<uint8_t>& sourceData);
+```
+
+Not implemented yet
+
+### WriteBackupMemory(byte[] sourceData, uint destinationOffset)
+
+```cpp
+void WriteBackupMemory(const std::vector<uint8_t>& sourceData, uint32_t destinationOffset);
+```
+
+Not implemented yet
+
+### WriteBackupMemory(byte[] sourceData, uint sourceOffset, uint destinationOffset, int count)
+
+```cpp
+void WriteBackupMemory(const std::vector<uint8_t>& sourceData, uint32_t sourceOffset, uint32_t destinationOffset, int32_t count);
+```
+
+Not implemented yet
+

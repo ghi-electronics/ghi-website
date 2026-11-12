@@ -1,0 +1,15 @@
+---
+title: "UsbConnectionChangedEventHandler Delegate"
+sidebar_label: "UsbConnectionChangedEventHandler"
+---
+
+# UsbConnectionChangedEventHandler Delegate
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
+
+Handler for `UsbHostController.ConnectionChanged`. Called on the library's USB thread when a device is attached or detached; the devices already plugged in at `UsbHostController.Enable` time are reported too.
+
+```csharp
+public delegate void UsbConnectionChangedEventHandler(UsbHostController sender, UsbDeviceConnectionEventArgs e);
+```
+

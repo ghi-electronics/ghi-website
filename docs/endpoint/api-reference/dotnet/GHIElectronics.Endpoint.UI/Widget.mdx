@@ -1,0 +1,111 @@
+---
+title: "Widget Class"
+sidebar_label: "Widget"
+---
+
+# Widget Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Abstract base class for every UI widget. Holds the opaque libendpoint handle and exposes geometry, visibility, and background styling shared by all widget types. All setters and events run on the UI thread; do not touch widgets from background threads (LVGL is built with `LV_USE_OS=LV_OS_NONE`).
+
+```csharp
+public abstract class Widget : IDisposable
+```
+
+## Properties
+
+### BackgroundColor
+
+```csharp
+public uint BackgroundColor { get; set; }
+```
+
+Solid background color as `0x00RRGGBB`. Getter returns the last value set (LVGL has no read-back); returns `0` if never set.
+
+**Returns** `uint`
+
+### Height
+
+```csharp
+public int Height { get; set; }
+```
+
+Height in pixels.
+
+**Returns** `int`
+
+### Visible
+
+```csharp
+public bool Visible { get; set; }
+```
+
+Whether the widget (and its subtree) is drawn. Setting `false` hides but does not destroy it.
+
+**Returns** `bool`
+
+### Width
+
+```csharp
+public int Width { get; set; }
+```
+
+Width in pixels.
+
+**Returns** `int`
+
+### X
+
+```csharp
+public int X { get; set; }
+```
+
+X coordinate in pixels relative to the parent's top-left corner.
+
+**Returns** `int`
+
+### Y
+
+```csharp
+public int Y { get; set; }
+```
+
+Y coordinate in pixels relative to the parent's top-left corner.
+
+**Returns** `int`
+
+## Methods
+
+### Dispose()
+
+```csharp
+public virtual void Dispose()
+```
+
+Destroy the native widget and release pinned event handles. Idempotent.
+
+### SetBackgroundGradient(uint rgbStart, uint rgbEnd, GradientDirection direction)
+
+```csharp
+public void SetBackgroundGradient(uint rgbStart, uint rgbEnd, GradientDirection direction)
+```
+
+Linear gradient background. direction: Vertical = top->bottom, Horizontal = left->right.
+
+### SetBackgroundImage(byte[] rgb565Pixels, int width, int height)
+
+```csharp
+public void SetBackgroundImage(byte[] rgb565Pixels, int width, int height)
+```
+
+Tiled background from raw RGB565 pixel bytes (little-endian).
+
+### SetMargin(int left, int top, int right, int bottom)
+
+```csharp
+public void SetMargin(int left, int top, int right, int bottom)
+```
+
+WPF-style per-widget Margin. Works in any parent (flex, dock, or absolute).
+

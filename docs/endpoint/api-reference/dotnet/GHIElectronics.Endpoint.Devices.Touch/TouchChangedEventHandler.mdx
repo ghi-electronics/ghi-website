@@ -1,0 +1,15 @@
+---
+title: "TouchChangedEventHandler Delegate"
+sidebar_label: "TouchChangedEventHandler"
+---
+
+# TouchChangedEventHandler Delegate
+
+**Package:** `GHIElectronics.Endpoint.Devices.Touch`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Touch`
+
+Handler for `Touch.OnChangedEvent`. Called on the touch reader thread (`Touch.InputTouch` uses the kernel evdev reader thread; custom subclasses decide their own).
+
+```csharp
+public delegate void TouchChangedEventHandler(Touch sender, TouchEventArgs e);
+```
+

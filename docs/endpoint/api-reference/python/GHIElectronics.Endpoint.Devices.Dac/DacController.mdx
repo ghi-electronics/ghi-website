@@ -1,0 +1,99 @@
+---
+title: "DacController Class"
+sidebar_label: "DacController"
+---
+
+# DacController Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Dac`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Dac`
+
+Endpoint's DAC (analog outputs), with the same API as TinyCLR. Opening a channel makes its pin an analog output; closing it switches the output off and puts the pin back as it was.
+
+```python
+class DacController(IDisposable): ...
+```
+
+## Properties
+
+### ChannelCount
+
+```python
+ChannelCount: int  # @property
+```
+
+The number of channels in the chip (channel numbers start at 0)
+
+**Returns** `int`
+
+### MaxValue
+
+```python
+MaxValue: int  # @property
+```
+
+The value for the reference voltage (3.3 V)
+
+**Returns** `int`
+
+### MinValue
+
+```python
+MinValue: int  # @property
+```
+
+The value for 0 V
+
+**Returns** `int`
+
+### ResolutionInBits
+
+```python
+ResolutionInBits: int  # @property
+```
+
+Sample width in bits
+
+**Returns** `int`
+
+## Methods
+
+### Dispose()
+
+```python
+def Dispose(self) -> None:
+```
+
+Nothing to release: each channel is released when it is disposed
+
+### FromName(string name)
+
+```python
+@staticmethod
+def FromName(name: str) -> DacController:
+```
+
+The DAC named `name`: EPM815.Dac.Id
+
+**Returns** `DacController`
+
+### GetDefault()
+
+```python
+@staticmethod
+def GetDefault() -> DacController:
+```
+
+The board's DAC
+
+**Returns** `DacController`
+
+### OpenChannel(int channelNumber)
+
+```python
+def OpenChannel(self, channelNumber: int) -> DacChannel:
+```
+
+Opens a channel for output: EPM815.Dac.PA4 or EPM815.Dac.PA5
+
+**Returns** `DacChannel`
+

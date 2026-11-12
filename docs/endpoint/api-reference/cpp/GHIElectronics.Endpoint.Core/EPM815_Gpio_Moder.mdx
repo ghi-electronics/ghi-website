@@ -1,0 +1,25 @@
+---
+title: "EPM815.Gpio.Moder Enum"
+sidebar_label: "EPM815.Gpio.Moder"
+---
+
+# Moder Enum
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+Values for the GPIO MODER register.
+
+```cpp
+enum class Moder : int32_t {};
+```
+
+## Fields
+
+| Name | Value | Description |
+|---|---|---|
+| `Input` | `0` | Digital input. |
+| `Output` | `1` | Digital output driven by ODR. |
+| `Alternate` | `2` | Alternate function (controlled by a peripheral). |
+| `Analog` | `3` | Analog mode (input to ADC/DAC, disconnected from the digital Schmitt trigger). |
+| `NONE` | `-1` | No mode selected. |
+

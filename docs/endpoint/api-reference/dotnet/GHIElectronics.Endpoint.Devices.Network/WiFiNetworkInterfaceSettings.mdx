@@ -1,0 +1,55 @@
+---
+title: "WiFiNetworkInterfaceSettings Class"
+sidebar_label: "WiFiNetworkInterfaceSettings"
+---
+
+# WiFiNetworkInterfaceSettings Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Network`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Network`
+
+Settings for a WiFi interface. Inherits IP / DNS / MAC fields from `Network.NetworkInterfaceSettings` and adds the SSID and password used to associate with the access point.
+
+```csharp
+public class WiFiNetworkInterfaceSettings : NetworkInterfaceSettings
+```
+
+## Constructors
+
+### WiFiNetworkInterfaceSettings()
+
+```csharp
+public WiFiNetworkInterfaceSettings()
+```
+
+## Properties
+
+### Password
+
+```csharp
+public string Password { get; set; }
+```
+
+Plain-text passphrase. Ignored when `WiFiNetworkInterfaceSettings.Security` is `WiFiSecurityType.None`.
+
+**Returns** `string`
+
+### Security
+
+```csharp
+public WiFiSecurityType Security { get; set; }
+```
+
+Which WPA variant the access point uses. Default: WPA2.
+
+**Returns** `WiFiSecurityType`
+
+### Ssid
+
+```csharp
+public string Ssid { get; set; }
+```
+
+The network name to connect to.
+
+**Returns** `string`
+

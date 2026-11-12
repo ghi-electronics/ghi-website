@@ -1,0 +1,255 @@
+---
+title: "UsbCamera Class"
+sidebar_label: "UsbCamera"
+---
+
+# UsbCamera Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Camera`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Camera`
+
+A webcam: any USB Video Class camera. Pictures come as JPEG files, whether the camera sends MJPEG or raw YUYV pictures.
+
+```cpp
+class UsbCamera : public IDisposable {};
+```
+
+### Remarks
+
+Open it with the DeviceName of a Webcam from `UsbHostController` ("/dev/video0"). The first picture waits until the camera's automatic exposure has settled (about a second); while pictures are taken the camera keeps running, so the next ones come at once. At first the size is 640x480. The events come on the camera's own thread. A camera stays alive until it is disposed.
+
+## Nested Types
+
+| Type | Kind | Summary |
+|---|---|---|
+| [UsbCamera.DisconnectedEventHandler](./UsbCamera_DisconnectedEventHandler.mdx) | Delegate | The handler of Disconnected |
+| [UsbCamera.FrameReceivedEventHandler](./UsbCamera_FrameReceivedEventHandler.mdx) | Delegate | The handler of FrameReceived |
+
+## Constructors
+
+### UsbCamera(string deviceName)
+
+```cpp
+UsbCamera(const std::string& deviceName);
+```
+
+Opens the camera that UsbHostController reported ("/dev/video0").
+
+## Properties
+
+### Connected
+
+```cpp
+bool Connected() const;
+```
+
+`true` while the camera is physically present on the USB bus.
+
+**Returns** `bool`
+
+### DeviceName
+
+```cpp
+std::string DeviceName() const;
+```
+
+What the camera was opened with: "/dev/video0"
+
+**Returns** `string`
+
+### FrameRate
+
+```cpp
+int32_t FrameRate() const;
+```
+
+The frame rate in use (frames per second)
+
+**Returns** `int`
+
+### Height
+
+```cpp
+int32_t Height() const;
+```
+
+The picture height in use
+
+**Returns** `int`
+
+### IsStreaming
+
+```cpp
+bool IsStreaming() const;
+```
+
+Whether StartStreaming is on
+
+**Returns** `bool`
+
+### JpegQuality
+
+```cpp
+int32_t JpegQuality() const;
+void JpegQuality(int32_t value);
+```
+
+The JPEG quality (1 to 100) of pictures the library makes from raw YUYV pictures. Defaults to 85.
+
+**Returns** `int`
+
+### Name
+
+```cpp
+std::string Name() const;
+```
+
+The camera's name ("USB 2.0 Camera: USB Camera")
+
+**Returns** `string`
+
+### PixelFormat
+
+```cpp
+CameraPixelFormat PixelFormat() const;
+```
+
+What the camera sends for the size in use
+
+**Returns** `CameraPixelFormat`
+
+### SupportedControls
+
+```cpp
+IReadOnlyList<CameraControl> SupportedControls() const;
+```
+
+The controls this camera has
+
+**Returns** `IReadOnlyList<CameraControl>`
+
+### SupportedFormats
+
+```cpp
+IReadOnlyList<CameraFormat> SupportedFormats() const;
+```
+
+The sizes the camera has, with what it sends for each
+
+**Returns** `IReadOnlyList<CameraFormat>`
+
+### Width
+
+```cpp
+int32_t Width() const;
+```
+
+The picture width in use
+
+**Returns** `int`
+
+## Methods
+
+### Capture(int timeout)
+
+```cpp
+std::vector<uint8_t> Capture(int32_t timeout);
+```
+
+Takes a picture: a JPEG.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `timeout` | `int` | How long to wait for the camera, in milliseconds (the first picture also waits for the exposure). |
+
+**Returns** `byte[]`
+
+### Capture(string path)
+
+```cpp
+void Capture(const std::string& path);
+```
+
+Takes a picture and saves it as a JPEG file.
+
+### Dispose()
+
+```cpp
+void Dispose();
+```
+
+Stops the camera (a frame being delivered finishes first) and closes it
+
+### GetControl(CameraControl control)
+
+```cpp
+CameraControlValue GetControl(CameraControl control);
+```
+
+A control's range and value.
+
+**Returns** `CameraControlValue`
+
+### SetControl(CameraControl control, int value)
+
+```cpp
+void SetControl(CameraControl control, int32_t value);
+```
+
+Sets a control, in the camera's own units (GetControl gives its range).
+
+### SetResolution(int width, int height, int frameRate)
+
+```cpp
+void SetResolution(int32_t width, int32_t height, int32_t frameRate);
+```
+
+Uses a size the camera has (MJPEG if the camera has it at that size, else YUYV).
+
+| Parameter | Type | Description |
+|---|---|---|
+| `width` | `int` | The width, one of SupportedFormats'. |
+| `height` | `int` | The height. |
+| `frameRate` | `int` | Frames per second; 0: the camera's highest for that size. |
+
+### SetResolution(CameraFormat format, int frameRate)
+
+```cpp
+void SetResolution(const CameraFormat& format, int32_t frameRate);
+```
+
+Uses one of SupportedFormats, as it is (YUYV too).
+
+### StartStreaming()
+
+```cpp
+void StartStreaming();
+```
+
+Starts streaming: every frame comes as a JPEG in FrameReceived.
+
+### StopStreaming()
+
+```cpp
+void StopStreaming();
+```
+
+Stops streaming; `UsbCamera.FrameReceived` no longer fires. A frame being delivered finishes first.
+
+## Events
+
+### Disconnected
+
+```cpp
+Core::Event<...> Disconnected;
+```
+
+The camera was unplugged
+
+### FrameReceived
+
+```cpp
+Core::Event<...> FrameReceived;
+```
+
+A frame while streaming (StartStreaming)
+

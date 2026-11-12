@@ -1,0 +1,58 @@
+---
+title: "Calendar Class"
+sidebar_label: "Calendar"
+---
+
+# Calendar Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Month calendar.
+
+```python
+class Calendar(Widget): ...
+```
+
+## Constructors
+
+### Calendar(Widget parent)
+
+```python
+def __init__(self, parent: Widget):
+```
+
+Create a calendar inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Methods
+
+### SetShowedDate(int year, int month)
+
+```python
+def SetShowedDate(self, year: int, month: int) -> None:
+```
+
+Set the month shown by the calendar.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `year` | `int` | Four-digit year. |
+| `month` | `int` | Month, 1 (January) to 12 (December). |
+
+### SetToday(int year, int month, int day)
+
+```python
+def SetToday(self, year: int, month: int, day: int) -> None:
+```
+
+Set the day that is highlighted as "today".
+
+| Parameter | Type | Description |
+|---|---|---|
+| `year` | `int` | Four-digit year. |
+| `month` | `int` | Month, 1-12. |
+| `day` | `int` | Day of month, 1-31. |
+

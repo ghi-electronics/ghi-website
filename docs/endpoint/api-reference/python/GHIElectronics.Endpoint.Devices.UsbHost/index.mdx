@@ -1,0 +1,56 @@
+---
+title: "GHIElectronics.Endpoint.Devices.UsbHost"
+hide_title: true
+sidebar_label: Overview
+---
+
+<h1 className="api-package-heading">GHIElectronics.Endpoint.Devices.UsbHost</h1>
+
+Endpoint's USB devices: connected and disconnected events, what each device is and its port or network interface.
+
+## Classes
+
+| Class | Summary |
+|---|---|
+| [Auxiliary](./Auxiliary.mdx) | Represents additional auxiliary descriptors. |
+| [BaseDescriptor](./BaseDescriptor.mdx) | The base USB descriptor. |
+| [BaseDevice](./BaseDevice.mdx) | A USB device that the program uses: Keyboard, Mouse, Joystick, HidDevice, Printer or RawDevice, opened with the DeviceName that its UsbHostController event gives. Its events come on the device's own thread. When the device is unplugged, Disconnected is raised. A device stays alive until it is disposed. |
+| [Configuration](./Configuration.mdx) | Configuration descriptor. |
+| [Device](./Device.mdx) | Device descriptor. |
+| [Endpoint](./Endpoint.mdx) | Endpoint descriptor. |
+| [HidDevice](./HidDevice.mdx) | A HID device that is no keyboard, mouse or joystick (a sensor, a USB I/O board, a UPS...): its reports, as hidapi gives them. |
+| [Interface](./Interface.mdx) | Interface descriptor. |
+| [Joystick](./Joystick.mdx) | Allows a usb device to be used as a joystick. |
+| [Keyboard](./Keyboard.mdx) | Allows a usb device to be used as a keyboard. |
+| [Mouse](./Mouse.mdx) | Allows a usb device to be used a mouse. |
+| [Printer](./Printer.mdx) | A USB printer: the bytes it understands (ESC/POS for receipt printers, ZPL or EPL for label printers, PCL or PostScript for office printers) go to it as they are. |
+| [RawDevice](./RawDevice.mdx) | Provides low level access functionalities for the connected USB device. This is useful if there is not already a predefined driver for that device. |
+| [UsbDeviceConnectionEventArgs](./UsbDeviceConnectionEventArgs.mdx) | Event data for `UsbHostController.ConnectionChanged`: one USB device attached or detached. |
+| [UsbHostController](./UsbHostController.mdx) | The USB devices plugged into the board, directly or through hubs. One event for each thing a device gives: a keyboard with a touchpad gives Keyboard and Mouse, a webcam gives Webcam and Audio (its microphone). `DeviceName` is what to open it with (see `UsbHost.DeviceType`). The events come on the library's USB thread. USB drives come as MassStorage: use `StorageController` (`GHIElectronics.Endpoint.Devices.Storage`) for them. A controller stays alive until it is disposed. |
+
+## Structs
+
+| Struct | Summary |
+|---|---|
+| [Position](./Position.mdx) | Represents the a generic position. |
+
+## Enums
+
+| Enum | Summary |
+|---|---|
+| [ButtonState](./ButtonState.mdx) | The possible button states. |
+| [Buttons](./Buttons.mdx) | Lists available mouse buttons. |
+| [Cursor](./Cursor.mdx) | The possible cursors. |
+| [DescriptorType](./DescriptorType.mdx) | The possible types of descriptors. |
+| [DeviceType](./DeviceType.mdx) | What a device gives, and its DeviceName |
+| [HatSwitchDirection](./HatSwitchDirection.mdx) | Joystick hat switch directions. |
+| [Key](./Key.mdx) | The keys on the keyboard. |
+| [KeyState](./KeyState.mdx) | The possible key states. |
+| [PrinterStatus](./PrinterStatus.mdx) | What a printer reports about itself. |
+
+## Delegates
+
+| Delegate | Summary |
+|---|---|
+| [UsbConnectionChangedEventHandler](./UsbConnectionChangedEventHandler.mdx) | Handler for `UsbHostController.ConnectionChanged`. Called on the library's USB thread when a device is attached or detached; the devices already plugged in at `UsbHostController.Enable` time are reported too. |
+

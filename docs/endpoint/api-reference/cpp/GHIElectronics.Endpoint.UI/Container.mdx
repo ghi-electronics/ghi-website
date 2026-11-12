@@ -1,0 +1,29 @@
+---
+title: "Container Class"
+sidebar_label: "Container"
+---
+
+# Container Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Groups child widgets. Children are positioned relative to the container.
+
+```cpp
+class Container : public Widget {};
+```
+
+## Constructors
+
+### Container(Widget parent)
+
+```cpp
+Container(const Widget& parent);
+```
+
+Create a container inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+

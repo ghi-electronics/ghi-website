@@ -1,0 +1,91 @@
+---
+title: "NetworkInterfaceSettings Class"
+sidebar_label: "NetworkInterfaceSettings"
+---
+
+# NetworkInterfaceSettings Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Network`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Network`
+
+Settings for an Ethernet or PC-shared network interface (IP, routing, DNS, MAC pinning). Read with `NetworkController.GetInterfaceSettings` and apply with `NetworkController.SetInterfaceSettings`. For WiFi use `Network.WiFiNetworkInterfaceSettings`.
+
+```cpp
+class NetworkInterfaceSettings {};
+```
+
+## Constructors
+
+### NetworkInterfaceSettings()
+
+```cpp
+NetworkInterfaceSettings();
+```
+
+## Properties
+
+### Address
+
+```cpp
+IPAddress Address() const;
+void Address(IPAddress value);
+```
+
+Static IPv4 address. Ignored when `NetworkInterfaceSettings.IsDhcpEnabled` is true.
+
+**Returns** `IPAddress`
+
+### DnsAddresses
+
+```cpp
+std::vector<IPAddress> DnsAddresses() const;
+void DnsAddresses(std::vector<IPAddress> value);
+```
+
+Static DNS servers. Null or empty leaves the system default.
+
+**Returns** `IPAddress[]`
+
+### GatewayAddress
+
+```cpp
+IPAddress GatewayAddress() const;
+void GatewayAddress(IPAddress value);
+```
+
+Static IPv4 default gateway.
+
+**Returns** `IPAddress`
+
+### IsDhcpEnabled
+
+```cpp
+bool IsDhcpEnabled() const;
+void IsDhcpEnabled(bool value);
+```
+
+True = ask the network for an address (DHCP). False = use the static fields below.
+
+**Returns** `bool`
+
+### MacAddress
+
+```cpp
+PhysicalAddress MacAddress() const;
+void MacAddress(PhysicalAddress value);
+```
+
+When set, these settings apply only to the adapter with this MAC address. Null (default) means any adapter of this type.
+
+**Returns** `PhysicalAddress`
+
+### SubnetMask
+
+```cpp
+IPAddress SubnetMask() const;
+void SubnetMask(IPAddress value);
+```
+
+Static IPv4 subnet mask (e.g. 255.255.255.0).
+
+**Returns** `IPAddress`
+

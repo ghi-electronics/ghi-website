@@ -1,0 +1,85 @@
+---
+title: "Modbus"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Modbus is the long-standing industrial protocol for reading and writing
+holding and input registers on PLCs, sensors, and instruments. Endpoint
+supports both **Modbus RTU** (over a serial line) and **Modbus TCP**
+(over Ethernet or Wi-Fi), and the libraries used are the same
+cross-platform packages that run on desktop and server. The protocol is
+lightweight and comfortably within Endpoint's resource budget.
+
+## Client
+
+The .NET choices are
+[FluentModbus](https://www.nuget.org/packages/FluentModbus) and
+[NModbus4](https://www.nuget.org/packages/NModbus4). Both cover
+client (master) and server (slave) roles, Modbus RTU and Modbus TCP.
+On Python, the standard library is
+[pymodbus](https://pypi.org/project/pymodbus/) (client and server, RTU
+and TCP). On C/C++ the common choice is
+[libmodbus](https://libmodbus.org/), which is available as a standard
+Linux package.
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+using FluentModbus;
+
+// Modbus TCP client
+var client = new ModbusTcpClient();
+client.Connect("192.168.1.50");
+
+short[] registers = client.ReadHoldingRegisters<short>(unitIdentifier: 1,
+                                                       startingAddress: 0,
+                                                       count: 10);
+client.WriteSingleRegister(unitIdentifier: 1, registerAddress: 10, value: 1234);
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+from pymodbus.client import ModbusTcpClient
+
+client = ModbusTcpClient("192.168.1.50")
+client.connect()
+
+result = client.read_holding_registers(address=0, count=10, slave=1)
+client.write_register(address=10, value=1234, slave=1)
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+// Link with -lmodbus.
+#include <modbus/modbus.h>
+#include <cstdio>
+
+modbus_t* ctx = modbus_new_tcp("192.168.1.50", 502);
+modbus_set_slave(ctx, 1);
+modbus_connect(ctx);
+
+uint16_t registers[10] = {};
+modbus_read_registers(ctx, 0, 10, registers);
+modbus_write_register(ctx, 10, 1234);
+
+modbus_close(ctx);
+modbus_free(ctx);
+```
+
+</TabItem>
+</Tabs>
+
+## Hosting a Modbus server
+
+Endpoint can also act as the **server** (slave) side, which is useful
+when Endpoint sits in front of sensors that a plant SCADA system polls
+over Modbus. All three libraries above include a server implementation in
+the same package. See the [Endpoint as gateway](gateway.mdx) page for the
+broader pattern.

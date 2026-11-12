@@ -1,0 +1,85 @@
+---
+title: "Color Struct"
+sidebar_label: "Color"
+---
+
+# Color Struct
+
+**Header:** `endpoint/Drawing.h`<br/>**Namespace:** `GHIElectronics::Endpoint::Drawing`
+
+A 32-bit color with 8 bits each of alpha, red, green, blue. `Canvas` maps it to its `PixelFormat` at draw time.
+
+```cpp
+struct Color {
+    uint8_t R = 0;
+    uint8_t G = 0;
+    uint8_t B = 0;
+    uint8_t A = 0xFF;
+};
+```
+
+## Constructors
+
+### Color()
+
+```cpp
+constexpr Color();
+```
+
+Fully opaque black.
+
+### Color(uint8_t r, uint8_t g, uint8_t b)
+
+```cpp
+constexpr Color(uint8_t r, uint8_t g, uint8_t b);
+```
+
+Opaque color from R/G/B.
+
+### Color(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
+
+```cpp
+constexpr Color(uint8_t r, uint8_t g, uint8_t b, uint8_t a);
+```
+
+Color from R/G/B and alpha.
+
+## Methods
+
+### FromArgb(uint32_t argb)
+
+```cpp
+static constexpr Color FromArgb(uint32_t argb);
+```
+
+Color from a 0xAARRGGBB value.
+
+### FromRgb(uint32_t rgb)
+
+```cpp
+static constexpr Color FromRgb(uint32_t rgb);
+```
+
+Color from a 0xRRGGBB value, opaque.
+
+## Named Colors
+
+Static functions returning common colors. Names match `System.Drawing` / CSS where they overlap.
+
+```cpp
+static constexpr Color Transparent();
+static constexpr Color Black();
+static constexpr Color White();
+static constexpr Color Red();
+static constexpr Color Green();
+static constexpr Color Blue();
+static constexpr Color Yellow();
+static constexpr Color Cyan();
+static constexpr Color Magenta();
+static constexpr Color Navy();
+static constexpr Color Maroon();
+static constexpr Color Olive();
+static constexpr Color Gray();
+static constexpr Color Silver();
+static constexpr Color Orange();
+```

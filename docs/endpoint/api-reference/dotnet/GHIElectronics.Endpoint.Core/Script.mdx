@@ -1,0 +1,107 @@
+---
+title: "Script Class"
+sidebar_label: "Script"
+---
+
+# Script Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+Runs an external program and collects what it prints. Used internally by the Endpoint libraries where a direct API is not yet available; prefer the direct API where one exists.
+
+```csharp
+public class Script
+```
+
+## Nested Types
+
+| Type | Kind | Summary |
+|---|---|---|
+| [Script.OutputDataReceivedEventHandler](./Script_OutputDataReceivedEventHandler.mdx) | Delegate | Signature for the `Script.OutputDataReceived` event. |
+
+## Constructors
+
+### Script(string filename, string workingdir, string arguments)
+
+```csharp
+public Script(string filename, string workingdir, string arguments)
+```
+
+Prepares to run `filename` with the given arguments and working directory.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `filename` | `string` | Path to the program, or a name that `PATH` resolves. |
+| `workingdir` | `string` | Working directory for the program; empty for the current one. |
+| `arguments` | `string` | Command-line arguments as a single string, split by the shell convention. |
+
+## Properties
+
+### Error
+
+```csharp
+public string Error { get; }
+```
+
+Everything the program has printed to standard error so far, newline-separated.
+
+**Returns** `string`
+
+### ExitCode
+
+```csharp
+public int ExitCode { get; }
+```
+
+The program's exit code; -1 if it could not be started
+
+**Returns** `int`
+
+### IsBusy
+
+```csharp
+public bool IsBusy { get; }
+```
+
+True while the program is running (between `Script.Start` and the program's exit).
+
+**Returns** `bool`
+
+### Output
+
+```csharp
+public string Output { get; }
+```
+
+Everything the program has printed to standard output so far, newline-separated.
+
+**Returns** `string`
+
+## Methods
+
+### Start(bool waitforexit)
+
+```csharp
+public void Start(bool waitforexit)
+```
+
+Starts the program and, unless told otherwise, waits until it ends
+
+### Stop()
+
+```csharp
+public void Stop()
+```
+
+Ends the program (and what it started)
+
+## Events
+
+### OutputDataReceived
+
+```csharp
+public event OutputDataReceivedEventHandler OutputDataReceived
+```
+
+Each line the program prints, as it prints it
+

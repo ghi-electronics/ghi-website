@@ -1,0 +1,65 @@
+---
+title: "CameraConfiguration Class"
+sidebar_label: "CameraConfiguration"
+---
+
+# CameraConfiguration Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Camera`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Camera`
+
+Resolution, pixel format and frame rate requested from a camera.
+
+```python
+class CameraConfiguration: ...
+```
+
+## Constructors
+
+### CameraConfiguration()
+
+```python
+def __init__(self):
+```
+
+## Properties
+
+### FrameRate
+
+```python
+FrameRate: int  # @property / @setter
+```
+
+Target frame rate in frames per second. Defaults to 15.
+
+**Returns** `int`
+
+### Height
+
+```python
+Height: int  # @property / @setter
+```
+
+Frame height in pixels.
+
+**Returns** `int`
+
+### ImageFormat
+
+```python
+ImageFormat: PixelFormat  # @property / @setter
+```
+
+Pixel format each frame is delivered in. Defaults to `PixelFormat.Rgb565`.
+
+**Returns** `PixelFormat`
+
+### Width
+
+```python
+Width: int  # @property / @setter
+```
+
+Frame width in pixels.
+
+**Returns** `int`
+

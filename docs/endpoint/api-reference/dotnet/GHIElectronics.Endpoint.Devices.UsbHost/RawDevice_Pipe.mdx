@@ -1,0 +1,77 @@
+---
+title: "RawDevice.Pipe Class"
+sidebar_label: "RawDevice.Pipe"
+---
+
+# Pipe Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
+
+A USB communication pipe.
+
+```csharp
+public class Pipe : IDisposable
+```
+
+## Properties
+
+### Endpoint
+
+```csharp
+public Endpoint Endpoint { get; }
+```
+
+Endpoint associated with this pipe.
+
+**Returns** `Endpoint`
+
+### TransferTimeout
+
+```csharp
+public int TransferTimeout { get; set; }
+```
+
+The timeout for transfer operations in milliseconds (0: none). Defaults to 500ms.
+
+**Returns** `int`
+
+## Methods
+
+### Dispose()
+
+```csharp
+public void Dispose()
+```
+
+Closes the pipe.
+
+### Transfer(byte[] buffer, int offset, int count)
+
+```csharp
+public int Transfer(byte[] buffer, int offset, int count)
+```
+
+Transfers data to/from the endpoint: an IN endpoint (address 0x80 and up) fills the buffer, an OUT endpoint sends it.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `buffer` | `byte[]` | The transfer buffer. |
+| `offset` | `int` | The offset into the buffer. |
+| `count` | `int` | The amount to transfer starting at offset from the buffer. |
+
+**Returns** `int`: The number of bytes successfully transferred.
+
+### Transfer(byte[] buffer)
+
+```csharp
+public int Transfer(byte[] buffer)
+```
+
+Transfers data to/from the endpoint.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `buffer` | `byte[]` | The transfer buffer. |
+
+**Returns** `int`: The number of bytes successfully transferred.
+

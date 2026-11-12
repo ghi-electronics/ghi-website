@@ -1,0 +1,47 @@
+---
+title: "FrameReceivedEventArgs Class"
+sidebar_label: "FrameReceivedEventArgs"
+---
+
+# FrameReceivedEventArgs Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Camera`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Camera`
+
+A camera's frame while streaming: a JPEG.
+
+```python
+class FrameReceivedEventArgs(EventArgs): ...
+```
+
+## Properties
+
+### Height
+
+```python
+Height: int  # @property
+```
+
+Frame height in pixels.
+
+**Returns** `int`
+
+### Jpeg
+
+```python
+Jpeg: list[int]  # @property
+```
+
+The frame as a JPEG byte buffer.
+
+**Returns** `byte[]`
+
+### Width
+
+```python
+Width: int  # @property
+```
+
+Frame width in pixels.
+
+**Returns** `int`
+

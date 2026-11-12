@@ -1,0 +1,152 @@
+---
+title: "Interface Class"
+sidebar_label: "Interface"
+---
+
+# Interface Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost.Descriptors`
+
+Interface descriptor.
+
+```python
+class Interface(BaseDescriptor): ...
+```
+
+## Constructors
+
+### Interface(byte[] buffer)
+
+```python
+def __init__(self, buffer: list[int]):
+```
+
+Constructs a new descriptor.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `buffer` | `byte[]` | The buffer with which to populate the descriptor. |
+
+### Interface(byte[] buffer, int offset)
+
+```python
+def __init__(self, buffer: list[int], offset: int):
+```
+
+Constructs a new descriptor.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `buffer` | `byte[]` | The buffer with which to populate the descriptor. |
+| `offset` | `int` | The offset into the buffer at which to start. |
+
+### Interface()
+
+```python
+def __init__(self):
+```
+
+Constructs a new descriptor.
+
+## Properties
+
+### AlternateSetting
+
+```python
+AlternateSetting: int  # @property / @setter
+```
+
+The value used to select alternate settings.
+
+**Returns** `byte`
+
+### AuxiliaryDescriptors
+
+```python
+AuxiliaryDescriptors: list[Auxiliary]  # @property / @setter
+```
+
+Child auxiliary descriptors.
+
+**Returns** `Auxiliary[]`
+
+### ClassCode
+
+```python
+ClassCode: int  # @property / @setter
+```
+
+The class code.
+
+**Returns** `byte`
+
+### Endpoints
+
+```python
+Endpoints: list[Endpoint]  # @property / @setter
+```
+
+Child endpoint descriptors.
+
+**Returns** `Endpoint[]`
+
+### Index
+
+```python
+Index: int  # @property / @setter
+```
+
+The interface string descriptor index.
+
+**Returns** `byte`
+
+### Number
+
+```python
+Number: int  # @property / @setter
+```
+
+The number of the interface.
+
+**Returns** `byte`
+
+### NumberEndpoints
+
+```python
+NumberEndpoints: int  # @property / @setter
+```
+
+The number of endpoints for this interface.
+
+**Returns** `byte`
+
+### ProtocolCode
+
+```python
+ProtocolCode: int  # @property / @setter
+```
+
+The protocal code.
+
+**Returns** `byte`
+
+### SubclassCode
+
+```python
+SubclassCode: int  # @property / @setter
+```
+
+The subclass code.
+
+**Returns** `byte`
+
+## Fields
+
+### FixedLength
+
+```python
+FixedLength: int = 9
+```
+
+The fixed length of this descriptor type in bytes.
+

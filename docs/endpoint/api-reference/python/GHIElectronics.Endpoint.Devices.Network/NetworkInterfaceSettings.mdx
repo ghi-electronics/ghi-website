@@ -1,0 +1,85 @@
+---
+title: "NetworkInterfaceSettings Class"
+sidebar_label: "NetworkInterfaceSettings"
+---
+
+# NetworkInterfaceSettings Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Network`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Network`
+
+Settings for an Ethernet or PC-shared network interface (IP, routing, DNS, MAC pinning). Read with `NetworkController.GetInterfaceSettings` and apply with `NetworkController.SetInterfaceSettings`. For WiFi use `Network.WiFiNetworkInterfaceSettings`.
+
+```python
+class NetworkInterfaceSettings: ...
+```
+
+## Constructors
+
+### NetworkInterfaceSettings()
+
+```python
+def __init__(self):
+```
+
+## Properties
+
+### Address
+
+```python
+Address: IPAddress  # @property / @setter
+```
+
+Static IPv4 address. Ignored when `NetworkInterfaceSettings.IsDhcpEnabled` is true.
+
+**Returns** `IPAddress`
+
+### DnsAddresses
+
+```python
+DnsAddresses: list[IPAddress]  # @property / @setter
+```
+
+Static DNS servers. Null or empty leaves the system default.
+
+**Returns** `IPAddress[]`
+
+### GatewayAddress
+
+```python
+GatewayAddress: IPAddress  # @property / @setter
+```
+
+Static IPv4 default gateway.
+
+**Returns** `IPAddress`
+
+### IsDhcpEnabled
+
+```python
+IsDhcpEnabled: bool  # @property / @setter
+```
+
+True = ask the network for an address (DHCP). False = use the static fields below.
+
+**Returns** `bool`
+
+### MacAddress
+
+```python
+MacAddress: PhysicalAddress  # @property / @setter
+```
+
+When set, these settings apply only to the adapter with this MAC address. Null (default) means any adapter of this type.
+
+**Returns** `PhysicalAddress`
+
+### SubnetMask
+
+```python
+SubnetMask: IPAddress  # @property / @setter
+```
+
+Static IPv4 subnet mask (e.g. 255.255.255.0).
+
+**Returns** `IPAddress`
+

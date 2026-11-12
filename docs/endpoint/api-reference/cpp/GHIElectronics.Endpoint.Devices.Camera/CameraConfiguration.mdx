@@ -1,0 +1,69 @@
+---
+title: "CameraConfiguration Class"
+sidebar_label: "CameraConfiguration"
+---
+
+# CameraConfiguration Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Camera`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Camera`
+
+Resolution, pixel format and frame rate requested from a camera.
+
+```cpp
+class CameraConfiguration {};
+```
+
+## Constructors
+
+### CameraConfiguration()
+
+```cpp
+CameraConfiguration();
+```
+
+## Properties
+
+### FrameRate
+
+```cpp
+int32_t FrameRate() const;
+void FrameRate(int32_t value);
+```
+
+Target frame rate in frames per second. Defaults to 15.
+
+**Returns** `int`
+
+### Height
+
+```cpp
+int32_t Height() const;
+void Height(int32_t value);
+```
+
+Frame height in pixels.
+
+**Returns** `int`
+
+### ImageFormat
+
+```cpp
+PixelFormat ImageFormat() const;
+void ImageFormat(PixelFormat value);
+```
+
+Pixel format each frame is delivered in. Defaults to `PixelFormat.Rgb565`.
+
+**Returns** `PixelFormat`
+
+### Width
+
+```cpp
+int32_t Width() const;
+void Width(int32_t value);
+```
+
+Frame width in pixels.
+
+**Returns** `int`
+

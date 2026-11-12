@@ -1,0 +1,23 @@
+---
+title: "PixelFormat Enum"
+sidebar_label: "PixelFormat"
+---
+
+# PixelFormat Enum
+
+**Package:** `GHIElectronics.Endpoint.Devices.Camera`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Camera`
+
+Pixel layout of a camera frame.
+
+```csharp
+public enum PixelFormat
+```
+
+## Fields
+
+| Name | Value | Description |
+|---|---|---|
+| `Rgb565` | `0` | 16-bit RGB, 5 bits red, 6 bits green, 5 bits blue, two bytes per pixel. |
+| `Rgb888` | `1` | 24-bit RGB, 8 bits per channel, three bytes per pixel. |
+| `Jpeg` | `2` | JPEG-compressed frame, size varies per frame. |
+

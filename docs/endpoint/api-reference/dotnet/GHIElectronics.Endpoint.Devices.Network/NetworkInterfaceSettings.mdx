@@ -1,0 +1,85 @@
+---
+title: "NetworkInterfaceSettings Class"
+sidebar_label: "NetworkInterfaceSettings"
+---
+
+# NetworkInterfaceSettings Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Network`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Network`
+
+Settings for an Ethernet or PC-shared network interface (IP, routing, DNS, MAC pinning). Read with `NetworkController.GetInterfaceSettings` and apply with `NetworkController.SetInterfaceSettings`. For WiFi use `Network.WiFiNetworkInterfaceSettings`.
+
+```csharp
+public class NetworkInterfaceSettings
+```
+
+## Constructors
+
+### NetworkInterfaceSettings()
+
+```csharp
+public NetworkInterfaceSettings()
+```
+
+## Properties
+
+### Address
+
+```csharp
+public IPAddress Address { get; set; }
+```
+
+Static IPv4 address. Ignored when `NetworkInterfaceSettings.IsDhcpEnabled` is true.
+
+**Returns** `IPAddress`
+
+### DnsAddresses
+
+```csharp
+public IPAddress[] DnsAddresses { get; set; }
+```
+
+Static DNS servers. Null or empty leaves the system default.
+
+**Returns** `IPAddress[]`
+
+### GatewayAddress
+
+```csharp
+public IPAddress GatewayAddress { get; set; }
+```
+
+Static IPv4 default gateway.
+
+**Returns** `IPAddress`
+
+### IsDhcpEnabled
+
+```csharp
+public bool IsDhcpEnabled { get; set; }
+```
+
+True = ask the network for an address (DHCP). False = use the static fields below.
+
+**Returns** `bool`
+
+### MacAddress
+
+```csharp
+public PhysicalAddress MacAddress { get; set; }
+```
+
+When set, these settings apply only to the adapter with this MAC address. Null (default) means any adapter of this type.
+
+**Returns** `PhysicalAddress`
+
+### SubnetMask
+
+```csharp
+public IPAddress SubnetMask { get; set; }
+```
+
+Static IPv4 subnet mask (e.g. 255.255.255.0).
+
+**Returns** `IPAddress`
+

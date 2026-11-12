@@ -1,0 +1,53 @@
+---
+title: "Grid Class"
+sidebar_label: "Grid"
+---
+
+# Grid Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+WPF-style Grid with ColumnDefinitions + RowDefinitions. Call `Grid.SetDefinitions` once with the column + row sizes, then call `Grid.SetCell` on each child. Sizes: positive = fixed pixels; 0 or negative = star (-1 = "*", -2 = "2*", ...).
+
+```python
+class Grid(Widget): ...
+```
+
+## Constructors
+
+### Grid(Widget parent)
+
+```python
+def __init__(self, parent: Widget):
+```
+
+Create a grid inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Methods
+
+### SetCell(Widget child, int column, int row, int columnSpan, int rowSpan)
+
+```python
+@staticmethod
+def SetCell(child: Widget, column: int, row: int, columnSpan: int, rowSpan: int) -> None:
+```
+
+Attach `child` to a cell in the grid.
+
+### SetDefinitions(int[] columns, int[] rows)
+
+```python
+def SetDefinitions(self, columns: list[int], rows: list[int]) -> None:
+```
+
+Define column and row sizes. Positive values are fixed pixel widths; a negative value `-n` is a star share of weight `n` (`-1` = `*`, `-2` = `2*`, ...). Zero is treated as star.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `columns` | `int[]` | Column size definitions, left to right. |
+| `rows` | `int[]` | Row size definitions, top to bottom. |
+

@@ -1,0 +1,58 @@
+---
+title: "Graphics"
+sidebar_label: "Graphics"
+---
+
+Endpoint's `GHIElectronics.Endpoint.UI` package ships two ways to put
+pixels on a screen or buffer, plus a pointer at the usual third-party
+graphics libraries when you need more.
+
+## Canvas
+
+Primitive drawing (lines, rectangles, circles, text, images) rendered
+into a pixel buffer. Canvas owns the pixel format; the output device
+just takes bytes:
+
+```csharp
+display.Flush(canvas.Buffer);   // on-board panel
+spi.Write(canvas.Buffer);       // SPI display
+i2c.Write(canvas.Buffer);       // I2C display
+```
+
+Same Canvas API for all three; the format you pick at `Canvas.Create`
+determines what `Buffer` looks like.
+
+See [Canvas](canvas.mdx) for the API and samples.
+
+## Widget
+
+Button, Label, Image, Border, CheckBox, Slider, Chart, DockPanel: the
+full widget library built on top of the same embedded graphics engine
+Canvas uses. Create widgets from a `Screen`, wire up `Clicked` /
+`ValueChanged` events, let the library handle hit-testing and
+repainting.
+
+See [Widget](widget.mdx) for the API and samples.
+
+## Alternatives
+
+Nothing stops you from bringing in a third-party graphics library and
+drawing with that instead. Common choices:
+
+- **SkiaSharp**: full-featured 2D canvas with text, paths, gradients and image decoding.
+- **ImageSharp**: pure-managed image processing, encoding, filters.
+- **Microsoft.Maui.Graphics**: Microsoft's cross-platform 2D API with a pluggable backend.
+- **Pillow** (Python): the standard Python imaging library.
+
+See [Alternatives](alternatives.mdx) for installation and a working
+sample per library.
+
+## Which should I pick?
+
+| Need | Use |
+|---|---|
+| Draw a line / circle / text on the panel | **Canvas** |
+| Push pixels to an SPI or I2C display | **Canvas** with `PixelFormat.Rgb565` / `Monochrome` |
+| Interactive forms (buttons, inputs, lists) | **Widget** |
+| SVG, vector paths, complex text layout, image filters | **Alternatives** → SkiaSharp |
+| Image resize / encode / decode | **Alternatives** → ImageSharp or Pillow |

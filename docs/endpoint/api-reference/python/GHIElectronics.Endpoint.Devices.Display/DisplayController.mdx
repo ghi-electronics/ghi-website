@@ -1,0 +1,144 @@
+---
+title: "DisplayController Class"
+sidebar_label: "DisplayController"
+---
+
+# DisplayController Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Display`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Display`
+
+A display on the board. This class is abstract: the library ships one concrete subclass, `Display.ParallelDisplayController`, for the built-in parallel RGB panel into `/dev/fb0`. Customers wiring any other kind of panel (SPI, I2C, custom) subclass this directly and drive the hardware through the Core `Spi`/`I2c`/`Gpio` APIs. The abstract contract is: open the panel on `DisplayController.Enable`, close it on `DisplayController.Disable`, push pixels on `DisplayController.Flush`.
+
+```python
+class DisplayController(IDisposable): ...
+```
+
+## Constructors
+
+### DisplayController()
+
+```python
+def __init__(self):
+```
+
+## Properties
+
+### Height
+
+```python
+Height: int  # @property
+```
+
+Visible height of the panel in pixels.
+
+**Returns** `int`
+
+### IsEnabled
+
+```python
+IsEnabled: bool  # @property
+```
+
+True once the panel driver / init path has run and the panel is ready to receive pixels.
+
+**Returns** `bool`
+
+### Width
+
+```python
+Width: int  # @property
+```
+
+Visible width of the panel in pixels.
+
+**Returns** `int`
+
+## Methods
+
+### Disable()
+
+```python
+def Disable(self) -> None:
+```
+
+Reverse of `DisplayController.Enable`. Safe to call when nothing is enabled.
+
+### Dispose()
+
+```python
+def Dispose(self) -> None:
+```
+
+Calls `DisplayController.Disable` and releases any resources the subclass holds.
+
+### Enable()
+
+```python
+def Enable(self) -> None:
+```
+
+Loads the panel driver / runs the init sequence. Throws if the apply fails.
+
+### Flush(ReadOnlySpan&lt;byte> pixels)
+
+```python
+def Flush(self, pixels: ReadOnlySpan[int]) -> None:
+```
+
+Push a full-screen frame. Pixel format defaults to `PixelFormat.Format16bppRgb565`.
+
+### Flush(ReadOnlySpan&lt;byte> pixels, PixelFormat format)
+
+```python
+def Flush(self, pixels: ReadOnlySpan[int], format: PixelFormat) -> None:
+```
+
+Push a full-screen frame in the given format.
+
+### Flush(ReadOnlySpan&lt;byte> pixels, PixelFormat format, int x, int y, int width, int height)
+
+```python
+def Flush(self, pixels: ReadOnlySpan[int], format: PixelFormat, x: int, y: int, width: int, height: int) -> None:
+```
+
+Push a region of the panel. The subclass handles any pixel-format conversion.
+
+### GetDefault()
+
+```python
+@staticmethod
+def GetDefault() -> DisplayController:
+```
+
+The built-in display controller for this board, or null if `/config/display.json` says the type is `DisplayType.None`. Customers using a custom (SPI/I2C/other) panel instantiate their own subclass of `Display.DisplayController` directly instead.
+
+**Returns** `DisplayController`
+
+### GetSettings()
+
+```python
+@staticmethod
+def GetSettings() -> DisplaySettings:
+```
+
+Reads the built-in display's settings from `/config/display.json`. Changes to the returned object do nothing until passed back to `DisplayController.SetSettings`.
+
+**Returns** `DisplaySettings`
+
+### SetSettings(DisplaySettings settings)
+
+```python
+@staticmethod
+def SetSettings(settings: DisplaySettings) -> None:
+```
+
+Writes the settings to `/config/display.json` (persisted across reboots). Does NOT apply them to the live panel - call `DisplayController.Enable` for that.
+
+### ShowLogo()
+
+```python
+def ShowLogo(self) -> None:
+```
+
+Reads the `logo` filename from `/config/display.json`, decodes the 24-bit BMP file from `/config`, and calls `DisplayController.Flush` with it. No-op if the file is missing or not a 24-bit uncompressed BMP. Virtual so a subclass can replace the behaviour (e.g. pre-convert to the panel's native format once instead of on every call).
+

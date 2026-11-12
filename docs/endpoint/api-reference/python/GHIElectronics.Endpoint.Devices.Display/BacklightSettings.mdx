@@ -1,0 +1,55 @@
+---
+title: "BacklightSettings Class"
+sidebar_label: "BacklightSettings"
+---
+
+# BacklightSettings Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Display`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Display`
+
+GPIO pin that drives the panel's backlight.
+
+```python
+class BacklightSettings: ...
+```
+
+## Constructors
+
+### BacklightSettings()
+
+```python
+def __init__(self):
+```
+
+## Properties
+
+### ActivePolarity
+
+```python
+ActivePolarity: SignalPolarity  # @property / @setter
+```
+
+Which GPIO level turns the backlight ON. ActiveHigh (default) = pulled high to light the panel. ActiveLow is common when the pin drives the gate of a PNP transistor.
+
+**Returns** `SignalPolarity`
+
+### GpioChip
+
+```python
+GpioChip: str  # @property / @setter
+```
+
+Gpiochip name as the kernel exposes it (e.g. "gpiochip7").
+
+**Returns** `string`
+
+### GpioPin
+
+```python
+GpioPin: Nullable[int]  # @property / @setter
+```
+
+Line number on the chip.
+
+**Returns** `Nullable<int>`
+

@@ -1,0 +1,54 @@
+---
+title: "Auxiliary Class"
+sidebar_label: "Auxiliary"
+---
+
+# Auxiliary Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost.Descriptors`
+
+Represents additional auxiliary descriptors.
+
+```csharp
+public class Auxiliary : BaseDescriptor
+```
+
+## Constructors
+
+### Auxiliary(byte[] buffer)
+
+```csharp
+public Auxiliary(byte[] buffer)
+```
+
+Constructs a new descriptor.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `buffer` | `byte[]` | The buffer with which to populate the descriptor. |
+
+### Auxiliary(byte[] buffer, int offset)
+
+```csharp
+public Auxiliary(byte[] buffer, int offset)
+```
+
+Constructs a new descriptor.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `buffer` | `byte[]` | The buffer with which to populate the descriptor. |
+| `offset` | `int` | The offset into the buffer at which to start. |
+
+## Properties
+
+### Payload
+
+```csharp
+public byte[] Payload { get; set; }
+```
+
+The payload of the descriptor excluding length and type.
+
+**Returns** `byte[]`
+

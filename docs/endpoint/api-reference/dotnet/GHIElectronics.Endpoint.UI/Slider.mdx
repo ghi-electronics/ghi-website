@@ -1,0 +1,71 @@
+---
+title: "Slider Class"
+sidebar_label: "Slider"
+---
+
+# Slider Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Draggable horizontal slider. Default range is 0-100.
+
+```csharp
+public class Slider : Widget
+```
+
+## Constructors
+
+### Slider(Widget parent)
+
+```csharp
+public Slider(Widget parent)
+```
+
+Create a slider inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Properties
+
+### Maximum
+
+```csharp
+public int Maximum { get; set; }
+```
+
+Upper bound of `Slider.Value`. Setting it pushes both bounds to LVGL. Getter returns the last value set.
+
+**Returns** `int`
+
+### Minimum
+
+```csharp
+public int Minimum { get; set; }
+```
+
+Lower bound of `Slider.Value`. Setting it pushes both bounds to LVGL. Getter returns the last value set.
+
+**Returns** `int`
+
+### Value
+
+```csharp
+public int Value { get; set; }
+```
+
+Current slider position between `Slider.Minimum` and `Slider.Maximum`. Read-back is supported by LVGL.
+
+**Returns** `int`
+
+## Events
+
+### ValueChanged
+
+```csharp
+public event EventHandler ValueChanged
+```
+
+Fires on every change of `Slider.Value` from user drag. Runs on the UI thread.
+

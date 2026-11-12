@@ -1,0 +1,61 @@
+---
+title: "CheckBox Class"
+sidebar_label: "CheckBox"
+---
+
+# CheckBox Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Two-state check box with a label. `CheckBox.ValueChanged` fires on each toggle.
+
+```csharp
+public class CheckBox : Widget
+```
+
+## Constructors
+
+### CheckBox(Widget parent)
+
+```csharp
+public CheckBox(Widget parent)
+```
+
+Create a check box inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Properties
+
+### IsChecked
+
+```csharp
+public bool IsChecked { get; set; }
+```
+
+Checked state. Read-back is supported by LVGL.
+
+**Returns** `bool`
+
+### Text
+
+```csharp
+public string Text { get; set; }
+```
+
+Label text shown next to the check box. `null` is treated as empty. Getter returns the last value set.
+
+**Returns** `string`
+
+## Events
+
+### ValueChanged
+
+```csharp
+public event EventHandler ValueChanged
+```
+
+Fires when `CheckBox.IsChecked` toggles via user interaction. Runs on the UI thread.
+

@@ -1,0 +1,38 @@
+---
+title: "CameraControl Enum"
+sidebar_label: "CameraControl"
+---
+
+# CameraControl Enum
+
+**Package:** `GHIElectronics.Endpoint.Devices.Camera`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Camera`
+
+A camera's picture controls (each camera has some of them).
+
+```csharp
+public enum CameraControl
+```
+
+## Fields
+
+| Name | Value | Description |
+|---|---|---|
+| `Brightness` | `0` | Overall picture brightness. |
+| `Contrast` | `1` | Difference between dark and light areas. |
+| `Saturation` | `2` | Colour intensity (0 is grayscale). |
+| `Hue` | `3` | Colour shift around the colour wheel. |
+| `Gamma` | `4` | Non-linear brightness correction. |
+| `Gain` | `5` | Sensor amplification; higher means brighter but noisier. |
+| `Sharpness` | `6` | Edge-enhancement strength. |
+| `BacklightCompensation` | `7` | Compensates when the subject is backlit. |
+| `AutoWhiteBalance` | `8` | 1: on, 0: off (then WhiteBalanceTemperature counts) |
+| `WhiteBalanceTemperature` | `9` | White-balance colour temperature in kelvin; used when `CameraControl.AutoWhiteBalance` is off. |
+| `AutoExposure` | `10` | 1: on, 0: off (then Exposure counts) |
+| `Exposure` | `11` | Shutter time in the camera's own units; used when `CameraControl.AutoExposure` is off. |
+| `PowerLineFrequency` | `12` | 0: off, 1: 50 Hz, 2: 60 Hz (against flicker from lights) |
+| `AutoFocus` | `13` | 1: on, 0: off (then Focus counts) |
+| `Focus` | `14` | Lens focus position; used when `CameraControl.AutoFocus` is off. |
+| `Zoom` | `15` | Digital or optical zoom (if the camera has one). |
+| `Pan` | `16` | Horizontal camera-head position (motorised cameras only). |
+| `Tilt` | `17` | Vertical camera-head position (motorised cameras only). |
+

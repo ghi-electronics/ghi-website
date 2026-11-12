@@ -1,0 +1,61 @@
+---
+title: "ProgressBar Class"
+sidebar_label: "ProgressBar"
+---
+
+# ProgressBar Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Horizontal progress bar. No events; the owner drives it via `ProgressBar.Value`.
+
+```csharp
+public class ProgressBar : Widget
+```
+
+## Constructors
+
+### ProgressBar(Widget parent)
+
+```csharp
+public ProgressBar(Widget parent)
+```
+
+Create a progress bar inside `parent`. Default range is 0-100.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Properties
+
+### Maximum
+
+```csharp
+public int Maximum { get; set; }
+```
+
+Upper bound of `ProgressBar.Value`. Setting it pushes both bounds to LVGL. Getter returns the last value set.
+
+**Returns** `int`
+
+### Minimum
+
+```csharp
+public int Minimum { get; set; }
+```
+
+Lower bound of `ProgressBar.Value`. Setting it pushes both bounds to LVGL. Getter returns the last value set.
+
+**Returns** `int`
+
+### Value
+
+```csharp
+public int Value { get; set; }
+```
+
+Current fill between `ProgressBar.Minimum` and `ProgressBar.Maximum`. Read-back is supported by LVGL.
+
+**Returns** `int`
+

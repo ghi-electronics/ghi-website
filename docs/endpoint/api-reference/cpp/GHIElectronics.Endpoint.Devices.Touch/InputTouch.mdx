@@ -1,0 +1,91 @@
+---
+title: "InputTouch Class"
+sidebar_label: "InputTouch"
+---
+
+# InputTouch Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Touch`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Touch`
+
+Touchscreen backed by a kernel input device at `/dev/input/eventN`. USB HID touchscreens show up this way automatically.
+
+```cpp
+class InputTouch : public Touch {};
+```
+
+## Constructors
+
+### InputTouch(string deviceName)
+
+```cpp
+InputTouch(const std::string& deviceName);
+```
+
+Opens a specific /dev/input/eventN path.
+
+## Properties
+
+### Connected
+
+```cpp
+bool Connected() const;
+```
+
+**Returns** `bool`
+
+### DeviceName
+
+```cpp
+std::string DeviceName() const;
+```
+
+The `/dev/input/eventN` path the touchscreen was opened on.
+
+**Returns** `string`
+
+### Height
+
+```cpp
+int32_t Height() const;
+```
+
+**Returns** `int`
+
+### ProductId
+
+```cpp
+int32_t ProductId() const;
+```
+
+USB product id (0 if the touchscreen is not a USB device).
+
+**Returns** `int`
+
+### VendorId
+
+```cpp
+int32_t VendorId() const;
+```
+
+USB vendor id (0 if the touchscreen is not a USB device).
+
+**Returns** `int`
+
+### Width
+
+```cpp
+int32_t Width() const;
+```
+
+**Returns** `int`
+
+## Methods
+
+### Dispose()
+
+```cpp
+virtual void Dispose() override;
+```
+
+Closes the kernel input device and stops the reader thread.
+

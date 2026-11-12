@@ -1,0 +1,51 @@
+---
+title: "Switch Class"
+sidebar_label: "Switch"
+---
+
+# Switch Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Binary on/off toggle. ValueChanged fires on each flip.
+
+```csharp
+public class Switch : Widget
+```
+
+## Constructors
+
+### Switch(Widget parent)
+
+```csharp
+public Switch(Widget parent)
+```
+
+Create a switch inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Properties
+
+### IsChecked
+
+```csharp
+public bool IsChecked { get; set; }
+```
+
+On/off state. Read-back is supported by LVGL.
+
+**Returns** `bool`
+
+## Events
+
+### ValueChanged
+
+```csharp
+public event EventHandler ValueChanged
+```
+
+Fires on every flip of `Switch.IsChecked` from user interaction. Runs on the UI thread.
+

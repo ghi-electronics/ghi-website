@@ -1,0 +1,47 @@
+---
+title: "FrameReceivedEventArgs Class"
+sidebar_label: "FrameReceivedEventArgs"
+---
+
+# FrameReceivedEventArgs Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Camera`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Camera`
+
+A camera's frame while streaming: a JPEG.
+
+```csharp
+public sealed class FrameReceivedEventArgs : EventArgs
+```
+
+## Properties
+
+### Height
+
+```csharp
+public int Height { get; }
+```
+
+Frame height in pixels.
+
+**Returns** `int`
+
+### Jpeg
+
+```csharp
+public byte[] Jpeg { get; }
+```
+
+The frame as a JPEG byte buffer.
+
+**Returns** `byte[]`
+
+### Width
+
+```csharp
+public int Width { get; }
+```
+
+Frame width in pixels.
+
+**Returns** `int`
+

@@ -1,0 +1,41 @@
+---
+title: "EPM815.Dac Class"
+sidebar_label: "EPM815.Dac"
+---
+
+# Dac Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+The analog outputs bundled with EPM815. Use with the `GHIElectronics.Endpoint.Devices.Dac` package (same API as TinyCLR).
+
+```cpp
+class Dac {};
+```
+
+## Fields
+
+### Id
+
+```cpp
+static constexpr std::string Id = "EPM815.Dac";
+```
+
+The DAC's name, for `DacController.FromName`.
+
+### PA4
+
+```cpp
+static constexpr int32_t PA4 = 0;
+```
+
+DAC channel 1, on PA4.
+
+### PA5
+
+```cpp
+static constexpr int32_t PA5 = 1;
+```
+
+DAC channel 2, on PA5.
+

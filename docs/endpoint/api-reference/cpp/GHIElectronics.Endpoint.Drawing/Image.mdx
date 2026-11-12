@@ -1,0 +1,58 @@
+---
+title: "Image Class"
+sidebar_label: "Image"
+---
+
+# Image Class
+
+**Header:** `endpoint/Drawing.h`<br/>**Namespace:** `GHIElectronics::Endpoint::Drawing`
+
+A decoded image, ready to blit into a `Canvas`. Decoding (JPEG / PNG / BMP / GIF / TGA, picked from the file's magic bytes) happens once at `Load`; `Canvas::DrawImage` then blits + converts to whatever `PixelFormat` the target canvas uses.
+
+```cpp
+class Image {};
+```
+
+### Example
+
+```cpp
+std::vector<uint8_t> bytes = /* read the resource */;
+Image background = Image::Load(bytes);  // decode once
+
+while (running) {
+    canvas.DrawImage(background, 0, 0);  // many frames, no re-decode
+    display.Flush(canvas.Buffer());
+}
+```
+
+## Properties
+
+### Width
+
+```cpp
+int Width() const;
+```
+
+### Height
+
+```cpp
+int Height() const;
+```
+
+### PixelFormat
+
+```cpp
+Drawing::PixelFormat PixelFormat() const;
+```
+
+Internal storage format of the decoded pixels (currently always `Rgb888`). Does NOT dictate the canvas format; `Canvas::DrawImage` converts on draw.
+
+## Methods
+
+### Load(std::span&lt;const uint8_t&gt; fileBytes)
+
+```cpp
+static Image Load(std::span<const uint8_t> fileBytes);
+```
+
+Decodes an image file (JPEG / PNG / BMP / GIF / TGA, detected from the file's magic bytes) into an in-memory bitmap.

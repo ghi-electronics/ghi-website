@@ -1,0 +1,39 @@
+---
+title: "NativeUtils Class"
+sidebar_label: "NativeUtils"
+---
+
+# NativeUtils Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+Low-level helpers backed by the native `nativeutils.so` library: a CPU wait-for-interrupt and a hardware-assisted JPEG to RGB888 decoder.
+
+```csharp
+public static class NativeUtils
+```
+
+## Methods
+
+### JpegtoRGB888(byte[] src, int size, byte[] dest)
+
+```csharp
+public static void JpegtoRGB888(byte[] src, int size, byte[] dest)
+```
+
+Decodes a JPEG image to packed 24-bit RGB888 pixels. Uses the hardware JPEG decoder when the chip has one; otherwise a software decoder in the native library.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `src` | `byte[]` | JPEG-encoded bytes. |
+| `size` | `int` | Number of valid bytes in `src`. |
+| `dest` | `byte[]` | Destination buffer, large enough for width * height * 3 bytes. |
+
+### WaitForInterrupt()
+
+```csharp
+public static void WaitForInterrupt()
+```
+
+Blocks the calling thread with the ARM WFI (wait-for-interrupt) instruction. The core sleeps until the next interrupt is delivered.
+

@@ -1,0 +1,63 @@
+---
+title: "RadioButton Class"
+sidebar_label: "RadioButton"
+---
+
+# RadioButton Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Circular-indicator CheckBox. Grouping (mutual exclusion) is up to the caller: subscribe to ValueChanged on each radio and clear the others when one gets selected.
+
+```cpp
+class RadioButton : public Widget {};
+```
+
+## Constructors
+
+### RadioButton(Widget parent)
+
+```cpp
+RadioButton(const Widget& parent);
+```
+
+Create a radio button inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Properties
+
+### IsChecked
+
+```cpp
+bool IsChecked() const;
+void IsChecked(bool value);
+```
+
+Selected state. Read-back is supported by LVGL.
+
+**Returns** `bool`
+
+### Text
+
+```cpp
+std::string Text() const;
+void Text(std::string value);
+```
+
+Label text shown next to the radio button. `null` is treated as empty. Getter returns the last value set.
+
+**Returns** `string`
+
+## Events
+
+### ValueChanged
+
+```cpp
+Core::Event<...> ValueChanged;
+```
+
+Fires when the radio button is toggled via user interaction. Runs on the UI thread.
+

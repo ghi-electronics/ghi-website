@@ -1,0 +1,45 @@
+---
+title: "MenuItem Class"
+sidebar_label: "MenuItem"
+---
+
+# MenuItem Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Handle to a menu item. For a leaf item (`Menu.AddItem`) subscribe to `MenuItem.Clicked`. For a dropdown parent (`Menu.AddDropdown`) subscribe to `MenuItem.ValueChanged` and read `MenuItem.Selected` to find out which sub-item the user picked.
+
+```csharp
+public class MenuItem
+```
+
+## Properties
+
+### Selected
+
+```csharp
+public int Selected { get; }
+```
+
+For dropdown items: 0-based index of the sub-item the user picked. Returns -1 if this is a leaf item (no sub-items).
+
+**Returns** `int`
+
+## Events
+
+### Clicked
+
+```csharp
+public event EventHandler Clicked
+```
+
+Fires when a leaf item is tapped. Runs on the UI thread.
+
+### ValueChanged
+
+```csharp
+public event EventHandler ValueChanged
+```
+
+Fires when the user picks a sub-item from a dropdown item. Runs on the UI thread.
+

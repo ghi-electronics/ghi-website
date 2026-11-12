@@ -1,0 +1,71 @@
+---
+title: "DeviceInformation Class"
+sidebar_label: "DeviceInformation"
+---
+
+# DeviceInformation Class
+
+**Package:** `GHIElectronics.Endpoint.Native`<br/>**Namespace:** `GHIElectronics.Endpoint.Native`
+
+Board identity, firmware version, and boot/auto-run configuration helpers.
+
+```python
+class DeviceInformation: ...
+```
+
+## Properties
+
+### Version
+
+```python
+Version: str  # @property
+```
+
+Firmware version string as reported by `get_version.sh`, with any trailing newline stripped.
+
+**Returns** `string`
+
+## Methods
+
+### DisableAutoRun()
+
+```python
+@staticmethod
+def DisableAutoRun() -> None:
+```
+
+Removes the auto-run init.d entry installed by `DeviceInformation.EnableAutoRun`.
+
+### DisableSSH()
+
+```python
+@staticmethod
+def DisableSSH() -> None:
+```
+
+Permanently removes the SSH (`S50dropbear`) and USB gadget (`S30usbgadget`) init.d entries, so neither service starts at the next boot. Intended for release builds only.
+
+### EnableAutoRun(string applicationName)
+
+```python
+@staticmethod
+def EnableAutoRun(applicationName: str) -> None:
+```
+
+Installs an init.d entry (`/etc/init.d/S29custom`) that starts the given deployed .NET application at boot. The application is expected at `/root/.epdata/{applicationName}/{applicationName}.dll`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `applicationName` | `string` | Folder and assembly name (without `.dll`) under `/root/.epdata/`. |
+
+### SdBoot()
+
+```python
+@staticmethod
+def SdBoot() -> bool:
+```
+
+Returns `true` when the board booted from the SD card, `false` when it booted from the on-board eMMC.
+
+**Returns** `bool`
+

@@ -1,0 +1,71 @@
+---
+title: "Label Class"
+sidebar_label: "Label"
+---
+
+# Label Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Static text display. For an interactive text input, use `UI.TextBox`.
+
+```python
+class Label(Widget): ...
+```
+
+## Constructors
+
+### Label(Widget parent)
+
+```python
+def __init__(self, parent: Widget):
+```
+
+Create a label inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Properties
+
+### Color
+
+```python
+Color: int  # @property / @setter
+```
+
+Text color as `0x00RRGGBB`. Getter returns the last value set.
+
+**Returns** `uint`
+
+### FontSize
+
+```python
+FontSize: int  # @property / @setter
+```
+
+Font size in pixels. Getter returns the last value set.
+
+**Returns** `int`
+
+### Text
+
+```python
+Text: str  # @property / @setter
+```
+
+Displayed text. `null` is treated as empty. Getter returns the last value set.
+
+**Returns** `string`
+
+### TextAlignment
+
+```python
+TextAlignment: TextAlignment  # @property / @setter
+```
+
+Horizontal alignment of the text inside the label bounds. Getter returns the last value set.
+
+**Returns** `TextAlignment`
+

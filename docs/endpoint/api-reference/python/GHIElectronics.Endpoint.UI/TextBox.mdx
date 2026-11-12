@@ -1,0 +1,61 @@
+---
+title: "TextBox Class"
+sidebar_label: "TextBox"
+---
+
+# TextBox Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Single-line editable text input. Pair with a `UI.Keyboard` for on-screen typing.
+
+```python
+class TextBox(Widget): ...
+```
+
+## Constructors
+
+### TextBox(Widget parent)
+
+```python
+def __init__(self, parent: Widget):
+```
+
+Create a text box inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Properties
+
+### Placeholder
+
+```python
+Placeholder: str  # @property / @setter
+```
+
+Hint text shown when `TextBox.Text` is empty. `null` is treated as empty. Getter returns the last value set.
+
+**Returns** `string`
+
+### Text
+
+```python
+Text: str  # @property / @setter
+```
+
+Current text content. Reads back live from LVGL (up to 255 UTF-8 bytes).
+
+**Returns** `string`
+
+## Events
+
+### ValueChanged
+
+```python
+ValueChanged  # += / -= handler
+```
+
+Fires on every character insertion or deletion. Runs on the UI thread.
+

@@ -1,0 +1,112 @@
+---
+title: "Endpoint Class"
+sidebar_label: "Endpoint"
+---
+
+# Endpoint Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost.Descriptors`
+
+Endpoint descriptor.
+
+```csharp
+public class Endpoint : BaseDescriptor
+```
+
+## Constructors
+
+### Endpoint(byte[] buffer)
+
+```csharp
+public Endpoint(byte[] buffer)
+```
+
+Constructs a new descriptor.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `buffer` | `byte[]` | The buffer with which to populate the descriptor. |
+
+### Endpoint(byte[] buffer, int offset)
+
+```csharp
+public Endpoint(byte[] buffer, int offset)
+```
+
+Constructs a new descriptor.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `buffer` | `byte[]` | The buffer with which to populate the descriptor. |
+| `offset` | `int` | The offset into the buffer at which to start. |
+
+### Endpoint()
+
+```csharp
+protected Endpoint()
+```
+
+Constructs a new descriptor.
+
+## Properties
+
+### Address
+
+```csharp
+public byte Address { get; set; }
+```
+
+The endpoint address.
+
+**Returns** `byte`
+
+### Attributes
+
+```csharp
+public byte Attributes { get; set; }
+```
+
+The attributes of the endpoint.
+
+**Returns** `byte`
+
+### AuxiliaryDescriptors
+
+```csharp
+public Auxiliary[] AuxiliaryDescriptors { get; set; }
+```
+
+Child auxiliary descriptors.
+
+**Returns** `Auxiliary[]`
+
+### Interval
+
+```csharp
+public byte Interval { get; set; }
+```
+
+The interval for data transfer pooling in frame counts.
+
+**Returns** `byte`
+
+### MaximumPacketSize
+
+```csharp
+public ushort MaximumPacketSize { get; set; }
+```
+
+The maximum packet size this endpoint can transmit.
+
+**Returns** `ushort`
+
+## Fields
+
+### FixedLength
+
+```csharp
+public const byte FixedLength = 7
+```
+
+The fixed length of this descriptor type in bytes.
+

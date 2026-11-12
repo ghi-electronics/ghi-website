@@ -1,0 +1,71 @@
+---
+title: "DataGrid Class"
+sidebar_label: "DataGrid"
+---
+
+# DataGrid Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Simple grid of text cells (standard WPF widget name; TinyCLR-shape API). Call `DataGrid.SetSize` to allocate rows and columns, then `DataGrid.SetCell` to fill each cell.
+
+```python
+class DataGrid(Widget): ...
+```
+
+## Constructors
+
+### DataGrid(Widget parent)
+
+```python
+def __init__(self, parent: Widget):
+```
+
+Create a data grid inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Methods
+
+### SetCell(int row, int column, string text)
+
+```python
+def SetCell(self, row: int, column: int, text: str) -> None:
+```
+
+Set the text in a single cell.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `row` | `int` | 0-based row index. |
+| `column` | `int` | 0-based column index. |
+| `text` | `string` | Cell contents; `null` is treated as empty. |
+
+### SetColumnWidth(int column, int px)
+
+```python
+def SetColumnWidth(self, column: int, px: int) -> None:
+```
+
+Set a single column's width in pixels.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `column` | `int` | 0-based column index. |
+| `px` | `int` | Width in pixels. |
+
+### SetSize(int columns, int rows)
+
+```python
+def SetSize(self, columns: int, rows: int) -> None:
+```
+
+Allocate the grid dimensions. Must be called before `DataGrid.SetCell`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `columns` | `int` | Number of columns. |
+| `rows` | `int` | Number of rows. |
+

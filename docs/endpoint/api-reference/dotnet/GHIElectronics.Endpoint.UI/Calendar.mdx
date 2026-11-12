@@ -1,0 +1,58 @@
+---
+title: "Calendar Class"
+sidebar_label: "Calendar"
+---
+
+# Calendar Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Month calendar.
+
+```csharp
+public class Calendar : Widget
+```
+
+## Constructors
+
+### Calendar(Widget parent)
+
+```csharp
+public Calendar(Widget parent)
+```
+
+Create a calendar inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Methods
+
+### SetShowedDate(int year, int month)
+
+```csharp
+public void SetShowedDate(int year, int month)
+```
+
+Set the month shown by the calendar.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `year` | `int` | Four-digit year. |
+| `month` | `int` | Month, 1 (January) to 12 (December). |
+
+### SetToday(int year, int month, int day)
+
+```csharp
+public void SetToday(int year, int month, int day)
+```
+
+Set the day that is highlighted as "today".
+
+| Parameter | Type | Description |
+|---|---|---|
+| `year` | `int` | Four-digit year. |
+| `month` | `int` | Month, 1-12. |
+| `day` | `int` | Day of month, 1-31. |
+

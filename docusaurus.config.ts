@@ -242,7 +242,7 @@ const config: Config = {
           position: 'left',
           items: [
             {label: 'Hub', to: '/developers/'},
-            {label: 'Documentation', to: '/docs/tinyclr/'},
+            {label: 'Documentation', to: '/docs/'},
           ],
         },
         {

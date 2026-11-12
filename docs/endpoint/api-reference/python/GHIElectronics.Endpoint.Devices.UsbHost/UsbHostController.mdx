@@ -1,0 +1,62 @@
+---
+title: "UsbHostController Class"
+sidebar_label: "UsbHostController"
+---
+
+# UsbHostController Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
+
+The USB devices plugged into the board, directly or through hubs. One event for each thing a device gives: a keyboard with a touchpad gives Keyboard and Mouse, a webcam gives Webcam and Audio (its microphone). `DeviceName` is what to open it with (see `UsbHost.DeviceType`). The events come on the library's USB thread. USB drives come as MassStorage: use `StorageController` (`GHIElectronics.Endpoint.Devices.Storage`) for them. A controller stays alive until it is disposed.
+
+```python
+class UsbHostController(IDisposable): ...
+```
+
+## Methods
+
+### Disable()
+
+```python
+def Disable(self) -> None:
+```
+
+Stops reporting devices. Already-reported devices stay accessible until they are unplugged.
+
+### Dispose()
+
+```python
+def Dispose(self) -> None:
+```
+
+Stops the events (one being delivered finishes first)
+
+### Enable()
+
+```python
+def Enable(self) -> None:
+```
+
+Starts reporting devices: first the ones already plugged in
+
+### GetDefault()
+
+```python
+@staticmethod
+def GetDefault() -> UsbHostController:
+```
+
+A new USB host controller for the board. Call `UsbHostController.Enable` to start seeing devices.
+
+**Returns** `UsbHostController`
+
+## Events
+
+### ConnectionChanged
+
+```python
+ConnectionChanged  # += / -= handler
+```
+
+A device connected or disconnected
+

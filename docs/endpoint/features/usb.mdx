@@ -1,0 +1,243 @@
+---
+title: "USB"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+![USB Logo](/img/docs/endpoint/usb-logo.jpg)
+
+Endpoint uses USB in two ways: the USB-C connection to your PC is the
+**debug and deploy** channel (no user code involved, the IDE drives it),
+and a separate **USB host** port supports standard USB peripherals like
+keyboards, mice, joysticks, printers and mass-storage drives.
+
+## USB host: detecting devices
+
+Open the host controller, subscribe to `ConnectionChanged`, and `Enable()`
+it. The event fires for every device plugged in now and in the future
+(and again when a device is unplugged). The devices already connected at
+`Enable()` time are reported too.
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+using GHIElectronics.Endpoint.Core;
+using GHIElectronics.Endpoint.Devices.UsbHost;
+
+var usb = UsbHostController.GetDefault();
+
+usb.ConnectionChanged += (sender, e) => {
+    Console.WriteLine($"{e.DeviceStatus} id={e.Id} type={e.Type} name={e.DeviceName}");
+    Console.WriteLine($"  VID={e.VendorId:X4} PID={e.ProductId:X4} '{e.Manufacturer}' '{e.Product}'");
+};
+
+usb.Enable();
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+from GHIElectronics.Endpoint.Devices.UsbHost import UsbHostController
+
+usb = UsbHostController.GetDefault()
+
+def on_changed(sender, e):
+    print(f"{e.DeviceStatus.name} id={e.Id} type={e.Type.name} name={e.DeviceName}")
+    print(f"  VID={e.VendorId:04X} PID={e.ProductId:04X} {e.Manufacturer!r} {e.Product!r}")
+
+usb.ConnectionChanged += on_changed
+usb.Enable()
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+#include <cstdio>
+#include <endpoint/UsbHost.h>
+
+using namespace GHIElectronics::Endpoint::Devices::UsbHost;
+
+auto usb = UsbHostController::GetDefault();
+
+usb.ConnectionChanged += [](UsbHostController&, const UsbDeviceConnectionEventArgs& e) {
+    std::printf("status=%d id=%u type=%d name=%s\n",
+                static_cast<int>(e.DeviceStatus()), e.Id(),
+                static_cast<int>(e.Type()), e.DeviceName().c_str());
+    std::printf("  VID=%04X PID=%04X '%s' '%s'\n",
+                e.VendorId(), e.ProductId(),
+                e.Manufacturer().c_str(), e.Product().c_str());
+};
+
+usb.Enable();
+```
+
+</TabItem>
+</Tabs>
+
+`e.Type` is a [`DeviceType`](/docs/endpoint/api-reference/dotnet/GHIElectronics.Endpoint.Devices.UsbHost/DeviceType.mdx)
+value (`Hub`, `Keyboard`, `Mouse`, `Joystick`, `MassStorage`, `Printer`,
+`Serial`, `Webcam`, `Audio`, `Network`, `Bluetooth`, `Touch`, `HID`,
+`Unknown`); use it to decide what to open the device with.
+`e.DeviceName` is the string you pass to the device-specific class
+(`"/dev/input/event1"`, `"/dev/ttyUSB0"`, etc.).
+
+One USB device may show up as several types. A webcam with a microphone
+fires both `Webcam` and `Audio`, and a keyboard with a built-in touchpad
+fires both `Keyboard` and `Mouse`. Handle each as a separate event.
+
+## Keyboards, mice, joysticks
+
+Each peripheral type has a small wrapper class in
+`GHIElectronics.Endpoint.Devices.UsbHost`. Create one from the
+`DeviceName` the `ConnectionChanged` event gave you.
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+usb.ConnectionChanged += (sender, e) => {
+    if (e.DeviceStatus != DeviceConnectionStatus.Connected) return;
+
+    switch (e.Type) {
+        case DeviceType.Keyboard:
+            var kb = new Keyboard(e.DeviceName);
+            kb.CharDown += (s, a) => Console.Write(a.Ascii);
+            kb.KeyDown += (s, a) => { if (a.Which == Key.Escape) Console.WriteLine("Esc"); };
+            break;
+
+        case DeviceType.Mouse:
+            var mouse = new Mouse(e.DeviceName);
+            mouse.SetCursorBounds(new Position { X = 0, Y = 0 },
+                                  new Position { X = 799, Y = 479 });
+            mouse.CursorMoved += (s, a) => Console.WriteLine($"({a.NewPosition.X}, {a.NewPosition.Y})");
+            mouse.ButtonChanged += (s, a) => Console.WriteLine($"{a.Which} {a.State}");
+            break;
+
+        case DeviceType.Joystick:
+            var joy = new Joystick(e.DeviceName);
+            joy.CursorMoved += (s, a) => Console.WriteLine($"{a.Which} at {a.NewPosition.X}, {a.NewPosition.Y}");
+            joy.ButtonChanged += (s, a) => Console.WriteLine($"Button {a.Which} {a.State}");
+            joy.HatSwitchPressed += (s, a) => Console.WriteLine($"Hat {a.Direction}");
+            break;
+    }
+};
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+from GHIElectronics.Endpoint.Core import DeviceConnectionStatus
+from GHIElectronics.Endpoint.Devices.UsbHost import (
+    DeviceType, Joystick, Key, Keyboard, Mouse, Position)
+
+def on_changed(sender, e):
+    if e.DeviceStatus != DeviceConnectionStatus.Connected:
+        return
+
+    if e.Type == DeviceType.Keyboard:
+        kb = Keyboard(e.DeviceName)
+        kb.CharDown += lambda s, a: print(chr(a.Ascii), end="")
+        kb.KeyDown += lambda s, a: print("Esc") if a.Which == Key.Escape else None
+
+    elif e.Type == DeviceType.Mouse:
+        mouse = Mouse(e.DeviceName)
+        mouse.SetCursorBounds(Position(0, 0), Position(799, 479))
+        mouse.CursorMoved += lambda s, a: print(f"({a.NewPosition.X}, {a.NewPosition.Y})")
+        mouse.ButtonChanged += lambda s, a: print(f"{a.Which.name} {a.State.name}")
+
+    elif e.Type == DeviceType.Joystick:
+        joy = Joystick(e.DeviceName)
+        joy.CursorMoved += lambda s, a: print(f"{a.Which.name} at {a.NewPosition.X}, {a.NewPosition.Y}")
+        joy.ButtonChanged += lambda s, a: print(f"Button {a.Which} {a.State.name}")
+        joy.HatSwitchPressed += lambda s, a: print(f"Hat {a.Direction.name}")
+
+usb.ConnectionChanged += on_changed
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+#include <cstdio>
+#include <memory>
+#include <endpoint/UsbHost.h>
+
+using namespace GHIElectronics::Endpoint::Devices::UsbHost;
+
+std::unique_ptr<Keyboard> kb;
+std::unique_ptr<Mouse>    mouse;
+std::unique_ptr<Joystick> joy;
+
+usb.ConnectionChanged += [&](UsbHostController&, const UsbDeviceConnectionEventArgs& e) {
+    if (e.DeviceStatus() != DeviceConnectionStatus::Connected) return;
+
+    switch (e.Type()) {
+        case DeviceType::Keyboard:
+            kb = std::make_unique<Keyboard>(e.DeviceName());
+            kb->CharDown += [](Keyboard&, const Keyboard::KeyboardEventArgs& a) { std::putchar(a.Ascii()); };
+            kb->KeyDown  += [](Keyboard&, const Keyboard::KeyboardEventArgs& a) {
+                if (a.Which() == Key::Escape) std::puts("Esc");
+            };
+            break;
+
+        case DeviceType::Mouse:
+            mouse = std::make_unique<Mouse>(e.DeviceName());
+            mouse->SetCursorBounds({0, 0}, {799, 479});
+            mouse->CursorMoved   += [](Mouse&, const Mouse::CursorMovedEventArgs& a) {
+                std::printf("(%d, %d)\n", a.NewPosition().X, a.NewPosition().Y);
+            };
+            mouse->ButtonChanged += [](Mouse&, const Mouse::ButtonChangedEventArgs& a) {
+                std::printf("%d %d\n", static_cast<int>(a.Which()), static_cast<int>(a.State()));
+            };
+            break;
+
+        case DeviceType::Joystick:
+            joy = std::make_unique<Joystick>(e.DeviceName());
+            joy->CursorMoved   += [](Joystick&, const Joystick::CursorMovedEventArgs& a) {
+                std::printf("cursor %d at %d, %d\n",
+                            static_cast<int>(a.Which()), a.NewPosition().X, a.NewPosition().Y);
+            };
+            joy->ButtonChanged += [](Joystick&, const Joystick::ButtonChangedEventArgs& a) {
+                std::printf("Button %d %d\n", a.Which(), static_cast<int>(a.State()));
+            };
+            joy->HatSwitchPressed += [](Joystick&, const Joystick::HatSwitchPressedEventArgs& a) {
+                std::printf("Hat %d\n", static_cast<int>(a.Direction()));
+            };
+            break;
+
+        default: break;
+    }
+};
+```
+
+</TabItem>
+</Tabs>
+
+Each class delivers its events on its own thread.
+
+## USB mass storage
+
+Files on USB drives are handled through the
+[File System](file-system.mdx) page, not through `UsbHostController`.
+The short version: open a
+`StorageController.FromName(EPDomino24.StorageController.UsbHostMassStorage)`,
+subscribe to its `ConnectionChanged`, and call `FileSystem.Mount(e.Hdc)`
+when a drive connects to get the `/media/usbN/` folder you can read and
+write with standard `System.IO`.
+
+See [File System](file-system.mdx) for the full example.
+
+## Printers, serial adapters, raw HID
+
+- **Printer** (`DeviceType.Printer`): open with `new Printer(e.DeviceName)`.
+- **Serial** adapter (`DeviceType.Serial`): the kernel exposes it as a
+  standard serial port; open with `new System.IO.Ports.SerialPort(e.DeviceName)`.
+- **Unknown / specialty** devices (`DeviceType.Unknown`, `DeviceType.HID`):
+  use `new HidDevice(e.DeviceName)` for a raw HID report stream, or
+  `new RawDevice(e.DeviceName)` for raw control transfers to any USB
+  device without a standard driver.

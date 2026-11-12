@@ -1,0 +1,61 @@
+---
+title: "RadioButton Class"
+sidebar_label: "RadioButton"
+---
+
+# RadioButton Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Circular-indicator CheckBox. Grouping (mutual exclusion) is up to the caller: subscribe to ValueChanged on each radio and clear the others when one gets selected.
+
+```csharp
+public class RadioButton : Widget
+```
+
+## Constructors
+
+### RadioButton(Widget parent)
+
+```csharp
+public RadioButton(Widget parent)
+```
+
+Create a radio button inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Properties
+
+### IsChecked
+
+```csharp
+public bool IsChecked { get; set; }
+```
+
+Selected state. Read-back is supported by LVGL.
+
+**Returns** `bool`
+
+### Text
+
+```csharp
+public string Text { get; set; }
+```
+
+Label text shown next to the radio button. `null` is treated as empty. Getter returns the last value set.
+
+**Returns** `string`
+
+## Events
+
+### ValueChanged
+
+```csharp
+public event EventHandler ValueChanged
+```
+
+Fires when the radio button is toggled via user interaction. Runs on the UI thread.
+

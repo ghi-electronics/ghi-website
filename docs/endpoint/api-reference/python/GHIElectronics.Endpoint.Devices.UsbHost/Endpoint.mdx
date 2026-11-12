@@ -1,0 +1,112 @@
+---
+title: "Endpoint Class"
+sidebar_label: "Endpoint"
+---
+
+# Endpoint Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost.Descriptors`
+
+Endpoint descriptor.
+
+```python
+class Endpoint(BaseDescriptor): ...
+```
+
+## Constructors
+
+### Endpoint(byte[] buffer)
+
+```python
+def __init__(self, buffer: list[int]):
+```
+
+Constructs a new descriptor.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `buffer` | `byte[]` | The buffer with which to populate the descriptor. |
+
+### Endpoint(byte[] buffer, int offset)
+
+```python
+def __init__(self, buffer: list[int], offset: int):
+```
+
+Constructs a new descriptor.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `buffer` | `byte[]` | The buffer with which to populate the descriptor. |
+| `offset` | `int` | The offset into the buffer at which to start. |
+
+### Endpoint()
+
+```python
+def __init__(self):
+```
+
+Constructs a new descriptor.
+
+## Properties
+
+### Address
+
+```python
+Address: int  # @property / @setter
+```
+
+The endpoint address.
+
+**Returns** `byte`
+
+### Attributes
+
+```python
+Attributes: int  # @property / @setter
+```
+
+The attributes of the endpoint.
+
+**Returns** `byte`
+
+### AuxiliaryDescriptors
+
+```python
+AuxiliaryDescriptors: list[Auxiliary]  # @property / @setter
+```
+
+Child auxiliary descriptors.
+
+**Returns** `Auxiliary[]`
+
+### Interval
+
+```python
+Interval: int  # @property / @setter
+```
+
+The interval for data transfer pooling in frame counts.
+
+**Returns** `byte`
+
+### MaximumPacketSize
+
+```python
+MaximumPacketSize: int  # @property / @setter
+```
+
+The maximum packet size this endpoint can transmit.
+
+**Returns** `ushort`
+
+## Fields
+
+### FixedLength
+
+```python
+FixedLength: int = 7
+```
+
+The fixed length of this descriptor type in bytes.
+

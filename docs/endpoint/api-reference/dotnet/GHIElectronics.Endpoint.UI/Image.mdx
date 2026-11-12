@@ -1,0 +1,47 @@
+---
+title: "Image Class"
+sidebar_label: "Image"
+---
+
+# Image Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Displays a raster image fed as raw RGB565 pixel bytes.
+
+```csharp
+public class Image : Widget
+```
+
+## Constructors
+
+### Image(Widget parent)
+
+```csharp
+public Image(Widget parent)
+```
+
+Create an image inside `parent`. Call `Image.SetSource` to supply pixels.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Methods
+
+### Dispose()
+
+```csharp
+public override void Dispose()
+```
+
+Release the pinned pixel buffer, then destroy the widget. Idempotent.
+
+### SetSource(byte[] rgb565Pixels, int width, int height)
+
+```csharp
+public void SetSource(byte[] rgb565Pixels, int width, int height)
+```
+
+Set the image from RGB565 pixel bytes (little-endian). Width and height describe the source bitmap; use `Widget.Width`/ `Widget.Height` for displayed size (LVGL scales).
+

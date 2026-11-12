@@ -2,8 +2,374 @@
 slug: /
 sidebar_position: 1
 title: Endpoint Getting Started
+sidebar_label: Getting Started
+description: Run full .NET, Python, and C/C++ on Endpoint. Plug in a USB cable, pick your board, and press F5. No SSH, keys, or IP addresses.
 ---
 
-:::info
-Endpoint docs are still at [docs.ghielectronics.com](https://docs.ghielectronics.com/endpoint/intro.html) for future reference.
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Getting Started with Endpoint
+
+Endpoint runs **full .NET, Python, and C/C++** on a circuit. All three share one set of APIs, so what you learn in one language travels with you. You deploy and debug applications over a USB cable, no SSH, with no keys, passwords, or IP addresses.
+
+:::note[Evaluation hardware]
+[Endpoint Domino24](hardware.mdx) is the evaluation board we built for Endpoint. We have not released SoMs or dev boards yet, because we are still shaping what the commercial product should be. Tell us what you need on the [forum](https://forums.ghielectronics.com/c/endpoint/34): what form factor, which peripherals, and whether wireless is a requirement.
 :::
+
+## Languages and tools
+
+| Language | Version | VS Code | Visual Studio |
+|---|---|---|---|
+| **C#** | .NET 11 | Yes | Yes |
+| **Python** | Python 3.14 | Yes | No |
+| **C and C++** | C23 and C++23, with no toolchain to install | Yes | No |
+
+## What you'll need
+
+- **[Endpoint Domino24](hardware.mdx)**
+- A **USB-C cable**
+- A **microSD card** of at least 4 GB
+- **VS Code** for any language, or **Visual Studio** for .NET
+
+## Step 1: Prepare the board
+
+1. Download the latest Endpoint OS image from the [Downloads](downloads.mdx) page.
+2. Write the image to the microSD card with a disk imaging tool such as balenaEtcher.
+3. Insert the card into Domino24 and connect it to your PC with the USB-C cable.
+4. Wait for the **USER LED** to light, which shows the board has finished booting.
+
+## Step 2: Install the extension
+
+<Tabs groupId="ide">
+<TabItem value="vs" label="Visual Studio" default>
+
+Visual Studio supports **.NET (C#)**.
+
+1. **Visual Studio 2026** (Community, Professional or Enterprise). VS 2022 17.9+ also works.
+2. The matching **.NET SDK** installed and on PATH ([download](https://dotnet.microsoft.com/download)).
+3. The **Endpoint Debugger** extension from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=ghielectronics.Endpoint-VS-Debugger). In Visual Studio, open **Extensions > Manage Extensions** and search for *"Endpoint"*.
+
+</TabItem>
+<TabItem value="vscode" label="Visual Studio Code">
+
+Visual Studio Code supports **.NET (C#)**, **Python**, and **C/C++**, all three languages from the same extension.
+
+1. **Visual Studio Code**.
+2. The **Endpoint Debugger** extension from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=ghielectronics.endpointvscdebugger). In VS Code, open the **Extensions** view and search for *"Endpoint"*.
+3. For each language you want to use:
+   - **.NET (C#)**: the matching [.NET SDK](https://dotnet.microsoft.com/download) and the [C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) extension.
+   - **Python**: [Python](https://www.python.org/downloads/) and the [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) + [Python Debugger](https://marketplace.visualstudio.com/items?itemName=ms-python.debugpy) extensions.
+   - **C/C++**: the [C/C++](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools) extension.
+
+</TabItem>
+</Tabs>
+
+## Step 3: Create a project
+
+Every Endpoint template is a ready-to-run blink application: it blinks the USER LED and prints a counter. Core and GPIO are referenced out of the box, so the project builds and runs without any extra setup.
+
+<Tabs groupId="ide">
+<TabItem value="vs" label="Visual Studio" default>
+
+1. **File > New > Project...** → search *"Endpoint"* → choose **Endpoint App (C#)**. Give it a name and location.
+
+   ![Endpoint App (C#) template in the Visual Studio new-project dialog](/img/docs/endpoint/vs-new-project-template.png)
+
+</TabItem>
+<TabItem value="vscode" label="Visual Studio Code">
+
+1. Plug the board in with USB. The status bar at the bottom of VS Code shows **Endpoint** when the board is detected:
+
+   ![Endpoint shown in the VS Code status bar](/img/docs/endpoint/vscode-endpoint-statusbar.png)
+
+2. **Ctrl+Shift+P** → **Endpoint: New Project...** → pick a language (**.NET**, **Python** or **C/C++**), a name and a folder. VS Code opens the new project.
+
+   ![New Endpoint Project language picker in VS Code](/img/docs/endpoint/vscode-new-project-language.png)
+
+</TabItem>
+</Tabs>
+
+## Step 4: Deploy and run
+
+Make sure the **USER LED** on the board is on. A lit USER LED means the board has finished booting and is ready to accept a new program. If the LED is still off, wait a few seconds; a cold boot takes about three.
+
+Press **F5** or **Ctrl+F5**. Either command stops any application currently running on the board, including one set to run at boot, before deploying the new build, so you never need to disable the previous program by hand.
+
+<Tabs groupId="ide">
+<TabItem value="vs" label="Visual Studio" default>
+
+Press **F5**. Visual Studio builds the project, deploys it to the board over USB, and starts it under the debugger. Breakpoints, step, locals, and watch work as usual.
+
+The **USER LED** blinks every 500 ms, and the Output window prints one counter line per blink:
+
+```
+Hello Endpoint. Counter: 1
+Hello Endpoint. Counter: 2
+Hello Endpoint. Counter: 3
+...
+```
+
+**Project settings** live under the project's **Endpoint** property page:
+
+![Endpoint project settings in Visual Studio](/img/docs/endpoint/vs-endpoint-settings.png)
+
+- **Transport**: how Visual Studio talks to the board. USB today.
+- **Device**: **Endpoint** runs the program on the board; **Desktop** runs it locally on the PC for quick checks.
+- **Firmware**: check for updates, erase the application that is set to run at boot.
+
+**Run at boot:** press **Ctrl+F5** instead of F5. The project is compiled with Native AOT and set to start automatically on power-on. A C# blink application goes from power-on to running in under three seconds.
+
+</TabItem>
+<TabItem value="vscode" label="Visual Studio Code">
+
+Press **F5**. The extension builds the project, deploys it to the board over USB, and starts it under the debugger.
+
+The **USER LED** blinks every 500 ms, and the Debug Console prints one counter line per blink:
+
+```
+Hello Endpoint. Counter: 1
+Hello Endpoint. Counter: 2
+Hello Endpoint. Counter: 3
+...
+```
+
+If the board is not connected, is in use by another program, or is not responding, F5 stops with a clear message instead of running silently.
+
+**Run at boot:** press **Ctrl+F5** instead of F5. The project is compiled with Native AOT and set to start automatically on power-on. A C# blink application goes from power-on to running in under three seconds.
+
+</TabItem>
+</Tabs>
+
+## Step 5: Add a package
+
+A new project already references **Core** and **GPIO**. Add the other Endpoint drivers (ADC, DAC, PWM, Display, Touch, Camera, Network, UI, and more) or any third-party library when you need them, and update to a newer version the same way.
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET (C#)" default>
+
+From the project folder, add or update a package with `dotnet add package`:
+
+```
+dotnet add package GHIElectronics.Endpoint.Devices.Adc --prerelease
+```
+
+In Visual Studio, use **Manage NuGet Packages...** on the project and check **Include prerelease** during the 0.5.x preview. Every third-party NuGet package installs the same way.
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+Open the integrated terminal in VS Code with **Terminal > New Terminal**:
+
+![VS Code menu: Terminal > New Terminal](/img/docs/endpoint/vscode-terminal-new.png)
+
+Then run `pip install`:
+
+```
+pip install GHIElectronics.Endpoint.Devices.Adc
+pip install pyserial
+```
+
+Packages install into the project's `packages/` folder and are copied with your program on F5. Third-party packages such as `pyserial`, `numpy`, and `pillow` install the same way.
+
+:::caution[Use the VS Code integrated terminal, not Command Prompt or PowerShell]
+
+`pip install` only installs packages for the Endpoint board when it runs in VS Code's **integrated terminal** on an open Endpoint Python project. The VS Code extension intercepts `pip` in that terminal and routes the install into the project's `packages/` folder.
+
+Running `pip install` from an external Command Prompt, PowerShell, or Windows Terminal window installs into your PC's own Python instead, which does nothing for the board and will not be copied on F5.
+
+:::
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+The full C/C++ API is bundled with the extension, no package step. Include the header and use the namespace that matches each driver:
+
+```cpp
+#include <endpoint.h>
+
+using namespace GHIElectronics::Endpoint::Core;
+using namespace GHIElectronics::Endpoint::Devices::Adc;
+
+AdcController adc;
+auto pin = adc.OpenPin(EPDomino24::Adc::PA0);
+double volts = pin.ReadVoltage().Volts();
+```
+
+Third-party C/C++ source can be dropped into the project folder; every `.cpp` next to `main.cpp` is built into the program.
+
+</TabItem>
+</Tabs>
+
+## Step 6: Resources
+
+Apps often need to ship data files: images for the UI, fonts for text, binary blobs for an attached chip, configuration text, TLS certificates. Endpoint gives you two ways to carry them with your program.
+
+### Load from file
+
+The portable approach: drop the file into your project folder, F5 copies it to the board alongside your program, read it at runtime from the folder next to your app. Works identically in .NET, Python, and C/C++.
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET (C#)" default>
+
+```csharp
+using System.IO;
+using GHIElectronics.Endpoint.Drawing;
+
+var dir = AppContext.BaseDirectory;
+
+// JPG
+var imgBytes = File.ReadAllBytes(Path.Combine(dir, "resource_bg.jpg"));
+var img = Image.Load(imgBytes);
+canvas.DrawImage(img, 0, 0);
+
+// Font
+var fontBytes = File.ReadAllBytes(Path.Combine(dir, "Montserrat.ttf"));
+using var font = Font.Load(fontBytes);
+canvas.DrawText("Hello", font, 20, 60, 32, Color.White);
+
+// Binary (push to SPI)
+spi.Write(File.ReadAllBytes(Path.Combine(dir, "data.bin")));
+
+// Text
+var text = File.ReadAllText(Path.Combine(dir, "message.txt"));
+Console.WriteLine(text);
+```
+
+Add this once to your `.csproj` so the files land next to the DLL:
+
+```xml
+<ItemGroup>
+    <Content Include="Resources\**\*" CopyToOutputDirectory="PreserveNewest" />
+</ItemGroup>
+```
+
+Everything under `Resources\` is now deployed automatically.
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+from pathlib import Path
+from GHIElectronics.Endpoint.Drawing import Canvas, Color, Font, Image, PixelFormat
+
+here = Path(__file__).parent
+
+# JPG
+img_bytes = (here / "resource_bg.jpg").read_bytes()
+img = Image.Load(img_bytes)
+canvas.DrawImage(img, 0, 0)
+
+# Font
+font_bytes = (here / "Montserrat.ttf").read_bytes()
+font = Font.Load(font_bytes)
+canvas.DrawText("Hello", font, 20, 60, 32, Color.White)
+
+# Binary (push to SPI)
+spi.Write((here / "data.bin").read_bytes())
+
+# Text
+text = (here / "message.txt").read_text(encoding="utf-8")
+print(text)
+```
+
+Files next to your `.py` script deploy automatically on F5, no project-file edit.
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+#include <endpoint.h>
+#include <endpoint/Drawing.h>
+#include <filesystem>
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <vector>
+
+namespace Drawing = GHIElectronics::Endpoint::Drawing;
+
+static std::vector<uint8_t> ReadAll(const std::filesystem::path& p) {
+    std::ifstream f(p, std::ios::binary | std::ios::ate);
+    std::vector<uint8_t> buf(f.tellg());
+    f.seekg(0);
+    f.read(reinterpret_cast<char*>(buf.data()), buf.size());
+    return buf;
+}
+
+auto here = std::filesystem::canonical("/proc/self/exe").parent_path();
+
+// JPG
+auto imgBytes = ReadAll(here / "resource_bg.jpg");
+auto img = Drawing::Image::Load(imgBytes);
+canvas.DrawImage(img, 0, 0);
+
+// Font
+auto fontBytes = ReadAll(here / "Montserrat.ttf");
+auto font = Drawing::Font::Load(fontBytes);
+canvas.DrawText("Hello", font, 20, 60, 32, Drawing::Color::White());
+
+// Binary (push to SPI)
+auto blob = ReadAll(here / "data.bin");
+spi.Write(blob.data(), blob.size());
+
+// Text
+std::ifstream t(here / "message.txt");
+std::string text((std::istreambuf_iterator<char>(t)), {});
+std::cout << text << std::endl;
+```
+
+Files next to `main.cpp` deploy automatically on F5, no project-file edit.
+
+</TabItem>
+</Tabs>
+
+### Embedded Resource (.NET only)
+
+.NET lets you bake files into the compiled DLL so your app ships as a single binary. Python and C/C++ do not have this; use the file approach above.
+
+In Visual Studio, right-click the file in Solution Explorer, **Properties**, **Build Action** = `Embedded Resource`. In VS Code, edit the `.csproj` directly:
+
+```xml
+<ItemGroup>
+    <EmbeddedResource Include="logo.jpg" />
+    <EmbeddedResource Include="Montserrat.ttf" />
+    <EmbeddedResource Include="data.bin" />
+    <EmbeddedResource Include="config.txt" />
+</ItemGroup>
+```
+
+Tip: `<EmbeddedResource Include="Resources\**\*" />` embeds everything under a `Resources\` folder without listing files individually.
+
+Read at runtime with `Assembly.GetManifestResourceStream`:
+
+```csharp
+using System.IO;
+using System.Reflection;
+using System.Text;
+
+static byte[] ReadResource(string name) {
+    using var s = Assembly.GetExecutingAssembly().GetManifestResourceStream(name)
+        ?? throw new InvalidOperationException($"Resource '{name}' not found");
+    var buf = new byte[s.Length];
+    s.ReadExactly(buf);
+    return buf;
+}
+
+var jpg  = ReadResource("MyApp.logo.jpg");
+var ttf  = ReadResource("MyApp.Montserrat.ttf");
+var blob = ReadResource("MyApp.data.bin");
+var text = Encoding.UTF8.GetString(ReadResource("MyApp.config.txt"));
+```
+
+The resource name is `<RootNamespace>.<folder-with-dots>.<filename>`. To see the exact names baked into your DLL:
+
+```csharp
+foreach (var n in Assembly.GetExecutingAssembly().GetManifestResourceNames())
+    Console.WriteLine(n);
+```
+
+## What's next
+
+- **[Hardware](hardware.mdx)**: Domino24's pinout, displays, cameras, and expansion headers.
+- **[Features](features.mdx)**: GPIO, buses, displays, networking, and more.

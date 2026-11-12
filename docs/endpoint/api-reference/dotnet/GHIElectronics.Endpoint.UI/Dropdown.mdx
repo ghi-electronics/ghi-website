@@ -1,0 +1,61 @@
+---
+title: "Dropdown Class"
+sidebar_label: "Dropdown"
+---
+
+# Dropdown Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Select one item from a list. ValueChanged fires when the selection changes.
+
+```csharp
+public class Dropdown : Widget
+```
+
+## Constructors
+
+### Dropdown(Widget parent)
+
+```csharp
+public Dropdown(Widget parent)
+```
+
+Create a dropdown inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Properties
+
+### Selected
+
+```csharp
+public int Selected { get; set; }
+```
+
+0-based index of the currently selected item.
+
+**Returns** `int`
+
+## Methods
+
+### SetOptions(IEnumerable&lt;string> options)
+
+```csharp
+public void SetOptions(IEnumerable<string> options)
+```
+
+Set the items. Internally joined with newline before passing to libendpoint.
+
+## Events
+
+### ValueChanged
+
+```csharp
+public event EventHandler ValueChanged
+```
+
+Fires when the user picks a different item. Runs on the UI thread.
+

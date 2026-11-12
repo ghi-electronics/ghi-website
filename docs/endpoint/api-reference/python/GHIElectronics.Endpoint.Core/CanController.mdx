@@ -1,0 +1,40 @@
+---
+title: "CanController Class"
+sidebar_label: "CanController"
+---
+
+# CanController Class
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+Chip-neutral entry point for CAN-bus setup. Call once before using the CAN device package: it muxes the TX/RX pins and brings the `canN` network interface up at the chosen bitrate.
+
+```python
+class CanController: ...
+```
+
+## Methods
+
+### Initialize(string port, int bitrate)
+
+```python
+@staticmethod
+def Initialize(port: str, bitrate: int) -> None:
+```
+
+Muxes the CAN pins and configures the bitrate.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `port` | `string` | A CAN port name (for example `EPN256.Can.Can0`). |
+| `bitrate` | `int` | Bus bitrate in bits per second (default 500 kbit/s). |
+
+### UnInitialize(string port)
+
+```python
+@staticmethod
+def UnInitialize(port: str) -> None:
+```
+
+Takes the interface down and releases its pins.
+

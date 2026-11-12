@@ -1,0 +1,24 @@
+---
+title: "WiFiSecurityType Enum"
+sidebar_label: "WiFiSecurityType"
+---
+
+# WiFiSecurityType Enum
+
+**Package:** `GHIElectronics.Endpoint.Devices.Network`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Network`
+
+How a WiFi network authenticates clients.
+
+```cpp
+enum class WiFiSecurityType : int32_t {};
+```
+
+## Fields
+
+| Name | Value | Description |
+|---|---|---|
+| `None` | `0` | Open network (no password). |
+| `Wpa` | `1` | WPA (first generation; use `WiFiSecurityType.Wpa2` if the AP supports it). |
+| `Wpa2` | `2` | WPA2-PSK (the default for most home and office networks). |
+| `Wpa3` | `3` | WPA3-SAE. |
+

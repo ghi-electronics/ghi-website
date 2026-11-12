@@ -1,0 +1,31 @@
+---
+title: Release Notes
+---
+
+## 0.5.3 (2026-11-12) Preview
+
+A **major rework** of Endpoint. The deployment story, the IDE
+integration, the libraries, and the project layout have all been
+rebuilt. Because the scope is so wide, this release is published as a
+**preview**: expect some features to be untested, incomplete, or still
+changing. That is intentional for this cycle. The goal is to get the
+new foundation in front of users and iterate quickly from your
+feedback, not to deliver a polished final build. Firmware and IDE
+extensions ship and move together, so the notes below are listed once
+for the whole release rather than split per component.
+
+### Changes
+
+- **USB debugging.** No more SSH. Plug in the USB cable, pick your board from the list, and press F5.
+- **Three languages, one set of APIs.** .NET 11, Python 3.14, and C23 and C++23 with no toolchain to install.
+- **pip install over the debugger.** Install Python packages onto the board from VS Code, over USB, with no internet connection on the board.
+- **Faster startup.** A C# blink application goes from power on to running in less than three seconds.
+- **Run at boot.** Ctrl+F5 compiles in AOT mode and sets the application to run at boot.
+- **Configuration.** Display and network configuration has been reworked. Load, modify, and save configuration from your application, or edit the JSON directly. A FAT32 partition is exposed so you can edit that file by opening the SD card image (SD card only for now).
+- **APIs.** All APIs were reworked to match .NET conventions.
+- **IDEs.** VS Code is fully supported for all three languages. Visual Studio supports .NET.
+
+### Known issues
+
+- **Not every feature is fully tested.** This is a preview, so expect rough edges, and please report issues on the [forum](https://forums.ghielectronics.com/c/endpoint/34).
+- **New Python project pauses for a few seconds after creation.** VS Code is doing some internal setup; it clears on its own.

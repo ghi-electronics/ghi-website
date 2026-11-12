@@ -1,0 +1,47 @@
+---
+title: "Mouse.ButtonChangedEventArgs Class"
+sidebar_label: "Mouse.ButtonChangedEventArgs"
+---
+
+# ButtonChangedEventArgs Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
+
+The events args for the ButtonPressed and ButtonReleased events.
+
+```cpp
+class ButtonChangedEventArgs : public EventArgs {};
+```
+
+## Constructors
+
+### ButtonChangedEventArgs()
+
+```cpp
+ButtonChangedEventArgs();
+```
+
+## Properties
+
+### State
+
+```cpp
+ButtonState State() const;
+void State(ButtonState value);
+```
+
+The new state of the button.
+
+**Returns** `ButtonState`
+
+### Which
+
+```cpp
+Buttons Which() const;
+void Which(Buttons value);
+```
+
+Which button changed its state.
+
+**Returns** `Buttons`
+

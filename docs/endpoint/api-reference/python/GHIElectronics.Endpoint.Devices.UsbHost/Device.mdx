@@ -1,0 +1,182 @@
+---
+title: "Device Class"
+sidebar_label: "Device"
+---
+
+# Device Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost.Descriptors`
+
+Device descriptor.
+
+```python
+class Device(BaseDescriptor): ...
+```
+
+## Constructors
+
+### Device(byte[] buffer)
+
+```python
+def __init__(self, buffer: list[int]):
+```
+
+Constructs a new descriptor.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `buffer` | `byte[]` | The buffer with which to populate the descriptor. |
+
+### Device(byte[] buffer, int offset)
+
+```python
+def __init__(self, buffer: list[int], offset: int):
+```
+
+Constructs a new descriptor.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `buffer` | `byte[]` | The buffer with which to populate the descriptor. |
+| `offset` | `int` | The offset into the buffer at which to start. |
+
+### Device()
+
+```python
+def __init__(self):
+```
+
+Constructs a new descriptor.
+
+## Properties
+
+### ClassCode
+
+```python
+ClassCode: int  # @property / @setter
+```
+
+The class code of the device.
+
+**Returns** `byte`
+
+### ManufacturerIndex
+
+```python
+ManufacturerIndex: int  # @property / @setter
+```
+
+The manufacturer string descriptor index.
+
+**Returns** `byte`
+
+### MaximumPacketSize
+
+```python
+MaximumPacketSize: int  # @property / @setter
+```
+
+The max packet size for endpoint zero.
+
+**Returns** `byte`
+
+### NumberOfConfigurations
+
+```python
+NumberOfConfigurations: int  # @property / @setter
+```
+
+The number of possible configurations.
+
+**Returns** `byte`
+
+### ProductId
+
+```python
+ProductId: int  # @property / @setter
+```
+
+The product id.
+
+**Returns** `ushort`
+
+### ProductIndex
+
+```python
+ProductIndex: int  # @property / @setter
+```
+
+The product string descriptor index.
+
+**Returns** `byte`
+
+### ProtocolCode
+
+```python
+ProtocolCode: int  # @property / @setter
+```
+
+The protocol code.
+
+**Returns** `byte`
+
+### ReleaseNumber
+
+```python
+ReleaseNumber: int  # @property / @setter
+```
+
+The device release number as a BCD.
+
+**Returns** `ushort`
+
+### SerialNumberIndex
+
+```python
+SerialNumberIndex: int  # @property / @setter
+```
+
+The serial number string descriptor index.
+
+**Returns** `byte`
+
+### SubclassCode
+
+```python
+SubclassCode: int  # @property / @setter
+```
+
+The subclass code.
+
+**Returns** `byte`
+
+### UsbSpecificationNumber
+
+```python
+UsbSpecificationNumber: int  # @property / @setter
+```
+
+USB specification number that the device implements as a BCD.
+
+**Returns** `ushort`
+
+### VendorId
+
+```python
+VendorId: int  # @property / @setter
+```
+
+The vendor id.
+
+**Returns** `ushort`
+
+## Fields
+
+### FixedLength
+
+```python
+FixedLength: int = 18
+```
+
+The fixed length of this descriptor type in bytes.
+

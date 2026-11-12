@@ -1,0 +1,187 @@
+---
+title: "Mouse Class"
+sidebar_label: "Mouse"
+---
+
+# Mouse Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
+
+Allows a usb device to be used a mouse.
+
+```cpp
+class Mouse : public BaseDevice {};
+```
+
+### Remarks
+
+By default, the reported range for position is between 0 and 512, as on TinyCLR: set it to the screen with `SetCursorBounds`. The events come on the mouse's own thread.
+
+## Nested Types
+
+| Type | Kind | Summary |
+|---|---|---|
+| [Mouse.ButtonChangedEventArgs](./Mouse_ButtonChangedEventArgs.mdx) | Class | The events args for the ButtonPressed and ButtonReleased events. |
+| [Mouse.ButtonChangedEventHandler](./Mouse_ButtonChangedEventHandler.mdx) | Delegate | The delegate for when one of the mouse's button is pressed or released. |
+| [Mouse.CursorMovedEventArgs](./Mouse_CursorMovedEventArgs.mdx) | Class | The events args for the CursorMoved event. |
+| [Mouse.CursorMovedEventHandler](./Mouse_CursorMovedEventHandler.mdx) | Delegate | The delegate for when the mouse's cursor moves. |
+| [Mouse.WheelMovedEventArgs](./Mouse_WheelMovedEventArgs.mdx) | Class | The events args for the WheelMoved event. |
+| [Mouse.WheelMovedEventHandler](./Mouse_WheelMovedEventHandler.mdx) | Delegate | The delegate for when the mouse's wheel moves. |
+
+## Constructors
+
+### Mouse(string deviceName)
+
+```cpp
+Mouse(const std::string& deviceName);
+```
+
+Opens the mouse that UsbHostController reported ("/dev/input/event2").
+
+## Properties
+
+### AbsolutePosition
+
+```cpp
+bool AbsolutePosition() const;
+```
+
+Return true for absolute, false for relative mode (a USB mouse moves relative).
+
+**Returns** `bool`
+
+### CursorPosition
+
+```cpp
+Position CursorPosition() const;
+```
+
+The current position of the cursor.
+
+**Returns** `Position`
+
+### Extended1ButtonState
+
+```cpp
+ButtonState Extended1ButtonState() const;
+```
+
+The current state of the mouse's first extended button.
+
+**Returns** `ButtonState`
+
+### Extended2ButtonState
+
+```cpp
+ButtonState Extended2ButtonState() const;
+```
+
+The current state of the mouse's second extended button.
+
+**Returns** `ButtonState`
+
+### LeftButtonState
+
+```cpp
+ButtonState LeftButtonState() const;
+```
+
+The current state of the mouse's left button.
+
+**Returns** `ButtonState`
+
+### MiddleButtonState
+
+```cpp
+ButtonState MiddleButtonState() const;
+```
+
+The current state of the mouse's middle button.
+
+**Returns** `ButtonState`
+
+### RightButtonState
+
+```cpp
+ButtonState RightButtonState() const;
+```
+
+The current state of the mouse's right button.
+
+**Returns** `ButtonState`
+
+### WheelPosition
+
+```cpp
+int32_t WheelPosition() const;
+```
+
+The current position of the mouse wheel.
+
+**Returns** `int`
+
+## Methods
+
+### SetCursorBounds(Position minimum, Position maximum)
+
+```cpp
+void SetCursorBounds(Position minimum, Position maximum);
+```
+
+Sets the cursor bounds.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `minimum` | `Position` | The minimum bound. |
+| `maximum` | `Position` | The maximum bound. |
+
+### SetCursorPosition(Position newPosition)
+
+```cpp
+void SetCursorPosition(Position newPosition);
+```
+
+Sets the cursor position.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `newPosition` | `Position` | The new position of the cursor. |
+
+### SetScale(float scale)
+
+```cpp
+void SetScale(float scale);
+```
+
+Scales the x, y, and wheel delta values.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `scale` | `float` | The value by which to scale the data. |
+
+## Events
+
+### ButtonChanged
+
+```cpp
+Core::Event<...> ButtonChanged;
+```
+
+The event fired when one of the mouse's buttons is pressed or released.
+
+### CursorMoved
+
+```cpp
+Core::Event<...> CursorMoved;
+```
+
+The event fired when the mouse's cursor has moved.
+
+### WheelMoved
+
+```cpp
+Core::Event<...> WheelMoved;
+```
+
+The event fired when the mouse's wheel has moved.
+

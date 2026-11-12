@@ -1,0 +1,63 @@
+---
+title: "CheckBox Class"
+sidebar_label: "CheckBox"
+---
+
+# CheckBox Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Two-state check box with a label. `CheckBox.ValueChanged` fires on each toggle.
+
+```cpp
+class CheckBox : public Widget {};
+```
+
+## Constructors
+
+### CheckBox(Widget parent)
+
+```cpp
+CheckBox(const Widget& parent);
+```
+
+Create a check box inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+
+## Properties
+
+### IsChecked
+
+```cpp
+bool IsChecked() const;
+void IsChecked(bool value);
+```
+
+Checked state. Read-back is supported by LVGL.
+
+**Returns** `bool`
+
+### Text
+
+```cpp
+std::string Text() const;
+void Text(std::string value);
+```
+
+Label text shown next to the check box. `null` is treated as empty. Getter returns the last value set.
+
+**Returns** `string`
+
+## Events
+
+### ValueChanged
+
+```cpp
+Core::Event<...> ValueChanged;
+```
+
+Fires when `CheckBox.IsChecked` toggles via user interaction. Runs on the UI thread.
+

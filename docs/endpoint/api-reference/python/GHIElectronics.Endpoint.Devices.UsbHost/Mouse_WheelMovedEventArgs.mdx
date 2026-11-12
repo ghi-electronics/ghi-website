@@ -1,0 +1,45 @@
+---
+title: "Mouse.WheelMovedEventArgs Class"
+sidebar_label: "Mouse.WheelMovedEventArgs"
+---
+
+# WheelMovedEventArgs Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
+
+The events args for the WheelMoved event.
+
+```python
+class WheelMovedEventArgs(EventArgs): ...
+```
+
+## Constructors
+
+### WheelMovedEventArgs()
+
+```python
+def __init__(self):
+```
+
+## Properties
+
+### Delta
+
+```python
+Delta: int  # @property / @setter
+```
+
+The change from the last position.
+
+**Returns** `int`
+
+### NewPosition
+
+```python
+NewPosition: int  # @property / @setter
+```
+
+The new position of the wheel.
+
+**Returns** `int`
+

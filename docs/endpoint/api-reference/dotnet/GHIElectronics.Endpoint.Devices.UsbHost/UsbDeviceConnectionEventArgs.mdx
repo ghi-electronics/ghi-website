@@ -1,0 +1,107 @@
+---
+title: "UsbDeviceConnectionEventArgs Class"
+sidebar_label: "UsbDeviceConnectionEventArgs"
+---
+
+# UsbDeviceConnectionEventArgs Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.UsbHost`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.UsbHost`
+
+Event data for `UsbHostController.ConnectionChanged`: one USB device attached or detached.
+
+```csharp
+public sealed class UsbDeviceConnectionEventArgs : EventArgs
+```
+
+## Properties
+
+### DeviceName
+
+```csharp
+public string DeviceName { get; }
+```
+
+What to open: "/dev/ttyUSB0", "eth1"... (see DeviceType)
+
+**Returns** `string`
+
+### DeviceStatus
+
+```csharp
+public DeviceConnectionStatus DeviceStatus { get; }
+```
+
+Whether the device was just connected or just disconnected.
+
+**Returns** `DeviceConnectionStatus`
+
+### Id
+
+```csharp
+public uint Id { get; }
+```
+
+The device's number: the same for all its events, a new one when it is plugged in again
+
+**Returns** `uint`
+
+### Manufacturer
+
+```csharp
+public string Manufacturer { get; }
+```
+
+The device's own name for its maker ("Logitech"), empty if it has none
+
+**Returns** `string`
+
+### Product
+
+```csharp
+public string Product { get; }
+```
+
+The device's own name ("USB Receiver"), empty if it has none
+
+**Returns** `string`
+
+### ProductId
+
+```csharp
+public ushort ProductId { get; }
+```
+
+USB product id (PID) from the device descriptor.
+
+**Returns** `ushort`
+
+### SerialNumber
+
+```csharp
+public string SerialNumber { get; }
+```
+
+Empty if the device has none
+
+**Returns** `string`
+
+### Type
+
+```csharp
+public DeviceType Type { get; }
+```
+
+What the device gives (see `UsbHost.DeviceType`); hints what to open `UsbDeviceConnectionEventArgs.DeviceName` with.
+
+**Returns** `DeviceType`
+
+### VendorId
+
+```csharp
+public ushort VendorId { get; }
+```
+
+USB vendor id (VID) from the device descriptor.
+
+**Returns** `ushort`
+

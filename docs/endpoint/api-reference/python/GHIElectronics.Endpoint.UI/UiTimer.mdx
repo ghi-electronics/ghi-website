@@ -1,0 +1,77 @@
+---
+title: "UiTimer Class"
+sidebar_label: "UiTimer"
+---
+
+# UiTimer Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Thread-safe periodic callback that runs on the UI thread. The `callback` fires inside `UI.Run`'s LVGL pump every `periodMs` milliseconds, so widget updates in it are safe (LVGL itself is single- threaded). Dispose cancels the timer. Create / SetPeriod / Dispose are safe from any thread; the body runs on the UI thread.
+
+```python
+class UiTimer(IDisposable): ...
+```
+
+## Constructors
+
+### UiTimer(uint periodMs, Action callback)
+
+```python
+def __init__(self, periodMs: int, callback: Action):
+```
+
+Create a periodic timer that fires `callback` on the UI thread.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `periodMs` | `uint` | Period in milliseconds between callbacks. |
+| `callback` | `Action` | Delegate to invoke on each tick; runs on LVGL's event thread so widget updates are safe. |
+
+### UiTimer(TimeSpan period, Action callback)
+
+```python
+def __init__(self, period: datetime.timedelta, callback: Action):
+```
+
+Create a periodic timer with a `System.TimeSpan` period (clamped to at least 1 ms).
+
+| Parameter | Type | Description |
+|---|---|---|
+| `period` | `TimeSpan` | Period between callbacks. |
+| `callback` | `Action` | Delegate to invoke on each tick; runs on the UI thread. |
+
+## Methods
+
+### Dispose()
+
+```python
+def Dispose(self) -> None:
+```
+
+Cancel the timer and release its pinned callback. Idempotent.
+
+### SetPeriod(TimeSpan period)
+
+```python
+def SetPeriod(self, period: datetime.timedelta) -> None:
+```
+
+Change the timer period (clamped to at least 1 ms). Safe to call from any thread.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `period` | `TimeSpan` | New period. |
+
+### SetPeriod(uint periodMs)
+
+```python
+def SetPeriod(self, periodMs: int) -> None:
+```
+
+Change the timer period in milliseconds. Safe to call from any thread.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `periodMs` | `uint` | New period in milliseconds. |
+

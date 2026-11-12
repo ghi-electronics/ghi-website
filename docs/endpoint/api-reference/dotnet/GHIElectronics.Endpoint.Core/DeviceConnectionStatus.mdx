@@ -1,0 +1,23 @@
+---
+title: "DeviceConnectionStatus Enum"
+sidebar_label: "DeviceConnectionStatus"
+---
+
+# DeviceConnectionStatus Enum
+
+**Package:** `GHIElectronics.Endpoint.Core`<br/>**Namespace:** `GHIElectronics.Endpoint.Core`
+
+A device connected or disconnected (StorageController, UsbHostController)
+
+```csharp
+public enum DeviceConnectionStatus
+```
+
+## Fields
+
+| Name | Value | Description |
+|---|---|---|
+| `Disconnected` | `0` | The device has been removed. |
+| `Connected` | `1` | The device is present and ready for use. |
+| `Bad` | `2` | A drive with no file system the board reads (format it as FAT32 or exFAT) |
+

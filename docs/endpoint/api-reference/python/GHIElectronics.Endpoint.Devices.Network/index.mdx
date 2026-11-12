@@ -1,0 +1,25 @@
+---
+title: "GHIElectronics.Endpoint.Devices.Network"
+hide_title: true
+sidebar_label: Overview
+---
+
+<h1 className="api-package-heading">GHIElectronics.Endpoint.Devices.Network</h1>
+
+The network driver for Endpoint.
+
+## Classes
+
+| Class | Summary |
+|---|---|
+| [NetworkController](./NetworkController.mdx) | One of the board's network interfaces, by type (Ethernet, WiFi, PC-shared). The system takes care of the hardware - an Ethernet controller matches the built-in PHY or any USB Ethernet adapter; a WiFi controller matches a built-in WiFi module or any WiFi USB stick. Enable / Disable apply synchronously and throw on failure (no interface present, bad settings, wpa_supplicant / udhcpc failure). Settings persist in `/config/network.json` through `NetworkController.GetInterfaceSettings` / `NetworkController.SetInterfaceSettings`. Status (addresses, link, DNS, speed) is the standard `NetworkInformation.NetworkInterface` this controller exposes. |
+| [NetworkInterfaceSettings](./NetworkInterfaceSettings.mdx) | Settings for an Ethernet or PC-shared network interface (IP, routing, DNS, MAC pinning). Read with `NetworkController.GetInterfaceSettings` and apply with `NetworkController.SetInterfaceSettings`. For WiFi use `Network.WiFiNetworkInterfaceSettings`. |
+| [WiFiNetworkInterfaceSettings](./WiFiNetworkInterfaceSettings.mdx) | Settings for a WiFi interface. Inherits IP / DNS / MAC fields from `Network.NetworkInterfaceSettings` and adds the SSID and password used to associate with the access point. |
+
+## Enums
+
+| Enum | Summary |
+|---|---|
+| [NetworkType](./NetworkType.mdx) | What a network interface is, as the user sees it in network.json. The driver takes care of the hardware: an Ethernet value matches the board's built-in PHY or any USB Ethernet adapter; a WiFi value matches a built-in WiFi module or any WiFi USB stick. |
+| [WiFiSecurityType](./WiFiSecurityType.mdx) | How a WiFi network authenticates clients. |
+

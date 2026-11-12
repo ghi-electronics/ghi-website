@@ -1,0 +1,89 @@
+---
+title: "CameraControlValue Class"
+sidebar_label: "CameraControlValue"
+---
+
+# CameraControlValue Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Camera`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Camera`
+
+A camera control's range and value, in the camera's own units.
+
+```csharp
+public sealed class CameraControlValue
+```
+
+## Properties
+
+### Control
+
+```csharp
+public CameraControl Control { get; }
+```
+
+Which control this value describes.
+
+**Returns** `CameraControl`
+
+### DefaultValue
+
+```csharp
+public int DefaultValue { get; }
+```
+
+Camera's own default for this control.
+
+**Returns** `int`
+
+### Maximum
+
+```csharp
+public int Maximum { get; }
+```
+
+Highest value the camera accepts.
+
+**Returns** `int`
+
+### Minimum
+
+```csharp
+public int Minimum { get; }
+```
+
+Lowest value the camera accepts.
+
+**Returns** `int`
+
+### Step
+
+```csharp
+public int Step { get; }
+```
+
+Granularity between accepted values.
+
+**Returns** `int`
+
+### Value
+
+```csharp
+public int Value { get; }
+```
+
+Current value.
+
+**Returns** `int`
+
+## Methods
+
+### ToString()
+
+```csharp
+public override string ToString()
+```
+
+Returns a human-readable description like "Brightness 128 (0 to 255, default 128)".
+
+**Returns** `string`
+

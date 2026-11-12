@@ -1,0 +1,89 @@
+---
+title: "Gauge Class"
+sidebar_label: "Gauge"
+---
+
+# Gauge Class
+
+**Package:** `GHIElectronics.Endpoint.UI`<br/>**Namespace:** `GHIElectronics.Endpoint.UI`
+
+Radial dial with a needle. Not a standard .NET widget: the API mirrors TinyCLR's Gauge. SweepAngle is 180/270/360 degrees.
+
+```cpp
+class Gauge : public Widget {};
+```
+
+## Constructors
+
+### Gauge(Widget parent, int width, int height)
+
+```cpp
+Gauge(const Widget& parent, int32_t width, int32_t height);
+```
+
+Create a gauge inside `parent`.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `parent` | `Widget` | Containing widget. |
+| `width` | `int` | Width in pixels. |
+| `height` | `int` | Height in pixels. |
+
+## Properties
+
+### EnableScale
+
+```cpp
+bool EnableScale() const;
+void EnableScale(bool value);
+```
+
+Whether tick marks and labels are drawn around the dial. Getter returns the last value set.
+
+**Returns** `bool`
+
+### SweepAngle
+
+```cpp
+int32_t SweepAngle() const;
+void SweepAngle(int32_t value);
+```
+
+Total sweep in degrees (typically 180, 270, or 360). Getter returns the last value set.
+
+**Returns** `int`
+
+### Value
+
+```cpp
+int32_t Value() const;
+void Value(int32_t value);
+```
+
+Current needle value. Getter returns the last value set (LVGL has no read-back).
+
+**Returns** `int`
+
+## Methods
+
+### SetNeedleShape(double centerY, double length)
+
+```cpp
+void SetNeedleShape(double centerY, double length);
+```
+
+Needle center-Y (0..1 of height) and length (0..1 of half min dimension).
+
+### SetRange(int min, int max)
+
+```cpp
+void SetRange(int32_t min, int32_t max);
+```
+
+Set the value range mapped onto the dial.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `min` | `int` | Value shown at the start of the sweep. |
+| `max` | `int` | Value shown at the end of the sweep. |
+

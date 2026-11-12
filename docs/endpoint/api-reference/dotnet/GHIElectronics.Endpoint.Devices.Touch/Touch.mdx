@@ -1,0 +1,93 @@
+---
+title: "Touch Class"
+sidebar_label: "Touch"
+---
+
+# Touch Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Touch`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Touch`
+
+A touchscreen on the board. This class is abstract: the library ships one concrete subclass, `Touch.InputTouch`, for touchscreens the kernel exposes at `/dev/input/eventN` (USB HID touchscreens). All other touch controllers (SPI chips like XPT2046, I2C chips like FT5x06 or GT911, custom boards) are the customer's own subclass code using the Core Spi/I2c/Gpio APIs. Interrupt-based drivers are first class: `GpioPin.ValueChanged` wakes the touch thread the moment the chip pulls the IRQ line. Subclasses raise `Touch.OnChangedEvent` by calling `Touch.RaiseChanged` from their reader loop or interrupt handler.
+
+```csharp
+public abstract class Touch : IDisposable
+```
+
+## Constructors
+
+### Touch()
+
+```csharp
+protected Touch()
+```
+
+## Properties
+
+### Connected
+
+```csharp
+public bool Connected { get; }
+```
+
+True while the touchscreen is physically present and responding.
+
+**Returns** `bool`
+
+### Height
+
+```csharp
+public int Height { get; }
+```
+
+Visible height of the touchscreen area, in pixels.
+
+**Returns** `int`
+
+### Width
+
+```csharp
+public int Width { get; }
+```
+
+Visible width of the touchscreen area, in pixels.
+
+**Returns** `int`
+
+## Methods
+
+### Dispose()
+
+```csharp
+public abstract void Dispose()
+```
+
+Releases the touchscreen handle and stops the reader thread.
+
+### GetDefault()
+
+```csharp
+public static Touch GetDefault()
+```
+
+The first kernel-exposed touchscreen the library can find at `/dev/input/eventN`, or null if none is present. Used for USB touchscreens; the on-board panel's chip is the customer's own subclass and does not come through here.
+
+**Returns** `Touch`
+
+### RaiseChanged(TouchEventArgs e)
+
+```csharp
+protected void RaiseChanged(TouchEventArgs e)
+```
+
+Subclasses call this to emit a touch event to the user.
+
+## Events
+
+### OnChangedEvent
+
+```csharp
+public event TouchChangedEventHandler OnChangedEvent
+```
+
+Fired on every change in finger state (press / move / release).
+

@@ -1,0 +1,65 @@
+---
+title: "CameraConfiguration Class"
+sidebar_label: "CameraConfiguration"
+---
+
+# CameraConfiguration Class
+
+**Package:** `GHIElectronics.Endpoint.Devices.Camera`<br/>**Namespace:** `GHIElectronics.Endpoint.Devices.Camera`
+
+Resolution, pixel format and frame rate requested from a camera.
+
+```csharp
+public class CameraConfiguration
+```
+
+## Constructors
+
+### CameraConfiguration()
+
+```csharp
+public CameraConfiguration()
+```
+
+## Properties
+
+### FrameRate
+
+```csharp
+public int FrameRate { get; set; }
+```
+
+Target frame rate in frames per second. Defaults to 15.
+
+**Returns** `int`
+
+### Height
+
+```csharp
+public int Height { get; set; }
+```
+
+Frame height in pixels.
+
+**Returns** `int`
+
+### ImageFormat
+
+```csharp
+public PixelFormat ImageFormat { get; set; }
+```
+
+Pixel format each frame is delivered in. Defaults to `PixelFormat.Rgb565`.
+
+**Returns** `PixelFormat`
+
+### Width
+
+```csharp
+public int Width { get; set; }
+```
+
+Frame width in pixels.
+
+**Returns** `int`
+
