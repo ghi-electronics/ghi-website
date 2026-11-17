@@ -4,6 +4,30 @@ title: Release Notes
 
 ![TinyCLR Logo](/img/docs/tinyclr-logo.png)
 
+## 3.0.2.4000 (2026-11-17) RTW
+
+Firmware-only patch release. Libraries, extensions, and TinyCLR Config are unchanged — keep using 3.0.2.3000 for all of those.
+
+### Firmware
+
+- **Reflection**: fixed `FieldInfo.FieldType` returning `System.Array` for array-typed fields instead of the concrete `T[]` type. `GetElementType()` now returns the element type correctly, which unblocks `JsonConverter.DeserializeObject` on classes with array fields.
+
+### Libraries
+
+- No change. 3.0.2.3000 remains the current release.
+
+### Visual Studio Extension
+
+- No change. 3.0.2.3000 remains the current release.
+
+### TinyCLR Config
+
+- No change. 3.0.2.2000 remains the current release.
+
+### Visual Studio Code extension
+
+- No change. 3.0.12 remains the current release.
+
 ## 3.0.2.3000 (2026-11-12) RTW
 
 Firmware, CLR, and networking fixes. Update the firmware, the extensions, and the libraries together.
