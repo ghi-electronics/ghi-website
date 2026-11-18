@@ -10,6 +10,7 @@ const sidebars: SidebarsConfig = {
       collapsed: true,
       items: [
         'endpoint-domino24',
+        'raspberry-pi-zero',
       ],
     },
     {
