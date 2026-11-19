@@ -3,8 +3,11 @@ title: "Raspberry Pi Zero"
 description: Run Endpoint on the Raspberry Pi Zero 2 W, a third-party evaluation option that uses the same extension, libraries, and APIs as Endpoint Domino24.
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 :::note[Third-party evaluation option]
-The Raspberry Pi Zero 2 W is a low-cost way to try Endpoint on a board you may already have. It uses the same IDE extensions, libraries, and APIs as [Endpoint Domino24](endpoint-domino24.mdx), but it has fewer hardware features. See [Feature support by board](hardware.mdx#feature-support-by-board) for what works on each board.
+The Raspberry Pi Zero 2 W is a low-cost way to try Endpoint on a board you may already have. It uses the same IDE extensions, libraries, and APIs as [Endpoint Domino24](endpoint-domino24.mdx), with a different mix of on-board peripherals.
 :::
 
 ## Raspberry Pi Zero 2 W
@@ -28,10 +31,173 @@ Because that port is used for debugging, **USB host is not available** on this b
 
 The Raspberry Pi Zero 2 W has its own OS image on the [Downloads](downloads.mdx#endpoint-os-image) page. Follow [Getting Started](getting-started.mdx) and pick the **Raspberry Pi Zero 2 W** tab in Step 1.
 
+## Pinout
+
+![Raspberry Pi Zero 2 W pinout](/img/docs/endpoint/raspberry-pi-zero-pinout.png)
+
+Two things worth noting about the diagram:
+
+* **"GPIO N" is the BCM GPIO number, not the physical header position.** For example, **GPIO 23** is the Broadcom SoC's line 23, which happens to sit at physical header pin 16. All pin constants in code use the BCM number.
+* **The header has 40 pins, but not all 40 are GPIO.** Of the 40, 26 are usable I/O lines; the rest are 3.3 V, 5 V, and ground rails.
+
 ## Pins in code
 
-Pin and bus names for this board are in `GHIElectronics.Endpoint.RaspberryPi.Zero2W`. Use them where the feature pages use `EPDomino24`.
+Pin and bus constants for this board live in the `GHIElectronics.Endpoint.Drivers.RaspberryPi` package (NuGet for .NET, wheel for Python, header-only drop-in for C/C++), under the `Zero2W` class. Use them where the feature pages reference `EPDomino24`.
 
-## What is not available
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
 
-The Raspberry Pi Zero 2 W has no analog inputs or outputs, no CAN controller, no parallel display connector, no battery-backed real time clock, and no real-time co-processor for [Signal Control](features/signal-control.mdx). Serial (SPI and I2C) displays and touch screens work.
+```csharp
+using GHIElectronics.Endpoint.Core;
+using GHIElectronics.Endpoint.Drivers.RaspberryPi;
+
+I2cController.Initialize(Zero2W.I2c.I2c1);
+SpiController.Initialize(Zero2W.Spi.Spi0);
+PwmController.Initialize(Zero2W.Pwm.Pin.Pin12);
+SerialPortController.Initialize(Zero2W.SerialPort.Uart1);
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+from GHIElectronics.Endpoint.Core import I2cController, SpiController, PwmController, SerialPortController
+from GHIElectronics.Endpoint.Drivers.RaspberryPi import Zero2W
+
+I2cController.Initialize(Zero2W.I2c.I2c1)
+SpiController.Initialize(Zero2W.Spi.Spi0)
+PwmController.Initialize(Zero2W.Pwm.Pin.Pin12)
+SerialPortController.Initialize(Zero2W.SerialPort.Uart1)
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+#include <endpoint.h>
+#include <endpoint/Zero2W.h>
+
+using namespace GHIElectronics::Endpoint::Core;
+using namespace GHIElectronics::Endpoint::Drivers::RaspberryPi;
+
+I2cController::Initialize(Zero2W::I2c::I2c1);
+SpiController::Initialize(Zero2W::Spi::Spi0);
+PwmController::Initialize(Zero2W::Pwm::Pin::Pin12);
+SerialPortController::Initialize(Zero2W::SerialPort::Uart1);
+```
+
+</TabItem>
+</Tabs>
+
+The verb classes (`I2cController`, `SpiController`, etc.) are the same ones every Endpoint board uses; only the pin and bus prefix differs. Code written against `EPDomino24` swaps to `Zero2W` with a single find-and-replace.
+
+## Blink the on-board LED
+
+The project template from [Getting Started](getting-started.mdx) already blinks the on-board LED on Domino24. To make it blink the LED on the Raspberry Pi Zero 2 W, add a `using` for the RaspberryPi driver and change the pin reference from `EPDomino24.Led` to `Zero2W.Led`. The controller, the API, and the loop are the same on every board.
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET" default>
+
+```csharp
+using System.Device.Gpio;
+using GHIElectronics.Endpoint.Core;
+using GHIElectronics.Endpoint.Drivers.RaspberryPi;
+
+using var gpio = new GpioController(new Zero2W.Gpio.Driver());
+gpio.OpenPin(Zero2W.Led, PinMode.Output);
+
+var on = false;
+while (true) {
+    gpio.Write(Zero2W.Led, (on = !on) ? PinValue.High : PinValue.Low);
+    Thread.Sleep(100);
+}
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import time
+from GHIElectronics.Endpoint.Drivers.RaspberryPi import Zero2W
+from GHIElectronics.Endpoint.Devices.Gpio import GpioController, PinMode, PinValue
+
+gpio = GpioController()
+gpio.OpenPin(Zero2W.Led, PinMode.Output)
+
+on = False
+while True:
+    on = not on
+    gpio.Write(Zero2W.Led, PinValue.High if on else PinValue.Low)
+    time.sleep(0.1)
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+#include <chrono>
+#include <thread>
+#include <endpoint/Gpio.h>
+#include <endpoint/Zero2W.h>
+
+using namespace GHIElectronics::Endpoint::Drivers::RaspberryPi;
+using namespace GHIElectronics::Endpoint::Devices::Gpio;
+
+GpioController gpio;
+gpio.OpenPin(Zero2W::Led, PinMode::Output);
+
+bool on = false;
+while (true) {
+    on = !on;
+    gpio.Write(Zero2W::Led, on ? PinValue::High : PinValue::Low);
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+}
+```
+
+</TabItem>
+</Tabs>
+
+:::note[The Pi's on-board LED is active-low]
+Writing `PinValue.Low` to `Zero2W.Led` turns the LED **on**, and `PinValue.High` turns it **off**. The LED is wired between 3.3 V and the SoC pin, so the pin has to sink current to light it. This is a wiring detail of the Raspberry Pi board, not a quirk of the API; external LEDs you add to the header can be wired either way.
+:::
+
+That is the whole difference between a blink on Domino24 and a blink on the Pi. The same holds for every other peripheral page in this documentation: pick the pin or bus from `Zero2W` instead of `EPDomino24` and the sample runs unchanged.
+
+## Feature comparison
+
+The Raspberry Pi Zero 2 W is a great starting point for learning Endpoint and for small projects. When a project needs something that isn't on the Pi, the **Endpoint Families** boards add those peripherals on-board, so you can move the same code over without rewriting it for a different stack.
+
+export const Yes = () => <span style={{color: 'var(--ifm-color-success)', fontWeight: 600}}>✓ Yes</span>;
+export const No = () => <span style={{color: 'var(--ifm-color-danger)', fontWeight: 600}}>✗ No</span>;
+export const InProgress = () => <em>In Progress</em>;
+
+Feature | Raspberry Pi Zero 2 W | Endpoint Families
+--- | :---: | :---:
+.NET, Python, C/C++ support | <Yes /> | <Yes />
+GPIO | <Yes /> (26 lines) | <Yes /> (up to ~100 lines)
+SPI | <Yes /> (2 buses) | <Yes /> (up to 4 buses)
+I2C | <Yes /> (1 bus) | <Yes /> (up to 5 buses)
+UART | <Yes /> (1 port) | <Yes /> (up to 7 ports)
+PWM | <Yes /> (2 channels) | <Yes /> (up to 27 channels)
+Analog In | <No /> | <Yes /> (up to 14 channels)
+Analog Out | <No /> | <Yes /> (up to 2 channels)
+CAN | <No /> | <Yes /> (up to 4 buses)
+Signal Control | <No /> | <Yes />
+USB host | <No /> | <Yes />
+HDMI output | <Yes /> | <No />
+Native parallel display | <No /> | <Yes />
+Camera (CSI / DCMI) | <InProgress /> | <InProgress />
+Graphics stack | Canvas, SKBitmap | Canvas, SKBitmap, LVGL widgets
+Wi-Fi | <Yes /> | <Yes />
+Ethernet | <No /> | <Yes />
+Bluetooth | <InProgress /> | <InProgress />
+microSD storage | <Yes /> | <Yes />
+eMMC storage | <No /> | <Yes />
+Watchdog | <No /> | <Yes />
+Real Time Clock | <No /> | <InProgress />
+Power Management | <No /> | <InProgress />
+In-Field Update | <No /> | <InProgress />
+Cloud, IoT (MQTT, Modbus, gateway, databases) | <Yes /> | <Yes />
+Cold boot time | about 8 seconds | about 3 seconds
+
+Anything the Pi doesn't have on board can usually be added with an external module and some wiring; most of the time it's quicker to start on the Pi for the parts your project already covers, then pick up an Endpoint Families board when the project calls for extras like more GPIO, more bus lines, analog, CAN, native display, or a faster boot. The APIs are shared, so the switch is a matter of changing the pin prefix, not rewriting the application.

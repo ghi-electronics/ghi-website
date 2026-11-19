@@ -118,6 +118,73 @@ Every Endpoint template is a ready-to-run blink application: it blinks the USER 
 </TabItem>
 </Tabs>
 
+The new project opens with a few lines of code that blink the USER LED and print a counter. This is how little it takes to run real I/O on the board:
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET (C#)" default>
+
+```csharp
+using System.Device.Gpio;
+using GHIElectronics.Endpoint.Core;
+
+using var gpio = new GpioController(new EPDomino24.Gpio.Driver());
+gpio.OpenPin(EPDomino24.Led, PinMode.Output);
+
+var counter = 0;
+while (true) {
+    gpio.Write(EPDomino24.Led, counter % 2 == 0 ? PinValue.High : PinValue.Low);
+    Console.WriteLine($"Hello Endpoint. Counter: {++counter}");
+    Thread.Sleep(500);
+}
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import time
+from GHIElectronics.Endpoint.Core import EPDomino24
+from GHIElectronics.Endpoint.Devices.Gpio import GpioController, PinMode, PinValue
+
+gpio = GpioController()
+gpio.OpenPin(EPDomino24.Led, PinMode.Output)
+
+counter = 0
+while True:
+    counter += 1
+    gpio.Write(EPDomino24.Led, PinValue.High if counter % 2 == 0 else PinValue.Low)
+    print(f"Hello Endpoint. Counter: {counter}")
+    time.sleep(0.5)
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+#include <chrono>
+#include <cstdio>
+#include <thread>
+#include <endpoint/Gpio.h>
+#include <endpoint/EPDomino24.h>
+
+using namespace GHIElectronics::Endpoint::Core;
+using namespace GHIElectronics::Endpoint::Devices::Gpio;
+
+GpioController gpio;
+gpio.OpenPin(EPDomino24::Led, PinMode::Output);
+
+int counter = 0;
+while (true) {
+    ++counter;
+    gpio.Write(EPDomino24::Led, counter % 2 == 0 ? PinValue::High : PinValue::Low);
+    std::printf("Hello Endpoint. Counter: %d\n", counter);
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+}
+```
+
+</TabItem>
+</Tabs>
+
 ## Step 4: Deploy and run
 
 Make sure the **USER LED** on the board is on. A lit USER LED means the board has finished booting and is ready to accept a new program. If the LED is still off, wait a few seconds; a cold boot takes about three.
