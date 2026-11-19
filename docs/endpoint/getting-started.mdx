@@ -126,14 +126,18 @@ The new project opens with a few lines of code that blink the USER LED and print
 ```csharp
 using System.Device.Gpio;
 using GHIElectronics.Endpoint.Core;
+using GHIElectronics.Endpoint.Pins;
 
 using var gpio = new GpioController(new EPDomino24.Gpio.Driver());
-gpio.OpenPin(EPDomino24.Led, PinMode.Output);
+var ledPin = EPDomino24.Gpio.Led;
+
+gpio.OpenPin(ledPin, PinMode.Output);
 
 var counter = 0;
-while (true) {
-    gpio.Write(EPDomino24.Led, counter % 2 == 0 ? PinValue.High : PinValue.Low);
+while (true)
+{
     Console.WriteLine($"Hello Endpoint. Counter: {++counter}");
+    gpio.Write(ledPin, counter % 2 == 1 ? PinValue.High : PinValue.Low);
     Thread.Sleep(500);
 }
 ```
@@ -143,17 +147,19 @@ while (true) {
 
 ```python
 import time
-from GHIElectronics.Endpoint.Core import EPDomino24
+from GHIElectronics.Endpoint.Pins import EPDomino24
 from GHIElectronics.Endpoint.Devices.Gpio import GpioController, PinMode, PinValue
 
 gpio = GpioController()
-gpio.OpenPin(EPDomino24.Led, PinMode.Output)
+led_pin = EPDomino24.Gpio.Led
+
+gpio.OpenPin(led_pin, PinMode.Output)
 
 counter = 0
 while True:
     counter += 1
-    gpio.Write(EPDomino24.Led, PinValue.High if counter % 2 == 0 else PinValue.Low)
     print(f"Hello Endpoint. Counter: {counter}")
+    gpio.Write(led_pin, PinValue.High if counter % 2 else PinValue.Low)
     time.sleep(0.5)
 ```
 
@@ -164,20 +170,19 @@ while True:
 #include <chrono>
 #include <cstdio>
 #include <thread>
-#include <endpoint/Gpio.h>
-#include <endpoint/EPDomino24.h>
+#include <endpoint.h>
 
 using namespace GHIElectronics::Endpoint::Core;
 using namespace GHIElectronics::Endpoint::Devices::Gpio;
 
 GpioController gpio;
-gpio.OpenPin(EPDomino24::Led, PinMode::Output);
+auto ledPin = EPDomino24::Gpio::Led;
 
-int counter = 0;
-while (true) {
-    ++counter;
-    gpio.Write(EPDomino24::Led, counter % 2 == 0 ? PinValue::High : PinValue::Low);
+gpio.OpenPin(ledPin, PinMode::Output);
+
+for (int counter = 1;; counter++) {
     std::printf("Hello Endpoint. Counter: %d\n", counter);
+    gpio.Write(ledPin, counter % 2 ? PinValue::High : PinValue::Low);
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
 }
 ```

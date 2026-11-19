@@ -10,7 +10,7 @@ across all three languages. You get a `GpioController`, open the pins you
 want, and read or write them. In .NET, Endpoint plugs into the standard
 API by providing a per-board `Gpio.Driver`; Python and C++ ship the same
 API in their own `GHIElectronics.Endpoint.Devices.Gpio` module. In every
-language you use the board's pin constants (e.g. `EPDomino24.Led`,
+language you use the board's pin constants (e.g. `EPDomino24.Gpio.Led`,
 `EPDomino24.Gpio.Pin.PF3`) directly.
 
 ## Digital outputs
@@ -36,14 +36,17 @@ Blink the on-board LED:
 ```csharp
 using System.Device.Gpio;
 using GHIElectronics.Endpoint.Core;
+using GHIElectronics.Endpoint.Pins;
 
 using var gpio = new GpioController(new EPDomino24.Gpio.Driver());
-gpio.OpenPin(EPDomino24.Led, PinMode.Output);
+var ledPin = EPDomino24.Gpio.Led;
+
+gpio.OpenPin(ledPin, PinMode.Output);
 
 var on = false;
 while (true) {
-    gpio.Write(EPDomino24.Led, (on = !on) ? PinValue.High : PinValue.Low);
-    Thread.Sleep(100);
+    gpio.Write(ledPin, (on = !on) ? PinValue.High : PinValue.Low);
+    Thread.Sleep(500);
 }
 ```
 
@@ -52,17 +55,19 @@ while (true) {
 
 ```python
 import time
-from GHIElectronics.Endpoint.Core import EPDomino24
+from GHIElectronics.Endpoint.Pins import EPDomino24
 from GHIElectronics.Endpoint.Devices.Gpio import GpioController, PinMode, PinValue
 
 gpio = GpioController()
-gpio.OpenPin(EPDomino24.Led, PinMode.Output)
+led_pin = EPDomino24.Gpio.Led
+
+gpio.OpenPin(led_pin, PinMode.Output)
 
 on = False
 while True:
     on = not on
-    gpio.Write(EPDomino24.Led, PinValue.High if on else PinValue.Low)
-    time.sleep(0.1)
+    gpio.Write(led_pin, PinValue.High if on else PinValue.Low)
+    time.sleep(0.5)
 ```
 
 </TabItem>
@@ -71,20 +76,21 @@ while True:
 ```cpp
 #include <chrono>
 #include <thread>
-#include <endpoint/Gpio.h>
-#include <endpoint/EPDomino24.h>
+#include <endpoint.h>
 
 using namespace GHIElectronics::Endpoint::Core;
 using namespace GHIElectronics::Endpoint::Devices::Gpio;
 
 GpioController gpio;
-gpio.OpenPin(EPDomino24::Led, PinMode::Output);
+auto ledPin = EPDomino24::Gpio::Led;
+
+gpio.OpenPin(ledPin, PinMode::Output);
 
 bool on = false;
 while (true) {
     on = !on;
-    gpio.Write(EPDomino24::Led, on ? PinValue::High : PinValue::Low);
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    gpio.Write(ledPin, on ? PinValue::High : PinValue::Low);
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
 }
 ```
 
