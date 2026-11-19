@@ -17,31 +17,34 @@ Tell us what you need on the
 peripherals, and whether wireless is a requirement.
 :::
 
-## Feature support by board
+## Features supported by board
 
 Every board runs the same Endpoint OS, IDE extensions, and libraries. What
 differs is the hardware on the board.
 
 Feature | Endpoint Domino24 | Raspberry Pi Zero 2 W
 --- | --- | ---
-Processor | 650 MHz 32-bit ARM | 1 GHz quad-core 64-bit ARM
-RAM | 128 MB | 512 MB
-[GPIO](features/gpio.mdx), [PWM](features/pwm.mdx) | ✓ | ✓
-[Analog In](features/analog-in.mdx), [Analog Out](features/analog-out.mdx) | ✓ | —
+[GPIO](features/gpio.mdx) | ✓ | ✓
+[PWM](features/pwm.mdx) | ✓ | ✓
+[Analog In](features/analog-in.mdx) | ✓ | —
+[Analog Out](features/analog-out.mdx) | ✓ | —
 [Signal Control](features/signal-control.mdx) | Coming soon | —
-[SPI](features/spi.mdx), [I2C](features/i2c.mdx), [UART](features/uart.mdx) | ✓ | ✓
+[SPI](features/spi.mdx) | ✓ | ✓
+[I2C](features/i2c.mdx) | ✓ | ✓
+[UART](features/uart.mdx) | ✓ | ✓
 [USB](features/usb.mdx) host | ✓ | —
 [CAN](features/can.mdx) | ✓ | —
 [Networking](features/networking.mdx) | Wi-Fi through a USB dongle | Wi-Fi on board
 [Bluetooth](features/bluetooth.mdx) | Coming soon | Coming soon
-[Displays](features/displays.mdx): parallel TFT | ✓ | —
-[Displays](features/displays.mdx): SPI and I2C | ✓ | ✓
+[Displays](features/displays.mdx) | parallel TFT, SPI, I2C | HDMI, SPI, I2C
 [Touch Screen](features/touch-screen.mdx) | ✓ | ✓
 [Camera](features/camera.mdx) | Coming soon | Coming soon
-[File System](features/file-system.mdx) | microSD and USB drives | microSD
-[Power Management](features/power-management.mdx), [Watchdog](features/watchdog-timer.mdx) | ✓ | ✓
+[File System](features/file-system.mdx) | microSD, USB drives | microSD
+[Power Management](features/power-management.mdx) | ✓ | ✓
+[Watchdog](features/watchdog-timer.mdx) | ✓ | ✓
 [Real Time Clock](features/real-time-clock.mdx) | ✓ | —
-[In-Field Update](features/in-field-update.mdx) | Coming soon | Coming soon
-Software features: cloud, MQTT, Modbus, gateway, databases, graphics | ✓ | ✓
+[In-Field Update](features/in-field-update.mdx) | Coming soon | —
+Cloud, IoT (MQTT, Modbus, gateway, databases) | ✓ | ✓
+Cold boot time | about 3 seconds | about 8 seconds
 
 ✓ supported, — not available on this board.
