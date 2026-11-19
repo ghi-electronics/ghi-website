@@ -1,0 +1,37 @@
+---
+title: "Raspberry Pi Zero"
+description: Run Endpoint on the Raspberry Pi Zero 2 W, a third-party evaluation option that uses the same extension, libraries, and APIs as Endpoint Domino24.
+---
+
+:::note[Third-party evaluation option]
+The Raspberry Pi Zero 2 W is a low-cost way to try Endpoint on a board you may already have. It uses the same IDE extensions, libraries, and APIs as [Endpoint Domino24](endpoint-domino24.mdx), but it has fewer hardware features. See [Feature support by board](hardware.mdx#feature-support-by-board) for what works on each board.
+:::
+
+## Raspberry Pi Zero 2 W
+
+#### Features:
+* 1 GHz quad-core 64-bit ARM, 512 MB RAM
+* Wi-Fi on board
+* 40-pin GPIO header
+* microSD card slot
+* micro-USB port for power and debugging
+
+Only the **Raspberry Pi Zero 2 W** is supported. The original Raspberry Pi Zero and Zero W use an older processor that .NET does not run on.
+
+## Connecting to your PC
+
+The board has two micro-USB ports. Connect the one labeled **USB** to your PC. It powers the board and carries the debugging connection, so the other port, labeled **PWR IN**, is not needed.
+
+Because that port is used for debugging, **USB host is not available** on this board. Keyboards, mice, USB drives, and webcams cannot be connected.
+
+## OS image
+
+The Raspberry Pi Zero 2 W has its own OS image on the [Downloads](downloads.mdx#endpoint-os-image) page. Follow [Getting Started](getting-started.mdx) and pick the **Raspberry Pi Zero 2 W** tab in Step 1.
+
+## Pins in code
+
+Pin and bus names for this board are in `GHIElectronics.Endpoint.RaspberryPi.Zero2W`. Use them where the feature pages use `EPDomino24`.
+
+## What is not available
+
+The Raspberry Pi Zero 2 W has no analog inputs or outputs, no CAN controller, no parallel display connector, no battery-backed real time clock, and no real-time co-processor for [Signal Control](features/signal-control.mdx). Serial (SPI and I2C) displays and touch screens work.
