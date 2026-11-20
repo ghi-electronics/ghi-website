@@ -371,31 +371,33 @@ tft.flush(pixels)
 
 ```cpp
 #include <endpoint.h>
-#include <endpoint/SpiController.h>
 #include "Ili9341.h"                // see driver section below
 
 namespace Core = GHIElectronics::Endpoint::Core;
 namespace Gpio = GHIElectronics::Endpoint::Devices::Gpio;
 namespace Spi  = GHIElectronics::Endpoint::Devices::Spi;
 
-Core::SpiController::Initialize(Core::EPDomino24::Spi::Spi1, /*bufferSize*/ 4096);
-Spi::SpiConnectionSettings settings(Core::EPDomino24::Spi::Spi1);
-settings.Mode = Spi::SpiMode::Mode0;
-settings.ClockFrequency = 10'000'000;
-auto spi = Spi::SpiDevice::Create(settings);
+int main()
+{
+    Core::SpiController::Initialize(Core::EPDomino24::Spi::Spi1, /*bufferSize*/ 4096);
+    Spi::SpiConnectionSettings settings(Core::EPDomino24::Spi::Spi1);
+    settings.Mode = Spi::SpiMode::Mode0;
+    settings.ClockFrequency = 10'000'000;
+    auto spi = Spi::SpiDevice::Create(settings);
 
-Gpio::GpioController gpio;
-Ili9341 tft(gpio, spi,
-            /*cs*/  Core::EPDomino24::Gpio::Pin::PA14,
-            /*dc*/  Core::EPDomino24::Gpio::Pin::PA10,
-            /*rst*/ Core::EPDomino24::Gpio::Pin::PF4);
-tft.SwapRedBlue(true);              // set for modules where yellow shows as cyan
-tft.Initialize();
+    Gpio::GpioController gpio;
+    Ili9341 tft(gpio, spi,
+                /*cs*/  Core::EPDomino24::Gpio::Pin::PA14,
+                /*dc*/  Core::EPDomino24::Gpio::Pin::PA10,
+                /*rst*/ Core::EPDomino24::Gpio::Pin::PF4);
+    tft.SwapRedBlue(true);              // set for modules where yellow shows as cyan
+    tft.Initialize();
 
-// Pixel buffer in RGB565 (width * height * 2 bytes)
-std::vector<uint8_t> pixels(tft.Width() * tft.Height() * 2);
-// ... fill the buffer ...
-tft.Flush(pixels);
+    // Pixel buffer in RGB565 (width * height * 2 bytes)
+    std::vector<uint8_t> pixels(tft.Width() * tft.Height() * 2);
+    // ... fill the buffer ...
+    tft.Flush(pixels);
+}
 ```
 
 </TabItem>

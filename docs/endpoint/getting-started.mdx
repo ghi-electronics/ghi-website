@@ -175,15 +175,18 @@ while True:
 using namespace GHIElectronics::Endpoint::Core;
 using namespace GHIElectronics::Endpoint::Devices::Gpio;
 
-GpioController gpio;
-auto ledPin = EPDomino24::Gpio::Led;
+int main()
+{
+    GpioController gpio;
+    auto ledPin = EPDomino24::Gpio::Led;
 
-gpio.OpenPin(ledPin, PinMode::Output);
+    gpio.OpenPin(ledPin, PinMode::Output);
 
-for (int counter = 1;; counter++) {
-    std::printf("Hello Endpoint. Counter: %d\n", counter);
-    gpio.Write(ledPin, counter % 2 ? PinValue::High : PinValue::Low);
-    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    for (int counter = 1;; counter++) {
+        std::printf("Hello Endpoint. Counter: %d\n", counter);
+        gpio.Write(ledPin, counter % 2 ? PinValue::High : PinValue::Low);
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    }
 }
 ```
 

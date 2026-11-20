@@ -28,3 +28,15 @@ Python packages that are distributed only as source (no pre-built
 `aarch64` wheel on PyPI) cannot be installed on the board, because the
 board does not ship with a build toolchain. Pure-Python packages and
 anything that provides an `aarch64` wheel install normally with `pip`.
+
+## First F5 sets the platform family
+
+The first F5 (or Ctrl+F5) on a new project configures it for the
+platform family of the board that is connected at that moment — 32-bit
+or 64-bit. The project then runs on any compatible board in the same
+family without reconfiguration, in all three languages (.NET, Python,
+C/C++).
+
+Moving a project across platform families (32-bit to 64-bit, or the
+other way) requires creating a new project on the target family and
+copying your source files into it.

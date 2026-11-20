@@ -81,16 +81,19 @@ while True:
 using namespace GHIElectronics::Endpoint::Core;
 using namespace GHIElectronics::Endpoint::Devices::Gpio;
 
-GpioController gpio;
-auto ledPin = EPDomino24::Gpio::Led;
+int main()
+{
+    GpioController gpio;
+    auto ledPin = EPDomino24::Gpio::Led;
 
-gpio.OpenPin(ledPin, PinMode::Output);
+    gpio.OpenPin(ledPin, PinMode::Output);
 
-bool on = false;
-while (true) {
-    on = !on;
-    gpio.Write(ledPin, on ? PinValue::High : PinValue::Low);
-    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    bool on = false;
+    while (true) {
+        on = !on;
+        gpio.Write(ledPin, on ? PinValue::High : PinValue::Low);
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    }
 }
 ```
 
@@ -150,19 +153,21 @@ while True:
 #include <chrono>
 #include <cstdio>
 #include <thread>
-#include <endpoint/Gpio.h>
-#include <endpoint/EPDomino24.h>
+#include <endpoint.h>
 
 using namespace GHIElectronics::Endpoint::Core;
 using namespace GHIElectronics::Endpoint::Devices::Gpio;
 
-GpioController gpio;
-gpio.OpenPin(EPDomino24::ButtonF1, PinMode::InputPullUp);
+int main()
+{
+    GpioController gpio;
+    gpio.OpenPin(EPDomino24::ButtonF1, PinMode::InputPullUp);
 
-while (true) {
-    if (gpio.Read(EPDomino24::ButtonF1) == PinValue::Low)
-        std::printf("Button is pressed\n");
-    std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    while (true) {
+        if (gpio.Read(EPDomino24::ButtonF1) == PinValue::Low)
+            std::printf("Button is pressed\n");
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
 }
 ```
 
@@ -222,22 +227,24 @@ threading.Event().wait()   # sleep forever
 #include <chrono>
 #include <cstdio>
 #include <thread>
-#include <endpoint/Gpio.h>
-#include <endpoint/EPDomino24.h>
+#include <endpoint.h>
 
 using namespace GHIElectronics::Endpoint::Core;
 using namespace GHIElectronics::Endpoint::Devices::Gpio;
 
-GpioController gpio;
-gpio.OpenPin(EPDomino24::ButtonF1, PinMode::InputPullUp);
-gpio.RegisterCallbackForPinValueChangedEvent(
-    EPDomino24::ButtonF1,
-    PinEventTypes::Falling | PinEventTypes::Rising,
-    [](GpioController&, const PinValueChangedEventArgs& e) {
-        std::printf("Button %d\n", static_cast<int>(e.ChangeType));
-    });
+int main()
+{
+    GpioController gpio;
+    gpio.OpenPin(EPDomino24::ButtonF1, PinMode::InputPullUp);
+    gpio.RegisterCallbackForPinValueChangedEvent(
+        EPDomino24::ButtonF1,
+        PinEventTypes::Falling | PinEventTypes::Rising,
+        [](GpioController&, const PinValueChangedEventArgs& e) {
+            std::printf("Button %d\n", static_cast<int>(e.ChangeType));
+        });
 
-std::this_thread::sleep_for(std::chrono::hours(24 * 365));   // sleep forever
+    std::this_thread::sleep_for(std::chrono::hours(24 * 365));   // sleep forever
+}
 ```
 
 </TabItem>
