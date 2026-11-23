@@ -9,6 +9,10 @@ title: Release Notes
 - Added support for the Raspberry Pi Zero 2 W.
 - Internal design improvements.
 
+### Known issues
+
+- **C# only:** the first call to any chip-neutral controller's `Initialize` (`I2cController`, `SpiController`, `PwmController`, `CanController`, `SerialPortController`) may throw "not supported on this board" because the Pins package has not been loaded yet. Workaround: construct a `GpioController` with the board's driver once first, for example `new GpioController(new EPDomino24.Gpio.Driver())`. Does not happen in Python or C/C++.
+
 ---
 
 ## 0.5.3 (2026-11-12) Preview
