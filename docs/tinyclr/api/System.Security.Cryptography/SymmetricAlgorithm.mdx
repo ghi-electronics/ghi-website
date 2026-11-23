@@ -1,0 +1,246 @@
+---
+title: "SymmetricAlgorithm Class"
+sidebar_label: "SymmetricAlgorithm"
+---
+
+# SymmetricAlgorithm Class
+
+**NuGet:** `GHIElectronics.TinyCLR.Cryptography`<br/>**Assembly:** `System.Security.Cryptography`<br/>**Namespace:** `System.Security.Cryptography`
+
+Base class for symmetric algorithms (AES on this platform). Matches the .NET BCL abstract class.
+
+```csharp
+public abstract class SymmetricAlgorithm : IDisposable
+```
+
+## Properties
+
+### BlockSize
+
+```csharp
+public virtual int BlockSize { get; set; }
+```
+
+Block size, in bits.
+
+### FeedbackSize
+
+```csharp
+public virtual int FeedbackSize { get; set; }
+```
+
+Feedback size, in bits (unused on this platform).
+
+### IV
+
+```csharp
+public virtual byte[] IV { get; set; }
+```
+
+Initialization vector. Auto-generated (random) on first read if not set.
+
+### Key
+
+```csharp
+public virtual byte[] Key { get; set; }
+```
+
+Secret key. Auto-generated (random) on first read if not set.
+
+### KeySize
+
+```csharp
+public virtual int KeySize { get; set; }
+```
+
+Key size, in bits.
+
+### LegalBlockSizes
+
+```csharp
+public virtual KeySizes[] LegalBlockSizes { get; }
+```
+
+Allowed block-size ranges, in bits.
+
+### LegalKeySizes
+
+```csharp
+public virtual KeySizes[] LegalKeySizes { get; }
+```
+
+Allowed key-size ranges, in bits.
+
+### Mode
+
+```csharp
+public virtual CipherMode Mode { get; set; }
+```
+
+Cipher mode.
+
+### Padding
+
+```csharp
+public virtual PaddingMode Padding { get; set; }
+```
+
+Padding mode.
+
+## Methods
+
+### CreateEncryptor()
+
+```csharp
+public virtual ICryptoTransform CreateEncryptor()
+```
+
+Creates an encryptor using the current `Key` and `IV`.
+
+**Returns** `ICryptoTransform`
+
+### CreateDecryptor()
+
+```csharp
+public virtual ICryptoTransform CreateDecryptor()
+```
+
+Creates a decryptor using the current `Key` and `IV`.
+
+**Returns** `ICryptoTransform`
+
+### CreateEncryptor(byte[] rgbKey, byte[] rgbIV)
+
+```csharp
+public abstract ICryptoTransform CreateEncryptor(byte[] rgbKey, byte[] rgbIV)
+```
+
+Creates an encryptor using the given key and IV.
+
+**Returns** `ICryptoTransform`
+
+### CreateDecryptor(byte[] rgbKey, byte[] rgbIV)
+
+```csharp
+public abstract ICryptoTransform CreateDecryptor(byte[] rgbKey, byte[] rgbIV)
+```
+
+Creates a decryptor using the given key and IV.
+
+**Returns** `ICryptoTransform`
+
+### GenerateIV()
+
+```csharp
+public abstract void GenerateIV()
+```
+
+Generates a random initialization vector.
+
+### GenerateKey()
+
+```csharp
+public abstract void GenerateKey()
+```
+
+Generates a random key.
+
+### ValidKeySize(int bitLength)
+
+```csharp
+public bool ValidKeySize(int bitLength)
+```
+
+Returns true if the given size matches one of the given ranges.
+
+**Returns** `bool`
+
+### Dispose()
+
+```csharp
+public virtual void Dispose()
+```
+
+Releases the resources used by the algorithm.
+
+### Clear()
+
+```csharp
+public void Clear()
+```
+
+Releases the resources used by the algorithm.
+
+## Fields
+
+### BlockSizeValue
+
+```csharp
+protected int BlockSizeValue
+```
+
+Block size, in bits.
+
+### FeedbackSizeValue
+
+```csharp
+protected int FeedbackSizeValue
+```
+
+Feedback size, in bits.
+
+### IVValue
+
+```csharp
+protected byte[] IVValue
+```
+
+Initialization vector.
+
+### KeySizeValue
+
+```csharp
+protected int KeySizeValue
+```
+
+Key size, in bits.
+
+### KeyValue
+
+```csharp
+protected byte[] KeyValue
+```
+
+Secret key bytes.
+
+### LegalBlockSizesValue
+
+```csharp
+protected KeySizes[] LegalBlockSizesValue
+```
+
+Allowed block-size ranges.
+
+### LegalKeySizesValue
+
+```csharp
+protected KeySizes[] LegalKeySizesValue
+```
+
+Allowed key-size ranges.
+
+### ModeValue
+
+```csharp
+protected CipherMode ModeValue
+```
+
+Cipher mode.
+
+### PaddingValue
+
+```csharp
+protected PaddingMode PaddingValue
+```
+
+Padding mode.

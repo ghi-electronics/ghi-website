@@ -9,10 +9,10 @@
         "vid": "0x1B9F",
         "pid": "0x5010"
       },
-      "version": "3.0.2.4000",
-      "date": "2026-11-17",
-      "url": "/bin/fw/sitcore-sc20-firmware-v3.0.2.4000.ghi",
-      "md5": "74F5223BC65EE2D9947240A055230535"
+      "version": "3.0.3.1000",
+      "date": "2026-11-23",
+      "url": "/bin/fw/sitcore-sc20-firmware-v3.0.3.1000.ghi",
+      "md5": "21605BFFBA5782146ED3C27CD8636C85"
     },
     {
       "id": "sc13",
@@ -21,10 +21,10 @@
         "vid": "0x1B9F",
         "pid": "0x5012"
       },
-      "version": "3.0.2.4000",
-      "date": "2026-11-17",
-      "url": "/bin/fw/sitcore-sc13-firmware-v3.0.2.4000.ghi",
-      "md5": "1202A0D7F3932D595852E674B5156F7B"
+      "version": "3.0.3.1000",
+      "date": "2026-11-23",
+      "url": "/bin/fw/sitcore-sc13-firmware-v3.0.3.1000.ghi",
+      "md5": "62F9BDC59FC64828C6ABB8E49E3CE8DE"
     }
   ]
 }

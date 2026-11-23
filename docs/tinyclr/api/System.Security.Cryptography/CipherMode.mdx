@@ -1,0 +1,24 @@
+---
+title: "CipherMode Enum"
+sidebar_label: "CipherMode"
+---
+
+# CipherMode Enum
+
+**NuGet:** `GHIElectronics.TinyCLR.Cryptography`<br/>**Assembly:** `System.Security.Cryptography`<br/>**Namespace:** `System.Security.Cryptography`
+
+Block-cipher mode. Supported: `CBC`, `ECB`. Other values throw at use.
+
+```csharp
+public enum CipherMode
+```
+
+## Fields
+
+| Name | Value | Description |
+|---|---|---|
+| `CBC` | `1` | Cipher Block Chaining. |
+| `ECB` | `2` | Electronic Codebook. |
+| `OFB` | `3` | Output Feedback (not supported). |
+| `CFB` | `4` | Cipher Feedback (not supported). |
+| `CTS` | `5` | Ciphertext Stealing (not supported). |

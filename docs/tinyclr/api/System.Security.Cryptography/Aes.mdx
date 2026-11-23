@@ -1,0 +1,36 @@
+---
+title: "Aes Class"
+sidebar_label: "Aes"
+---
+
+# Aes Class
+
+**NuGet:** `GHIElectronics.TinyCLR.Cryptography`<br/>**Assembly:** `System.Security.Cryptography`<br/>**Namespace:** `System.Security.Cryptography`
+
+Abstract AES. Use `Create()` or construct `AesCryptoServiceProvider` directly.
+
+```csharp
+public abstract class Aes : SymmetricAlgorithm
+```
+
+## Constructors
+
+### Aes()
+
+```csharp
+protected Aes()
+```
+
+Protected constructor initializing legal sizes (128-bit block, 128/192/256-bit key).
+
+## Methods
+
+### Create()
+
+```csharp
+public static Aes Create()
+```
+
+Creates a new AES instance.
+
+**Returns** `Aes`

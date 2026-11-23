@@ -22,3 +22,19 @@ public static new Font Font { get; set; }
 ```
 
 Gets or sets the font used for the keyboard's text input field.
+
+### ShowPressFeedback
+
+```csharp
+public static bool ShowPressFeedback { get; set; }
+```
+
+Whether the keyboard darkens a key while it is being pressed to give visual feedback. Enabled by default. Set to false to fall back to the flat touch-up-only behavior that shipped prior to this option being added.
+
+### RepeatBackspaceOnHold
+
+```csharp
+public static bool RepeatBackspaceOnHold { get; set; }
+```
+
+Whether holding the Backspace key auto-repeats the delete (like a physical keyboard). After an initial ~500 ms delay characters are removed every ~100 ms until the finger is released. Enabled by default. Set to false to require a fresh tap per delete.

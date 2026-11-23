@@ -1,0 +1,84 @@
+---
+title: "AesGcm Class"
+sidebar_label: "AesGcm"
+---
+
+# AesGcm Class
+
+**NuGet:** `GHIElectronics.TinyCLR.Cryptography`<br/>**Assembly:** `System.Security.Cryptography`<br/>**Namespace:** `System.Security.Cryptography`
+
+Authenticated AES in Galois/Counter Mode. Matches .NET BCL AesGcm (TinyCLR subset).
+
+```csharp
+public sealed class AesGcm : IDisposable
+```
+
+## Constructors
+
+### AesGcm(byte[] key)
+
+```csharp
+public AesGcm(byte[] key)
+```
+
+Creates a new AES-GCM context bound to the given key (128/192/256 bits).
+
+## Properties
+
+### NonceByteSizes
+
+```csharp
+public static KeySizesRange NonceByteSizes { get; }
+```
+
+Nonce size required by this implementation: 12 bytes (the de-facto standard).
+
+### TagByteSizes
+
+```csharp
+public static KeySizesRange TagByteSizes { get; }
+```
+
+Tag size produced by this implementation: 16 bytes (the de-facto standard).
+
+## Methods
+
+### Encrypt(byte[] nonce, byte[] plaintext, byte[] ciphertext, byte[] tag, byte[] associatedData)
+
+```csharp
+public void Encrypt(byte[] nonce, byte[] plaintext, byte[] ciphertext, byte[] tag, byte[] associatedData = null)
+```
+
+Encrypt `plaintext` into `ciphertext` and write the 16-byte authentication `tag`. `associatedData` is authenticated but not encrypted (may be null or empty).
+
+| Parameter | Type | Description |
+|---|---|---|
+| `nonce` | `byte[]` | 12 bytes. MUST be unique per key — reusing a nonce with the same key breaks GCM's security entirely. |
+| `plaintext` | `byte[]` | Input data (any length, including zero). |
+| `ciphertext` | `byte[]` | Output buffer — must be exactly plaintext.Length bytes. |
+| `tag` | `byte[]` | Output tag buffer — must be exactly 16 bytes. |
+| `associatedData` | `byte[]` | Additional authenticated (but not encrypted) data. Typically a header. May be null. |
+
+### Decrypt(byte[] nonce, byte[] ciphertext, byte[] tag, byte[] plaintext, byte[] associatedData)
+
+```csharp
+public void Decrypt(byte[] nonce, byte[] ciphertext, byte[] tag, byte[] plaintext, byte[] associatedData = null)
+```
+
+Verify the `tag` and decrypt `ciphertext` into `plaintext`. Throws `CryptographicException` if the tag does not match (ciphertext was tampered or associatedData doesn't match).
+
+| Parameter | Type | Description |
+|---|---|---|
+| `nonce` | `byte[]` | 12 bytes. Must match the nonce used for Encrypt. |
+| `ciphertext` | `byte[]` | Encrypted data. |
+| `tag` | `byte[]` | 16-byte authentication tag from Encrypt. |
+| `plaintext` | `byte[]` | Output buffer — must be exactly ciphertext.Length bytes. |
+| `associatedData` | `byte[]` | Must match the value passed to Encrypt. May be null. |
+
+### Dispose()
+
+```csharp
+public void Dispose()
+```
+
+Releases the resources used by the AES-GCM context. Key material is zeroed.

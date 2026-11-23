@@ -1,0 +1,62 @@
+---
+title: "AesCryptoServiceProvider Class"
+sidebar_label: "AesCryptoServiceProvider"
+---
+
+# AesCryptoServiceProvider Class
+
+**NuGet:** `GHIElectronics.TinyCLR.Cryptography`<br/>**Assembly:** `System.Security.Cryptography`<br/>**Namespace:** `System.Security.Cryptography`
+
+Concrete AES backed by the firmware's mbedTLS AES implementation.
+
+```csharp
+public sealed class AesCryptoServiceProvider : Aes
+```
+
+## Constructors
+
+### AesCryptoServiceProvider()
+
+```csharp
+public AesCryptoServiceProvider()
+```
+
+Creates a new AES provider. Key and IV are generated on first access if not set.
+
+## Methods
+
+### GenerateIV()
+
+```csharp
+public override void GenerateIV()
+```
+
+Generates a random initialization vector.
+
+### GenerateKey()
+
+```csharp
+public override void GenerateKey()
+```
+
+Generates a random key.
+
+### CreateEncryptor(byte[] rgbKey, byte[] rgbIV)
+
+```csharp
+public override ICryptoTransform CreateEncryptor(byte[] rgbKey, byte[] rgbIV)
+```
+
+Creates an encryptor using the given key and IV.
+
+**Returns** `ICryptoTransform`
+
+### CreateDecryptor(byte[] rgbKey, byte[] rgbIV)
+
+```csharp
+public override ICryptoTransform CreateDecryptor(byte[] rgbKey, byte[] rgbIV)
+```
+
+Creates a decryptor using the given key and IV.
+
+**Returns** `ICryptoTransform`

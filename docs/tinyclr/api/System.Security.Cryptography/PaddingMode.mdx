@@ -1,0 +1,24 @@
+---
+title: "PaddingMode Enum"
+sidebar_label: "PaddingMode"
+---
+
+# PaddingMode Enum
+
+**NuGet:** `GHIElectronics.TinyCLR.Cryptography`<br/>**Assembly:** `System.Security.Cryptography`<br/>**Namespace:** `System.Security.Cryptography`
+
+Padding scheme for block ciphers. Supported: `None`, `PKCS7`, `Zeros`.
+
+```csharp
+public enum PaddingMode
+```
+
+## Fields
+
+| Name | Value | Description |
+|---|---|---|
+| `None` | `1` | No padding; the input must already be a whole number of blocks. |
+| `PKCS7` | `2` | PKCS#7 padding. |
+| `Zeros` | `3` | Pad with zero bytes (ambiguous — decryptor cannot strip). |
+| `ANSIX923` | `4` | ANSI X.923 padding (not supported). |
+| `ISO10126` | `5` | ISO 10126 padding (not supported). |
