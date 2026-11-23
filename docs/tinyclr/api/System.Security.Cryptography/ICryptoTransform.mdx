@@ -1,0 +1,70 @@
+---
+title: "ICryptoTransform Interface"
+sidebar_label: "ICryptoTransform"
+---
+
+# ICryptoTransform Interface
+
+**NuGet:** `GHIElectronics.TinyCLR.Cryptography`<br/>**Assembly:** `System.Security.Cryptography`<br/>**Namespace:** `System.Security.Cryptography`
+
+Cryptographic transformation interface. Matches the .NET BCL interface.
+
+```csharp
+public interface ICryptoTransform : IDisposable
+```
+
+## Properties
+
+### CanReuseTransform
+
+```csharp
+bool CanReuseTransform { get; }
+```
+
+True if the transform can be reused after a final block.
+
+### CanTransformMultipleBlocks
+
+```csharp
+bool CanTransformMultipleBlocks { get; }
+```
+
+True if the transform can process more than one block in a single call.
+
+### InputBlockSize
+
+```csharp
+int InputBlockSize { get; }
+```
+
+Input block size, in bytes.
+
+### OutputBlockSize
+
+```csharp
+int OutputBlockSize { get; }
+```
+
+Output block size, in bytes.
+
+## Methods
+
+### TransformBlock(byte[] inputBuffer, int inputOffset, int inputCount, byte[] outputBuffer, int outputOffset)
+
+```csharp
+int TransformBlock(byte[] inputBuffer, int inputOffset, int inputCount, byte[] outputBuffer, int outputOffset)
+```
+
+Transforms the given region of the input and writes the result to the output buffer.
+
+**Returns** `int`
+
+### TransformFinalBlock(byte[] inputBuffer, int inputOffset, int inputCount)
+
+```csharp
+byte[] TransformFinalBlock(byte[] inputBuffer, int inputOffset, int inputCount)
+```
+
+Transforms the final region of the input and returns the (possibly padded) result.
+
+**Returns** `byte[]`

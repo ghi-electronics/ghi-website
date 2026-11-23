@@ -4,6 +4,32 @@ title: Release Notes
 
 ![TinyCLR Logo](/img/docs/tinyclr-logo.png)
 
+## 3.0.3.1000 (2026-11-23) RTW
+
+New release expanding the `System.Security.Cryptography` surface with mainstream AES primitives. Firmware, extensions, libraries, and TinyCLR Config are all updated together.
+
+### Libraries
+
+- `GHIElectronics.TinyCLR.Cryptography` + `System.Security.Cryptography`: added `System.Security.Cryptography.Aes` with standard `CipherMode.CBC` / `CipherMode.ECB` and `PaddingMode.PKCS7` / `None` / `Zeros`, plus 128/192/256-bit keys. API is a direct match for desktop .NET, so a typical AES snippet works unchanged.
+- `GHIElectronics.TinyCLR.Cryptography` + `System.Security.Cryptography`: added `System.Security.Cryptography.AesGcm` — authenticated encryption with associated data (AEAD). 12-byte nonce, 16-byte tag, standard BCL shape (`Encrypt(nonce, pt, ct, tag, aad)` / `Decrypt(nonce, ct, tag, pt, aad)`). Tag mismatches throw `CryptographicException`.
+- All other libraries: version updated to match this release.
+
+### Firmware
+
+- Updated to carry the native backing for the new AES and AES-GCM APIs added in Libraries.
+
+### Visual Studio Extension
+
+- Version updated to match this release. Bundled offline NuGet packages refreshed to 3.0.3.1000.
+
+### TinyCLR Config
+
+- Version updated to match this release.
+
+### Visual Studio Code extension
+
+- Version bumped to 3.0.13. Project templates now reference 3.0.3.1000 NuGet packages.
+
 ## 3.0.2.4000 (2026-11-17) RTW
 
 Firmware-only patch release. Libraries, extensions, and TinyCLR Config are unchanged — keep using 3.0.2.3000 for all of those.

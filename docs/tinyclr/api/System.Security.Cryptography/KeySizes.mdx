@@ -1,0 +1,50 @@
+---
+title: "KeySizes Class"
+sidebar_label: "KeySizes"
+---
+
+# KeySizes Class
+
+**NuGet:** `GHIElectronics.TinyCLR.Cryptography`<br/>**Assembly:** `System.Security.Cryptography`<br/>**Namespace:** `System.Security.Cryptography`
+
+Describes an allowed key/block size range as Min/Max with a Skip step. Matches the .NET type.
+
+```csharp
+public sealed class KeySizes
+```
+
+## Constructors
+
+### KeySizes(int minSize, int maxSize, int skipSize)
+
+```csharp
+public KeySizes(int minSize, int maxSize, int skipSize)
+```
+
+Creates a new range.
+
+## Properties
+
+### MinSize
+
+```csharp
+public int MinSize { get; }
+```
+
+Minimum valid size, in bits.
+
+### MaxSize
+
+```csharp
+public int MaxSize { get; }
+```
+
+Maximum valid size, in bits.
+
+### SkipSize
+
+```csharp
+public int SkipSize { get; }
+```
+
+Step between valid sizes, in bits.

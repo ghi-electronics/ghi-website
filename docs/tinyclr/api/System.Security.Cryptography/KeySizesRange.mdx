@@ -1,0 +1,50 @@
+---
+title: "KeySizesRange Struct"
+sidebar_label: "KeySizesRange"
+---
+
+# KeySizesRange Struct
+
+**NuGet:** `GHIElectronics.TinyCLR.Cryptography`<br/>**Assembly:** `System.Security.Cryptography`<br/>**Namespace:** `System.Security.Cryptography`
+
+Allowed sizes for AES-GCM nonce / tag. Matches the .NET BCL type.
+
+```csharp
+public struct KeySizesRange
+```
+
+## Constructors
+
+### KeySizesRange(int minSize, int maxSize, int skipSize)
+
+```csharp
+public KeySizesRange(int minSize, int maxSize, int skipSize)
+```
+
+Creates a new range.
+
+## Properties
+
+### MinSize
+
+```csharp
+public int MinSize { get; }
+```
+
+Minimum valid size, in bytes.
+
+### MaxSize
+
+```csharp
+public int MaxSize { get; }
+```
+
+Maximum valid size, in bytes.
+
+### SkipSize
+
+```csharp
+public int SkipSize { get; }
+```
+
+Step between valid sizes, in bytes.

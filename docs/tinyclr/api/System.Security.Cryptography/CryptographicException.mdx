@@ -1,0 +1,40 @@
+---
+title: "CryptographicException Class"
+sidebar_label: "CryptographicException"
+---
+
+# CryptographicException Class
+
+**NuGet:** `GHIElectronics.TinyCLR.Cryptography`<br/>**Assembly:** `System.Security.Cryptography`<br/>**Namespace:** `System.Security.Cryptography`
+
+Thrown for cryptographic errors (bad key/IV length, invalid padding, etc.). Matches the .NET type.
+
+```csharp
+public class CryptographicException : SystemException
+```
+
+## Constructors
+
+### CryptographicException()
+
+```csharp
+public CryptographicException()
+```
+
+Creates a new exception.
+
+### CryptographicException(string message)
+
+```csharp
+public CryptographicException(string message) : base(message)
+```
+
+Creates a new exception with a message.
+
+### CryptographicException(string message, Exception inner)
+
+```csharp
+public CryptographicException(string message, Exception inner) : base(message, inner)
+```
+
+Creates a new exception with a message and inner exception.

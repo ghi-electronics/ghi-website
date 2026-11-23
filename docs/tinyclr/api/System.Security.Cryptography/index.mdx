@@ -16,12 +16,17 @@ The standard-.NET `System.Security.Cryptography` API for TinyCLR. It ships insid
 
 | Class | Namespace | Summary |
 |---|---|---|
+| [Aes](./Aes.mdx) | `System.Security.Cryptography` | Abstract AES. Use `Create()` or construct `AesCryptoServiceProvider` directly. |
+| [AesCryptoServiceProvider](./AesCryptoServiceProvider.mdx) | `System.Security.Cryptography` | Concrete AES backed by the firmware's mbedTLS AES implementation. |
+| [AesGcm](./AesGcm.mdx) | `System.Security.Cryptography` | Authenticated AES in Galois/Counter Mode. Matches .NET BCL AesGcm (TinyCLR subset). |
 | [AsymmetricAlgorithm](./AsymmetricAlgorithm.mdx) | `System.Security.Cryptography` | Abstract base for asymmetric (public-key) algorithms. |
+| [CryptographicException](./CryptographicException.mdx) | `System.Security.Cryptography` | Thrown for cryptographic errors (bad key/IV length, invalid padding, etc.). Matches the .NET type. |
 | [HashAlgorithm](./HashAlgorithm.mdx) | `System.Security.Cryptography` | Abstract base for cryptographic hash algorithms (MD5, SHA1, SHA256). Matches the .NET BCL surface. |
 | [HMAC](./HMAC.mdx) | `System.Security.Cryptography` | Abstract base for HMAC algorithms (HMAC-SHA1, HMAC-SHA256, etc.). |
 | [HMACSHA1](./HMACSHA1.mdx) | `System.Security.Cryptography` | HMAC-SHA1 keyed hash (160-bit output). |
 | [HMACSHA256](./HMACSHA256.mdx) | `System.Security.Cryptography` | HMAC-SHA256 keyed hash (256-bit output). |
 | [KeyedHashAlgorithm](./KeyedHashAlgorithm.mdx) | `System.Security.Cryptography` | Abstract base for keyed hash algorithms (HMAC family). |
+| [KeySizes](./KeySizes.mdx) | `System.Security.Cryptography` | Describes an allowed key/block size range as Min/Max with a Skip step. Matches the .NET type. |
 | [MD5](./MD5.mdx) | `System.Security.Cryptography` | MD5 hash (128-bit). Cryptographically broken; use for checksums, not for security. |
 | [RandomNumberGenerator](./RandomNumberGenerator.mdx) | `System.Security.Cryptography` | Cryptographically secure RNG. Create via `Create()`; do not seed manually. |
 | [RSA](./RSA.mdx) | `System.Security.Cryptography` | Abstract RSA implementation; create concrete instances via `RSACryptoServiceProvider`. |
@@ -30,17 +35,27 @@ The standard-.NET `System.Security.Cryptography` API for TinyCLR. It ships insid
 | [RSASignaturePadding](./RSASignaturePadding.mdx) | `System.Security.Cryptography` | Signature-padding configuration. Matches the .NET Framework type. |
 | [SHA1](./SHA1.mdx) | `System.Security.Cryptography` | SHA-1 hash (160-bit). Use `HashAlgorithm.Create()` overloads or instantiate directly. |
 | [SHA256](./SHA256.mdx) | `System.Security.Cryptography` | SHA-256 hash (256-bit). |
+| [SymmetricAlgorithm](./SymmetricAlgorithm.mdx) | `System.Security.Cryptography` | Base class for symmetric algorithms (AES on this platform). Matches the .NET BCL abstract class. |
 
 ## Structs
 
 | Struct | Namespace | Summary |
 |---|---|---|
 | [HashAlgorithmName](./HashAlgorithmName.mdx) | `System.Security.Cryptography` | Well-known hash-algorithm name selector matching .NET Framework's `System.Security.Cryptography.HashAlgorithmName`. |
+| [KeySizesRange](./KeySizesRange.mdx) | `System.Security.Cryptography` | Allowed sizes for AES-GCM nonce / tag. Matches the .NET BCL type. |
 | [RSAParameters](./RSAParameters.mdx) | `System.Security.Cryptography` | RSA key parameters (modulus, exponent, and optional private components) matching the .NET Framework struct. |
+
+## Interfaces
+
+| Interface | Namespace | Summary |
+|---|---|---|
+| [ICryptoTransform](./ICryptoTransform.mdx) | `System.Security.Cryptography` | Cryptographic transformation interface. Matches the .NET BCL interface. |
 
 ## Enums
 
 | Enum | Namespace | Summary |
 |---|---|---|
+| [CipherMode](./CipherMode.mdx) | `System.Security.Cryptography` | Block-cipher mode. Supported: `CBC`, `ECB`. Other values throw at use. |
+| [PaddingMode](./PaddingMode.mdx) | `System.Security.Cryptography` | Padding scheme for block ciphers. Supported: `None`, `PKCS7`, `Zeros`. |
 | [RSAEncryptionPaddingMode](./RSAEncryptionPaddingMode.mdx) | `System.Security.Cryptography` | Padding scheme applied to RSA-encrypted blocks. |
 | [RSASignaturePaddingMode](./RSASignaturePaddingMode.mdx) | `System.Security.Cryptography` | Padding scheme applied to RSA signatures. |
