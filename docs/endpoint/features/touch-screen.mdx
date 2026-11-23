@@ -279,35 +279,33 @@ UI.Run()                   # blocks on the UI thread
 <TabItem value="cpp" label="C/C++">
 
 ```cpp
-#include <endpoint/EPDomino24.h>
-#include <endpoint/Gpio.h>
-#include <endpoint/I2c.h>
-#include <endpoint/I2cController.h>
-#include <endpoint/Touch.h>
-#include <endpoint/UI.h>
+#include <endpoint.h>
 
 using namespace GHIElectronics::Endpoint;
 
-UI::Initialize();          // after DisplayController::Enable()
-UI::TouchBridge::Attach();
+int main()
+{
+    UI::Initialize();          // after DisplayController::Enable()
+    UI::TouchBridge::Attach();
 
-// Touch chip on the display connector: I2C5, reset PF2, interrupt PB11
-Core::I2cController::Initialize(Core::EPDomino24::I2c::I2c5);
-auto i2c = Devices::I2c::I2cDevice::Create(
-    Devices::I2c::I2cConnectionSettings(Core::EPDomino24::I2c::I2c5, 0x38));
-Devices::Gpio::GpioController gpio;
-FT5xx6 touch(i2c, gpio, Core::EPDomino24::Gpio::Pin::PF2, Core::EPDomino24::Gpio::Pin::PB11);
-touch.SetOnEvent([](Devices::Touch::Touch&, const Devices::Touch::TouchEventArgs& e) {
-    if (!e.Points().empty()) {
-        const auto& p = e.Points().front();
-        UI::TouchBridge::Feed(p.X, p.Y, e.EventType() != Devices::Touch::TouchEventType::Released);
-    }
-    else {
-        UI::TouchBridge::Feed(0, 0, false);
-    }
-});
+    // Touch chip on the display connector: I2C5, reset PF2, interrupt PB11
+    Core::I2cController::Initialize(Core::EPDomino24::I2c::I2c5);
+    auto i2c = Devices::I2c::I2cDevice::Create(
+        Devices::I2c::I2cConnectionSettings(Core::EPDomino24::I2c::I2c5, 0x38));
+    Devices::Gpio::GpioController gpio;
+    FT5xx6 touch(i2c, gpio, Core::EPDomino24::Gpio::Pin::PF2, Core::EPDomino24::Gpio::Pin::PB11);
+    touch.SetOnEvent([](Devices::Touch::Touch&, const Devices::Touch::TouchEventArgs& e) {
+        if (!e.Points().empty()) {
+            const auto& p = e.Points().front();
+            UI::TouchBridge::Feed(p.X, p.Y, e.EventType() != Devices::Touch::TouchEventType::Released);
+        }
+        else {
+            UI::TouchBridge::Feed(0, 0, false);
+        }
+    });
 
-UI::Run();                 // blocks on the UI thread
+    UI::Run();                 // blocks on the UI thread
+}
 ```
 
 </TabItem>

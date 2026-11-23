@@ -194,7 +194,6 @@ tft.flush(canvas.Buffer)
 
 ```cpp
 #include <endpoint.h>
-#include <endpoint/SpiController.h>
 #include "Ili9341.h"                // driver file, link above
 
 namespace Core    = GHIElectronics::Endpoint::Core;
@@ -202,26 +201,29 @@ namespace Gpio    = GHIElectronics::Endpoint::Devices::Gpio;
 namespace Spi     = GHIElectronics::Endpoint::Devices::Spi;
 namespace Drawing = GHIElectronics::Endpoint::Drawing;
 
-Core::SpiController::Initialize(Core::EPDomino24::Spi::Spi1, /*bufferSize*/ 4096);
-Spi::SpiConnectionSettings settings(Core::EPDomino24::Spi::Spi1);
-settings.Mode = Spi::SpiMode::Mode0;
-settings.ClockFrequency = 10'000'000;
-auto spi = Spi::SpiDevice::Create(settings);
+int main()
+{
+    Core::SpiController::Initialize(Core::EPDomino24::Spi::Spi1, /*bufferSize*/ 4096);
+    Spi::SpiConnectionSettings settings(Core::EPDomino24::Spi::Spi1);
+    settings.Mode = Spi::SpiMode::Mode0;
+    settings.ClockFrequency = 10'000'000;
+    auto spi = Spi::SpiDevice::Create(settings);
 
-Gpio::GpioController gpio;
-Ili9341 tft(gpio, spi,
-            /*cs*/  Core::EPDomino24::Gpio::Pin::PA14,
-            /*dc*/  Core::EPDomino24::Gpio::Pin::PF14,
-            /*rst*/ Core::EPDomino24::Gpio::Pin::PF4);
-tft.SwapRedBlue(true);              // set for modules where yellow shows as cyan
-tft.Initialize();
+    Gpio::GpioController gpio;
+    Ili9341 tft(gpio, spi,
+                /*cs*/  Core::EPDomino24::Gpio::Pin::PA14,
+                /*dc*/  Core::EPDomino24::Gpio::Pin::PF14,
+                /*rst*/ Core::EPDomino24::Gpio::Pin::PF4);
+    tft.SwapRedBlue(true);              // set for modules where yellow shows as cyan
+    tft.Initialize();
 
-auto canvas = Drawing::Canvas::Create(tft.Width(), tft.Height(), Drawing::PixelFormat::Rgb565);
-canvas.FillRectangle(0, 0, tft.Width(), tft.Height(), Drawing::Color::Navy());
-canvas.DrawText("240 x 320 ILI9341", 10, 10, Drawing::Color::White(), 16);
-canvas.DrawLine(0, 160, tft.Width(), 160, Drawing::Color::Yellow());
+    auto canvas = Drawing::Canvas::Create(tft.Width(), tft.Height(), Drawing::PixelFormat::Rgb565);
+    canvas.FillRectangle(0, 0, tft.Width(), tft.Height(), Drawing::Color::Navy());
+    canvas.DrawText("240 x 320 ILI9341", 10, 10, Drawing::Color::White(), 16);
+    canvas.DrawLine(0, 160, tft.Width(), 160, Drawing::Color::Yellow());
 
-tft.Flush(canvas.Buffer());
+    tft.Flush(canvas.Buffer());
+}
 ```
 
 </TabItem>

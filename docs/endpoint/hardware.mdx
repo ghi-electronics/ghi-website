@@ -4,15 +4,47 @@ title: "Endpoint Hardware"
 
 Endpoint runs on a family of hardware designed for different form factors
 and production needs. A System on Module and a production dev board are
-planned. The only board available today is the evaluation board,
-**Endpoint Domino24**.
+planned. Today you can evaluate Endpoint on these boards:
 
-- [Endpoint Domino24](endpoint-domino24.mdx): low-cost evaluation / prototyping single-board computer. Display FPC connector, 2× mikroBUS headers, USB host, 40-pin expansion header, microSD card slot. Our recommended starting point.
+- [Endpoint Domino24](endpoint-domino24.mdx): our low-cost evaluation / prototyping single-board computer. Display FPC connector, 2× mikroBUS headers, USB host, 40-pin expansion header, microSD card slot. Our recommended starting point.
+- [Raspberry Pi Zero 2 W](raspberry-pi-zero.mdx): a third-party evaluation option. Same extension, libraries, and APIs, with fewer hardware features.
 
 :::note[Evaluation hardware]
-Domino24 is the evaluation board we built for Endpoint. We have not released
-SoMs or dev boards yet, because we are still shaping what the commercial
-product should be. Tell us what you need on the
+These boards are for evaluation. We have not released SoMs or dev boards
+yet, because we are still shaping what the commercial product should be.
+Tell us what you need on the
 [forum](https://forums.ghielectronics.com/c/endpoint/34): what form factor, which
 peripherals, and whether wireless is a requirement.
 :::
+
+## Features supported by board
+
+Every board runs the same Endpoint OS, IDE extensions, and libraries. What
+differs is the hardware on the board.
+
+Feature | Endpoint Domino24 | Raspberry Pi Zero 2 W
+--- | --- | ---
+[GPIO](features/gpio.mdx) | 58 lines | 26 lines
+[PWM](features/pwm.mdx) | 11 channels | 2 channels
+[Analog In](features/analog-in.mdx) | 8 channels | —
+[Analog Out](features/analog-out.mdx) | 2 channels | —
+[Signal Control](features/signal-control.mdx) | Coming soon | —
+[SPI](features/spi.mdx) | 2 buses | 2 buses
+[I2C](features/i2c.mdx) | 3 buses | 1 bus
+[UART](features/uart.mdx) | 6 ports | 1 port
+[USB](features/usb.mdx) host | ✓ | —
+[CAN](features/can.mdx) | 2 buses | —
+[Networking](features/networking.mdx) | Wi-Fi through a USB dongle | Wi-Fi on board
+[Bluetooth](features/bluetooth.mdx) | Coming soon | Coming soon
+[Displays](features/displays.mdx) | parallel TFT, SPI, I2C | HDMI, SPI, I2C
+[Touch Screen](features/touch-screen.mdx) | ✓ | ✓
+[Camera](features/camera.mdx) | Coming soon | —
+[File System](features/file-system.mdx) | microSD, USB drives | microSD
+[Power Management](features/power-management.mdx) | ✓ | ✓
+[Watchdog](features/watchdog-timer.mdx) | ✓ | ✓
+[Real Time Clock](features/real-time-clock.mdx) | ✓ | —
+[In-Field Update](features/in-field-update.mdx) | Coming soon | —
+Cloud, IoT (MQTT, Modbus, gateway, databases) | ✓ | ✓
+Cold boot time | about 3 seconds | about 8 seconds
+
+✓ supported, — not available on this board.

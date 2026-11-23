@@ -14,7 +14,7 @@ import TabItem from '@theme/TabItem';
 Endpoint runs **full .NET, Python, and C/C++** on a circuit. All three share one set of APIs, so what you learn in one language travels with you. You deploy and debug applications over a USB cable, no SSH, with no keys, passwords, or IP addresses.
 
 :::note[Evaluation hardware]
-[Endpoint Domino24](hardware.mdx) is the evaluation board we built for Endpoint. We have not released SoMs or dev boards yet, because we are still shaping what the commercial product should be. Tell us what you need on the [forum](https://forums.ghielectronics.com/c/endpoint/34): what form factor, which peripherals, and whether wireless is a requirement.
+[Endpoint Domino24](endpoint-domino24.mdx) is the evaluation board we built for Endpoint, and the [Raspberry Pi Zero 2 W](raspberry-pi-zero.mdx) is a third-party evaluation option with fewer hardware features. We have not released SoMs or dev boards yet, because we are still shaping what the commercial product should be. Tell us what you need on the [forum](https://forums.ghielectronics.com/c/endpoint/34): what form factor, which peripherals, and whether wireless is a requirement.
 :::
 
 ## Languages and tools
@@ -27,17 +27,45 @@ Endpoint runs **full .NET, Python, and C/C++** on a circuit. All three share one
 
 ## What you'll need
 
-- **[Endpoint Domino24](hardware.mdx)**
+<Tabs groupId="board">
+<TabItem value="domino24" label="Domino24" default>
+
+- **[Endpoint Domino24](endpoint-domino24.mdx)**
 - A **USB-C cable**
 - A **microSD card** of at least 4 GB
 - **VS Code** for any language, or **Visual Studio** for .NET
 
+</TabItem>
+<TabItem value="rpi-zero-2w" label="Raspberry Pi Zero 2 W">
+
+- **[Raspberry Pi Zero 2 W](raspberry-pi-zero.mdx)**
+- A **micro-USB cable** that carries data, not a charge-only cable
+- A **microSD card** of at least 4 GB
+- **VS Code** for any language, or **Visual Studio** for .NET
+
+</TabItem>
+</Tabs>
+
 ## Step 1: Prepare the board
+
+<Tabs groupId="board">
+<TabItem value="domino24" label="Domino24" default>
 
 1. Download the latest Endpoint OS image for your board from the [Downloads](downloads.mdx#endpoint-os-image) page. Domino24 uses the **EPM815** image.
 2. Write the image to the microSD card with a disk imaging tool such as balenaEtcher.
 3. Insert the card into Domino24 and connect it to your PC with the USB-C cable.
 4. Wait for the **USER LED** to light, which shows the board has finished booting.
+
+</TabItem>
+<TabItem value="rpi-zero-2w" label="Raspberry Pi Zero 2 W">
+
+1. Download the latest Endpoint OS image for your board from the [Downloads](downloads.mdx#endpoint-os-image) page. The Raspberry Pi Zero 2 W uses the **Raspberry Pi Zero 2** image.
+2. Write the image to the microSD card with a disk imaging tool such as balenaEtcher.
+3. Insert the card into the Raspberry Pi Zero 2 W and connect the micro-USB port labeled **USB** to your PC. This port powers the board and carries debugging, so **PWR IN** is not needed.
+4. Wait for the green LED to light, which shows the board has finished booting.
+
+</TabItem>
+</Tabs>
 
 ## Step 2: Install the extension
 
@@ -86,6 +114,81 @@ Every Endpoint template is a ready-to-run blink application: it blinks the USER 
 2. **Ctrl+Shift+P** → **Endpoint: New Project...** → pick a language (**.NET**, **Python** or **C/C++**), a name and a folder. VS Code opens the new project.
 
    ![New Endpoint Project language picker in VS Code](/img/docs/endpoint/vscode-new-project-language.png)
+
+</TabItem>
+</Tabs>
+
+The new project opens with a few lines of code that blink the USER LED and print a counter. This is how little it takes to run real I/O on the board:
+
+<Tabs groupId="lang">
+<TabItem value="dotnet" label=".NET (C#)" default>
+
+```csharp
+using System.Device.Gpio;
+using GHIElectronics.Endpoint.Core;
+using GHIElectronics.Endpoint.Pins;
+
+using var gpio = new GpioController(new EPDomino24.Gpio.Driver());
+var ledPin = EPDomino24.Gpio.Led;
+
+gpio.OpenPin(ledPin, PinMode.Output);
+
+var counter = 0;
+while (true)
+{
+    Console.WriteLine($"Hello Endpoint. Counter: {++counter}");
+    gpio.Write(ledPin, counter % 2 == 1 ? PinValue.High : PinValue.Low);
+    Thread.Sleep(500);
+}
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import time
+from GHIElectronics.Endpoint.Pins import EPDomino24
+from GHIElectronics.Endpoint.Devices.Gpio import GpioController, PinMode, PinValue
+
+gpio = GpioController()
+led_pin = EPDomino24.Gpio.Led
+
+gpio.OpenPin(led_pin, PinMode.Output)
+
+counter = 0
+while True:
+    counter += 1
+    print(f"Hello Endpoint. Counter: {counter}")
+    gpio.Write(led_pin, PinValue.High if counter % 2 else PinValue.Low)
+    time.sleep(0.5)
+```
+
+</TabItem>
+<TabItem value="cpp" label="C/C++">
+
+```cpp
+#include <chrono>
+#include <cstdio>
+#include <thread>
+#include <endpoint.h>
+
+using namespace GHIElectronics::Endpoint::Core;
+using namespace GHIElectronics::Endpoint::Devices::Gpio;
+
+int main()
+{
+    GpioController gpio;
+    auto ledPin = EPDomino24::Gpio::Led;
+
+    gpio.OpenPin(ledPin, PinMode::Output);
+
+    for (int counter = 1;; counter++) {
+        std::printf("Hello Endpoint. Counter: %d\n", counter);
+        gpio.Write(ledPin, counter % 2 ? PinValue::High : PinValue::Low);
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    }
+}
+```
 
 </TabItem>
 </Tabs>
@@ -371,5 +474,5 @@ foreach (var n in Assembly.GetExecutingAssembly().GetManifestResourceNames())
 
 ## What's next
 
-- **[Hardware](hardware.mdx)**: Domino24's pinout, displays, cameras, and expansion headers.
+- **[Hardware](hardware.mdx)**: supported boards, pinouts, and which features each board supports.
 - **[Features](features.mdx)**: GPIO, buses, displays, networking, and more.
